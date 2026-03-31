@@ -1,0 +1,15 @@
+title: EvoBioSys
+description: Cultivating evolutionary approaches & liberating systems
+url: "https://evobiosys.org"
+baseurl: ""
+
+markdown: kramdown
+theme: null
+plugins:
+  - jekyll-seo-tag
+
+exclude:
+  - README.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
