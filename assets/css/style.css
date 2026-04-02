@@ -78,6 +78,7 @@ body {
 /* --- Hero --- */
 
 .hero {
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -87,6 +88,25 @@ body {
   padding: 6rem 2rem 4rem;
   max-width: 800px;
   margin: 0 auto;
+  overflow: hidden;
+}
+
+.evolution-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.15;
+}
+
+.hero-badge,
+.hero h1,
+.hero p,
+.hero-cta {
+  position: relative;
+  z-index: 2;
 }
 
 .hero-badge {
