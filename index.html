@@ -147,14 +147,20 @@ description: Cultivating evolutionary approaches & liberating systems.
       Occasional updates on projects, ideas, and invitations. No noise.
     </p>
 
-    <a href="mailto:connect@evobiosys.org?subject=I'd like to stay in the loop" class="btn btn-primary">Send us a note</a>
+    <form id="listmonk-form-main" style="display: flex; gap: 0.75rem;">
+      <input type="email" name="email" placeholder="your@email.com" required style="flex: 1; padding: 0.75rem 1rem; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.9rem; font-family: var(--font-main); background: var(--color-bg); color: var(--color-text);">
+      <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+    <p class="newsletter-note" style="margin-top: 0.75rem;">
+      Powered by <a href="https://listmonk.app" target="_blank" style="color: var(--color-accent);">Listmonk</a>
+    </p>
   </div>
 </section>
 
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
-    <p>&copy; 2026 EvoBioSys &middot; <a href="mailto:connect@evobiosys.org">connect@evobiosys.org</a></p>
+    <p>&copy; 2026 EvoBioSys &middot; <a href="/capital/">Capital</a> &middot; <a href="mailto:connect@evobiosys.org">connect@evobiosys.org</a></p>
   </div>
 </footer>
 
@@ -164,4 +170,17 @@ description: Cultivating evolutionary approaches & liberating systems.
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 20);
   });
+
+  // Listmonk form submission (main page)
+  const form = document.getElementById('listmonk-form-main');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = form.querySelector('input[name="email"]').value;
+      // TODO: Update with your Listmonk endpoint
+      // POST to LISTMONK_URL/api/subscribers with {email, list_ids: [LIST_ID]}
+      console.log('Subscribe (main):', email);
+      alert('Thanks! We'll be in touch at: ' + email);
+    });
+  }
 </script>
