@@ -11,6 +11,7 @@ description: Cultivating evolutionary approaches & liberating systems.
 
 <!-- Hero -->
 <section class="hero">
+  <canvas id="evolution-canvas" class="evolution-canvas"></canvas>
   <span class="hero-badge">Evolutionary &middot; Biomimetic &middot; Systemic</span>
   <h1>Living systems that <span class="accent">evolve together</span></h1>
   <p>
@@ -147,14 +148,20 @@ description: Cultivating evolutionary approaches & liberating systems.
       Occasional updates on projects, ideas, and invitations. No noise.
     </p>
 
-    <a href="mailto:connect@evobiosys.org?subject=I'd like to stay in the loop" class="btn btn-primary">Send us a note</a>
+    <form id="listmonk-form-main" style="display: flex; gap: 0.75rem;">
+      <input type="email" name="email" placeholder="your@email.com" required style="flex: 1; padding: 0.75rem 1rem; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.9rem; font-family: var(--font-main); background: var(--color-bg); color: var(--color-text);">
+      <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+    <p class="newsletter-note" style="margin-top: 0.75rem;">
+      Powered by <a href="https://listmonk.app" target="_blank" style="color: var(--color-accent);">Listmonk</a>
+    </p>
   </div>
 </section>
 
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
-    <p>&copy; 2026 EvoBioSys &middot; <a href="mailto:connect@evobiosys.org">connect@evobiosys.org</a></p>
+    <p>&copy; 2026 EvoBioSys &middot; <a href="/capital/">Capital</a> &middot; <a href="mailto:connect@evobiosys.org">connect@evobiosys.org</a></p>
   </div>
 </footer>
 
@@ -163,5 +170,169 @@ description: Cultivating evolutionary approaches & liberating systems.
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Listmonk form submission (main page)
+  const form = document.getElementById('listmonk-form-main');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = form.querySelector('input[name="email"]').value;
+      // TODO: Update with your Listmonk endpoint
+      // POST to LISTMONK_URL/api/subscribers with {email, list_ids: [LIST_ID]}
+      console.log('Subscribe (main):', email);
+      alert('Thanks! We'll be in touch at: ' + email);
+    });
+  }
+
+  // Evolution Canvas Animation
+  class EvolutionVisualizer {
+    constructor(canvas) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
+      this.nodes = [];
+      this.connections = [];
+      this.time = 0;
+      this.animationComplete = false;
+
+      this.resizeCanvas();
+      window.addEventListener('resize', () => this.resizeCanvas());
+      this.init();
+      this.animate();
+    }
+
+    resizeCanvas() {
+      this.canvas.width = this.canvas.parentElement.offsetWidth;
+      this.canvas.height = this.canvas.parentElement.offsetHeight;
+    }
+
+    init() {
+      // Create initial nodes in a central cluster
+      const centerX = this.canvas.width / 2;
+      const centerY = this.canvas.height / 2;
+      const nodeCount = 12;
+
+      for (let i = 0; i < nodeCount; i++) {
+        const angle = (i / nodeCount) * Math.PI * 2;
+        const distance = 30 + Math.random() * 20;
+
+        this.nodes.push({
+          x: centerX + Math.cos(angle) * distance,
+          y: centerY + Math.sin(angle) * distance,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          radius: 2 + Math.random() * 2,
+          birthTime: Math.random() * 800, // Stagger appearance
+          energy: 1
+        });
+      }
+    }
+
+    animate() {
+      this.time++;
+
+      // Clear canvas with fade effect
+      this.ctx.fillStyle = 'rgba(250, 250, 247, 0.1)';
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+      // Update nodes
+      const centerX = this.canvas.width / 2;
+      const centerY = this.canvas.height / 2;
+
+      this.nodes.forEach((node, i) => {
+        // Only animate nodes that have been born
+        if (this.time >= node.birthTime) {
+          // Gentle drift outward then back
+          const drift = Math.sin((this.time - node.birthTime) * 0.005) * 0.15;
+          const repulsion = 0.02;
+
+          node.vx *= 0.98;
+          node.vy *= 0.98;
+          node.vx += (Math.random() - 0.5) * 0.1;
+          node.vy += (Math.random() - 0.5) * 0.1;
+
+          // Gentle pull toward center
+          const dx = centerX - node.x;
+          const dy = centerY - node.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist > 0) {
+            node.vx += (dx / dist) * 0.003;
+            node.vy += (dy / dist) * 0.003;
+          }
+
+          node.x += node.vx;
+          node.y += node.vy;
+
+          // Pulsing energy
+          node.energy = 0.7 + Math.sin((this.time - node.birthTime) * 0.02) * 0.3;
+        }
+      });
+
+      // Draw connections
+      this.ctx.strokeStyle = 'rgba(45, 106, 79, 0.3)';
+      this.ctx.lineWidth = 1;
+
+      for (let i = 0; i < this.nodes.length; i++) {
+        for (let j = i + 1; j < this.nodes.length; j++) {
+          const n1 = this.nodes[i];
+          const n2 = this.nodes[j];
+
+          // Only draw connections if both nodes are visible
+          const timeSinceN1 = this.time - n1.birthTime;
+          const timeSinceN2 = this.time - n2.birthTime;
+
+          if (timeSinceN1 > 0 && timeSinceN2 > 0) {
+            const dx = n2.x - n1.x;
+            const dy = n2.y - n1.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            // Only connect nearby nodes
+            if (dist < 150) {
+              const opacity = (1 - dist / 150) * 0.4 * Math.min(n1.energy, n2.energy);
+              this.ctx.strokeStyle = `rgba(45, 106, 79, ${opacity})`;
+              this.ctx.beginPath();
+              this.ctx.moveTo(n1.x, n1.y);
+              this.ctx.lineTo(n2.x, n2.y);
+              this.ctx.stroke();
+            }
+          }
+        }
+      }
+
+      // Draw nodes
+      this.nodes.forEach((node, i) => {
+        const timeSince = this.time - node.birthTime;
+
+        if (timeSince >= 0) {
+          // Fade in animation
+          const fadeIn = Math.min(1, timeSince / 200);
+
+          // Pulsing glow
+          const glowSize = node.radius + Math.sin(this.time * 0.03) * 1.5;
+
+          this.ctx.fillStyle = `rgba(64, 145, 108, ${0.3 * fadeIn * node.energy})`;
+          this.ctx.beginPath();
+          this.ctx.arc(node.x, node.y, glowSize, 0, Math.PI * 2);
+          this.ctx.fill();
+
+          // Core node
+          this.ctx.fillStyle = `rgba(45, 106, 79, ${fadeIn * node.energy})`;
+          this.ctx.beginPath();
+          this.ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+          this.ctx.fill();
+        }
+      });
+
+      requestAnimationFrame(() => this.animate());
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('evolution-canvas');
+    if (canvas) {
+      new EvolutionVisualizer(canvas);
+    }
   });
 </script>
