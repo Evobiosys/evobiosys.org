@@ -168,40 +168,76 @@ def save_hash(node_id: str, content_hash: str):
 
 def tana_markdown_to_yaml(markdown: str, node_id: str) -> str:
     """
-    Convert Tana node markdown to a simple YAML structure.
-    This is a basic converter — extend as needed for your data shape.
+    Convert Tana node markdown to a properly nested YAML structure.
+    Each list item becomes a YAML mapping with name + optional children.
     """
-    lines = []
-    lines.append(f"# Auto-synced from Tana node {node_id}")
-    lines.append(f"# Last sync: {time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime())}")
-    lines.append(f"# Do not edit — changes will be overwritten by next sync")
-    lines.append("")
-    lines.append("entries:")
+    import re
 
-    # Parse the markdown into a flat list of entries
+    header = [
+        f"# Auto-synced from Tana node {node_id}",
+        f"# Last sync: {time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime())}",
+        f"# Do not edit — changes will be overwritten by next sync",
+        "",
+    ]
+
     if not markdown:
-        return "\n".join(lines) + "\n"
+        return "\n".join(header + ["entries: []"]) + "\n"
+
+    # Parse markdown into a tree structure
+    entries = []
+    stack = [{"children": entries, "level": -1}]
 
     for line in markdown.split("\n"):
         stripped = line.strip()
-        if stripped.startswith("- ") and not stripped.startswith("- *["):
-            # Count indentation level
-            indent = len(line) - len(line.lstrip())
-            level = indent // 2
-            name = stripped[2:].strip()
+        if not stripped.startswith("- ") or stripped.startswith("- *["):
+            continue
 
-            # Remove HTML tags and node-id comments
-            import re
-            name = re.sub(r'<!--.*?-->', '', name).strip()
-            name = re.sub(r'#\w+', '', name).strip()  # Remove tags
-            name = re.sub(r'\*\*.*?\*\*:?\s*', '', name).strip()  # Remove bold fields
+        indent = len(line) - len(line.lstrip())
+        level = indent // 2
+        name = stripped[2:].strip()
 
-            if name and not name.startswith("*["):
-                yaml_indent = "  " * (level + 1)
-                lines.append(f"{yaml_indent}- name: \"{name}\"")
-                lines.append(f"{yaml_indent}  level: {level}")
+        # Clean name: remove node-id comments, tags, bold fields
+        name = re.sub(r'<!--.*?-->', '', name).strip()
+        name = re.sub(r'#[\w/]+(?:\s+[\w;)]+)*', '', name).strip()
+        name = re.sub(r',\s*$', '', name).strip()
 
-    return "\n".join(lines) + "\n"
+        # Extract bold field values (e.g. **Tool**: value)
+        field_match = re.match(r'\*\*(.*?)\*\*:?\s*(.*)', name)
+        if field_match:
+            # Skip field lines — they're metadata, not content entries
+            continue
+
+        if not name or name.startswith("*["):
+            continue
+
+        entry = {"name": name}
+
+        # Pop stack back to parent level
+        while stack and stack[-1]["level"] >= level:
+            stack.pop()
+
+        parent = stack[-1]
+        if "children" not in parent:
+            parent["children"] = []
+        parent["children"].append(entry)
+        stack.append({"level": level, **entry})
+
+    # Convert tree to YAML lines
+    def render_yaml(items, indent=0):
+        lines = []
+        prefix = "  " * indent
+        for item in items:
+            name = item["name"].replace('"', '\\"')
+            lines.append(f"{prefix}- name: \"{name}\"")
+            if "children" in item and item["children"]:
+                lines.append(f"{prefix}  children:")
+                lines.extend(render_yaml(item["children"], indent + 2))
+        return lines
+
+    yaml_lines = header + ["entries:"]
+    yaml_lines.extend(render_yaml(entries, indent=1))
+
+    return "\n".join(yaml_lines) + "\n"
 
 
 # ============================================================

@@ -8,193 +8,994 @@ description: >-
 permalink: /holons/collective/
 ---
 
-<!-- Page Header -->
-<div class="page-header">
-  <p class="breadcrumb">
-    <a href="/">Home</a> &rsaquo;
-    <a href="/holons/">Holons</a> &rsaquo;
-    Collective
-  </p>
-  <h1>EvoBioSys Collective</h1>
-  <p class="lead">
-    The governance layer of the holonic network &mdash; coordinating shared
-    practices, agreements, and the conditions under which all holons can
-    thrive.
-  </p>
+<style>
+  /* ========================================
+     Collective — Governance / Circular Design
+     Concentric rings, round-table aesthetic,
+     cooler formal green, generous whitespace
+     ======================================== */
 
-  <dl class="page-meta">
-    <div class="meta-item">
-      <dt>Status</dt>
-      <dd><span class="status status-active">Active</span></dd>
-    </div>
-    <div class="meta-item">
-      <dt>Pillar</dt>
-      <dd>Bio &mdash; Living</dd>
-    </div>
-    <div class="meta-item">
-      <dt>Founded</dt>
-      <dd>March 9, 2026</dd>
-    </div>
-    <div class="meta-item">
-      <dt>Type</dt>
-      <dd>Governance Collective</dd>
-    </div>
-  </dl>
-</div>
+  .coll-page {
+    --coll-green: #1e5c48;
+    --coll-green-light: #2a7a60;
+    --coll-green-pale: #e8f2ee;
+    --coll-green-ghost: #f3f9f6;
+    --coll-border: #c8d5cf;
+    --coll-ring: rgba(30, 92, 72, 0.07);
+  }
 
-<!-- What is the Collective -->
-<section>
-  <div class="prose">
-    <h2>What is the Collective?</h2>
-    <p>
-      The EvoBioSys Collective is the governance and coordination structure
-      that holds the holonic network together. It is not a board of directors
-      or a management layer &mdash; it is a living collective that stewards
-      the shared practices, principles, and agreements by which all holons
-      operate.
-    </p>
-    <p>
-      Founded on March 9, 2026 &mdash; alongside the broader founding of
-      EvoBioSys's formal structure &mdash; the Collective exists because a
-      network of autonomous holons needs a coordination mechanism that is
-      itself holonic: whole in its own right, yet embedded in the larger
-      system it serves.
-    </p>
-    <p>
-      The Collective does not command. It coordinates, convenes, and holds
-      space for decisions that affect the whole network. Its authority comes
-      from the consent of its members and the coherence of the principles
-      it upholds.
-    </p>
+  /* --- Hero with concentric rings --- */
+
+  .coll-hero {
+    position: relative;
+    padding: 10rem 2rem 5rem;
+    text-align: center;
+    overflow: hidden;
+    background: var(--coll-green-ghost);
+  }
+
+  .coll-hero::before,
+  .coll-hero::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    border: 1.5px solid var(--coll-ring);
+    pointer-events: none;
+  }
+
+  .coll-hero::before {
+    width: 600px; height: 600px;
+    transform: translate(-50%, -50%);
+  }
+
+  .coll-hero::after {
+    width: 900px; height: 900px;
+    transform: translate(-50%, -50%);
+  }
+
+  .coll-rings-outer {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 1200px; height: 1200px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(30, 92, 72, 0.04);
+    pointer-events: none;
+  }
+
+  .coll-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .coll-hero .breadcrumb {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .coll-hero .breadcrumb a {
+    color: var(--coll-green);
+  }
+
+  .coll-hero h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+    color: var(--color-text);
+  }
+
+  .coll-hero .lead {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    line-height: 1.85;
+    max-width: 580px;
+    margin: 0 auto 2.5rem;
+  }
+
+  /* Meta ring — circular arrangement feeling */
+  .coll-meta-ring {
+    display: flex;
+    justify-content: center;
+    gap: 1px;
+    flex-wrap: wrap;
+  }
+
+  .coll-meta-item {
+    padding: 0.8rem 1.75rem;
+    background: var(--color-white);
+    border: 1px solid var(--coll-border);
+    text-align: center;
+  }
+
+  .coll-meta-item:first-child {
+    border-radius: 100px 0 0 100px;
+  }
+
+  .coll-meta-item:last-child {
+    border-radius: 0 100px 100px 0;
+  }
+
+  .coll-meta-item dt {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--coll-green);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 0.15rem;
+  }
+
+  .coll-meta-item dd {
+    font-size: 0.88rem;
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  /* --- Section styling --- */
+
+  .coll-section {
+    padding: 5rem 2rem;
+  }
+
+  .coll-section-alt {
+    background: var(--color-white);
+    border-top: 1px solid var(--coll-border);
+    border-bottom: 1px solid var(--coll-border);
+  }
+
+  .coll-section-ring {
+    background: var(--coll-green-ghost);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .coll-section-ring::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid var(--coll-ring);
+    pointer-events: none;
+  }
+
+  .coll-section-dark {
+    background: var(--coll-green);
+    color: var(--color-white);
+  }
+
+  .coll-section-dark .section-label {
+    color: rgba(255,255,255,0.5);
+  }
+
+  .coll-section-dark .section-title {
+    color: var(--color-white);
+  }
+
+  .coll-section-dark p {
+    color: rgba(255,255,255,0.8);
+  }
+
+  .coll-narrow {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .coll-wide {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* --- Culture Agreement --- */
+
+  .culture-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--coll-border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--color-white);
+    margin-top: 2.5rem;
+  }
+
+  .culture-cell {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--coll-border);
+    position: relative;
+  }
+
+  .culture-cell:last-child {
+    border-right: none;
+  }
+
+  .culture-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--coll-green-pale);
+    color: var(--coll-green);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+
+  .culture-cell h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+  }
+
+  .culture-cell p {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    line-height: 1.75;
+  }
+
+  .culture-version {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    background: var(--coll-green-pale);
+    color: var(--coll-green);
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    margin-bottom: 2rem;
+  }
+
+  /* --- Principles grid --- */
+
+  .coll-principles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  .coll-principle {
+    padding: 2rem;
+    background: var(--color-white);
+    border: 1px solid var(--coll-border);
+    border-radius: 12px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .coll-principle:hover {
+    border-color: var(--coll-green);
+    transform: translateY(-2px);
+  }
+
+  .coll-principle-icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--coll-green-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.1rem;
+  }
+
+  .coll-principle h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+
+  .coll-principle p {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  /* --- Federation concept --- */
+
+  .federation-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .federation-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 280px;
+  }
+
+  .fed-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid var(--coll-border);
+  }
+
+  .fed-ring-1 { width: 80px; height: 80px; background: var(--coll-green-pale); border-color: var(--coll-green); }
+  .fed-ring-2 { width: 160px; height: 160px; }
+  .fed-ring-3 { width: 240px; height: 240px; }
+
+  .fed-ring-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--coll-green);
+    letter-spacing: 0.03em;
+  }
+
+  .federation-text h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .federation-text p {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  /* --- Rates & Partnering --- */
+
+  .rates-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  .rates-card {
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .rates-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-white);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .rates-card p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.75;
+  }
+
+  .rates-card .rate-highlight {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255,255,255,0.12);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    margin-top: 0.5rem;
+  }
+
+  /* --- Structure / holarchy visual --- */
+
+  .holarchy-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem auto 0;
+    max-width: 500px;
+  }
+
+  .holarchy-node {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    border-radius: 100px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.92rem;
+    position: relative;
+  }
+
+  .holarchy-node::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 1rem;
+    background: var(--coll-border);
+  }
+
+  .holarchy-node:last-child::after {
+    display: none;
+  }
+
+  .holarchy-node-super {
+    background: var(--coll-green);
+    color: var(--color-white);
+    width: 100%;
+  }
+
+  .holarchy-node-self {
+    background: var(--coll-green-pale);
+    color: var(--coll-green);
+    border: 2px solid var(--coll-green);
+    width: 85%;
+    font-weight: 600;
+  }
+
+  .holarchy-node-sub {
+    background: var(--color-white);
+    color: var(--color-text);
+    border: 1px solid var(--coll-border);
+    width: 70%;
+  }
+
+  /* --- Member card --- */
+
+  .member-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    padding: 2.5rem;
+    background: var(--color-white);
+    border: 1px solid var(--coll-border);
+    border-radius: 16px;
+    margin-top: 2rem;
+    align-items: center;
+  }
+
+  .member-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--coll-green-pale);
+    border: 2px solid var(--coll-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--coll-green);
+  }
+
+  .member-info h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+
+  .member-role {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--coll-green);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .member-info p {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  /* --- Promises section --- */
+
+  .promises-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+  }
+
+  .promises-list li {
+    padding: 1rem 1.5rem;
+    border-left: 3px solid var(--coll-green-pale);
+    margin-bottom: 0.75rem;
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    background: var(--color-white);
+    border-radius: 0 8px 8px 0;
+    transition: border-color 0.2s;
+  }
+
+  .promises-list li:hover {
+    border-left-color: var(--coll-green);
+  }
+
+  /* --- Divider ring --- */
+
+  .coll-divider {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+
+  .coll-divider-ring {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--coll-border);
+    position: relative;
+  }
+
+  .coll-divider-ring::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 16px; height: 16px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: var(--coll-green-pale);
+    border: 1.5px solid var(--coll-green);
+  }
+
+  /* --- Responsive --- */
+
+  @media (max-width: 900px) {
+    .culture-grid {
+      grid-template-columns: 1fr;
+    }
+    .culture-cell {
+      border-right: none;
+      border-bottom: 1px solid var(--coll-border);
+    }
+    .culture-cell:last-child {
+      border-bottom: none;
+    }
+    .coll-principles {
+      grid-template-columns: 1fr;
+    }
+    .federation-box {
+      grid-template-columns: 1fr;
+    }
+    .federation-visual {
+      height: 200px;
+    }
+    .fed-ring-3 { width: 180px; height: 180px; }
+    .fed-ring-2 { width: 120px; height: 120px; }
+    .fed-ring-1 { width: 60px; height: 60px; }
+    .rates-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .coll-hero {
+      padding: 8rem 1.5rem 3.5rem;
+    }
+    .coll-section {
+      padding: 3.5rem 1.5rem;
+    }
+    .coll-meta-ring {
+      flex-direction: column;
+      align-items: center;
+    }
+    .coll-meta-item {
+      border-radius: 0 !important;
+      width: 100%;
+      max-width: 280px;
+    }
+    .coll-meta-item:first-child {
+      border-radius: 12px 12px 0 0 !important;
+    }
+    .coll-meta-item:last-child {
+      border-radius: 0 0 12px 12px !important;
+    }
+    .member-card {
+      grid-template-columns: 1fr;
+      text-align: center;
+      justify-items: center;
+    }
+  }
+</style>
+
+<div class="coll-page">
+
+  <!-- Hero with concentric rings -->
+  <div class="coll-hero">
+    <div class="coll-rings-outer"></div>
+    <div class="coll-hero-inner">
+      <p class="breadcrumb">
+        <a href="/">Home</a> &rsaquo;
+        <a href="/holons/">Holons</a> &rsaquo;
+        Collective
+      </p>
+      <h1>EvoBioSys Collective</h1>
+      <p class="lead">
+        The governance layer of the holonic network &mdash; coordinating shared
+        practices, agreements, and the conditions under which all holons can thrive.
+      </p>
+
+      <dl class="coll-meta-ring">
+        <div class="coll-meta-item">
+          <dt>Status</dt>
+          <dd><span class="status status-active">Active</span></dd>
+        </div>
+        <div class="coll-meta-item">
+          <dt>Pillar</dt>
+          <dd>Bio &mdash; Living</dd>
+        </div>
+        <div class="coll-meta-item">
+          <dt>Founded</dt>
+          <dd>March 9, 2026</dd>
+        </div>
+        <div class="coll-meta-item">
+          <dt>Type</dt>
+          <dd>Governance Collective</dd>
+        </div>
+      </dl>
+    </div>
   </div>
-</section>
 
-<!-- Structure -->
-<section class="section-alt">
-  <div class="prose">
-    <h2>Structure</h2>
-    <p>
-      The Collective operates as a holarchy &mdash; nested circles of
-      governance, each with its own scope and autonomy:
-    </p>
-    <ul>
-      <li>
-        <strong>Super-holon: EvoBioSys.</strong> The Collective is a holon
-        within EvoBioSys, responsible for the governance dimension of the
-        whole network. It does not sit above the other holons; it sits
-        alongside them, serving a specific function.
-      </li>
-      <li>
-        <strong>Sub-holon: SoFin Collective.</strong> The first nested
-        collective, responsible for the social finance domain. The SoFin
-        Collective demonstrates the pattern: as domains grow in complexity,
-        they can spin off their own governance bodies while remaining
-        connected to the whole.
-      </li>
-    </ul>
-    <p>
-      This structure is designed to scale. As EvoBioSys grows, new
-      domain-specific collectives can form &mdash; each with its own
-      membership, practices, and decision-making processes &mdash; while
-      the EvoBioSys Collective maintains overall coherence and shared
-      agreements.
-    </p>
-  </div>
-</section>
+  <!-- What is the Collective -->
+  <section class="coll-section">
+    <div class="coll-narrow">
+      <p class="section-label">About</p>
+      <h2 class="section-title">What is the Collective?</h2>
+      <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1.25rem;">
+        The EvoBioSys Collective is the governance and coordination structure
+        that holds the holonic network together. It is not a board of directors
+        or a management layer &mdash; it is a living collective that stewards
+        the shared practices, principles, and agreements by which all holons operate.
+      </p>
+      <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1.25rem;">
+        Founded on March 9, 2026 &mdash; alongside the broader founding of
+        EvoBioSys's formal structure &mdash; the Collective exists because a
+        network of autonomous holons needs a coordination mechanism that is
+        itself holonic: whole in its own right, yet embedded in the larger
+        system it serves.
+      </p>
+      <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.8;">
+        The Collective does not command. It coordinates, convenes, and holds
+        space for decisions that affect the whole network. Its authority comes
+        from the consent of its members and the coherence of the principles
+        it upholds.
+      </p>
+    </div>
+  </section>
 
-<!-- SoFin Collective -->
-<section>
-  <div class="container">
-    <p class="section-label">Sub-holon</p>
-    <h2 class="section-title">SoFin Collective</h2>
-    <p class="section-subtitle">
-      The social finance governance body &mdash; the first domain-specific
-      collective nested within the EvoBioSys Collective.
-    </p>
-
-    <div class="holons-full-grid">
-      <div class="holon-card">
-        <span class="holon-card-badge">Bio</span>
-        <h3><a href="/holons/sofin/">SoFin Collective</a></h3>
-        <p>
-          The SoFin Collective governs the social finance domain within
-          EvoBioSys. It stewards the Funding Flow Machine, evaluates crypto
-          and trading initiatives, and manages the financial tools and
-          protocols that serve the broader network.
+  <!-- Culture Agreement -->
+  <section class="coll-section coll-section-alt">
+    <div class="coll-wide">
+      <div style="text-align: center; margin-bottom: 0.5rem;">
+        <p class="section-label">How We Play</p>
+        <h2 class="section-title">Culture Agreement</h2>
+        <span class="culture-version">Default Culture v5.0</span>
+        <p class="section-subtitle" style="margin: 1rem auto 0; max-width: 560px;">
+          Three essential social agreements that shape how we work, relate, and create together.
+          These are not rules &mdash; they are commitments to a way of being.
         </p>
-        <p>
-          As a nested holon, it operates with its own membership and practices
-          while remaining aligned with the EvoBioSys Collective's shared
-          principles. It demonstrates that governance can be distributed
-          without being fragmented.
-        </p>
-        <div class="sub-holons">
-          <h4>Connections</h4>
-          <ul>
-            <li><a href="/holons/sofin/">SoFin</a> &mdash; the broader social
-              finance holon</li>
-            <li>Funding Flow Machine &mdash; financial flow management</li>
-            <li><a href="/capital/">EvoBioSys Capital</a> &mdash; the investment
-              studio</li>
-          </ul>
+      </div>
+
+      <div class="culture-grid">
+        <div class="culture-cell">
+          <span class="culture-number">1</span>
+          <h3>Going at our own inner pace</h3>
+          <p>
+            We do not rush to match external rhythms. Each contributor moves at the
+            pace their work and life genuinely require. Productivity is measured in
+            coherence, not velocity. The system adapts to the person, never the reverse.
+          </p>
+        </div>
+        <div class="culture-cell">
+          <span class="culture-number">2</span>
+          <h3>Enacting spontaneous inspiration</h3>
+          <p>
+            When a genuine impulse arises, we follow it. The structure exists to
+            enable creative leaps, not to contain them. We trust that inspiration
+            is intelligence in motion &mdash; and we build the architecture to catch it.
+          </p>
+        </div>
+        <div class="culture-cell">
+          <span class="culture-number">3</span>
+          <h3>Checking critical assumptions</h3>
+          <p>
+            Before acting on high-stakes decisions, we pause. We name our assumptions
+            explicitly and invite challenge. This is not bureaucracy &mdash; it is
+            the discipline that keeps autonomy from becoming recklessness.
+          </p>
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="coll-divider"><div class="coll-divider-ring"></div></div>
+
+  <!-- Federation of Freelancers -->
+  <section class="coll-section coll-section-ring">
+    <div class="coll-wide">
+      <div class="federation-box">
+        <div class="federation-visual">
+          <div class="fed-ring fed-ring-3" style="display:flex;align-items:center;justify-content:center;">
+            <div class="fed-ring fed-ring-2" style="position:relative;display:flex;align-items:center;justify-content:center;">
+              <div class="fed-ring fed-ring-1" style="position:relative;display:flex;align-items:center;justify-content:center;">
+                <span class="fed-ring-label">You</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="federation-text">
+          <p class="section-label">Organizational Model</p>
+          <h3>Federation of Freelancers</h3>
+          <p>
+            EvoBioSys is not a company with employees. It is a federation of
+            freelancers &mdash; each person sovereign in their work, choosing to
+            align with the network because the values and the vision resonate.
+          </p>
+          <p>
+            There are no employment contracts. There are agreements. Each collaborator
+            brings their own practice, their own rhythm, and their own expertise.
+            The Collective provides the coordination layer, the shared tools, and
+            the culture that makes coherent collaboration possible without hierarchy.
+          </p>
+          <p>
+            This is how you scale trust: not by adding managers, but by making the
+            agreements clear enough that management becomes unnecessary.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section class="coll-section">
+    <div class="coll-wide">
+      <div style="text-align: center;">
+        <p class="section-label">Foundations</p>
+        <h2 class="section-title">Principles</h2>
+        <p class="section-subtitle" style="margin: 0 auto 1rem;">
+          The non-negotiable commitments that hold this network together.
+        </p>
+      </div>
+
+      <div class="coll-principles">
+        <div class="coll-principle">
+          <div class="coll-principle-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5" fill="none" style="color:var(--coll-green)"/><circle cx="10" cy="10" r="3" fill="var(--coll-green)"/></svg>
+          </div>
+          <h3>Fair &amp; Simple</h3>
+          <p>
+            If an agreement cannot be explained in plain language, it is not ready.
+            Complexity is not sophistication. We prefer structures that a new
+            collaborator can understand in minutes, not months.
+          </p>
+        </div>
+        <div class="coll-principle">
+          <div class="coll-principle-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="3" stroke="var(--coll-green)" stroke-width="1.5" fill="none"/><line x1="2" y1="10" x2="18" y2="10" stroke="var(--coll-green)" stroke-width="1" opacity="0.4"/><line x1="10" y1="2" x2="10" y2="18" stroke="var(--coll-green)" stroke-width="1" opacity="0.4"/></svg>
+          </div>
+          <h3>Transparency</h3>
+          <p>
+            Decisions, finances, agreements, and reasoning are visible to all
+            members by default. Opacity is the exception and must be justified.
+            Trust is built on what people can see, not what they are told.
+          </p>
+        </div>
+        <div class="coll-principle">
+          <div class="coll-principle-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2 L18 7 L18 13 L10 18 L2 13 L2 7 Z" stroke="var(--coll-green)" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="2.5" fill="var(--coll-green)" opacity="0.3"/></svg>
+          </div>
+          <h3>Trust-worthy</h3>
+          <p>
+            We do not demand trust. We earn it by being consistently trustworthy:
+            doing what we say, saying what we mean, and acknowledging when we fall
+            short. Reliability is the currency of this network.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promises -->
+  <section class="coll-section coll-section-alt">
+    <div class="coll-narrow">
+      <p class="section-label">Commitments</p>
+      <h2 class="section-title">Our Promises</h2>
+      <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 0.5rem;">
+        We will do our best not to&hellip;
+      </p>
+      <ul class="promises-list">
+        <li>Let communication loops go silent without signaling a pause &mdash; when
+          pausing a loop, we name it.</li>
+        <li>Make decisions that affect others without giving them a chance to respond.</li>
+        <li>Optimize for speed at the cost of coherence or care.</li>
+        <li>Confuse being busy with being effective.</li>
+        <li>Hold information that others need to do their work well.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Rates & Partnering -->
+  <section class="coll-section coll-section-dark">
+    <div class="coll-wide">
+      <div style="text-align: center;">
+        <p class="section-label">Working Together</p>
+        <h2 class="section-title">Rates &amp; Partnering</h2>
+        <p style="max-width: 560px; margin: 0 auto 1rem; font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.75);">
+          How compensation, commissions, and collaboration work inside the federation.
+        </p>
+      </div>
+
+      <div class="rates-grid">
+        <div class="rates-card">
+          <h3>Commission Structure</h3>
+          <p>
+            Commissions are set at 20% &mdash; the industry standard for coordination
+            overhead in creative and consulting networks. This funds the shared
+            infrastructure, tools, and meta-level work that makes the federation run.
+          </p>
+          <span class="rate-highlight">20% commission &middot; industry standard</span>
+        </div>
+        <div class="rates-card">
+          <h3>Meta-level Flexibility</h3>
+          <p>
+            Not all work fits neatly into billable hours. Meta-level contributions
+            &mdash; governance, tooling, culture work &mdash; are compensated
+            flexibly, recognizing that the work that holds a network together is
+            often the work that is hardest to invoice.
+          </p>
+        </div>
+        <div class="rates-card">
+          <h3>Partnering Habits</h3>
+          <p>
+            We value collaborators who communicate proactively, signal when they
+            are pausing a loop, and take initiative within their domain. The best
+            partnerships emerge when both sides can trust the other to show up
+            consistently &mdash; or to say clearly when they cannot.
+          </p>
+        </div>
+        <div class="rates-card">
+          <h3>Degree of Resonance &amp; Veto</h3>
+          <p>
+            Every member holds a degree of resonance with proposals &mdash; and
+            a right of veto on decisions that affect their domain. This is not
+            consensus-seeking as stalemate; it is consent-based governance where
+            principled objections are taken seriously.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="coll-divider"><div class="coll-divider-ring"></div></div>
+
+  <!-- Structure / Holarchy -->
+  <section class="coll-section">
+    <div class="coll-narrow" style="text-align: center;">
+      <p class="section-label">Holarchy</p>
+      <h2 class="section-title">Structure</h2>
+      <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.8; max-width: 560px; margin: 0 auto 1rem;">
+        The Collective operates as nested circles of governance, each with its
+        own scope and autonomy. It does not sit above the other holons &mdash;
+        it sits alongside them, serving a specific function.
+      </p>
+
+      <div class="holarchy-visual">
+        <div class="holarchy-node holarchy-node-super">
+          <a href="/" style="color: inherit; text-decoration: none;">EvoBioSys</a>
+          <span style="display:block;font-size:0.75rem;opacity:0.7;">Super-holon</span>
+        </div>
+        <div class="holarchy-node holarchy-node-self">
+          EvoBioSys Collective
+          <span style="display:block;font-size:0.75rem;color:var(--coll-green);opacity:0.8;">This holon</span>
+        </div>
+        <div class="holarchy-node holarchy-node-sub">
+          <a href="/holons/sofin/" style="color: inherit; text-decoration: none;">SoFin Collective</a>
+          <span style="display:block;font-size:0.75rem;color:var(--color-text-muted);">Sub-holon</span>
+        </div>
+      </div>
+
+      <p style="color: var(--color-text-muted); font-size: 0.88rem; line-height: 1.8; max-width: 500px; margin: 2.5rem auto 0;">
+        As EvoBioSys grows, new domain-specific collectives can form &mdash; each
+        with its own membership, practices, and decision-making processes &mdash;
+        while the EvoBioSys Collective maintains overall coherence.
+      </p>
+    </div>
+  </section>
+
+  <!-- Metamodern Co-creation & Tech Stack -->
+  <section class="coll-section coll-section-ring">
+    <div class="coll-wide">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+        <div>
+          <p class="section-label">Framework</p>
+          <h3 style="font-size:1.2rem; font-weight:600; letter-spacing:-0.02em; margin-bottom:1rem;">Pillars of Metamodern Co-creation</h3>
+          <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 1rem;">
+            We draw from metamodern thought: holding sincerity and irony together,
+            embracing complexity without losing clarity, and building structures
+            that are both rigorous and alive.
+          </p>
+          <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.8;">
+            The Collective is our attempt to do governance as a creative practice
+            &mdash; not as bureaucratic overhead, but as one of the most important
+            design challenges we face.
+          </p>
+        </div>
+        <div>
+          <p class="section-label">Infrastructure</p>
+          <h3 style="font-size:1.2rem; font-weight:600; letter-spacing:-0.02em; margin-bottom:1rem;">Open Tech-Stack &amp; IP</h3>
+          <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 1rem;">
+            We default to open-source tools and self-hosted infrastructure.
+            Intellectual property created within the network follows clear,
+            fair protocols &mdash; contributors retain ownership of their
+            original work while granting the network usage rights.
+          </p>
+          <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.8;">
+            The tech stack is documented and shared. No vendor lock-in, no
+            proprietary dependency. If the network dissolves, every contributor
+            walks away with their tools intact.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership -->
+  <section class="coll-section coll-section-alt">
+    <div class="coll-narrow">
+      <p class="section-label">People</p>
+      <h2 class="section-title">Membership</h2>
+      <p style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 0.5rem;">
+        The Collective currently operates with a founding membership that
+        reflects its early stage. As the network grows, membership will expand
+        to include stewards from across the holonic map.
+      </p>
+
+      <div class="member-card">
+        <div class="member-avatar">JP</div>
+        <div class="member-info">
+          <p class="member-role">Founding Member &middot; Chief Developmental Officer</p>
+          <h3>Jakob Possert-Bienzle</h3>
+          <p>
+            Steward of EvoBioSys, lead of multiple holons across all three pillars.
+            Holds the founding vision and coordinates the Collective's initial
+            practices, agreements, and culture.
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem;">
+        <h3 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 1rem;">Membership principles</h3>
+        <ul class="promises-list">
+          <li><strong>Stewardship, not ownership.</strong> Members are stewards of
+            the shared commons, not owners of assets.</li>
+          <li><strong>Consent-based decisions.</strong> Major decisions require consent
+            &mdash; not unanimous agreement, but the absence of principled objection.</li>
+          <li><strong>Active participation.</strong> Membership is not honorary. Members
+            contribute to governance and engage with the decisions that shape the network.</li>
+          <li><strong>Open to growth.</strong> As holons mature and new stewards emerge,
+            membership grows to reflect the increasing complexity and distributed
+            wisdom of the network.</li>
+        </ul>
+      </div>
+
+      <blockquote style="border-left: 3px solid var(--coll-green); padding-left: 1.25rem; margin: 2.5rem 0 0; color: var(--color-text-muted); font-style: italic; font-size: 0.95rem; line-height: 1.8;">
+        Governance is not a constraint on life. It is the skeleton that allows
+        the living body to move with purpose.
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="back-link">
+    <a href="/holons/">&larr; Back to all holons</a>
   </div>
-</section>
 
-<!-- Membership -->
-<section class="section-alt">
-  <div class="prose">
-    <h2>Membership</h2>
-    <p>
-      The Collective currently operates with a founding membership that
-      reflects its early stage. As the network grows, membership will expand
-      to include stewards from across the holonic map.
-    </p>
-
-    <h3>Current members</h3>
-    <ul>
-      <li>
-        <strong>Jakob Possert-Bienzle</strong> &mdash; founding member.
-        Steward of EvoBioSys, lead of multiple holons across all three
-        pillars. Holds the founding vision and coordinates the Collective's
-        initial practices and agreements.
-      </li>
-    </ul>
-
-    <h3>Membership principles</h3>
-    <ul>
-      <li>
-        <strong>Stewardship, not ownership.</strong> Members are stewards of
-        the shared commons, not owners of assets. The Collective holds
-        resources in trust for the network.
-      </li>
-      <li>
-        <strong>Consent-based decisions.</strong> Major decisions affecting
-        the whole network require consent from Collective members &mdash;
-        not unanimous agreement, but the absence of principled objection.
-      </li>
-      <li>
-        <strong>Active participation.</strong> Membership is not honorary.
-        Members contribute to governance, attend convening sessions, and
-        engage with the decisions that shape the network.
-      </li>
-      <li>
-        <strong>Open to growth.</strong> The Collective is designed to expand.
-        As holons mature and new stewards emerge, membership grows to reflect
-        the increasing complexity and distributed wisdom of the network.
-      </li>
-    </ul>
-
-    <blockquote>
-      Governance is not a constraint on life. It is the skeleton that allows
-      the living body to move with purpose.
-    </blockquote>
-  </div>
-</section>
-
-<!-- Back link -->
-<div class="back-link">
-  <a href="/holons/">&larr; Back to all holons</a>
 </div>
