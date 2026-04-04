@@ -1,13 +1,9 @@
 # Auto-synced from Tana node asxaB7PxoxaM
 # Last sync: 2026-04-04 08:40:28 UTC
-# Do not edit — changes will be overwritten by next sync
 
-entries:
-  - name: "vot"
-    level: 0
-    - name: "AI suggestion"
-      level: 1
+name: "vot"
+children:
+  - name: "AI suggestion"
+    children:
       - name: "complete"
-        level: 2
       - name: "per website"
-        level: 2

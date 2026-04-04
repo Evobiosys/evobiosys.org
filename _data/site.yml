@@ -1,11 +1,6 @@
 # Auto-synced from Tana node 1RVCR8NQDLsF
 # Last sync: 2026-04-04 08:40:28 UTC
-# Do not edit — changes will be overwritten by next sync
 
-entries:
-  - name: "evobiosys.org"
-    level: 0
-    - name: "connect@evobios.org"
-      level: 1
-    - name: "Living systems that evolve together"
-      level: 1
+name: "evobiosys.org"
+hero_phrase: "Living systems that evolve together"
+newsletter_email: "connect@evobiosys.org"

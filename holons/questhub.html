@@ -1059,6 +1059,55 @@ permalink: /holons/questhub/
     </div>
   </section>
 
+  <!-- ============================================ -->
+  <!-- SHARE YOUR QUEST — Community Submission      -->
+  <!-- ============================================ -->
+  <section class="qh-category" style="border-top: 2px solid var(--qh-gold); padding-top: 3rem;">
+    <div style="max-width: 650px; margin: 0 auto; text-align: center;">
+      <div class="qh-cat-icon" style="background: var(--qh-gold); color: white; margin: 0 auto 1.5rem;">&#x2728;</div>
+      <h2 class="qh-cat-title" style="text-align: center;">Share Your Quest</h2>
+      <p style="color: var(--qh-soil-muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 2rem;">
+        QuestHub is not just Jakob&rsquo;s garden &mdash; it&rsquo;s an open field. If you carry
+        a quest that resonates with the EvoBioSys vision, we want to hear about it.
+        Your seed might find its soil here.
+      </p>
+
+      <form id="quest-form" style="text-align: left; background: var(--color-white); border: 1px solid var(--qh-border); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem;">
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 500; color: var(--qh-soil); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.04em;">Your name</label>
+          <input type="text" name="name" required style="width: 100%; padding: 0.65rem 0.9rem; border: 1px solid var(--qh-border); border-radius: 8px; font-family: inherit; font-size: 0.9rem; background: var(--qh-cream);">
+        </div>
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 500; color: var(--qh-soil); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.04em;">Quest name</label>
+          <input type="text" name="quest" required placeholder="e.g. Regenerative urban farming network" style="width: 100%; padding: 0.65rem 0.9rem; border: 1px solid var(--qh-border); border-radius: 8px; font-family: inherit; font-size: 0.9rem; background: var(--qh-cream);">
+        </div>
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 500; color: var(--qh-soil); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.04em;">Category</label>
+          <select name="category" style="width: 100%; padding: 0.65rem 0.9rem; border: 1px solid var(--qh-border); border-radius: 8px; font-family: inherit; font-size: 0.9rem; background: var(--qh-cream);">
+            <option value="tech">Technology &amp; Infrastructure</option>
+            <option value="society">Society &amp; Politics</option>
+            <option value="finance">Finance &amp; Economics</option>
+            <option value="knowledge">Knowledge &amp; Learning</option>
+            <option value="tools">Tools &amp; Products</option>
+            <option value="culture">Culture &amp; Life</option>
+          </select>
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 500; color: var(--qh-soil); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.04em;">Describe your quest</label>
+          <textarea name="description" rows="4" required placeholder="What problem does it solve? What does the world look like if this quest succeeds?" style="width: 100%; padding: 0.65rem 0.9rem; border: 1px solid var(--qh-border); border-radius: 8px; font-family: inherit; font-size: 0.9rem; background: var(--qh-cream); resize: vertical;"></textarea>
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 500; color: var(--qh-soil); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.04em;">Your email (optional)</label>
+          <input type="email" name="email" placeholder="you@example.com" style="width: 100%; padding: 0.65rem 0.9rem; border: 1px solid var(--qh-border); border-radius: 8px; font-family: inherit; font-size: 0.9rem; background: var(--qh-cream);">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; background: var(--qh-gold); border: none;">Plant this seed</button>
+      </form>
+      <p style="font-size: 0.78rem; color: var(--qh-soil-muted);">
+        Submitted quests are reviewed by the EvoBioSys stewards. If there&rsquo;s resonance, we&rsquo;ll reach out.
+      </p>
+    </div>
+  </section>
+
   <!-- Governance Note -->
   <section class="qh-governance">
     <div class="qh-governance-note">
@@ -1071,6 +1120,38 @@ permalink: /holons/questhub/
       </p>
     </div>
   </section>
+
+  <script>
+    // Toggle category grids
+    document.querySelectorAll('.qh-cat-header').forEach(header => {
+      header.style.cursor = 'pointer';
+      const grid = header.nextElementSibling;
+      const icon = document.createElement('span');
+      icon.textContent = '▾';
+      icon.style.cssText = 'margin-left: auto; font-size: 1.2rem; color: var(--qh-soil-muted); transition: transform 0.2s;';
+      header.style.display = 'flex';
+      header.style.alignItems = 'center';
+      header.appendChild(icon);
+
+      header.addEventListener('click', () => {
+        const collapsed = grid.style.display === 'none';
+        grid.style.display = collapsed ? '' : 'none';
+        icon.textContent = collapsed ? '▾' : '▸';
+      });
+    });
+
+    // Quest form handler
+    const qf = document.getElementById('quest-form');
+    if (qf) {
+      qf.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(qf));
+        console.log('Quest submitted:', data);
+        // TODO: POST to Listmonk or a VPS endpoint
+        qf.innerHTML = '<div style="text-align:center;padding:2rem;"><p style="font-size:1.1rem;color:var(--qh-green);font-weight:600;">Seed planted! 🌱</p><p style="color:var(--qh-soil-muted);margin-top:0.5rem;">We\'ll review your quest and reach out if there\'s resonance.</p></div>';
+      });
+    }
+  </script>
 
   <!-- Back links -->
   <section class="back-link">
