@@ -16,6 +16,34 @@ permalink: /partners/
     we actively collaborate with, support, and weave alongside &mdash; each bringing
     their own gifts to the evolving whole.
   </p>
+
+  <!-- Partner profile circles -->
+  <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2.5rem;">
+    {% for person in site.data.partners.clients %}
+    <div style="text-align: center; width: 90px;">
+      <div style="width: 64px; height: 64px; border-radius: 50%; background: var(--color-accent); margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; font-weight: 600;">{{ person.name | split: ' ' | first | slice: 0 }}{{ person.name | split: ' ' | last | slice: 0 }}</div>
+      <span style="font-size: 0.72rem; color: var(--color-text-muted); line-height: 1.3; display: block;">{{ person.name | split: ' ' | first }}</span>
+    </div>
+    {% endfor %}
+    {% for person in site.data.partners.partners %}
+    <div style="text-align: center; width: 90px;">
+      <div style="width: 64px; height: 64px; border-radius: 50%; background: var(--color-accent-light); margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; font-weight: 600;">{{ person.name | split: ' ' | first | slice: 0 }}{{ person.name | split: ' ' | last | slice: 0 }}</div>
+      <span style="font-size: 0.72rem; color: var(--color-text-muted); line-height: 1.3; display: block;">{{ person.name | split: ' ' | first }}</span>
+    </div>
+    {% endfor %}
+    {% for person in site.data.partners.collaborators %}
+    <div style="text-align: center; width: 90px;">
+      <div style="width: 64px; height: 64px; border-radius: 50%; background: var(--color-border); margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--color-text-muted); font-weight: 600;">{{ person.name | split: ' ' | first | slice: 0 }}{{ person.name | split: ' ' | last | slice: 0 }}</div>
+      <span style="font-size: 0.72rem; color: var(--color-text-muted); line-height: 1.3; display: block;">{{ person.name | split: ' ' | first }}</span>
+    </div>
+    {% endfor %}
+    {% for person in site.data.partners.collective_members %}
+    <div style="text-align: center; width: 90px;">
+      <div style="width: 64px; height: 64px; border-radius: 50%; background: var(--color-accent-bg); border: 2px dashed var(--color-accent); margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--color-accent); font-weight: 600;">{{ person.name | split: ' ' | first | slice: 0 }}{{ person.name | split: ' ' | last | slice: 0 }}</div>
+      <span style="font-size: 0.72rem; color: var(--color-text-muted); line-height: 1.3; display: block;">{{ person.name | split: ' ' | first }}</span>
+    </div>
+    {% endfor %}
+  </div>
 </header>
 
 <!-- Open to -->
