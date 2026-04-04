@@ -1,0 +1,805 @@
+---
+layout: default
+title: "Gruber Works SE — European Legal Foundation"
+description: >-
+  Gruber Works Societas Europae is the sovereign EU-based legal home for
+  the EvoBioSys holonic network — your creation's bridge to state institutions.
+permalink: /holons/gruber-works/
+---
+
+<style>
+  /* === Gruber Works SE — Legal / Institutional / European === */
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  .gw-page {
+    --gw-navy: #0d1b2a;
+    --gw-midnight: #1b2838;
+    --gw-deep: #243447;
+    --gw-steel: #3a4f65;
+    --gw-muted: #7a8fa3;
+    --gw-light: #b8c7d6;
+    --gw-pale: #e8edf2;
+    --gw-white: #f6f8fa;
+    --gw-gold: #c9a84c;
+    --gw-gold-dim: rgba(201, 168, 76, 0.15);
+    --gw-gold-faint: rgba(201, 168, 76, 0.07);
+    --gw-serif: 'Cormorant Garamond', 'Georgia', serif;
+    --gw-sans: 'Inter', 'Helvetica Neue', sans-serif;
+    background: var(--gw-navy);
+    color: var(--gw-pale);
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .gw-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(201, 168, 76, 0.03) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(201, 168, 76, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .gw-header {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 7rem 2rem 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gw-header .breadcrumb {
+    font-family: var(--gw-sans);
+    font-size: 0.72rem;
+    color: var(--gw-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .gw-header .breadcrumb a {
+    color: var(--gw-muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .gw-header .breadcrumb a:hover {
+    color: var(--gw-gold);
+    border-bottom-color: var(--gw-gold);
+  }
+
+  .gw-crest {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .gw-crest-stars {
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  .gw-crest-stars span {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gw-gold);
+    opacity: 0.6;
+  }
+
+  .gw-crest-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gw-gold-dim), transparent);
+  }
+
+  .gw-title {
+    font-family: var(--gw-serif);
+    font-size: 3.2rem;
+    font-weight: 400;
+    color: var(--gw-white);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 0.15rem;
+  }
+
+  .gw-title .se {
+    font-weight: 600;
+    color: var(--gw-gold);
+    font-size: 0.55em;
+    vertical-align: super;
+    margin-left: 0.3rem;
+    letter-spacing: 0.08em;
+  }
+
+  .gw-tagline {
+    font-family: var(--gw-serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gw-gold);
+    opacity: 0.85;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+  }
+
+  .gw-subtitle {
+    font-family: var(--gw-sans);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gw-light);
+    line-height: 1.75;
+    max-width: 620px;
+    margin-top: 1.25rem;
+  }
+
+  .gw-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .gw-meta-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    font-family: var(--gw-sans);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid var(--gw-deep);
+    border-radius: 1px;
+    color: var(--gw-light);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .gw-meta-tag .tag-pip {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gw-gold);
+    display: inline-block;
+  }
+
+  .gw-meta-tag.active {
+    border-color: var(--gw-gold-dim);
+    color: var(--gw-gold);
+  }
+
+  /* --- Sections --- */
+  .gw-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gw-section + .gw-section {
+    border-top: 1px solid var(--gw-deep);
+  }
+
+  .gw-section-label {
+    font-family: var(--gw-sans);
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: var(--gw-gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .gw-section h2 {
+    font-family: var(--gw-serif);
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--gw-white);
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+    line-height: 1.25;
+  }
+
+  .gw-section p {
+    font-family: var(--gw-sans);
+    color: var(--gw-light);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 0.92rem;
+    font-weight: 300;
+  }
+
+  .gw-section p:last-child { margin-bottom: 0; }
+
+  .gw-highlight {
+    font-family: var(--gw-sans);
+    font-size: 0.82em;
+    color: var(--gw-gold);
+    background: var(--gw-gold-faint);
+    padding: 0.12em 0.45em;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  /* --- Legal Callout --- */
+  .gw-callout {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--gw-deep);
+    border-left: 3px solid var(--gw-gold);
+    padding: 2rem 2.5rem;
+    margin: 2rem 0;
+    position: relative;
+  }
+
+  .gw-callout::before {
+    content: '\00A7';
+    font-family: var(--gw-serif);
+    font-size: 1.4rem;
+    color: var(--gw-gold);
+    position: absolute;
+    top: 0.75rem;
+    right: 1.25rem;
+    opacity: 0.35;
+  }
+
+  .gw-callout h3 {
+    font-family: var(--gw-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--gw-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .gw-callout p {
+    font-family: var(--gw-serif);
+    font-size: 1.1rem;
+    color: var(--gw-pale);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  /* --- Comparison Table --- */
+  .gw-table-wrap {
+    margin: 2rem 0;
+    overflow-x: auto;
+  }
+
+  .gw-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--gw-sans);
+    font-size: 0.85rem;
+  }
+
+  .gw-table thead th {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--gw-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.85rem 1.1rem;
+    text-align: left;
+    border-bottom: 2px solid var(--gw-deep);
+    background: rgba(201, 168, 76, 0.04);
+  }
+
+  .gw-table thead th:first-child {
+    border-left: 3px solid var(--gw-gold);
+  }
+
+  .gw-table tbody td {
+    padding: 0.85rem 1.1rem;
+    color: var(--gw-light);
+    font-weight: 300;
+    border-bottom: 1px solid var(--gw-deep);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .gw-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .gw-table tbody td:first-child {
+    font-weight: 500;
+    color: var(--gw-pale);
+    border-left: 3px solid transparent;
+  }
+
+  .gw-table tbody tr.gw-row-highlight td:first-child {
+    border-left-color: var(--gw-gold);
+    color: var(--gw-gold);
+  }
+
+  .gw-table tbody tr.gw-row-highlight td {
+    background: var(--gw-gold-faint);
+  }
+
+  .gw-table .check { color: var(--gw-gold); }
+  .gw-table .dim { color: var(--gw-steel); }
+
+  /* --- Pillar Grid --- */
+  .gw-pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .gw-pillar {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid var(--gw-deep);
+    padding: 1.75rem;
+    position: relative;
+    transition: border-color 0.25s;
+  }
+
+  .gw-pillar:hover { border-color: var(--gw-gold-dim); }
+
+  .gw-pillar-num {
+    font-family: var(--gw-serif);
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--gw-deep);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+
+  .gw-pillar h3 {
+    font-family: var(--gw-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--gw-pale);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.6rem;
+  }
+
+  .gw-pillar p {
+    font-family: var(--gw-sans);
+    font-size: 0.84rem;
+    color: var(--gw-muted);
+    line-height: 1.65;
+    margin-bottom: 0;
+    font-weight: 300;
+  }
+
+  /* --- Connections --- */
+  .gw-connections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .gw-conn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.1rem;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid var(--gw-deep);
+    font-family: var(--gw-sans);
+    font-size: 0.75rem;
+    color: var(--gw-light);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .gw-conn:hover {
+    border-color: var(--gw-gold-dim);
+    color: var(--gw-gold);
+  }
+
+  .gw-conn .arrow { font-size: 0.65rem; opacity: 0.5; }
+
+  /* --- Divider --- */
+  .gw-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem auto 0;
+    max-width: 900px;
+    padding: 0 2rem;
+    z-index: 1;
+    position: relative;
+  }
+
+  .gw-divider::before,
+  .gw-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gw-deep);
+  }
+
+  .gw-divider span {
+    font-family: var(--gw-sans);
+    font-size: 0.58rem;
+    color: var(--gw-steel);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+  }
+
+  .gw-divider .star {
+    color: var(--gw-gold);
+    opacity: 0.5;
+    font-size: 0.7rem;
+  }
+
+  /* --- Back link --- */
+  .gw-back {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gw-back a {
+    font-family: var(--gw-sans);
+    font-size: 0.8rem;
+    color: var(--gw-muted);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .gw-back a:hover {
+    color: var(--gw-gold);
+    border-bottom-color: var(--gw-gold);
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 640px) {
+    .gw-title { font-size: 2.2rem; }
+    .gw-section h2 { font-size: 1.4rem; }
+    .gw-pillars { grid-template-columns: 1fr; }
+    .gw-callout { padding: 1.5rem; }
+    .gw-table { font-size: 0.78rem; }
+    .gw-table thead th,
+    .gw-table tbody td { padding: 0.65rem 0.75rem; }
+  }
+</style>
+
+<div class="gw-page">
+
+  <!-- Header -->
+  <header class="gw-header">
+    <p class="breadcrumb">
+      <a href="/">Home</a> &rsaquo;
+      <a href="/holons/">Holons</a> &rsaquo;
+      <a href="/holons/questhub/">QuestHub</a> &rsaquo;
+      Gruber Works SE
+    </p>
+
+    <div class="gw-crest">
+      <span class="gw-crest-stars">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span>
+      </span>
+      <span class="gw-crest-line"></span>
+    </div>
+
+    <h1 class="gw-title">Gruber Works<span class="se">SE</span></h1>
+    <p class="gw-tagline">Your Creation's Bridge to State Institutions</p>
+    <p class="gw-subtitle">
+      A sovereign EU-based legal foundation for the EvoBioSys holonic
+      network &mdash; structured as a Societas Europae to carry every venture
+      that needs a formal home in European law.
+    </p>
+
+    <ul class="gw-meta">
+      <li class="gw-meta-tag active"><span class="tag-pip"></span> Active</li>
+      <li class="gw-meta-tag">#my-legacy</li>
+      <li class="gw-meta-tag">#professionalizing_with_heart</li>
+      <li class="gw-meta-tag">#side-project</li>
+      <li class="gw-meta-tag">#share</li>
+      <li class="gw-meta-tag">EvoBioSys Umbrella</li>
+    </ul>
+  </header>
+
+  <!-- 01 — What Is Gruber Works -->
+  <section class="gw-section">
+    <span class="gw-section-label">Article I &mdash; Purpose</span>
+    <h2>What Is Gruber Works</h2>
+    <p>
+      Gruber Works is the brand name for a legal entity designed to serve as the
+      institutional backbone of the EvoBioSys network. Where the holons are living,
+      evolving projects &mdash; software, communities, creative ventures &mdash; Gruber
+      Works provides the formal structure that allows them to interface with the world
+      of contracts, taxation, banking, and regulatory compliance.
+    </p>
+    <p>
+      The need arose from a simple reality: as the EvoBioSys ecosystem grew, its
+      projects began requiring things that only a legal entity can provide. Invoice
+      issuance. VAT registration. Contractual capacity. Liability boundaries. Rather
+      than spinning up ad-hoc solutions for each venture, Gruber Works was conceived
+      as a single, sovereign legal home &mdash; a holding structure with the flexibility
+      to house any holon that needs one.
+    </p>
+
+    <div class="gw-callout">
+      <h3>The Founding Principle</h3>
+      <p>
+        A creation should not need to compromise its nature in order to exist legally.
+        Gruber Works exists so that each holon can meet institutional requirements on
+        its own terms &mdash; professionalizing with heart, not by abandoning it.
+      </p>
+    </div>
+
+    <p>
+      The entity is connected to <a href="/holons/idea2life/" style="color: var(--gw-gold); text-decoration: none; border-bottom: 1px solid var(--gw-gold-dim);">idea2.Life</a>
+      for sovereign infrastructure, and to WonderFul Consulting &mdash; Jakob's existing
+      consulting entity &mdash; which will fold into or operate alongside the SE as the
+      structure matures. Gruber Works is not a startup. It is a legal vessel designed
+      for longevity: a container for decades of work, not a vehicle for a single exit.
+    </p>
+  </section>
+
+  <!-- 02 — The SE Legal Form -->
+  <div class="gw-divider"><span class="star">&#9733;</span> <span>Societas Europae</span> <span class="star">&#9733;</span></div>
+  <section class="gw-section" style="border-top: none;">
+    <span class="gw-section-label">Article II &mdash; Legal Form</span>
+    <h2>Societas Europae &mdash; The European Company</h2>
+    <p>
+      The <span class="gw-highlight">SE</span> (Societas Europae, Latin for
+      "European Company") is a legal form established by EU Council Regulation
+      No. 2157/2001. It creates a company type that is genuinely European rather
+      than merely national &mdash; a single legal entity recognized across all
+      EU and EEA member states.
+    </p>
+    <p>
+      An SE can transfer its registered office from one member state to another
+      without dissolving and re-incorporating. It operates under a unified set of
+      EU-level rules supplemented by the national law of its state of registration.
+      This gives it a portability that no national company form can match: if
+      regulatory or strategic conditions shift, the entity moves with you.
+    </p>
+
+    <div class="gw-pillars">
+      <div class="gw-pillar">
+        <div class="gw-pillar-num">I</div>
+        <h3>Cross-Border Mobility</h3>
+        <p>
+          Transfer the registered office to any EU/EEA state without
+          liquidation. The company persists as the same legal person.
+        </p>
+      </div>
+      <div class="gw-pillar">
+        <div class="gw-pillar-num">II</div>
+        <h3>EU-Wide Recognition</h3>
+        <p>
+          A single legal form understood by every member state. No need for
+          subsidiary structures to operate across borders.
+        </p>
+      </div>
+      <div class="gw-pillar">
+        <div class="gw-pillar-num">III</div>
+        <h3>Governance Flexibility</h3>
+        <p>
+          Choose between a one-tier (board of directors) or two-tier
+          (management + supervisory board) governance model.
+        </p>
+      </div>
+      <div class="gw-pillar">
+        <div class="gw-pillar-num">IV</div>
+        <h3>Institutional Credibility</h3>
+        <p>
+          The SE suffix signals serious European commitment. It carries
+          weight with partners, regulators, and financial institutions.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      For Gruber Works, the SE form is a deliberate choice. It aligns with the
+      EvoBioSys philosophy of sovereignty &mdash; EU data protection, EU corporate
+      law, EU jurisdiction. It also future-proofs the structure: as holons expand
+      into different European markets, the SE can follow without the friction of
+      cross-border corporate reorganization.
+    </p>
+  </section>
+
+  <!-- 03 — Comparison Table -->
+  <div class="gw-divider"><span>Comparative Analysis</span></div>
+  <section class="gw-section" style="border-top: none;">
+    <span class="gw-section-label">Article III &mdash; Alternatives</span>
+    <h2>How It Compares</h2>
+    <p>
+      During the research phase, several lightweight incorporation paths were
+      evaluated. Each has merit for specific use cases, but none fully satisfies
+      the requirements of a sovereign, multi-project, EU-native legal structure.
+    </p>
+
+    <div class="gw-table-wrap">
+      <table class="gw-table">
+        <thead>
+          <tr>
+            <th>Criterion</th>
+            <th>Gruber Works SE</th>
+            <th>Xolo Go</th>
+            <th>Stripe Atlas</th>
+            <th>Estonian O&Uuml;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Legal Form</td>
+            <td>Societas Europae</td>
+            <td>Intermediary (no own entity)</td>
+            <td>US C-Corp (Delaware)</td>
+            <td>Estonian Private Limited</td>
+          </tr>
+          <tr>
+            <td>Jurisdiction</td>
+            <td class="check">EU &mdash; member state of choice</td>
+            <td>Estonia (via Xolo)</td>
+            <td class="dim">USA (Delaware)</td>
+            <td>Estonia</td>
+          </tr>
+          <tr>
+            <td>Cross-Border Mobility</td>
+            <td class="check">Full &mdash; transfer seat across EU</td>
+            <td class="dim">None &mdash; not your entity</td>
+            <td class="dim">None &mdash; US-locked</td>
+            <td class="dim">Limited &mdash; Estonian law only</td>
+          </tr>
+          <tr>
+            <td>Data Sovereignty</td>
+            <td class="check">EU GDPR native</td>
+            <td>EU (Xolo layer)</td>
+            <td class="dim">US CLOUD Act exposure</td>
+            <td class="check">EU GDPR native</td>
+          </tr>
+          <tr>
+            <td>Multi-Project Holding</td>
+            <td class="check">Designed for it</td>
+            <td class="dim">Single-freelancer model</td>
+            <td>Possible but not designed</td>
+            <td>Possible with restructuring</td>
+          </tr>
+          <tr>
+            <td>Own VAT Number</td>
+            <td class="check">Yes</td>
+            <td class="dim">No &mdash; Xolo's VAT</td>
+            <td class="dim">No &mdash; US entity</td>
+            <td class="check">Yes</td>
+          </tr>
+          <tr>
+            <td>Setup Complexity</td>
+            <td>Higher &mdash; formal SE process</td>
+            <td class="check">Very low &mdash; sign up</td>
+            <td class="check">Low &mdash; guided process</td>
+            <td>Moderate &mdash; e-residency</td>
+          </tr>
+          <tr class="gw-row-highlight">
+            <td>Long-Term Sovereignty</td>
+            <td class="check">Full ownership, EU-native</td>
+            <td class="dim">Dependent on Xolo platform</td>
+            <td class="dim">US jurisdiction dependency</td>
+            <td>Good, but single-state</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Xolo Go is excellent for freelancers who want zero administrative burden
+      but accept that they do not own a legal entity. Stripe Atlas optimizes for
+      US market access and investor familiarity. The Estonian O&Uuml; via e-residency
+      is a genuine EU entity, but locked to one member state without the SE's
+      portability. Gruber Works SE accepts higher setup complexity in exchange for
+      maximum long-term sovereignty and structural flexibility.
+    </p>
+  </section>
+
+  <!-- 04 — Bridge to Institutions -->
+  <div class="gw-divider"><span class="star">&#9733;</span> <span>Bridge</span> <span class="star">&#9733;</span></div>
+  <section class="gw-section" style="border-top: none;">
+    <span class="gw-section-label">Article IV &mdash; Function</span>
+    <h2>Bridge to State Institutions</h2>
+    <p>
+      The published tagline &mdash; <em>"Your Creation's Bridge to State
+      Institutions"</em> &mdash; captures the core function of Gruber Works.
+      Creative and technological work does not naturally speak the language of
+      state bureaucracy. Tax authorities require invoices with specific fields.
+      Banks require articles of incorporation. Insurance providers require a
+      legal person to underwrite. Gruber Works translates between these worlds.
+    </p>
+
+    <div class="gw-callout">
+      <h3>What the Bridge Carries</h3>
+      <p>
+        Invoicing capacity and VAT compliance for any holon. Contractual standing
+        for partnerships and client work. Banking and payment infrastructure under
+        EU regulation. Liability containment that protects both the creator and
+        the creation. Regulatory filings that keep the state satisfied without
+        consuming the creator's attention.
+      </p>
+    </div>
+
+    <p>
+      The metaphor of a bridge is precise: Gruber Works does not absorb the holons
+      into itself. Each project retains its own identity, culture, and operational
+      logic. The SE simply provides the surface that state institutions can
+      recognize and interact with. When a holon needs to sign a contract, issue an
+      invoice, or open a bank account, it does so through Gruber Works &mdash; and
+      the rest of the time, it operates freely under its own principles.
+    </p>
+    <p>
+      This is what <span class="gw-highlight">#professionalizing_with_heart</span>
+      means in practice. The legal structure serves the creative mission rather
+      than the other way around. Compliance is handled, but it does not define
+      the work. The bridge exists so the creator can stay on the creative side
+      of it.
+    </p>
+  </section>
+
+  <!-- 05 — Connected Holons -->
+  <div class="gw-divider"><span>Network</span></div>
+  <section class="gw-section" style="border-top: none;">
+    <span class="gw-section-label">Article V &mdash; Connections</span>
+    <h2>Connected Holons &amp; Entities</h2>
+    <p>
+      Gruber Works SE does not operate in isolation. It serves as the legal
+      foundation layer for a network of holons, each with its own purpose and
+      identity. The SE provides institutional capacity; the holons provide
+      meaning, products, and community.
+    </p>
+    <p>
+      WonderFul Consulting &mdash; Jakob's existing consulting practice &mdash;
+      is the nearest adjacent entity and will operate alongside or within the SE
+      structure. The <span class="gw-highlight">949</span> initiative will
+      require Gruber Works as its legal backbone. And as the EvoBioSys ecosystem
+      grows, any holon that needs to interface with banks, tax authorities, or
+      contractual partners will route through this shared foundation.
+    </p>
+
+    <div class="gw-connections">
+      <a href="/holons/idea2life/" class="gw-conn">
+        idea2.Life <span class="arrow">&rarr;</span>
+      </a>
+      <a href="/holons/questhub/" class="gw-conn">
+        QuestHub <span class="arrow">&rarr;</span>
+      </a>
+      <a href="/holons/collective/" class="gw-conn">
+        EvoBioSys Collective <span class="arrow">&rarr;</span>
+      </a>
+      <span class="gw-conn">
+        WonderFul Consulting <span class="arrow">&bull;</span>
+      </span>
+      <span class="gw-conn">
+        949 Initiative <span class="arrow">&bull;</span>
+      </span>
+      <a href="/holons/sofin/" class="gw-conn">
+        SoFin <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="gw-back">
+    <a href="/holons/">&larr; Back to all holons</a>
+  </div>
+
+</div>

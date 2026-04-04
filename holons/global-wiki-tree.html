@@ -1,0 +1,1180 @@
+---
+layout: default
+title: "Global Wiki Tree — Knowledge Commons"
+description: >-
+  Global Wiki Tree is a meta-communities wiki tool — a living knowledge commons
+  where any kind of data is imported, curated, and exported as interoperable files
+  for tools like Tana, Logseq, and beyond.
+permalink: /holons/global-wiki-tree/
+---
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  /* === GLOBAL WIKI TREE: Knowledge Commons / Tree Identity === */
+
+  .gwt-page {
+    --gwt-canopy: #1a3a2a;
+    --gwt-bark: #3d2b1f;
+    --gwt-bark-muted: #6b5842;
+    --gwt-leaf: #2d7a4f;
+    --gwt-leaf-light: #48b06a;
+    --gwt-leaf-pale: #e4f2e8;
+    --gwt-moss: #5a8f5e;
+    --gwt-moss-bg: rgba(90, 143, 94, 0.08);
+    --gwt-root: #6b4e32;
+    --gwt-node: #3a9e6e;
+    --gwt-node-glow: rgba(58, 158, 110, 0.15);
+    --gwt-edge: rgba(58, 158, 110, 0.25);
+    --gwt-bg: #f6faf7;
+    --gwt-bg-deep: #edf5ef;
+    --gwt-bg-warm: #f2f7f3;
+    --gwt-bg-ring: rgba(45, 122, 79, 0.03);
+    --gwt-text: #1a2e22;
+    --gwt-text-soft: #4a6b55;
+    --gwt-text-faint: #8aaa95;
+    --gwt-border: rgba(45, 122, 79, 0.15);
+    --gwt-border-soft: rgba(0, 0, 0, 0.06);
+    --gwt-amber: #b8860b;
+    --gwt-amber-bg: rgba(184, 134, 11, 0.08);
+    --gwt-blue: #3a7ca5;
+    --gwt-blue-bg: rgba(58, 124, 165, 0.07);
+    --gwt-radius: 14px;
+    --gwt-radius-sm: 8px;
+    --gwt-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --gwt-mono: 'IBM Plex Mono', monospace;
+    --gwt-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(45, 122, 79, 0.06);
+    --gwt-shadow-hover: 0 2px 8px rgba(0,0,0,0.06), 0 12px 32px rgba(45, 122, 79, 0.1);
+  }
+
+  .gwt-page {
+    background: var(--gwt-bg);
+    font-family: var(--gwt-font);
+    color: var(--gwt-text);
+  }
+
+  /* ---- Tree-ring background pattern ---- */
+  .gwt-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    pointer-events: none;
+    opacity: 0.035;
+  }
+
+  .gwt-rings::before,
+  .gwt-rings::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid var(--gwt-leaf);
+  }
+
+  .gwt-rings::before {
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+  }
+
+  .gwt-rings::after {
+    top: 50%;
+    left: 50%;
+    width: 480px;
+    height: 480px;
+    transform: translate(-50%, -50%);
+  }
+
+  .gwt-ring-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gwt-leaf);
+    transform: translate(-50%, -50%);
+  }
+
+  /* ---- Network node decorations ---- */
+  .gwt-node-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gwt-node);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  .gwt-node-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--gwt-node-glow);
+    transform: translate(-50%, -50%);
+  }
+
+  .gwt-edge-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gwt-edge), transparent);
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  /* ---- Header ---- */
+  .gwt-header {
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 30% 70%, rgba(45, 122, 79, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 75% 25%, rgba(90, 143, 94, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, var(--gwt-bg-ring) 0%, transparent 60%),
+      linear-gradient(175deg, var(--gwt-bg-warm) 0%, var(--gwt-bg) 40%, var(--gwt-bg-deep) 100%);
+    border-bottom: 2px solid var(--gwt-border);
+  }
+
+  /* Floating network-node accents in header */
+  .gwt-header .gwt-node-dot:nth-child(1) { top: 18%; right: 12%; width: 10px; height: 10px; }
+  .gwt-header .gwt-node-dot:nth-child(2) { top: 60%; right: 22%; width: 6px; height: 6px; }
+  .gwt-header .gwt-node-dot:nth-child(3) { top: 35%; left: 15%; width: 8px; height: 8px; }
+  .gwt-header .gwt-node-dot:nth-child(4) { bottom: 25%; left: 10%; width: 6px; height: 6px; }
+  .gwt-header .gwt-edge-line:nth-child(5) { top: 22%; right: 14%; width: 80px; transform: rotate(-25deg); }
+  .gwt-header .gwt-edge-line:nth-child(6) { top: 40%; left: 12%; width: 60px; transform: rotate(15deg); }
+
+  .gwt-header .breadcrumb {
+    font-family: var(--gwt-font);
+    font-size: 0.8rem;
+    color: var(--gwt-text-faint);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gwt-header .breadcrumb a {
+    color: var(--gwt-leaf);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .gwt-header .breadcrumb a:hover {
+    color: var(--gwt-text);
+  }
+
+  .gwt-tagline {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: var(--gwt-moss-bg);
+    color: var(--gwt-moss);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gwt-header h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    color: var(--gwt-canopy);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .gwt-header h1 .accent {
+    color: var(--gwt-leaf);
+    font-weight: 600;
+  }
+
+  .gwt-lead {
+    font-size: 1.1rem;
+    color: var(--gwt-text-soft);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gwt-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gwt-meta .meta-item {
+    text-align: center;
+  }
+
+  .gwt-meta .meta-item dt {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gwt-leaf);
+    margin-bottom: 0.25rem;
+  }
+
+  .gwt-meta .meta-item dd {
+    font-size: 0.85rem;
+    color: var(--gwt-canopy);
+    margin: 0;
+  }
+
+  /* ---- Section system ---- */
+  .gwt-section {
+    padding: 5rem 2rem;
+    position: relative;
+  }
+
+  .gwt-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .gwt-section h2 {
+    font-size: 1.7rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--gwt-canopy);
+    margin-bottom: 1.2rem;
+  }
+
+  .gwt-section h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--gwt-leaf);
+    margin-bottom: 0.5rem;
+  }
+
+  .gwt-section p, .gwt-section li {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--gwt-text-soft);
+  }
+
+  .gwt-section p + p {
+    margin-top: 1rem;
+  }
+
+  .gwt-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gwt-border), var(--gwt-edge), var(--gwt-border), transparent);
+    margin: 0;
+  }
+
+  /* ---- Intro section with tree visual ---- */
+  .gwt-intro {
+    background: var(--color-white, #ffffff);
+    border-bottom: 1px solid var(--gwt-border);
+  }
+
+  .gwt-intro-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .gwt-tree-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0.5rem;
+  }
+
+  .gwt-tree-icon {
+    width: 120px;
+    height: 140px;
+    position: relative;
+  }
+
+  /* CSS tree illustration */
+  .gwt-tree-trunk {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 8px;
+    height: 60px;
+    background: linear-gradient(180deg, var(--gwt-leaf), var(--gwt-root));
+    border-radius: 2px;
+    transform: translateX(-50%);
+  }
+
+  .gwt-tree-canopy {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 45% 45%, var(--gwt-leaf-light), var(--gwt-leaf));
+    transform: translateX(-50%);
+    opacity: 0.8;
+    box-shadow: 0 4px 20px rgba(45, 122, 79, 0.2);
+  }
+
+  .gwt-tree-canopy::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, var(--gwt-leaf-light), var(--gwt-leaf));
+    opacity: 0.7;
+  }
+
+  .gwt-tree-canopy::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, var(--gwt-moss), var(--gwt-leaf));
+    opacity: 0.6;
+  }
+
+  .gwt-tree-roots {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 20px;
+  }
+
+  .gwt-tree-roots::before,
+  .gwt-tree-roots::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background: var(--gwt-root);
+    border-radius: 1px;
+  }
+
+  .gwt-tree-roots::before {
+    left: 5px;
+    width: 20px;
+    transform: rotate(25deg);
+  }
+
+  .gwt-tree-roots::after {
+    right: 5px;
+    width: 22px;
+    transform: rotate(-20deg);
+  }
+
+  .gwt-tree-label {
+    margin-top: 1.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gwt-text-faint);
+  }
+
+  /* ---- Flow diagram ---- */
+  .gwt-flow {
+    background: linear-gradient(175deg, var(--gwt-bg) 0%, var(--gwt-bg-deep) 100%);
+  }
+
+  .gwt-flow-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 2.5rem 0;
+    flex-wrap: wrap;
+  }
+
+  .gwt-flow-step {
+    text-align: center;
+    padding: 1.5rem 1.2rem;
+    background: var(--color-white, #ffffff);
+    border: 1px solid var(--gwt-border);
+    border-radius: var(--gwt-radius);
+    min-width: 160px;
+    max-width: 200px;
+    position: relative;
+    box-shadow: var(--gwt-shadow);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+
+  .gwt-flow-step:hover {
+    box-shadow: var(--gwt-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .gwt-flow-step-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .gwt-flow-step h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gwt-canopy);
+    margin-bottom: 0.3rem;
+  }
+
+  .gwt-flow-step p {
+    font-size: 0.78rem;
+    color: var(--gwt-text-faint);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .gwt-flow-arrow {
+    font-size: 1.4rem;
+    color: var(--gwt-node);
+    padding: 0 0.8rem;
+    opacity: 0.5;
+  }
+
+  /* ---- Card grid ---- */
+  .gwt-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .gwt-card {
+    background: var(--color-white, #ffffff);
+    border: 1px solid var(--gwt-border);
+    border-radius: var(--gwt-radius);
+    padding: 1.5rem;
+    box-shadow: var(--gwt-shadow);
+    transition: box-shadow 0.3s, transform 0.3s;
+    position: relative;
+  }
+
+  .gwt-card:hover {
+    box-shadow: var(--gwt-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .gwt-card-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .gwt-card h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--gwt-canopy);
+    margin-bottom: 0.4rem;
+  }
+
+  .gwt-card p {
+    font-size: 0.85rem;
+    color: var(--gwt-text-soft);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ---- Business model section ---- */
+  .gwt-biz {
+    background: var(--color-white, #ffffff);
+    border-top: 1px solid var(--gwt-border);
+    border-bottom: 1px solid var(--gwt-border);
+  }
+
+  .gwt-biz-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .gwt-biz-box {
+    padding: 1.5rem;
+    border-radius: var(--gwt-radius);
+    border: 1px solid var(--gwt-border-soft);
+  }
+
+  .gwt-biz-box.primary {
+    background: linear-gradient(165deg, var(--gwt-leaf-pale), var(--gwt-bg));
+    border-color: var(--gwt-border);
+  }
+
+  .gwt-biz-box.secondary {
+    background: linear-gradient(165deg, var(--gwt-bg), var(--gwt-bg-deep));
+    border-color: var(--gwt-border-soft);
+  }
+
+  .gwt-biz-box h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--gwt-canopy);
+    margin-bottom: 0.5rem;
+  }
+
+  .gwt-biz-box p {
+    font-size: 0.85rem;
+    color: var(--gwt-text-soft);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .gwt-biz-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+  }
+
+  .gwt-biz-box ul li {
+    font-size: 0.85rem;
+    color: var(--gwt-text-soft);
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .gwt-biz-box ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gwt-node);
+    opacity: 0.5;
+  }
+
+  /* ---- Movement section ---- */
+  .gwt-movement {
+    background: linear-gradient(175deg, var(--gwt-bg-warm) 0%, var(--gwt-bg-deep) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gwt-movement::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    border: 1px solid var(--gwt-edge);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .gwt-movement::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -80px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    border: 1px solid var(--gwt-edge);
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  .gwt-players {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .gwt-player {
+    background: var(--color-white, #ffffff);
+    border: 1px solid var(--gwt-border);
+    border-radius: var(--gwt-radius-sm);
+    padding: 1.2rem;
+    text-align: center;
+    box-shadow: var(--gwt-shadow);
+    position: relative;
+    z-index: 1;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+
+  .gwt-player:hover {
+    box-shadow: var(--gwt-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .gwt-player-num {
+    font-family: var(--gwt-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--gwt-text-faint);
+    margin-bottom: 0.4rem;
+  }
+
+  .gwt-player h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gwt-canopy);
+    margin-bottom: 0.3rem;
+  }
+
+  .gwt-player p {
+    font-size: 0.78rem;
+    color: var(--gwt-text-soft);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .gwt-callout {
+    margin-top: 2.5rem;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, var(--gwt-leaf-pale), rgba(72, 176, 106, 0.08));
+    border: 1px solid var(--gwt-border);
+    border-left: 4px solid var(--gwt-leaf);
+    border-radius: var(--gwt-radius-sm);
+    position: relative;
+    z-index: 1;
+  }
+
+  .gwt-callout p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--gwt-text-soft);
+    line-height: 1.7;
+  }
+
+  .gwt-callout strong {
+    color: var(--gwt-canopy);
+  }
+
+  /* ---- Connected holons ---- */
+  .gwt-connected {
+    background: var(--color-white, #ffffff);
+    border-top: 1px solid var(--gwt-border);
+  }
+
+  .gwt-holon-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .gwt-holon-link {
+    display: block;
+    padding: 1.2rem 1.5rem;
+    background: var(--gwt-bg);
+    border: 1px solid var(--gwt-border-soft);
+    border-radius: var(--gwt-radius-sm);
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .gwt-holon-link:hover {
+    border-color: var(--gwt-border);
+    background: var(--gwt-bg-warm);
+    box-shadow: var(--gwt-shadow);
+    transform: translateY(-1px);
+  }
+
+  .gwt-holon-link h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gwt-leaf);
+    margin-bottom: 0.25rem;
+    transition: color 0.2s;
+  }
+
+  .gwt-holon-link:hover h4 {
+    color: var(--gwt-canopy);
+  }
+
+  .gwt-holon-link p {
+    font-size: 0.78rem;
+    color: var(--gwt-text-faint);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .gwt-holon-link .link-arrow {
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gwt-text-faint);
+    font-size: 0.9rem;
+    transition: transform 0.2s, color 0.2s;
+  }
+
+  .gwt-holon-link:hover .link-arrow {
+    transform: translateY(-50%) translateX(3px);
+    color: var(--gwt-leaf);
+  }
+
+  /* ---- Resources section ---- */
+  .gwt-resources {
+    background: linear-gradient(175deg, var(--gwt-bg-deep) 0%, var(--gwt-bg) 100%);
+    border-top: 1px solid var(--gwt-border);
+  }
+
+  .gwt-resource-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+
+  .gwt-resource-tag {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    background: var(--color-white, #ffffff);
+    border: 1px solid var(--gwt-border-soft);
+    border-radius: 100px;
+    font-size: 0.78rem;
+    color: var(--gwt-text-soft);
+    font-family: var(--gwt-mono);
+    transition: all 0.2s;
+  }
+
+  .gwt-resource-tag:hover {
+    border-color: var(--gwt-border);
+    background: var(--gwt-leaf-pale);
+    color: var(--gwt-canopy);
+  }
+
+  /* ---- Confidence toggle ---- */
+  .gwt-toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--color-white, #ffffff);
+    border: 1px solid var(--gwt-border-soft);
+    border-radius: var(--gwt-radius-sm);
+  }
+
+  .gwt-toggle-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--gwt-bg-deep);
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gwt-toggle-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--gwt-leaf), var(--gwt-leaf-light));
+    width: 80%;
+  }
+
+  .gwt-toggle-label {
+    font-size: 0.78rem;
+    color: var(--gwt-text-faint);
+    white-space: nowrap;
+    font-family: var(--gwt-mono);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 768px) {
+    .gwt-header { padding: 4rem 1.5rem 3rem; }
+    .gwt-section { padding: 3rem 1.5rem; }
+    .gwt-intro-grid { grid-template-columns: 1fr; }
+    .gwt-tree-visual { display: none; }
+    .gwt-biz-grid { grid-template-columns: 1fr; }
+    .gwt-players { grid-template-columns: 1fr 1fr; }
+    .gwt-flow-diagram { flex-direction: column; }
+    .gwt-flow-arrow { transform: rotate(90deg); padding: 0.3rem 0; }
+    .gwt-meta { gap: 1.2rem; }
+  }
+
+  @media (max-width: 480px) {
+    .gwt-players { grid-template-columns: 1fr; }
+    .gwt-holon-links { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="gwt-page">
+
+  <!-- ============================================ -->
+  <!-- Header                                       -->
+  <!-- ============================================ -->
+  <header class="gwt-header">
+    <div class="gwt-node-dot"></div>
+    <div class="gwt-node-dot"></div>
+    <div class="gwt-node-dot"></div>
+    <div class="gwt-node-dot"></div>
+    <div class="gwt-edge-line"></div>
+    <div class="gwt-edge-line"></div>
+
+    <div class="gwt-rings">
+      <div class="gwt-ring-inner"></div>
+    </div>
+
+    <p class="breadcrumb">
+      <a href="/">Home</a> &rsaquo;
+      <a href="/holons/">Holons</a> &rsaquo;
+      <a href="/holons/questhub/">QuestHub</a> &rsaquo;
+      Global Wiki Tree
+    </p>
+
+    <div class="gwt-tagline">Knowledge Commons</div>
+    <h1>Global <span class="accent">Wiki Tree</span></h1>
+    <p class="gwt-lead">
+      A meta-communities wiki tool &mdash; a living knowledge commons where any kind
+      of data is imported, curated collaboratively, and exported as interoperable files
+      for tools like Tana, Logseq, and beyond. Wikipedia meets a living forest.
+    </p>
+
+    <dl class="gwt-meta">
+      <div class="meta-item">
+        <dt>Status</dt>
+        <dd>Forming the Movement</dd>
+      </div>
+      <div class="meta-item">
+        <dt>Tags</dt>
+        <dd>#side-project &middot; #my-legacy</dd>
+      </div>
+      <div class="meta-item">
+        <dt>System Type</dt>
+        <dd>Simple (Sub-)System</dd>
+      </div>
+      <div class="meta-item">
+        <dt>Inspired By</dt>
+        <dd>WikiTree</dd>
+      </div>
+    </dl>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- What is Global Wiki Tree                     -->
+  <!-- ============================================ -->
+  <section class="gwt-section gwt-intro">
+    <div class="gwt-inner gwt-intro-grid">
+
+      <div class="gwt-tree-visual">
+        <div class="gwt-tree-icon">
+          <div class="gwt-tree-canopy"></div>
+          <div class="gwt-tree-trunk"></div>
+          <div class="gwt-tree-roots"></div>
+        </div>
+        <span class="gwt-tree-label">Knowledge Tree</span>
+      </div>
+
+      <div>
+        <h2>What is Global Wiki Tree?</h2>
+        <p>
+          Global Wiki Tree is a meta-communities wiki tool that reimagines how
+          knowledge is collectively owned, curated, and distributed. Where Wikipedia
+          created a single encyclopedia, Global Wiki Tree creates a living forest
+          of interconnected knowledge bases &mdash; each community tending its own
+          branch while sharing roots with the whole.
+        </p>
+        <p>
+          The core premise is simple: communities and organizations already produce
+          vast amounts of structured knowledge, but it remains trapped in silos.
+          Global Wiki Tree gives these communities a shared trunk &mdash; a common
+          data layer with strong confidence defaults &mdash; while letting each
+          branch define its own curation standards, taxonomies, and export formats.
+        </p>
+        <p>
+          Think of it as the knowledge commons that the internet was always supposed
+          to become: not a single platform that owns everything, but a living tree
+          where every node is sovereign, every connection is meaningful, and the
+          whole grows stronger as each part grows.
+        </p>
+
+        <h3>Addressing Real Needs</h3>
+        <p>
+          Two forces are converging. First, <strong>knowledge management</strong>
+          remains fragmented &mdash; your notes, your team's wiki, your community's
+          documentation all live in separate tools that barely talk to each other.
+          Second, the rise of AI has made <strong>trustworthy, curated data</strong>
+          more valuable than ever. Models trained on messy, unverified web scrapes
+          produce messy, unverified outputs. Global Wiki Tree addresses both:
+          structured knowledge that flows freely between tools, with provenance
+          and confidence baked in.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="gwt-divider"></div>
+
+  <!-- ============================================ -->
+  <!-- How It Works                                 -->
+  <!-- ============================================ -->
+  <section class="gwt-section gwt-flow">
+    <div class="gwt-inner">
+      <h2>How It Works</h2>
+      <p>
+        Global Wiki Tree follows a three-phase flow: any kind of data enters
+        the system, gets shaped through community curation, and exits as clean,
+        portable files ready for whatever tool you prefer.
+      </p>
+
+      <div class="gwt-flow-diagram">
+        <div class="gwt-flow-step">
+          <div class="gwt-flow-step-icon">&#x1F4E5;</div>
+          <h4>Import</h4>
+          <p>Any kind of data enters the tree &mdash; structured, semi-structured, or raw. APIs, file uploads, scrapers.</p>
+        </div>
+        <div class="gwt-flow-arrow">&rarr;</div>
+        <div class="gwt-flow-step">
+          <div class="gwt-flow-step-icon">&#x1F333;</div>
+          <h4>Curate</h4>
+          <p>Community editors shape, verify, and connect knowledge. Easiest path: curation by domain experts.</p>
+        </div>
+        <div class="gwt-flow-arrow">&rarr;</div>
+        <div class="gwt-flow-step">
+          <div class="gwt-flow-step-icon">&#x1F4E4;</div>
+          <h4>Export</h4>
+          <p>Clean, interoperable files for Tana, Logseq, Obsidian, or any tool. Also available via API.</p>
+        </div>
+      </div>
+
+      <h3>Confidence Levels</h3>
+      <p>
+        Not all knowledge carries the same weight. Global Wiki Tree defaults to
+        showing only <strong>strong-confidence</strong> content &mdash; claims that have
+        been verified by multiple curators or backed by cited sources. This is the
+        public face: what any visitor sees.
+      </p>
+
+      <div class="gwt-toggle-row">
+        <span class="gwt-toggle-label">Low</span>
+        <div class="gwt-toggle-bar">
+          <div class="gwt-toggle-fill"></div>
+        </div>
+        <span class="gwt-toggle-label">Strong (default)</span>
+      </div>
+
+      <p style="margin-top: 1rem;">
+        For organizations and communities making offers, the confidence threshold
+        is <strong>adjustable</strong>. An internal research team might want to see
+        everything, including tentative connections and unverified imports. A public
+        knowledge base for a city government might want only the most rigorously
+        sourced material. The slider is theirs to set.
+      </p>
+
+      <h3>The API</h3>
+      <p>
+        Global Wiki Tree exposes a full API for programmatic access. Import
+        data from any source, query the knowledge graph, export curated subsets,
+        and integrate with existing workflows. The API is the backbone that makes
+        the tree a living system rather than a static archive.
+      </p>
+    </div>
+  </section>
+
+  <div class="gwt-divider"></div>
+
+  <!-- ============================================ -->
+  <!-- Business Model                               -->
+  <!-- ============================================ -->
+  <section class="gwt-section gwt-biz">
+    <div class="gwt-inner">
+      <h2>Business Model</h2>
+      <p>
+        Global Wiki Tree sustains itself through the organizations and communities
+        that use it to publish and manage knowledge &mdash; not by extracting value
+        from individual users. The commons stays free; the tooling for professional
+        use carries the cost.
+      </p>
+
+      <div class="gwt-biz-grid">
+        <div class="gwt-biz-box primary">
+          <h4>For Communities</h4>
+          <p>
+            Communities that want to publish structured knowledge get the full
+            platform for free or near-free. The tree grows by having more public
+            data from more communities.
+          </p>
+          <ul>
+            <li>Free public knowledge hosting</li>
+            <li>Community curation tools</li>
+            <li>Open export in all formats</li>
+            <li>Strong-confidence defaults</li>
+          </ul>
+        </div>
+        <div class="gwt-biz-box secondary">
+          <h4>For Organizations Making Offers</h4>
+          <p>
+            Organizations that use the tree for internal knowledge management or
+            to publish professional-grade datasets pay for advanced features.
+          </p>
+          <ul>
+            <li>Adjustable confidence thresholds</li>
+            <li>Private branches and access control</li>
+            <li>Priority API access and SLA</li>
+            <li>Custom export pipelines</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="gwt-callout" style="margin-top: 2rem;">
+        <p>
+          <strong>How to get lots of public data?</strong> By serving those who
+          already want to publish &mdash; communities, NGOs, open-knowledge
+          organizations, civic institutions. They bring the data; the tree gives
+          it structure, discoverability, and interoperability.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="gwt-divider"></div>
+
+  <!-- ============================================ -->
+  <!-- The Movement                                 -->
+  <!-- ============================================ -->
+  <section class="gwt-section gwt-movement">
+    <div class="gwt-inner">
+      <h2>The Movement</h2>
+      <p>
+        Global Wiki Tree is not just a product &mdash; it needs to become a
+        <strong>tech movement</strong>, similar to how Wikipedia became a movement
+        before it became a platform. The technology is the easy part. The hard part
+        is building the culture of collaborative knowledge curation at scale.
+      </p>
+      <p>
+        To reach critical mass, the project requires <strong>six key players</strong>
+        who together form the initial root system of the tree.
+      </p>
+
+      <div class="gwt-players">
+        <div class="gwt-player">
+          <div class="gwt-player-num">01</div>
+          <h4>The Architect</h4>
+          <p>System designer who understands knowledge graphs, ontologies, and interoperability at scale.</p>
+        </div>
+        <div class="gwt-player">
+          <div class="gwt-player-num">02</div>
+          <h4>The Community Builder</h4>
+          <p>Someone who can rally early-adopter communities and build the culture of open curation.</p>
+        </div>
+        <div class="gwt-player">
+          <div class="gwt-player-num">03</div>
+          <h4>The Data Steward</h4>
+          <p>Expert in data quality, provenance tracking, and confidence scoring systems.</p>
+        </div>
+        <div class="gwt-player">
+          <div class="gwt-player-num">04</div>
+          <h4>The Tool Maker</h4>
+          <p>Developer focused on import/export pipelines, API design, and integration with existing tools.</p>
+        </div>
+        <div class="gwt-player">
+          <div class="gwt-player-num">05</div>
+          <h4>The Advocate</h4>
+          <p>Public voice who can articulate why knowledge commons matter and attract institutional partners.</p>
+        </div>
+        <div class="gwt-player">
+          <div class="gwt-player-num">06</div>
+          <h4>The Sustainer</h4>
+          <p>Business strategist who designs the model that keeps the commons funded without compromising it.</p>
+        </div>
+      </div>
+
+      <div class="gwt-callout">
+        <p>
+          <strong>Current status:</strong> The vision is clear, the need is real,
+          but the movement has not yet formed. Like Wikipedia in 2000, we need the
+          right combination of idealism, technical talent, and timing. The seed
+          is planted &mdash; it waits for its six roots.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="gwt-divider"></div>
+
+  <!-- ============================================ -->
+  <!-- Connected Holons                             -->
+  <!-- ============================================ -->
+  <section class="gwt-section gwt-connected">
+    <div class="gwt-inner">
+      <h2>Connected Holons</h2>
+      <p>
+        Global Wiki Tree does not exist in isolation. It draws from and feeds into
+        several other holons within the EvoBioSys ecosystem, forming a knowledge
+        layer that connects tools, communities, and data.
+      </p>
+
+      <div class="gwt-holon-links">
+        <a href="/holons/silknotes/" class="gwt-holon-link">
+          <h4>SilkNotes</h4>
+          <p>Interoperating knowledge silos &mdash; the local-first note-operating system that Global Wiki Tree can export to and import from.</p>
+          <span class="link-arrow">&rsaquo;</span>
+        </a>
+        <a href="/holons/questhub/" class="gwt-holon-link">
+          <h4>QuestHub</h4>
+          <p>The garden of side-projects where Global Wiki Tree was planted as a seed and nurtured into its current form.</p>
+          <span class="link-arrow">&rsaquo;</span>
+        </a>
+        <a href="#" class="gwt-holon-link">
+          <h4>Semantic Web</h4>
+          <p>Global Wiki Tree builds on semantic web principles &mdash; linked data, structured ontologies, machine-readable knowledge.</p>
+          <span class="link-arrow">&rsaquo;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="gwt-divider"></div>
+
+  <!-- ============================================ -->
+  <!-- Resources & Inspirations                     -->
+  <!-- ============================================ -->
+  <section class="gwt-section gwt-resources">
+    <div class="gwt-inner">
+      <h2>Resources &amp; Inspirations</h2>
+      <p>
+        Global Wiki Tree stands on the shoulders of tools and communities that have
+        been exploring networked knowledge for years. These are the roots we draw from.
+      </p>
+
+      <div class="gwt-resource-list">
+        <span class="gwt-resource-tag">WikiTree</span>
+        <span class="gwt-resource-tag">TiddlyWiki</span>
+        <span class="gwt-resource-tag">Logseq</span>
+        <span class="gwt-resource-tag">Tana</span>
+        <span class="gwt-resource-tag">Obsidian</span>
+        <span class="gwt-resource-tag">Roam Research</span>
+        <span class="gwt-resource-tag">Network-graph outliners</span>
+        <span class="gwt-resource-tag">Tools for Thought</span>
+        <span class="gwt-resource-tag">Lambrospetrou</span>
+        <span class="gwt-resource-tag">Wikipedia</span>
+        <span class="gwt-resource-tag">Linked Data / RDF</span>
+        <span class="gwt-resource-tag">Knowledge Graphs</span>
+      </div>
+    </div>
+  </section>
+
+</div>

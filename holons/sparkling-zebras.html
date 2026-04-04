@@ -1,0 +1,1252 @@
+---
+layout: default
+title: "Sparkling Zebras — Experiential Incubator"
+description: >-
+  Sparkling Zebras is the experiential incubator of idea2.Life — an in-person
+  experience that carries a vision from steward to the people who will actually
+  build it. Financial vehicle meets African savanna spirit.
+permalink: /holons/sparkling-zebras/
+---
+
+<style>
+  /* === Sparkling Zebras — Sparkly / Playful Identity === */
+
+  .sz-page {
+    --sz-gold: #d4a017;
+    --sz-gold-light: #f0c94b;
+    --sz-gold-glow: rgba(244, 208, 63, 0.35);
+    --sz-black: #1a1a1a;
+    --sz-white: #fafafa;
+    --sz-stripe-dark: #222;
+    --sz-stripe-light: #f5f5f5;
+    --sz-electric: #e8b800;
+    --sz-electric-alt: #ff9f1c;
+    --sz-deep: #0d0d0d;
+    --sz-muted: #8a8170;
+    --sz-cream: #fffdf5;
+    --sz-warm-bg: #fef9ef;
+    --sz-border: #e6dcc8;
+    --sz-spark: #ffe066;
+  }
+
+  .sz-page {
+    background: var(--sz-cream);
+  }
+
+  /* ---- Zebra-stripe CSS accent pattern ---- */
+  .sz-stripes {
+    background: repeating-linear-gradient(
+      135deg,
+      var(--sz-black) 0px,
+      var(--sz-black) 8px,
+      var(--sz-white) 8px,
+      var(--sz-white) 16px
+    );
+    opacity: 0.06;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---- Header ---- */
+  .sz-header {
+    padding: 8rem 2rem 4.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 30% 70%, rgba(212, 160, 23, 0.15) 0%, transparent 55%),
+      radial-gradient(ellipse at 75% 25%, rgba(255, 159, 28, 0.10) 0%, transparent 50%),
+      linear-gradient(175deg, var(--sz-warm-bg) 0%, var(--sz-cream) 50%, var(--color-bg, #fff) 100%);
+  }
+
+  /* Sparkle particles */
+  .sz-header::before,
+  .sz-header::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .sz-header::before {
+    top: 4rem;
+    right: 12%;
+    width: 6px;
+    height: 6px;
+    background: var(--sz-gold-light);
+    box-shadow:
+      0 0 12px var(--sz-gold-glow),
+      60px 40px 0 var(--sz-gold-light),
+      60px 40px 12px var(--sz-gold-glow),
+      -30px 80px 0 var(--sz-spark),
+      -30px 80px 10px var(--sz-gold-glow),
+      120px 20px 0 var(--sz-gold-light),
+      120px 20px 12px var(--sz-gold-glow),
+      -80px 30px 0 var(--sz-spark),
+      -80px 30px 10px var(--sz-gold-glow);
+    animation: sz-twinkle 4s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .sz-header::after {
+    bottom: 3rem;
+    left: 10%;
+    width: 5px;
+    height: 5px;
+    background: var(--sz-spark);
+    box-shadow:
+      0 0 10px var(--sz-gold-glow),
+      40px -30px 0 var(--sz-gold-light),
+      40px -30px 10px var(--sz-gold-glow),
+      -50px -60px 0 var(--sz-spark),
+      -50px -60px 10px var(--sz-gold-glow),
+      80px -10px 0 var(--sz-gold-light),
+      80px -10px 12px var(--sz-gold-glow);
+    animation: sz-twinkle 4s ease-in-out infinite 2s;
+    z-index: 1;
+  }
+
+  @keyframes sz-twinkle {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+  }
+
+  @keyframes sz-shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .sz-breadcrumb {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sz-muted);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sz-breadcrumb a {
+    color: var(--sz-gold);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .sz-breadcrumb a:hover {
+    border-bottom-color: var(--sz-gold);
+  }
+
+  .sz-breadcrumb .sep {
+    margin: 0 0.4em;
+    color: var(--sz-border);
+  }
+
+  .sz-header h1 {
+    font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--sz-black);
+    position: relative;
+    z-index: 2;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+
+  .sz-header h1 .gold {
+    background: linear-gradient(
+      90deg,
+      var(--sz-gold) 0%,
+      var(--sz-gold-light) 40%,
+      var(--sz-electric-alt) 60%,
+      var(--sz-gold) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: sz-shimmer 6s linear infinite;
+  }
+
+  .sz-subtitle {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sz-subtitle .sub {
+    display: inline-block;
+    padding: 0.3rem 1.1rem;
+    background: rgba(212, 160, 23, 0.10);
+    border: 1px solid rgba(212, 160, 23, 0.20);
+    color: var(--sz-gold);
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+
+  .sz-lead {
+    font-size: 1.1rem;
+    color: var(--sz-muted);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.85;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sz-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sz-meta .meta-item {
+    text-align: center;
+  }
+
+  .sz-meta .meta-item dt {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--sz-gold);
+    margin-bottom: 0.25rem;
+  }
+
+  .sz-meta .meta-item dd {
+    font-size: 0.85rem;
+    color: var(--sz-black);
+    margin: 0;
+  }
+
+  /* ---- Zebra divider decoration ---- */
+  .sz-divider {
+    height: 4px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--sz-black) 0px,
+      var(--sz-black) 12px,
+      var(--sz-gold-light) 12px,
+      var(--sz-gold-light) 24px
+    );
+    opacity: 0.25;
+  }
+
+  /* ---- Section base ---- */
+  .sz-section {
+    padding: 5rem 2rem;
+    position: relative;
+  }
+
+  .sz-section-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .sz-section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--sz-gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .sz-section h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--sz-black);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+
+  .sz-section p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted, #5a6a7a);
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+
+  /* ---- What Is section ---- */
+  .sz-what {
+    background: var(--color-white, #ffffff);
+    border-top: 1px solid var(--sz-border);
+    border-bottom: 1px solid var(--sz-border);
+  }
+
+  .sz-what-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .sz-zebra-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 0.5rem;
+  }
+
+  .sz-zebra-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        var(--sz-black) 0px,
+        var(--sz-black) 6px,
+        var(--sz-cream) 6px,
+        var(--sz-cream) 12px
+      );
+    position: relative;
+    box-shadow: 0 8px 32px rgba(212, 160, 23, 0.20);
+    animation: sz-pulse-glow 3s ease-in-out infinite;
+  }
+
+  .sz-zebra-icon::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--sz-gold-light);
+    opacity: 0.4;
+  }
+
+  @keyframes sz-pulse-glow {
+    0%, 100% { box-shadow: 0 8px 32px rgba(212, 160, 23, 0.20); }
+    50% { box-shadow: 0 8px 40px rgba(212, 160, 23, 0.35), 0 0 60px rgba(244, 208, 63, 0.1); }
+  }
+
+  .sz-zebra-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sz-muted);
+  }
+
+  .sz-tag {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    background: linear-gradient(135deg, rgba(212, 160, 23, 0.10), rgba(255, 159, 28, 0.08));
+    border: 1px solid rgba(212, 160, 23, 0.20);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--sz-gold);
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ---- Experience section (dark dramatic) ---- */
+  .sz-experience {
+    background: var(--sz-deep);
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .sz-experience::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 25% 60%, rgba(212, 160, 23, 0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 75% 30%, rgba(255, 159, 28, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .sz-experience .sz-stripes {
+    opacity: 0.03;
+  }
+
+  .sz-experience .sz-section-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .sz-experience .sz-section-label {
+    color: var(--sz-gold-light);
+  }
+
+  .sz-experience h2 {
+    color: #fff;
+  }
+
+  .sz-experience p {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .sz-experience blockquote {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.85;
+    border: none;
+    padding: 0;
+    margin: 2rem 0;
+    max-width: 640px;
+  }
+
+  .sz-experience blockquote::before {
+    content: '\201C';
+    font-size: 3rem;
+    color: var(--sz-gold-light);
+    display: block;
+    line-height: 0.5;
+    margin-bottom: 0.75rem;
+  }
+
+  .sz-spark-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .sz-spark-card {
+    padding: 1.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .sz-spark-card:hover {
+    border-color: rgba(212, 160, 23, 0.30);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .sz-spark-card .card-num {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--sz-gold-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .sz-spark-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .sz-spark-card p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ---- Fractal Seed Fund section ---- */
+  .sz-fund {
+    background: var(--sz-warm-bg);
+    border-top: 1px solid var(--sz-border);
+    border-bottom: 1px solid var(--sz-border);
+  }
+
+  .sz-fund-layout {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 2.5rem;
+  }
+
+  .sz-fund-box {
+    padding: 2rem;
+    border-radius: 14px;
+    text-align: center;
+  }
+
+  .sz-fund-box.spark-box {
+    background: linear-gradient(135deg, rgba(212, 160, 23, 0.06), rgba(255, 159, 28, 0.04));
+    border: 1px solid rgba(212, 160, 23, 0.18);
+  }
+
+  .sz-fund-box.sofin-box {
+    background: rgba(26, 92, 58, 0.04);
+    border: 1px solid rgba(26, 92, 58, 0.15);
+  }
+
+  .sz-fund-box .box-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .spark-box .box-label { color: var(--sz-gold); }
+  .sofin-box .box-label { color: #1a5c3a; }
+
+  .sz-fund-box h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .spark-box h3 { color: var(--sz-black); }
+  .sofin-box h3 { color: #1a5c3a; }
+
+  .sz-fund-box p {
+    font-size: 0.85rem;
+    color: var(--sz-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .sz-fund-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--sz-muted);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .sz-fund-connector .arrow {
+    display: flex;
+    gap: 4px;
+    font-size: 1.2rem;
+    color: var(--sz-gold);
+  }
+
+  .sz-fractal-details {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .sz-fractal-item {
+    padding: 1.5rem;
+    background: var(--color-white, #ffffff);
+    border: 1px solid var(--sz-border);
+    border-radius: 12px;
+  }
+
+  .sz-fractal-item h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--sz-black);
+    margin-bottom: 0.4rem;
+  }
+
+  .sz-fractal-item p {
+    font-size: 0.85rem;
+    color: var(--sz-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ---- Vision section ---- */
+  .sz-vision {
+    background:
+      linear-gradient(170deg, var(--sz-deep) 0%, #1a1409 100%);
+    color: #fff;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .sz-vision::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 50% 40%, rgba(244, 208, 63, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .sz-vision .sz-section-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .sz-vision .sz-section-label {
+    color: var(--sz-spark);
+    text-align: center;
+  }
+
+  .sz-vision h2 {
+    color: #fff;
+    text-align: center;
+  }
+
+  .sz-vision p {
+    color: rgba(255, 255, 255, 0.72);
+    text-align: center;
+    max-width: 660px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sz-vision-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 3rem auto 2rem;
+    max-width: 720px;
+  }
+
+  .sz-vision-step {
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    flex: 0 1 auto;
+  }
+
+  .sz-vision-step.step-vision {
+    background: rgba(212, 160, 23, 0.12);
+    border: 1px solid rgba(212, 160, 23, 0.25);
+  }
+
+  .sz-vision-step.step-steward {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .sz-vision-step.step-spark {
+    background: linear-gradient(135deg, rgba(212, 160, 23, 0.15), rgba(255, 159, 28, 0.10));
+    border: 1px solid rgba(212, 160, 23, 0.30);
+  }
+
+  .sz-vision-step.step-work {
+    background: rgba(74, 124, 89, 0.12);
+    border: 1px solid rgba(74, 124, 89, 0.25);
+  }
+
+  .sz-vision-step .step-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .step-vision .step-label { color: var(--sz-gold-light); }
+  .step-steward .step-label { color: rgba(255,255,255,0.5); }
+  .step-spark .step-label { color: var(--sz-gold-light); }
+  .step-work .step-label { color: #6da67a; }
+
+  .sz-vision-step .step-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .sz-vision-arrow {
+    font-size: 1.2rem;
+    color: var(--sz-gold);
+    opacity: 0.5;
+  }
+
+  .sz-vision-quote {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.85;
+    max-width: 600px;
+    margin: 2.5rem auto 0;
+  }
+
+  .sz-vision-quote::before {
+    content: '\201C';
+    font-size: 3rem;
+    color: var(--sz-gold-light);
+    display: block;
+    line-height: 0.5;
+    margin-bottom: 0.75rem;
+  }
+
+  /* ---- Connected Holons ---- */
+  .sz-connected {
+    background: var(--color-white, #ffffff);
+    border-top: 1px solid var(--sz-border);
+  }
+
+  .sz-connected-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .sz-holon-card {
+    display: block;
+    padding: 1.75rem;
+    border-radius: 14px;
+    border: 1px solid var(--sz-border);
+    background: var(--sz-cream);
+    text-decoration: none;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sz-holon-card:hover {
+    border-color: var(--sz-gold);
+    box-shadow: 0 8px 24px rgba(212, 160, 23, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .sz-holon-card .holon-stripe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+  }
+
+  .sz-holon-card .holon-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--sz-black);
+    margin-bottom: 0.4rem;
+    padding-left: 0.75rem;
+  }
+
+  .sz-holon-card .holon-role {
+    font-size: 0.82rem;
+    color: var(--sz-muted);
+    line-height: 1.65;
+    padding-left: 0.75rem;
+  }
+
+  /* ---- Governance / Legacy note ---- */
+  .sz-legacy {
+    padding: 4rem 2rem;
+    background: var(--sz-warm-bg);
+    border-top: 1px solid var(--sz-border);
+  }
+
+  .sz-legacy-note {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, rgba(212, 160, 23, 0.04), rgba(255, 159, 28, 0.03));
+    border: 1px solid rgba(212, 160, 23, 0.15);
+    border-radius: 16px;
+  }
+
+  .sz-legacy-note h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--sz-black);
+    margin-bottom: 0.75rem;
+  }
+
+  .sz-legacy-note p {
+    font-size: 0.9rem;
+    color: var(--sz-muted);
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .sz-legacy-badge {
+    display: inline-block;
+    padding: 0.25rem 0.8rem;
+    background: var(--sz-gold);
+    color: var(--sz-deep);
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  /* ---- Back link ---- */
+  .sz-back {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    font-size: 0.88rem;
+    background: var(--sz-cream);
+  }
+
+  .sz-back a {
+    color: var(--sz-gold);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .sz-back a:hover {
+    border-bottom-color: var(--sz-gold);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 700px) {
+    .sz-what-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .sz-zebra-visual {
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .sz-fund-layout {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .sz-fund-connector {
+      flex-direction: row;
+    }
+
+    .sz-fund-connector .arrow {
+      transform: rotate(90deg);
+    }
+
+    .sz-vision-flow {
+      flex-direction: column;
+    }
+
+    .sz-vision-arrow {
+      transform: rotate(90deg);
+    }
+
+    .sz-spark-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .sz-connected-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="sz-page">
+
+  <!-- ============================================ -->
+  <!-- HEADER                                       -->
+  <!-- ============================================ -->
+  <header class="sz-header">
+    <div class="sz-stripes"></div>
+
+    <nav class="sz-breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">/</span>
+      <a href="/holons/">Holons</a>
+      <span class="sep">/</span>
+      <a href="/holons/questhub/">QuestHub</a>
+      <span class="sep">/</span>
+      <span>Sparkling Zebras</span>
+    </nav>
+
+    <h1>
+      <span class="gold">Sparkling</span> Zebras
+    </h1>
+
+    <div class="sz-subtitle">
+      <span class="sub">Experiential Incubator</span>
+    </div>
+
+    <p class="sz-lead">
+      An in-person incubator experience that transforms vision into reality &mdash;
+      carrying ideas from the steward who receives them to the people who
+      will actually build them. Where the spark happens.
+    </p>
+
+    <dl class="sz-meta">
+      <div class="meta-item">
+        <dt>Type</dt>
+        <dd>Experiential Incubator</dd>
+      </div>
+      <div class="meta-item">
+        <dt>Parent</dt>
+        <dd>idea2.Life</dd>
+      </div>
+      <div class="meta-item">
+        <dt>Sub-System</dt>
+        <dd>SoFin (Fractal Seed Fund)</dd>
+      </div>
+      <div class="meta-item">
+        <dt>Legacy</dt>
+        <dd>#my-legacy</dd>
+      </div>
+    </dl>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- ZEBRA STRIPE DIVIDER                         -->
+  <!-- ============================================ -->
+  <div class="sz-divider"></div>
+
+  <!-- ============================================ -->
+  <!-- WHAT IS SPARKLING ZEBRAS                     -->
+  <!-- ============================================ -->
+  <section class="sz-section sz-what">
+    <div class="sz-section-inner">
+      <div class="sz-what-grid">
+
+        <div class="sz-zebra-visual">
+          <div class="sz-zebra-icon"></div>
+          <span class="sz-zebra-label">Incubator</span>
+          <div>
+            <span class="sz-tag">#my-legacy</span>
+            <span class="sz-tag">#SoFin</span>
+          </div>
+        </div>
+
+        <div class="sz-what-text">
+          <div class="sz-section-label">What it is</div>
+          <h2>What is Sparkling Zebras?</h2>
+          <p>
+            Sparkling Zebras is an in-person incubator experience that lives
+            under <strong>idea2.Life</strong>. It is not a programme you apply
+            to, not a pitch night, not an accelerator with a conveyor belt.
+            It is a <em>gathering</em> &mdash; a space where vision meets
+            capability and something real begins.
+          </p>
+          <p>
+            The name carries intent: zebras, not unicorns. Zebras are real,
+            they move in herds, they are striking without pretending to be
+            mythical. And the sparkling? That is the energy of the room when
+            the right people sit around the right question with enough honesty
+            to make something happen.
+          </p>
+          <p>
+            Sparkling Zebras operates as both a <strong>financial vehicle</strong>
+            and an <strong>experiential incubator</strong>. It raises capital
+            through its fractal-seed investment fund (connected to SoFin), and
+            it deploys that capital not through term sheets alone, but through
+            shared in-person time where stewards, builders, and supporters
+            align around a living vision.
+          </p>
+          <p>
+            Tagged <strong>#my-legacy</strong> in the EvoBioSys system &mdash;
+            this is one of Jakob&rsquo;s core long-term commitments, a
+            structure designed to outlast any single project or season.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- THE EXPERIENCE (dark section)                -->
+  <!-- ============================================ -->
+  <section class="sz-section sz-experience">
+    <div class="sz-stripes"></div>
+    <div class="sz-section-inner">
+      <div class="sz-section-label">The Experience</div>
+      <h2>In-Person Incubator</h2>
+
+      <blockquote>
+        That Spark is providing an in-person experience.
+      </blockquote>
+
+      <p>
+        The core of Sparkling Zebras is not a document, a deck, or a Zoom
+        call. It is a room. People gathered, in person, working on something
+        that matters. The incubator experience is designed to compress time
+        &mdash; to take what might otherwise drift through months of
+        asynchronous deliberation and ground it in a few days of focused,
+        embodied collaboration.
+      </p>
+      <p>
+        Think of it as alm gathering meets startup weekend, but without the
+        performative urgency. The pace is intentional. The goal is not to
+        ship a prototype by Sunday evening; it is to leave the room with
+        enough shared understanding, enough alignment, and enough honest
+        commitment that the work actually continues on Monday.
+      </p>
+      <p>
+        Each Sparkling Zebras experience begins with a vision brought by a
+        steward &mdash; someone who has received an idea and cultivated it
+        enough to invite others in. The experience then unfolds through
+        stages designed to move that vision from concept to committed action.
+      </p>
+
+      <div class="sz-spark-cards">
+        <div class="sz-spark-card">
+          <div class="card-num">Phase 01</div>
+          <h3>The Gathering</h3>
+          <p>
+            Stewards, builders, and supporters arrive. The vision is shared
+            in full &mdash; not as a pitch but as an invitation. The room
+            listens, asks, and finds its shape.
+          </p>
+        </div>
+        <div class="sz-spark-card">
+          <div class="card-num">Phase 02</div>
+          <h3>The Alignment</h3>
+          <p>
+            Roles emerge. Resources are mapped. What needs to happen is
+            separated from what would be nice. Honest conversations about
+            capacity, risk, and commitment take place.
+          </p>
+        </div>
+        <div class="sz-spark-card">
+          <div class="card-num">Phase 03</div>
+          <h3>The Spark</h3>
+          <p>
+            Work begins. Not all of it &mdash; but the first real steps.
+            Enough to prove the direction, build momentum, and create the
+            bonds that will carry the project forward.
+          </p>
+        </div>
+        <div class="sz-spark-card">
+          <div class="card-num">Phase 04</div>
+          <h3>The Commitment</h3>
+          <p>
+            The experience closes with clear commitments: who does what,
+            by when, with which resources. This is where intention becomes
+            infrastructure.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ZEBRA STRIPE DIVIDER                         -->
+  <!-- ============================================ -->
+  <div class="sz-divider"></div>
+
+  <!-- ============================================ -->
+  <!-- FRACTAL SEED FUND                            -->
+  <!-- ============================================ -->
+  <section class="sz-section sz-fund">
+    <div class="sz-section-inner">
+      <div class="sz-section-label">Financial Vehicle</div>
+      <h2>Fractal Seed Fund</h2>
+      <p>
+        Every incubator needs fuel. Sparkling Zebras houses a
+        <strong>fractal seed investment fund</strong> &mdash; a financial
+        vehicle connected to SoFin (Sovereign Finance) that raises and
+        deploys capital at the earliest, most fragile stage of a project&rsquo;s
+        life.
+      </p>
+      <p>
+        The word &ldquo;fractal&rdquo; is deliberate. The fund replicates
+        its own pattern: each investment seeds not only a project but the
+        capacity for that project to eventually seed others. Capital flows
+        outward in expanding circles, not upward through extraction.
+      </p>
+
+      <div class="sz-fund-layout">
+        <div class="sz-fund-box spark-box">
+          <div class="box-label">Incubator</div>
+          <h3>Sparkling Zebras</h3>
+          <p>In-person experiences that align vision, people, and resources around a living idea.</p>
+        </div>
+
+        <div class="sz-fund-connector">
+          <span class="arrow">&larr; &rarr;</span>
+          <span>feeds</span>
+        </div>
+
+        <div class="sz-fund-box sofin-box">
+          <div class="box-label">Financial System</div>
+          <h3>SoFin</h3>
+          <p>Sovereign finance infrastructure providing the fractal seed investment vehicle.</p>
+        </div>
+      </div>
+
+      <div class="sz-fractal-details">
+        <div class="sz-fractal-item">
+          <h4>Seed-Stage Focus</h4>
+          <p>
+            Capital is deployed at the very beginning &mdash; when ideas
+            are too young for traditional investment but too important to
+            starve. The fund fills the gap between vision and viability.
+          </p>
+        </div>
+        <div class="sz-fractal-item">
+          <h4>Regenerative Returns</h4>
+          <p>
+            Returns are measured in more than financial terms. A healthy
+            investment produces not just capital but capacity, knowledge,
+            and new connections that strengthen the whole ecosystem.
+          </p>
+        </div>
+        <div class="sz-fractal-item">
+          <h4>Budget to Invent</h4>
+          <p>
+            The explicit goal: have enough budget to invent. Raise money
+            through the idea2.Life incubator so that creation is never
+            bottlenecked by resource scarcity at the seed stage.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- THE VISION (dark section)                    -->
+  <!-- ============================================ -->
+  <section class="sz-section sz-vision">
+    <div class="sz-section-inner">
+      <div class="sz-section-label">The Vision</div>
+      <h2>From Vision to Working Reality</h2>
+
+      <p>
+        The central purpose of Sparkling Zebras is to bridge the gap that
+        kills most ideas: the distance between someone receiving a vision
+        and people actually working on it. Most visions die in that gap
+        &mdash; not because they lacked merit, but because they lacked
+        the container to carry them from one mind into many hands.
+      </p>
+
+      <div class="sz-vision-flow">
+        <div class="sz-vision-step step-vision">
+          <div class="step-label">Origin</div>
+          <div class="step-text">The Vision</div>
+        </div>
+        <span class="sz-vision-arrow">&rarr;</span>
+        <div class="sz-vision-step step-steward">
+          <div class="step-label">Carrier</div>
+          <div class="step-text">A Steward</div>
+        </div>
+        <span class="sz-vision-arrow">&rarr;</span>
+        <div class="sz-vision-step step-spark">
+          <div class="step-label">Catalyst</div>
+          <div class="step-text">The Spark</div>
+        </div>
+        <span class="sz-vision-arrow">&rarr;</span>
+        <div class="sz-vision-step step-work">
+          <div class="step-label">Reality</div>
+          <div class="step-text">People Working</div>
+        </div>
+      </div>
+
+      <p>
+        Sparkling Zebras is that catalyst &mdash; the Spark in the middle.
+        It takes the vision a steward has cultivated and creates the
+        conditions for others to genuinely take ownership alongside them.
+        Not as contractors, not as followers, but as co-builders who
+        understand the vision well enough to carry it forward even when
+        the steward is not in the room.
+      </p>
+
+      <div class="sz-vision-quote">
+        Going from the vision you receive by a steward to people actually
+        working on it &mdash; that is what Sparkling Zebras exists to do.
+      </div>
+
+      <p style="margin-top: 2.5rem;">
+        This is why the in-person element is non-negotiable. Shared
+        physical space creates a quality of understanding that no
+        document, call, or message thread can replicate. When people
+        have built something together in a room, they carry that shared
+        experience forward as a foundation for everything that follows.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ZEBRA STRIPE DIVIDER                         -->
+  <!-- ============================================ -->
+  <div class="sz-divider"></div>
+
+  <!-- ============================================ -->
+  <!-- CONNECTED HOLONS                             -->
+  <!-- ============================================ -->
+  <section class="sz-section sz-connected">
+    <div class="sz-section-inner">
+      <div class="sz-section-label">Ecosystem</div>
+      <h2>Connected Holons</h2>
+      <p>
+        Sparkling Zebras does not operate in isolation. It draws from and
+        feeds back into several holons across the EvoBioSys structure.
+      </p>
+
+      <div class="sz-connected-grid">
+        <a href="/holons/idea2life/" class="sz-holon-card">
+          <div class="holon-stripe" style="background: linear-gradient(to bottom, #2a5caa, #4a7fd4);"></div>
+          <div class="holon-name">idea2.Life</div>
+          <div class="holon-role">
+            Parent incubator infrastructure. Sparkling Zebras is an
+            idea2.Life incubator phase &mdash; the experiential layer
+            that brings ideas to life through in-person work.
+          </div>
+        </a>
+
+        <a href="/holons/sofin/" class="sz-holon-card">
+          <div class="holon-stripe" style="background: linear-gradient(to bottom, #1a5c3a, #2d8a5e);"></div>
+          <div class="holon-name">SoFin</div>
+          <div class="holon-role">
+            Sovereign Finance provides the fractal seed investment fund
+            vehicle. SoFin is the financial backbone; Sparkling Zebras
+            is where that capital meets vision.
+          </div>
+        </a>
+
+        <a href="/holons/questhub/" class="sz-holon-card">
+          <div class="holon-stripe" style="background: linear-gradient(to bottom, #b8860b, #daa520);"></div>
+          <div class="holon-name">QuestHub</div>
+          <div class="holon-role">
+            The garden of quests. Projects incubated through Sparkling
+            Zebras may begin or continue as QuestHub seeds before
+            growing into full holons.
+          </div>
+        </a>
+
+        <a href="/holons/collective/" class="sz-holon-card">
+          <div class="holon-stripe" style="background: linear-gradient(to bottom, #6a4c93, #9575cd);"></div>
+          <div class="holon-name">The Collective</div>
+          <div class="holon-role">
+            The people layer. Builders, stewards, and supporters who
+            participate in Sparkling Zebras experiences are part of
+            the broader EvoBioSys collective.
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- LEGACY NOTE                                  -->
+  <!-- ============================================ -->
+  <section class="sz-legacy">
+    <div class="sz-legacy-note">
+      <span class="sz-legacy-badge">My Legacy</span>
+      <h3>A Structure Built to Last</h3>
+      <p>
+        Sparkling Zebras is tagged <strong>#my-legacy</strong> because it
+        is not a project with an end date. It is a pattern &mdash; a
+        repeatable container for turning vision into reality. Each
+        experience plants seeds that grow into new experiences. The
+        incubator incubates itself. That is the fractal promise, and
+        that is why it carries the weight of legacy.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- BACK LINKS                                   -->
+  <!-- ============================================ -->
+  <section class="sz-back">
+    <a href="/holons/">&larr; Back to all holons</a>
+    &nbsp;&middot;&nbsp;
+    <a href="/holons/questhub/">QuestHub</a>
+    &nbsp;&middot;&nbsp;
+    <a href="/">Home</a>
+  </section>
+
+</div>

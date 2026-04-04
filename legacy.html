@@ -1,0 +1,290 @@
+---
+layout: default
+title: "Legacy — The Long Arc"
+description: >-
+  The #my-legacy projects of EvoBioSys — ventures that Jakob is gardening
+  even beyond his own lifetime. Seeds planted for generations, not quarters.
+permalink: /legacy/
+---
+
+<style>
+  .legacy-page { --leg-deep: #1a1520; --leg-gold: #c9a84c; --leg-gold-pale: #f7f0db; --leg-green: #2d6a4f; --leg-warm: #f5f0e8; }
+
+  .legacy-hero {
+    padding: 9rem 2rem 5rem;
+    background: linear-gradient(175deg, var(--leg-deep) 0%, #1b2830 60%, #1b4332 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .legacy-hero::before {
+    content: '';
+    position: absolute; top: -40%; right: -20%; width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .legacy-hero-inner { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+  .legacy-hero h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 600; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+  .legacy-hero h1 .gold { color: var(--leg-gold); }
+  .legacy-hero p { font-size: 1.1rem; color: rgba(255,255,255,0.7); line-height: 1.8; max-width: 580px; margin: 0 auto; }
+  .legacy-hero .badge { display: inline-block; padding: 0.3rem 1rem; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.2); color: var(--leg-gold); border-radius: 100px; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; margin-bottom: 2rem; }
+
+  .legacy-quote {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: var(--leg-warm);
+    border-top: 1px solid #e2d8c8;
+    border-bottom: 1px solid #e2d8c8;
+  }
+  .legacy-quote blockquote {
+    max-width: 600px; margin: 0 auto;
+    font-size: 1.15rem; font-style: italic; color: #5a4a3a; line-height: 1.8;
+    border: none; padding: 0;
+  }
+
+  .legacy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .legacy-card {
+    padding: 1.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-white);
+    transition: border-color 0.2s, transform 0.2s;
+    border-left: 3px solid var(--leg-gold);
+  }
+  .legacy-card:hover { border-color: var(--leg-gold); transform: translateY(-2px); }
+  .legacy-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .legacy-card h3 a { color: var(--color-text); text-decoration: none; }
+  .legacy-card h3 a:hover { color: var(--leg-green); }
+  .legacy-card p { font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.6; margin-bottom: 0.5rem; }
+  .legacy-card .pillar-tag { font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; color: var(--leg-gold); }
+
+  .legacy-tier-label {
+    font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--leg-gold); margin-bottom: 1.5rem; padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e2d8c8;
+  }
+</style>
+
+<div class="legacy-page">
+
+<!-- Hero -->
+<header class="legacy-hero">
+  <div class="legacy-hero-inner">
+    <span class="badge">#my-legacy &middot; 26 ventures</span>
+    <h1>The <span class="gold">Long Arc</span></h1>
+    <p>
+      These are the projects Jakob is gardening even beyond his own lifetime.
+      Not quarterly deliverables &mdash; seeds planted for generations. Each one
+      carries a piece of the vision for a regenerative civilization.
+    </p>
+  </div>
+</header>
+
+<!-- Quote -->
+<div class="legacy-quote">
+  <blockquote>
+    &ldquo;I am taking a very long-view on them &mdash; even beyond my own lifetime.
+    Or maybe I am just contributing to Sheldrake&rsquo;s morphic-resonance field.&rdquo;
+  </blockquote>
+</div>
+
+<!-- Tier 1: Core Holons (have dedicated pages) -->
+<section style="padding: 5rem 2rem;">
+  <div class="container">
+    <div class="legacy-tier-label">Tier 1 &mdash; Core Holons (active, with dedicated pages)</div>
+    <div class="legacy-grid">
+
+      <div class="legacy-card">
+        <h3><a href="/holons/kidur/">kidur</a></h3>
+        <p>Tech foundation &mdash; digital quest archiving with privacy. Apache AGE + Yrs CRDTs.</p>
+        <span class="pillar-tag">Sys &middot; Foundation</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3><a href="/holons/silknotes/">SilkNotes</a></h3>
+        <p>Interoperating knowledge silos. Sovereign, local-first note-operating system.</p>
+        <span class="pillar-tag">Sys &middot; Tool</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3><a href="/holons/sofin/">SoFin</a></h3>
+        <p>Sovereign Finance &mdash; removing financial bottlenecks from purpose-driven agents.</p>
+        <span class="pillar-tag">Bio &middot; Finance</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3><a href="/holons/evopaideia/">EvoPaideia</a></h3>
+        <p>Developmental education &mdash; holistic, stage-sensitive learning. Athena for Europe.</p>
+        <span class="pillar-tag">Evo &middot; Education</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3><a href="/holons/idea2life/">idea2.life</a></h3>
+        <p>Sovereign life infrastructure &mdash; your life has an operating system.</p>
+        <span class="pillar-tag">Sys &middot; Infrastructure</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3><a href="/holons/mhs/">Mutual Holarchic Sovereignty</a></h3>
+        <p>Multi-polar nested sovereignty. Starting with EUropa&rsquo;s perspective.</p>
+        <span class="pillar-tag">Evo &middot; Framework</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3><a href="/holons/9ephr/">9EPhR</a></h3>
+        <p>Nine Essential Physical Requirements for a regenerative civilization.</p>
+        <span class="pillar-tag">Bio &middot; Universal</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3><a href="/capital/">EvoBioSys Capital</a></h3>
+        <p>Animist investment studio &mdash; representing the interests of living systems.</p>
+        <span class="pillar-tag">Bio &middot; Investment</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Tier 2: Emerging ventures -->
+<section style="padding: 0 2rem 5rem;">
+  <div class="container">
+    <div class="legacy-tier-label">Tier 2 &mdash; Emerging Ventures</div>
+    <div class="legacy-grid">
+
+      <div class="legacy-card">
+        <h3><a href="/holons/sparkling-zebras/">Sparkling Zebras</a></h3>
+        <p>In-person experiential incubator. Fractal seed investment fund.</p>
+        <span class="pillar-tag">Bio &middot; Incubator</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3><a href="/holons/global-wiki-tree/">Global Wiki Tree</a></h3>
+        <p>Meta-communities wiki tool. Knowledge commons for the semantic web.</p>
+        <span class="pillar-tag">Sys &middot; Knowledge</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3><a href="/holons/gruber-works/">Gruber Works SE</a></h3>
+        <p>Societas Europae &mdash; EU-wide legal entity as-a-service. Bridge to state institutions.</p>
+        <span class="pillar-tag">Bio &middot; Legal</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>Flourishing Fields</h3>
+        <p>Spaces where sovereign individuals gather and co-create. We-space in-body-ment.</p>
+        <span class="pillar-tag">Evo &middot; Practice</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>AlTrad.ing</h3>
+        <p>Alternative trading &mdash; regenerative approaches to markets and exchange.</p>
+        <span class="pillar-tag">Bio &middot; Finance</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>The Infrastructure for Ad-Hoc Teams</h3>
+        <p>How temporary teams form, coordinate, and dissolve with grace.</p>
+        <span class="pillar-tag">Evo &middot; Coordination</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>#Matrix</h3>
+        <p>Self-hosted Matrix infrastructure for sovereign communications.</p>
+        <span class="pillar-tag">Sys &middot; Communication</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>FloWork.ing</h3>
+        <p>Flow-based working &mdash; tools and practices that enable sustained creative flow.</p>
+        <span class="pillar-tag">Sys &middot; Practice</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Tier 3: Seeds -->
+<section style="padding: 0 2rem 5rem;">
+  <div class="container">
+    <div class="legacy-tier-label">Tier 3 &mdash; Seeds (long-horizon, waiting for their season)</div>
+    <div class="legacy-grid">
+
+      <div class="legacy-card">
+        <h3>SoAI</h3>
+        <p>Sovereign AI &mdash; locally-hosted, privacy-first artificial intelligence.</p>
+        <span class="pillar-tag">Sys</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>we-space for founders</h3>
+        <p>Intimate developmental containers for entrepreneurial leaders.</p>
+        <span class="pillar-tag">Evo</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>Dorfkapelle</h3>
+        <p>Village chapel &mdash; spiritual community practice rooted in place.</p>
+        <span class="pillar-tag">Evo &middot; Theology</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>Multipolar Roundtable</h3>
+        <p>Cross-civilizational dialogue. 9EPhR peer-crossvalidated from multiple perspectives.</p>
+        <span class="pillar-tag">Evo &middot; Dialogue</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>Regen Austria</h3>
+        <p>Regenerative movement specific to Austria. Local roots, global vision.</p>
+        <span class="pillar-tag">Bio &middot; Regional</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>Open-Source Replicas</h3>
+        <p>Recreating proprietary tools as open-source. Everything should be forkable.</p>
+        <span class="pillar-tag">Sys</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>#ama (AutoMagical Accounting)</h3>
+        <p>Accounting that runs itself. From manual bookkeeping to automated flow.</p>
+        <span class="pillar-tag">Bio &middot; Finance</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>Weaving Planetary Multi-dimensional Coherence</h3>
+        <p>The meta-project: coherence across all dimensions, scales, and timelines.</p>
+        <span class="pillar-tag">Evo &middot; Meta</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>Opportunities in Economically Harsh Places</h3>
+        <p>Creating regenerative opportunities where they&rsquo;re needed most.</p>
+        <span class="pillar-tag">Bio &middot; Impact</span>
+      </div>
+
+      <div class="legacy-card">
+        <h3>Curriculum (until 25yo)</h3>
+        <p>A developmental curriculum for children, designed with legacy in mind.</p>
+        <span class="pillar-tag">Evo &middot; Education</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Back -->
+<div class="back-link" style="border-top: 1px solid var(--color-border);">
+  <a href="/holons/">&larr; All holons</a> &nbsp;&middot;&nbsp;
+  <a href="/holons/questhub/">QuestHub &rarr;</a>
+</div>
+
+</div>
