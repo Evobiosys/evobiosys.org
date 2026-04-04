@@ -9,6 +9,16 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- IndieWeb: Webmention -->
+  <link rel="webmention" href="https://webmention.io/evobiosys.org/webmention">
+  <link rel="pingback" href="https://webmention.io/evobiosys.org/xmlrpc">
+
+  <!-- IndieWeb: IndieAuth -->
+  <link rel="authorization_endpoint" href="https://indieauth.com/auth">
+  <link rel="token_endpoint" href="https://tokens.indieauth.com/token">
+  <link rel="me" href="https://japossert.com">
+  <link rel="me" href="mailto:connect@evobiosys.org">
 </head>
 <body>
 
@@ -28,10 +38,19 @@
 
   {{ content }}
 
-  <!-- Footer -->
+  <!-- Footer with h-card (IndieWeb) -->
   <footer class="footer">
+    <div class="footer-inner h-card" style="display:none;">
+      <a class="p-name u-url" href="https://evobiosys.org" rel="me">EvoBioSys</a>
+      <span class="p-org">EvoBioSys</span>
+      <a class="u-email" href="mailto:connect@evobiosys.org">connect@evobiosys.org</a>
+      <span class="p-locality">Vienna</span>
+      <span class="p-country-name">Austria</span>
+      <span class="p-note">Cultivating evolutionary approaches &amp; liberating systems</span>
+      <img class="u-photo" src="/assets/jakob-profile.jpg" alt="Jakob Possert">
+    </div>
     <div class="footer-inner">
-      <p>&copy; 2026 EvoBioSys &middot; Evolving Living Systems &middot; <span style="color: #aaa; font-size: 0.75rem;">v0.4.0</span></p>
+      <p>&copy; 2026 EvoBioSys &middot; Evolving Living Systems &middot; <span style="color: #aaa; font-size: 0.75rem;">v0.5.0</span></p>
       <ul class="footer-links">
         <li><a href="/holons/">Holons</a></li>
         <li><a href="/capital/">Capital</a></li>

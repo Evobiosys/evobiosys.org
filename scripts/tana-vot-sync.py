@@ -47,6 +47,12 @@ WATCHED_NODES = {
         "depth": 2,
         "description": "VoT root node"
     },
+    # evobiosys.org website node — hero text, newsletter email, etc.
+    "1RVCR8NQDLsF": {
+        "output": "site.yml",
+        "depth": 2,
+        "description": "evobiosys.org website fields"
+    },
     # Add more watched nodes here:
     # "nodeId": {"output": "filename.yml", "depth": 2, "description": "..."},
 }
