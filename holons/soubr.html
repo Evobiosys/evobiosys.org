@@ -1,0 +1,1241 @@
+---
+layout: default
+title: "SoUBR — Sovereign Universal Basic Requirements"
+description: >-
+  SoUBR is the foundational layer of financial peace of mind within the SoFin
+  framework — targeted, intelligent financial scaffolding that ensures those
+  building the future are resourced enough to do so without survival anxiety.
+permalink: /holons/soubr/
+---
+
+<style>
+  /* SoUBR — Warm protective palette: deep greens, gold accents, shield motif */
+  .soubr-page {
+    --soubr-green: #1a5c3a;
+    --soubr-green-deep: #0d3d24;
+    --soubr-green-warm: #2a7a50;
+    --soubr-green-pale: #e4f2e8;
+    --soubr-gold: #b8912a;
+    --soubr-gold-light: #d4ab3e;
+    --soubr-gold-warm: #c9983a;
+    --soubr-amber: #c88b2e;
+    --soubr-deep: #091f14;
+    --soubr-muted: #4a7a5c;
+    --soubr-cream: #f5f8f3;
+    --soubr-line: #c2d6c8;
+    --soubr-earth: #3a5a42;
+    --soubr-warm-bg: #f9f7f2;
+  }
+
+  /* ====== HEADER ====== */
+  .soubr-header {
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    background:
+      linear-gradient(0deg, var(--color-bg) 0%, var(--soubr-warm-bg) 30%, var(--soubr-green-pale) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Shield glow effect */
+  .soubr-header::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(26, 92, 58, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .soubr-header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    right: 10%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    opacity: 0.05;
+    background: var(--soubr-gold);
+    animation: soubr-pulse 10s ease-in-out infinite;
+  }
+
+  @keyframes soubr-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.05; }
+    50% { transform: scale(1.15); opacity: 0.09; }
+  }
+
+  .soubr-header h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--soubr-green-deep);
+    position: relative;
+    z-index: 1;
+  }
+
+  .soubr-header h1 .sub {
+    font-weight: 400;
+    color: var(--soubr-muted);
+    font-size: 0.55em;
+    display: block;
+    margin-top: 0.3rem;
+    letter-spacing: 0.01em;
+  }
+
+  .soubr-pillar-badge {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: rgba(26, 92, 58, 0.08);
+    color: var(--soubr-green);
+    border: 1px solid rgba(26, 92, 58, 0.15);
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  }
+
+  .soubr-lead {
+    font-size: 1.1rem;
+    color: var(--soubr-muted);
+    max-width: 640px;
+    margin: 0.75rem auto 0;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+
+  .soubr-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .soubr-meta .meta-item dt {
+    color: var(--soubr-green);
+  }
+
+  /* ====== SECTION LABELS (shared) ====== */
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ====== THE PROBLEM — dark dramatic ====== */
+  .soubr-problem {
+    padding: 5rem 2rem;
+    background: var(--soubr-deep);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .soubr-problem::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(184, 145, 42, 0.1) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 30%, rgba(26, 92, 58, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .problem-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .problem-inner .section-label {
+    color: var(--soubr-gold-light);
+    text-align: center;
+  }
+
+  .problem-inner h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1.5rem;
+  }
+
+  .problem-inner blockquote {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.85;
+    border: none;
+    padding: 0;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .problem-inner blockquote::before {
+    content: '\201C';
+    font-size: 3rem;
+    color: var(--soubr-gold-light);
+    display: block;
+    line-height: 0.5;
+    margin-bottom: 0.75rem;
+  }
+
+  /* ====== PULL QUOTES ====== */
+  .soubr-pull-quote {
+    padding: 3.5rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .soubr-pull-quote.bg-cream {
+    background: var(--soubr-cream);
+  }
+
+  .soubr-pull-quote.bg-warm {
+    background: linear-gradient(0deg, var(--soubr-cream), var(--soubr-green-pale));
+  }
+
+  .soubr-pull-quote.bg-dark {
+    background: var(--soubr-deep);
+  }
+
+  .soubr-pull-quote blockquote {
+    max-width: 640px;
+    margin: 0 auto;
+    border: none;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .soubr-pull-quote.bg-dark blockquote {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .soubr-pull-quote:not(.bg-dark) blockquote {
+    color: var(--soubr-green-deep);
+  }
+
+  .soubr-pull-quote blockquote::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--soubr-green), var(--soubr-gold));
+    margin: 0 auto 1.5rem;
+    border-radius: 2px;
+  }
+
+  /* ====== WHAT IS SoUBR ====== */
+  .soubr-what {
+    padding: 6rem 2rem;
+  }
+
+  .soubr-what .prose {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .soubr-what .prose h2 {
+    color: var(--soubr-green-deep);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .soubr-what .prose p {
+    color: var(--soubr-muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .soubr-what .highlight-line {
+    padding: 1rem 1.5rem;
+    background: var(--soubr-green-pale);
+    border-left: 3px solid var(--soubr-green);
+    border-radius: 0 8px 8px 0;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    color: var(--soubr-green);
+    font-weight: 500;
+  }
+
+  .soubr-what .not-box {
+    padding: 1.25rem 1.5rem;
+    background: rgba(184, 145, 42, 0.06);
+    border: 1px solid rgba(184, 145, 42, 0.18);
+    border-radius: 10px;
+    margin: 1.5rem 0;
+  }
+
+  .soubr-what .not-box h4 {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--soubr-gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .soubr-what .not-box p {
+    font-size: 0.9rem;
+    color: var(--soubr-earth);
+    margin-bottom: 0;
+  }
+
+  /* ====== WHY IT MATTERS — dark section ====== */
+  .soubr-why {
+    padding: 6rem 2rem;
+    background: var(--soubr-deep);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .soubr-why::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(42, 122, 80, 0.25) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 80%, rgba(184, 145, 42, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .why-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .why-inner .section-label {
+    color: var(--soubr-gold-light);
+    text-align: center;
+  }
+
+  .why-inner .section-title {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .why-subtitle {
+    text-align: center;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 620px;
+    margin: 0 auto 3rem;
+    line-height: 1.75;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .why-card {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s;
+  }
+
+  .why-card:hover {
+    border-color: rgba(42, 122, 80, 0.35);
+  }
+
+  .why-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--soubr-green-warm);
+    border-radius: 4px 0 0 4px;
+    opacity: 0.5;
+  }
+
+  .why-card .card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(42, 122, 80, 0.2);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .why-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--soubr-green-pale);
+    margin-bottom: 0.5rem;
+  }
+
+  .why-card p {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.7;
+  }
+
+  .why-manifesto {
+    margin-top: 2.5rem;
+    padding: 1.5rem 2rem;
+    background: rgba(184, 145, 42, 0.08);
+    border: 1px solid rgba(184, 145, 42, 0.2);
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .why-manifesto blockquote {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--soubr-gold-light);
+    font-style: italic;
+    border: none;
+    padding: 0;
+    line-height: 1.75;
+  }
+
+  /* ====== HOW IT WORKS ====== */
+  .soubr-how {
+    padding: 6rem 2rem;
+    background: var(--soubr-warm-bg);
+    border-top: 1px solid var(--soubr-line);
+    border-bottom: 1px solid var(--soubr-line);
+  }
+
+  .how-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .how-inner .section-label {
+    color: var(--soubr-gold);
+    text-align: center;
+  }
+
+  .how-inner .section-title {
+    color: var(--soubr-green-deep);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .how-subtitle {
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--soubr-muted);
+    max-width: 620px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  .provides-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .provides-card {
+    padding: 2rem;
+    background: var(--color-white);
+    border: 1px solid var(--soubr-line);
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .provides-card:hover {
+    border-color: var(--soubr-green-warm);
+    transform: translateY(-2px);
+  }
+
+  .provides-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--soubr-green-warm), var(--soubr-gold));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .provides-card:hover::after {
+    opacity: 1;
+  }
+
+  .provides-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .provides-icon.green {
+    background: var(--soubr-green-pale);
+  }
+
+  .provides-icon.gold {
+    background: rgba(184, 145, 42, 0.1);
+  }
+
+  .provides-icon.earth {
+    background: rgba(58, 90, 66, 0.1);
+  }
+
+  .provides-card h3 {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--soubr-green-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .provides-card p {
+    font-size: 0.86rem;
+    color: var(--soubr-muted);
+    line-height: 1.7;
+  }
+
+  /* Endowment mechanism box */
+  .endowment-box {
+    padding: 2.5rem;
+    background: var(--color-white);
+    border: 1px solid var(--soubr-line);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .endowment-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--soubr-green), var(--soubr-gold-warm), var(--soubr-green-warm));
+    border-radius: 4px 4px 0 0;
+  }
+
+  .endowment-box h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--soubr-green-deep);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .endowment-box h3 .shield-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--soubr-green), var(--soubr-green-warm));
+    color: #fff;
+    font-size: 0.85rem;
+  }
+
+  .endowment-box > p {
+    font-size: 0.92rem;
+    color: var(--soubr-muted);
+    line-height: 1.75;
+    max-width: 680px;
+    margin-bottom: 1.5rem;
+  }
+
+  .endowment-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .e-step {
+    padding: 1.25rem;
+    background: var(--soubr-cream);
+    border-radius: 10px;
+    border: 1px solid var(--soubr-line);
+    text-align: center;
+    position: relative;
+  }
+
+  .e-step .step-num {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--soubr-gold);
+    margin-bottom: 0.4rem;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  }
+
+  .e-step .step-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--soubr-green-deep);
+    line-height: 1.45;
+  }
+
+  .e-step .step-desc {
+    font-size: 0.76rem;
+    color: var(--soubr-muted);
+    margin-top: 0.35rem;
+    line-height: 1.5;
+  }
+
+  /* ====== CONNECTED CONCEPTS ====== */
+  .soubr-connected {
+    padding: 6rem 2rem;
+    background: var(--color-white);
+    border-top: 1px solid var(--soubr-line);
+    border-bottom: 1px solid var(--soubr-line);
+  }
+
+  .connected-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .connected-inner .section-label {
+    color: var(--soubr-gold);
+    text-align: center;
+  }
+
+  .connected-inner .section-title {
+    color: var(--soubr-green-deep);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .connected-subtitle {
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--soubr-muted);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  .connected-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .connected-card {
+    padding: 1.75rem;
+    background: var(--soubr-cream);
+    border: 1px solid var(--soubr-line);
+    border-radius: 12px;
+    text-align: center;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .connected-card:hover {
+    border-color: var(--soubr-green-warm);
+    transform: translateY(-2px);
+  }
+
+  .connected-card .card-pip {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-bottom: 0.75rem;
+  }
+
+  .connected-card .card-pip.green { background: var(--soubr-green-warm); }
+  .connected-card .card-pip.gold { background: var(--soubr-gold); }
+  .connected-card .card-pip.amber { background: var(--soubr-amber); }
+
+  .connected-card h4 {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--soubr-green-deep);
+    margin-bottom: 0.35rem;
+  }
+
+  .connected-card p {
+    font-size: 0.82rem;
+    color: var(--soubr-muted);
+    line-height: 1.6;
+  }
+
+  /* Parent framework card */
+  .parent-card {
+    padding: 2rem;
+    background: var(--soubr-green-pale);
+    border: 1px solid rgba(26, 92, 58, 0.18);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: border-color 0.25s;
+  }
+
+  .parent-card:hover {
+    border-color: var(--soubr-green);
+  }
+
+  .parent-badge {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--soubr-green), var(--soubr-green-warm));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.02em;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  }
+
+  .parent-text h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--soubr-green-deep);
+    margin-bottom: 0.35rem;
+  }
+
+  .parent-text h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(26, 92, 58, 0.3);
+    transition: border-color 0.2s;
+  }
+
+  .parent-text h3 a:hover {
+    border-color: var(--soubr-green);
+  }
+
+  .parent-text p {
+    font-size: 0.86rem;
+    color: var(--soubr-muted);
+    line-height: 1.6;
+  }
+
+  /* ====== CLOSING SECTION ====== */
+  .soubr-closing {
+    padding: 5rem 2rem;
+    background: var(--soubr-deep);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .soubr-closing::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 50% 100%, rgba(42, 122, 80, 0.2) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 20%, rgba(184, 145, 42, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .closing-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .closing-shield {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--soubr-green-warm), var(--soubr-gold-warm));
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .closing-inner h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .closing-inner > p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .closing-inner .closing-cta {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.5rem;
+    background: rgba(42, 122, 80, 0.2);
+    border: 1px solid rgba(42, 122, 80, 0.4);
+    border-radius: 100px;
+    color: var(--soubr-green-pale);
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.25s, border-color 0.25s;
+  }
+
+  .closing-inner .closing-cta:hover {
+    background: rgba(42, 122, 80, 0.35);
+    border-color: var(--soubr-green-warm);
+  }
+
+  /* ====== BACK LINK ====== */
+  .soubr-page .back-link a {
+    color: var(--soubr-green);
+  }
+
+  .soubr-page .back-link a:hover {
+    color: var(--soubr-green-warm);
+  }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 768px) {
+    .provides-grid {
+      grid-template-columns: 1fr;
+    }
+    .endowment-steps {
+      grid-template-columns: 1fr 1fr;
+    }
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+    .connected-grid {
+      grid-template-columns: 1fr;
+    }
+    .parent-card {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
+
+<div class="soubr-page">
+
+  <!-- ====== HEADER ====== -->
+  <header class="soubr-header">
+    <p class="breadcrumb">
+      <a href="/">Home</a> &rsaquo;
+      <a href="/holons/">Holons</a> &rsaquo;
+      <a href="/holons/sofin/">SoFin</a> &rsaquo;
+      SoUBR
+    </p>
+    <div class="soubr-pillar-badge">sofin / pillar 01</div>
+    <h1>SoUBR<span class="sub">Sovereign Universal Basic Requirements</span></h1>
+    <p class="soubr-lead">
+      The foundational layer of financial peace of mind &mdash; targeted,
+      intelligent financial scaffolding that ensures those building the future
+      are resourced enough to do so without survival anxiety.
+    </p>
+    <dl class="soubr-meta">
+      <div class="meta-item">
+        <dt>Status</dt>
+        <dd><span class="status status-active">Active</span></dd>
+      </div>
+      <div class="meta-item">
+        <dt>Framework</dt>
+        <dd>SoFin &mdash; Pillar 1</dd>
+      </div>
+      <div class="meta-item">
+        <dt>Lead</dt>
+        <dd>Jakob Possert-Bienzle</dd>
+      </div>
+      <div class="meta-item">
+        <dt>Type</dt>
+        <dd>Financial Foundation</dd>
+      </div>
+    </dl>
+  </header>
+
+  <!-- ====== THE PROBLEM ====== -->
+  <section class="soubr-problem">
+    <div class="problem-inner">
+      <p class="section-label">The Problem</p>
+      <h2>Survival Mode Kills Vision</h2>
+      <blockquote>
+        No one can think at a civilization-design level while trapped in survival
+        mode. The most capable architects of regenerative futures are being lost
+        to economic precarity &mdash; not because they lack value, but because
+        existing financial infrastructure has no mechanism to recognize and
+        resource transformational agency.
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Pull Quote -->
+  <div class="soubr-pull-quote bg-cream">
+    <blockquote>
+      No person should be forced to abandon their highest contribution
+      due to financial precarity.
+    </blockquote>
+  </div>
+
+  <!-- ====== WHAT IS SoUBR ====== -->
+  <section class="soubr-what">
+    <div class="prose">
+      <h2>What is SoUBR?</h2>
+      <p>
+        SoUBR &mdash; Sovereign Universal Basic Requirements &mdash; is the
+        bedrock of the SoFin framework and the first of its four pillars. It
+        addresses the most fundamental constraint on human potential: the
+        cognitive and emotional weight of financial survival anxiety.
+      </p>
+      <div class="highlight-line">
+        SoUBR removes survival stress &mdash; the single greatest constraint on
+        cognition, decision-making, and long-term vision.
+      </div>
+      <p>
+        Rather than offering a universal handout, SoUBR provides an intelligently
+        allocated financial base for high-leverage agents of transformation. It is
+        targeted, intelligent financial scaffolding &mdash; a self-replenishing
+        endowment that covers fixed costs so that those building the future can
+        operate with financial peace of mind.
+      </p>
+
+      <div class="not-box">
+        <h4>What SoUBR is not</h4>
+        <p>
+          SoUBR is <strong>not</strong> a universal basic income. It is not a
+          charity model, welfare program, or unconditional handout. It is a
+          strategically designed financial floor for individuals whose work
+          carries civilizational leverage &mdash; ensuring their capacity is
+          not wasted on survival logistics.
+        </p>
+      </div>
+
+      <p>
+        By anchoring financial peace of mind, SoUBR prevents high-impact
+        individuals from being lost to economic precarity. It is the mechanism
+        by which the SoFin framework ensures its agents can operate at their
+        highest level &mdash; thinking, designing, and building at the scale
+        the future requires.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pull Quote -->
+  <div class="soubr-pull-quote bg-warm">
+    <blockquote>
+      You cannot design civilizations while worrying about rent.
+      SoUBR is the shield that makes long-term thinking possible.
+    </blockquote>
+  </div>
+
+  <!-- ====== WHY IT MATTERS ====== -->
+  <section class="soubr-why">
+    <div class="why-inner">
+      <p class="section-label">Why It Matters</p>
+      <h2 class="section-title">The Bedrock of Financial Sovereignty</h2>
+      <p class="why-subtitle">
+        Survival stress constrains cognition, narrows decision-making horizons,
+        and forces the most capable minds into reactive, short-term thinking.
+        SoUBR removes that constraint at the root.
+      </p>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="card-icon">&#x1F9E0;</div>
+          <h3>Cognitive Liberation</h3>
+          <p>
+            Financial precarity hijacks executive function. When basic needs are
+            secured, cognitive bandwidth is freed for the deep, systemic thinking
+            that regenerative work demands.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="card-icon">&#x1F6E1;</div>
+          <h3>Protection of High-Leverage Agents</h3>
+          <p>
+            The individuals most capable of civilizational design are often the
+            least equipped to thrive in extractive economies. SoUBR ensures their
+            potential is not squandered.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="card-icon">&#x1F331;</div>
+          <h3>Long-Term Vision</h3>
+          <p>
+            When you are not fighting for tomorrow, you can build for the next
+            century. SoUBR enables the temporal horizons that regenerative
+            systems require.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="card-icon">&#x2693;</div>
+          <h3>Sovereign Foundation</h3>
+          <p>
+            True sovereignty starts with material security. SoUBR provides the
+            foundation on which all other dimensions of financial
+            sovereignty &mdash; growth, flow, activation &mdash; are built.
+          </p>
+        </div>
+      </div>
+
+      <div class="why-manifesto">
+        <blockquote>
+          SoUBR is the bedrock of financial sovereignty &mdash; it removes survival
+          stress that constrains cognition, decision-making, and long-term vision.
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pull Quote -->
+  <div class="soubr-pull-quote bg-dark">
+    <blockquote>
+      Targeted, intelligent financial scaffolding that ensures those building
+      the future are resourced enough to do so with financial peace of mind.
+    </blockquote>
+  </div>
+
+  <!-- ====== HOW IT WORKS ====== -->
+  <section class="soubr-how">
+    <div class="how-inner">
+      <p class="section-label">What It Provides</p>
+      <h2 class="section-title">The Three Pillars of Provision</h2>
+      <p class="how-subtitle">
+        SoUBR covers the non-negotiable requirements that, when unmet, consume
+        disproportionate cognitive and emotional energy.
+      </p>
+
+      <div class="provides-grid">
+        <div class="provides-card">
+          <div class="provides-icon green">&#x1F3E0;</div>
+          <h3>Fixed Costs Coverage</h3>
+          <p>
+            Housing, food, and essential utilities. The non-negotiable material
+            baseline that must be secured before any higher-order work can begin.
+            No one designs a regenerative future while worrying about next
+            month&rsquo;s rent.
+          </p>
+        </div>
+
+        <div class="provides-card">
+          <div class="provides-icon gold">&#x1F9F0;</div>
+          <h3>Essential Tools</h3>
+          <p>
+            The instruments of creation &mdash; computing, communication,
+            development environments, and research access. SoUBR ensures agents
+            have the tools they need to operate at their full capacity.
+          </p>
+        </div>
+
+        <div class="provides-card">
+          <div class="provides-icon earth">&#x1F54A;</div>
+          <h3>Freedom from Survival Anxiety</h3>
+          <p>
+            The psychological and neurological relief of knowing the basics are
+            handled. This is not luxury &mdash; it is the minimum condition for
+            sustained, deep cognitive work at civilizational scale.
+          </p>
+        </div>
+      </div>
+
+      <!-- Endowment mechanism -->
+      <div class="endowment-box">
+        <h3>
+          <span class="shield-icon">&#x1F6E1;</span>
+          Self-Replenishing Endowment
+        </h3>
+        <p>
+          SoUBR is not a one-time grant or recurring stipend dependent on external
+          goodwill. It is structured as a self-replenishing endowment &mdash; a
+          Personal Regenerative Endowment that generates ongoing provision through
+          its own mechanics, creating sustainable financial peace of mind.
+        </p>
+
+        <div class="endowment-steps">
+          <div class="e-step">
+            <div class="step-num">Phase 1</div>
+            <div class="step-name">Seed</div>
+            <div class="step-desc">Initial capital allocation from the SoFin framework</div>
+          </div>
+          <div class="e-step">
+            <div class="step-num">Phase 2</div>
+            <div class="step-name">Grow</div>
+            <div class="step-desc">Endowment builds through regenerative returns</div>
+          </div>
+          <div class="e-step">
+            <div class="step-num">Phase 3</div>
+            <div class="step-name">Sustain</div>
+            <div class="step-desc">Self-replenishing provision covers basic requirements</div>
+          </div>
+          <div class="e-step">
+            <div class="step-num">Phase 4</div>
+            <div class="step-name">Shield</div>
+            <div class="step-desc">Permanent financial floor established for the agent</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pull Quote -->
+  <div class="soubr-pull-quote bg-cream">
+    <blockquote>
+      Not a universal handout, but an intelligently allocated financial base
+      for high-leverage agents of transformation.
+    </blockquote>
+  </div>
+
+  <!-- ====== CONNECTED CONCEPTS ====== -->
+  <section class="soubr-connected">
+    <div class="connected-inner">
+      <p class="section-label">Network</p>
+      <h2 class="section-title">Connected Concepts</h2>
+      <p class="connected-subtitle">
+        SoUBR is one node in a wider architecture of sovereign, regenerative
+        finance. It connects to and is powered by the following concepts.
+      </p>
+
+      <div class="connected-grid">
+        <div class="connected-card">
+          <div class="card-pip green"></div>
+          <h4>Integral Money</h4>
+          <p>
+            A metamodern understanding of money as a living system &mdash; the
+            philosophical ground on which SoUBR&rsquo;s design principles rest.
+          </p>
+        </div>
+
+        <div class="connected-card">
+          <div class="card-pip gold"></div>
+          <h4>Integral Wealth</h4>
+          <p>
+            Wealth understood beyond monetary terms &mdash; health, relational
+            depth, knowledge, and capacity. SoUBR secures the material dimension.
+          </p>
+        </div>
+
+        <div class="connected-card">
+          <div class="card-pip amber"></div>
+          <h4>Endowment-Engine</h4>
+          <p>
+            The financial mechanism that powers SoUBR &mdash; generating returns
+            that feed back into sustainable provisioning for agents.
+          </p>
+        </div>
+
+        <div class="connected-card">
+          <div class="card-pip green"></div>
+          <h4>Personal Regenerative Endowment</h4>
+          <p>
+            The individual-level implementation of SoUBR &mdash; each agent&rsquo;s
+            own self-replenishing financial foundation.
+          </p>
+        </div>
+
+        <div class="connected-card">
+          <div class="card-pip gold"></div>
+          <h4>SoFin Collective</h4>
+          <p>
+            The community of practice that stewards the SoFin framework and
+            ensures SoUBR serves its highest purpose.
+          </p>
+        </div>
+
+        <div class="connected-card">
+          <div class="card-pip amber"></div>
+          <h4>EvoBioSys Capital</h4>
+          <p>
+            The investment vehicle that provides the initial capital flows making
+            SoUBR endowments possible at scale.
+          </p>
+        </div>
+      </div>
+
+      <!-- Parent framework -->
+      <a href="/holons/sofin/" style="text-decoration: none;">
+        <div class="parent-card">
+          <div class="parent-badge">SF</div>
+          <div class="parent-text">
+            <h3><span>SoFin &mdash; Sovereign Finance</span></h3>
+            <p>
+              SoUBR is the first pillar of the SoFin framework. Explore the full
+              architecture of sovereign, regenerative finance &mdash; including all
+              four pillars, the funding flow machine, and the SoFin Collective.
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ====== CLOSING ====== -->
+  <section class="soubr-closing">
+    <div class="closing-inner">
+      <div class="closing-shield">&#x1F6E1;</div>
+      <h2>The Foundation Is Everything</h2>
+      <p>
+        Without a stable material base, there is no sovereignty, no long-term
+        vision, no capacity to build at civilizational scale. SoUBR is the
+        commitment that no agent of transformation will be left without the
+        ground beneath their feet.
+      </p>
+      <p>
+        Financial peace of mind is not a luxury. It is the prerequisite for the
+        work that matters most.
+      </p>
+      <a href="/holons/sofin/" class="closing-cta">
+        &larr; Back to SoFin
+      </a>
+    </div>
+  </section>
+
+</div>

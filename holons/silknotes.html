@@ -552,6 +552,133 @@ permalink: /holons/silknotes/
     opacity: 0.5;
   }
 
+  /* ---- kidur banner ---- */
+  .silk-kidur-banner {
+    background: linear-gradient(135deg, #0a0e14 0%, #131820 60%, #1a1a2e 100%);
+    border: 1px solid rgba(38, 255, 177, 0.15);
+    border-radius: var(--silk-radius);
+    padding: 1.8rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    text-decoration: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 2rem;
+  }
+  .silk-kidur-banner:hover {
+    border-color: rgba(38, 255, 177, 0.35);
+    box-shadow: 0 4px 24px rgba(38, 255, 177, 0.08);
+  }
+  .silk-kidur-banner .kidur-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(38, 255, 177, 0.1);
+    border: 1px solid rgba(38, 255, 177, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  .silk-kidur-banner .kidur-label {
+    font-family: var(--silk-font);
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #26ffb1;
+    margin-bottom: 0.25rem;
+  }
+  .silk-kidur-banner .kidur-desc {
+    font-family: var(--silk-font);
+    font-size: 0.88rem;
+    color: #c5cdd9;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .silk-kidur-banner .kidur-arrow {
+    margin-left: auto;
+    color: rgba(38, 255, 177, 0.5);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    transition: color 0.3s ease;
+  }
+  .silk-kidur-banner:hover .kidur-arrow {
+    color: #26ffb1;
+  }
+
+  /* ---- Domain callout ---- */
+  .silk-domain-callout {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--silk-accent-soft);
+    border-radius: var(--silk-radius);
+    margin-top: 2rem;
+  }
+  .silk-domain-callout a {
+    font-family: var(--silk-font);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--silk-accent);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    border-bottom: 2px solid var(--silk-accent);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .silk-domain-callout a:hover { color: var(--silk-text); border-color: var(--silk-text); }
+  .silk-domain-callout p {
+    font-family: var(--silk-font);
+    font-size: 0.82rem;
+    color: var(--silk-text-faint);
+    margin: 0.5rem 0 0;
+  }
+
+  /* ---- Vision callout ---- */
+  .silk-vision-card {
+    background: white;
+    border: 1px solid var(--silk-border-soft);
+    border-radius: var(--silk-radius);
+    padding: 2rem;
+    margin-top: 1.5rem;
+  }
+  .silk-vision-card h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--silk-text);
+    margin-bottom: 0.5rem;
+  }
+  .silk-vision-card p {
+    font-size: 0.88rem;
+    color: var(--silk-text-soft);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .silk-vision-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+  }
+  .silk-vision-card ul li {
+    padding: 0.35rem 0 0.35rem 1.2rem;
+    position: relative;
+    font-size: 0.85rem;
+    color: var(--silk-text-soft);
+    line-height: 1.6;
+  }
+  .silk-vision-card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--silk-accent);
+    opacity: 0.5;
+  }
+
   /* ---- Back link ---- */
   .silk-backlink {
     text-align: center;
@@ -638,6 +765,34 @@ permalink: /holons/silknotes/
       </div>
     </dl>
   </header>
+
+  <div class="silk-thread-h"></div>
+
+  <!-- ============================================ -->
+  <!--  PART OF KIDUR BANNER                         -->
+  <!-- ============================================ -->
+  <section class="silk-section silk-gradient-soft" style="padding-bottom: 2rem;">
+    <div class="silk-inner">
+      <a href="/holons/kidur/" class="silk-kidur-banner">
+        <div class="kidur-icon">&#x2338;</div>
+        <div>
+          <p class="kidur-label">Part of kidur &mdash; Tech Foundation</p>
+          <p class="kidur-desc">
+            SilkNotes is the note-taking interface of <strong style="color: #26ffb1;">kidur</strong>,
+            the foundational tech layer of EvoBioSys. Where kidur provides the binding infrastructure
+            &mdash; databases, sync, deployment &mdash; SilkNotes turns that foundation into the
+            knowledge operating system you actually touch every day.
+          </p>
+        </div>
+        <span class="kidur-arrow">&rarr;</span>
+      </a>
+
+      <div class="silk-domain-callout">
+        <a href="https://silknotes.one" target="_blank">silknotes.one</a>
+        <p>The future home of SilkNotes &mdash; sovereign, local-first knowledge operating system</p>
+      </div>
+    </div>
+  </section>
 
   <div class="silk-thread-h"></div>
 
@@ -969,10 +1124,14 @@ permalink: /holons/silknotes/
 
       <h3 style="margin-top: 3rem;">Feature Wish List</h3>
       <ul class="wish-list">
-        <li>Easy analogue backlinks &mdash; linking should feel as natural as writing</li>
+        <li>Easy analogue backlinks &mdash; linking should feel as natural as writing, not require a nodeId</li>
         <li>Canvas and whiteboard views for spatial thinking</li>
+        <li>Output API like Mendeley Cite &mdash; structured access for publishing, dashboards, AI agents</li>
+        <li>lex.page integration for collaborative long-form writing</li>
+        <li>Activity feed across the knowledge graph</li>
+        <li>Read receipts and requesting review on shared nodes</li>
+        <li>Layers on editing &mdash; non-destructive annotations and change proposals</li>
         <li>Interoperate with external data sources beyond note-taking tools</li>
-        <li>Output API for downstream consumers (publishing, dashboards, AI agents)</li>
         <li>Fully offline-capable with seamless reconnection</li>
         <li>Neuroscience-informed interface design for knowledge retention</li>
       </ul>
@@ -1050,16 +1209,165 @@ permalink: /holons/silknotes/
   <!-- ============================================ -->
   <section class="silk-section silk-gradient-soft">
     <div class="silk-inner">
-      <p class="silk-label">Sub-holons</p>
+      <p class="silk-label">Sub-holons &amp; Related Tools</p>
       <h2>Components of SilkNotes</h2>
 
       <div class="tech-grid">
-        <div class="tech-item">
-          <h4>Logseq Plugin</h4>
+        <div class="tech-item" style="grid-column: 1 / -1;">
+          <h4>Logseq Plugin &mdash; First Step in Interoperability</h4>
           <p>
-            Dedicated bridge and feature extension for Logseq. Serves as the
-            first deep integration and proving ground for SilkNotes' interop
-            architecture. Graph-level data exchange with bidirectional sync.
+            The Logseq Plugin is the most advanced sub-holon and the proving ground for
+            the entire SilkNotes architecture. It extends Logseq with SilkNotes features
+            &mdash; graph-level data exchange, bidirectional sync, and typed bridges that
+            demonstrate what interoperability actually looks like in practice. This is not
+            just a plugin; it is the first concrete proof that knowledge silos can dissolve.
+          </p>
+        </div>
+        <div class="tech-item">
+          <h4>Global Wiki Tree</h4>
+          <p>
+            A meta-communities wiki tool &mdash; a sub-system of SilkNotes that structures
+            shared knowledge across communities as an interconnected tree. Think of it as a
+            collaborative knowledge commons built on the same interop primitives.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="silk-thread-h"></div>
+
+  <!-- ============================================ -->
+  <!--  THE FOSS ECOSYSTEM                           -->
+  <!-- ============================================ -->
+  <section class="silk-section silk-gradient-accent">
+    <div class="silk-inner">
+      <p class="silk-label">FOSS Ecosystem</p>
+      <h2>Building on open-source foundations</h2>
+      <p>
+        SilkNotes is embedded in a FOSS ecosystem. The working bridges &mdash;
+        <strong>Logseq</strong>, <strong>Obsidian</strong>, <strong>Cursor</strong> &mdash;
+        already prove that open tools can share knowledge at the file and graph level.
+        The planned bridges to <strong>Affine</strong>, <strong>Reor</strong>, and
+        <strong>Legend</strong> will expand this into a full mesh of interoperating knowledge tools.
+      </p>
+
+      <blockquote>
+        <p>
+          I intend for us to use Tana until SilkNotes itself is stable enough
+          and can perform all of these features. Tana is the best tool for structured
+          thinking right now &mdash; but the end goal is sovereign, open-source, local-first.
+        </p>
+      </blockquote>
+    </div>
+  </section>
+
+  <div class="silk-thread-h"></div>
+
+  <!-- ============================================ -->
+  <!--  BUILDING APPROACH                            -->
+  <!-- ============================================ -->
+  <section class="silk-section silk-gradient-warm">
+    <div class="silk-inner">
+      <p class="silk-label">Building It</p>
+      <h2>&ldquo;If I had to build it today&rdquo;</h2>
+      <p>
+        SilkNotes is not waiting for perfection. The approach is pragmatic: cobble together
+        a working system from the best available tools, then refine toward the sovereign vision.
+      </p>
+
+      <div class="silk-vision-card">
+        <h4>The Practical Path</h4>
+        <p>
+          Use <strong>Devin</strong> for rapid prototyping. Build with <strong>legendapp</strong>
+          for reactive state management, <strong>AI</strong> for acceleration, and
+          <strong>Canvas</strong> for visual thinking. The first milestone is a Tana replica
+          &mdash; cobbled together from proven pieces, then evolved into something that
+          transcends any single tool.
+        </p>
+      </div>
+
+      <div class="silk-vision-card">
+        <h4>Ontological Design</h4>
+        <p>
+          SilkNotes is not just a tool &mdash; it is an exercise in ontological design.
+          The structure of the tool shapes the structure of thought. How you organize
+          knowledge changes what knowledge you can produce. SilkNotes is designed with
+          this philosophy at its core: the interface should reveal connections that would
+          otherwise remain invisible, and the architecture should respect how humans
+          actually think &mdash; not how databases store data.
+        </p>
+      </div>
+
+      <div class="silk-vision-card">
+        <h4>Complete Information Processing Network</h4>
+        <p>
+          The grand vision: SilkNotes becomes a <em>complete information processing network</em>.
+          Not just notes, not just interop &mdash; a living system where every piece of knowledge
+          you encounter is captured, connected, and made actionable. From ambient context
+          (Screenpipe) to structured output (publishing pipelines), from personal knowledge
+          graphs to shared community wikis &mdash; one network, fully sovereign, fully yours.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="silk-thread-h"></div>
+
+  <!-- ============================================ -->
+  <!--  EXPANDED FEATURE VISION                      -->
+  <!-- ============================================ -->
+  <section class="silk-section silk-gradient-soft">
+    <div class="silk-inner">
+      <p class="silk-label">Feature Vision</p>
+      <h2>What SilkNotes needs to become</h2>
+      <p>
+        Beyond the basics of note-taking and interop, these are the features that
+        would make SilkNotes a genuine replacement for Tana and the full tool stack.
+      </p>
+
+      <div class="tech-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <div class="tech-item">
+          <h4>Easy Analogue Backlinks</h4>
+          <p>
+            Linking should not require knowing a nodeId. Natural, human-readable
+            backlinks that feel as intuitive as writing a sentence &mdash; not managing a database.
+          </p>
+        </div>
+        <div class="tech-item">
+          <h4>Output API (like Mendeley Cite)</h4>
+          <p>
+            A structured output API so downstream systems &mdash; publishing pipelines,
+            citation tools, dashboards &mdash; can pull from your knowledge graph the
+            way Mendeley Cite pulls from a reference library.
+          </p>
+        </div>
+        <div class="tech-item">
+          <h4>lex.page Integration</h4>
+          <p>
+            Deep integration with lex.page for collaborative writing that feeds
+            back into the knowledge graph. Writing as a knowledge act, not a separate export.
+          </p>
+        </div>
+        <div class="tech-item">
+          <h4>Activity Feed</h4>
+          <p>
+            A living feed of what is happening across your knowledge graph &mdash;
+            new connections, edits by collaborators, emerging patterns, and suggested links.
+          </p>
+        </div>
+        <div class="tech-item">
+          <h4>Read Receipts &amp; Review Requests</h4>
+          <p>
+            Know when a shared note has been read. Request review on specific nodes.
+            Collaborative knowledge work needs the same communication primitives as any team tool.
+          </p>
+        </div>
+        <div class="tech-item">
+          <h4>Layers on Editing</h4>
+          <p>
+            Non-destructive editing layers &mdash; annotate, comment, and propose changes
+            without altering the original. Think version control for knowledge, not just code.
           </p>
         </div>
       </div>
