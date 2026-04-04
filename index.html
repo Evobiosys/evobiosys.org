@@ -314,7 +314,8 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
     }
 
     resize() {
-      const w = window.innerWidth, h = window.innerHeight;
+      const parent = this.canvas.parentElement;
+      const w = parent.offsetWidth, h = parent.offsetHeight;
       this.W = w * this.dpr;
       this.H = h * this.dpr;
       this.canvas.width = this.W;
@@ -386,7 +387,7 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
         if (s.life <= 0) return false;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r * s.life, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${s.hue}, 45%, 45%, ${s.life * 0.3})`;
+        ctx.fillStyle = `hsla(${s.hue}, 30%, 55%, ${s.life * 0.12})`;
         ctx.fill();
         return true;
       });
@@ -425,24 +426,18 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
         const r = n.r * pulse * age;
 
         // Glow
-        const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 4);
-        grad.addColorStop(0, `hsla(${n.hue}, 42%, 42%, ${0.12 * age})`);
-        grad.addColorStop(1, `hsla(${n.hue}, 42%, 42%, 0)`);
+        const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 5);
+        grad.addColorStop(0, `hsla(${n.hue}, 35%, 50%, ${0.06 * age})`);
+        grad.addColorStop(1, `hsla(${n.hue}, 35%, 50%, 0)`);
         ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(n.x, n.y, r * 4, 0, Math.PI * 2);
+        ctx.arc(n.x, n.y, r * 5, 0, Math.PI * 2);
         ctx.fill();
 
         // Core
         ctx.beginPath();
         ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${n.hue}, 45%, 38%, ${0.55 * age})`;
-        ctx.fill();
-
-        // Inner light
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, r * 0.45, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${n.hue}, 50%, 60%, ${0.35 * age})`;
+        ctx.fillStyle = `hsla(${n.hue}, 35%, 45%, ${0.25 * age})`;
         ctx.fill();
       });
 
@@ -461,7 +456,7 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
           if (dist > connDist) continue;
 
           const strength = (1 - dist / connDist);
-          const alpha = strength * 0.2 * Math.min(ageA, ageB);
+          const alpha = strength * 0.1 * Math.min(ageA, ageB);
 
           // Curved connection via midpoint offset
           const mx = (a.x + b.x) / 2 + Math.sin(this.time * 0.3 + i + j) * 15 * this.dpr;
@@ -471,7 +466,7 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
           ctx.moveTo(a.x, a.y);
           ctx.quadraticCurveTo(mx, my, b.x, b.y);
           ctx.strokeStyle = `hsla(${(a.hue + b.hue) / 2}, 40%, 40%, ${alpha})`;
-          ctx.lineWidth = (1 + strength * 1.5) * this.dpr;
+          ctx.lineWidth = (0.5 + strength * 0.8) * this.dpr;
           ctx.stroke();
         }
       }
