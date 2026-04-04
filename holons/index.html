@@ -1,7 +1,7 @@
 ---
 layout: default
 title: The Holonic Map — EvoBioSys
-description: All 49 project holons of EvoBioSys, organized into the three pillars Evo (growing), Bio (living), and Sys (systems). A comprehensive overview of the living network.
+description: All 48 project holons of EvoBioSys, organized into the three pillars Evo (growing), Bio (living), and Sys (systems). A comprehensive overview of the living network.
 permalink: /holons/
 ---
 
@@ -11,7 +11,7 @@ permalink: /holons/
   <h1>The Holonic Map</h1>
   <p class="lead">
     Every project in EvoBioSys is a <strong>holon</strong> &mdash; whole in itself, yet part
-    of a greater whole. This is the full map: 49 living projects, nested into three
+    of a greater whole. This is the full map: 48 living projects, nested into three
     pillars, each evolving at its own pace.
   </p>
 </div>
@@ -45,100 +45,473 @@ permalink: /holons/
   </div>
 </section>
 
-<!-- Visual Tree -->
+<!-- Visual Tree (interactive, collapsible) -->
 <section class="section-alt">
   <div class="container">
     <p class="section-label">Visual Overview</p>
     <h2 class="section-title">The holonic tree</h2>
     <p class="section-subtitle">
       EvoBioSys at the root, three pillars as branches, project holons as leaves.
+      Click the arrows to expand or collapse branches.
     </p>
 
-    <div class="holon-tree">
-      <div class="tree-root">
-        <span class="tree-root-label">EvoBioSys &mdash; Evolving Living Systems</span>
-      </div>
+    <style>
+      /* ── Holonic Interactive Tree ──────────────────── */
+      .htree { font-family: inherit; font-size: 1rem; line-height: 1.7; }
 
-      <div class="tree-branches">
-        <!-- Evo Branch -->
-        <div class="tree-branch">
-          <div class="tree-branch-header">
-            <h3>Evo &mdash; Growing</h3>
-            <span>Development, learning, culture</span>
-          </div>
-          <ul class="tree-leaves">
-            <li class="tree-leaf">
-              <a href="/holons/evopaideia/">EvoPaideia <span class="leaf-meta">&middot; Athena</span></a>
-            </li>
-            <li class="tree-leaf">
-              <a href="/holons/world-lore/">World Lore <span class="leaf-meta">&middot; European History &middot; Historical Digital Maps</span></a>
-            </li>
-            <li class="tree-leaf">
-              <span>Aligned European Ideology <span class="leaf-meta">&middot; European History</span></span>
-            </li>
-            <li class="tree-leaf">
-              <span>Universal Policy</span>
-            </li>
-            <li class="tree-leaf">
-              <a href="/holons/community-hub/">Community Hub <span class="leaf-meta">&middot; Feldbach &middot; Integrales Wien</span></a>
-            </li>
-            <li class="tree-leaf">
-              <span>care cabaret</span>
-            </li>
-          </ul>
-        </div>
+      .htree ul {
+        list-style: none;
+        margin: 0;
+        padding-left: 1.5rem;
+      }
+      .htree > ul { padding-left: 0; }
 
-        <!-- Bio Branch -->
-        <div class="tree-branch">
-          <div class="tree-branch-header">
-            <h3>Bio &mdash; Living</h3>
-            <span>Stewardship, consulting, social finance</span>
-          </div>
-          <ul class="tree-leaves">
-            <li class="tree-leaf">
-              <a href="/holons/soaro/">Soaro <span class="leaf-meta">&middot; Soaro MVP</span></a>
-            </li>
-            <li class="tree-leaf">
-              <a href="/holons/collective/">EvoBioSys Collective <span class="leaf-meta">&middot; SoFin Collective</span></a>
-            </li>
-            <li class="tree-leaf">
-              <a href="/holons/sofin/">SoFin Collective</a>
-            </li>
-            <li class="tree-leaf">
-              <span>Funding Flow Machine</span>
-            </li>
-            <li class="tree-leaf">
-              <a href="/capital/">EvoBioSys Capital</a>
-            </li>
-          </ul>
-        </div>
+      /* Connecting lines */
+      .htree li {
+        position: relative;
+        padding-left: 1.25rem;
+      }
+      .htree li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: #c4c4c4;
+      }
+      .htree li::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.85em;
+        width: 0.85rem;
+        height: 1px;
+        background: #c4c4c4;
+      }
+      /* Hide vertical line on last child below the horizontal */
+      .htree li:last-child::before {
+        height: 0.85em;
+      }
+      /* No lines on the root list */
+      .htree > ul > li::before,
+      .htree > ul > li::after { display: none; }
+      .htree > ul > li { padding-left: 0; }
 
-        <!-- Sys Branch -->
-        <div class="tree-branch">
-          <div class="tree-branch-header">
-            <h3>Sys &mdash; Systems</h3>
-            <span>Technology, tools, infrastructure</span>
+      /* Node row */
+      .htree-node {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.1rem 0;
+      }
+
+      /* Toggle button */
+      .htree-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.3rem;
+        height: 1.3rem;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 0.8rem;
+        color: var(--color-accent, #2d6a4f);
+        padding: 0;
+        border-radius: 3px;
+        transition: background 0.15s;
+        flex-shrink: 0;
+      }
+      .htree-toggle:hover {
+        background: rgba(45, 106, 79, 0.12);
+      }
+
+      /* Spacer for leaf alignment */
+      .htree-spacer {
+        display: inline-block;
+        width: 1.3rem;
+        flex-shrink: 0;
+      }
+
+      /* Labels */
+      .htree-label {
+        font-weight: 400;
+        color: var(--color-text, #1a1a1a);
+      }
+      .htree-label a {
+        color: var(--color-accent, #2d6a4f);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.15s;
+      }
+      .htree-label a:hover {
+        border-bottom-color: var(--color-accent, #2d6a4f);
+      }
+
+      /* Root node */
+      .htree-root > .htree-node > .htree-label {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--color-accent, #2d6a4f);
+      }
+
+      /* Pillar nodes */
+      .htree-pillar > .htree-node > .htree-label {
+        font-weight: 600;
+        font-size: 1.05rem;
+      }
+
+      /* Draft / dim badge */
+      .htree-dim {
+        font-size: 0.8em;
+        color: #888;
+        font-style: italic;
+        margin-left: 0.25rem;
+      }
+
+      /* Collapsed child list */
+      .htree li.htree-collapsed > ul {
+        display: none;
+      }
+
+      /* Responsive: tighter on mobile */
+      @media (max-width: 600px) {
+        .htree ul { padding-left: 1rem; }
+        .htree li { padding-left: 1rem; }
+        .htree li::after { width: 0.6rem; }
+        .htree { font-size: 0.92rem; }
+      }
+    </style>
+
+    <div class="htree" role="tree">
+      <ul>
+        <!-- Root -->
+        <li class="htree-root">
+          <div class="htree-node">
+            <button class="htree-toggle" aria-label="Collapse EvoBioSys" aria-expanded="true">&#9662;</button>
+            <span class="htree-label">EvoBioSys &mdash; Evolving Living Systems</span>
           </div>
-          <ul class="tree-leaves">
-            <li class="tree-leaf">
-              <a href="/holons/kidur/">kidur <span class="leaf-meta">&middot; SilkNotes &middot; In-Flow &middot; Weave.txt</span></a>
+          <ul>
+
+            <!-- ════════ EVO ════════ -->
+            <li class="htree-pillar">
+              <div class="htree-node">
+                <button class="htree-toggle" aria-label="Collapse Evo" aria-expanded="true">&#9662;</button>
+                <span class="htree-label">Evo &mdash; Growing</span>
+              </div>
+              <ul>
+                <!-- EvoPaideia -->
+                <li class="htree-collapsed">
+                  <div class="htree-node">
+                    <button class="htree-toggle" aria-label="Expand EvoPaideia" aria-expanded="false">&#9656;</button>
+                    <span class="htree-label"><a href="/holons/evopaideia/">EvoPaideia</a></span>
+                  </div>
+                  <ul>
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">Athena</span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- World Lore -->
+                <li class="htree-collapsed">
+                  <div class="htree-node">
+                    <button class="htree-toggle" aria-label="Expand World Lore" aria-expanded="false">&#9656;</button>
+                    <span class="htree-label"><a href="/holons/world-lore/">World Lore</a></span>
+                  </div>
+                  <ul>
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">European History <span class="htree-dim">(draft)</span></span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">Historical Digital Maps</span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- Aligned European Ideology -->
+                <li>
+                  <div class="htree-node">
+                    <span class="htree-spacer"></span>
+                    <span class="htree-label">Aligned European Ideology <span class="htree-dim">(draft)</span></span>
+                  </div>
+                </li>
+                <!-- Universal Policy -->
+                <li>
+                  <div class="htree-node">
+                    <span class="htree-spacer"></span>
+                    <span class="htree-label">Universal Policy</span>
+                  </div>
+                </li>
+                <!-- Community Hubs -->
+                <li class="htree-collapsed">
+                  <div class="htree-node">
+                    <button class="htree-toggle" aria-label="Expand Community Hubs" aria-expanded="false">&#9656;</button>
+                    <span class="htree-label"><a href="/holons/community-hubs/">Community Hubs</a></span>
+                  </div>
+                  <ul>
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">Feldbach Community Hub</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">Integrales Wien</span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- Integrales Wien (top-level under Evo) -->
+                <li>
+                  <div class="htree-node">
+                    <span class="htree-spacer"></span>
+                    <span class="htree-label">Integrales Wien</span>
+                  </div>
+                </li>
+              </ul>
             </li>
-            <li class="tree-leaf">
-              <a href="/holons/idea2life/">idea2.life <span class="leaf-meta">&middot; Signal Hub &middot; Jakaja-Matrix</span></a>
+
+            <!-- ════════ BIO ════════ -->
+            <li class="htree-pillar">
+              <div class="htree-node">
+                <button class="htree-toggle" aria-label="Collapse Bio" aria-expanded="true">&#9662;</button>
+                <span class="htree-label">Bio &mdash; Living</span>
+              </div>
+              <ul>
+                <!-- Soaro -->
+                <li class="htree-collapsed">
+                  <div class="htree-node">
+                    <button class="htree-toggle" aria-label="Expand Soaro" aria-expanded="false">&#9656;</button>
+                    <span class="htree-label"><a href="/holons/soaro/">Soaro</a></span>
+                  </div>
+                  <ul>
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">Soaro MVP</span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- EvoBioSys Collective -->
+                <li class="htree-collapsed">
+                  <div class="htree-node">
+                    <button class="htree-toggle" aria-label="Expand EvoBioSys Collective" aria-expanded="false">&#9656;</button>
+                    <span class="htree-label"><a href="/holons/collective/">EvoBioSys Collective</a></span>
+                  </div>
+                  <ul>
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">SoFin Collective</span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- SoFin -->
+                <li class="htree-collapsed">
+                  <div class="htree-node">
+                    <button class="htree-toggle" aria-label="Expand SoFin" aria-expanded="false">&#9656;</button>
+                    <span class="htree-label"><a href="/holons/sofin/">SoFin</a></span>
+                  </div>
+                  <ul>
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">Funding Flow Machine</span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- EvoBioSys Capital -->
+                <li>
+                  <div class="htree-node">
+                    <span class="htree-spacer"></span>
+                    <span class="htree-label"><a href="/capital/">EvoBioSys Capital</a></span>
+                  </div>
+                </li>
+              </ul>
             </li>
-            <li class="tree-leaf">
-              <span>semantic web <span class="leaf-meta">&middot; up-to-date books</span></span>
+
+            <!-- ════════ SYS ════════ -->
+            <li class="htree-pillar">
+              <div class="htree-node">
+                <button class="htree-toggle" aria-label="Collapse Sys" aria-expanded="true">&#9662;</button>
+                <span class="htree-label">Sys &mdash; Systems</span>
+              </div>
+              <ul>
+                <!-- kidur -->
+                <li class="htree-collapsed">
+                  <div class="htree-node">
+                    <button class="htree-toggle" aria-label="Expand kidur" aria-expanded="false">&#9656;</button>
+                    <span class="htree-label"><a href="/holons/kidur/">kidur</a></span>
+                  </div>
+                  <ul>
+                    <!-- SilkNotes (nested under kidur) -->
+                    <li class="htree-collapsed">
+                      <div class="htree-node">
+                        <button class="htree-toggle" aria-label="Expand SilkNotes" aria-expanded="false">&#9656;</button>
+                        <span class="htree-label"><a href="/holons/silknotes/">SilkNotes</a></span>
+                      </div>
+                      <ul>
+                        <li>
+                          <div class="htree-node">
+                            <span class="htree-spacer"></span>
+                            <span class="htree-label">Logseq Plugin</span>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                    <!-- In-Flow -->
+                    <li class="htree-collapsed">
+                      <div class="htree-node">
+                        <button class="htree-toggle" aria-label="Expand In-Flow" aria-expanded="false">&#9656;</button>
+                        <span class="htree-label">In-Flow(.info)</span>
+                      </div>
+                      <ul>
+                        <li>
+                          <div class="htree-node">
+                            <span class="htree-spacer"></span>
+                            <span class="htree-label">SenseMeet</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="htree-node">
+                            <span class="htree-spacer"></span>
+                            <span class="htree-label">Heliocalendar</span>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="htree-node">
+                            <span class="htree-spacer"></span>
+                            <span class="htree-label">PitchPerfect</span>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                    <!-- Weave.txt -->
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">Weave.txt</span>
+                      </div>
+                    </li>
+                    <!-- Minor Infrastructure -->
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">Minor Infrastructure</span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- idea2.life -->
+                <li class="htree-collapsed">
+                  <div class="htree-node">
+                    <button class="htree-toggle" aria-label="Expand idea2.life" aria-expanded="false">&#9656;</button>
+                    <span class="htree-label"><a href="/holons/idea2life/">idea2.life</a></span>
+                  </div>
+                  <ul>
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">Signal Hub</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">Jakaja-Matrix</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">best hosting</span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- semantic web -->
+                <li class="htree-collapsed">
+                  <div class="htree-node">
+                    <button class="htree-toggle" aria-label="Expand semantic web" aria-expanded="false">&#9656;</button>
+                    <span class="htree-label">semantic web</span>
+                  </div>
+                  <ul>
+                    <li>
+                      <div class="htree-node">
+                        <span class="htree-spacer"></span>
+                        <span class="htree-label">up-to-date books</span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- Singular Structure -->
+                <li>
+                  <div class="htree-node">
+                    <span class="htree-spacer"></span>
+                    <span class="htree-label">Singular Structure as a Service</span>
+                  </div>
+                </li>
+                <!-- Comprehensive FactChecker -->
+                <li>
+                  <div class="htree-node">
+                    <span class="htree-spacer"></span>
+                    <span class="htree-label">Comprehensive FactChecker</span>
+                  </div>
+                </li>
+                <!-- crypto -->
+                <li>
+                  <div class="htree-node">
+                    <span class="htree-spacer"></span>
+                    <span class="htree-label">crypto</span>
+                  </div>
+                </li>
+              </ul>
             </li>
-            <li class="tree-leaf">
-              <span>Singular Structure as a Service</span>
-            </li>
-            <li class="tree-leaf">
-              <span>crypto <span class="leaf-meta">&middot; and 8 more tools</span></span>
-            </li>
+
           </ul>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
+
+    <script>
+      (function () {
+        var tree = document.querySelector('.htree');
+        if (!tree) return;
+
+        tree.addEventListener('click', function (e) {
+          var btn = e.target.closest('.htree-toggle');
+          if (!btn) return;
+
+          var li = btn.closest('li');
+          if (!li) return;
+
+          var isCollapsed = li.classList.toggle('htree-collapsed');
+
+          // Swap arrow: ▾ (expanded) / ▸ (collapsed)
+          btn.innerHTML = isCollapsed ? '&#9656;' : '&#9662;';
+          btn.setAttribute('aria-expanded', String(!isCollapsed));
+
+          var label = li.querySelector('.htree-label');
+          var name = label ? label.textContent.trim() : 'node';
+          btn.setAttribute('aria-label', (isCollapsed ? 'Expand ' : 'Collapse ') + name);
+        });
+      })();
+    </script>
+
   </div>
 </section>
 
@@ -223,11 +596,11 @@ permalink: /holons/
         </p>
       </div>
 
-      <!-- Community Hub -->
+      <!-- Community Hubs -->
       <div class="holon-card">
         <span class="holon-card-badge">Evo</span>
         <span class="status status-active">Active</span>
-        <h3><a href="/holons/community-hub/">Community Hub</a></h3>
+        <h3><a href="/holons/community-hubs/">Community Hubs</a></h3>
         <p>
           The community building umbrella. Local hubs where people meet, coordinate,
           and build the social fabric that living systems depend on.
@@ -239,18 +612,6 @@ permalink: /holons/
             <li>Integrales Wien &mdash; Integral community in Vienna (members: Jakob, Kaja, advisor Levi)</li>
           </ul>
         </div>
-      </div>
-
-      <!-- care cabaret -->
-      <div class="holon-card">
-        <span class="holon-card-badge">Evo</span>
-        <span class="status status-vision">Vision</span>
-        <h3>care cabaret</h3>
-        <p>
-          A sequence of curated experiences designed for self-reflection and inner
-          development, created in service of Soaro Stewardship. Where personal
-          transformation meets playful encounter.
-        </p>
       </div>
 
     </div>
