@@ -30,134 +30,114 @@ permalink: /partners/
   </div>
 </section>
 
-<!-- Active Partners -->
+<!-- Active Clients -->
+{% if site.data.partners.clients.size > 0 %}
 <section class="section-alt">
   <div class="container">
-    <p class="section-label">Active Partnerships</p>
-    <h2 class="section-title">Who we work with</h2>
-    <p class="section-subtitle">
-      These are the collaborations where we invest energy, attention, and shared commitment.
-    </p>
-
+    <p class="section-label">Active Clients</p>
+    <h2 class="section-title">Who we serve</h2>
     <div class="holons-full-grid">
-
-      <!-- Alia / Soaro -->
+      {% for person in site.data.partners.clients %}
       <div class="holon-card">
-        <span class="holon-card-badge">Stewardship</span>
-        <h3>Alia Tall-Khatib</h3>
-        <p>
-          Co-steward of <a href="/holons/soaro/">Soaro</a>. Alia brings deep expertise in
-          collaborative resource allocation, shared outcome design, and relationship-led consulting.
-          Together we are building the Soaro Five framework and pursuing $3M in impact funding.
-        </p>
+        <span class="holon-card-badge">{{ person.badge }}</span>
+        <h3>{{ person.name }}</h3>
+        {% if person.org %}<p style="font-size: 0.85rem; font-weight: 500; margin-bottom: 0.5rem;">{{ person.org }}</p>{% endif %}
+        <p>{{ person.description }}</p>
         <p style="font-size: 0.82rem; color: var(--color-accent);">
-          Soaro Stewardship &middot; Soaro MVP &middot; Active
+          {{ person.holons | join: " &middot; " }}
+          {% if person.status == "tbc" %} &middot; <em>(TBC)</em>{% endif %}
         </p>
       </div>
-
-      <!-- Roberto / SSaaS -->
-      <div class="holon-card">
-        <span class="holon-card-badge">Technology</span>
-        <h3>Roberto Valenti</h3>
-        <p>
-          Partner on <strong>Singular Structure as a Service</strong> &mdash; the portable desk
-          and personal software registry project. Roberto brings technical depth to the vision
-          of a sovereign, reproducible computing environment.
-        </p>
-        <p style="font-size: 0.82rem; color: var(--color-accent);">
-          Singular Structure as a Service &middot; Infrastructure
-        </p>
-      </div>
-
-      <!-- Andrew / PitchPerfect -->
-      <div class="holon-card">
-        <span class="holon-card-badge">In-Flow</span>
-        <h3>Andrew Hasse</h3>
-        <p>
-          Collaborator on <strong>PitchPerfect</strong>, a project under the
-          <a href="/holons/kidur/">In-Flow</a> umbrella. Andrew contributes to the
-          vision of flow-state tools that help people present and communicate with clarity.
-        </p>
-        <p style="font-size: 0.82rem; color: var(--color-accent);">
-          PitchPerfect &middot; In-Flow(.info)
-        </p>
-      </div>
-
-      <!-- Katherine / SoFin -->
-      <div class="holon-card">
-        <span class="holon-card-badge">Finance</span>
-        <h3>Katherine Colquitt</h3>
-        <p>
-          Supporting the <a href="/holons/sofin/">SoFin</a> initiative &mdash; bringing expertise
-          to the social finance collective and helping shape regenerative economic models.
-        </p>
-        <p style="font-size: 0.82rem; color: var(--color-accent);">
-          SoFin Collective &middot; Social Finance
-        </p>
-      </div>
-
+      {% endfor %}
     </div>
   </div>
 </section>
+{% endif %}
+
+<!-- Partners -->
+{% if site.data.partners.partners.size > 0 %}
+<section>
+  <div class="container">
+    <p class="section-label">Partners</p>
+    <h2 class="section-title">Who we build with</h2>
+    <div class="holons-full-grid">
+      {% for person in site.data.partners.partners %}
+      <div class="holon-card">
+        <span class="holon-card-badge">{{ person.badge }}</span>
+        <h3>{{ person.name }}</h3>
+        {% if person.org %}<p style="font-size: 0.85rem; font-weight: 500; margin-bottom: 0.5rem;">{{ person.org }}</p>{% endif %}
+        <p>{{ person.description }}</p>
+        <p style="font-size: 0.82rem; color: var(--color-accent);">
+          {{ person.holons | join: " &middot; " }}
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Collaborators -->
+{% if site.data.partners.collaborators.size > 0 %}
+<section class="section-alt">
+  <div class="container">
+    <p class="section-label">Collaborators</p>
+    <h2 class="section-title">Who we create with</h2>
+    <div class="holons-full-grid">
+      {% for person in site.data.partners.collaborators %}
+      <div class="holon-card">
+        <span class="holon-card-badge">{{ person.badge }}</span>
+        <h3>{{ person.name }}</h3>
+        <p>{{ person.description }}</p>
+        <p style="font-size: 0.82rem; color: var(--color-accent);">
+          {{ person.holons | join: " &middot; " }}
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Collective Members -->
+{% if site.data.partners.collective_members.size > 0 %}
+<section>
+  <div class="container">
+    <p class="section-label">Collective Members</p>
+    <h2 class="section-title">Part of the collective</h2>
+    <div class="holons-full-grid">
+      {% for person in site.data.partners.collective_members %}
+      <div class="holon-card">
+        <span class="holon-card-badge">{{ person.badge }}</span>
+        <h3>{{ person.name }}</h3>
+        <p>{{ person.description }}</p>
+        <p style="font-size: 0.82rem; color: var(--color-accent);">
+          {{ person.holons | join: " &middot; " }} {% if person.status == "tbc" %} &middot; <em>(TBC)</em>{% endif %}
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
 
 <!-- Organisations we support -->
-<section>
+{% if site.data.partners.organisations.size > 0 %}
+<section class="section-alt">
   <div class="container">
     <p class="section-label">Organisations We Support</p>
     <h2 class="section-title">Partners in the field</h2>
-    <p class="section-subtitle">
-      Organisations whose work resonates with the EvoBioSys vision. We support them
-      through advisory, technology, and shared network.
-    </p>
-
     <div class="principles-grid">
+      {% for org in site.data.partners.organisations %}
       <div class="principle-card">
-        <h3>hy.team</h3>
-        <p>
-          A team and platform we actively support. Part of the broader network
-          of aligned organisations working toward regenerative coordination.
-        </p>
+        <h3>{{ org.name }}</h3>
+        <p>{{ org.description }}</p>
       </div>
-
-      <div class="principle-card">
-        <h3>idea2spiral.com</h3>
-        <p>
-          A partner initiative exploring the spiral of bringing ideas into reality &mdash;
-          closely connected to the idea2.life philosophy of sovereign life infrastructure.
-        </p>
-      </div>
-
-      <div class="principle-card">
-        <h3>docs.lumeon.dev</h3>
-        <p>
-          A documentation and developer platform we support as part of
-          the open-source, build-in-the-open ethos that guides EvoBioSys technology.
-        </p>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
-
-<!-- Integrales Wien -->
-<section class="section-alt">
-  <div class="container">
-    <p class="section-label">Community</p>
-    <h2 class="section-title">Integrales Wien</h2>
-    <div class="container-narrow">
-      <div class="prose">
-        <p>
-          An integral community in Vienna that Jakob co-hosts with Kaja, with Levi as advisor.
-          Integrales Wien is a space for developmental practice, shared inquiry, and weaving
-          the integral perspective into everyday life in the city.
-        </p>
-        <p>
-          This is part of the <a href="/holons/community-hubs/">Community Hubs</a> holon &mdash;
-          grounding the holonic network in real places and real relationships.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+{% endif %}
 
 <!-- How we partner -->
 <section>
