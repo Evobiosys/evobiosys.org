@@ -5,9 +5,13 @@
   --color-accent: #2d6a4f;
   --color-accent-light: #40916c;
   --color-accent-bg: #f0f7f4;
+  --color-accent-deep: #1b4332;
   --color-border: #d4d4c8;
   --color-white: #ffffff;
+  --color-warm: #f5f0e8;
   --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --max-width: 1100px;
+  --max-width-narrow: 760px;
 }
 
 * {
@@ -28,18 +32,30 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* --- Navigation --- */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--color-accent-light);
+}
+
+/* ========================================
+   Navigation
+   ======================================== */
 
 .nav {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 1.25rem 2rem;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 100;
-  background: rgba(250, 250, 247, 0.9);
+  background: rgba(250, 250, 247, 0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
   transition: border-color 0.3s;
@@ -59,23 +75,38 @@ body {
 
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 1.75rem;
   list-style: none;
+  align-items: center;
 }
 
 .nav-links a {
   color: var(--color-text-muted);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 400;
   transition: color 0.2s;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--color-accent);
 }
 
-/* --- Hero --- */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--color-text);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* ========================================
+   Hero
+   ======================================== */
 
 .hero {
   position: relative;
@@ -89,6 +120,11 @@ body {
   max-width: 800px;
   margin: 0 auto;
   overflow: hidden;
+}
+
+.hero-compact {
+  min-height: auto;
+  padding: 8rem 2rem 4rem;
 }
 
 .evolution-canvas {
@@ -148,6 +184,10 @@ body {
   justify-content: center;
 }
 
+/* ========================================
+   Buttons
+   ======================================== */
+
 .btn {
   display: inline-block;
   padding: 0.75rem 1.75rem;
@@ -168,6 +208,7 @@ body {
 
 .btn-primary:hover {
   background: var(--color-accent-light);
+  color: var(--color-white);
   transform: translateY(-1px);
 }
 
@@ -182,14 +223,26 @@ body {
   color: var(--color-accent);
 }
 
-/* --- Sections --- */
+.btn-sm {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.82rem;
+}
+
+/* ========================================
+   Sections
+   ======================================== */
 
 section {
   padding: 6rem 2rem;
 }
 
 .container {
-  max-width: 1000px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.container-narrow {
+  max-width: var(--max-width-narrow);
   margin: 0 auto;
 }
 
@@ -218,7 +271,19 @@ section {
   margin-bottom: 3rem;
 }
 
-/* --- Principles --- */
+.section-alt {
+  background: var(--color-white);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-warm {
+  background: var(--color-warm);
+}
+
+/* ========================================
+   Principles Grid
+   ======================================== */
 
 .principles-grid {
   display: grid;
@@ -257,7 +322,283 @@ section {
   line-height: 1.7;
 }
 
-/* --- About --- */
+/* ========================================
+   Holons Grid (home + overview)
+   ======================================== */
+
+.holons-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.pillar {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+.pillar-header {
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-accent-bg);
+}
+
+.pillar-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-accent-deep);
+}
+
+.pillar-header p {
+  font-size: 0.82rem;
+  color: var(--color-accent);
+  margin-top: 0.25rem;
+}
+
+.pillar-body {
+  padding: 1rem;
+}
+
+.holon-link {
+  display: block;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: background 0.15s, color 0.15s;
+  font-size: 0.9rem;
+}
+
+.holon-link:hover {
+  background: var(--color-accent-bg);
+  color: var(--color-accent);
+}
+
+.holon-link .holon-name {
+  font-weight: 500;
+  display: block;
+}
+
+.holon-link .holon-desc {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  display: block;
+  margin-top: 0.15rem;
+}
+
+.holon-link .holon-sub {
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  display: block;
+  margin-top: 0.25rem;
+}
+
+/* Full Holon Cards (used on holons/index.html) */
+
+.holons-full-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.holon-card {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-white);
+  padding: 2rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.holon-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.holon-card-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background: var(--color-accent-bg);
+  color: var(--color-accent);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.holon-card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.holon-card h3 a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.holon-card h3 a:hover {
+  color: var(--color-accent);
+}
+
+.holon-card p {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.holon-card .sub-holons {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.holon-card .sub-holons h4 {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.holon-card .sub-holons ul {
+  list-style: none;
+}
+
+.holon-card .sub-holons li {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  padding: 0.2rem 0;
+}
+
+.holon-card .sub-holons li a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.holon-card .sub-holons li a:hover {
+  color: var(--color-accent);
+}
+
+/* ========================================
+   Holon Detail Pages
+   ======================================== */
+
+.page-header {
+  padding: 8rem 2rem 3rem;
+  text-align: center;
+}
+
+.page-header .breadcrumb {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.page-header .breadcrumb a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.page-header h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.page-header .lead {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.page-meta {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  text-align: center;
+}
+
+.meta-item dt {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.meta-item dd {
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+/* Content prose */
+
+.prose {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 3rem 0 1rem;
+  line-height: 1.3;
+}
+
+.prose h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 2rem 0 0.75rem;
+}
+
+.prose p {
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.prose ul,
+.prose ol {
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.prose li {
+  margin-bottom: 0.35rem;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1.25rem;
+  margin: 2rem 0;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ========================================
+   About Page
+   ======================================== */
 
 .about-content {
   display: grid;
@@ -306,7 +647,184 @@ section {
   color: var(--color-text);
 }
 
-/* --- Newsletter --- */
+/* Governance / Philosophy cards */
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.philosophy-card {
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-white);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.philosophy-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.philosophy-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.philosophy-card p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.philosophy-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   Capital / Focus Grid
+   ======================================== */
+
+.focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.focus-card {
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-white);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.focus-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.focus-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.focus-card p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ========================================
+   Holonic Tree / Visual Map
+   ======================================== */
+
+.holon-tree {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.tree-root {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.tree-root-label {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: var(--color-accent);
+  color: var(--color-white);
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+}
+
+.tree-branches {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  position: relative;
+}
+
+.tree-branches::before {
+  content: '';
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 1rem;
+  background: var(--color-border);
+}
+
+.tree-branch {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+.tree-branch-header {
+  padding: 1.25rem 1.5rem;
+  background: var(--color-accent-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tree-branch-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-accent-deep);
+}
+
+.tree-branch-header span {
+  font-size: 0.8rem;
+  color: var(--color-accent);
+}
+
+.tree-leaves {
+  padding: 0.75rem;
+  list-style: none;
+}
+
+.tree-leaf {
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  transition: background 0.15s;
+}
+
+.tree-leaf:hover {
+  background: var(--color-accent-bg);
+}
+
+.tree-leaf a {
+  color: var(--color-text);
+  text-decoration: none;
+  display: block;
+}
+
+.tree-leaf a:hover {
+  color: var(--color-accent);
+}
+
+.tree-leaf .leaf-meta {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* ========================================
+   Newsletter
+   ======================================== */
 
 .newsletter {
   background: var(--color-white);
@@ -353,11 +871,44 @@ section {
   margin-top: 0.75rem;
 }
 
-/* --- Footer --- */
+/* ========================================
+   Back link
+   ======================================== */
+
+.back-link {
+  text-align: center;
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.back-link a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+/* ========================================
+   Footer
+   ======================================== */
 
 .footer {
   padding: 3rem 2rem;
   text-align: center;
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .footer p {
@@ -374,84 +925,90 @@ section {
   text-decoration: underline;
 }
 
-/* --- Capital-specific grids --- */
-
-.philosophy-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
 }
 
-.philosophy-card {
-  padding: 2rem;
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  background: var(--color-white);
-  transition: border-color 0.2s, transform 0.2s;
-}
-
-.philosophy-card:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-2px);
-}
-
-.philosophy-card h3 {
-  font-size: 1.05rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.01em;
-}
-
-.philosophy-card p {
-  font-size: 0.9rem;
+.footer-links a {
+  font-size: 0.82rem;
   color: var(--color-text-muted);
-  line-height: 1.7;
-  margin-bottom: 0.75rem;
 }
 
-.philosophy-card p:last-child {
-  margin-bottom: 0;
+.footer-links a:hover {
+  color: var(--color-accent);
 }
 
-.focus-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+/* ========================================
+   Status badges
+   ======================================== */
+
+.status {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-.focus-card {
-  padding: 2rem;
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  background: var(--color-white);
-  transition: border-color 0.2s, transform 0.2s;
+.status-active {
+  background: #d4edda;
+  color: #155724;
 }
 
-.focus-card:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-2px);
+.status-draft {
+  background: #fff3cd;
+  color: #856404;
 }
 
-.focus-card h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  letter-spacing: -0.01em;
+.status-vision {
+  background: #e8e0f0;
+  color: #4a2c7a;
 }
 
-.focus-card p {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-  line-height: 1.7;
+.status-legacy {
+  background: var(--color-accent-bg);
+  color: var(--color-accent);
 }
 
-/* --- Responsive --- */
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 900px) {
+  .holons-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .tree-branches {
+    grid-template-columns: 1fr;
+  }
+}
 
 @media (max-width: 768px) {
   .nav-links {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(250, 250, 247, 0.98);
+    backdrop-filter: blur(12px);
+    flex-direction: column;
+    padding: 1rem 2rem 1.5rem;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
   }
 
   .about-content {
@@ -465,5 +1022,14 @@ section {
 
   section {
     padding: 4rem 1.5rem;
+  }
+
+  .page-meta {
+    gap: 1.25rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
   }
 }

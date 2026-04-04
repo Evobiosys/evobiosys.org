@@ -1,0 +1,266 @@
+---
+layout: default
+title: "SilkNotes — Interoperating Knowledge Silos"
+description: "SilkNotes will interoperate all knowledge containers among each other, providing a sovereign, local-first note-operating system."
+permalink: /holons/silknotes/
+---
+
+<!-- Page Header -->
+<div class="page-header">
+  <p class="breadcrumb">
+    <a href="/">Home</a> &rsaquo;
+    <a href="/holons/">Holons</a> &rsaquo;
+    <a href="/holons/kidur/">kidur</a> &rsaquo;
+    SilkNotes
+  </p>
+  <h1>SilkNotes</h1>
+  <p class="lead">
+    Interoperating your knowledge silos &mdash; making every note-taking tool
+    work together, with a sovereign local-first system at the core.
+  </p>
+
+  <dl class="page-meta">
+    <div class="meta-item">
+      <dt>Status</dt>
+      <dd><span class="status status-vision">Vision</span> / <span class="status status-active">Building</span></dd>
+    </div>
+    <div class="meta-item">
+      <dt>Parent Holon</dt>
+      <dd><a href="/holons/kidur/">kidur</a></dd>
+    </div>
+    <div class="meta-item">
+      <dt>Type</dt>
+      <dd>Tool</dd>
+    </div>
+    <div class="meta-item">
+      <dt>Tag</dt>
+      <dd><span class="status status-legacy">#my-legacy</span></dd>
+    </div>
+  </dl>
+</div>
+
+<!-- The Promise -->
+<section>
+  <div class="prose">
+    <h2>The SilkNotes Promise</h2>
+    <p>
+      Knowledge lives in silos. Your thoughts are scattered across Obsidian vaults,
+      Logseq graphs, Notion workspaces, Tana nodes, and a dozen other tools &mdash;
+      each with its own format, its own lock-in, its own partial view of what you know.
+      SilkNotes exists to dissolve these walls.
+    </p>
+    <p>
+      The promise rests on three pillars:
+    </p>
+    <ul>
+      <li><strong>Comprehensive feature set</strong> &mdash; everything you need in a knowledge
+        operating system, from backlinks and canvas views to structured output.</li>
+      <li><strong>Interoperate with any data silo</strong> &mdash; your notes flow freely between
+        tools. No exports, no copy-paste, no manual reconciliation.</li>
+      <li><strong>Silky in use</strong> &mdash; effortless and smooth. The complexity of
+        interoperation stays invisible; the experience stays fluid.</li>
+    </ul>
+    <p>
+      As a sovereign basis, SilkNotes will host its own local-first note-operating
+      system with an open-source free tier and premium support &mdash; ensuring that
+      your knowledge always belongs to you.
+    </p>
+  </div>
+</section>
+
+<!-- Current State -->
+<section class="section-alt">
+  <div class="prose">
+    <h2>Current State</h2>
+    <p>
+      SilkNotes is in active early development. The closest existing approximation
+      to the vision is Logseq with its whiteboard feature &mdash; but the interoperability
+      layer that SilkNotes aims to build goes far beyond any single tool.
+    </p>
+
+    <h3>Working Bridges (FOSS internal)</h3>
+    <ul>
+      <li><strong>Logseq</strong> &mdash; active integration via a dedicated plugin (sub-holon)</li>
+      <li><strong>Obsidian</strong> &mdash; file-level interop operational</li>
+      <li><strong>Cursor</strong> &mdash; development-environment bridge in place</li>
+    </ul>
+
+    <h3>In Progress (FOSS)</h3>
+    <ul>
+      <li>Reor</li>
+      <li>Affine</li>
+      <li>Legend App</li>
+    </ul>
+
+    <h3>Planned (FOSS to non-FOSS)</h3>
+    <ul>
+      <li>Notion</li>
+      <li>Todoist</li>
+    </ul>
+
+    <p>
+      A published OnePager &mdash; <em>"SilkNotes: Interoperating your knowledge silos"</em>
+      (v0.1.1) &mdash; outlines the full vision and has been shared with early partners.
+    </p>
+  </div>
+</section>
+
+<!-- Roadmap -->
+<section>
+  <div class="prose">
+    <h2>Roadmap</h2>
+    <p>
+      Development follows a practical sequence: prove interoperation between
+      existing tools first, then build inward toward the sovereign core.
+    </p>
+    <ol>
+      <li><strong>Get Obsidian to work</strong> &mdash; establish the foundational file-level
+        bridge and prove bidirectional sync.</li>
+      <li><strong>Interoperate with Logseq</strong> &mdash; extend the Logseq Plugin sub-holon
+        to handle graph-level data exchange.</li>
+      <li><strong>Interoperate with other FOSS tools</strong> &mdash; generalize the bridge
+        architecture to Reor, Affine, Legend App, and beyond.</li>
+      <li><strong>Recreate core features</strong> &mdash; build SilkNotes' own editing surface
+        with backlinks, canvas, and structured output.</li>
+      <li><strong>SilkNotes full on</strong> &mdash; launch the sovereign, local-first platform
+        with open-source free tier and premium support.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- Interoperability Approach -->
+<section class="section-alt">
+  <div class="prose">
+    <h2>Interoperability Approach</h2>
+    <p>
+      SilkNotes treats interoperability as a layered problem. Rather than building
+      one monolithic converter, it creates typed bridges between tool categories.
+    </p>
+
+    <h3>FOSS Internal Bridges</h3>
+    <p>
+      Tools that share open formats can be connected deeply. Logseq, Obsidian,
+      Cursor, and other open-source tools communicate through file-system-level
+      sync and shared data structures. This is the highest-fidelity layer.
+    </p>
+
+    <h3>FOSS-to-Proprietary Bridges</h3>
+    <p>
+      Tools like Notion and Todoist expose APIs but control the format. SilkNotes
+      builds adapter layers that translate between proprietary schemas and its own
+      open interchange format &mdash; preserving as much structure as the API allows.
+    </p>
+
+    <h3>The Output API</h3>
+    <p>
+      Every bridge feeds into a unified output API, so downstream consumers
+      (dashboards, publishing pipelines, AI agents) can access your knowledge
+      regardless of which tool originated it.
+    </p>
+  </div>
+</section>
+
+<!-- Tech Vision -->
+<section>
+  <div class="prose">
+    <h2>Tech Vision</h2>
+    <p>
+      The long-term architecture centers on conflict-free collaboration and
+      sovereignty:
+    </p>
+    <ul>
+      <li><strong>CRDT data structure</strong> &mdash; conflict-free replicated data types
+        ensure that edits from any device or tool merge cleanly without a central
+        authority.</li>
+      <li><strong>WebSocket sync</strong> &mdash; real-time propagation of changes across
+        connected clients and bridges.</li>
+      <li><strong>PostgreSQL persistence</strong> &mdash; durable storage layer for the
+        canonical state, queryable and portable.</li>
+      <li><strong>Local-first by default</strong> &mdash; your data lives on your machine.
+        The server is optional, never required.</li>
+      <li><strong>Open source core</strong> &mdash; the free tier includes the full editing
+        surface, all FOSS bridges, and local storage. Premium support covers
+        hosted sync, priority bridges, and enterprise features.</li>
+    </ul>
+
+    <h3>Feature Wish List</h3>
+    <ul>
+      <li>Easy analogue backlinks &mdash; linking should feel as natural as writing</li>
+      <li>Canvas / whiteboard view</li>
+      <li>Interoperate with external data sources beyond note-taking tools</li>
+      <li>Output API for downstream consumers</li>
+      <li>Fully offline-capable with seamless reconnection</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Partnerships -->
+<section class="section-alt">
+  <div class="container">
+    <p class="section-label">Partnerships</p>
+    <h2 class="section-title">Building Together</h2>
+    <p class="section-subtitle">
+      SilkNotes is reaching out to aligned projects and teams to co-develop
+      the interoperability layer. Current conversations and collaborations:
+    </p>
+
+    <div class="principles-grid">
+      <div class="principle-card">
+        <h3>Fileverse</h3>
+        <p>
+          Decentralized file collaboration. Exploring shared primitives for
+          sovereign document exchange.
+        </p>
+      </div>
+      <div class="principle-card">
+        <h3>Affine</h3>
+        <p>
+          Open-source knowledge base with docs, whiteboards, and databases.
+          A natural interop partner for SilkNotes' bridge layer.
+        </p>
+      </div>
+      <div class="principle-card">
+        <h3>Logseq</h3>
+        <p>
+          Privacy-first, open-source knowledge management. The Logseq Plugin
+          sub-holon is the most advanced bridge in development.
+        </p>
+      </div>
+      <div class="principle-card">
+        <h3>Reor</h3>
+        <p>
+          AI-powered private note-taking. Investigating bi-directional sync
+          with SilkNotes' CRDT layer.
+        </p>
+      </div>
+      <div class="principle-card">
+        <h3>InfraNodus</h3>
+        <p>
+          Network thinking and text analysis. Exploring how graph-based
+          insight tools can plug into the SilkNotes interchange format.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sub-holons -->
+<section>
+  <div class="prose">
+    <h2>Sub-holons</h2>
+    <ul>
+      <li><strong>Logseq Plugin</strong> &mdash; dedicated bridge and feature extension
+        for Logseq, serving as the first deep integration and proving ground
+        for SilkNotes' interop architecture.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Back links -->
+<section class="back-link">
+  <a href="/holons/kidur/">&larr; Back to kidur</a>
+  &nbsp;&middot;&nbsp;
+  <a href="/holons/">All holons</a>
+  &nbsp;&middot;&nbsp;
+  <a href="/">Home</a>
+</section>

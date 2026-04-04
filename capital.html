@@ -5,13 +5,8 @@ description: Representing the interests of living systems through investment. We
 permalink: /capital/
 ---
 
-<!-- Navigation -->
-<nav class="nav" id="nav">
-  <a href="/" class="nav-logo">EvoBioSys</a>
-</nav>
-
 <!-- Hero -->
-<section class="hero">
+<section class="hero hero-compact">
   <span class="hero-badge">Investment &middot; Animist &middot; Living Systems</span>
   <h1>Investing for <span class="accent">nature's values</span></h1>
   <p>
@@ -43,7 +38,7 @@ permalink: /capital/
       <div class="philosophy-card">
         <h3>Two Time Horizons</h3>
         <p><strong>Near term:</strong> "Nature" needs to become more legible to financial and technological systems. We advance definitions of measurement that include multiple ways of seeing and relating.</p>
-        <p style="margin-top: 1rem;"><strong>Long term:</strong> Free nature from the logic of human economics.</p>
+        <p><strong>Long term:</strong> Free nature from the logic of human economics.</p>
       </div>
 
       <div class="philosophy-card">
@@ -65,7 +60,7 @@ permalink: /capital/
 </section>
 
 <!-- Investment Focus -->
-<section id="focus">
+<section id="focus" class="section-alt">
   <div class="container">
     <p class="section-label">Investment Areas</p>
     <h2 class="section-title">Where we focus</h2>
@@ -130,18 +125,18 @@ permalink: /capital/
 </section>
 
 <!-- Ground Effect -->
-<section style="background: var(--color-white); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
-  <div class="container">
+<section>
+  <div class="container" style="text-align: center;">
     <p class="section-label">Origins</p>
     <h2 class="section-title">Ground Effect</h2>
-    <p class="section-subtitle">
+    <p class="section-subtitle" style="margin: 0 auto 2rem;">
       The aerodynamic by which birds, insects and other flying creatures
       get more lift and less drag when they fly close to the ground.
     </p>
-    <p style="text-align: center; color: var(--color-text-muted); font-size: 1.05rem; margin-top: 2rem;">
+    <p style="color: var(--color-text-muted); font-size: 1.05rem;">
       We call ourselves EvoBioSys Capital because we gain buoyancy the closer we get to Earth.
     </p>
-    <div style="margin-top: 2rem; text-align: center;">
+    <div style="margin-top: 2rem;">
       <a href="/assets/Ground Effect.pdf" class="btn btn-secondary" download>Read the manifesto (PDF)</a>
     </div>
   </div>
@@ -156,40 +151,24 @@ permalink: /capital/
       Updates on backing, portfolio insights, and invitations to our thinking.
     </p>
 
-    <!-- Listmonk Embed (placeholder) -->
-    <div id="listmonk-subscribe" style="margin-top: 2rem;">
-      <form id="listmonk-form" style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
-        <input type="email" name="email" placeholder="your@email.com" required style="flex: 1; padding: 0.75rem 1rem; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.9rem; font-family: var(--font-main);">
-        <button type="submit" class="btn btn-primary">Subscribe</button>
-      </form>
-      <p class="newsletter-note" style="margin-top: 0.75rem;">
-        Powered by <a href="https://listmonk.app" target="_blank" style="color: var(--color-accent);">Listmonk</a>
-      </p>
-    </div>
-
-    <script>
-      // Listmonk form submission — replace LISTMONK_URL with your Listmonk instance
-      const form = document.getElementById('listmonk-form');
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = form.querySelector('input[name="email"]').value;
-        // TODO: Update with your Listmonk endpoint
-        // POST to LISTMONK_URL/api/subscribers with {email, list_ids: [LIST_ID]}
-        console.log('Subscribe (capital):', email);
-        alert('Thanks! We'll be in touch at: ' + email);
-      });
-    </script>
+    <form id="listmonk-form-capital" class="newsletter-form">
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+    <p class="newsletter-note">
+      Powered by <a href="https://listmonk.app" target="_blank">Listmonk</a> &middot; Self-hosted, no tracking
+    </p>
   </div>
 </section>
 
-<!-- Back to main -->
-<section style="text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--color-border);">
-  <a href="/" style="color: var(--color-accent); text-decoration: none; font-size: 0.95rem;">← Back to EvoBioSys</a>
-</section>
-
 <script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 20);
-  });
+  const form = document.getElementById('listmonk-form-capital');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = form.querySelector('input[name="email"]').value;
+      console.log('Subscribe (capital):', email);
+      alert('Thanks! We\u2019ll be in touch at: ' + email);
+    });
+  }
 </script>
