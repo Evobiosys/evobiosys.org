@@ -5,262 +5,1076 @@ description: "SilkNotes will interoperate all knowledge containers among each ot
 permalink: /holons/silknotes/
 ---
 
-<!-- Page Header -->
-<div class="page-header">
-  <p class="breadcrumb">
-    <a href="/">Home</a> &rsaquo;
-    <a href="/holons/">Holons</a> &rsaquo;
-    <a href="/holons/kidur/">kidur</a> &rsaquo;
-    SilkNotes
-  </p>
-  <h1>SilkNotes</h1>
-  <p class="lead">
-    Interoperating your knowledge silos &mdash; making every note-taking tool
-    work together, with a sovereign local-first system at the core.
-  </p>
+<style>
+  /* === SILKNOTES: Silky / Flowing Design === */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-  <dl class="page-meta">
-    <div class="meta-item">
-      <dt>Status</dt>
-      <dd><span class="status status-vision">Vision</span> / <span class="status status-active">Building</span></dd>
+  .silk-page {
+    --silk-bg: #faf9f7;
+    --silk-bg-warm: #f5f2ee;
+    --silk-bg-glow: #f0ebe4;
+    --silk-bg-deep: #e8e2d9;
+    --silk-text: #2c2825;
+    --silk-text-soft: #6b6360;
+    --silk-text-faint: #a09890;
+    --silk-accent: #8b6cc1;
+    --silk-accent-soft: rgba(139, 108, 193, 0.12);
+    --silk-accent-glow: rgba(139, 108, 193, 0.06);
+    --silk-thread: rgba(139, 108, 193, 0.18);
+    --silk-green: #4a9e6e;
+    --silk-green-bg: rgba(74, 158, 110, 0.08);
+    --silk-amber: #c4903e;
+    --silk-amber-bg: rgba(196, 144, 62, 0.08);
+    --silk-rose: #c46b7c;
+    --silk-rose-bg: rgba(196, 107, 124, 0.06);
+    --silk-blue: #5a8ec4;
+    --silk-blue-bg: rgba(90, 142, 196, 0.06);
+    --silk-border: rgba(139, 108, 193, 0.12);
+    --silk-border-soft: rgba(0, 0, 0, 0.06);
+    --silk-radius: 16px;
+    --silk-radius-sm: 10px;
+    --silk-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --silk-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(139, 108, 193, 0.06);
+    --silk-shadow-hover: 0 2px 8px rgba(0,0,0,0.06), 0 12px 32px rgba(139, 108, 193, 0.1);
+  }
+
+  /* ---- Silk thread decorative lines ---- */
+  .silk-thread-h {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--silk-thread), var(--silk-accent-soft), var(--silk-thread), transparent);
+    margin: 0;
+  }
+  .silk-thread-v {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, var(--silk-thread), transparent);
+  }
+
+  /* ---- Gradient backgrounds ---- */
+  .silk-gradient-soft {
+    background: linear-gradient(165deg, var(--silk-bg) 0%, var(--silk-bg-warm) 50%, var(--silk-bg-glow) 100%);
+  }
+  .silk-gradient-warm {
+    background: linear-gradient(165deg, var(--silk-bg-warm) 0%, var(--silk-bg-glow) 50%, var(--silk-bg-deep) 100%);
+  }
+  .silk-gradient-accent {
+    background: linear-gradient(165deg, var(--silk-bg) 0%, rgba(139, 108, 193, 0.03) 50%, rgba(139, 108, 193, 0.06) 100%);
+  }
+
+  /* ---- Section system ---- */
+  .silk-section {
+    padding: 5rem 1.5rem;
+    position: relative;
+  }
+  .silk-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* ---- Typography ---- */
+  .silk-page h1, .silk-page h2, .silk-page h3, .silk-page h4 {
+    font-family: var(--silk-font);
+    color: var(--silk-text);
+  }
+  .silk-page h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+  }
+  .silk-page h2 {
+    font-size: 1.7rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .silk-page h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--silk-accent);
+    margin-bottom: 0.5rem;
+  }
+  .silk-page p, .silk-page li {
+    font-family: var(--silk-font);
+    color: var(--silk-text-soft);
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+  .silk-label {
+    font-family: var(--silk-font);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--silk-accent);
+    margin-bottom: 0.6rem;
+  }
+
+  /* ---- Header ---- */
+  .silk-header {
+    padding: 7rem 1.5rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Decorative silk threads in header */
+  .silk-header::before,
+  .silk-header::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 120%;
+    top: -10%;
+    background: linear-gradient(180deg, transparent 0%, var(--silk-thread) 30%, var(--silk-accent-soft) 50%, var(--silk-thread) 70%, transparent 100%);
+  }
+  .silk-header::before { left: 15%; transform: rotate(2deg); }
+  .silk-header::after { right: 20%; transform: rotate(-1.5deg); }
+
+  .silk-header .breadcrumb {
+    font-family: var(--silk-font);
+    font-size: 0.8rem;
+    color: var(--silk-text-faint);
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .silk-header .breadcrumb a {
+    color: var(--silk-accent);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .silk-header .breadcrumb a:hover { color: var(--silk-text); }
+  .silk-header h1 {
+    position: relative;
+    z-index: 1;
+  }
+  .silk-header h1 .silk-highlight {
+    color: var(--silk-accent);
+    font-weight: 400;
+  }
+  .silk-header .tagline {
+    font-family: var(--silk-font);
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--silk-text-soft);
+    max-width: 560px;
+    margin: 1.5rem auto 0;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+  .silk-header .version-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--silk-accent);
+    background: var(--silk-accent-soft);
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---- Meta strip ---- */
+  .silk-meta {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .silk-meta-item dt {
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--silk-text-faint);
+    font-family: var(--silk-font);
+  }
+  .silk-meta-item dd {
+    font-size: 0.88rem;
+    color: var(--silk-text);
+    margin: 0.15rem 0 0;
+    font-family: var(--silk-font);
+  }
+  .silk-meta-item dd a {
+    color: var(--silk-accent);
+    text-decoration: none;
+  }
+  .silk-chip {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    font-family: var(--silk-font);
+  }
+  .silk-chip-vision {
+    background: var(--silk-accent-soft);
+    color: var(--silk-accent);
+  }
+  .silk-chip-building {
+    background: var(--silk-green-bg);
+    color: var(--silk-green);
+  }
+  .silk-chip-legacy {
+    background: var(--silk-rose-bg);
+    color: var(--silk-rose);
+  }
+
+  /* ---- Promise cards ---- */
+  .promise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .promise-card {
+    background: white;
+    border: 1px solid var(--silk-border-soft);
+    border-radius: var(--silk-radius);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .promise-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--silk-accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .promise-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--silk-shadow-hover);
+  }
+  .promise-card:hover::before { opacity: 1; }
+  .promise-card .card-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background: var(--silk-accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--silk-accent);
+    font-weight: 600;
+    font-family: var(--silk-font);
+  }
+  .promise-card h3 {
+    font-size: 1rem;
+    color: var(--silk-text);
+    margin-bottom: 0.5rem;
+  }
+  .promise-card p {
+    font-size: 0.85rem;
+    color: var(--silk-text-soft);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ---- Bridge / Interop map ---- */
+  .bridge-map {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .bridge-card {
+    background: white;
+    border: 1px solid var(--silk-border-soft);
+    border-radius: var(--silk-radius-sm);
+    padding: 1.3rem 1.2rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+  }
+  .bridge-card:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--silk-shadow);
+  }
+  .bridge-card .bridge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+    font-family: var(--silk-font);
+  }
+  .bridge-card .bridge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .bridge-card .dot-green { background: var(--silk-green); }
+  .bridge-card .dot-amber { background: var(--silk-amber); }
+  .bridge-card .dot-blue { background: var(--silk-blue); }
+  .bridge-card .status-green { color: var(--silk-green); }
+  .bridge-card .status-amber { color: var(--silk-amber); }
+  .bridge-card .status-blue { color: var(--silk-blue); }
+  .bridge-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--silk-text);
+    margin-bottom: 0.3rem;
+  }
+  .bridge-card p {
+    font-size: 0.8rem;
+    color: var(--silk-text-faint);
+    line-height: 1.5;
+    margin: 0;
+  }
+  /* Silk thread connector between cards */
+  .bridge-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -0.55rem;
+    width: 1rem;
+    height: 1px;
+    background: var(--silk-thread);
+  }
+  .bridge-card:last-child::after,
+  .bridge-card:nth-child(4n)::after { display: none; }
+
+  /* ---- Roadmap ---- */
+  .roadmap {
+    position: relative;
+    margin-top: 2.5rem;
+    padding-left: 2.5rem;
+  }
+  .roadmap::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--silk-accent), var(--silk-thread), transparent);
+  }
+  .roadmap-step {
+    position: relative;
+    padding: 0 0 2.5rem 0;
+  }
+  .roadmap-step:last-child { padding-bottom: 0; }
+  .roadmap-step::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 6px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    border: 2px solid var(--silk-accent);
+    background: var(--silk-bg);
+    z-index: 1;
+  }
+  .roadmap-step.step-done::before {
+    background: var(--silk-green);
+    border-color: var(--silk-green);
+  }
+  .roadmap-step.step-active::before {
+    background: var(--silk-accent);
+    border-color: var(--silk-accent);
+    box-shadow: 0 0 0 4px var(--silk-accent-soft);
+  }
+  .roadmap-step h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--silk-text);
+    margin-bottom: 0.3rem;
+  }
+  .roadmap-step p {
+    font-size: 0.85rem;
+    color: var(--silk-text-soft);
+    margin: 0;
+    line-height: 1.6;
+  }
+  .roadmap-step .step-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 1px 8px;
+    border-radius: 10px;
+    margin-top: 0.4rem;
+  }
+  .step-tag-done { background: var(--silk-green-bg); color: var(--silk-green); }
+  .step-tag-active { background: var(--silk-accent-soft); color: var(--silk-accent); }
+  .step-tag-planned { background: var(--silk-amber-bg); color: var(--silk-amber); }
+
+  /* ---- Tech vision ---- */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+  .tech-item {
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid var(--silk-border-soft);
+    border-radius: var(--silk-radius-sm);
+    transition: box-shadow 0.3s ease;
+  }
+  .tech-item:hover { box-shadow: var(--silk-shadow); }
+  .tech-item h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--silk-accent);
+    margin-bottom: 0.35rem;
+  }
+  .tech-item p {
+    font-size: 0.84rem;
+    color: var(--silk-text-soft);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ---- Partnership cards ---- */
+  .partner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+  .partner-card {
+    padding: 1.5rem;
+    border-radius: var(--silk-radius-sm);
+    border: 1px solid var(--silk-border-soft);
+    background: white;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+  }
+  .partner-card:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--silk-shadow);
+  }
+  /* Silk thread connector at top */
+  .partner-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--silk-accent-soft), transparent);
+    border-radius: 1px;
+  }
+  .partner-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--silk-text);
+    margin-bottom: 0.35rem;
+  }
+  .partner-card p {
+    font-size: 0.84rem;
+    color: var(--silk-text-soft);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ---- Blockquote ---- */
+  .silk-page blockquote {
+    border: none;
+    border-left: 2px solid var(--silk-accent);
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    background: linear-gradient(135deg, var(--silk-accent-glow), transparent);
+    border-radius: 0 var(--silk-radius-sm) var(--silk-radius-sm) 0;
+  }
+  .silk-page blockquote p {
+    color: var(--silk-text) !important;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.05rem !important;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ---- Approach section ---- */
+  .approach-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 2rem;
+  }
+  .approach-split h3 {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+  .approach-split p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  /* ---- Wish list ---- */
+  .wish-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+  }
+  .wish-list li {
+    padding: 0.6rem 0 0.6rem 1.5rem;
+    border-bottom: 1px solid var(--silk-border-soft);
+    position: relative;
+    font-size: 0.9rem;
+    color: var(--silk-text-soft);
+  }
+  .wish-list li:last-child { border-bottom: none; }
+  .wish-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--silk-accent);
+    opacity: 0.5;
+  }
+
+  /* ---- Back link ---- */
+  .silk-backlink {
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+  .silk-backlink a {
+    font-family: var(--silk-font);
+    font-size: 0.88rem;
+    color: var(--silk-text-faint);
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+  .silk-backlink a:hover { color: var(--silk-accent); }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 768px) {
+    .silk-header { padding: 5rem 1.2rem 3.5rem; }
+    .silk-page h1 { font-size: 2.2rem; }
+    .silk-section { padding: 3.5rem 1.2rem; }
+    .promise-grid { grid-template-columns: 1fr; }
+    .bridge-map { grid-template-columns: 1fr 1fr; }
+    .bridge-card::after { display: none; }
+    .approach-split { grid-template-columns: 1fr; gap: 1.5rem; }
+    .silk-meta { gap: 1.2rem; }
+  }
+  @media (max-width: 480px) {
+    .bridge-map { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="silk-page">
+
+  <!-- ============================================ -->
+  <!--  HEADER                                       -->
+  <!-- ============================================ -->
+  <header class="silk-header silk-gradient-soft">
+    <p class="breadcrumb">
+      <a href="/">Home</a> &rsaquo;
+      <a href="/holons/">Holons</a> &rsaquo;
+      <a href="/holons/kidur/">kidur</a> &rsaquo;
+      SilkNotes
+    </p>
+
+    <h1><span class="silk-highlight">Silk</span>Notes</h1>
+
+    <p class="tagline">
+      Interoperating your knowledge silos &mdash; making every note-taking tool
+      work together, with a sovereign local-first system at the core.
+    </p>
+
+    <span class="version-badge">OnePager v0.1.1</span>
+
+    <dl class="silk-meta">
+      <div class="silk-meta-item">
+        <dt>Status</dt>
+        <dd>
+          <span class="silk-chip silk-chip-vision">Vision</span>
+          <span class="silk-chip silk-chip-building">Building</span>
+        </dd>
+      </div>
+      <div class="silk-meta-item">
+        <dt>Parent</dt>
+        <dd><a href="/holons/kidur/">kidur</a></dd>
+      </div>
+      <div class="silk-meta-item">
+        <dt>Type</dt>
+        <dd>Tool</dd>
+      </div>
+      <div class="silk-meta-item">
+        <dt>Closest Tool</dt>
+        <dd>Logseq + whiteboards</dd>
+      </div>
+      <div class="silk-meta-item">
+        <dt>Tag</dt>
+        <dd><span class="silk-chip silk-chip-legacy">#my-legacy</span></dd>
+      </div>
+      <div class="silk-meta-item">
+        <dt>Domain</dt>
+        <dd><a href="https://silknotes.one" target="_blank" style="color: var(--silk-accent); text-decoration: none; border-bottom: 1px solid var(--silk-accent);">silknotes.one</a></dd>
+      </div>
+      <div class="silk-meta-item">
+        <dt>OnePager</dt>
+        <dd>v0.1.1</dd>
+      </div>
+    </dl>
+  </header>
+
+  <div class="silk-thread-h"></div>
+
+  <!-- ============================================ -->
+  <!--  THE PROMISE                                  -->
+  <!-- ============================================ -->
+  <section class="silk-section silk-gradient-accent">
+    <div class="silk-inner">
+      <p class="silk-label">The Promise</p>
+      <h2>Three pillars of a knowledge operating system</h2>
+      <p>
+        Knowledge lives in silos. Your thoughts are scattered across Obsidian vaults,
+        Logseq graphs, Notion workspaces, Tana nodes, and a dozen other tools &mdash;
+        each with its own format, its own lock-in, its own partial view of what you know.
+        SilkNotes exists to dissolve these walls.
+      </p>
+
+      <div class="promise-grid">
+        <div class="promise-card">
+          <div class="card-icon">1</div>
+          <h3>Comprehensive</h3>
+          <p>
+            A complete feature set grounded in how the brain actually works.
+            Backlinks, canvas views, structured output, and deep search &mdash;
+            designed from neuroscience, not feature checklists.
+          </p>
+        </div>
+
+        <div class="promise-card">
+          <div class="card-icon">2</div>
+          <h3>Interoperable</h3>
+          <p>
+            Your notes flow freely between tools. No exports, no copy-paste,
+            no Zapier, no manual reconciliation. SilkNotes bridges your
+            silos directly, on your machine.
+          </p>
+        </div>
+
+        <div class="promise-card">
+          <div class="card-icon">3</div>
+          <h3>Silky in Use</h3>
+          <p>
+            The complexity of interoperation stays invisible. The experience
+            stays fluid. Effortless and smooth &mdash; because a tool that
+            disrupts your thinking is no tool at all.
+          </p>
+        </div>
+      </div>
+
+      <blockquote style="margin-top: 3rem;">
+        <p>
+          As a sovereign basis, SilkNotes will host its own local-first
+          note-operating system with an open-source free tier and premium
+          support &mdash; ensuring that your knowledge always belongs to you.
+        </p>
+      </blockquote>
     </div>
-    <div class="meta-item">
-      <dt>Parent Holon</dt>
-      <dd><a href="/holons/kidur/">kidur</a></dd>
+  </section>
+
+  <div class="silk-thread-h"></div>
+
+  <!-- ============================================ -->
+  <!--  INTEROPERABILITY MAP                         -->
+  <!-- ============================================ -->
+  <section class="silk-section silk-gradient-soft">
+    <div class="silk-inner">
+      <p class="silk-label">Interoperability Map</p>
+      <h2>Bridges across the knowledge landscape</h2>
+      <p>
+        SilkNotes connects tools through typed bridges. Each bridge handles
+        format translation, conflict resolution, and bidirectional sync &mdash;
+        so you work in whatever tool you prefer, and SilkNotes keeps the
+        threads connected.
+      </p>
+
+      <h3 style="margin-top: 2.5rem; font-size: 0.85rem; color: var(--silk-green);">Working Bridges</h3>
+      <div class="bridge-map">
+        <div class="bridge-card">
+          <div class="bridge-status">
+            <span class="bridge-dot dot-green"></span>
+            <span class="status-green">Working</span>
+          </div>
+          <h4>Logseq</h4>
+          <p>Active integration via a dedicated plugin. Graph-level data exchange with bidirectional sync.</p>
+        </div>
+
+        <div class="bridge-card">
+          <div class="bridge-status">
+            <span class="bridge-dot dot-green"></span>
+            <span class="status-green">Working</span>
+          </div>
+          <h4>Obsidian</h4>
+          <p>File-level interop operational. Markdown vault sync with frontmatter preservation.</p>
+        </div>
+
+        <div class="bridge-card">
+          <div class="bridge-status">
+            <span class="bridge-dot dot-green"></span>
+            <span class="status-green">Working</span>
+          </div>
+          <h4>Cursor</h4>
+          <p>Development environment bridge. Code context flows into knowledge graph and back.</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 2.5rem; font-size: 0.85rem; color: var(--silk-amber);">Planned Bridges</h3>
+      <div class="bridge-map">
+        <div class="bridge-card">
+          <div class="bridge-status">
+            <span class="bridge-dot dot-amber"></span>
+            <span class="status-amber">In Progress</span>
+          </div>
+          <h4>Affine</h4>
+          <p>Open-source knowledge base with docs, whiteboards, and databases. Natural interop partner.</p>
+        </div>
+
+        <div class="bridge-card">
+          <div class="bridge-status">
+            <span class="bridge-dot dot-amber"></span>
+            <span class="status-amber">In Progress</span>
+          </div>
+          <h4>Reor</h4>
+          <p>AI-powered private note-taking. Investigating bidirectional sync with the CRDT layer.</p>
+        </div>
+
+        <div class="bridge-card">
+          <div class="bridge-status">
+            <span class="bridge-dot dot-amber"></span>
+            <span class="status-amber">Planned</span>
+          </div>
+          <h4>Legend</h4>
+          <p>Task management with deep linking. Planned bridge for project-knowledge integration.</p>
+        </div>
+
+        <div class="bridge-card">
+          <div class="bridge-status">
+            <span class="bridge-dot dot-amber"></span>
+            <span class="status-amber">Planned</span>
+          </div>
+          <h4>Notion</h4>
+          <p>API-based adapter translating between proprietary schemas and SilkNotes' open interchange format.</p>
+        </div>
+      </div>
     </div>
-    <div class="meta-item">
-      <dt>Type</dt>
-      <dd>Tool</dd>
+  </section>
+
+  <div class="silk-thread-h"></div>
+
+  <!-- ============================================ -->
+  <!--  INTEROP APPROACH                             -->
+  <!-- ============================================ -->
+  <section class="silk-section silk-gradient-warm">
+    <div class="silk-inner">
+      <p class="silk-label">Architecture</p>
+      <h2>How interoperability works</h2>
+      <p>
+        SilkNotes treats interoperability as a layered problem. Rather than building
+        one monolithic converter, it creates typed bridges between tool categories.
+      </p>
+
+      <div class="approach-split">
+        <div>
+          <h3>FOSS Internal Bridges</h3>
+          <p>
+            Tools that share open formats can be connected deeply. Logseq, Obsidian,
+            Cursor, and other open-source tools communicate through file-system-level
+            sync and shared data structures. This is the highest-fidelity layer &mdash;
+            no information is lost in translation.
+          </p>
+        </div>
+        <div>
+          <h3>FOSS-to-Proprietary Bridges</h3>
+          <p>
+            Tools like Notion and Todoist expose APIs but control the format. SilkNotes
+            builds adapter layers that translate between proprietary schemas and its own
+            open interchange format &mdash; preserving as much structure as the API allows.
+          </p>
+        </div>
+      </div>
+
+      <div class="approach-split" style="margin-top: 1rem;">
+        <div>
+          <h3>The Output API</h3>
+          <p>
+            Every bridge feeds into a unified output API, so downstream consumers
+            &mdash; dashboards, publishing pipelines, AI agents &mdash; can access your
+            knowledge regardless of which tool originated it.
+          </p>
+        </div>
+        <div>
+          <h3>No Zapier Required</h3>
+          <p>
+            A core promise. SilkNotes handles interoperation natively. You should not
+            need a third-party glue service to make your own tools talk to each other.
+            Bridges run locally, on your terms.
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="meta-item">
-      <dt>Tag</dt>
-      <dd><span class="status status-legacy">#my-legacy</span></dd>
+  </section>
+
+  <div class="silk-thread-h"></div>
+
+  <!-- ============================================ -->
+  <!--  ROADMAP                                      -->
+  <!-- ============================================ -->
+  <section class="silk-section silk-gradient-soft">
+    <div class="silk-inner">
+      <p class="silk-label">Roadmap</p>
+      <h2>From bridges to sovereign platform</h2>
+      <p>
+        Development follows a practical sequence: prove interoperation between
+        existing tools first, then build inward toward the sovereign core.
+      </p>
+
+      <div class="roadmap">
+        <div class="roadmap-step step-done">
+          <h4>Obsidian bridge</h4>
+          <p>
+            Establish the foundational file-level bridge and prove bidirectional
+            sync. Markdown vaults flow seamlessly between Obsidian and the
+            SilkNotes interchange layer.
+          </p>
+          <span class="step-tag step-tag-done">Operational</span>
+        </div>
+
+        <div class="roadmap-step step-active">
+          <h4>Logseq interop</h4>
+          <p>
+            Extend the Logseq Plugin sub-holon to handle graph-level data exchange.
+            This is the deepest integration point, proving that outliner-style and
+            document-style tools can truly share data.
+          </p>
+          <span class="step-tag step-tag-active">Active</span>
+        </div>
+
+        <div class="roadmap-step">
+          <h4>Expand to other FOSS tools</h4>
+          <p>
+            Generalize the bridge architecture to Reor, Affine, Legend, and beyond.
+            Each new bridge validates and strengthens the interchange format.
+          </p>
+          <span class="step-tag step-tag-planned">Planned</span>
+        </div>
+
+        <div class="roadmap-step">
+          <h4>Recreate core features</h4>
+          <p>
+            Build SilkNotes' own editing surface with backlinks, canvas views,
+            and structured output &mdash; informed by neuroscience research on
+            how humans actually organize knowledge.
+          </p>
+          <span class="step-tag step-tag-planned">Planned</span>
+        </div>
+
+        <div class="roadmap-step">
+          <h4>SilkNotes full</h4>
+          <p>
+            Launch the sovereign, local-first platform with open-source free tier
+            and premium support. Every bridge, every feature, one silky interface.
+          </p>
+          <span class="step-tag step-tag-planned">Planned</span>
+        </div>
+      </div>
     </div>
-  </dl>
+  </section>
+
+  <div class="silk-thread-h"></div>
+
+  <!-- ============================================ -->
+  <!--  TECH VISION                                  -->
+  <!-- ============================================ -->
+  <section class="silk-section silk-gradient-accent">
+    <div class="silk-inner">
+      <p class="silk-label">Tech Vision</p>
+      <h2>The architecture beneath the silk</h2>
+      <p>
+        The long-term architecture centers on conflict-free collaboration and
+        sovereignty. Every layer is designed so that the server is optional
+        and your data is always yours.
+      </p>
+
+      <div class="tech-grid">
+        <div class="tech-item">
+          <h4>CRDT Data Structure</h4>
+          <p>
+            Conflict-free replicated data types ensure that edits from any device
+            or tool merge cleanly without a central authority. The foundation for
+            true local-first collaboration.
+          </p>
+        </div>
+        <div class="tech-item">
+          <h4>WebSocket Sync</h4>
+          <p>
+            Real-time propagation of changes across connected clients and bridges.
+            When you edit in Obsidian, your Logseq graph updates within seconds.
+          </p>
+        </div>
+        <div class="tech-item">
+          <h4>PostgreSQL Persistence</h4>
+          <p>
+            Durable storage layer for the canonical state. Queryable, portable,
+            and compatible with the broader kidur stack via Apache AGE.
+          </p>
+        </div>
+        <div class="tech-item">
+          <h4>Screenpipe Integration</h4>
+          <p>
+            Ambient context capture that feeds into the knowledge graph. What you
+            see and work with becomes queryable knowledge, with full privacy control.
+          </p>
+        </div>
+        <div class="tech-item">
+          <h4>Local-First by Default</h4>
+          <p>
+            Your data lives on your machine. The server is optional, never required.
+            Fully offline-capable with seamless reconnection when you choose to sync.
+          </p>
+        </div>
+        <div class="tech-item">
+          <h4>Open Source Core</h4>
+          <p>
+            The free tier includes the full editing surface, all FOSS bridges, and
+            local storage. Premium support covers hosted sync, priority bridges,
+            and enterprise features.
+          </p>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 3rem;">Feature Wish List</h3>
+      <ul class="wish-list">
+        <li>Easy analogue backlinks &mdash; linking should feel as natural as writing</li>
+        <li>Canvas and whiteboard views for spatial thinking</li>
+        <li>Interoperate with external data sources beyond note-taking tools</li>
+        <li>Output API for downstream consumers (publishing, dashboards, AI agents)</li>
+        <li>Fully offline-capable with seamless reconnection</li>
+        <li>Neuroscience-informed interface design for knowledge retention</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="silk-thread-h"></div>
+
+  <!-- ============================================ -->
+  <!--  PARTNERSHIPS                                 -->
+  <!-- ============================================ -->
+  <section class="silk-section silk-gradient-warm">
+    <div class="silk-inner">
+      <p class="silk-label">Partnerships</p>
+      <h2>Building together</h2>
+      <p>
+        SilkNotes is reaching out to aligned projects and teams to co-develop
+        the interoperability layer. The bridges are stronger when both sides
+        are invested in making them work.
+      </p>
+
+      <div class="partner-grid">
+        <div class="partner-card">
+          <h4>Affine</h4>
+          <p>
+            Open-source knowledge base with docs, whiteboards, and databases.
+            A natural interop partner for SilkNotes' bridge layer &mdash;
+            shared primitives for block-level data exchange.
+          </p>
+        </div>
+
+        <div class="partner-card">
+          <h4>Logseq</h4>
+          <p>
+            Privacy-first, open-source knowledge management. The Logseq Plugin
+            sub-holon is the most advanced bridge in development and the
+            proving ground for graph-level interop.
+          </p>
+        </div>
+
+        <div class="partner-card">
+          <h4>Reor</h4>
+          <p>
+            AI-powered private note-taking with local inference. Investigating
+            bidirectional sync with SilkNotes' CRDT layer for unified
+            AI-augmented knowledge management.
+          </p>
+        </div>
+
+        <div class="partner-card">
+          <h4>InfraNodus</h4>
+          <p>
+            Network thinking and text analysis. Exploring how graph-based
+            insight tools can plug into the SilkNotes interchange format
+            for emergent pattern discovery.
+          </p>
+        </div>
+
+        <div class="partner-card">
+          <h4>Fileverse</h4>
+          <p>
+            Decentralized file collaboration. Exploring shared primitives for
+            sovereign document exchange &mdash; particularly relevant for the
+            CRDT-based sync layer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="silk-thread-h"></div>
+
+  <!-- ============================================ -->
+  <!--  SUB-HOLONS                                   -->
+  <!-- ============================================ -->
+  <section class="silk-section silk-gradient-soft">
+    <div class="silk-inner">
+      <p class="silk-label">Sub-holons</p>
+      <h2>Components of SilkNotes</h2>
+
+      <div class="tech-grid">
+        <div class="tech-item">
+          <h4>Logseq Plugin</h4>
+          <p>
+            Dedicated bridge and feature extension for Logseq. Serves as the
+            first deep integration and proving ground for SilkNotes' interop
+            architecture. Graph-level data exchange with bidirectional sync.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!--  BACK LINKS                                   -->
+  <!-- ============================================ -->
+  <div class="silk-backlink silk-gradient-soft">
+    <a href="/holons/kidur/">&larr; Back to kidur</a>
+    &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+    <a href="/holons/">All holons</a>
+    &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+    <a href="/">Home</a>
+  </div>
+
 </div>
-
-<!-- The Promise -->
-<section>
-  <div class="prose">
-    <h2>The SilkNotes Promise</h2>
-    <p>
-      Knowledge lives in silos. Your thoughts are scattered across Obsidian vaults,
-      Logseq graphs, Notion workspaces, Tana nodes, and a dozen other tools &mdash;
-      each with its own format, its own lock-in, its own partial view of what you know.
-      SilkNotes exists to dissolve these walls.
-    </p>
-    <p>
-      The promise rests on three pillars:
-    </p>
-    <ul>
-      <li><strong>Comprehensive feature set</strong> &mdash; everything you need in a knowledge
-        operating system, from backlinks and canvas views to structured output.</li>
-      <li><strong>Interoperate with any data silo</strong> &mdash; your notes flow freely between
-        tools. No exports, no copy-paste, no manual reconciliation.</li>
-      <li><strong>Silky in use</strong> &mdash; effortless and smooth. The complexity of
-        interoperation stays invisible; the experience stays fluid.</li>
-    </ul>
-    <p>
-      As a sovereign basis, SilkNotes will host its own local-first note-operating
-      system with an open-source free tier and premium support &mdash; ensuring that
-      your knowledge always belongs to you.
-    </p>
-  </div>
-</section>
-
-<!-- Current State -->
-<section class="section-alt">
-  <div class="prose">
-    <h2>Current State</h2>
-    <p>
-      SilkNotes is in active early development. The closest existing approximation
-      to the vision is Logseq with its whiteboard feature &mdash; but the interoperability
-      layer that SilkNotes aims to build goes far beyond any single tool.
-    </p>
-
-    <h3>Working Bridges (FOSS internal)</h3>
-    <ul>
-      <li><strong>Logseq</strong> &mdash; active integration via a dedicated plugin (sub-holon)</li>
-      <li><strong>Obsidian</strong> &mdash; file-level interop operational</li>
-      <li><strong>Cursor</strong> &mdash; development-environment bridge in place</li>
-    </ul>
-
-    <h3>In Progress (FOSS)</h3>
-    <ul>
-      <li>Reor</li>
-      <li>Affine</li>
-      <li>Legend App</li>
-    </ul>
-
-    <h3>Planned (FOSS to non-FOSS)</h3>
-    <ul>
-      <li>Notion</li>
-      <li>Todoist</li>
-    </ul>
-
-    <p>
-      A published OnePager &mdash; <em>"SilkNotes: Interoperating your knowledge silos"</em>
-      (v0.1.1) &mdash; outlines the full vision and has been shared with early partners.
-    </p>
-  </div>
-</section>
-
-<!-- Roadmap -->
-<section>
-  <div class="prose">
-    <h2>Roadmap</h2>
-    <p>
-      Development follows a practical sequence: prove interoperation between
-      existing tools first, then build inward toward the sovereign core.
-    </p>
-    <ol>
-      <li><strong>Get Obsidian to work</strong> &mdash; establish the foundational file-level
-        bridge and prove bidirectional sync.</li>
-      <li><strong>Interoperate with Logseq</strong> &mdash; extend the Logseq Plugin sub-holon
-        to handle graph-level data exchange.</li>
-      <li><strong>Interoperate with other FOSS tools</strong> &mdash; generalize the bridge
-        architecture to Reor, Affine, Legend App, and beyond.</li>
-      <li><strong>Recreate core features</strong> &mdash; build SilkNotes' own editing surface
-        with backlinks, canvas, and structured output.</li>
-      <li><strong>SilkNotes full on</strong> &mdash; launch the sovereign, local-first platform
-        with open-source free tier and premium support.</li>
-    </ol>
-  </div>
-</section>
-
-<!-- Interoperability Approach -->
-<section class="section-alt">
-  <div class="prose">
-    <h2>Interoperability Approach</h2>
-    <p>
-      SilkNotes treats interoperability as a layered problem. Rather than building
-      one monolithic converter, it creates typed bridges between tool categories.
-    </p>
-
-    <h3>FOSS Internal Bridges</h3>
-    <p>
-      Tools that share open formats can be connected deeply. Logseq, Obsidian,
-      Cursor, and other open-source tools communicate through file-system-level
-      sync and shared data structures. This is the highest-fidelity layer.
-    </p>
-
-    <h3>FOSS-to-Proprietary Bridges</h3>
-    <p>
-      Tools like Notion and Todoist expose APIs but control the format. SilkNotes
-      builds adapter layers that translate between proprietary schemas and its own
-      open interchange format &mdash; preserving as much structure as the API allows.
-    </p>
-
-    <h3>The Output API</h3>
-    <p>
-      Every bridge feeds into a unified output API, so downstream consumers
-      (dashboards, publishing pipelines, AI agents) can access your knowledge
-      regardless of which tool originated it.
-    </p>
-  </div>
-</section>
-
-<!-- Tech Vision -->
-<section>
-  <div class="prose">
-    <h2>Tech Vision</h2>
-    <p>
-      The long-term architecture centers on conflict-free collaboration and
-      sovereignty:
-    </p>
-    <ul>
-      <li><strong>CRDT data structure</strong> &mdash; conflict-free replicated data types
-        ensure that edits from any device or tool merge cleanly without a central
-        authority.</li>
-      <li><strong>WebSocket sync</strong> &mdash; real-time propagation of changes across
-        connected clients and bridges.</li>
-      <li><strong>PostgreSQL persistence</strong> &mdash; durable storage layer for the
-        canonical state, queryable and portable.</li>
-      <li><strong>Local-first by default</strong> &mdash; your data lives on your machine.
-        The server is optional, never required.</li>
-      <li><strong>Open source core</strong> &mdash; the free tier includes the full editing
-        surface, all FOSS bridges, and local storage. Premium support covers
-        hosted sync, priority bridges, and enterprise features.</li>
-    </ul>
-
-    <h3>Feature Wish List</h3>
-    <ul>
-      <li>Easy analogue backlinks &mdash; linking should feel as natural as writing</li>
-      <li>Canvas / whiteboard view</li>
-      <li>Interoperate with external data sources beyond note-taking tools</li>
-      <li>Output API for downstream consumers</li>
-      <li>Fully offline-capable with seamless reconnection</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Partnerships -->
-<section class="section-alt">
-  <div class="container">
-    <p class="section-label">Partnerships</p>
-    <h2 class="section-title">Building Together</h2>
-    <p class="section-subtitle">
-      SilkNotes is reaching out to aligned projects and teams to co-develop
-      the interoperability layer. Current conversations and collaborations:
-    </p>
-
-    <div class="principles-grid">
-      <div class="principle-card">
-        <h3>Fileverse</h3>
-        <p>
-          Decentralized file collaboration. Exploring shared primitives for
-          sovereign document exchange.
-        </p>
-      </div>
-      <div class="principle-card">
-        <h3>Affine</h3>
-        <p>
-          Open-source knowledge base with docs, whiteboards, and databases.
-          A natural interop partner for SilkNotes' bridge layer.
-        </p>
-      </div>
-      <div class="principle-card">
-        <h3>Logseq</h3>
-        <p>
-          Privacy-first, open-source knowledge management. The Logseq Plugin
-          sub-holon is the most advanced bridge in development.
-        </p>
-      </div>
-      <div class="principle-card">
-        <h3>Reor</h3>
-        <p>
-          AI-powered private note-taking. Investigating bi-directional sync
-          with SilkNotes' CRDT layer.
-        </p>
-      </div>
-      <div class="principle-card">
-        <h3>InfraNodus</h3>
-        <p>
-          Network thinking and text analysis. Exploring how graph-based
-          insight tools can plug into the SilkNotes interchange format.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Sub-holons -->
-<section>
-  <div class="prose">
-    <h2>Sub-holons</h2>
-    <ul>
-      <li><strong>Logseq Plugin</strong> &mdash; dedicated bridge and feature extension
-        for Logseq, serving as the first deep integration and proving ground
-        for SilkNotes' interop architecture.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Back links -->
-<section class="back-link">
-  <a href="/holons/kidur/">&larr; Back to kidur</a>
-  &nbsp;&middot;&nbsp;
-  <a href="/holons/">All holons</a>
-  &nbsp;&middot;&nbsp;
-  <a href="/">Home</a>
-</section>
