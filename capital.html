@@ -5,191 +5,778 @@ description: Representing the interests of living systems through investment. We
 permalink: /capital/
 ---
 
-<!-- Navigation -->
-<nav class="nav" id="nav">
-  <a href="/" class="nav-logo">EvoBioSys</a>
-</nav>
+<style>
+  /* ========================================
+     Capital — Investment / Nature Design
+     Dramatic darks, organic SVG dividers,
+     leaf motifs, nature-meets-finance gravity
+     ======================================== */
 
-<!-- Hero -->
-<section class="hero">
-  <span class="hero-badge">Investment &middot; Animist &middot; Living Systems</span>
-  <h1>Investing for <span class="accent">nature's values</span></h1>
-  <p>
-    EvoBioSys Capital represents the interests of living systems.
-    We back ventures that eliminate the false distinction between humans and nature.
-    We start with the question: what does nature value?
-  </p>
-  <div class="hero-cta">
-    <a href="#philosophy" class="btn btn-secondary">Our philosophy</a>
-    <a href="#focus" class="btn btn-secondary">Investment focus</a>
-  </div>
-</section>
+  .cap-page {
+    --cap-dark: #0f1f18;
+    --cap-dark-mid: #142920;
+    --cap-green: #2d6a4f;
+    --cap-green-light: #40916c;
+    --cap-green-pale: #e8f2ee;
+    --cap-gold: #c9a84c;
+    --cap-gold-pale: #f7f0db;
+  }
 
-<!-- Philosophy -->
-<section id="philosophy">
-  <div class="container">
-    <p class="section-label">Philosophy</p>
-    <h2 class="section-title">An animist worldview</h2>
+  /* --- Hero --- */
 
-    <div style="max-width: 700px; margin: 0 auto 3rem;">
-      <p style="color: var(--color-text-muted); font-size: 1.05rem; line-height: 1.8;">
-        In our animist worldview, the Earth is vividly alive and we are alive with it.
-        We strive to see from the perspectives of ecosystems, species, and life processes —
-        setting aside prevailing assumptions of human supremacy.
+  .cap-hero {
+    position: relative;
+    min-height: auto;
+    padding: 9rem 2rem 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(175deg, var(--cap-dark) 0%, var(--cap-dark-mid) 60%, #1b4332 100%);
+    color: var(--color-white);
+    overflow: hidden;
+  }
+
+  .cap-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,106,79,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cap-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -15%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cap-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+  }
+
+  .cap-hero-badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.7);
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+  }
+
+  .cap-hero h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .cap-hero h1 .accent {
+    color: var(--cap-green-light);
+  }
+
+  .cap-hero p {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+  }
+
+  .cap-hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cap-hero-cta .btn-ghost {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.85);
+    background: transparent;
+  }
+
+  .cap-hero-cta .btn-ghost:hover {
+    border-color: rgba(255,255,255,0.5);
+    color: var(--color-white);
+  }
+
+  /* --- Organic leaf divider SVG --- */
+
+  .leaf-divider {
+    display: block;
+    width: 100%;
+    height: 48px;
+    overflow: visible;
+  }
+
+  .leaf-divider-dark {
+    background: var(--cap-dark);
+  }
+
+  .leaf-divider-light {
+    background: var(--color-bg);
+  }
+
+  .leaf-divider-alt {
+    background: var(--color-white);
+  }
+
+  /* --- Section variants --- */
+
+  .cap-section {
+    padding: 6rem 2rem;
+  }
+
+  .cap-section-dark {
+    background: var(--cap-dark);
+    color: var(--color-white);
+  }
+
+  .cap-section-dark .section-label {
+    color: var(--cap-green-light);
+  }
+
+  .cap-section-dark .section-title {
+    color: var(--color-white);
+  }
+
+  .cap-section-dark p {
+    color: rgba(255,255,255,0.75);
+  }
+
+  .cap-section-dramatic {
+    background: linear-gradient(180deg, var(--cap-dark) 0%, #0a1810 100%);
+    color: var(--color-white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cap-section-dramatic::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to top, rgba(45,106,79,0.08), transparent);
+    pointer-events: none;
+  }
+
+  .cap-section-warm {
+    background: var(--cap-gold-pale);
+  }
+
+  .cap-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .cap-narrow {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* --- Philosophy grid enhanced --- */
+
+  .cap-philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .cap-phil-card {
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .cap-phil-card:hover {
+    border-color: rgba(255,255,255,0.18);
+    transform: translateY(-2px);
+  }
+
+  .cap-phil-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+    color: var(--color-white);
+  }
+
+  .cap-phil-card p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .cap-phil-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* --- Focus grid --- */
+
+  .cap-focus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .cap-focus-card {
+    padding: 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-white);
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+  }
+
+  .cap-focus-card:hover {
+    border-color: var(--cap-green);
+    transform: translateY(-2px);
+  }
+
+  .cap-focus-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .cap-focus-card p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  /* --- Engine & Fund section --- */
+
+  .engine-fund {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 2.5rem;
+  }
+
+  .engine-side {
+    padding: 3rem 2.5rem;
+    background: var(--color-white);
+  }
+
+  .fund-side {
+    padding: 3rem 2.5rem;
+    background: var(--cap-dark);
+    color: var(--color-white);
+  }
+
+  .ef-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .engine-side .ef-label { color: var(--cap-green); }
+  .fund-side .ef-label { color: var(--cap-green-light); }
+
+  .ef-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .fund-side .ef-title { color: var(--color-white); }
+
+  .ef-text {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .engine-side .ef-text { color: var(--color-text-muted); }
+  .fund-side .ef-text { color: rgba(255,255,255,0.75); }
+
+  .ef-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .engine-side .ef-arrow { color: var(--cap-green); }
+  .fund-side .ef-arrow { color: var(--cap-green-light); }
+
+  /* --- Ground Effect dramatic --- */
+
+  .ground-horizon {
+    position: relative;
+    height: 3px;
+    max-width: 600px;
+    margin: 2.5rem auto;
+    background: linear-gradient(90deg, transparent 0%, var(--cap-green-light) 30%, var(--cap-green-light) 70%, transparent 100%);
+    opacity: 0.4;
+  }
+
+  .ground-birds {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem auto;
+    max-width: 400px;
+  }
+
+  .ground-bird {
+    width: 40px;
+    height: 20px;
+    opacity: 0.6;
+  }
+
+  .ground-quote {
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--color-white);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* --- Alpha Co-creators --- */
+
+  .alpha-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    padding: 2.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-white);
+    margin-top: 2.5rem;
+    align-items: center;
+  }
+
+  .alpha-badge {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--cap-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .alpha-info h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .alpha-info p {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.75;
+  }
+
+  /* --- Responsive --- */
+
+  @media (max-width: 900px) {
+    .engine-fund {
+      grid-template-columns: 1fr;
+    }
+    .alpha-card {
+      grid-template-columns: 1fr;
+      text-align: center;
+      justify-items: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cap-hero {
+      padding: 8rem 1.5rem 3.5rem;
+    }
+    .cap-section {
+      padding: 4rem 1.5rem;
+    }
+  }
+</style>
+
+<div class="cap-page">
+
+  <!-- Hero — dark dramatic -->
+  <section class="cap-hero">
+    <div class="cap-hero-inner">
+      <span class="cap-hero-badge">Investment &middot; Animist &middot; Living Systems</span>
+      <h1>Investing for <span class="accent">nature's values</span></h1>
+      <p>
+        EvoBioSys Capital represents the interests of living systems.
+        We back ventures that eliminate the false distinction between humans and nature.
+        We start with the question: what does nature value?
       </p>
-    </div>
-
-    <div class="philosophy-grid">
-      <div class="philosophy-card">
-        <h3>Two Time Horizons</h3>
-        <p><strong>Near term:</strong> "Nature" needs to become more legible to financial and technological systems. We advance definitions of measurement that include multiple ways of seeing and relating.</p>
-        <p style="margin-top: 1rem;"><strong>Long term:</strong> Free nature from the logic of human economics.</p>
-      </div>
-
-      <div class="philosophy-card">
-        <h3>Measuring Life</h3>
-        <p>Quantitative measurement combined with computation could further objectify and abstract nature. We seek to prevent this by advancing definitions that honor the aliveness and subtlety of living systems — not reduce them to price.</p>
-      </div>
-
-      <div class="philosophy-card">
-        <h3>Leverage &amp; Agency</h3>
-        <p>Our highest leverage is to lend credence to daring undertakings that give nature visibility and agency. We back ventures whose work helps discover new ways of advocating for the diverse intelligences of the more-than-human world.</p>
-      </div>
-
-      <div class="philosophy-card">
-        <h3>Biophilia Awakening</h3>
-        <p>The human sensorium is thrillingly capable of establishing intimacy with the earth. We strive to awaken biophilia — the innate instinct to connect with life — so people arrive at a worldview of indivisibility and entanglement.</p>
+      <div class="cap-hero-cta">
+        <a href="#philosophy" class="btn-ghost">Our philosophy</a>
+        <a href="#focus" class="btn-ghost">Investment focus</a>
+        <a href="#engine" class="btn-ghost">The Engine &amp; The Fund</a>
       </div>
     </div>
+  </section>
+
+  <!-- Leaf divider: dark to dark -->
+  <div class="leaf-divider-dark" style="overflow:hidden;line-height:0;">
+    <svg class="leaf-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 48 C240 20 480 40 720 24 C960 8 1200 36 1440 48 L1440 0 L0 0 Z" fill="var(--cap-dark-mid)"/>
+      <path d="M600 28 Q620 16 640 28 Q630 20 620 28 Z" fill="rgba(45,106,79,0.15)"/>
+      <path d="M800 22 Q816 12 832 22 Q824 14 816 22 Z" fill="rgba(45,106,79,0.1)"/>
+    </svg>
   </div>
-</section>
 
-<!-- Investment Focus -->
-<section id="focus">
-  <div class="container">
-    <p class="section-label">Investment Areas</p>
-    <h2 class="section-title">Where we focus</h2>
+  <!-- Philosophy — dark section -->
+  <section id="philosophy" class="cap-section cap-section-dark">
+    <div class="cap-container">
+      <div style="text-align: center;">
+        <p class="section-label">Philosophy</p>
+        <h2 class="section-title">An animist worldview</h2>
+      </div>
 
-    <div class="focus-grid">
-      <div class="focus-card">
-        <h3>Earth's Living Processes</h3>
-        <p>
-          Regenerating ecosystems and restoring what human intervention has diminished.
-          We back initiatives that partner with nature to assist life's inherent circularity —
-          redesigning linear systems, building biodiversity back into soils and landscapes,
-          supporting indigenous knowledge, restoring wildlife connectivity.
+      <div style="max-width: 700px; margin: 0 auto 3rem; text-align: center;">
+        <p style="color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.8;">
+          In our animist worldview, the Earth is vividly alive and we are alive with it.
+          We strive to see from the perspectives of ecosystems, species, and life processes &mdash;
+          setting aside prevailing assumptions of human supremacy.
         </p>
       </div>
 
-      <div class="focus-card">
-        <h3>Ownership &amp; Decentralization</h3>
-        <p>
-          Communities own and actively create their local worlds.
-          We search for tools and systems that enable self-organization,
-          such that value is exalted and recirculated as the basis of a vital local economy.
-        </p>
-      </div>
+      <div class="cap-philosophy-grid">
+        <div class="cap-phil-card">
+          <h3>Two Time Horizons</h3>
+          <p><strong style="color:rgba(255,255,255,0.85);">Near term:</strong> "Nature" needs to become more legible to financial and technological systems. We advance definitions of measurement that include multiple ways of seeing and relating.</p>
+          <p><strong style="color:rgba(255,255,255,0.85);">Long term:</strong> Free nature from the logic of human economics.</p>
+        </div>
 
-      <div class="focus-card">
-        <h3>Scientific Research</h3>
-        <p>
-          Science is demonstrating that nature is a living, relational process.
-          We back research that exposes advanced communication and intelligence,
-          with focus on new modes of sensing and measuring biodiversity.
-        </p>
-      </div>
+        <div class="cap-phil-card">
+          <h3>Measuring Life</h3>
+          <p>Quantitative measurement combined with computation could further objectify and abstract nature. We seek to prevent this by advancing definitions that honor the aliveness and subtlety of living systems &mdash; not reduce them to price.</p>
+        </div>
 
-      <div class="focus-card">
-        <h3>Earth Jurisprudence</h3>
-        <p>
-          Legal systems define cultural norms and ethics.
-          We empower approaches that advocate and litigate on behalf of
-          the rights of all terrestrial beings and natural processes.
-        </p>
-      </div>
+        <div class="cap-phil-card">
+          <h3>Leverage &amp; Agency</h3>
+          <p>Our highest leverage is to lend credence to daring undertakings that give nature visibility and agency. We back ventures whose work helps discover new ways of advocating for the diverse intelligences of the more-than-human world.</p>
+        </div>
 
-      <div class="focus-card">
-        <h3>Policy &amp; Regulation</h3>
-        <p>
-          Government is failing at protecting humans from ecologically harmful corporate actions.
-          Aggressive policy entrepreneurship and smart new modes of organizing
-          will correct regulatory capture and enable necessary innovation.
-        </p>
-      </div>
-
-      <div class="focus-card">
-        <h3>Activism &amp; Journalism</h3>
-        <p>
-          Activists are crucial voices piercing systemic inertia,
-          representing emergent worldviews and stories of environmental restoration.
-          They are the 'voices of nature' speaking on behalf of subjugated ecosystems.
-        </p>
+        <div class="cap-phil-card">
+          <h3>Biophilia Awakening</h3>
+          <p>The human sensorium is thrillingly capable of establishing intimacy with the earth. We strive to awaken biophilia &mdash; the innate instinct to connect with life &mdash; so people arrive at a worldview of indivisibility and entanglement.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Ground Effect -->
-<section style="background: var(--color-white); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
-  <div class="container">
-    <p class="section-label">Origins</p>
-    <h2 class="section-title">Ground Effect</h2>
-    <p class="section-subtitle">
-      The aerodynamic by which birds, insects and other flying creatures
-      get more lift and less drag when they fly close to the ground.
-    </p>
-    <p style="text-align: center; color: var(--color-text-muted); font-size: 1.05rem; margin-top: 2rem;">
-      We call ourselves EvoBioSys Capital because we gain buoyancy the closer we get to Earth.
-    </p>
-    <div style="margin-top: 2rem; text-align: center;">
-      <a href="/assets/Ground Effect.pdf" class="btn btn-secondary" download>Read the manifesto (PDF)</a>
+  <!-- Leaf divider: dark to light -->
+  <div style="overflow:hidden;line-height:0;background:var(--cap-dark);">
+    <svg class="leaf-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0 C360 40 720 10 1080 36 C1260 48 1440 24 1440 24 L1440 48 L0 48 Z" fill="var(--color-bg)"/>
+      <path d="M400 32 Q412 22 424 32 Q418 24 412 32 Z" fill="rgba(45,106,79,0.08)"/>
+      <path d="M1000 28 Q1010 18 1020 28 Q1016 22 1010 28 Z" fill="rgba(45,106,79,0.06)"/>
+    </svg>
+  </div>
+
+  <!-- Investment Focus — light section -->
+  <section id="focus" class="cap-section" style="background: var(--color-bg);">
+    <div class="cap-container">
+      <div style="text-align: center;">
+        <p class="section-label">Investment Areas</p>
+        <h2 class="section-title">Where we focus</h2>
+      </div>
+
+      <div class="cap-focus-grid">
+        <div class="cap-focus-card">
+          <h3>Earth's Living Processes</h3>
+          <p>
+            Regenerating ecosystems and restoring what human intervention has diminished.
+            We back initiatives that partner with nature to assist life's inherent circularity &mdash;
+            redesigning linear systems, building biodiversity back into soils and landscapes,
+            supporting indigenous knowledge, restoring wildlife connectivity.
+          </p>
+        </div>
+
+        <div class="cap-focus-card">
+          <h3>Ownership &amp; Decentralization</h3>
+          <p>
+            Communities own and actively create their local worlds.
+            We search for tools and systems that enable self-organization,
+            such that value is exalted and recirculated as the basis of a vital local economy.
+          </p>
+        </div>
+
+        <div class="cap-focus-card">
+          <h3>Scientific Research</h3>
+          <p>
+            Science is demonstrating that nature is a living, relational process.
+            We back research that exposes advanced communication and intelligence,
+            with focus on new modes of sensing and measuring biodiversity.
+          </p>
+        </div>
+
+        <div class="cap-focus-card">
+          <h3>Earth Jurisprudence</h3>
+          <p>
+            Legal systems define cultural norms and ethics.
+            We empower approaches that advocate and litigate on behalf of
+            the rights of all terrestrial beings and natural processes.
+          </p>
+        </div>
+
+        <div class="cap-focus-card">
+          <h3>Policy &amp; Regulation</h3>
+          <p>
+            Government is failing at protecting humans from ecologically harmful corporate actions.
+            Aggressive policy entrepreneurship and smart new modes of organizing
+            will correct regulatory capture and enable necessary innovation.
+          </p>
+        </div>
+
+        <div class="cap-focus-card">
+          <h3>Activism &amp; Journalism</h3>
+          <p>
+            Activists are crucial voices piercing systemic inertia,
+            representing emergent worldviews and stories of environmental restoration.
+            They are the 'voices of nature' speaking on behalf of subjugated ecosystems.
+          </p>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- Leaf divider: light to gold-warm -->
+  <div style="overflow:hidden;line-height:0;background:var(--color-bg);">
+    <svg class="leaf-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0 C480 48 960 0 1440 40 L1440 48 L0 48 Z" fill="var(--cap-gold-pale)"/>
+      <path d="M300 30 Q315 18 330 30 Q322 22 315 30 Z" fill="rgba(201,168,76,0.12)"/>
+      <path d="M700 20 Q712 10 724 20 Q718 14 712 20 Z" fill="rgba(201,168,76,0.08)"/>
+      <path d="M1100 34 Q1112 24 1124 34 Q1118 28 1112 34 Z" fill="rgba(45,106,79,0.06)"/>
+    </svg>
   </div>
-</section>
 
-<!-- Newsletter -->
-<section id="connect" class="newsletter">
-  <div class="newsletter-inner">
-    <p class="section-label">Stay in the loop</p>
-    <h2 class="section-title">Follow our investments</h2>
-    <p class="section-subtitle" style="margin-bottom: 0;">
-      Updates on backing, portfolio insights, and invitations to our thinking.
-    </p>
+  <!-- The Engine & The Fund -->
+  <section id="engine" class="cap-section cap-section-warm">
+    <div class="cap-container">
+      <div style="text-align: center;">
+        <p class="section-label">Relationship</p>
+        <h2 class="section-title">The Engine &amp; The Fund</h2>
+        <p class="section-subtitle" style="margin: 0 auto 1rem; max-width: 600px;">
+          SoFin is the engine. EvoBioSys Capital is the fund. Together they form
+          the financial circulation system of the holonic network.
+        </p>
+      </div>
 
-    <!-- Listmonk Embed (placeholder) -->
-    <div id="listmonk-subscribe" style="margin-top: 2rem;">
-      <form id="listmonk-form" style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
-        <input type="email" name="email" placeholder="your@email.com" required style="flex: 1; padding: 0.75rem 1rem; border: 1px solid var(--color-border); border-radius: 8px; font-size: 0.9rem; font-family: var(--font-main);">
+      <div class="engine-fund">
+        <div class="engine-side">
+          <p class="ef-label">The Engine</p>
+          <h3 class="ef-title"><a href="/holons/sofin/" style="color: inherit; text-decoration: none;">SoFin</a></h3>
+          <p class="ef-text">
+            SoFin generates, manages, and circulates financial flows across the
+            holonic network. It operates the Funding Flow Machine &mdash; the
+            infrastructure that turns resources into movement. Every trade,
+            every protocol, every financial tool runs through SoFin's domain.
+          </p>
+          <p class="ef-text">
+            It is the operational heart: where strategy meets execution,
+            where capital is not just allocated but actively worked.
+          </p>
+          <div class="ef-arrow">
+            Generates flow &rarr;
+          </div>
+        </div>
+        <div class="fund-side">
+          <p class="ef-label">The Fund</p>
+          <h3 class="ef-title">EvoBioSys Capital</h3>
+          <p class="ef-text">
+            Capital directs the flow toward purpose. It holds the thesis,
+            evaluates alignment, and deploys resources into ventures that
+            serve living systems. Where SoFin asks "how?", Capital asks "where?"
+            and "why?".
+          </p>
+          <p class="ef-text">
+            The fund represents nature's interests at the investment table &mdash;
+            channeling what the engine produces into ventures that make the
+            world more alive.
+          </p>
+          <div class="ef-arrow">
+            &larr; Directs purpose
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leaf divider: warm to dramatic dark -->
+  <div style="overflow:hidden;line-height:0;background:var(--cap-gold-pale);">
+    <svg class="leaf-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0 C360 48 1080 0 1440 32 L1440 48 L0 48 Z" fill="var(--cap-dark)"/>
+      <path d="M500 36 Q515 24 530 36 Q522 28 515 36 Z" fill="rgba(45,106,79,0.1)"/>
+      <path d="M900 28 Q910 18 920 28 Q916 22 910 28 Z" fill="rgba(45,106,79,0.07)"/>
+    </svg>
+  </div>
+
+  <!-- Ground Effect — dramatic dark section -->
+  <section class="cap-section cap-section-dramatic" style="padding-top: 5rem; padding-bottom: 5rem;">
+    <div class="cap-container" style="text-align: center; position: relative; z-index: 2;">
+      <p class="section-label" style="color: var(--cap-green-light);">Origins</p>
+      <h2 class="section-title" style="color: var(--color-white);">Ground Effect</h2>
+
+      <!-- Bird silhouettes flying low -->
+      <div class="ground-birds">
+        <svg class="ground-bird" viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 12 Q10 2 20 10 Q30 2 40 12" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
+        </svg>
+        <svg class="ground-bird" viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: scale(0.8) translateY(4px);">
+          <path d="M0 12 Q10 2 20 10 Q30 2 40 12" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+        </svg>
+        <svg class="ground-bird" viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: scale(1.1) translateY(-2px);">
+          <path d="M0 12 Q10 2 20 10 Q30 2 40 12" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" fill="none"/>
+        </svg>
+        <svg class="ground-bird" viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: scale(0.7) translateY(6px);">
+          <path d="M0 12 Q10 2 20 10 Q30 2 40 12" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- Ground horizon line -->
+      <div class="ground-horizon"></div>
+
+      <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 2rem;">
+        The aerodynamic phenomenon
+      </p>
+
+      <p class="ground-quote">
+        Birds, insects and other flying creatures get more lift and less drag
+        when they fly close to the ground.
+      </p>
+
+      <p style="color: rgba(255,255,255,0.65); font-size: 1.05rem; line-height: 1.8; max-width: 520px; margin: 0 auto 2.5rem;">
+        We call ourselves EvoBioSys Capital because we gain buoyancy
+        the closer we get to Earth. Our power comes not from altitude
+        and abstraction, but from proximity to living systems &mdash; to soil,
+        to community, to the ground beneath our feet.
+      </p>
+
+      <div>
+        <a href="/assets/Ground Effect.pdf" class="btn-ghost" style="border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.85); padding: 0.75rem 1.75rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-decoration: none; display: inline-block; transition: all 0.2s;" download>Read the manifesto (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leaf divider: dark to light -->
+  <div style="overflow:hidden;line-height:0;background:var(--cap-dark);">
+    <svg class="leaf-divider" viewBox="0 0 1440 48" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0 C240 44 720 8 1200 40 C1350 48 1440 28 1440 28 L1440 48 L0 48 Z" fill="var(--color-bg)"/>
+    </svg>
+  </div>
+
+  <!-- Alpha Co-creators -->
+  <section class="cap-section" style="background: var(--color-bg);">
+    <div class="cap-container">
+      <div style="text-align: center;">
+        <p class="section-label">Community</p>
+        <h2 class="section-title">Alpha Co-creators</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">
+          The earliest believers and builders &mdash; those who shape the thesis
+          alongside us before it is proven. Alpha co-creators are not passive
+          investors; they are active participants in forming the fund's identity.
+        </p>
+      </div>
+
+      <div class="alpha-card">
+        <div class="alpha-badge">
+          <span>Alpha</span>
+        </div>
+        <div class="alpha-info">
+          <h3>Building the thesis together</h3>
+          <p>
+            Alpha co-creators join EvoBioSys Capital at its earliest stage. They
+            contribute not just capital but perspective, network, and conviction.
+            In return, they shape the investment thesis from the inside &mdash;
+            influencing where the fund looks, what it prioritizes, and how it
+            measures success beyond financial return. This is co-creation in the
+            truest sense: building something that does not yet fully exist.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section id="connect" class="newsletter">
+    <div class="newsletter-inner">
+      <p class="section-label">Stay in the loop</p>
+      <h2 class="section-title">Follow our investments</h2>
+      <p class="section-subtitle" style="margin-bottom: 0;">
+        Updates on backing, portfolio insights, and invitations to our thinking.
+      </p>
+
+      <form id="listmonk-form-capital" class="newsletter-form">
+        <input type="email" name="email" placeholder="your@email.com" required>
         <button type="submit" class="btn btn-primary">Subscribe</button>
       </form>
-      <p class="newsletter-note" style="margin-top: 0.75rem;">
-        Powered by <a href="https://listmonk.app" target="_blank" style="color: var(--color-accent);">Listmonk</a>
+      <p class="newsletter-note">
+        Powered by <a href="https://listmonk.app" target="_blank">Listmonk</a> &middot; Self-hosted, no tracking
       </p>
     </div>
+  </section>
 
-    <script>
-      // Listmonk form submission — replace LISTMONK_URL with your Listmonk instance
-      const form = document.getElementById('listmonk-form');
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = form.querySelector('input[name="email"]').value;
-        // TODO: Update with your Listmonk endpoint
-        // POST to LISTMONK_URL/api/subscribers with {email, list_ids: [LIST_ID]}
-        console.log('Subscribe (capital):', email);
-        alert('Thanks! We'll be in touch at: ' + email);
-      });
-    </script>
-  </div>
-</section>
-
-<!-- Back to main -->
-<section style="text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--color-border);">
-  <a href="/" style="color: var(--color-accent); text-decoration: none; font-size: 0.95rem;">← Back to EvoBioSys</a>
-</section>
+</div>
 
 <script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 20);
-  });
+  const form = document.getElementById('listmonk-form-capital');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = form.querySelector('input[name="email"]').value;
+      console.log('Subscribe (capital):', email);
+      alert('Thanks! We\u2019ll be in touch at: ' + email);
+    });
+  }
 </script>

@@ -1,0 +1,745 @@
+---
+layout: default
+title: "9EPhR — Nine Essential Physical Requirements"
+description: >-
+  9EPhR defines the nine essential physical requirements every human being needs
+  to thrive — the bedrock of a (re)generative civilization, alongside MHS and
+  Integral Theory. Universal, non-negotiable, biomimetic.
+permalink: /holons/9ephr/
+---
+
+<style>
+  /* 9EPhR — Universal/Essential palette: earth brown, life green, water blue */
+  .ephr-page {
+    --ephr-earth: #5c4a32;
+    --ephr-earth-deep: #3a2e1e;
+    --ephr-earth-light: #8b7355;
+    --ephr-brown-pale: #f5f0e8;
+    --ephr-green: #3a6b45;
+    --ephr-green-light: #5a9a68;
+    --ephr-green-pale: #e8f2ea;
+    --ephr-blue: #3a6080;
+    --ephr-blue-light: #5a8aaa;
+    --ephr-blue-pale: #e8f0f5;
+    --ephr-deep: #2a1e12;
+    --ephr-muted: #6a5a48;
+    --ephr-cream: #faf8f4;
+    --ephr-line: #d4cbbe;
+    --ephr-warm-bg: #f8f5ef;
+  }
+
+  /* ====== HEADER ====== */
+  .ephr-header {
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    background:
+      linear-gradient(175deg, var(--ephr-brown-pale) 0%, var(--ephr-cream) 40%, var(--color-bg) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 3x3 grid motif in header background */
+  .ephr-grid-motif {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    grid-template-rows: repeat(3, 60px);
+    gap: 12px;
+    opacity: 0.06;
+    z-index: 0;
+  }
+
+  .ephr-grid-motif span {
+    border-radius: 8px;
+    border: 2px solid var(--ephr-earth);
+  }
+
+  .ephr-grid-motif span:nth-child(3n+1) { border-color: var(--ephr-green); }
+  .ephr-grid-motif span:nth-child(3n+2) { border-color: var(--ephr-blue); }
+  .ephr-grid-motif span:nth-child(3n)   { border-color: var(--ephr-earth); }
+
+  .ephr-header h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--ephr-deep);
+    position: relative;
+    z-index: 1;
+  }
+
+  .ephr-header h1 .numeral {
+    font-weight: 700;
+    color: var(--ephr-earth);
+  }
+
+  .ephr-header .lead {
+    color: var(--ephr-muted);
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .ephr-badge {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: rgba(92, 74, 50, 0.08);
+    color: var(--ephr-earth);
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ====== 3x3 REQUIREMENTS GRID ====== */
+  .ephr-requirements-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .ephr-requirements-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  .ephr-req-card {
+    padding: 1.75rem;
+    border: 1px solid var(--ephr-line);
+    border-radius: 12px;
+    background: var(--color-white);
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .ephr-req-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .ephr-req-card .req-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: white;
+  }
+
+  /* Row colors: earth (sustenance), green (shelter/health), blue (connection) */
+  .ephr-req-card.row-earth { border-left: 3px solid var(--ephr-earth); }
+  .ephr-req-card.row-earth .req-number { background: var(--ephr-earth); }
+  .ephr-req-card.row-earth:hover { border-color: var(--ephr-earth); }
+
+  .ephr-req-card.row-green { border-left: 3px solid var(--ephr-green); }
+  .ephr-req-card.row-green .req-number { background: var(--ephr-green); }
+  .ephr-req-card.row-green:hover { border-color: var(--ephr-green); }
+
+  .ephr-req-card.row-blue { border-left: 3px solid var(--ephr-blue); }
+  .ephr-req-card.row-blue .req-number { background: var(--ephr-blue); }
+  .ephr-req-card.row-blue:hover { border-color: var(--ephr-blue); }
+
+  .ephr-req-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--ephr-deep);
+  }
+
+  .ephr-req-card p {
+    font-size: 0.88rem;
+    color: var(--ephr-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .ephr-req-card .req-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(92, 74, 50, 0.06);
+    color: var(--ephr-earth-light);
+  }
+
+  .ephr-req-card.row-green .req-tag { background: rgba(58, 107, 69, 0.06); color: var(--ephr-green-light); }
+  .ephr-req-card.row-blue .req-tag  { background: rgba(58, 96, 128, 0.06); color: var(--ephr-blue-light); }
+
+  /* ====== ROW LABELS ====== */
+  .ephr-row-label {
+    grid-column: 1 / -1;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.5rem 0 0.25rem;
+  }
+
+  .ephr-row-label.earth { color: var(--ephr-earth); }
+  .ephr-row-label.green { color: var(--ephr-green); }
+  .ephr-row-label.blue  { color: var(--ephr-blue); }
+
+  /* ====== TRIAD SECTION ====== */
+  .ephr-triad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .ephr-triad-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .ephr-triad-card {
+    padding: 2rem;
+    border: 1px solid var(--ephr-line);
+    border-radius: 12px;
+    background: var(--color-white);
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .ephr-triad-card:hover { transform: translateY(-2px); }
+
+  .ephr-triad-card .triad-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .ephr-triad-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--ephr-deep);
+  }
+
+  .ephr-triad-card h3 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .ephr-triad-card h3 a:hover {
+    border-color: var(--ephr-earth);
+  }
+
+  .ephr-triad-card p {
+    font-size: 0.88rem;
+    color: var(--ephr-muted);
+    line-height: 1.7;
+  }
+
+  .ephr-triad-card.active {
+    border-color: var(--ephr-earth);
+    border-width: 2px;
+    background: var(--ephr-cream);
+  }
+
+  /* ====== HYPOTHESIS BANNER ====== */
+  .ephr-hypothesis {
+    background: var(--ephr-warm-bg);
+    border: 1px solid var(--ephr-line);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    max-width: 720px;
+    margin: 2rem auto 0;
+    position: relative;
+  }
+
+  .ephr-hypothesis::before {
+    content: 'v0.2';
+    position: absolute;
+    top: -0.6rem;
+    left: 2rem;
+    background: var(--ephr-earth);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .ephr-hypothesis p {
+    font-size: 0.9rem;
+    color: var(--ephr-muted);
+    line-height: 1.7;
+  }
+
+  /* ====== UNIVERSAL CONTEXTS ====== */
+  .ephr-context-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .ephr-context-item {
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--ephr-line);
+    border-radius: 10px;
+    background: var(--color-white);
+    font-size: 0.9rem;
+    color: var(--ephr-muted);
+    line-height: 1.6;
+  }
+
+  .ephr-context-item strong {
+    color: var(--ephr-deep);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+</style>
+
+<div class="ephr-page">
+
+<!-- ====== HEADER ====== -->
+<header class="ephr-header">
+  <div class="ephr-grid-motif">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+
+  <p class="breadcrumb" style="position:relative;z-index:1;">
+    <a href="/">Home</a> &rsaquo;
+    <a href="/holons/">Holons</a> &rsaquo;
+    9EPhR
+  </p>
+
+  <span class="ephr-badge">Universal Framework &middot; Bio Pillar &middot; v0.2</span>
+
+  <h1><span class="numeral">9</span> Essential Physical<br>Requirements</h1>
+
+  <p class="lead">
+    The non-negotiable physical conditions every human being needs to thrive.
+    Not aspirations &mdash; requirements. The bedrock upon which a (re)generative
+    civilization must be built.
+  </p>
+
+  <dl class="page-meta" style="position:relative;z-index:1;">
+    <div class="meta-item">
+      <dt>Type</dt>
+      <dd>Universal Framework</dd>
+    </div>
+    <div class="meta-item">
+      <dt>Pillar</dt>
+      <dd>Bio &mdash; Living</dd>
+    </div>
+    <div class="meta-item">
+      <dt>Status</dt>
+      <dd><span class="status status-legacy">#my-legacy</span></dd>
+    </div>
+    <div class="meta-item">
+      <dt>Connected</dt>
+      <dd>SoUBR &middot; SoFin &middot; MHS</dd>
+    </div>
+  </dl>
+</header>
+
+<!-- ====== WHAT IS 9EPhR ====== -->
+<section>
+  <div class="container-narrow">
+    <p class="section-label" style="color: var(--ephr-earth);">The Concept</p>
+    <h2 class="section-title">What is 9EPhR?</h2>
+    <div class="prose">
+      <p>
+        <strong>9EPhR (Nine Essential Physical Requirements)</strong> is a universal
+        framework that names the physical conditions every human being needs &mdash;
+        not to merely survive, but to be free enough in body to contribute their
+        highest gift. It is the Bio pillar of EvoBioSys made concrete: what do
+        living beings actually, physically require?
+      </p>
+      <p>
+        The framework is deliberately physical. It does not address meaning,
+        belonging, or self-actualization &mdash; those are the domains of
+        <a href="/holons/mhs/">MHS</a> and Integral Theory. Instead, 9EPhR asks
+        a harder, simpler question: <em>what are the material preconditions
+        that must be met before any higher development becomes possible?</em>
+      </p>
+      <p>
+        Think of it as the foundation of Maslow&rsquo;s hierarchy, but redesigned
+        through the lens of biomimicry: what does a healthy ecosystem provide for
+        every organism within it? Clean air, clean water, sustenance, shelter,
+        temperature regulation, waste processing. Nature does not charge rent
+        for these. A (re)generative civilization should not either.
+      </p>
+      <blockquote>
+        &ldquo;Here is my best shot at the essential requirements for a (re)generative
+        civilization: 1. Nine Essential Physical Requirements, 2. Holarchic Mutual
+        Sovereignty, 3. Integral Theory as extension of natural sciences and big
+        history, We-Space and sourcing.&rdquo;
+      </blockquote>
+      <p>
+        Financial precarity blocks highest contribution. When a person is anxious
+        about rent, food, or healthcare, the nervous system stays in survival mode.
+        Creativity, care, long-term thinking &mdash; all of these require a body
+        that feels safe. 9EPhR defines what &ldquo;safe enough to contribute&rdquo;
+        looks like in physical terms.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== THE NINE REQUIREMENTS (3x3 grid) ====== -->
+<section class="section-alt">
+  <div class="container">
+    <p class="section-label" style="color: var(--ephr-earth);">The Framework</p>
+    <h2 class="section-title">The Nine Requirements</h2>
+    <p class="section-subtitle">
+      Organized in three rows of three &mdash; sustenance, shelter, and connection.
+      Each requirement is physical, measurable, and universal. This is version 0.2:
+      a working hypothesis, open to refinement.
+    </p>
+
+    <div class="ephr-hypothesis">
+      <p>
+        <strong>Note:</strong> The specific list below is a hypothesis &mdash; a best
+        working draft connecting to concepts in
+        <a href="/holons/soubr/">SoUBR (Sovereign Universal Basic Requirements)</a>.
+        The framework is designed to be tested, debated, and refined. What matters
+        is the principle: there is a finite, nameable set of physical requirements
+        that civilization must guarantee.
+      </p>
+    </div>
+
+    <div class="ephr-requirements-grid" style="margin-top: 2.5rem;">
+
+      <!-- Row 1: Sustenance -->
+      <p class="ephr-row-label earth">Sustenance &mdash; what the body takes in</p>
+
+      <div class="ephr-req-card row-earth">
+        <span class="req-number">1</span>
+        <h3>Clean Air</h3>
+        <p>
+          Breathable, unpolluted air. The most immediate requirement &mdash; three
+          minutes without it and life ends. Air quality is a civilizational
+          indicator, not a luxury.
+        </p>
+        <span class="req-tag">Atmospheric</span>
+      </div>
+
+      <div class="ephr-req-card row-earth">
+        <span class="req-number">2</span>
+        <h3>Clean Water</h3>
+        <p>
+          Access to safe, potable water for drinking, cooking, and hygiene.
+          Not bottled, not commodified &mdash; available as a commons, the way
+          a healthy watershed provides for every creature within it.
+        </p>
+        <span class="req-tag">Hydrological</span>
+      </div>
+
+      <div class="ephr-req-card row-earth">
+        <span class="req-number">3</span>
+        <h3>Nutritious Food</h3>
+        <p>
+          Sufficient, diverse, and nourishing food. Not just calories &mdash;
+          actual nutrition. Regenerative agriculture, local food systems, soil
+          health. The body is built from what it eats.
+        </p>
+        <span class="req-tag">Nutritional</span>
+      </div>
+
+      <!-- Row 2: Shelter & Protection -->
+      <p class="ephr-row-label green">Shelter &mdash; what protects the body</p>
+
+      <div class="ephr-req-card row-green">
+        <span class="req-number">4</span>
+        <h3>Shelter</h3>
+        <p>
+          Safe, stable housing that protects from the elements and provides a space
+          for rest, privacy, and regeneration. A home is not a financial asset &mdash;
+          it is a biological necessity.
+        </p>
+        <span class="req-tag">Structural</span>
+      </div>
+
+      <div class="ephr-req-card row-green">
+        <span class="req-number">5</span>
+        <h3>Clothing &amp; Protection</h3>
+        <p>
+          Appropriate clothing and bodily protection for climate and environment.
+          Temperature regulation, protection from UV, weather, and occupational
+          hazards. The extended skin.
+        </p>
+        <span class="req-tag">Thermic</span>
+      </div>
+
+      <div class="ephr-req-card row-green">
+        <span class="req-number">6</span>
+        <h3>Healthcare</h3>
+        <p>
+          Access to preventive and restorative healthcare. Not a market service
+          but a requirement for maintaining the biological instrument. Includes
+          mental health, dental, and reproductive care.
+        </p>
+        <span class="req-tag">Medical</span>
+      </div>
+
+      <!-- Row 3: Connection & Enablement -->
+      <p class="ephr-row-label blue">Connection &mdash; what enables participation</p>
+
+      <div class="ephr-req-card row-blue">
+        <span class="req-number">7</span>
+        <h3>Energy</h3>
+        <p>
+          Access to clean, reliable energy for heating, cooling, cooking, and
+          powering tools. Energy sovereignty is physical sovereignty &mdash; without
+          it, every other requirement becomes precarious.
+        </p>
+        <span class="req-tag">Energetic</span>
+      </div>
+
+      <div class="ephr-req-card row-blue">
+        <span class="req-number">8</span>
+        <h3>Mobility</h3>
+        <p>
+          The ability to move &mdash; physically, between places. Public transit,
+          walkable cities, overnight ships for coastal regions, cycling infrastructure.
+          A body that cannot move is a body that cannot participate.
+        </p>
+        <span class="req-tag">Kinetic</span>
+      </div>
+
+      <div class="ephr-req-card row-blue">
+        <span class="req-number">9</span>
+        <h3>Connectivity</h3>
+        <p>
+          Access to communication and information infrastructure. In the 21st century,
+          digital connectivity is as essential as physical roads. EU-sovereign,
+          privacy-first, universally available.
+        </p>
+        <span class="req-tag">Informational</span>
+      </div>
+
+    </div><!-- /grid -->
+  </div>
+</section>
+
+<!-- ====== CIVILIZATION DESIGN: THE TRIAD ====== -->
+<section>
+  <div class="container">
+    <p class="section-label" style="color: var(--ephr-earth);">Civilization Design</p>
+    <h2 class="section-title">The three pillars of a (re)generative civilization</h2>
+    <p class="section-subtitle">
+      9EPhR does not stand alone. It is one of three essential frameworks that,
+      together, define the conditions for a civilization that regenerates rather
+      than degrades. Each pillar addresses a different dimension of human existence.
+    </p>
+
+    <div class="ephr-triad-grid">
+      <div class="ephr-triad-card active">
+        <span class="triad-icon" aria-hidden="true" style="color: var(--ephr-earth);">&#9641;&#9641;&#9641;</span>
+        <h3>9EPhR</h3>
+        <p>
+          <strong>The physical.</strong> What the body needs. Nine universal,
+          non-negotiable material requirements. The foundation layer &mdash;
+          without this, nothing above it stabilizes.
+        </p>
+      </div>
+
+      <div class="ephr-triad-card">
+        <span class="triad-icon" aria-hidden="true" style="color: var(--ephr-green);">&#9675;&#9675;&#9675;</span>
+        <h3><a href="/holons/mhs/">Holarchic Mutual Sovereignty</a></h3>
+        <p>
+          <strong>The relational.</strong> How we govern ourselves. Nested sovereignty
+          where autonomy at every scale reinforces autonomy at every other scale.
+          Individual, collective, civilizational.
+        </p>
+      </div>
+
+      <div class="ephr-triad-card">
+        <span class="triad-icon" aria-hidden="true" style="color: var(--ephr-blue);">&#9651;&#9651;&#9651;</span>
+        <h3>Integral Theory</h3>
+        <p>
+          <strong>The developmental.</strong> How we understand reality. Integral
+          Theory as extension of natural sciences and big history, combined with
+          We-Space and sourcing practices. The map of maps.
+        </p>
+      </div>
+    </div>
+
+    <div class="container-narrow" style="margin-top: 2.5rem;">
+      <div class="prose">
+        <p>
+          These three are not a hierarchy &mdash; they are a triad. Physical
+          requirements without sovereignty becomes welfare dependency.
+          Sovereignty without integral development becomes ideology.
+          Integral development without physical security becomes spiritual bypassing.
+          All three, together, create the conditions for genuine (re)generation.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SoUBR CONNECTION ====== -->
+<section class="section-alt">
+  <div class="container">
+    <p class="section-label" style="color: var(--ephr-earth);">Financial Scaffolding</p>
+    <h2 class="section-title">SoUBR &mdash; the financial bridge to 9EPhR</h2>
+    <p class="section-subtitle">
+      If 9EPhR names <em>what</em> is needed, SoUBR addresses <em>how</em> to fund it.
+    </p>
+
+    <div class="container-narrow">
+      <div class="prose">
+        <p>
+          <a href="/holons/soubr/"><strong>SoUBR (Sovereign Universal Basic Requirements)</strong></a>
+          is the financial scaffolding layer within the <a href="/holons/sofin/">SoFin</a>
+          framework. Where 9EPhR defines the nine physical requirements, SoUBR creates
+          the economic mechanisms to ensure those requirements are actually met &mdash;
+          targeted, intelligent financial support that eliminates survival anxiety
+          without creating dependency.
+        </p>
+        <p>
+          The overlap is intentional. 9EPhR is the conceptual framework &mdash; universal,
+          abstract, applicable to any civilization. SoUBR is the operational layer &mdash;
+          specific to the SoFin ecosystem, designed to translate 9EPhR principles
+          into concrete financial flows. Think of 9EPhR as the specification and
+          SoUBR as the implementation.
+        </p>
+        <p>
+          Similarly, <a href="/holons/sofin/">SoFin</a> as a whole shares DNA with
+          9EPhR. Both frameworks recognize the same truth: financial precarity
+          is a physical problem. When someone cannot pay rent, the nervous system
+          responds the same way it would to a predator. Sovereign finance is not
+          about wealth &mdash; it is about removing the material threats that keep
+          people locked in survival mode.
+        </p>
+      </div>
+    </div>
+
+    <div class="ephr-context-list" style="margin-top: 2rem;">
+      <div class="ephr-context-item">
+        <strong>9EPhR</strong>
+        Names the nine requirements. Universal. Framework-level.
+        Answers: <em>what does every human body need?</em>
+      </div>
+      <div class="ephr-context-item">
+        <strong>SoUBR</strong>
+        Funds the requirements. Operational. Part of SoFin.
+        Answers: <em>how do we pay for it without dependency?</em>
+      </div>
+      <div class="ephr-context-item">
+        <strong>SoFin</strong>
+        The broader sovereign finance ecosystem. Includes SoUBR
+        and all regenerative economic instruments.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== UNIVERSAL CONTEXTS ====== -->
+<section>
+  <div class="container">
+    <p class="section-label" style="color: var(--ephr-earth);">Universal Contexts</p>
+    <h2 class="section-title">Where 9EPhR applies</h2>
+    <p class="section-subtitle">
+      Because the requirements are physical and universal, 9EPhR is relevant
+      across every domain where human thriving is at stake.
+    </p>
+
+    <div class="ephr-context-list">
+      <div class="ephr-context-item">
+        <strong>EU Policy &amp; Mission</strong>
+        9EPhR as a policy framework for European institutions. &ldquo;Mission EU
+        9EPhR&rdquo; &mdash; reframing the EU&rsquo;s social contract around
+        guaranteed physical requirements rather than GDP metrics.
+      </div>
+      <div class="ephr-context-item">
+        <strong>Large Companies</strong>
+        Corporate responsibility reframed: does your supply chain and workforce
+        policy ensure the nine requirements for everyone it touches? A measurable
+        standard beyond ESG checklists.
+      </div>
+      <div class="ephr-context-item">
+        <strong>Coastal Cities &amp; Infrastructure</strong>
+        Overnight ships, public transit, walkable urban design &mdash; physical
+        infrastructure that directly serves mobility, shelter, and connectivity
+        requirements. 9EPhR as infrastructure design brief.
+      </div>
+      <div class="ephr-context-item">
+        <strong>Regenerative Agriculture</strong>
+        Food and water requirements met through soil health, local food systems,
+        and watershed management. Biomimicry at landscape scale &mdash; the
+        ecosystem provides for its members.
+      </div>
+      <div class="ephr-context-item">
+        <strong>Community Hubs</strong>
+        <a href="/holons/community-hubs/">EvoBioSys Community Hubs</a> as
+        physical spaces where all nine requirements converge: shared kitchens,
+        co-housing, health services, connectivity, energy cooperatives.
+      </div>
+      <div class="ephr-context-item">
+        <strong>Developmental Education</strong>
+        <a href="/holons/evopaideia/">EvoPaideia</a> recognizes that learning
+        requires a safe body. 9EPhR defines the physical baseline for any
+        educational environment that claims to support whole-person development.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== BIOMIMICRY NOTE ====== -->
+<section style="background: var(--ephr-brown-pale); border-top: 1px solid var(--ephr-line); border-bottom: 1px solid var(--ephr-line);">
+  <div class="container-narrow" style="text-align: center;">
+    <p class="section-label" style="color: var(--ephr-earth);">The Bio Principle</p>
+    <h2 class="section-title">Learning from living systems</h2>
+    <div class="prose" style="text-align: left;">
+      <p>
+        Every healthy ecosystem provides its organisms with what they need to
+        thrive. A forest does not charge its trees for water. A coral reef does
+        not invoice its fish for shelter. The physical requirements are simply
+        <em>met</em> &mdash; built into the structure of the system itself.
+      </p>
+      <p>
+        9EPhR is the Bio pillar of EvoBioSys made explicit. The &ldquo;Bio&rdquo;
+        in EvoBioSys stands for living processes, and the most fundamental
+        question about any living process is: <em>what does it need?</em>
+        Nine things. Physical things. Things that can be named, measured,
+        and guaranteed.
+      </p>
+      <p>
+        A (re)generative civilization is one that, like a healthy ecosystem,
+        builds the provision of essential requirements into its very structure.
+        Not as charity. Not as welfare. As architecture.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== BACK LINK ====== -->
+<div class="back-link">
+  <a href="/holons/">&larr; Back to all holons</a> &nbsp;&middot;&nbsp;
+  <a href="/holons/mhs/">MHS &rarr;</a> &nbsp;&middot;&nbsp;
+  <a href="/holons/soubr/">SoUBR &rarr;</a>
+</div>
+
+</div>

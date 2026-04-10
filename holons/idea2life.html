@@ -1,0 +1,622 @@
+---
+layout: default
+title: "idea2.life — Sovereign Life Infrastructure"
+description: >-
+  idea2.life is the sovereign life infrastructure holon of EvoBioSys — a personal
+  and organizational operating system built on self-hosted, privacy-first,
+  EU-sovereign technology.
+permalink: /holons/idea2life/
+---
+
+<style>
+  /* === idea2.life — Blueprint / Sovereign Identity === */
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+  .i2l-page {
+    --bp-ink: #1a2233;
+    --bp-line: #b8c4d4;
+    --bp-accent: #2a5caa;
+    --bp-accent-light: #4a7fd4;
+    --bp-grid: rgba(42, 92, 170, 0.06);
+    --bp-bg: #f4f6fa;
+    --bp-white: #ffffff;
+    --bp-mono: 'JetBrains Mono', 'Courier New', monospace;
+    background:
+      linear-gradient(var(--bp-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bp-grid) 1px, transparent 1px),
+      var(--bp-bg);
+    background-size: 40px 40px, 40px 40px, 100% 100%;
+    position: relative;
+  }
+
+  .i2l-page::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 50%;
+    width: 1px;
+    height: 100vh;
+    background: linear-gradient(to bottom, transparent, var(--bp-line), transparent);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .i2l-header {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 7rem 2rem 3rem;
+    position: relative;
+  }
+
+  .i2l-header .breadcrumb {
+    font-family: var(--bp-mono);
+    font-size: 0.75rem;
+    color: var(--bp-accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.5rem;
+  }
+
+  .i2l-header .breadcrumb a {
+    color: var(--bp-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .i2l-header .breadcrumb a:hover {
+    border-bottom-color: var(--bp-accent);
+  }
+
+  .i2l-title {
+    font-family: var(--bp-mono);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--bp-ink);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+  }
+
+  .i2l-title .dot {
+    color: var(--bp-accent);
+  }
+
+  .i2l-subtitle {
+    font-size: 1.15rem;
+    color: #5a6a7a;
+    line-height: 1.7;
+    max-width: 620px;
+    margin-top: 1rem;
+    font-weight: 300;
+  }
+
+  .i2l-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .i2l-meta-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    font-family: var(--bp-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 1px solid var(--bp-line);
+    border-radius: 2px;
+    color: var(--bp-ink);
+    background: var(--bp-white);
+  }
+
+  .i2l-meta-tag .tag-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--bp-accent);
+    display: inline-block;
+  }
+
+  .i2l-meta-tag.legacy {
+    border-color: var(--bp-accent);
+    color: var(--bp-accent);
+  }
+
+  .i2l-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    position: relative;
+  }
+
+  .i2l-section + .i2l-section {
+    border-top: 1px solid var(--bp-line);
+  }
+
+  .i2l-section-number {
+    font-family: var(--bp-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--bp-accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .i2l-section h2 {
+    font-family: var(--bp-mono);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--bp-ink);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
+  }
+
+  .i2l-section p {
+    color: #3a4a5a;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .i2l-section p:last-child { margin-bottom: 0; }
+
+  .i2l-mono {
+    font-family: var(--bp-mono);
+    font-size: 0.88em;
+    color: var(--bp-accent);
+    background: rgba(42, 92, 170, 0.06);
+    padding: 0.1em 0.4em;
+    border-radius: 2px;
+  }
+
+  .i2l-philosophy {
+    background: var(--bp-white);
+    border: 1px solid var(--bp-line);
+    border-left: 3px solid var(--bp-accent);
+    padding: 2rem 2.5rem;
+    margin: 2rem 0;
+    position: relative;
+  }
+
+  .i2l-philosophy::before {
+    content: '//';
+    font-family: var(--bp-mono);
+    font-size: 0.7rem;
+    color: var(--bp-accent);
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    opacity: 0.5;
+  }
+
+  .i2l-philosophy h3 {
+    font-family: var(--bp-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--bp-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+
+  .i2l-philosophy p {
+    font-size: 1.05rem;
+    color: var(--bp-ink);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .i2l-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--bp-line);
+    border: 1px solid var(--bp-line);
+    margin: 2rem 0;
+  }
+
+  .i2l-stack-item {
+    background: var(--bp-white);
+    padding: 1.75rem 2rem;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .i2l-stack-label {
+    font-family: var(--bp-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--bp-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding-top: 0.2rem;
+  }
+
+  .i2l-stack-content h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--bp-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .i2l-stack-content p {
+    font-size: 0.9rem;
+    color: #5a6a7a;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  .i2l-stack-content ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.75rem;
+  }
+
+  .i2l-stack-content ul li {
+    font-size: 0.85rem;
+    color: #5a6a7a;
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .i2l-stack-content ul li::before {
+    content: '\2500';
+    font-family: var(--bp-mono);
+    color: var(--bp-line);
+    position: absolute;
+    left: 0;
+  }
+
+  .i2l-phases {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .i2l-phase {
+    background: var(--bp-white);
+    border: 1px solid var(--bp-line);
+    padding: 1.5rem;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+
+  .i2l-phase:hover { border-color: var(--bp-accent); }
+
+  .i2l-phase-num {
+    font-family: var(--bp-mono);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--bp-line);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+
+  .i2l-phase h3 {
+    font-family: var(--bp-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--bp-ink);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+  }
+
+  .i2l-phase p {
+    font-size: 0.85rem;
+    color: #5a6a7a;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .i2l-connections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .i2l-conn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bp-white);
+    border: 1px solid var(--bp-line);
+    font-family: var(--bp-mono);
+    font-size: 0.75rem;
+    color: var(--bp-ink);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .i2l-conn:hover {
+    border-color: var(--bp-accent);
+    color: var(--bp-accent);
+  }
+
+  .i2l-conn .arrow { font-size: 0.65rem; opacity: 0.5; }
+
+  .i2l-back {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+  }
+
+  .i2l-back a {
+    font-family: var(--bp-mono);
+    font-size: 0.8rem;
+    color: var(--bp-accent);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .i2l-back a:hover { border-bottom-color: var(--bp-accent); }
+
+  .i2l-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem auto 0;
+    max-width: 900px;
+    padding: 0 2rem;
+  }
+
+  .i2l-divider::before,
+  .i2l-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--bp-line);
+  }
+
+  .i2l-divider span {
+    font-family: var(--bp-mono);
+    font-size: 0.6rem;
+    color: var(--bp-line);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .i2l-title { font-size: 2rem; }
+    .i2l-stack-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .i2l-phases { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="i2l-page">
+
+  <!-- Header -->
+  <header class="i2l-header">
+    <p class="breadcrumb">
+      <a href="/">Home</a> &rsaquo;
+      <a href="/holons/">Holons</a> &rsaquo;
+      idea2.life
+    </p>
+    <h1 class="i2l-title">idea2<span class="dot">.</span>life</h1>
+    <p class="i2l-subtitle">
+      Sovereign life infrastructure &mdash; a personal operating system built on
+      self-hosted, privacy-first, EU-sovereign technology. Your digital life
+      belongs to you and no one else.
+    </p>
+    <ul class="i2l-meta">
+      <li class="i2l-meta-tag"><span class="tag-dot"></span> Active</li>
+      <li class="i2l-meta-tag">Sys &mdash; Systems</li>
+      <li class="i2l-meta-tag">Holon</li>
+      <li class="i2l-meta-tag legacy">#my-legacy</li>
+      <li class="i2l-meta-tag">i2L workspace</li>
+    </ul>
+  </header>
+
+  <!-- 01 — Life as Infrastructure -->
+  <section class="i2l-section">
+    <span class="i2l-section-number">01 &mdash; Philosophy</span>
+    <h2>Life as Infrastructure</h2>
+    <p>
+      Most people think of infrastructure as something external &mdash; roads, servers,
+      power grids. idea2.life begins from a different premise: <em>your life has an
+      operating system</em>, whether you designed it or not. The question is whether
+      that OS was chosen by you or assembled by default from whatever platforms were
+      convenient at the time.
+    </p>
+    <p>
+      idea2.life is the EvoBioSys holon that treats personal and organizational
+      infrastructure as a design problem. It asks: what does it take to own your
+      communications, your data, your DNS, your hosting &mdash; without becoming a
+      full-time systems administrator? The answer is an <span class="i2l-mono">Open Tech Stack</span>
+      philosophy: every component is open-source, self-hostable, and replaceable. No
+      vendor lock-in. No silent data extraction. No dependency on a single provider's
+      continued goodwill.
+    </p>
+
+    <div class="i2l-philosophy">
+      <h3>The Human Dimension</h3>
+      <p>
+        idea2.life is not a server rack. It is the human dimension of the tech &mdash;
+        the conviction that sovereign infrastructure is ultimately about autonomy, dignity,
+        and the right to a digital existence that reflects your values rather than an
+        advertising model. Technology serves life, not the other way around.
+      </p>
+    </div>
+
+    <p>
+      The project carries a dedicated Tana workspace with its own supertag
+      (<span class="i2l-mono">i2L idea2Life</span>), a published OnePager, and a
+      growing body of documentation under the <span class="i2l-mono">idea2Life unboxing</span>
+      supertag &mdash; a collection of discovery moments where sovereign infrastructure
+      reveals new possibilities.
+    </p>
+  </section>
+
+  <!-- 02 — The Sovereign Stack -->
+  <div class="i2l-divider"><span>The Sovereign Stack</span></div>
+  <section class="i2l-section" style="border-top: none;">
+    <span class="i2l-section-number">02 &mdash; Infrastructure</span>
+    <h2>The Sovereign Stack</h2>
+    <p>
+      idea2.life is not a single product but a constellation of sovereign services
+      that form a complete digital operating system. Each layer handles a distinct
+      concern; together they compose a stack where no external party holds the keys.
+    </p>
+
+    <div class="i2l-stack">
+      <div class="i2l-stack-item">
+        <div class="i2l-stack-label">Layer 01<br>Comms</div>
+        <div class="i2l-stack-content">
+          <h3>Jakaja-Matrix</h3>
+          <p>
+            Self-hosted Matrix server at the heart of idea2.life's communication layer.
+            A valid Element.io server, fully compatible with the Element client ecosystem
+            and accessible from any Matrix-compatible app.
+          </p>
+          <ul>
+            <li>Federation enabled &mdash; communicates across the decentralized Matrix network</li>
+            <li>Signal bridge via <span class="i2l-mono">mautrix-signal</span> &mdash; encrypted messaging with Signal contacts from Matrix</li>
+            <li>Runs as a managed <span class="i2l-mono">systemd</span> service (not nohup) &mdash; automatic restarts, clean OS integration</li>
+            <li>Proves that sovereign, federated communication is practical with the right operational discipline</li>
+          </ul>
+        </div>
+      </div>
+      <div class="i2l-stack-item">
+        <div class="i2l-stack-label">Layer 02<br>Signals</div>
+        <div class="i2l-stack-content">
+          <h3>Signal Orbit / Signal Hub</h3>
+          <p>
+            The communication nerve center that manages the flow of signals &mdash;
+            messages, notifications, updates &mdash; across the sovereign infrastructure.
+            Bridges multiple messaging protocols into a unified, self-hosted layer.
+          </p>
+          <ul>
+            <li>Encrypted messaging across federated protocols</li>
+            <li>Signal bridge integration for mainstream contacts</li>
+            <li>Notification and signal flow management</li>
+            <li>Zero third-party dependencies</li>
+          </ul>
+        </div>
+      </div>
+      <div class="i2l-stack-item">
+        <div class="i2l-stack-label">Layer 03<br>Foundation</div>
+        <div class="i2l-stack-content">
+          <h3>Hosting &amp; Private DNS</h3>
+          <p>
+            Sovereign infrastructure starts at the foundation: who controls your DNS,
+            and where do your services run? The <span class="i2l-mono">best hosting</span>
+            sub-holon manages private DNS records and EU-sovereign hosting.
+          </p>
+          <ul>
+            <li>Private DNS &mdash; domain resolution is not a surveillance vector</li>
+            <li>EU-sovereign hosting &mdash; subject to EU data protection, not US CLOUD Act</li>
+            <li>Self-hostable by design &mdash; every service can be migrated, zero vendor lock-in</li>
+            <li>Domain transfer for <span class="i2l-mono">idea2.life</span> pending</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — Incubator Phases -->
+  <div class="i2l-divider"><span>Incubator</span></div>
+  <section class="i2l-section" style="border-top: none;">
+    <span class="i2l-section-number">03 &mdash; Roadmap</span>
+    <h2>Incubator Phases</h2>
+    <p>
+      idea2.life is evolving toward an incubator model &mdash; not just sovereign
+      infrastructure for one person, but a replicable blueprint others can adopt.
+      The document "Phases for idea2.Life as an Incubator" outlines this trajectory.
+    </p>
+
+    <div class="i2l-phases">
+      <div class="i2l-phase">
+        <div class="i2l-phase-num">01</div>
+        <h3>Foundation</h3>
+        <p>
+          Core stack operational. Matrix server, Signal bridge, private DNS, EU hosting.
+          Proving the model works for a single user/organization.
+        </p>
+      </div>
+      <div class="i2l-phase">
+        <div class="i2l-phase-num">02</div>
+        <h3>Documentation</h3>
+        <p>
+          The open tech stack becomes a publishable blueprint. OnePager, unboxing
+          discoveries, and operational runbooks formalized.
+        </p>
+      </div>
+      <div class="i2l-phase">
+        <div class="i2l-phase-num">03</div>
+        <h3>Replication</h3>
+        <p>
+          Others deploy the idea2.life stack. Tooling, templates, and support
+          structures enable sovereign infrastructure without deep sysadmin expertise.
+        </p>
+      </div>
+      <div class="i2l-phase">
+        <div class="i2l-phase-num">04</div>
+        <h3>Network</h3>
+        <p>
+          Federated idea2.life instances form a network of sovereign nodes &mdash;
+          each independent, all interoperable. The incubator becomes an ecosystem.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — People & Connections -->
+  <div class="i2l-divider"><span>Network</span></div>
+  <section class="i2l-section" style="border-top: none;">
+    <span class="i2l-section-number">04 &mdash; Connections</span>
+    <h2>People &amp; Holons</h2>
+    <p>
+      idea2.life does not exist in isolation. It is connected to collaborators,
+      adjacent holons, and the broader EvoBioSys infrastructure that sustains it.
+      Manuel Spornberger has been a key collaborator through a series of working
+      meetings ("Manuel &amp; Jakob for Idea2Life"), shaping the project's
+      direction and technical decisions.
+    </p>
+    <p>
+      The holon connects to the EvoBioSys Publication Pipeline workspace for
+      documenting and sharing infrastructure patterns, and to
+      <a href="/holons/kidur/">kidur</a> for the open-source tooling philosophy
+      that underpins every technical choice.
+    </p>
+
+    <div class="i2l-connections">
+      <a href="/holons/kidur/" class="i2l-conn">
+        kidur <span class="arrow">&rarr;</span>
+      </a>
+      <a href="/publications/" class="i2l-conn">
+        Publication Pipeline <span class="arrow">&rarr;</span>
+      </a>
+      <span class="i2l-conn">
+        Manuel Spornberger <span class="arrow">&bull;</span>
+      </span>
+      <span class="i2l-conn">
+        OnePager <span class="arrow">&bull;</span>
+      </span>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="i2l-back">
+    <a href="/holons/">&larr; Back to all holons</a>
+  </div>
+
+</div>

@@ -8,9 +8,79 @@
   {% seo %}
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- IndieWeb: Webmention -->
+  <link rel="webmention" href="https://webmention.io/evobiosys.org/webmention">
+  <link rel="pingback" href="https://webmention.io/evobiosys.org/xmlrpc">
+
+  <!-- IndieWeb: IndieAuth -->
+  <link rel="authorization_endpoint" href="https://indieauth.com/auth">
+  <link rel="token_endpoint" href="https://tokens.indieauth.com/token">
+  <link rel="me" href="https://japossert.com">
+  <link rel="me" href="mailto:connect@evobiosys.org">
 </head>
 <body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="/" class="nav-logo">EvoBioSys</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/holons/">Holons</a></li>
+      <li><a href="/legacy/">Legacy</a></li>
+      <li><a href="/capital/">Capital</a></li>
+      <li><a href="/partners/">Partners</a></li>
+      <li><a href="/publications/">Publications</a></li>
+      <li><a href="/how-we-work/">How We Work</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/#connect" class="btn btn-sm btn-primary">Stay in the loop</a></li>
+    </ul>
+  </nav>
+
   {{ content }}
+
+  <!-- Footer with h-card (IndieWeb) -->
+  <footer class="footer">
+    <div class="footer-inner h-card" style="display:none;">
+      <a class="p-name u-url" href="https://evobiosys.org" rel="me">EvoBioSys</a>
+      <span class="p-org">EvoBioSys</span>
+      <a class="u-email" href="mailto:connect@evobiosys.org">connect@evobiosys.org</a>
+      <span class="p-locality">Vienna</span>
+      <span class="p-country-name">Austria</span>
+      <span class="p-note">Cultivating evolutionary approaches &amp; liberating systems</span>
+      <img class="u-photo" src="/assets/jakob-profile.jpg" alt="Jakob Possert">
+    </div>
+    <div class="footer-inner">
+      <p>&copy; 2026 EvoBioSys &middot; Evolving Living Systems &middot; <span style="color: #aaa; font-size: 0.75rem;">v0.9.1</span></p>
+      <ul class="footer-links">
+        <li><a href="/holons/">Holons</a></li>
+        <li><a href="/legacy/">Legacy</a></li>
+        <li><a href="/capital/">Capital</a></li>
+        <li><a href="/partners/">Partners</a></li>
+        <li><a href="/publications/">Publications</a></li>
+        <li><a href="/how-we-work/">How We Work</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="mailto:connect@evobiosys.org">connect@evobiosys.org</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile nav toggle
+    const toggle = document.getElementById('nav-toggle');
+    const links = document.getElementById('nav-links');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        links.classList.toggle('open');
+      });
+    }
+  </script>
 </body>
 </html>

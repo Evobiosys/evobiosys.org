@@ -1,0 +1,84 @@
+# ============================================================
+# Partners data — edit THIS file, it propagates everywhere
+# ============================================================
+# Categories: client, partner, collaborator, collective-member
+# Status: active, tbc, past
+# Used by: /partners/, /about/, footer, anywhere via {{ site.data.partners }}
+
+clients:
+  - name: Alia Tall-Khatib
+    role: Co-steward of Soaro
+    org: Soaro Stewardship
+    badge: Stewardship
+    description: >-
+      Co-steward of Soaro. Alia brings deep expertise in collaborative resource
+      allocation, shared outcome design, and relationship-led consulting.
+      Together we are building the Soaro Five framework and pursuing $3M in
+      impact funding.
+    holons:
+      - Soaro Stewardship
+      - Soaro MVP
+    link: /holons/soaro/
+    status: active
+
+partners:
+  - name: Roberto Valenti
+    role: Partner
+    org: holons.io
+    badge: Technology
+    description: >-
+      Partner via holons.io on Singular Structure as a Service — the portable
+      desk and personal software registry project. Roberto brings technical
+      depth to the vision of a sovereign, reproducible computing environment.
+    holons:
+      - Singular Structure as a Service
+      - holons.io
+    link:
+    status: active
+
+collaborators:
+  - name: Andrew Hasse
+    role: Collaborator
+    org:
+    badge: In-Flow
+    description: >-
+      Collaborator on PitchPerfect, a project under the In-Flow umbrella.
+      Andrew contributes to the vision of flow-state tools that help people
+      present and communicate with clarity.
+    holons:
+      - PitchPerfect
+      - In-Flow(.info)
+    link:
+    status: active
+
+collective_members:
+  - name: Katherine Colquitt
+    role: SoFin Collective member (TBC)
+    org:
+    badge: Finance
+    description: >-
+      Part of the SoFin Collective — helping shape regenerative economic models
+      and supporting the social finance initiative.
+    holons:
+      - SoFin Collective
+    link: /holons/sofin/
+    status: tbc
+
+organisations:
+  - name: hy.team
+    description: >-
+      A team and platform we actively support. Part of the broader network
+      of aligned organisations working toward regenerative coordination.
+    status: active
+
+  - name: idea2spiral.com
+    description: >-
+      A partner initiative exploring the spiral of bringing ideas into reality —
+      closely connected to the idea2.life philosophy of sovereign life infrastructure.
+    status: active
+
+  - name: docs.lumeon.dev
+    description: >-
+      A documentation and developer platform we support as part of the open-source,
+      build-in-the-open ethos that guides EvoBioSys technology.
+    status: active

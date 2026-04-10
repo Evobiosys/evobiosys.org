@@ -1,0 +1,9 @@
+# Auto-synced from Tana node asxaB7PxoxaM
+# Last sync: 2026-04-04 08:40:28 UTC
+
+name: "vot"
+children:
+  - name: "AI suggestion"
+    children:
+      - name: "complete"
+      - name: "per website"

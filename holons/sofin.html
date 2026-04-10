@@ -1,0 +1,1961 @@
+---
+layout: default
+title: "SoFin — Sovereign Finance"
+description: >-
+  SoFin is the sovereign finance holon of EvoBioSys — regenerative economics,
+  sovereign financial tools, and community-driven capital flows. Domain: sofin.bio.
+permalink: /holons/sofin/
+---
+
+<style>
+  /* SoFin — Financial/Regenerative palette */
+  .sofin-page {
+    --sofin-green: #1a5c3a;
+    --sofin-green-light: #2d8a5e;
+    --sofin-green-pale: #e8f4ed;
+    --sofin-gold: #b8912a;
+    --sofin-gold-light: #d4ab3e;
+    --sofin-amber: #c88b2e;
+    --sofin-deep: #0e2f1e;
+    --sofin-muted: #4a7a5c;
+    --sofin-cream: #f7f9f5;
+    --sofin-line: #c8d8cc;
+  }
+
+  /* Header with upward gradient */
+  .sofin-header {
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    background: linear-gradient(0deg, var(--color-bg) 0%, var(--sofin-cream) 40%, var(--sofin-green-pale) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle upward-flowing particles */
+  .sofin-header::before,
+  .sofin-header::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.06;
+    background: var(--sofin-green);
+  }
+
+  .sofin-header::before {
+    width: 300px;
+    height: 300px;
+    bottom: -80px;
+    left: 10%;
+    animation: sofin-float 12s ease-in-out infinite;
+  }
+
+  .sofin-header::after {
+    width: 200px;
+    height: 200px;
+    bottom: -40px;
+    right: 15%;
+    animation: sofin-float 12s ease-in-out infinite 3s;
+  }
+
+  @keyframes sofin-float {
+    0%, 100% { transform: translateY(0); opacity: 0.06; }
+    50% { transform: translateY(-30px); opacity: 0.1; }
+  }
+
+  .sofin-header h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--sofin-deep);
+    position: relative;
+    z-index: 1;
+  }
+
+  .sofin-header h1 .sub {
+    font-weight: 400;
+    color: var(--sofin-muted);
+    font-size: 0.6em;
+    display: block;
+    margin-top: 0.25rem;
+    letter-spacing: 0.01em;
+  }
+
+  .sofin-domain-badge {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: rgba(26, 92, 58, 0.08);
+    color: var(--sofin-green);
+    border: 1px solid rgba(26, 92, 58, 0.15);
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  }
+
+  .sofin-lead {
+    font-size: 1.1rem;
+    color: var(--sofin-muted);
+    max-width: 620px;
+    margin: 0.75rem auto 0;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sofin-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .sofin-meta .meta-item dt {
+    color: var(--sofin-green);
+  }
+
+  /* Problem Statement — dark dramatic intro */
+  .sofin-problem {
+    padding: 5rem 2rem;
+    background: var(--sofin-deep);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sofin-problem::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(184, 145, 42, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 30%, rgba(26, 92, 58, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .problem-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .problem-inner .section-label {
+    color: var(--sofin-gold-light);
+    text-align: center;
+  }
+
+  .problem-inner h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1.5rem;
+  }
+
+  .problem-inner blockquote {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.85;
+    border: none;
+    padding: 0;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .problem-inner blockquote::before {
+    content: '\201C';
+    font-size: 3rem;
+    color: var(--sofin-gold-light);
+    display: block;
+    line-height: 0.5;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Engine callout */
+  .sofin-engine {
+    padding: 5rem 2rem;
+    background: var(--sofin-deep);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sofin-engine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(26, 92, 58, 0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(184, 145, 42, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .engine-layout {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .engine-box {
+    padding: 2.5rem;
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  .engine-box.sofin-box {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .engine-box.capital-box {
+    background: rgba(184, 145, 42, 0.08);
+    border: 1px solid rgba(184, 145, 42, 0.2);
+  }
+
+  .engine-box .box-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .sofin-box .box-label {
+    color: var(--sofin-green-light);
+  }
+
+  .capital-box .box-label {
+    color: var(--sofin-gold-light);
+  }
+
+  .engine-box h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .sofin-box h3 {
+    color: #fff;
+  }
+
+  .capital-box h3 {
+    color: var(--sofin-gold-light);
+  }
+
+  .engine-box p {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.65;
+  }
+
+  .engine-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .engine-connector .arrow {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 1.2rem;
+    color: var(--sofin-gold-light);
+  }
+
+  .engine-quote {
+    text-align: center;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .engine-quote blockquote {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    font-style: italic;
+    letter-spacing: -0.01em;
+    padding: 0;
+    border: none;
+  }
+
+  .engine-quote blockquote::before {
+    content: '\201C';
+    font-size: 3rem;
+    color: var(--sofin-gold-light);
+    display: block;
+    line-height: 0.5;
+    margin-bottom: 0.5rem;
+  }
+
+  /* What is SoFin */
+  .sofin-what {
+    padding: 6rem 2rem;
+  }
+
+  .sofin-what .prose h2 {
+    color: var(--sofin-deep);
+  }
+
+  .sofin-what .prose p {
+    color: var(--sofin-muted);
+  }
+
+  .sofin-what .highlight-line {
+    padding: 1rem 1.5rem;
+    background: var(--sofin-green-pale);
+    border-left: 3px solid var(--sofin-green);
+    border-radius: 0 8px 8px 0;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    color: var(--sofin-green);
+    font-weight: 500;
+  }
+
+  /* Pull Quote — used throughout */
+  .sofin-pull-quote {
+    padding: 3.5rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .sofin-pull-quote.bg-cream {
+    background: var(--sofin-cream);
+  }
+
+  .sofin-pull-quote.bg-pale {
+    background: linear-gradient(0deg, var(--sofin-cream), var(--sofin-green-pale));
+  }
+
+  .sofin-pull-quote.bg-dark {
+    background: var(--sofin-deep);
+  }
+
+  .sofin-pull-quote blockquote {
+    max-width: 640px;
+    margin: 0 auto;
+    border: none;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .sofin-pull-quote.bg-dark blockquote {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .sofin-pull-quote:not(.bg-dark) blockquote {
+    color: var(--sofin-deep);
+  }
+
+  .sofin-pull-quote blockquote::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sofin-green), var(--sofin-gold));
+    margin: 0 auto 1.5rem;
+    border-radius: 2px;
+  }
+
+  /* ====== FOUR PILLARS ====== */
+  .sofin-pillars {
+    padding: 6rem 2rem;
+    background: var(--color-white);
+    border-top: 1px solid var(--sofin-line);
+    border-bottom: 1px solid var(--sofin-line);
+  }
+
+  .pillars-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .pillars-inner .section-label {
+    color: var(--sofin-gold);
+    text-align: center;
+  }
+
+  .pillars-inner .section-title {
+    color: var(--sofin-deep);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .pillars-subtitle {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--sofin-muted);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  .pillar-card {
+    padding: 2.5rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s;
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 4px 0 0 4px;
+  }
+
+  .pillar-card.pillar-1 {
+    background: linear-gradient(135deg, var(--sofin-green-pale) 0%, rgba(232, 244, 237, 0.4) 100%);
+    border: 1px solid rgba(26, 92, 58, 0.15);
+  }
+  .pillar-card.pillar-1::before { background: var(--sofin-green); }
+
+  .pillar-card.pillar-2 {
+    background: linear-gradient(135deg, rgba(212, 171, 62, 0.08) 0%, rgba(247, 249, 245, 0.6) 100%);
+    border: 1px solid rgba(184, 145, 42, 0.18);
+  }
+  .pillar-card.pillar-2::before { background: var(--sofin-gold); }
+
+  .pillar-card.pillar-3 {
+    background: linear-gradient(135deg, rgba(45, 138, 94, 0.06) 0%, rgba(232, 244, 237, 0.3) 100%);
+    border: 1px solid rgba(45, 138, 94, 0.15);
+  }
+  .pillar-card.pillar-3::before { background: var(--sofin-green-light); }
+
+  .pillar-card.pillar-4 {
+    background: linear-gradient(135deg, rgba(200, 139, 46, 0.06) 0%, rgba(212, 171, 62, 0.04) 100%);
+    border: 1px solid rgba(200, 139, 46, 0.15);
+  }
+  .pillar-card.pillar-4::before { background: var(--sofin-amber); }
+
+  .pillar-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  }
+
+  .pillar-1 .pillar-number { background: var(--sofin-green); color: #fff; }
+  .pillar-2 .pillar-number { background: var(--sofin-gold); color: #fff; }
+  .pillar-3 .pillar-number { background: var(--sofin-green-light); color: #fff; }
+  .pillar-4 .pillar-number { background: var(--sofin-amber); color: #fff; }
+
+  .pillar-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--sofin-deep);
+    margin-bottom: 0.25rem;
+  }
+
+  .pillar-card .pillar-tagline {
+    font-size: 0.85rem;
+    color: var(--sofin-muted);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .pillar-card p {
+    font-size: 0.9rem;
+    color: var(--sofin-muted);
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+  }
+
+  .pillar-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .pillar-card .pillar-quote {
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-left: 3px solid var(--sofin-gold);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.88rem;
+    color: var(--sofin-deep);
+    font-style: italic;
+    font-weight: 500;
+    margin-top: 1rem;
+  }
+
+  /* Vertical Sequence stages */
+  .vertical-stages {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .v-stage {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    border: 1px solid rgba(184, 145, 42, 0.12);
+    text-align: center;
+  }
+
+  .v-stage .stage-num {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sofin-gold);
+    margin-bottom: 0.35rem;
+  }
+
+  .v-stage .stage-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--sofin-deep);
+    line-height: 1.4;
+  }
+
+  /* ICF sub-list */
+  .icf-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+  }
+
+  .icf-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    font-size: 0.88rem;
+    color: var(--sofin-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .icf-list li:last-child {
+    border-bottom: none;
+  }
+
+  .icf-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--sofin-green-light);
+    flex-shrink: 0;
+    margin-top: 0.5em;
+  }
+
+  /* ====== SoUBR HIGHLIGHT ====== */
+  .sofin-soubr {
+    padding: 6rem 2rem;
+    background: var(--sofin-deep);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sofin-soubr::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(26, 92, 58, 0.35) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(184, 145, 42, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .soubr-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .soubr-badge {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    background: rgba(45, 138, 94, 0.2);
+    border: 1px solid rgba(45, 138, 94, 0.35);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sofin-green-light);
+    margin-bottom: 1.5rem;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  }
+
+  .soubr-inner h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .soubr-inner .soubr-full {
+    font-size: 1rem;
+    color: var(--sofin-green-light);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .soubr-inner > p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .soubr-principles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .soubr-principle {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+  }
+
+  .soubr-principle h4 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--sofin-green-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .soubr-principle p {
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.65;
+  }
+
+  .soubr-manifesto {
+    margin-top: 2.5rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(184, 145, 42, 0.1);
+    border: 1px solid rgba(184, 145, 42, 0.2);
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .soubr-manifesto blockquote {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--sofin-gold-light);
+    font-style: italic;
+    border: none;
+    padding: 0;
+    line-height: 1.7;
+  }
+
+  /* Collective */
+  .sofin-collective {
+    padding: 5rem 2rem;
+    background: var(--color-white);
+    border-top: 1px solid var(--sofin-line);
+    border-bottom: 1px solid var(--sofin-line);
+  }
+
+  .collective-layout {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .collective-text h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--sofin-deep);
+    margin-bottom: 0.75rem;
+  }
+
+  .collective-text .section-label {
+    color: var(--sofin-green);
+  }
+
+  .collective-text p {
+    font-size: 0.92rem;
+    color: var(--sofin-muted);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .member-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .member-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-size: 0.92rem;
+    color: var(--sofin-deep);
+  }
+
+  .member-list li:last-child {
+    border-bottom: none;
+  }
+
+  .member-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sofin-green-pale), var(--sofin-green-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .member-role {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--sofin-muted);
+    font-weight: 400;
+  }
+
+  .collective-card {
+    padding: 2rem;
+    background: var(--sofin-cream);
+    border-radius: 12px;
+    border: 1px solid var(--sofin-line);
+  }
+
+  .collective-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--sofin-deep);
+    margin-bottom: 1rem;
+  }
+
+  /* Funding Flow Machine */
+  .sofin-ffm {
+    padding: 6rem 2rem;
+    background: var(--sofin-cream);
+  }
+
+  .ffm-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .ffm-inner .section-label {
+    color: var(--sofin-green);
+  }
+
+  .ffm-inner h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--sofin-deep);
+    margin-bottom: 1rem;
+  }
+
+  .ffm-inner > p {
+    font-size: 0.95rem;
+    color: var(--sofin-muted);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    max-width: 680px;
+  }
+
+  .ffm-capabilities {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .ffm-cap {
+    padding: 1.75rem;
+    background: var(--color-white);
+    border-radius: 12px;
+    border: 1px solid var(--sofin-line);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .ffm-cap:hover {
+    border-color: var(--sofin-green-light);
+    transform: translateY(-2px);
+  }
+
+  .ffm-cap::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sofin-green), var(--sofin-gold));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .ffm-cap:hover::before {
+    opacity: 1;
+  }
+
+  .ffm-cap h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--sofin-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .ffm-cap p {
+    font-size: 0.85rem;
+    color: var(--sofin-muted);
+    line-height: 1.65;
+  }
+
+  .ffm-bot-note {
+    margin-top: 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-white);
+    border-radius: 10px;
+    border: 1px solid var(--sofin-line);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .ffm-bot-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--sofin-green), var(--sofin-green-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .ffm-bot-note p {
+    font-size: 0.88rem;
+    color: var(--sofin-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .ffm-bot-note strong {
+    color: var(--sofin-deep);
+  }
+
+  /* ====== PUZZLE PIECE GARDEN ====== */
+  .sofin-concepts {
+    padding: 5rem 2rem;
+    background: var(--color-white);
+    border-top: 1px solid var(--sofin-line);
+    border-bottom: 1px solid var(--sofin-line);
+  }
+
+  .concepts-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .concepts-inner .section-label {
+    color: var(--sofin-gold);
+    text-align: center;
+  }
+
+  .concepts-inner .section-title {
+    color: var(--sofin-deep);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .concepts-subtitle {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--sofin-muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .concept-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  .concept-piece {
+    padding: 0.65rem 1.25rem;
+    background: var(--sofin-cream);
+    border: 1px solid var(--sofin-line);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--sofin-deep);
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+
+  .concept-piece:hover {
+    background: var(--sofin-green-pale);
+    border-color: var(--sofin-green-light);
+    transform: translateY(-1px);
+  }
+
+  .concept-piece.gold {
+    border-color: rgba(184, 145, 42, 0.25);
+  }
+
+  .concept-piece.gold:hover {
+    background: rgba(212, 171, 62, 0.1);
+    border-color: var(--sofin-gold);
+  }
+
+  /* ====== LEADING-EDGE IDEAS ====== */
+  .sofin-leading-edge {
+    padding: 6rem 2rem;
+    background: var(--sofin-cream);
+  }
+
+  .leading-edge-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .leading-edge-inner .section-label {
+    color: var(--sofin-green);
+    text-align: center;
+  }
+
+  .leading-edge-inner .section-title {
+    color: var(--sofin-deep);
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .idea-card {
+    padding: 1.75rem;
+    background: var(--color-white);
+    border-radius: 12px;
+    border: 1px solid var(--sofin-line);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .idea-card:hover {
+    border-color: var(--sofin-green-light);
+    transform: translateY(-2px);
+  }
+
+  .idea-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sofin-green), var(--sofin-gold));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .idea-card:hover::after {
+    opacity: 1;
+  }
+
+  .idea-card h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--sofin-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .idea-card p {
+    font-size: 0.85rem;
+    color: var(--sofin-muted);
+    line-height: 1.65;
+  }
+
+  /* Principles */
+  .sofin-principles {
+    padding: 6rem 2rem;
+    background: var(--color-white);
+    border-top: 1px solid var(--sofin-line);
+    border-bottom: 1px solid var(--sofin-line);
+  }
+
+  .principles-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .principles-inner .section-label {
+    color: var(--sofin-green);
+    text-align: center;
+  }
+
+  .principles-inner .section-title {
+    color: var(--sofin-deep);
+    text-align: center;
+  }
+
+  .principle-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .principle-item {
+    padding: 1.75rem;
+    border-radius: 12px;
+    background: var(--sofin-cream);
+    border: 1px solid var(--sofin-line);
+    transition: border-color 0.25s;
+  }
+
+  .principle-item:hover {
+    border-color: var(--sofin-green-light);
+  }
+
+  .principle-item h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--sofin-deep);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .principle-item h4 .pip {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--sofin-green);
+    flex-shrink: 0;
+  }
+
+  .principle-item p {
+    font-size: 0.85rem;
+    color: var(--sofin-muted);
+    line-height: 1.65;
+  }
+
+  /* River quote */
+  .sofin-river {
+    padding: 4rem 2rem;
+    background: linear-gradient(0deg, var(--sofin-cream), var(--sofin-green-pale));
+    text-align: center;
+  }
+
+  .river-quote {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .river-quote blockquote {
+    border: none;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--sofin-deep);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .river-quote blockquote::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sofin-green), var(--sofin-gold));
+    margin: 0 auto 1.5rem;
+    border-radius: 2px;
+  }
+
+  /* ====== PUBLICATIONS ====== */
+  .sofin-publications {
+    padding: 5rem 2rem;
+    background: var(--sofin-cream);
+  }
+
+  .publications-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .publications-inner .section-label {
+    color: var(--sofin-green);
+  }
+
+  .publications-inner h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--sofin-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .publications-inner > p {
+    font-size: 0.92rem;
+    color: var(--sofin-muted);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    max-width: 640px;
+  }
+
+  .pub-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .pub-item {
+    padding: 1.5rem;
+    background: var(--color-white);
+    border: 1px solid var(--sofin-line);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    transition: border-color 0.25s;
+  }
+
+  .pub-item:hover {
+    border-color: var(--sofin-green-light);
+  }
+
+  .pub-status {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .pub-status.draft {
+    background: rgba(184, 145, 42, 0.12);
+    color: var(--sofin-gold);
+  }
+
+  .pub-item h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--sofin-deep);
+    margin-bottom: 0.35rem;
+  }
+
+  .pub-item p {
+    font-size: 0.84rem;
+    color: var(--sofin-muted);
+    line-height: 1.6;
+  }
+
+  .pub-sections {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--color-white);
+    border: 1px solid var(--sofin-line);
+    border-radius: 12px;
+  }
+
+  .pub-sections h4 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--sofin-deep);
+    margin-bottom: 1rem;
+  }
+
+  .pub-sections-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .pub-section-tag {
+    padding: 0.35rem 0.85rem;
+    background: var(--sofin-green-pale);
+    border-radius: 6px;
+    font-size: 0.78rem;
+    color: var(--sofin-green);
+    font-weight: 500;
+  }
+
+  /* ====== ALTRAD.ING & RELATED ====== */
+  .sofin-related {
+    padding: 5rem 2rem;
+    background: var(--color-white);
+    border-top: 1px solid var(--sofin-line);
+    border-bottom: 1px solid var(--sofin-line);
+  }
+
+  .related-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .related-inner .section-label {
+    color: var(--sofin-gold);
+  }
+
+  .related-inner h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--sofin-deep);
+    margin-bottom: 2rem;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .related-item {
+    padding: 1.25rem;
+    background: var(--sofin-cream);
+    border: 1px solid var(--sofin-line);
+    border-radius: 10px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .related-item:hover {
+    border-color: var(--sofin-green-light);
+    transform: translateY(-1px);
+  }
+
+  .related-item h4 {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--sofin-deep);
+    margin-bottom: 0.3rem;
+  }
+
+  .related-item p {
+    font-size: 0.78rem;
+    color: var(--sofin-muted);
+    line-height: 1.5;
+  }
+
+  /* Living Flatcoins teaser */
+  .sofin-frontier {
+    padding: 4rem 2rem;
+    background: var(--sofin-deep);
+    color: #fff;
+  }
+
+  .frontier-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .frontier-badge {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--sofin-gold), var(--sofin-amber));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .frontier-text h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--sofin-gold-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .frontier-text p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.65;
+  }
+
+  /* Back link override */
+  .sofin-page .back-link a {
+    color: var(--sofin-green);
+  }
+
+  .sofin-page .back-link a:hover {
+    color: var(--sofin-green-light);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .engine-layout {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .engine-connector {
+      flex-direction: row;
+      justify-content: center;
+    }
+    .engine-connector .arrow {
+      transform: rotate(90deg);
+    }
+    .collective-layout {
+      grid-template-columns: 1fr;
+    }
+    .ffm-capabilities {
+      grid-template-columns: 1fr;
+    }
+    .frontier-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .vertical-stages {
+      grid-template-columns: 1fr 1fr;
+    }
+    .soubr-principles {
+      grid-template-columns: 1fr;
+    }
+    .ideas-grid {
+      grid-template-columns: 1fr;
+    }
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="sofin-page">
+
+  <!-- Header -->
+  <header class="sofin-header">
+    <p class="breadcrumb">
+      <a href="/">Home</a> &rsaquo;
+      <a href="/holons/">Holons</a> &rsaquo;
+      SoFin
+    </p>
+    <div class="sofin-domain-badge">sofin.bio</div>
+    <h1>SoFin<span class="sub">Sovereign Finance</span></h1>
+    <p class="sofin-lead">
+      Regenerative economics and sovereign financial tools &mdash; building the
+      infrastructure for money to serve life rather than extract from it.
+    </p>
+    <dl class="sofin-meta">
+      <div class="meta-item">
+        <dt>Status</dt>
+        <dd><span class="status status-active">Active</span></dd>
+      </div>
+      <div class="meta-item">
+        <dt>Pillar</dt>
+        <dd>Bio &mdash; Living</dd>
+      </div>
+      <div class="meta-item">
+        <dt>Lead</dt>
+        <dd>Jakob Possert-Bienzle</dd>
+      </div>
+      <div class="meta-item">
+        <dt>Type</dt>
+        <dd>Holon &amp; Collective</dd>
+      </div>
+    </dl>
+  </header>
+
+  <!-- The Problem — dramatic intro framing -->
+  <section class="sofin-problem">
+    <div class="problem-inner">
+      <p class="section-label">The Problem</p>
+      <h2>A Civilization Bottleneck</h2>
+      <blockquote>
+        The architects of a regenerative, metamodern future &mdash; the polymaths,
+        systems designers, and purpose-driven agents &mdash; are trapped in financial
+        precarity. Not because they lack value, but because our financial infrastructure
+        is designed for extraction, not emergence.
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Pull Quote 1 -->
+  <div class="sofin-pull-quote bg-cream">
+    <blockquote>
+      Why are the world&rsquo;s most capable innovators stuck in survival mode &mdash;
+      while mediocrity is rewarded with infinite resources?
+    </blockquote>
+  </div>
+
+  <!-- SoFin is the Engine -->
+  <section class="sofin-engine">
+    <div class="engine-layout">
+      <div class="engine-box sofin-box">
+        <div class="box-label">The Engine</div>
+        <h3>SoFin</h3>
+        <p>
+          Operational infrastructure, financial tools, regenerative flows,
+          and the protocols that make capital move with intention.
+        </p>
+      </div>
+
+      <div class="engine-connector">
+        <span class="arrow">&harr;</span>
+        <span>powers</span>
+      </div>
+
+      <div class="engine-box capital-box">
+        <div class="box-label">The Fund</div>
+        <h3>EvoBioSys Capital</h3>
+        <p>
+          The investment vehicle and capital pool, directing resources toward
+          regenerative projects across the holonic network.
+        </p>
+      </div>
+    </div>
+
+    <div class="engine-quote">
+      <blockquote>SoFin is the engine. EvoBioSys Capital is the fund.</blockquote>
+    </div>
+  </section>
+
+  <!-- What is SoFin -->
+  <section class="sofin-what">
+    <div class="prose">
+      <h2>What is SoFin?</h2>
+      <p>
+        SoFin &mdash; Sovereign Finance &mdash; is the financial backbone of EvoBioSys.
+        It holds the conviction that finance is not a neutral medium but a living
+        force: it can regenerate communities or hollow them out, depending on how
+        its flows are designed.
+      </p>
+      <div class="highlight-line">
+        Where conventional finance optimizes for return on capital, SoFin
+        optimizes for <em>return on life</em>.
+      </div>
+      <p>
+        This means building financial instruments, tools, and practices that
+        direct capital toward regenerative outcomes &mdash; community resilience,
+        ecological restoration, and sovereign infrastructure &mdash; rather
+        than toward extraction. SoFin includes <strong>Altrad.ing</strong>
+        (alternative trading) as a practical arm for non-extractive market
+        engagement.
+      </p>
+      <p>
+        SoFin is a well-defined concept within the EvoBioSys ecosystem, carrying
+        its own supertag in Tana and serving as both an operational domain and a
+        philosophical anchor. It is the place where money meets meaning &mdash;
+        and right now, it is Jakob&rsquo;s main outside focus, actively building
+        the scaffolding for what comes next.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pull Quote 2 -->
+  <div class="sofin-pull-quote bg-pale">
+    <blockquote>
+      You don&rsquo;t need more money. You need to escape an obsolete financial paradigm.
+    </blockquote>
+  </div>
+
+  <!-- ====== THE FOUR PILLARS ====== -->
+  <section class="sofin-pillars">
+    <div class="pillars-inner">
+      <p class="section-label">Core Framework</p>
+      <h2 class="section-title">The Four Pillars of SoFin</h2>
+      <p class="pillars-subtitle">
+        Four interlocking dimensions that together form a complete architecture
+        for sovereign, regenerative finance &mdash; from personal stability to
+        civilization-scale wealth activation.
+      </p>
+
+      <!-- Pillar 1: SoUBR -->
+      <div class="pillar-card pillar-1">
+        <div class="pillar-number">01</div>
+        <h3>SoUBR &mdash; Sovereign Universal Basic Requirements</h3>
+        <p class="pillar-tagline">The foundational layer of financial peace of mind</p>
+        <p>
+          SoUBR ensures that basic needs, fixed costs, housing, and essential tools are
+          covered through a self-replenishing endowment. This is not charity and not a
+          universal handout &mdash; it is a strategically designed floor that removes
+          survival stress, the single greatest constraint on cognition and long-term vision.
+        </p>
+        <div class="pillar-quote">
+          No person should be forced to abandon their highest contribution due to financial precarity.
+        </div>
+      </div>
+
+      <!-- Pillar 2: Vertical Sequence -->
+      <div class="pillar-card pillar-2">
+        <div class="pillar-number">02</div>
+        <h3>The Vertical Sequence</h3>
+        <p class="pillar-tagline">Financial evolution beyond stability</p>
+        <p>
+          Once basic requirements are met, SoFin maps a progression through four stages
+          of financial evolution &mdash; from global participation to networked sovereignty,
+          where wealth becomes ecosystemic and self-distributing.
+        </p>
+        <div class="vertical-stages">
+          <div class="v-stage">
+            <div class="stage-num">Stage 1</div>
+            <div class="stage-name">Participate Globally</div>
+          </div>
+          <div class="v-stage">
+            <div class="stage-num">Stage 2</div>
+            <div class="stage-name">Enabling Work Setup</div>
+          </div>
+          <div class="v-stage">
+            <div class="stage-num">Stage 3</div>
+            <div class="stage-name">Comfort &amp; Regenerative Growth</div>
+          </div>
+          <div class="v-stage">
+            <div class="stage-num">Stage 4</div>
+            <div class="stage-name">Networked Sovereignty</div>
+          </div>
+        </div>
+        <p style="margin-top: 1rem;">
+          Stage 2 focuses on monetizing aligned value creation in non-extractive ways.
+          Stage 3 generates surplus for creative risks. Stage 4 activates ecosystemic
+          wealth &mdash; allocating for others, not just oneself.
+        </p>
+      </div>
+
+      <!-- Pillar 3: Intelligent Capital Flow -->
+      <div class="pillar-card pillar-3">
+        <div class="pillar-number">03</div>
+        <h3>Intelligent Capital Flow</h3>
+        <p class="pillar-tagline">Capital as a living, adaptive system</p>
+        <ul class="icf-list">
+          <li><strong>Dynamic resourcing algorithms</strong> &mdash; adaptive, need-responsive, strategically optimized</li>
+          <li><strong>Post-monetary exchange models</strong> &mdash; relational trust networks, tokenized reputation</li>
+          <li><strong>Regenerative economic protocols</strong> &mdash; self-replenish, self-compound, self-distribute</li>
+        </ul>
+        <div class="pillar-quote">
+          Money should not accumulate &mdash; it should move to where it enables highest leverage.
+        </div>
+      </div>
+
+      <!-- Pillar 4: Networked Wealth Stewardship -->
+      <div class="pillar-card pillar-4">
+        <div class="pillar-number">04</div>
+        <h3>Networked Wealth Stewardship</h3>
+        <p class="pillar-tagline">From accumulation to circulation</p>
+        <p>
+          The final pillar redefines wealth itself. Not as something to accumulate and
+          protect, but as something to circulate and activate. Collective capital intelligence
+          networks, decentralized reputation-backed trust systems, and civilization-scale
+          wealth activation become the operating layer of a post-extractive economy.
+        </p>
+        <ul class="icf-list">
+          <li>Collective capital intelligence networks</li>
+          <li>Decentralized, reputation-backed trust systems</li>
+          <li>Civilization-scale wealth activation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pull Quote 3 -->
+  <div class="sofin-pull-quote bg-dark">
+    <blockquote>
+      Financial sovereignty isn&rsquo;t about getting rich &mdash; it&rsquo;s about
+      removing the single biggest obstacle to unleashing civilization-scale intelligence.
+    </blockquote>
+  </div>
+
+  <!-- ====== SoUBR DEEP DIVE ====== -->
+  <section class="sofin-soubr">
+    <div class="soubr-inner">
+      <div class="soubr-badge">Pillar I &mdash; Deep Dive</div>
+      <h2>SoUBR</h2>
+      <p class="soubr-full">Sovereign Universal Basic Requirements</p>
+      <p>
+        SoUBR is the foundational layer of the entire SoFin architecture. It starts
+        from a radical premise: the most capable agents of civilizational change are
+        disproportionately trapped in financial precarity &mdash; not because they lack
+        value, but because the system was never designed to recognize or resource their
+        kind of contribution.
+      </p>
+      <p>
+        SoUBR is not a universal basic income and not a welfare programme. It is a
+        self-replenishing endowment that covers basic requirements &mdash; housing,
+        fixed costs, essential tools &mdash; so that the cognitive bandwidth consumed
+        by survival can be redirected toward the work that actually matters.
+      </p>
+
+      <div class="soubr-principles">
+        <div class="soubr-principle">
+          <h4>Self-Replenishing</h4>
+          <p>Endowment-driven, not donation-dependent. SoUBR generates its own continuation through regenerative capital flows.</p>
+        </div>
+        <div class="soubr-principle">
+          <h4>Cognition-Freeing</h4>
+          <p>Removes survival stress that constrains cognition. Financial precarity is the single biggest drain on civilizational intelligence.</p>
+        </div>
+        <div class="soubr-principle">
+          <h4>Strategically Targeted</h4>
+          <p>Not a universal handout. Resources flow to those whose contribution has highest civilizational leverage when unblocked.</p>
+        </div>
+        <div class="soubr-principle">
+          <h4>Sovereignty-Enhancing</h4>
+          <p>Every recipient gains greater autonomy, never dependency. The endowment increases capacity to contribute, not passivity.</p>
+        </div>
+      </div>
+
+      <div class="soubr-manifesto">
+        <blockquote>
+          Every great civilization had a moment where it either freed its visionaries &mdash;
+          or collapsed under its own inertia.
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- The SoFin Collective -->
+  <section class="sofin-collective">
+    <div class="collective-layout">
+      <div class="collective-text">
+        <p class="section-label">Governance</p>
+        <h2>The SoFin Collective</h2>
+        <p>
+          The SoFin Collective is a nested holon &mdash; it sits under both the
+          <a href="/holons/collective/">EvoBioSys Collective</a> (as its financial
+          sub-collective) and the broader SoFin concept (as the group that puts
+          the philosophy into practice).
+        </p>
+        <p>
+          The Collective coordinates the practical work of SoFin &mdash; from
+          managing the Funding Flow Machine to evaluating crypto projects, from
+          building sovereign financial tools to establishing the protocols by
+          which capital flows through the EvoBioSys network. Currently being set
+          up with Proton accounts and relational tech at its core.
+        </p>
+      </div>
+      <div class="collective-card">
+        <h3>Members</h3>
+        <ul class="member-list">
+          <li>
+            <div class="member-avatar">JP</div>
+            <div>
+              <strong>Jakob Possert-Bienzle</strong>
+              <span class="member-role">Founding member</span>
+            </div>
+          </li>
+          <li>
+            <div class="member-avatar">KC</div>
+            <div>
+              <strong>Katherine Colquitt</strong>
+              <span class="member-role">Supporting SoFin development (TBC)</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Funding Flow Machine -->
+  <section class="sofin-ffm">
+    <div class="ffm-inner">
+      <p class="section-label">Core Infrastructure</p>
+      <h2>Funding Flow Machine</h2>
+      <p>
+        Most organisations treat cash flow as a back-office concern. The Funding
+        Flow Machine makes it a <em>design surface</em>. By making financial flows
+        legible and intentional, it becomes possible to direct capital with
+        precision rather than inertia.
+      </p>
+
+      <div class="ffm-capabilities">
+        <div class="ffm-cap">
+          <h3>Map Flows</h3>
+          <p>Visualise inflows and outflows across all holons &mdash; where resources concentrate and where they are scarce.</p>
+        </div>
+        <div class="ffm-cap">
+          <h3>Direct Capital</h3>
+          <p>Route funds toward projects at critical growth stages rather than toward those with the loudest pitch.</p>
+        </div>
+        <div class="ffm-cap">
+          <h3>Track Impact</h3>
+          <p>Measure not just financial return but the vitality of the living systems that capital touches.</p>
+        </div>
+      </div>
+
+      <div class="ffm-bot-note">
+        <div class="ffm-bot-icon">bot</div>
+        <p>
+          <strong>SoFin Bot</strong> &mdash; Built on OctoBot, exploring automated
+          and semi-automated trading strategies aligned with SoFin&rsquo;s
+          regenerative principles. Crypto as tool, not ideology.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pull Quote 4 -->
+  <div class="sofin-pull-quote bg-pale">
+    <blockquote>
+      What if the key to a thriving future isn&rsquo;t in hoarding more wealth &mdash;
+      but in strategically ensuring that the right people have &ldquo;enough&rdquo;
+      at the right time?
+    </blockquote>
+  </div>
+
+  <!-- ====== PUZZLE PIECE GARDEN ====== -->
+  <section class="sofin-concepts">
+    <div class="concepts-inner">
+      <p class="section-label">Conceptual Landscape</p>
+      <h2 class="section-title">Puzzle Piece Garden</h2>
+      <p class="concepts-subtitle">
+        Key concepts that interlock to form the SoFin architecture &mdash;
+        each a living idea, evolving through practice and discourse.
+      </p>
+      <div class="concept-grid">
+        <span class="concept-piece">SoUBR</span>
+        <span class="concept-piece gold">Integral Money</span>
+        <span class="concept-piece gold">Integral Wealth</span>
+        <span class="concept-piece">Endowment-Engine</span>
+        <span class="concept-piece gold">Fractal Seed Investment Fund</span>
+        <span class="concept-piece">Living Flatcoins</span>
+        <span class="concept-piece gold">Flow Activation Protocol</span>
+        <span class="concept-piece">Liquid Protopian Funds</span>
+        <span class="concept-piece gold">Integral Wealth Index</span>
+        <span class="concept-piece">Regenerative Flow Governance</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== LEADING-EDGE IDEAS ====== -->
+  <section class="sofin-leading-edge">
+    <div class="leading-edge-inner">
+      <p class="section-label">Intellectual Frontier</p>
+      <h2 class="section-title">Leading-Edge Ideas</h2>
+
+      <div class="ideas-grid">
+        <div class="idea-card">
+          <h4>Money as Flow Activation Protocol</h4>
+          <p>Money is not a static resource to be stored. It is an activation signal &mdash; a protocol that, when designed correctly, unlocks latent capacity across living systems.</p>
+        </div>
+        <div class="idea-card">
+          <h4>Wealth Redefined</h4>
+          <p>Wealth must be redefined &mdash; not as net worth, but as capacity to generate asymmetric value expansion. The Integral Wealth Index moves beyond GDP.</p>
+        </div>
+        <div class="idea-card">
+          <h4>The Death of Short-Term Finance</h4>
+          <p>Financing long-term civilization design requires killing the quarterly-returns paradigm. Liquid Protopian Funds reward multi-decade initiatives.</p>
+        </div>
+        <div class="idea-card">
+          <h4>Trust-Based Financial Architectures</h4>
+          <p>Post-capitalist resourcing systems built on relational trust networks and tokenized reputation, not collateral and credit scores.</p>
+        </div>
+        <div class="idea-card">
+          <h4>Economic Stewardship</h4>
+          <p>From ownership to regenerative flow governance. Resources are not possessed &mdash; they are stewarded through cycles of activation and renewal.</p>
+        </div>
+        <div class="idea-card">
+          <h4>Post-Capitalist Resourcing</h4>
+          <p>Systems that allocate resources based on civilizational need and creative potential, not accumulated capital or market position.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section class="sofin-principles">
+    <div class="principles-inner">
+      <p class="section-label">Commitments</p>
+      <h2 class="section-title">Approach &amp; Principles</h2>
+
+      <div class="principle-list">
+        <div class="principle-item">
+          <h4><span class="pip"></span> Sovereignty over dependency</h4>
+          <p>Every financial tool SoFin builds should increase the autonomy of the people and communities that use it &mdash; never create lock-in.</p>
+        </div>
+        <div class="principle-item">
+          <h4><span class="pip"></span> Transparency by design</h4>
+          <p>Financial flows should be legible to all participants. Money that moves through the network should be traceable, intentional, and accountable.</p>
+        </div>
+        <div class="principle-item">
+          <h4><span class="pip"></span> Regenerative returns</h4>
+          <p>Capital is not neutral. SoFin evaluates every investment and flow by asking: does this regenerate living systems, or extract from them?</p>
+        </div>
+        <div class="principle-item">
+          <h4><span class="pip"></span> Crypto as tool</h4>
+          <p>Cryptocurrency and decentralized finance are valuable insofar as they serve sovereignty and regeneration. Pragmatic engagement, not dogma.</p>
+        </div>
+        <div class="principle-item">
+          <h4><span class="pip"></span> Collective stewardship</h4>
+          <p>Financial decisions are made collectively through the SoFin Collective, not by individual mandate. Distributed wisdom as membership grows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- River quote -->
+  <section class="sofin-river">
+    <div class="river-quote">
+      <blockquote>
+        Money is a river. SoFin asks: where does it flow, what does it feed,
+        and what does it leave behind?
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ====== PUBLICATIONS ====== -->
+  <section class="sofin-publications">
+    <div class="publications-inner">
+      <p class="section-label">Writing &amp; Discourse</p>
+      <h2>Publications in Progress</h2>
+      <p>
+        SoFin&rsquo;s ideas are being articulated through a series of articles
+        and manifestos &mdash; bridging the conceptual architecture with
+        accessible, compelling prose.
+      </p>
+
+      <ul class="pub-list">
+        <li class="pub-item">
+          <div class="pub-status draft">WIP</div>
+          <div>
+            <h4>Nobody Should Be Forced to Abandon Their Highest Contribution</h4>
+            <p>The core SoUBR manifesto &mdash; why financial precarity is civilization&rsquo;s costliest self-inflicted wound, and what a self-replenishing endowment changes.</p>
+          </div>
+        </li>
+        <li class="pub-item">
+          <div class="pub-status draft">WIP</div>
+          <div>
+            <h4>The Financial Dimension of Metamodern Co-Creation</h4>
+            <p>How regenerative finance enables the collaborative, developmental culture that metamodernism calls for &mdash; and why it cannot happen without solving the money problem first.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="pub-sections">
+        <h4>Planned Article Sections</h4>
+        <div class="pub-sections-grid">
+          <span class="pub-section-tag">Introduction</span>
+          <span class="pub-section-tag">Ontological Foundation</span>
+          <span class="pub-section-tag">The Solution</span>
+          <span class="pub-section-tag">The Bottleneck</span>
+          <span class="pub-section-tag">People / Resources / Governance</span>
+          <span class="pub-section-tag">Financial Stress</span>
+          <span class="pub-section-tag">SoUBR</span>
+          <span class="pub-section-tag">Conclusion</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== RELATED DOMAINS ====== -->
+  <section class="sofin-related">
+    <div class="related-inner">
+      <p class="section-label">Ecosystem</p>
+      <h2>Related Domains &amp; Tools</h2>
+      <div class="related-grid">
+        <div class="related-item">
+          <h4>Altrad.ing</h4>
+          <p>Alternative trading &mdash; non-extractive market engagement strategies</p>
+        </div>
+        <div class="related-item">
+          <h4>Stable Coin Automation</h4>
+          <p>Automated stablecoin flows and sovereign treasury management</p>
+        </div>
+        <div class="related-item">
+          <h4>Trend Analysis</h4>
+          <p>Market intelligence for regenerative capital allocation</p>
+        </div>
+        <div class="related-item">
+          <h4>Trading Course</h4>
+          <p>Educational arm &mdash; sovereign trading literacy</p>
+        </div>
+        <div class="related-item">
+          <h4>Venture Models</h4>
+          <p>Alternative venture structures for regenerative projects</p>
+        </div>
+        <div class="related-item">
+          <h4>Map of the Market</h4>
+          <p>Visual cartography of financial flows and opportunities</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Frontier: Living Flatcoins -->
+  <section class="sofin-frontier">
+    <div class="frontier-inner">
+      <div class="frontier-badge">&#x26A1;</div>
+      <div class="frontier-text">
+        <h3>On the Frontier: Living Flatcoins</h3>
+        <p>
+          SoFin is exploring the concept of Living Flatcoins &mdash; stable
+          digital currencies anchored not to fiat baskets but to the vitality
+          of regenerative systems. Part of a broader conversation about what
+          money could mean when it is designed to serve life.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="back-link">
+    <a href="/holons/">&larr; Back to all holons</a>
+    &nbsp;&middot;&nbsp;
+    <a href="/">Home</a>
+  </div>
+
+</div>

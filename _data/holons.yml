@@ -1,0 +1,140 @@
+# ============================================================
+# Holons data — single source of truth for the holonic map
+# ============================================================
+# Edit THIS file to add/remove/rename holons.
+# Used by: /holons/, landing page pillars, any page via {{ site.data.holons }}
+#
+# status: active | draft | vision | legacy
+# pillar: evo | bio | sys
+# visibility: public | later  (later = do NOT show on website)
+
+evo:
+  label: Evo — Growing
+  subtitle: Development, learning, culture
+  holons:
+    - name: EvoPaideia
+      slug: evopaideia
+      status: legacy
+      description: Developmental education & integral learning
+      sub_holons:
+        - name: Athena
+          description: Developmental field project
+
+    - name: World Lore
+      slug: world-lore
+      status: active
+      description: Historical knowledge & cultural memory
+      sub_holons:
+        - name: European History
+          description: European non-Roman indigenous past (book, v0.1)
+          status: draft
+        - name: Historical Digital Maps
+          description: Interactive mapping of historical migrations & territories
+          status: vision
+
+    - name: Aligned European Ideology
+      status: draft
+      description: Book exploring aligned European ideology (v0.1)
+
+    - name: Universal Policy
+      status: vision
+      description: Writing project about universal policy frameworks
+
+    - name: Community Hubs
+      slug: community-hubs
+      status: active
+      description: Local community building
+      sub_holons:
+        - name: Feldbach Community Hub
+          description: Rural community hub in Feldbach, Styria
+        - name: Integrales Wien
+          description: Integral community in Vienna
+
+bio:
+  label: Bio — Living
+  subtitle: Stewardship, consulting, social finance
+  holons:
+    - name: Soaro
+      slug: soaro
+      status: active
+      description: Stewardship partnership & collaborative consulting
+      sub_holons:
+        - name: Soaro MVP
+          description: Minimum viable product for the Soaro platform
+
+    - name: EvoBioSys Collective
+      slug: collective
+      status: active
+      description: Governance & coordination
+      sub_holons:
+        - name: SoFin Collective
+          description: Social finance collective
+
+    - name: SoFin
+      slug: sofin
+      status: active
+      description: Social Finance & regenerative economics
+      sub_holons:
+        - name: Funding Flow Machine
+          description: Financial flow management system
+
+    - name: EvoBioSys Capital
+      slug: capital
+      status: active
+      description: Animist investment studio
+      link: /capital/
+
+sys:
+  label: Sys — Systems
+  subtitle: Technology, tools, infrastructure
+  holons:
+    - name: kidur
+      slug: kidur
+      status: active
+      description: Tech foundation — foundational binding structure
+      sub_holons:
+        - name: SilkNotes
+          slug: silknotes
+          description: Interoperating knowledge silos
+          sub_holons:
+            - name: Logseq Plugin
+        - name: In-Flow(.info)
+          description: Flow-state tools
+          sub_holons:
+            - name: SenseMeet
+            - name: Heliocalendar
+            - name: PitchPerfect
+        - name: Weave.txt
+          description: Text weaving tool
+        - name: Minor Infrastructure
+          description: Supporting systems
+
+    - name: idea2.life
+      slug: idea2life
+      status: legacy
+      description: Sovereign life infrastructure
+      sub_holons:
+        - name: Signal Hub
+          description: Signal Orbit messaging
+        - name: Jakaja-Matrix
+          description: Self-hosted Matrix server
+        - name: best hosting
+          description: Private DNS & hosting
+
+    - name: semantic web
+      status: vision
+      description: Structured knowledge & up-to-date books
+      sub_holons:
+        - name: up-to-date books
+
+    - name: Singular Structure as a Service
+      status: active
+      description: Portable desk & personal software registry
+
+    - name: Comprehensive FactChecker
+      status: vision
+      description: Truth verification tool
+
+    - name: crypto
+      status: active
+      description: Cryptocurrency & trading projects

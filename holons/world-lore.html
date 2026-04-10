@@ -1,0 +1,676 @@
+---
+layout: default
+title: "World Lore — Historical Knowledge"
+description: >-
+  World Lore is the historical knowledge and cultural memory holon of EvoBioSys —
+  recovering the deep currents of world history, with a focus on pre-Roman
+  European indigenous civilizations and interactive digital mapping.
+permalink: /holons/world-lore/
+---
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap');
+
+  /* ── World Lore: Historical / Cartographic Identity ── */
+
+  .wl-page {
+    --wl-parchment: #f7f0e3;
+    --wl-parchment-deep: #ede3d0;
+    --wl-ink: #2c2416;
+    --wl-ink-muted: #6b5d4d;
+    --wl-ochre: #a67c3d;
+    --wl-ochre-light: #c49a52;
+    --wl-ochre-bg: rgba(166, 124, 61, 0.08);
+    --wl-brown-deep: #3d2e1a;
+    --wl-terra: #8b5e3c;
+    --wl-border: #c9b99a;
+    --wl-border-dot: #b8a880;
+    --wl-green-map: #4a6741;
+    --wl-blue-map: #4a6a7a;
+    --wl-red-map: #8b4a3a;
+    --wl-serif: 'Libre Baskerville', 'Georgia', serif;
+    --wl-sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  .wl-page .page-header {
+    background:
+      radial-gradient(ellipse at 85% 20%, rgba(166, 124, 61, 0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 15% 80%, rgba(139, 94, 60, 0.05) 0%, transparent 50%),
+      linear-gradient(170deg, var(--wl-parchment) 0%, #f2e8d5 40%, var(--wl-parchment-deep) 100%);
+    border-bottom: 2px solid var(--wl-border);
+    padding: 5rem 2rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Compass rose decoration */
+  .wl-compass {
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    width: 180px;
+    height: 180px;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+  .wl-compass::before,
+  .wl-compass::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid var(--wl-ink);
+    border-radius: 50%;
+  }
+  .wl-compass::before { width: 160px; height: 160px; }
+  .wl-compass::after  { width: 100px; height: 100px; }
+  .wl-compass-n, .wl-compass-s, .wl-compass-e, .wl-compass-w {
+    position: absolute;
+    font-family: var(--wl-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--wl-ink);
+  }
+  .wl-compass-n { top: 2px; left: 50%; transform: translateX(-50%); }
+  .wl-compass-s { bottom: 2px; left: 50%; transform: translateX(-50%); }
+  .wl-compass-e { right: 2px; top: 50%; transform: translateY(-50%); }
+  .wl-compass-w { left: 2px; top: 50%; transform: translateY(-50%); }
+  .wl-compass-cross {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 2px;
+    background: var(--wl-ink);
+    transform: translate(-50%, -50%);
+  }
+  .wl-compass-cross-v {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 120px;
+    background: var(--wl-ink);
+    transform: translate(-50%, -50%);
+  }
+
+  .wl-page .page-header h1 {
+    font-family: var(--wl-serif);
+    font-weight: 700;
+    font-size: 2.8rem;
+    color: var(--wl-brown-deep);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+  }
+
+  .wl-page .page-header .lead {
+    font-family: var(--wl-serif);
+    font-size: 1.15rem;
+    color: var(--wl-ink-muted);
+    font-style: italic;
+    max-width: 620px;
+    line-height: 1.65;
+  }
+
+  /* Section styling */
+  .wl-section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+  }
+
+  .wl-section h2 {
+    font-family: var(--wl-serif);
+    font-weight: 700;
+    font-size: 1.85rem;
+    color: var(--wl-brown-deep);
+    margin-bottom: 0.3rem;
+    position: relative;
+    padding-bottom: 0.6rem;
+  }
+  .wl-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 52px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--wl-ochre), var(--wl-terra));
+    border-radius: 1px;
+  }
+
+  .wl-section .wl-subtitle {
+    font-family: var(--wl-serif);
+    font-style: italic;
+    color: var(--wl-ink-muted);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .wl-section p, .wl-section li {
+    font-family: var(--wl-serif);
+    color: var(--wl-ink);
+    line-height: 1.8;
+    font-size: 0.97rem;
+  }
+  .wl-section p + p {
+    margin-top: 1rem;
+  }
+  .wl-section ul {
+    margin: 1rem 0 1rem 1.2rem;
+  }
+  .wl-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Dotted border divider (cartographic) */
+  .wl-map-divider {
+    border: none;
+    border-top: 2px dotted var(--wl-border-dot);
+    margin: 0;
+    position: relative;
+  }
+  .wl-map-divider::after {
+    content: '\2726';
+    position: absolute;
+    top: -0.7em;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--wl-parchment);
+    padding: 0 0.8rem;
+    color: var(--wl-ochre);
+    font-size: 1rem;
+  }
+
+  /* Alt section bg */
+  .wl-section-alt {
+    background: var(--wl-parchment);
+    border-top: 1px solid var(--wl-border);
+    border-bottom: 1px solid var(--wl-border);
+  }
+  .wl-section-alt .wl-map-divider::after {
+    background: var(--wl-parchment);
+  }
+
+  /* Ancestry strand cards */
+  .wl-strand-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin: 1.8rem 0;
+  }
+  .wl-strand-card {
+    border: 1px solid var(--wl-border);
+    border-radius: 6px;
+    padding: 1.6rem 1.3rem 1.4rem;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+  }
+  .wl-strand-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+  .wl-strand-card.strand-whg::before { background: var(--wl-green-map); }
+  .wl-strand-card.strand-eef::before { background: var(--wl-ochre); }
+  .wl-strand-card.strand-steppe::before { background: var(--wl-red-map); }
+
+  .wl-strand-card .wl-strand-era {
+    font-family: var(--wl-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .wl-strand-card.strand-whg .wl-strand-era { color: var(--wl-green-map); }
+  .wl-strand-card.strand-eef .wl-strand-era { color: var(--wl-ochre); }
+  .wl-strand-card.strand-steppe .wl-strand-era { color: var(--wl-red-map); }
+
+  .wl-strand-card h3 {
+    font-family: var(--wl-serif);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--wl-brown-deep);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+  .wl-strand-card p {
+    font-family: var(--wl-serif);
+    font-size: 0.88rem;
+    color: var(--wl-ink-muted);
+    line-height: 1.65;
+  }
+  @media (max-width: 720px) {
+    .wl-strand-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Celtic question — special bordered section */
+  .wl-celtic-box {
+    border: 2px dotted var(--wl-border-dot);
+    border-radius: 8px;
+    padding: 2rem 2rem;
+    margin: 1.8rem 0;
+    background: linear-gradient(135deg, #fff 0%, var(--wl-parchment) 100%);
+    position: relative;
+  }
+  .wl-celtic-box::before {
+    content: '\2694';
+    position: absolute;
+    top: -0.7em;
+    left: 2rem;
+    background: var(--wl-parchment);
+    padding: 0 0.5rem;
+    font-size: 1.1rem;
+  }
+  .wl-celtic-box h3 {
+    font-family: var(--wl-serif);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--wl-brown-deep);
+    margin-bottom: 0.6rem;
+  }
+  .wl-celtic-box p {
+    font-family: var(--wl-serif);
+    font-size: 0.95rem;
+    color: var(--wl-ink);
+    line-height: 1.75;
+  }
+  .wl-celtic-box p + p { margin-top: 0.7rem; }
+
+  /* Digital maps — feature card */
+  .wl-maps-card {
+    background: linear-gradient(160deg, var(--wl-brown-deep) 0%, #4a3a24 100%);
+    color: #fff;
+    border-radius: 8px;
+    padding: 2.2rem 2rem;
+    margin: 1.8rem 0;
+  }
+  .wl-maps-card h3 {
+    font-family: var(--wl-serif);
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--wl-ochre-light);
+    margin-bottom: 0.8rem;
+  }
+  .wl-maps-card p {
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.75;
+    font-size: 0.95rem;
+  }
+  .wl-maps-card p + p { margin-top: 0.7rem; }
+  .wl-maps-card ul {
+    margin: 0.8rem 0 0 1.2rem;
+  }
+  .wl-maps-card li {
+    color: rgba(255, 255, 255, 0.85);
+    font-family: var(--wl-serif);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 0.35rem;
+  }
+
+  /* Blockquote */
+  .wl-section blockquote {
+    border-left: 3px solid var(--wl-ochre);
+    margin: 1.8rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--wl-ochre-bg);
+    border-radius: 0 6px 6px 0;
+  }
+  .wl-section blockquote p {
+    font-family: var(--wl-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--wl-brown-deep);
+    line-height: 1.6;
+  }
+
+  /* Publication list */
+  .wl-pub-item {
+    padding: 1.2rem 0;
+    border-bottom: 1px dotted var(--wl-border-dot);
+  }
+  .wl-pub-item:last-child { border-bottom: none; }
+  .wl-pub-item h4 {
+    font-family: var(--wl-serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--wl-brown-deep);
+    margin-bottom: 0.3rem;
+  }
+  .wl-pub-item p {
+    font-family: var(--wl-serif);
+    font-size: 0.9rem;
+    color: var(--wl-ink-muted);
+    line-height: 1.6;
+  }
+  .wl-pub-badge {
+    display: inline-block;
+    font-family: var(--wl-sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.15em 0.55em;
+    border-radius: 3px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  .wl-pub-badge-draft {
+    background: var(--wl-ochre-bg);
+    color: var(--wl-ochre);
+    border: 1px solid var(--wl-ochre);
+  }
+  .wl-pub-badge-vision {
+    background: rgba(74, 106, 122, 0.08);
+    color: var(--wl-blue-map);
+    border: 1px solid var(--wl-blue-map);
+  }
+</style>
+
+<div class="wl-page">
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="wl-compass" aria-hidden="true">
+    <span class="wl-compass-n">N</span>
+    <span class="wl-compass-s">S</span>
+    <span class="wl-compass-e">E</span>
+    <span class="wl-compass-w">W</span>
+    <div class="wl-compass-cross"></div>
+    <div class="wl-compass-cross-v"></div>
+  </div>
+
+  <p class="breadcrumb">
+    <a href="/">Home</a> &rsaquo;
+    <a href="/holons/">Holons</a> &rsaquo;
+    World Lore
+  </p>
+  <h1>World Lore</h1>
+  <p class="lead">
+    Historical knowledge and cultural memory &mdash; recovering the stories
+    that dominant narratives have buried and making them accessible through
+    scholarship and digital tools.
+  </p>
+
+  <dl class="page-meta">
+    <div class="meta-item">
+      <dt>Status</dt>
+      <dd><span class="status status-active">Active</span></dd>
+    </div>
+    <div class="meta-item">
+      <dt>Pillar</dt>
+      <dd>Evo &mdash; Growing</dd>
+    </div>
+    <div class="meta-item">
+      <dt>Lead</dt>
+      <dd>Jakob Possert-Bienzle</dd>
+    </div>
+    <div class="meta-item">
+      <dt>Type</dt>
+      <dd>Holon</dd>
+    </div>
+  </dl>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- What is World Lore                      -->
+<!-- ════════════════════════════════════════ -->
+<section>
+  <div class="wl-section">
+    <h2>What is World Lore?</h2>
+    <p class="wl-subtitle">The keeper of cultural memory within EvoBioSys</p>
+
+    <p>
+      World Lore is the EvoBioSys holon dedicated to historical knowledge and
+      cultural memory. It exists because the stories we tell about the past
+      shape the futures we consider possible &mdash; and too many of those
+      stories are incomplete, distorted, or deliberately silenced.
+    </p>
+    <p>
+      The project focuses on recovering, preserving, and transmitting deep
+      historical knowledge &mdash; particularly the threads that standard
+      historiography has undervalued or overlooked. This is not antiquarianism.
+      It is the conviction that a civilization that has lost contact with its
+      roots cannot orient itself in the present.
+    </p>
+    <p>
+      World Lore sits in the Evo pillar (growing), alongside EvoPaideia and
+      Community Hubs, because historical understanding is a form of cultural
+      development. To know where you come from is to expand the field of what
+      you can become.
+    </p>
+  </div>
+</section>
+
+<hr class="wl-map-divider">
+
+<!-- ════════════════════════════════════════ -->
+<!-- Three Strands of European Ancestry      -->
+<!-- ════════════════════════════════════════ -->
+<section class="wl-section-alt">
+  <div class="wl-section">
+    <h2>Three Strands of European Ancestry</h2>
+    <p class="wl-subtitle">The deep population layers that shaped a continent</p>
+
+    <p>
+      Standard European history begins with Greece and Rome, treating everything
+      before and beside them as "barbarian" background. Archaeogenetics has
+      revealed a far richer picture: three great population movements whose
+      mixing created the peoples of modern Europe.
+    </p>
+
+    <div class="wl-strand-grid">
+      <div class="wl-strand-card strand-whg">
+        <span class="wl-strand-era">Mesolithic &middot; c. 15,000&ndash;5,000 BCE</span>
+        <h3>Western Hunter-Gatherers</h3>
+        <p>
+          The oldest continuous populations of Europe. Mesolithic foragers whose
+          genetic and cultural legacy persists in ways only now being understood
+          through archaeogenetics. They shaped the continent for millennia before
+          farming arrived.
+        </p>
+      </div>
+      <div class="wl-strand-card strand-eef">
+        <span class="wl-strand-era">Neolithic &middot; c. 7,000&ndash;4,000 BCE</span>
+        <h3>Early European Farmers</h3>
+        <p>
+          The Neolithic wave from Anatolia and the Levant that brought agriculture,
+          settled life, and new social structures to a continent of foragers. They
+          built the first permanent settlements and megalithic monuments.
+        </p>
+      </div>
+      <div class="wl-strand-card strand-steppe">
+        <span class="wl-strand-era">Bronze Age &middot; c. 3,000&ndash;2,000 BCE</span>
+        <h3>Steppe Herders</h3>
+        <p>
+          The Yamnaya and related populations who swept westward from the Pontic
+          Steppe, carrying Indo-European languages, horse culture, the wheel, and
+          a pastoral way of life that transformed the social fabric of Europe.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      The European History book project weaves these strands together with
+      archaeological evidence, linguistics, mythology, and contemporary
+      archaeogenetic research &mdash; building a picture of European identity
+      that is deeper, more complex, and more honest than the one most of us
+      were taught.
+    </p>
+  </div>
+</section>
+
+<hr class="wl-map-divider">
+
+<!-- ════════════════════════════════════════ -->
+<!-- The Celtic Question                     -->
+<!-- ════════════════════════════════════════ -->
+<section>
+  <div class="wl-section">
+    <h2>The Celtic Question</h2>
+    <p class="wl-subtitle">Recovering the pre-Roman indigenous past of Europe</p>
+
+    <p>
+      The European History project &mdash; formerly titled "Celtic History" &mdash;
+      is World Lore's flagship initiative. It is a book-length work (currently at
+      draft v0.1) that recovers the indigenous civilizations of Europe before and
+      beyond Roman dominion.
+    </p>
+
+    <div class="wl-celtic-box">
+      <h3>Brennus and the Sack of Rome</h3>
+      <p>
+        The project pays particular attention to figures and events at the edges
+        of the Roman encounter. Original research on <strong>Brennus</strong>
+        &mdash; the Gallic chieftain who sacked Rome in 390 BCE &mdash; reveals
+        the sophistication and strategic capability of non-Roman European
+        societies. His famous declaration, <em>"Vae victis"</em> (woe to the
+        vanquished), echoes across millennia as a reminder that history is
+        written by those who prevail, not necessarily by those who are right.
+      </p>
+      <p>
+        Brennus is not merely a historical curiosity. He represents a tradition
+        of European civilization that Rome spent centuries trying to erase &mdash;
+        and that standard historiography has largely succeeded in burying.
+        Recovering his story is an act of cultural repair.
+      </p>
+    </div>
+
+    <p>
+      The research draws on archaeology, linguistics, mythology, and the growing
+      field of archaeogenetics. It challenges the assumption that European
+      civilization begins with the classical Mediterranean and argues for a
+      deep continuity of indigenous European culture stretching back to the
+      Mesolithic.
+    </p>
+    <p>
+      The project has its own Matrix space for collaboration and a dedicated
+      VPS infrastructure for research materials. The current draft is undergoing
+      expansion and peer review.
+    </p>
+  </div>
+</section>
+
+<hr class="wl-map-divider">
+
+<!-- ════════════════════════════════════════ -->
+<!-- Historical Digital Maps                 -->
+<!-- ════════════════════════════════════════ -->
+<section class="wl-section-alt">
+  <div class="wl-section">
+    <h2>Historical Digital Maps</h2>
+    <p class="wl-subtitle">Making the deep past navigable and spatial</p>
+
+    <p>
+      Historical Digital Maps is the technical counterpart to the European
+      History book project. Where the book offers narrative and analysis,
+      the maps offer spatial understanding &mdash; the ability to see where
+      peoples lived, how they moved, and how territories shifted over
+      centuries and millennia.
+    </p>
+
+    <div class="wl-maps-card">
+      <h3>Vision: An Interactive Atlas of the Deep Past</h3>
+      <p>
+        The project aims to build interactive, web-based maps that transform
+        static historical knowledge into a navigable, spatial experience.
+        By combining geographic data with research from the European History
+        project, these maps make the deep past tangible in a way that text
+        alone cannot.
+      </p>
+      <ul>
+        <li>Migration routes of hunter-gatherer, farmer, and steppe populations</li>
+        <li>Archaeological site distributions and their cultural associations</li>
+        <li>Linguistic boundaries and their evolution over time</li>
+        <li>Trade networks and exchange routes across pre-Roman Europe</li>
+        <li>Time-slider navigation from the Mesolithic to the Roman period</li>
+      </ul>
+    </div>
+
+    <p>
+      The mapping project connects World Lore's scholarship to the digital
+      tools that can make it accessible. A map does what no amount of text
+      can: it shows you the shape of history in space. When you can watch
+      the Yamnaya expansion unfold across the steppe, or trace the Neolithic
+      frontier as it advanced through the Balkans and up the Danube, the
+      past becomes present in a visceral way.
+    </p>
+  </div>
+</section>
+
+<hr class="wl-map-divider">
+
+<!-- ════════════════════════════════════════ -->
+<!-- Connected Publications                  -->
+<!-- ════════════════════════════════════════ -->
+<section>
+  <div class="wl-section">
+    <h2>Connected Publications</h2>
+    <p class="wl-subtitle">Research that feeds into and draws from World Lore</p>
+
+    <div class="wl-pub-item">
+      <h4>
+        Aligned European Ideology
+        <span class="wl-pub-badge wl-pub-badge-draft">Draft v0.1</span>
+      </h4>
+      <p>
+        A writing project that builds on World Lore's historical research to
+        articulate a contemporary European identity rooted in indigenous heritage
+        rather than imperial nostalgia. The European History sub-holon provides
+        the evidential foundation &mdash; this work is its political and
+        philosophical counterpart. European History is a direct sub-holon of
+        Aligned European Ideology.
+      </p>
+    </div>
+
+    <div class="wl-pub-item">
+      <h4>
+        EvoPaideia
+        <span class="wl-pub-badge wl-pub-badge-vision">Connected Holon</span>
+      </h4>
+      <p>
+        Historical understanding as a dimension of developmental education.
+        World Lore provides the cultural memory that EvoPaideia integrates
+        into its learning frameworks &mdash; because you cannot educate a
+        whole person without giving them access to the full depth of their
+        cultural inheritance.
+      </p>
+    </div>
+
+    <div class="wl-pub-item">
+      <h4>
+        Historical Digital Maps
+        <span class="wl-pub-badge wl-pub-badge-vision">Sub-holon</span>
+      </h4>
+      <p>
+        The interactive mapping project that translates World Lore's textual
+        research into spatial, explorable digital experiences. Both the
+        European History book and the maps are part of EvoBioSys's broader
+        publication pipeline, moving from internal drafts through peer review
+        to public release.
+      </p>
+    </div>
+
+    <blockquote>
+      <p>A people that does not know its own history is a people that can be
+      told any story about itself.</p>
+    </blockquote>
+  </div>
+</section>
+
+</div><!-- /.wl-page -->
+
+<!-- Back link -->
+<div class="back-link">
+  <a href="/holons/">&larr; Back to all holons</a>
+</div>

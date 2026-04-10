@@ -1,0 +1,614 @@
+---
+layout: default
+title: "Community Hubs — Local Roots"
+description: >-
+  Community Hubs is the local community building umbrella of EvoBioSys —
+  grounding the holonic network in real places, real relationships, and the
+  social fabric that living systems depend on.
+permalink: /holons/community-hubs/
+---
+
+<style>
+  /* === Community Hubs — Warm / Local / Gathering Identity === */
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  .ch-page {
+    --ch-amber: #c2702a;
+    --ch-amber-light: #e8a44a;
+    --ch-terracotta: #b5533e;
+    --ch-terracotta-light: #d4796a;
+    --ch-cream: #faf6f0;
+    --ch-warm-bg: #f7f0e6;
+    --ch-ink: #2a2018;
+    --ch-text: #4a3f34;
+    --ch-text-muted: #7a6f62;
+    --ch-border: #d9cdb8;
+    --ch-white: #ffffff;
+    --ch-serif: 'Lora', Georgia, serif;
+    --ch-sans: 'Inter', -apple-system, sans-serif;
+    background: var(--ch-cream);
+    position: relative;
+  }
+
+  /* Subtle radial warmth behind the page */
+  .ch-page::before {
+    content: '';
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(ellipse, rgba(194, 112, 42, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .ch-page::after {
+    content: '';
+    position: fixed;
+    bottom: -20%;
+    right: -10%;
+    width: 50%;
+    height: 50%;
+    background: radial-gradient(ellipse, rgba(181, 83, 62, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .ch-header {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 7rem 2rem 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ch-header .breadcrumb {
+    font-family: var(--ch-sans);
+    font-size: 0.75rem;
+    color: var(--ch-text-muted);
+    letter-spacing: 0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .ch-header .breadcrumb a {
+    color: var(--ch-amber);
+    text-decoration: none;
+  }
+
+  .ch-header .breadcrumb a:hover { text-decoration: underline; }
+
+  .ch-title {
+    font-family: var(--ch-serif);
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: var(--ch-ink);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .ch-subtitle {
+    font-family: var(--ch-serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ch-text-muted);
+    line-height: 1.7;
+    max-width: 600px;
+    font-weight: 400;
+  }
+
+  .ch-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ch-meta-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.9rem;
+    font-family: var(--ch-sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid var(--ch-border);
+    border-radius: 20px;
+    color: var(--ch-text);
+    background: var(--ch-white);
+  }
+
+  .ch-meta-tag .tag-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ch-amber);
+    display: inline-block;
+  }
+
+  .ch-meta-tag.evo { border-color: var(--ch-amber); color: var(--ch-amber); }
+
+  /* Sections */
+  .ch-section {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ch-section h2 {
+    font-family: var(--ch-serif);
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--ch-ink);
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
+  }
+
+  .ch-section p {
+    font-family: var(--ch-sans);
+    color: var(--ch-text);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .ch-section p:last-child { margin-bottom: 0; }
+
+  /* Hand-drawn feeling quote block */
+  .ch-ethos {
+    background: var(--ch-white);
+    border: 2px solid var(--ch-border);
+    border-radius: 12px 4px 12px 4px;
+    padding: 2rem 2.5rem;
+    margin: 2rem 0;
+    position: relative;
+  }
+
+  .ch-ethos::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: 30px;
+    width: 40px;
+    height: 4px;
+    background: var(--ch-amber);
+    border-radius: 2px;
+  }
+
+  .ch-ethos p {
+    font-family: var(--ch-serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ch-ink);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  /* Two Hubs contrasting cards */
+  .ch-hubs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+  }
+
+  .ch-hub-card {
+    background: var(--ch-white);
+    border: 2px solid var(--ch-border);
+    padding: 2rem;
+    position: relative;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+
+  .ch-hub-card:hover {
+    box-shadow: 0 4px 20px rgba(42, 32, 24, 0.06);
+  }
+
+  /* Feldbach: organic shape */
+  .ch-hub-card.feldbach {
+    border-radius: 16px 6px 16px 6px;
+    border-color: var(--ch-terracotta-light);
+  }
+
+  .ch-hub-card.feldbach:hover { border-color: var(--ch-terracotta); }
+
+  .ch-hub-card.feldbach .ch-hub-badge {
+    background: var(--ch-terracotta);
+  }
+
+  /* Vienna: slightly different shape */
+  .ch-hub-card.vienna {
+    border-radius: 6px 16px 6px 16px;
+    border-color: var(--ch-amber-light);
+  }
+
+  .ch-hub-card.vienna:hover { border-color: var(--ch-amber); }
+
+  .ch-hub-card.vienna .ch-hub-badge {
+    background: var(--ch-amber);
+  }
+
+  .ch-hub-badge {
+    display: inline-block;
+    font-family: var(--ch-sans);
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ch-white);
+    padding: 0.3rem 0.7rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .ch-hub-card h3 {
+    font-family: var(--ch-serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--ch-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .ch-hub-card .ch-hub-location {
+    font-family: var(--ch-sans);
+    font-size: 0.8rem;
+    color: var(--ch-text-muted);
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  .ch-hub-card p {
+    font-family: var(--ch-sans);
+    font-size: 0.9rem;
+    color: var(--ch-text);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .ch-hub-card p:last-child { margin-bottom: 0; }
+
+  /* Detail list inside cards */
+  .ch-details {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    border-top: 1px solid var(--ch-border);
+    padding-top: 1rem;
+  }
+
+  .ch-details li {
+    font-family: var(--ch-sans);
+    font-size: 0.82rem;
+    color: var(--ch-text);
+    padding: 0.35rem 0;
+    padding-left: 1.3rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .ch-details li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ch-border);
+    position: absolute;
+    left: 0;
+    top: 0.7rem;
+  }
+
+  .ch-details li strong {
+    color: var(--ch-ink);
+    font-weight: 600;
+  }
+
+  /* Travel info box */
+  .ch-travel {
+    background: var(--ch-warm-bg);
+    border: 1px solid var(--ch-border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-top: 1rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .ch-travel-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .ch-travel-label {
+    font-family: var(--ch-sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ch-text-muted);
+  }
+
+  .ch-travel-value {
+    font-family: var(--ch-serif);
+    font-size: 1rem;
+    color: var(--ch-ink);
+    font-weight: 500;
+  }
+
+  /* Circle divider motif */
+  .ch-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 3rem auto 0;
+    max-width: 880px;
+    padding: 0 2rem;
+  }
+
+  .ch-divider::before,
+  .ch-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--ch-border);
+  }
+
+  .ch-divider .circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--ch-amber-light);
+    flex-shrink: 0;
+  }
+
+  /* Practices section */
+  .ch-practices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .ch-practice {
+    background: var(--ch-white);
+    border: 1px solid var(--ch-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .ch-practice:hover { border-color: var(--ch-amber); }
+
+  .ch-practice h4 {
+    font-family: var(--ch-serif);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ch-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .ch-practice p {
+    font-family: var(--ch-sans);
+    font-size: 0.82rem;
+    color: var(--ch-text-muted);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* Back link */
+  .ch-back {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ch-back a {
+    font-family: var(--ch-sans);
+    font-size: 0.8rem;
+    color: var(--ch-amber);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .ch-back a:hover { color: var(--ch-terracotta); }
+
+  @media (max-width: 700px) {
+    .ch-title { font-size: 2rem; }
+    .ch-hubs-grid { grid-template-columns: 1fr; }
+    .ch-travel { flex-direction: column; gap: 1rem; }
+    .ch-practices { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="ch-page">
+
+  <!-- Header -->
+  <header class="ch-header">
+    <p class="breadcrumb">
+      <a href="/">Home</a> &rsaquo;
+      <a href="/holons/">Holons</a> &rsaquo;
+      Community Hubs
+    </p>
+    <h1 class="ch-title">Community Hubs</h1>
+    <p class="ch-subtitle">
+      Local roots for a living network &mdash; where digital holons meet the ground
+      truth of place, proximity, and face-to-face relationship.
+    </p>
+    <ul class="ch-meta">
+      <li class="ch-meta-tag"><span class="tag-dot"></span> Active</li>
+      <li class="ch-meta-tag evo">Evo &mdash; Growing</li>
+      <li class="ch-meta-tag">Umbrella Holon</li>
+      <li class="ch-meta-tag">Lead: Jakob Possert-Bienzle</li>
+    </ul>
+  </header>
+
+  <!-- What is Community Hubs -->
+  <section class="ch-section">
+    <h2>Grounding the Holonic Network</h2>
+    <p>
+      Community Hubs is the EvoBioSys holon dedicated to local community building.
+      It holds a conviction that no amount of digital infrastructure can replace the
+      irreducible reality of people meeting in a room, sharing a meal, or working
+      side by side on something that matters to their neighborhood.
+    </p>
+    <p>
+      The holon functions as an umbrella &mdash; a container for multiple place-based
+      community initiatives, each with its own rhythm, membership, and local context.
+      What unites them is a shared approach: build from the ground up, honor what
+      already exists, and create conditions for genuine encounter rather than
+      transactional networking.
+    </p>
+
+    <div class="ch-ethos">
+      <p>
+        Community Hubs is about grounding the holonic network in real places and
+        real relationships. A healthy community does not appear overnight; it grows
+        through trust-building, shared experiences, and the slow accumulation of
+        social capital that comes from showing up consistently over time.
+      </p>
+    </div>
+
+    <p>
+      It sits in the Evo pillar (growing) because community formation is a
+      developmental process &mdash; organic, iterative, and irreducible to a
+      project plan.
+    </p>
+  </section>
+
+  <!-- Two Hubs -->
+  <div class="ch-divider"><span class="circle"></span></div>
+  <section class="ch-section">
+    <h2>Two Hubs, One Network</h2>
+    <p>
+      The Community Hubs umbrella currently holds two active initiatives &mdash;
+      one urban, one rural &mdash; that together span the full spectrum of
+      Austrian community life. They are deliberately different in rhythm, scale,
+      and texture, but share a commitment to building from the ground up.
+    </p>
+
+    <div class="ch-hubs-grid">
+      <!-- Feldbach -->
+      <div class="ch-hub-card feldbach">
+        <span class="ch-hub-badge">Rural</span>
+        <h3>Feldbach Community Hub</h3>
+        <p class="ch-hub-location">Southeastern Styria, Austria</p>
+        <p>
+          The rural anchor. Located in southeastern Styria, Feldbach offers the
+          grounding that only a small town embedded in agricultural landscape
+          can provide. The hub serves as a local resource point &mdash; connecting
+          people, sharing tools, and building social fabric where community still
+          has a tangible, embodied quality.
+        </p>
+        <p>
+          Feldbach is the rural counterpart to the Vienna initiatives &mdash; a
+          place where the pace is slower, the relationships are deeper, and the
+          connection to land is immediate.
+        </p>
+        <ul class="ch-details">
+          <li>Local weather monitoring and agricultural planning tools</li>
+          <li>Events, shared resources, and neighborhood coordination</li>
+          <li>Active collaboration hub for southeastern Styria</li>
+        </ul>
+        <div class="ch-travel">
+          <div class="ch-travel-item">
+            <span class="ch-travel-label">By Car from Vienna</span>
+            <span class="ch-travel-value">~2 hours</span>
+          </div>
+          <div class="ch-travel-item">
+            <span class="ch-travel-label">By Train (end to end)</span>
+            <span class="ch-travel-value">3.5&ndash;4 hours</span>
+          </div>
+          <div class="ch-travel-item">
+            <span class="ch-travel-label">Weather Tools</span>
+            <span class="ch-travel-value"><a href="http://84.247.128.211:8081/weather-comparison.html" style="color: var(--ch-terracotta); font-size: 0.85rem;">Comparison tool</a></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vienna -->
+      <div class="ch-hub-card vienna">
+        <span class="ch-hub-badge">Urban</span>
+        <h3>Integrales Wien</h3>
+        <p class="ch-hub-location">Vienna, Austria</p>
+        <p>
+          The integral community in Vienna. Focused on developmental thinking,
+          integral philosophy, and the practical application of integral frameworks
+          to personal and collective life.
+        </p>
+        <p>
+          Integrales Wien operates as a practice community &mdash; not a lecture
+          series but a living group that learns by doing. It brings together people
+          interested in human development, consciousness studies, and the kind of
+          nuanced, multi-perspectival thinking that integral philosophy cultivates.
+        </p>
+        <ul class="ch-details">
+          <li><strong>Members:</strong> Jakob, Kaja</li>
+          <li><strong>Advisor:</strong> Levi</li>
+          <li><strong>Budget:</strong> 100&euro; operational</li>
+          <li><strong>Focus:</strong> Integral philosophy, developmental practice, community formation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integral Practices -->
+  <div class="ch-divider"><span class="circle"></span></div>
+  <section class="ch-section">
+    <h2>Shared Practices</h2>
+    <p>
+      Across both hubs, certain practices recur &mdash; approaches to gathering,
+      dialogue, and collective sense-making that reflect the integral and holonic
+      values of the broader EvoBioSys network.
+    </p>
+
+    <div class="ch-practices">
+      <div class="ch-practice">
+        <h4>Genuine Encounter</h4>
+        <p>
+          Every gathering prioritizes authentic connection over transactional
+          networking. The goal is not contacts but relationships.
+        </p>
+      </div>
+      <div class="ch-practice">
+        <h4>Developmental Lens</h4>
+        <p>
+          Community building seen through an integral framework &mdash; attending
+          to individual growth, collective dynamics, cultural context, and
+          systemic structures simultaneously.
+        </p>
+      </div>
+      <div class="ch-practice">
+        <h4>Place-Based Rhythm</h4>
+        <p>
+          Each hub follows the rhythm of its place. Feldbach moves with seasons
+          and agricultural cycles; Vienna pulses with urban cultural events and
+          meeting spaces.
+        </p>
+      </div>
+      <div class="ch-practice">
+        <h4>Ground-Up Building</h4>
+        <p>
+          No top-down blueprint. Each initiative starts from what already exists
+          in a place and builds outward through trust, consistency, and shared
+          experience.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="ch-back">
+    <a href="/holons/">&larr; Back to all holons</a>
+  </div>
+
+</div>
