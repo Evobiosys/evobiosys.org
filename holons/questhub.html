@@ -551,6 +551,55 @@ permalink: /holons/questhub/
       transform: rotate(90deg);
     }
   }
+
+  /* ---- Gateway to standalone site ---- */
+  .qh-gateway {
+    background: linear-gradient(135deg, var(--qh-soil) 0%, #2a1f15 100%);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+  .qh-gateway-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .qh-gateway-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--qh-gold-light);
+    margin-bottom: 0.4rem;
+  }
+  .qh-gateway-title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  .qh-gateway-title a { color: var(--qh-gold-light); text-decoration: none; }
+  .qh-gateway-desc {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+  .qh-gateway-btn {
+    display: inline-block;
+    background: var(--qh-gold-light);
+    color: var(--qh-soil);
+    padding: 0.7rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .qh-gateway-btn:hover { background: var(--qh-gold-glow); }
 </style>
 
 <div class="qh-page">
@@ -589,6 +638,18 @@ permalink: /holons/questhub/
       </div>
     </dl>
   </header>
+
+  <!-- Gateway to standalone site -->
+  <section class="qh-gateway">
+    <div class="qh-gateway-inner">
+      <div>
+        <p class="qh-gateway-label">Now with its own home</p>
+        <h2 class="qh-gateway-title">The garden lives at <a href="https://questhub.eco" target="_blank" rel="noopener">questhub.eco</a></h2>
+        <p class="qh-gateway-desc">The live, curated quest list now has its own domain &mdash; updated directly from Tana. This page remains as part of the EvoBioSys holons network.</p>
+      </div>
+      <a href="https://questhub.eco" class="qh-gateway-btn" target="_blank" rel="noopener">Open the Garden &#x2197;</a>
+    </div>
+  </section>
 
   <!-- What is QuestHub -->
   <section class="qh-intro">
