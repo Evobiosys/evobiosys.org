@@ -527,7 +527,32 @@ permalink: /holons/questhub/
     border-bottom-color: var(--qh-green);
   }
 
-  /* ---- Gateway to questhub.eco ---- */
+  /* ---- Responsive ---- */
+  @media (max-width: 768px) {
+    .qh-intro-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .qh-garden-visual {
+      flex-direction: row;
+      justify-content: center;
+    }
+    .qh-grid {
+      grid-template-columns: 1fr;
+    }
+    .qh-cat-header {
+      flex-wrap: wrap;
+    }
+    .qh-lifecycle {
+      flex-direction: column;
+      align-items: center;
+    }
+    .qh-lifecycle-arrow {
+      transform: rotate(90deg);
+    }
+  }
+
+  /* ---- Gateway to standalone site ---- */
   .qh-gateway {
     background: linear-gradient(135deg, var(--qh-soil) 0%, #2a1f15 100%);
     padding: 2.5rem 2rem;
@@ -575,31 +600,6 @@ permalink: /holons/questhub/
     transition: background 0.2s;
   }
   .qh-gateway-btn:hover { background: var(--qh-gold-glow); }
-
-  /* ---- Responsive ---- */
-  @media (max-width: 768px) {
-    .qh-intro-inner {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-    .qh-garden-visual {
-      flex-direction: row;
-      justify-content: center;
-    }
-    .qh-grid {
-      grid-template-columns: 1fr;
-    }
-    .qh-cat-header {
-      flex-wrap: wrap;
-    }
-    .qh-lifecycle {
-      flex-direction: column;
-      align-items: center;
-    }
-    .qh-lifecycle-arrow {
-      transform: rotate(90deg);
-    }
-  }
 </style>
 
 <div class="qh-page">
