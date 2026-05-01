@@ -443,6 +443,20 @@ permalink: /capital/
       padding: 4rem 1.5rem;
     }
   }
+
+  /* --- Inline text-link affordance (used for cross-page CTAs) --- */
+  .cap-text-link {
+    color: var(--cap-green);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid var(--cap-green);
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .cap-text-link:hover,
+  .cap-text-link:focus {
+    color: var(--cap-green-light);
+    border-color: var(--cap-green-light);
+  }
 </style>
 
 <div class="cap-page">
@@ -744,7 +758,7 @@ permalink: /capital/
             truest sense: building something that does not yet fully exist.
           </p>
           <p style="margin-top: 1.5rem;">
-            <a href="/thesis/" style="color: var(--cap-green); font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--cap-green);">Read the proto investment thesis &rarr;</a>
+            <a href="/capital/thesis/" class="cap-text-link">Read the proto investment thesis &rarr;</a>
           </p>
         </div>
       </div>

@@ -5,7 +5,12 @@ description: >-
   The structural investment thesis behind EvoBioSys Capital. Sovereign access
   to the ten essential physical requirements (the 949 framework) as the floor
   on which all other investing stands. Living systems as method, not metaphor.
-permalink: /thesis/
+permalink: /capital/thesis/
+
+# #agent-note: Update `last_updated` ONLY when making substantive content changes
+# (refocus, new section, factual revision, materially different framing).
+# Skip for typos, whitespace, formatting, link tweaks. Format: "Month YYYY".
+last_updated: "May 2026"
 ---
 
 <style>
@@ -19,8 +24,7 @@ permalink: /thesis/
   }
 
   .thesis-page .page-header {
-    padding-top: 6rem;
-    padding-bottom: 2rem;
+    padding: 6rem 2rem 2rem;
   }
 
   .thesis-page .epigraph {
@@ -89,10 +93,36 @@ permalink: /thesis/
   .thesis-prose blockquote.callout strong { color: var(--th-accent); }
 
   .thesis-table-wrap {
+    position: relative;
     margin: 2rem -2rem;
     padding: 0 2rem;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  /* Right-edge fade hints there's more table to scroll to on narrow viewports. */
+  .thesis-table-wrap::after {
+    content: '';
+    position: sticky;
+    right: 0;
+    top: 0;
+    float: right;
+    width: 2.5rem;
+    height: 100%;
+    margin-left: -2.5rem;
+    pointer-events: none;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 100%);
+  }
+
+  .thesis-scroll-hint {
+    display: none;
+    font-size: 0.82rem;
+    color: var(--th-ink-soft);
+    margin: 0 0 0.5rem 0;
+    text-align: right;
+  }
+  @media (max-width: 720px) {
+    .thesis-scroll-hint { display: block; }
   }
 
   .thesis-table-wrap table {
@@ -137,6 +167,30 @@ permalink: /thesis/
 
   .thesis-prose .colophon p { margin: 0.5rem 0; }
 
+  .thesis-prose .thesis-toc {
+    margin: 2rem 0 3rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--th-pale);
+    border-left: 3px solid var(--th-line);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.92rem;
+  }
+  .thesis-prose .thesis-toc-label {
+    margin: 0 0 0.5rem 0;
+    color: var(--th-ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.78rem;
+  }
+  .thesis-prose .thesis-toc ul { margin: 0; padding-left: 1.25rem; }
+  .thesis-prose .thesis-toc li { margin: 0.25rem 0; }
+  .thesis-prose .thesis-toc a {
+    color: var(--th-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .thesis-prose .thesis-toc a:hover { border-bottom-color: var(--th-accent); }
+
   @media (max-width: 720px) {
     .thesis-prose { font-size: 1rem; padding: 0 1.25rem; }
     .thesis-prose h2 { font-size: 1.35rem; }
@@ -148,20 +202,30 @@ permalink: /thesis/
 
 <header class="page-header">
   <p class="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/capital/">Capital</a> &rsaquo; Proto Thesis</p>
-  <span class="draft-stamp">Draft for review &middot; April 2026</span>
+  <!-- #agent-note: This date renders from `page.last_updated` in the front-matter above. Edit there, only on substantive content changes. -->
+  <span class="draft-stamp">Draft for review &middot; {{ page.last_updated }}</span>
   <h1>EvoBioSys Capital — Proto Investment Thesis</h1>
   <p class="epigraph">Living systems as method, not metaphor.</p>
 </header>
 
 <div class="thesis-prose" markdown="1">
 
+<nav class="thesis-toc" markdown="1">
+**Contents**
+{:.thesis-toc-label}
+
+* TOC
+{:toc}
+
+</nav>
+
 ## The conviction
 
-The next phase of human civilization is one where evolving living open systems are in service of life. What is closed dies. What co-evolves continues. We are interconnected — and the systems we build are most resilient when they recognize that.
+The next decade of investing rewards capital architecture grounded in *structural demand* — the essentials every community needs regardless of which macro scenario unfolds. Trend-based theses move with the cycle. A thesis anchored in essentials holds through it.
 
-This is not an aspiration. It is a structural observation. Civilizations that maintain open, adaptive systems — in food, energy, housing, knowledge, governance — pass through phase transitions. Those that close down, concentrate, and extract reach a ceiling. We are at that ceiling now, across multiple dimensions simultaneously: climate, AI, migration, and geopolitical restructuring.
+EvoBioSys Capital is built on that floor. We treat living systems as method — biomimicry applied to capital architecture, not as branding — because adaptive, open systems compound through phase transitions; closed systems hit ceilings.
 
-The investment thesis that follows is built on this observation. It treats living systems as method — biomimicry applied to capital architecture, not as branding.
+What follows is the financial logic. The wider worldview that informs it — geopolitics, ecological framing, founder posture — lives elsewhere on the site and in the long-form writing.
 
 ---
 
@@ -241,25 +305,13 @@ Each entity operates as a holon — a whole unto itself and a part of the larger
 
 ---
 
-## How we think about the world
-
-The geopolitical landscape is not moving toward a single scenario. Multiple dynamics coexist:
-
-Some domains are becoming more multipolar — power distributes among roughly nine poles (US, EU, China, India, ASEAN, Sub-Saharan Africa, Latin America, Arab world, and an emerging Central Asian sphere). Some domains are fragmenting — local sovereignty increases, overlapping jurisdictions emerge, communities organize around trust networks rather than institutional mandates. Some domains remain contested — existing multilateral institutions are being weaponized rather than abandoned.
-
-All of these happen simultaneously across different sectors and regions. The 949 framework holds in every scenario because essential physical requirements do not become less necessary under any geopolitical configuration.
-
-Our posture: EU-based, globally oriented. We acknowledge what the US has built — from computing to AI — and build sovereign European capacity on that foundation. Not anti-American. Pro-sovereignty. Willing to cooperate with any power pole. Not willing to depend on any single one.
-
-We prioritize Latin America and Sub-Saharan Africa — most needed, least funded. Not charity. Structural investment in essential requirements with returns.
-
----
-
 ## How this fits within investing's developmental arc
 
 Each generation of investing carries forward what the previous one built and opens what it could not yet hold. The table below is a developmental arc, not a verdict. Conventional investing organized capital at scale. Impact investing insisted that outcomes beyond price signal must count. Systemic investing widened the unit of analysis to whole systems. Structural investing — the frame we work in — extends that lineage one step further: it asks what infrastructure every community needs to participate in any system at all, and treats sovereign access to those essentials as the floor on which all other investing stands.
 
 We honor each prior school. We are descendants, not competitors.
+
+<p class="thesis-scroll-hint">↔ scroll &rarr;</p>
 
 <div class="thesis-table-wrap" markdown="1">
 
@@ -284,20 +336,6 @@ Systemic investing — as articulated by Tews, Jay, Andersen, Paetzold and the U
 
 ---
 
-## The posture
-
-Most projects at this scale are driven by dissatisfaction — with the system, with their circumstances, with the gap between what is and what should be. Dissatisfaction can be productive, but it creates brittleness. When the source of energy is frustration, the project depends on the frustration continuing. If circumstances improve, the drive evaporates. If they worsen beyond a threshold, burnout follows.
-
-This project is not driven by dissatisfaction. It is driven by desire — for a world where the essentials are sovereign, where communities coordinate through trust, where the people who care about life's flourishing have the financial foundation to act on that care. The founder likes his life. He can let go of any part of this at any time and still be whole. That is not a weakness — it is a structural feature. A project that requires its founder to be desperate is fragile. A project whose founder is at peace is antifragile.
-
-We pay attention to **field awareness** alongside outcomes. The energetic quality of the rooms we build in, the relational tone of how decisions get made, the clarity of who is consenting to what — these are not soft addenda to "the real work." In living systems, the field shapes which futures are reachable. We treat this as part of due diligence, not separate from it.
-
-This is a whole life project. Not a sprint with a defined exit. The question is not whether it will be realized, but when — and how much of it will manifest in one lifetime. The architecture is designed to outlast any individual. The commons network, the holonic entity structure, the source keeper pattern — these are multigenerational by design. What gets built in the next decade is a seed. What grows from it is not ours to control.
-
-The time horizon is the infinite game — played not to win but to keep playing. With the realism of one human life: official life expectancy in Austria is approximately 82 years. With good health practices and some optimism, perhaps 125. Either way, the 949 essentials will still be needed long after.
-
----
-
 ## The invitation
 
 We are looking for co-creators, not followers. People who see the same phase shift and want to build the infrastructure that holds through it.
@@ -317,6 +355,8 @@ If any of these resonate, we would welcome a conversation: [connect@evobiosys.or
 <div class="colophon" markdown="1">
 
 *Jakob Possert-Bienzle lives in Vienna, Austria, with his wife. He is the founder and steward of EvoBioSys.*
+
+*This document is a formulation of Jakob's notes and intention, drafted by an AI assistant on his instruction. It has not been line-by-line reviewed by him; phrasing, emphasis, and details may need correction. Read it as a faithful synthesis attempt rather than a vetted public statement. Corrections are welcome at [connect@evobiosys.org](mailto:connect@evobiosys.org).*
 
 *This is a living document. It will be refined through ongoing research, collaboration, and the Signal Orbit knowledge pipeline. Background depth — the full worldview thesis, the 949 chapter expansions, the membrane-holder posture — is available on request.*
 
