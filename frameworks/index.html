@@ -1,0 +1,310 @@
+---
+layout: default
+title: Frameworks - EvoBioSys
+description: Structural lenses for thinking through the EvoBioSys field of inquiry. The 9x9 framework and other shapes of attention.
+permalink: /frameworks/
+---
+
+<style>
+  .fw-page .page-header { padding: 7rem 2rem 2rem; }
+
+  /* Framework block */
+  .fw {
+    margin: 4rem 0;
+    padding: 2.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-white);
+  }
+  .fw:first-of-type { margin-top: 1rem; }
+
+  .fw-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .fw-header h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--color-accent-deep);
+  }
+  .fw-header .fw-source {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.18rem 0.65rem;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    background: var(--color-accent-bg);
+    color: var(--color-accent-deep);
+    border: 1px solid rgba(45,106,79,0.18);
+  }
+
+  .fw-tagline {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  /* The 9x9 grid teaser */
+  .nine-grid-wrap {
+    margin: 1.5rem 0 2rem;
+    overflow-x: auto;
+  }
+  .nine-grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(9, 1fr);
+    gap: 1px;
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    min-width: 720px;
+    font-size: 0.72rem;
+  }
+  .nine-grid > div {
+    background: var(--color-white);
+    padding: 0.45rem 0.5rem;
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+  .nine-grid .nine-corner {
+    background: var(--color-accent-bg);
+    color: var(--color-accent-deep);
+    font-weight: 600;
+    text-align: left;
+  }
+  .nine-grid .nine-row-label {
+    background: var(--color-accent-bg);
+    color: var(--color-accent-deep);
+    text-align: left;
+    font-weight: 500;
+    padding-left: 0.7rem;
+  }
+  .nine-grid .nine-col-label {
+    background: var(--color-warm);
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: 0.7rem;
+  }
+
+  /* Two-column lists below grid */
+  .fw-twocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin: 1.5rem 0;
+  }
+  .fw-twocol h3 {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.75rem;
+  }
+  .fw-twocol ol {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    line-height: 1.8;
+    padding-left: 1.4rem;
+    margin: 0;
+  }
+  .fw-twocol ul {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    line-height: 1.8;
+    padding-left: 1.4rem;
+    margin: 0;
+    list-style: none;
+  }
+  .fw-twocol ul li::before {
+    content: "•";
+    color: var(--color-accent);
+    margin-right: 0.6rem;
+    margin-left: -1rem;
+  }
+
+  .fw-deep-link {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--color-accent-bg);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  .fw-deep-link strong { color: var(--color-text); }
+
+  .fw-meta {
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  .fw-disabled {
+    opacity: 0.6;
+    background: var(--color-warm);
+  }
+
+  @media (max-width: 700px) {
+    .fw-twocol { grid-template-columns: 1fr; gap: 1.5rem; }
+    .fw { padding: 1.5rem; }
+  }
+</style>
+
+<div class="fw-page">
+
+  <header class="page-header">
+    <p class="breadcrumb"><a href="/">Home</a></p>
+    <h1>Frameworks</h1>
+    <p class="lead">
+      Structural lenses for thinking through the EvoBioSys field of inquiry.
+      Where the <a href="/glossary/">Glossary</a> tracks vocabulary, frameworks
+      track <em>shapes of attention</em> - the grids and gradients that
+      organise the work.
+    </p>
+  </header>
+
+  <section>
+    <div class="container-narrow">
+
+      <!-- ========================================================== -->
+      <!-- 9x9 Framework -->
+      <!-- ========================================================== -->
+      <article class="fw" id="9x9">
+        <div class="fw-header">
+          <h2>9x9 Framework</h2>
+          <span class="fw-source">EvoBioSys</span>
+        </div>
+
+        <p class="fw-tagline">
+          Sovereign access to nine essential physical requirements across
+          nine power poles - the floor on which all other investing stands.
+          Two nines, deliberately parallel to the 99 names of Allah.
+        </p>
+
+        <div class="nine-grid-wrap" aria-label="9x9 framework grid">
+          <div class="nine-grid">
+            <div class="nine-corner">essential &times; pole</div>
+            <div class="nine-col-label">US</div>
+            <div class="nine-col-label">EU</div>
+            <div class="nine-col-label">China</div>
+            <div class="nine-col-label">India</div>
+            <div class="nine-col-label">ASEAN</div>
+            <div class="nine-col-label">Sub-Saharan</div>
+            <div class="nine-col-label">Latin America</div>
+            <div class="nine-col-label">Arab world</div>
+            <div class="nine-col-label">Central Asia</div>
+
+            <div class="nine-row-label">Security</div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="nine-row-label">Water</div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="nine-row-label">Food</div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="nine-row-label">Housing</div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="nine-row-label">Clothing</div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="nine-row-label">Energy</div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="nine-row-label">Transportation</div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="nine-row-label">Digital</div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="nine-row-label">Medicine &amp; Hygiene</div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          </div>
+        </div>
+
+        <div class="fw-twocol">
+          <div>
+            <h3>Nine essentials</h3>
+            <ol>
+              <li>Security <em style="color:var(--color-text-muted); font-style:normal; font-size:0.82rem;">(police, military, diplomacy)</em></li>
+              <li>Water</li>
+              <li>Food</li>
+              <li>Housing</li>
+              <li>Clothing</li>
+              <li>Energy <em style="color:var(--color-text-muted); font-style:normal; font-size:0.82rem;">(incl. heating)</em></li>
+              <li>Transportation</li>
+              <li>Digital <em style="color:var(--color-text-muted); font-style:normal; font-size:0.82rem;">(software &amp; hardware)</em></li>
+              <li>Medicine &amp; Hygiene</li>
+            </ol>
+          </div>
+          <div>
+            <h3>Nine power poles</h3>
+            <ul>
+              <li>US</li>
+              <li>EU</li>
+              <li>China</li>
+              <li>India</li>
+              <li>ASEAN</li>
+              <li>Sub-Saharan Africa</li>
+              <li>Latin America</li>
+              <li>Arab world</li>
+              <li>Central Asia</li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="font-size:0.92rem; color:var(--color-text-muted); line-height:1.7;">
+          Every cell (essential &times; pole) is a deployment opportunity.
+          Sovereignty here means: communities can participate in economic
+          life on their own terms, without being blackmailable through any
+          single dependency. The two nines parallel the 99 names of Allah -
+          a structural rhyme, not a religious claim.
+        </p>
+
+        <div class="fw-deep-link">
+          <strong>Deep dive:</strong> the 9x9 is the structural floor of
+          <a href="/capital/thesis/">EvoBioSys Capital's investment thesis</a>.
+          The thesis page walks through why <em>sovereignty</em> means
+          unblackmailability, why the multi-pole posture is non-negotiable,
+          and how the grid translates into deployment.
+        </div>
+
+        <p class="fw-meta">
+          Naming note: an older formulation called this <em>949</em>
+          (from 2023 Logseq notes). Going forward, use <strong>9x9</strong>
+          consistently.
+        </p>
+      </article>
+
+      <!-- ========================================================== -->
+      <!-- Future framework slot -->
+      <!-- ========================================================== -->
+      <article class="fw fw-disabled">
+        <div class="fw-header">
+          <h2>More frameworks</h2>
+          <span class="fw-source" style="background:#eeece4; color:var(--color-text-muted); border-color:rgba(120,120,120,0.22);">Forthcoming</span>
+        </div>
+        <p class="fw-tagline" style="margin:0;">
+          Additional structural lenses (Quattro of Ideals, Life-Axles,
+          and others) will be elaborated here as they stabilise.
+          Personal frameworks may eventually live at
+          <code>japossert.com/frameworks</code>; collective ones stay here.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <div class="back-link">
+    <a href="/">&larr; Back to home</a>
+  </div>
+
+</div>

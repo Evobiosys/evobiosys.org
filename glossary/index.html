@@ -1,0 +1,115 @@
+---
+layout: default
+title: Glossary - EvoBioSys
+description: Concept dictionaries for a new conceptual field for a new world. Neologistic concepts and the language behind them.
+permalink: /glossary/
+---
+
+<style>
+  .gloss-index .page-header { padding: 7rem 2rem 2rem; }
+
+  .gloss-index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .gloss-index-card {
+    display: block;
+    padding: 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-white);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .gloss-index-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    color: inherit;
+  }
+  .gloss-index-card h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+  .gloss-index-card .card-meta {
+    font-size: 0.78rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .gloss-index-card p {
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .gloss-index-card-disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .gloss-index-card-disabled .card-meta {
+    color: var(--color-text-muted);
+  }
+</style>
+
+<div class="gloss-index">
+
+  <header class="page-header">
+    <p class="breadcrumb"><a href="/">Home</a></p>
+    <h1>Glossary</h1>
+    <p class="lead">
+      Concept dictionaries for a new conceptual field for a new world.
+      Each glossary tracks the language as it emerges - terms, sources,
+      and the people they came from.
+    </p>
+  </header>
+
+  <section>
+    <div class="container-narrow">
+
+      <div class="gloss-index-grid">
+
+        <a class="gloss-index-card" href="/glossary/neologism/">
+          <span class="card-meta">Active</span>
+          <h3>Neologistic Concepts</h3>
+          <p>
+            Concepts coined or refined within the EvoBioSys field of inquiry,
+            alongside external neologisms borrowed from other thinkers and a
+            personal layer of semantically constructive alternatives.
+          </p>
+        </a>
+
+        <div class="gloss-index-card gloss-index-card-disabled">
+          <span class="card-meta">Forthcoming</span>
+          <h3>More glossaries</h3>
+          <p>
+            Additional concept dictionaries will be added here as the
+            field of inquiry expands.
+          </p>
+        </div>
+
+      </div>
+
+      <p style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--color-border); font-size:0.9rem; color:var(--color-text-muted);">
+        Looking for structural <em>lenses</em> rather than vocabulary? See
+        <a href="/frameworks/">Frameworks</a>.
+      </p>
+
+    </div>
+  </section>
+
+  <div class="back-link">
+    <a href="/">&larr; Back to home</a>
+  </div>
+
+</div>
