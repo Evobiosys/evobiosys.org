@@ -1,0 +1,1074 @@
+---
+layout: default
+title: Glossary — Neologistic Concepts | EvoBioSys
+description: Overview of concepts tied to neologisms — the glossary for a new conceptual field for a new world.
+permalink: /glossary/neologism/
+---
+
+<style>
+  /* Glossary — chip-tagged term list */
+
+  .gloss-page .page-header { padding: 7rem 2rem 2rem; }
+
+  .gloss-legend {
+    max-width: var(--max-width-narrow);
+    margin: 0 auto 3rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-white);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 0.9rem;
+    align-items: center;
+  }
+  .gloss-legend .legend-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-right: 0.4rem;
+  }
+  .gloss-legend .legend-note {
+    flex-basis: 100%;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-top: 0.5rem;
+  }
+
+  /* Chips — inline pill tags inspired by Google Doc smart-chips */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.18rem 0.65rem;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+  .chip-glyph {
+    display: inline-block;
+    font-size: 0.78rem;
+    line-height: 1;
+  }
+  .chip-evobiosys {
+    background: var(--color-accent-bg);
+    color: var(--color-accent-deep);
+    border-color: rgba(45,106,79,0.18);
+  }
+  .chip-personal {
+    background: #ede7f6;
+    color: #4527a0;
+    border-color: rgba(94,53,177,0.22);
+  }
+  .chip-external {
+    background: #fdf3d8;
+    color: #7a5e15;
+    border-color: rgba(201,168,76,0.35);
+  }
+  .chip-de {
+    background: #eeece4;
+    color: var(--color-text-muted);
+    border-color: rgba(120,120,120,0.22);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  /* Section heading inside the prose */
+  .gloss-section-h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 4rem 0 0.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-accent-deep);
+  }
+  .gloss-section-h2:first-of-type { margin-top: 0; }
+  .gloss-section-intro {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  /* Term blocks */
+  .term {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .term:last-of-type { border-bottom: none; }
+
+  .term-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+    align-items: baseline;
+    margin-bottom: 0.6rem;
+  }
+  .term-head h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+    margin: 0;
+  }
+  .term-head .chip-row {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .term .def {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0.3rem 0 0.5rem;
+  }
+  .term .def + .def { margin-top: 0.4rem; }
+
+  .term ul, .term ol {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    padding-left: 1.4rem;
+    margin: 0.3rem 0 0.5rem;
+  }
+  .term li { margin-bottom: 0.15rem; }
+
+  .term .attribution {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-top: 0.3rem;
+  }
+  .term .attribution::before { content: "— "; }
+
+  .term a { color: var(--color-accent); }
+
+  /* Cross-ref hint */
+  .term .x-ref {
+    font-size: 0.82rem;
+    color: var(--color-accent);
+    margin-top: 0.3rem;
+    font-style: italic;
+  }
+
+  /* Aside boxes for meta-conceptual content */
+  .gloss-aside {
+    margin: 2rem 0;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-warm);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+  .gloss-aside strong { color: var(--color-text); }
+
+  @media (max-width: 600px) {
+    .term-head { flex-direction: column; gap: 0.4rem; align-items: flex-start; }
+    .gloss-legend { padding: 1rem; }
+  }
+</style>
+
+<div class="gloss-page">
+
+  <header class="page-header">
+    <p class="breadcrumb"><a href="/">Home</a> &nbsp;/&nbsp; Glossary</p>
+    <h1>Glossary &mdash; Neologistic Concepts</h1>
+    <p class="lead">
+      The glossary for a new conceptual field for a new world &mdash;
+      an overview of concepts tied to neologisms.
+    </p>
+  </header>
+
+  <section>
+    <div class="container-narrow">
+
+      <!-- Legend -->
+      <div class="gloss-legend" role="note" aria-label="Source chip legend">
+        <span class="legend-label">Sources</span>
+        <span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span>
+        <span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span>
+        <span class="chip chip-personal"><span class="chip-glyph">&#128100;</span>Personal</span>
+        <span class="chip chip-de">DE&nbsp;German</span>
+        <span class="legend-note">
+          Each entry carries a chip indicating its source: <strong>EvoBioSys</strong> for
+          concepts coined within the EvoBioSys field of inquiry, <strong>External</strong> for
+          concepts borrowed from other thinkers and woven into this field,
+          <strong>Personal</strong> for entries from the personal &mdash; not professionally clean &mdash;
+          glossary of becoming more conceptually precise and semantically constructive.
+          <strong>DE</strong> tags entries originating in German.
+        </span>
+      </div>
+
+      <!-- ============================================================== -->
+      <!-- Numbered frames -->
+      <!-- ============================================================== -->
+      <h2 class="gloss-section-h2">Numbered frames</h2>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>9 Power Poles</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Nine geographical, political, cultural and religious comparatively more
+          homogenous groupings &mdash; though overlapping &mdash; that can have high
+          explanatory effect for a very high level of in- and out-group formation
+          below all of humanity:
+        </p>
+        <ul>
+          <li>USA</li>
+          <li>China</li>
+          <li>EU</li>
+          <li>India</li>
+          <li>Russia</li>
+          <li>Arab League + Middle East</li>
+          <li>ASEAN</li>
+          <li>Latin&nbsp;America</li>
+          <li>Africa, sub-Saharan</li>
+        </ul>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>9 Essential Physical Requirements</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          For a categorically compatible (see <em>Categorical compatibility</em>)
+          high standard of living in the (early) 21st century:
+        </p>
+        <ol>
+          <li>Water</li>
+          <li>Food</li>
+          <li>Housing</li>
+          <li>Clothing</li>
+          <li>Energy (incl. heating)</li>
+          <li>Transportation</li>
+          <li>Health-Care</li>
+          <li>Digital (soft- &amp; hardware)</li>
+          <li>Defense</li>
+        </ol>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- Concepts -->
+      <!-- ============================================================== -->
+      <h2 class="gloss-section-h2">Concepts</h2>
+      <p class="gloss-section-intro">In rough alphabetical order.</p>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Auburn</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Combination of Spiral Dynamics orange and green &mdash; sustainable and
+          regeneratively open, focused on personal development but within
+          leading the mainstream (instead of exiting it), like e.g. Minerva
+          University does.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Auto-example</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          An example that is in itself an example &mdash; from ancient Greek
+          <em>auto</em> = self; like this sentence&hellip; Something that operates
+          on the meta and standard level simultaneously.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Body-heart-mind</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          A refinement of body-mind in Wilberian Integral Theory. The embodiment
+          that has boundaries in the material realm.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Categorical compatibility</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          An update to Kant's categorical imperative that goes from
+          <em>should</em> to <em>can</em> &mdash; everyone <em>could</em> live like
+          this, without saying that they have to. Maybe they come up with
+          something even better. It could also be called <em>categorical
+          possibility</em>, but nice with two C's.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Communities of Inquiry</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Building on the insight that scientists construct knowledge based on
+          their communities and the intersubjective validation of objective
+          reality &mdash; with the focus on inquiry. Used as opposed to traditions
+          or schools of inquiry, or fields of study. Technically, it is a
+          <em>vortex of inquiry</em>.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>CosBioSys</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          The conceptual vision space that holds (aspects of) a response to the
+          challenges of our time through bringing together what is already
+          possible in terms of Co-Living, Co-Learning and Co-Working in local
+          hubs, connecting these across the world and with other networks.
+          How this will happen is vague at this point and at the same time
+          strongly probable.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Current Paradigm</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          A loosely defined concept that is largely a placeholder to contrast
+          the emerging paradigm. Broadly thought of as late-stage capitalism,
+          industrial; nation-state; representative factional democracy.
+          Articulated in books such as <em>The Age of Surveillance Capitalism</em>
+          (Shoshana Zuboff, 2018).
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Developmentally affirmative</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          A compassionate and benevolent stance geared towards development.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Emerging paradigm</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          The hypothesis (based on sensing) that there is one overarching
+          paradigm emerging in our contemporary (Western) world &mdash; a paradigm
+          which is manifesting in many different dimensions of life.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Enclave (community)</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Other terms: <em>islands of sanity</em> or <em>safe havens</em>. Resilient
+          spaces &mdash; often physical, like an established community &mdash; that
+          function as safe spaces and spaces of regeneration in times of chaos.
+          Similar to the pope's conclave, it is a space "in between" stability.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Equilibrium (personal life)</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          A state of balance where essential structures &mdash; including living
+          environment, habits, beliefs, identity, social network &mdash; are
+          aligned to let a particular emergent property of repeated patterns,
+          one's "life", appear.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Evobiosys</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          The network of benevolent genius and professional gifted ecology that
+          supports life to accelerate unfolding.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>EvoSattva</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          See dedicated entry. (Forthcoming.)
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>GloCal</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Acting in the tension between being globally aware and locally
+          anchored and operating. <em>(The capital "C" is deliberate.)</em>
+          Think of the global internet and a locally embedded community
+          connected to the land.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Homo Emergiens</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Post-<em>Homo Colossus</em>; a variation of Yuval Harari's <em>Homo Deus</em>.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Life-Axles</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          A guiding framework for practicing gloCal citizens along distinct
+          Axles of Life &mdash; for prioritizing one's energy for work and play in
+          order to embody one's regenerative impact.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Meta-example</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          An example that is at the same time on the meta-level doing the
+          thing described. See also <em>Auto-example</em>.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Multiple interoperable sovereignties</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Sovereignties that interoperate with the sovereignties of others &mdash;
+          open. An early form of <em>Mutual Holarchic Sovereignty</em>.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Mutual Holarchic Sovereignty</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Ranging from geopolitical Multi-Polar Mutual Sovereignty downward
+          through nested levels of self-governing wholes. Holarchic = each
+          whole is also a part of a larger whole.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Network of Benevolence / Benevolent in-group</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          The people who mutually have a (degree of) trust that they are "on
+          the same side", in a network-of-networks fashion. Here people give
+          each other the benefit of the doubt of benevolent intentions.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Passionate Sidepoint</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          A point that is not directly tied to the conversation but that is
+          meaningful to share on its own and/or for the flow of the
+          conversation. A brief excursion beyond the main topic, talking about
+          something that moves a person; even though it might not semantically
+          be helpful to the conversation, the release of tension can have
+          potentially healing effects and might invigorate the speaker.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>PhilVest</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          A combination of "philanthropy" and "invest" &mdash; <em>phil</em> also
+          meaning "loving". Investments which are also OK if they turn out to
+          be sponsorships &mdash; just as good as funds in themselves.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Polysattva</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Evolving bodhisattvas in and for the 21st century &mdash; incorporating
+          multiple qualities. See <em>Polysattva Academy</em>.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Polysattva Academy</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          An integrated human (infra)structure that serves as a conveyor flow
+          of multidimensional human development &mdash; for anyone who wants to
+          awaken their inner genius.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Psychologically Politically Correct</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          What is currently the norm in woke / pseudo-spiritual /
+          good-vibes-only circles regarding what is "acceptable" to state about
+          one's internal life &mdash; e.g. that co-dependence is in all
+          circumstances bad to the point of it being appropriate to feel shame
+          about it (which is of course in itself not OK, so there is repression
+          on top of that, which is in itself a kind of sin&hellip;). A description
+          of a <em>Shadow Jungle</em>.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Quattro of Ideals</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Enlightenment, Purpose, Love and Service &mdash; as four independently
+          worthwhile conceptions of what to aspire to in a human life.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Shadow Jungle</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          The social experience of finding oneself in between the
+          shadow-patterns of oneself and the beings one is relating to (and
+          all those who have been very impactful to them, like one's parents).
+          See <em>Psychologically Politically Correct</em> for an example.
+        </p>
+        <p class="attribution">emerged in conversation with Kaja Bienzle</p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Shared Subtle Body Patterns</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          More precise than "collective unconscious".
+        </p>
+        <p class="attribution">emerged in conversation with Kaja Bienzle</p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>State (psychological)</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          An expression of life that one has access to.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>(Temporary) Purpose Community</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Purposeful work-retreat where participants co-creatively live as a
+          community and work on something that is "bigger than themselves".
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Therapy-positive</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Trauma-aware and -release-oriented. Etymology: like
+          <em>sex-positive</em>, but for trauma(-residual)-release.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Vector</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          The time-spacious urge of what wants to happen &mdash; the tension
+          between the current spontaneous genius and what wants to happen.
+        </p>
+        <p class="attribution">with Juliana Maxado</p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Vortex</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          A synthesis between purpose and space. In other words, a community
+          that has movement towards a specific direction &mdash; a group of
+          people who are driven.
+        </p>
+        <p class="def">
+          An inverted whirlwind: instead of leaving chaos in its wake, it
+          leaves coherence behind.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Vortex of discourse</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          A new form of <em>discipline</em>.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>WE-Fabrics</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Intentional social fabrics &mdash; "shared spaces" in which people
+          organize their lives in terms of housing, learning and working on
+          different orders of magnitude, whose degree of belonging is resilient
+          enough to live through (and bounce back from) conflicts.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Wemes</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          The genes / memes of the heart.
+        </p>
+        <p class="attribution">with St&eacute;phane Segatori</p>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- Precisions -->
+      <!-- ============================================================== -->
+      <h2 class="gloss-section-h2">Precisions</h2>
+      <p class="gloss-section-intro">Sharper formulations of broader concepts.</p>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Widespread shadow pattern</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          A more precise formulation of "collective shadow", since there is no
+          actual entity that holds this collective shadow. Rather, the
+          collective level &mdash; i.e. the field &mdash; can have a certain "static"
+          or energy, which is not in itself a shadow pattern and dynamic, but
+          rather an atmosphere &mdash; like the smell of a place.
+        </p>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- German -->
+      <!-- ============================================================== -->
+      <h2 class="gloss-section-h2">German</h2>
+      <p class="gloss-section-intro">Concepts native to German.</p>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>KlarheitsAusbr&uuml;che</h3>
+          <span class="chip-row">
+            <span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span>
+            <span class="chip chip-de">DE</span>
+          </span>
+        </div>
+        <p class="def">
+          The activation of anger that is transformed into clarity.
+        </p>
+        <p class="attribution">in a call with Gertraud Wegst</p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>anhaftungsflexibel</h3>
+          <span class="chip-row">
+            <span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span>
+            <span class="chip chip-de">DE</span>
+          </span>
+        </div>
+        <p class="def">
+          Regardless of being non-attached, detached, or attached &mdash; can we
+          be flexible in our temporary attachments as they arise and fade
+          away peacefully and gently?
+        </p>
+        <p class="attribution">with Lennart Tjarks</p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>empfindungs-mutig</h3>
+          <span class="chip-row">
+            <span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span>
+            <span class="chip chip-de">DE</span>
+          </span>
+        </div>
+        <p class="def">
+          Daring to feel oneself (and others). As opposed to <em>empfindlich</em>,
+          and even more courageous than <em>empfindsam</em>.
+        </p>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- External Neologisms -->
+      <!-- ============================================================== -->
+      <h2 class="gloss-section-h2">External neologisms</h2>
+      <p class="gloss-section-intro">
+        Concepts borrowed from other thinkers and woven into the EvoBioSys field.
+      </p>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Anti-fragile</h3>
+          <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
+        </div>
+        <p class="def">Something that gains from disorder.</p>
+        <p class="attribution">Nassim Taleb, <em>Antifragile</em></p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Concentric love</h3>
+          <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
+        </div>
+        <p class="def">
+          Loving oneself and from there purely others &mdash; first those closest,
+          who one knows best and are most open to receive care (since we know
+          how to care for them and how they want to receive our kindness),
+          and then further away. Similar to holarchic; a refinement of
+          benselfishness.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Benselfishness</h3>
+          <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
+        </div>
+        <p class="def">
+          A transcend-and-include of benevolence.
+        </p>
+        <p class="attribution">Daniel Dennett (shared by Bjorn Heijligers)</p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Meta-stable</h3>
+          <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
+        </div>
+        <p class="def">
+          A stability within a larger context &mdash; i.e. something that is
+          systemically resilient (here implicitly stated).
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Moment</h3>
+          <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
+        </div>
+        <p class="def">
+          A pattern which has been seen for the first time, not necessarily
+          replicated.
+        </p>
+        <p class="attribution">Paul Poledna</p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Co-creation</h3>
+          <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
+        </div>
+        <p class="def">
+          Initially connected to participatory and multi-stakeholder design,
+          it is bringing something into being through intentional collaboration.
+          Its realm more vaguely includes co-working, co-living and
+          peer-to-peer learning.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Co-living</h3>
+          <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
+        </div>
+        <p class="def">
+          Living arrangements centered around sharing space and key facilities
+          like the kitchen &mdash; and sometimes even a bedroom &mdash; with other
+          people one is not legally connected with in a family. For practical
+          purposes, equivalent to "intentional communities".
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Co-working</h3>
+          <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
+        </div>
+        <p class="def">
+          People who do not work at the same formal organization but share an
+          office space.
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>gameB</h3>
+          <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
+        </div>
+        <p class="def">
+          A meta-stable society emphasizing human well-being, built on good
+          values that we will be happy to call home and proud to leave to our
+          descendants.
+        </p>
+        <p class="attribution">Jim Rutt, 2017</p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Sense-making</h3>
+          <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
+        </div>
+        <p class="def">
+          The process of making meaning of complex situations and information.
+        </p>
+        <p class="attribution">popularized by Daniel Schmachtenberger</p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Planetary co-existence</h3>
+          <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
+        </div>
+        <p class="def">
+          A fancy term for a state of harmony all around the world &mdash; which
+          implies that the current paradigm is abandoned, because a new system
+          that does not rely on exploitation and the military-industrial
+          complex has made the old one obsolete. (Not about living together
+          on Mars ;)
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Sovereign</h3>
+          <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
+        </div>
+        <p class="def">
+          Self-governing (where it originated, in politics) and autonomy or
+          general self-sufficiency &mdash; with an overall independence that, with
+          an insight of interconnectedness and interdependence, becomes
+          <em>unblackmailability</em>.
+        </p>
+        <p class="attribution">as used by Daniel Schmachtenberger</p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Strengthening the core</h3>
+          <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
+        </div>
+        <p class="def">
+          Leaders are supported in their own humanity.
+        </p>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- Potent proto-concepts -->
+      <!-- ============================================================== -->
+      <h2 class="gloss-section-h2">Potent proto-concepts</h2>
+      <p class="gloss-section-intro">Seeds &mdash; not yet fully developed.</p>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Niche as an n-dimensional space</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          A niche modelled as a region in n-dimensional space, with each
+          dimension a dimension of fit.
+        </p>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- Usage of words -->
+      <!-- ============================================================== -->
+      <h2 class="gloss-section-h2">Usage of words</h2>
+      <p class="gloss-section-intro">Distinctions in how a familiar word is being used.</p>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Trauma</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Distinguishing between <em>traumatic residue</em> &mdash; stuff that for
+          the body is still present but which can be processed through
+          emotional sharing or solo trauma-release &mdash; and <em>major dissociative
+          trauma</em>: things that one should process together with a
+          professional.
+        </p>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- Personal -->
+      <!-- ============================================================== -->
+      <h2 class="gloss-section-h2">Personal</h2>
+      <p class="gloss-section-intro">
+        From the personal &mdash; not professionally clean &mdash; glossary of
+        becoming more conceptually precise and semantically constructive.
+        <em>Semantically constructive</em> means: eliciting constructive /
+        positive semantic-networks and initial associations.
+      </p>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Erogenous hair</h3>
+          <span class="chip-row"><span class="chip chip-personal"><span class="chip-glyph">&#128100;</span>Personal</span></span>
+        </div>
+        <p class="def">
+          Instead of <em>pubic hair</em>. In German: <em>Haar in erogenen Zonen</em>
+          or <em>erogenes Haar</em> for short, instead of <em>Schamhaar</em>
+          (shameful hair / hair of shame).
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Psychohypochondria</h3>
+          <span class="chip-row"><span class="chip chip-personal"><span class="chip-glyph">&#128100;</span>Personal</span></span>
+        </div>
+        <p class="def">
+          Hypochondria about psychological things &mdash; similar to
+          <em>phrenophobia</em> (anxiety about anxiety).
+        </p>
+      </article>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>Cereal Drinks</h3>
+          <span class="chip-row"><span class="chip chip-personal"><span class="chip-glyph">&#128100;</span>Personal</span></span>
+        </div>
+        <p class="def">
+          A better alternative to <em>milk alternatives</em>. In German:
+          <em>Getreide-, Nuss- &amp; H&uuml;lsen(frucht)getr&auml;nke</em>. Works both
+          in the sense of accompanying cereals and in terms of what they are
+          made of.
+        </p>
+      </article>
+
+      <!-- ============================================================== -->
+      <!-- Meta -->
+      <!-- ============================================================== -->
+      <h2 class="gloss-section-h2">Meta</h2>
+      <p class="gloss-section-intro">On the practice of making good concepts.</p>
+
+      <article class="term">
+        <div class="term-head">
+          <h3>What makes a good concept?</h3>
+          <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
+        </div>
+        <p class="def">
+          Inspiring material: in a 1999 article, political scientist John
+          Gerring spelled out eight "criteria of conceptual goodness". Three
+          of these, applied to the example of <em>good governance</em>:
+        </p>
+        <div class="gloss-aside">
+          <p>
+            <strong>First, "good governance" lacks parsimony.</strong> Unlike
+            good concepts, it has endless definitions, and we always need the
+            details of each to understand if we are talking about the same
+            thing.
+          </p>
+          <p style="margin-top:0.6rem;">
+            <strong>Second, it lacks differentiation.</strong> Well-governed
+            countries often sound a lot like functioning liberal democracies,
+            for instance, and it is not clear how they differ.
+          </p>
+          <p style="margin-top:0.6rem;">
+            <strong>Third, it lacks coherence.</strong> Its many possible
+            characteristics &mdash; from respect for human rights to efficient
+            banking regulations &mdash; do not clearly belong together.
+          </p>
+        </div>
+      </article>
+
+      <p style="margin-top:4rem; padding-top:2rem; border-top:1px solid var(--color-border); font-size:0.82rem; color:var(--color-text-muted); text-align:center;">
+        &copy; Jakob Possert &middot; A living document &mdash; concepts evolve as the field of inquiry deepens.
+      </p>
+
+    </div>
+  </section>
+
+  <div class="back-link">
+    <a href="/">&larr; Back to home</a>
+  </div>
+
+</div>
