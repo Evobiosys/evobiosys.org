@@ -80,6 +80,29 @@ permalink: /glossary/neologism/
     letter-spacing: 0.06em;
   }
 
+  /* Active state - applied by chip-filter.js when a chip is selected */
+  .gloss-legend .chip { transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s; }
+  .gloss-legend .chip:hover { transform: translateY(-1px); }
+  .gloss-legend .chip.chip-active {
+    box-shadow: 0 0 0 2px var(--color-accent), 0 2px 6px rgba(0,0,0,0.08);
+    transform: translateY(-1px);
+  }
+  /* When ANY chip is active, dim the non-active legend chips (visual hint) */
+  .gloss-legend:has(.chip-active) .chip:not(.chip-active):not(.chip-de):not(.chip-all) { opacity: 0.55; }
+  /* "All" chip: visible-by-default toggle to clear filter */
+  .chip-all {
+    background: var(--color-warm);
+    color: var(--color-text);
+    border-color: var(--color-border);
+  }
+  .gloss-legend .legend-hint {
+    flex-basis: 100%;
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+    font-style: italic;
+  }
+
   /* Section heading inside the prose */
   .gloss-section-h2 {
     font-size: 1.4rem;
@@ -193,13 +216,14 @@ permalink: /glossary/neologism/
   <section>
     <div class="container-narrow">
 
-      <!-- Legend -->
-      <div class="gloss-legend" role="note" aria-label="Source chip legend">
-        <span class="legend-label">Sources</span>
-        <span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span>
-        <span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span>
-        <span class="chip chip-personal"><span class="chip-glyph">&#128100;</span>Personal</span>
-        <span class="chip chip-de">DE&nbsp;German</span>
+      <!-- Legend - clickable chips filter the entries below -->
+      <div class="gloss-legend" role="note" aria-label="Source chip legend - click to filter" data-chip-filter="source">
+        <span class="legend-label">Filter</span>
+        <span class="chip chip-evobiosys" data-chip-value="evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span>
+        <span class="chip chip-external" data-chip-value="external"><span class="chip-glyph">&#8853;</span>External</span>
+        <span class="chip chip-personal" data-chip-value="personal"><span class="chip-glyph">&#128100;</span>Personal</span>
+        <span class="chip chip-de" data-chip-value="de">DE&nbsp;German</span>
+        <span class="legend-hint">Click a chip to filter. Click again to clear.</span>
         <span class="legend-note">
           Each entry carries a chip indicating its source: <strong>EvoBioSys</strong> for
           concepts coined within the EvoBioSys field of inquiry, <strong>External</strong> for
@@ -222,10 +246,10 @@ permalink: /glossary/neologism/
       <!-- ============================================================== -->
       <!-- Concepts -->
       <!-- ============================================================== -->
-      <h2 class="gloss-section-h2">Concepts</h2>
+      <h2 class="gloss-section-h2" data-section>Concepts</h2>
       <p class="gloss-section-intro">In rough alphabetical order.</p>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Auburn</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -238,7 +262,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Auto-example</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -250,7 +274,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Body-heart-mind</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -261,7 +285,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Categorical compatibility</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -275,7 +299,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Communities of Inquiry</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -289,7 +313,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>CosBioSys</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -304,7 +328,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Current Paradigm</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -318,7 +342,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Developmentally affirmative</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -328,7 +352,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Emerging paradigm</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -340,7 +364,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Enclave (community)</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -353,7 +377,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Equilibrium (personal life)</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -366,7 +390,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Evobiosys</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -377,7 +401,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>EvoSattva</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -387,7 +411,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>GloCal</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -400,7 +424,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Homo Emergiens</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -410,7 +434,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Life-Axles</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -422,7 +446,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Meta-example</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -433,7 +457,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Multiple interoperable sovereignties</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -444,7 +468,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Mutual Holarchic Sovereignty</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -456,7 +480,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Network of Benevolence / Benevolent in-group</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -468,7 +492,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Passionate Sidepoint</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -483,7 +507,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>PhilVest</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -495,7 +519,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Polysattva</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -506,7 +530,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Polysattva Academy</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -518,7 +542,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Psychologically Politically Correct</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -534,7 +558,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Quattro of Ideals</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -545,7 +569,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Shadow Jungle</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -559,7 +583,7 @@ permalink: /glossary/neologism/
         <p class="attribution">emerged in conversation with Kaja Bienzle</p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Shared Subtle Body Patterns</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -570,7 +594,7 @@ permalink: /glossary/neologism/
         <p class="attribution">emerged in conversation with Kaja Bienzle</p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>State (psychological)</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -580,7 +604,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>(Temporary) Purpose Community</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -591,7 +615,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Therapy-positive</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -602,7 +626,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Vector</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -614,7 +638,7 @@ permalink: /glossary/neologism/
         <p class="attribution">with Juliana Maxado</p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Vortex</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -630,7 +654,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Vortex of discourse</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -640,7 +664,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>WE-Fabrics</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -653,7 +677,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Wemes</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -667,10 +691,10 @@ permalink: /glossary/neologism/
       <!-- ============================================================== -->
       <!-- Precisions -->
       <!-- ============================================================== -->
-      <h2 class="gloss-section-h2">Precisions</h2>
+      <h2 class="gloss-section-h2" data-section>Precisions</h2>
       <p class="gloss-section-intro">Sharper formulations of broader concepts.</p>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Widespread shadow pattern</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -687,10 +711,10 @@ permalink: /glossary/neologism/
       <!-- ============================================================== -->
       <!-- German -->
       <!-- ============================================================== -->
-      <h2 class="gloss-section-h2">German</h2>
+      <h2 class="gloss-section-h2" data-section>German</h2>
       <p class="gloss-section-intro">Concepts native to German.</p>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys de">
         <div class="term-head">
           <h3>KlarheitsAusbr&uuml;che</h3>
           <span class="chip-row">
@@ -704,7 +728,7 @@ permalink: /glossary/neologism/
         <p class="attribution">in a call with Gertraud Wegst</p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys de">
         <div class="term-head">
           <h3>anhaftungsflexibel</h3>
           <span class="chip-row">
@@ -720,7 +744,7 @@ permalink: /glossary/neologism/
         <p class="attribution">with Lennart Tjarks</p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys de">
         <div class="term-head">
           <h3>empfindungs-mutig</h3>
           <span class="chip-row">
@@ -737,12 +761,12 @@ permalink: /glossary/neologism/
       <!-- ============================================================== -->
       <!-- External Neologisms -->
       <!-- ============================================================== -->
-      <h2 class="gloss-section-h2">External neologisms</h2>
+      <h2 class="gloss-section-h2" data-section>External neologisms</h2>
       <p class="gloss-section-intro">
         Concepts borrowed from other thinkers and woven into the EvoBioSys field.
       </p>
 
-      <article class="term">
+      <article class="term" data-source="external">
         <div class="term-head">
           <h3>Anti-fragile</h3>
           <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
@@ -751,7 +775,7 @@ permalink: /glossary/neologism/
         <p class="attribution">Nassim Taleb, <em>Antifragile</em></p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="external">
         <div class="term-head">
           <h3>Concentric love</h3>
           <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
@@ -765,7 +789,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="external">
         <div class="term-head">
           <h3>Benselfishness</h3>
           <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
@@ -776,7 +800,7 @@ permalink: /glossary/neologism/
         <p class="attribution">Daniel Dennett (shared by Bjorn Heijligers)</p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="external">
         <div class="term-head">
           <h3>Meta-stable</h3>
           <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
@@ -787,7 +811,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="external">
         <div class="term-head">
           <h3>Moment</h3>
           <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
@@ -799,7 +823,7 @@ permalink: /glossary/neologism/
         <p class="attribution">Paul Poledna</p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="external">
         <div class="term-head">
           <h3>Co-creation</h3>
           <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
@@ -812,7 +836,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="external">
         <div class="term-head">
           <h3>Co-living</h3>
           <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
@@ -825,7 +849,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="external">
         <div class="term-head">
           <h3>Co-working</h3>
           <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
@@ -836,7 +860,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="external">
         <div class="term-head">
           <h3>gameB</h3>
           <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
@@ -849,7 +873,7 @@ permalink: /glossary/neologism/
         <p class="attribution">Jim Rutt, 2017</p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="external">
         <div class="term-head">
           <h3>Sense-making</h3>
           <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
@@ -860,7 +884,7 @@ permalink: /glossary/neologism/
         <p class="attribution">popularized by Daniel Schmachtenberger</p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="external">
         <div class="term-head">
           <h3>Planetary co-existence</h3>
           <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
@@ -874,7 +898,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="external">
         <div class="term-head">
           <h3>Sovereign</h3>
           <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
@@ -888,7 +912,7 @@ permalink: /glossary/neologism/
         <p class="attribution">as used by Daniel Schmachtenberger</p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="external">
         <div class="term-head">
           <h3>Strengthening the core</h3>
           <span class="chip-row"><span class="chip chip-external"><span class="chip-glyph">&#8853;</span>External</span></span>
@@ -901,10 +925,10 @@ permalink: /glossary/neologism/
       <!-- ============================================================== -->
       <!-- Potent proto-concepts -->
       <!-- ============================================================== -->
-      <h2 class="gloss-section-h2">Potent proto-concepts</h2>
+      <h2 class="gloss-section-h2" data-section>Potent proto-concepts</h2>
       <p class="gloss-section-intro">Seeds - not yet fully developed.</p>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Niche as an n-dimensional space</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -918,10 +942,10 @@ permalink: /glossary/neologism/
       <!-- ============================================================== -->
       <!-- Usage of words -->
       <!-- ============================================================== -->
-      <h2 class="gloss-section-h2">Usage of words</h2>
+      <h2 class="gloss-section-h2" data-section>Usage of words</h2>
       <p class="gloss-section-intro">Distinctions in how a familiar word is being used.</p>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>Trauma</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -938,7 +962,7 @@ permalink: /glossary/neologism/
       <!-- ============================================================== -->
       <!-- Personal -->
       <!-- ============================================================== -->
-      <h2 class="gloss-section-h2">Personal</h2>
+      <h2 class="gloss-section-h2" data-section>Personal</h2>
       <p class="gloss-section-intro">
         From the personal - not professionally clean - glossary of
         becoming more conceptually precise and semantically constructive.
@@ -946,7 +970,7 @@ permalink: /glossary/neologism/
         positive semantic-networks and initial associations.
       </p>
 
-      <article class="term">
+      <article class="term" data-source="personal">
         <div class="term-head">
           <h3>Erogenous hair</h3>
           <span class="chip-row"><span class="chip chip-personal"><span class="chip-glyph">&#128100;</span>Personal</span></span>
@@ -958,7 +982,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="personal">
         <div class="term-head">
           <h3>Psychohypochondria</h3>
           <span class="chip-row"><span class="chip chip-personal"><span class="chip-glyph">&#128100;</span>Personal</span></span>
@@ -969,7 +993,7 @@ permalink: /glossary/neologism/
         </p>
       </article>
 
-      <article class="term">
+      <article class="term" data-source="personal">
         <div class="term-head">
           <h3>Cereal Drinks</h3>
           <span class="chip-row"><span class="chip chip-personal"><span class="chip-glyph">&#128100;</span>Personal</span></span>
@@ -985,10 +1009,10 @@ permalink: /glossary/neologism/
       <!-- ============================================================== -->
       <!-- Meta -->
       <!-- ============================================================== -->
-      <h2 class="gloss-section-h2">Meta</h2>
+      <h2 class="gloss-section-h2" data-section>Meta</h2>
       <p class="gloss-section-intro">On the practice of making good concepts.</p>
 
-      <article class="term">
+      <article class="term" data-source="evobiosys">
         <div class="term-head">
           <h3>What makes a good concept?</h3>
           <span class="chip-row"><span class="chip chip-evobiosys"><span class="chip-glyph">&#127793;</span>EvoBioSys</span></span>
@@ -1030,3 +1054,5 @@ permalink: /glossary/neologism/
   </div>
 
 </div>
+
+<script src="{{ '/assets/js/chip-filter.js' | relative_url }}" defer></script>
