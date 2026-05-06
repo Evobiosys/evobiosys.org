@@ -7,3 +7,6 @@ Gemfile.lock
 vendor/
 scripts/.env
 scripts/.sync-state/
+
+# superpowers brainstorming visual companion mockups
+.superpowers/
