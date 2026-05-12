@@ -47,7 +47,7 @@
     <div class="footer-inner h-card" style="display:none;">
       <a class="p-name u-url" href="https://evobiosys.org" rel="me">EvoBioSys</a>
       <span class="p-org">EvoBioSys</span>
-      <a class="u-email" href="mailto:connect@evobiosys.org">connect@evobiosys.org</a>
+      <a class="u-email email-reveal" href="#" data-u="connect" data-d="evobiosys.org" rel="nofollow">Reveal email</a>
       <span class="p-locality">Vienna</span>
       <span class="p-country-name">Austria</span>
       <span class="p-note">Cultivating evolutionary approaches &amp; liberating systems</span>
@@ -65,7 +65,9 @@
         <li><a href="/glossary/">Glossary</a></li>
         <li><a href="/how-we-work/">How We Work</a></li>
         <li><a href="/about/">About</a></li>
-        <li><a href="mailto:connect@evobiosys.org">connect@evobiosys.org</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/legal/">Legal</a></li>
+        <li><a href="#" class="email-reveal" data-u="connect" data-d="evobiosys.org" rel="nofollow">Reveal email</a></li>
       </ul>
     </div>
     <p class="footer-signoff" style="text-align:center; font-size:0.8rem; color:var(--color-text-muted); margin-top:1rem;">Made with love in Europe</p>
@@ -86,6 +88,19 @@
         links.classList.toggle('open');
       });
     }
+  </script>
+  <script>
+  (function(){
+    document.addEventListener('click', function(e){
+      var el = e.target.closest('.email-reveal');
+      if (!el) return;
+      e.preventDefault();
+      var addr = el.dataset.u + '@' + el.dataset.d;
+      el.textContent = addr;
+      el.href = 'mailto:' + addr;
+      el.classList.remove('email-reveal');
+    });
+  })();
   </script>
 </body>
 </html>

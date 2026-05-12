@@ -276,14 +276,55 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
 </section>
 
 <script>
-  // Listmonk form submission
+  // Newsletter subscribe — POSTs to self-hosted subscriber.evobiosys.org
+  // Double opt-in handled by the backend. Only the email address is sent.
+  // No personal data, no tracking headers.
+  const SUBSCRIBE_ENDPOINT = 'https://subscriber.evobiosys.org/subscribe';
   const form = document.getElementById('listmonk-form-main');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    const noteEl = form.parentElement.querySelector('.newsletter-note');
+    const btn    = form.querySelector('button[type="submit"]');
+    const input  = form.querySelector('input[name="email"]');
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = form.querySelector('input[name="email"]').value;
-      console.log('Subscribe:', email);
-      alert('Thanks! We\u2019ll be in touch at: ' + email);
+      const email = (input.value || '').trim();
+      if (!email) return;
+
+      const originalBtn  = btn.textContent;
+      const originalNote = noteEl ? noteEl.innerHTML : '';
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch(SUBSCRIBE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, source: 'evobiosys.org' })
+        });
+        if (res.ok) {
+          btn.textContent = 'Check your inbox';
+          if (noteEl) {
+            noteEl.textContent =
+              'Confirmation email sent. Click the link to activate — ' +
+              'double opt-in under GDPR.';
+          }
+          input.value = '';
+        } else {
+          throw new Error('HTTP ' + res.status);
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = originalBtn;
+        if (noteEl) {
+          noteEl.innerHTML =
+            '<span style="color:#c0392b;">Subscription failed. ' +
+            'Please email <a href="#" class="email-reveal" ' +
+            'data-u="connect" data-d="evobiosys.org" rel="nofollow">' +
+            'Reveal email</a> instead.</span>';
+          setTimeout(() => { noteEl.innerHTML = originalNote; }, 8000);
+        }
+      }
     });
   }
 
