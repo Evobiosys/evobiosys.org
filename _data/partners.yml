@@ -82,3 +82,12 @@ organisations:
       A documentation and developer platform we support as part of the open-source,
       build-in-the-open ethos that guides EvoBioSys technology.
     status: active
+
+  - name: P2P Foundation Wiki
+    description: >-
+      A long-running CC BY-SA wiki indexing commons-oriented projects, ecosystems,
+      and frameworks. Aligned worldview around commons and emergent organization.
+      Cross-perspective signal source for ResourcingPathways (data), QuestHub
+      (quest-source), and SoFin (who-to-fund). Partnership conversation pending.
+    link: https://wiki.p2pfoundation.net/
+    status: tbc
