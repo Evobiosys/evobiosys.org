@@ -1,38 +1,32 @@
 ---
 layout: default
-title: "Unlocking Housing — Local-First Property Discovery"
+title: "Unlocking Housing — Bringing Empty Places Back to Life"
 description: >-
-  Open-source, local-first tools for discovering vacant and developable
-  properties in Austria. Built for bioregional communities and housing cooperatives.
+  Europe holds an enormous stock of vacant and underused properties. Unlocking Housing
+  is the effort to bring them back into sovereign, living use — in Austria and beyond.
 permalink: /unlocking-housing/
 ---
 
 <style>
   /* === Unlocking Housing: Landing Page === */
-  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
-
   .uh-lp {
     --uh-forest: #2d5a3d;
     --uh-forest-light: #4a8060;
     --uh-forest-deep: #1a3d28;
-    --uh-leaf: #a8d5a2;
     --uh-leaf-soft: #e8f5e4;
-    --uh-field: #eef5eb;
     --uh-amber: #c8963c;
-    --uh-amber-soft: #fdf3e0;
     --uh-ink: #1a2e1a;
     --uh-text: #2d4a2d;
     --uh-text-muted: #5a7060;
     --uh-border: #c4d4c4;
-    --uh-white: #ffffff;
     --uh-paper: #f7faf5;
-    --uh-sans: "Inter", -apple-system, sans-serif;
+    --uh-parchment: #f0f5ee;
+    --uh-sans: "Atkinson Hyperlegible", system-ui, sans-serif;
     font-family: var(--uh-sans);
   }
 
-  /* Hero */
   .uh-lp .uh-hero {
-    background: linear-gradient(160deg, var(--uh-paper) 0%, var(--uh-field) 60%, #e0f0e0 100%);
+    background: linear-gradient(160deg, var(--uh-paper) 0%, var(--uh-parchment) 60%, #e0f0e0 100%);
     border-bottom: 2px solid var(--uh-border);
     padding: 5rem 2rem 3.5rem;
   }
@@ -44,247 +38,191 @@ permalink: /unlocking-housing/
     margin-bottom: 1.25rem; font-weight: 600;
   }
   .uh-lp .uh-hero h1 {
-    font-family: var(--uh-sans); font-weight: 700;
-    font-size: 2.8rem; color: var(--uh-forest-deep);
+    font-weight: 700; font-size: 2.8rem; color: var(--uh-forest-deep);
     letter-spacing: -0.03em; margin: 0 0 0.75rem; line-height: 1.15;
   }
   .uh-lp .uh-lede {
-    font-size: 1.15rem; color: var(--uh-text-muted);
-    max-width: 600px; line-height: 1.65; margin: 0 0 2rem;
+    font-size: 1.15rem; color: var(--uh-text-muted); line-height: 1.7;
+    max-width: 36em; margin-bottom: 2rem;
   }
   .uh-lp .uh-cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
   .uh-lp .uh-btn {
-    display: inline-block; padding: 0.7rem 1.25rem;
-    border-radius: 6px; text-decoration: none; font-weight: 600;
-    font-size: 0.97rem; border: 1.5px solid transparent;
-    transition: transform 0.05s; cursor: pointer;
+    display: inline-block; padding: 0.7rem 1.3rem; border-radius: 6px;
+    text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    border: 1.5px solid transparent; cursor: pointer;
   }
-  .uh-lp .uh-btn:active { transform: translateY(1px); }
   .uh-lp .uh-btn-forest { background: var(--uh-forest); color: #fff; border-color: var(--uh-forest); }
   .uh-lp .uh-btn-forest:hover { background: var(--uh-forest-deep); color: #fff; }
   .uh-lp .uh-btn-outline { background: transparent; color: var(--uh-forest); border-color: var(--uh-forest); }
   .uh-lp .uh-btn-outline:hover { background: var(--uh-leaf-soft); }
 
-  /* Sections */
-  .uh-lp .uh-section { max-width: 820px; margin: 0 auto; padding: 3.5rem 2rem; }
-  .uh-lp .uh-section h2 {
-    font-family: var(--uh-sans); font-weight: 700;
-    font-size: 1.8rem; color: var(--uh-forest-deep);
-    margin: 0 0 0.4rem; position: relative; padding-bottom: 0.6rem;
-  }
-  .uh-lp .uh-section h2::after {
-    content: ""; position: absolute; bottom: 0; left: 0;
-    width: 40px; height: 3px;
-    background: linear-gradient(90deg, var(--uh-forest), var(--uh-amber));
-    border-radius: 2px;
-  }
-  .uh-lp .uh-section p, .uh-lp .uh-section li {
-    color: var(--uh-text); line-height: 1.75; font-size: 1rem;
-  }
-  .uh-lp .uh-section p + p { margin-top: 0.8rem; }
-  .uh-lp .uh-section-alt {
-    background: var(--uh-field);
-    border-top: 1px solid var(--uh-border);
-    border-bottom: 1px solid var(--uh-border);
-  }
+  .uh-lp section { padding: 3.5rem 2rem; }
+  .uh-lp section.uh-alt { background: #fff; border-top: 1px solid var(--uh-border); border-bottom: 1px solid var(--uh-border); }
+  .uh-lp .uh-inner { max-width: 760px; margin: 0 auto; }
+  .uh-lp h2 { font-size: 1.85rem; color: var(--uh-forest-deep); margin: 0 0 1rem; line-height: 1.2; }
+  .uh-lp p { color: var(--uh-text); line-height: 1.75; margin: 0 0 1rem; }
+  .uh-lp strong { color: var(--uh-forest-deep); }
+  .uh-lp em { font-style: italic; }
 
-  /* Module grid */
-  .uh-lp .uh-module-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.2rem; margin: 1.8rem 0;
+  .uh-lp .uh-feature-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem; margin: 2rem 0;
   }
-  .uh-lp .uh-module {
-    background: var(--uh-white); border: 1px solid var(--uh-border);
-    border-top: 3px solid var(--uh-forest-light);
-    border-radius: 6px; padding: 1.3rem 1.2rem;
+  .uh-lp .uh-card {
+    background: var(--uh-paper); border: 1px solid var(--uh-border);
+    border-top: 3px solid var(--uh-forest-light); border-radius: 6px;
+    padding: 1.25rem 1.4rem;
   }
-  .uh-lp .uh-module h3 {
-    font-family: var(--uh-sans); font-size: 0.97rem; font-weight: 600;
-    color: var(--uh-forest); margin: 0 0 0.4rem;
-  }
-  .uh-lp .uh-module code {
-    font-size: 0.82rem; background: var(--uh-leaf-soft);
-    color: var(--uh-forest-deep); padding: 0.1em 0.4em;
-    border-radius: 3px; display: block; margin-bottom: 0.5rem;
-  }
-  .uh-lp .uh-module p {
-    font-size: 0.88rem; color: var(--uh-text-muted); margin: 0; line-height: 1.5;
-  }
+  .uh-lp .uh-card h3 { font-size: 1rem; color: var(--uh-forest-deep); margin: 0 0 0.4rem; }
+  .uh-lp .uh-card p { font-size: 0.9rem; color: var(--uh-text-muted); margin: 0; line-height: 1.6; }
 
-  /* Tech tags */
-  .uh-lp .uh-tech-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
-  .uh-lp .uh-tag {
-    font-size: 0.82rem; font-weight: 500; padding: 0.3em 0.8em;
-    border: 1px solid var(--uh-border); border-radius: 6px;
-    color: var(--uh-text-muted); background: var(--uh-white);
-  }
-
-  /* Bio card */
-  .uh-lp .uh-bio-card {
-    background: linear-gradient(160deg, var(--uh-forest-deep) 0%, var(--uh-forest) 100%);
-    color: #fff; border-radius: 8px; padding: 2.5rem 2.2rem; margin: 2rem 0;
-  }
-  .uh-lp .uh-bio-card h3 {
-    font-size: 1.4rem; color: var(--uh-leaf); margin: 0 0 0.8rem;
-  }
-  .uh-lp .uh-bio-card p {
-    color: rgba(255,255,255,0.9); line-height: 1.75; margin-bottom: 0.7rem;
-  }
-
-  /* Blockquote */
   .uh-lp blockquote {
-    border-left: 3px solid var(--uh-amber); margin: 1.8rem 0;
-    padding: 1rem 1.5rem; background: var(--uh-amber-soft);
-    border-radius: 0 6px 6px 0;
+    border-left: 3px solid var(--uh-amber); margin: 2rem 0;
+    padding: 1rem 1.5rem; background: #fef9f0; border-radius: 0 6px 6px 0;
   }
-  .uh-lp blockquote p {
-    font-style: italic; font-size: 1.08rem;
-    color: var(--uh-forest-deep); line-height: 1.6; margin: 0;
-  }
+  .uh-lp blockquote p { font-style: italic; color: var(--uh-forest-deep); margin: 0; }
 
-  /* Newsletter */
-  .uh-lp .uh-nl { padding: 3.5rem 2rem; max-width: 820px; margin: 0 auto; }
-  .uh-lp .uh-nl h2 { font-family: var(--uh-sans); font-weight: 700; font-size: 1.8rem; color: var(--uh-forest-deep); margin: 0 0 0.5rem; }
-  .uh-lp .uh-nl p { color: var(--uh-text-muted); max-width: 36em; }
-  .uh-lp .uh-nl-form { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; max-width: 440px; }
+  .uh-lp .uh-nl { max-width: 520px; margin: 0 auto; padding: 2rem 0; }
+  .uh-lp .uh-nl h2 { margin-top: 0; }
+  .uh-lp .uh-nl-form { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
   .uh-lp .uh-nl-form input[type="email"] {
     flex: 1; min-width: 200px; padding: 0.65rem 1rem;
     border: 1.5px solid var(--uh-border); border-radius: 6px;
     font-size: 0.95rem; color: var(--uh-ink); outline: none;
   }
   .uh-lp .uh-nl-form input[type="email"]:focus { border-color: var(--uh-forest); }
-  .uh-lp #uh2-nl-note { display: block; margin-top: 0.6rem; }
+  .uh-lp #uh2-nl-note { display: block; margin-top: 0.6rem; font-size: 0.85rem; color: var(--uh-text-muted); }
 </style>
 
 <div class="uh-lp">
 
   <div class="uh-hero">
     <div class="container-narrow">
-      <span class="uh-eyebrow">Bio pillar &middot; EvoBioSys &middot; Local-first &middot; Austria</span>
+      <span class="uh-eyebrow">Bio pillar &middot; EvoBioSys &middot; Austria &amp; Europe</span>
       <h1>Unlocking Housing</h1>
       <p class="uh-lede">
-        Open-source, local-first tools for discovering vacant and developable
-        properties in Austria &mdash; built for bioregional communities,
-        housing cooperatives, and people working to bring land back into use.
+        The biggest item on most people&rsquo;s bill is housing. And yet Europe simultaneously holds
+        an enormous stock of housing that sits empty &mdash; villages depopulated by rural exodus,
+        islands abandoned, apartments locked in speculation. We are working to unlock it.
       </p>
       <div class="uh-cta-row">
-        <a class="uh-btn uh-btn-forest" href="#modules">How it works</a>
-        <a class="uh-btn uh-btn-outline" href="#bio">Bio pillar</a>
+        <a class="uh-btn uh-btn-forest" href="#thesis">The thesis</a>
+        <a class="uh-btn uh-btn-outline" href="#newsletter">Follow the work</a>
       </div>
     </div>
   </div>
 
-  <!-- Problem -->
-  <section>
-    <div class="uh-section">
-      <h2>The problem it solves</h2>
+  <!-- Thesis -->
+  <section id="thesis">
+    <div class="uh-inner">
+      <h2>The asymmetry</h2>
       <p>
-        Austria has significant stocks of vacant, underutilised, and potentially
-        developable land &mdash; but finding it requires navigating fragmented
-        cadastral databases, proprietary tools, and opaque administrative processes.
-        The information exists; what&rsquo;s missing is a way to work with it that
-        is local, sovereign, and built for the communities who need it most.
+        Two facts sit side by side: <strong>housing is the single largest item on most
+        people&rsquo;s bill</strong>, and <strong>much of Europe&rsquo;s housing stock sits
+        unused</strong>. Villages emptied by <em>Landflucht</em> (rural exodus). Empty
+        Italian villages, abandoned Greek islands, apartments held idle by speculative
+        investment. In Styria, roughly one in seven dwellings sits empty. Across southern
+        Europe, entire communities have been depopulating for decades.
       </p>
-      <blockquote>
-        <p>Rather than building more, the starting question is: what is already here,
-        and how can it be brought back into life?</p>
-      </blockquote>
       <p>
-        Unlocking Housing is a suite of geo-mapping modules that runs on your own
-        machine, connects to public Austrian spatial data sources, and produces
-        actionable maps of where housing development may be possible &mdash;
-        without sending your research to a third-party server.
+        This is not a shortage of housing. It is a shortage of the conditions that bring
+        housing into life: <strong>trust, structure, and the right infrastructure</strong>.
+        Once those conditions exist, what was wasted becomes sovereign.
       </p>
-    </div>
-  </section>
-
-  <!-- Modules -->
-  <section class="uh-section-alt" id="modules">
-    <div class="uh-section">
-      <h2>Module suite</h2>
-      <p>A SvelteKit monorepo organised into focused, independently usable modules.</p>
-      <div class="uh-module-grid">
-        <div class="uh-module">
-          <code>map-core</code>
-          <h3>Map Core</h3>
-          <p>MapLibre GL JS base viewer, tile serving, and shared geo utilities.</p>
+      <div class="uh-feature-grid">
+        <div class="uh-card">
+          <h3>Live where others vacation</h3>
+          <p>The rural exodus left behind beautiful places with empty houses. Unlocking Housing
+          is the work of making those places liveable again &mdash; not as holiday lets, but
+          as communities.</p>
         </div>
-        <div class="uh-module">
-          <code>geo-layers-at</code>
-          <h3>Austrian Geo Layers</h3>
-          <p>Adapters for Austrian open data: cadastre, planning zones, HORA flood risk, WMS endpoints.</p>
+        <div class="uh-card">
+          <h3>Regeneration, not extraction</h3>
+          <p>The lowest-carbon housing is the house that already exists. Renovating and
+          repeopling existing stock regenerates regions, restores social fabric, and
+          avoids new extraction from land and materials.</p>
         </div>
-        <div class="uh-module">
-          <code>vacancy</code>
-          <h3>Vacancy Detection</h3>
-          <p>Spatial heuristics for identifying potentially vacant or long-term non-used properties.</p>
+        <div class="uh-card">
+          <h3>Multidimensional wealth</h3>
+          <p>A home in a rooted community generates financial, social, cultural, and living
+          wealth simultaneously. This is not anti-wealth &mdash; it is better wealth, held
+          in more forms at once.</p>
         </div>
-        <div class="uh-module">
-          <code>bioregions</code>
-          <h3>Bioregions</h3>
-          <p>Watershed, soil, and ecological connectivity overlays for bioregional context.</p>
+        <div class="uh-card">
+          <h3>Integral, not alternative</h3>
+          <p>Competent, rooted, prosperous regeneration &mdash; legible to a conservative
+          village council and to an impact investor alike. Not a drop-out aesthetic.
+          A serious offer.</p>
         </div>
-        <div class="uh-module">
-          <code>listings-matcher</code>
-          <h3>Listings Matcher</h3>
-          <p>Cross-reference property listings with cadastral data to surface discrepancies and opportunities.</p>
-        </div>
-        <div class="uh-module">
-          <code>writeback</code>
-          <h3>Logseq Writeback</h3>
-          <p>Export property investigations directly to your Logseq knowledge base.</p>
-        </div>
-      </div>
-      <div class="uh-tech-row">
-        <span class="uh-tag">SvelteKit</span>
-        <span class="uh-tag">MapLibre GL JS</span>
-        <span class="uh-tag">Valhalla routing</span>
-        <span class="uh-tag">GeoJSON / PMTiles</span>
-        <span class="uh-tag">Austrian Open Data</span>
-        <span class="uh-tag">INSPIRE geodata</span>
-        <span class="uh-tag">Podman containers</span>
-        <span class="uh-tag">QGIS-compatible</span>
-        <span class="uh-tag">Logseq integration</span>
       </div>
     </div>
   </section>
 
-  <!-- Bio pillar -->
-  <section id="bio">
-    <div class="uh-section">
-      <h2>The Bio pillar</h2>
+  <!-- How -->
+  <section class="uh-alt" id="how">
+    <div class="uh-inner">
+      <h2>The unlock mechanism</h2>
       <p>
-        Unlocking Housing is the flagship project of <strong>evoBIOsys-bio</strong>
-        &mdash; the branch of EvoBioSys concerned with living, biological, and
-        bioregional systems. Where the Sys pillar builds digital infrastructure and the
-        Evo pillar supports human development, the Bio pillar works with the living
-        substrate: land, housing, bioregions, and the material conditions of settlement.
+        Empty properties do not unlock through price alone. They unlock through
+        <strong>structured deals and emotional trust</strong>. An owner who would never
+        sell will often enter a well-structured arrangement with people they trust.
+        A village that resists outside buyers will often welcome a community that
+        commits to restoring a building and bringing life back to it.
       </p>
-      <div class="uh-bio-card">
-        <h3>What evoBIOsys-bio builds toward</h3>
-        <p>
-          The Bio pillar&rsquo;s long-term work is to develop tools and frameworks
-          for communities to understand, steward, and inhabit their bioregions more
-          intentionally. Unlocking Housing is the first tool in that suite: starting
-          with <em>where can people live?</em> and building toward <em>how should
-          communities relate to the land they occupy?</em>
-        </p>
-        <p>
-          Every analysis in Unlocking Housing includes watershed context, soil data,
-          and ecological connectivity &mdash; because these dimensions shape whether
-          a development will be resilient over decades, not just permitted for next year.
-        </p>
-      </div>
+      <p>
+        The mechanism is: find the properties, build the trust, structure the deal,
+        renovate well, hold it in common stewardship through a <strong>foundation</strong>
+        &mdash; not bought and sold, but held as a commons in perpetuity. The renovation
+        itself is part of the value: a <em>Sanierung</em> done properly is a good deal on
+        its own terms, and it transforms something declining into something growing.
+      </p>
+    </div>
+  </section>
+
+  <!-- Where -->
+  <section id="where">
+    <div class="uh-inner">
+      <h2>Where we start</h2>
+      <p>
+        The pattern we are looking for is specific: a cluster of buildings where a
+        <strong>community can move in together</strong>, with an additional house ideally
+        in walking distance. Not dispersed properties &mdash; a coherent place, small enough
+        to be held by a community, large enough to have a life. Seasonally maintained
+        arrangements are also viable: places the community inhabits and tends, even if
+        not year-round.
+      </p>
+      <p>
+        <strong>Italian depopulated villages</strong> are the clearest fit &mdash; clusters
+        of stone buildings standing empty across the depopulation belt from Molise to
+        Calabria, often with remarkable quality and location, available at prices that
+        make serious renovation realistic. <strong>Standalone remote houses</strong>,
+        particularly in the Alps, are ideal as retreat locations when they sit at a
+        distance from any village.
+      </p>
+      <p>
+        <strong>Styria is a particular opportunity.</strong> The regional government
+        has invested in infrastructure &mdash; roads, fibre, utilities &mdash; reaching
+        remote farmhouses and hamlets that in other countries would be entirely privately
+        maintained and effectively inaccessible. That publicly-laid infrastructure makes
+        remote Styrian properties viable in ways that comparable properties elsewhere
+        simply are not. The starting place is here.
+      </p>
+      <p>
+        From there: the night-train network is the wider geography. Greece as a
+        longer-horizon opportunity. Europe as the frame; the methodology as something
+        that travels.
+      </p>
     </div>
   </section>
 
   <!-- Newsletter -->
-  <section class="uh-section-alt">
+  <section class="uh-alt" id="newsletter">
     <div class="uh-nl">
-      <h2>Follow the build</h2>
-      <p>Updates on the tools, the data sources, and the broader project of bioregional
-      housing discovery in Austria. No tracking. No upsell. EU-hosted.</p>
+      <h2>Follow the work</h2>
+      <p>Updates on the search, the deals, and the thinking behind the effort to bring
+      Europe&rsquo;s empty places back to life.<br>
+      No tracking. No upsell. EU-hosted.</p>
       <form id="uh2-nl-form" class="uh-nl-form">
         <input type="email" id="uh2-nl-email" name="email" placeholder="your@email.com" required>
         <button type="submit" class="uh-btn uh-btn-forest">Subscribe</button>
@@ -307,7 +245,7 @@ permalink: /unlocking-housing/
       var email = document.getElementById("uh2-nl-email").value.trim();
       if (!email) return;
       var btn = form.querySelector("button");
-      btn.disabled = true; btn.textContent = "Subscribing\u2026";
+      btn.disabled = true; btn.textContent = "Subscribing…";
       fetch("https://subscriber.evobiosys.org/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -317,12 +255,12 @@ permalink: /unlocking-housing/
         .then(function () {
           document.getElementById("uh2-nl-email").value = "";
           btn.disabled = false; btn.textContent = "Subscribe";
-          note.textContent = "Confirmed \u2014 check your inbox to complete your subscription.";
+          note.textContent = "Confirmed — check your inbox to complete your subscription.";
           note.style.color = "#2d5a3d"; note.style.fontSize = "1rem";
         })
         .catch(function () {
           btn.disabled = false; btn.textContent = "Subscribe";
-          note.textContent = "Something went wrong \u2014 try again or email connect@evobiosys.org";
+          note.textContent = "Something went wrong — try again or email connect@evobiosys.org";
         });
     });
   })();
