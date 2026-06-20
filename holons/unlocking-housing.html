@@ -1,0 +1,338 @@
+---
+layout: default
+title: "Unlocking Housing — Bio Pillar Flagship"
+description: >-
+  Unlocking Housing is the flagship project of the EvoBioSys Bio pillar —
+  open-source, local-first tools for discovering vacant and developable
+  properties in Austria, built for bioregional communities and housing cooperatives.
+permalink: /holons/unlocking-housing/
+---
+
+<style>
+  /* === Unlocking Housing: Bioregional / Field / Cartographic Identity === */
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+  .uh-page {
+    --uh-forest: #2d5a3d;
+    --uh-forest-light: #4a8060;
+    --uh-forest-deep: #1a3d28;
+    --uh-leaf: #a8d5a2;
+    --uh-leaf-soft: #e8f5e4;
+    --uh-field: #eef5eb;
+    --uh-amber: #c8963c;
+    --uh-amber-soft: #fdf3e0;
+    --uh-ink: #1a2e1a;
+    --uh-text: #2d4a2d;
+    --uh-text-muted: #5a7060;
+    --uh-border: #c4d4c4;
+    --uh-white: #ffffff;
+    --uh-paper: #f7faf5;
+    --uh-sans: "Inter", -apple-system, sans-serif;
+    background: var(--uh-paper);
+  }
+
+  .uh-page .page-header {
+    background: linear-gradient(160deg, var(--uh-paper) 0%, var(--uh-field) 60%, #e0f0e0 100%);
+    border-bottom: 2px solid var(--uh-border);
+    padding: 5rem 2rem 3.5rem;
+  }
+  .uh-page .page-header .breadcrumb a { color: var(--uh-forest); }
+  .uh-page .page-header h1 {
+    font-family: var(--uh-sans);
+    font-weight: 700;
+    font-size: 2.8rem;
+    color: var(--uh-forest-deep);
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .uh-page .page-header .lead {
+    font-family: var(--uh-sans);
+    font-size: 1.15rem;
+    color: var(--uh-text-muted);
+    max-width: 640px;
+    line-height: 1.65;
+  }
+  .uh-page .page-header .page-meta { margin-top: 1.5rem; }
+  .uh-bio-badge {
+    background: var(--uh-forest);
+    color: #fff;
+    padding: 0.2em 0.75em;
+    border-radius: 3px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  /* sections */
+  .uh-section { max-width: 820px; margin: 0 auto; padding: 3.5rem 2rem; }
+  .uh-section h2 {
+    font-family: var(--uh-sans);
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: var(--uh-forest-deep);
+    margin-bottom: 0.4rem;
+    position: relative;
+    padding-bottom: 0.6rem;
+  }
+  .uh-section h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 40px; height: 3px;
+    background: linear-gradient(90deg, var(--uh-forest), var(--uh-amber));
+    border-radius: 2px;
+  }
+  .uh-section p, .uh-section li {
+    font-family: var(--uh-sans);
+    color: var(--uh-text);
+    line-height: 1.75;
+    font-size: 1rem;
+  }
+  .uh-section p + p { margin-top: 0.8rem; }
+  .uh-section ul { margin: 1rem 0 1rem 1.2rem; }
+  .uh-section li { margin-bottom: 0.4rem; }
+
+  .uh-section-alt {
+    background: var(--uh-field);
+    border-top: 1px solid var(--uh-border);
+    border-bottom: 1px solid var(--uh-border);
+  }
+
+  /* module grid */
+  .uh-module-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    margin: 1.8rem 0;
+  }
+  .uh-module {
+    background: var(--uh-white);
+    border: 1px solid var(--uh-border);
+    border-top: 3px solid var(--uh-forest-light);
+    border-radius: 6px;
+    padding: 1.3rem 1.2rem;
+  }
+  .uh-module h3 {
+    font-family: var(--uh-sans);
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: var(--uh-forest);
+    margin: 0 0 0.4rem;
+    font-style: normal;
+  }
+  .uh-module code {
+    font-size: 0.82rem;
+    background: var(--uh-leaf-soft);
+    color: var(--uh-forest-deep);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .uh-module p { font-size: 0.88rem; color: var(--uh-text-muted); margin: 0; line-height: 1.5; }
+
+  /* tech tags */
+  .uh-tech-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
+  .uh-tag {
+    font-family: var(--uh-sans); font-size: 0.82rem; font-weight: 500;
+    padding: 0.3em 0.8em;
+    border: 1px solid var(--uh-border);
+    border-radius: var(--radius, 6px);
+    color: var(--uh-text-muted);
+    background: var(--uh-white);
+  }
+
+  /* bio pillar card */
+  .uh-bio-card {
+    background: linear-gradient(160deg, var(--uh-forest-deep) 0%, var(--uh-forest) 100%);
+    color: #fff;
+    border-radius: 8px;
+    padding: 2.5rem 2.2rem;
+    margin: 2rem 0;
+  }
+  .uh-bio-card h3 { font-family: var(--uh-sans); font-size: 1.4rem; color: var(--uh-leaf); margin: 0 0 0.8rem; }
+  .uh-bio-card p { color: rgba(255,255,255,0.9); line-height: 1.75; margin-bottom: 0.7rem; }
+
+  /* blockquote */
+  .uh-section blockquote {
+    border-left: 3px solid var(--uh-amber);
+    margin: 1.8rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--uh-amber-soft);
+    border-radius: 0 6px 6px 0;
+  }
+  .uh-section blockquote p {
+    font-style: italic;
+    font-size: 1.08rem;
+    color: var(--uh-forest-deep);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* connections */
+  .uh-connections { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
+  .uh-conn {
+    font-family: var(--uh-sans); font-size: 0.82rem; font-weight: 500;
+    padding: 0.3em 0.8em;
+    border: 1px solid var(--uh-border);
+    border-radius: 20px;
+    color: var(--uh-text-muted);
+    background: var(--uh-paper);
+  }
+</style>
+
+<div class="uh-page">
+
+<div class="page-header">
+  <p class="breadcrumb">
+    <a href="/">Home</a> &rsaquo;
+    <a href="/holons/">Holons</a> &rsaquo;
+    Unlocking Housing
+  </p>
+  <h1>Unlocking Housing</h1>
+  <p class="lead">
+    Open-source, local-first tools for discovering vacant and developable
+    properties in Austria &mdash; built for bioregional communities,
+    housing cooperatives, and people working to bring land back into use.
+  </p>
+  <dl class="page-meta">
+    <div class="meta-item">
+      <dt>Status</dt>
+      <dd><span class="status status-active">Active</span></dd>
+    </div>
+    <div class="meta-item">
+      <dt>Pillar</dt>
+      <dd>Bio &mdash; Living</dd>
+    </div>
+    <div class="meta-item">
+      <dt>Type</dt>
+      <dd>Holon &mdash; Tool Suite</dd>
+    </div>
+    <div class="meta-item">
+      <dt>Flagship</dt>
+      <dd><span class="uh-bio-badge">evoBIOsys-bio</span></dd>
+    </div>
+  </dl>
+</div>
+
+<!-- The Problem -->
+<section>
+  <div class="uh-section">
+    <h2>The Problem</h2>
+    <p>
+      Austria has significant stocks of vacant, underutilised, and potentially
+      developable land &mdash; but finding it requires navigating fragmented
+      cadastral databases, proprietary tools, and opaque administrative processes.
+      The information exists; what&rsquo;s missing is a way to work with it that
+      is local, sovereign, and built for the communities who need it most.
+    </p>
+    <blockquote>
+      <p>Rather than building more, the starting question is: what is already here,
+      and how can it be brought back into life?</p>
+    </blockquote>
+    <p>
+      Unlocking Housing is a suite of geo-mapping modules that runs on your own
+      machine, connects to public Austrian spatial data sources (cadastre, INSPIRE,
+      land register), and produces actionable maps of where housing development
+      may be possible &mdash; without sending your research to a third-party server.
+    </p>
+  </div>
+</section>
+
+<!-- Module Suite -->
+<section class="uh-section-alt">
+  <div class="uh-section">
+    <h2>Module Suite</h2>
+    <p>
+      The codebase is a SvelteKit monorepo organised into focused, independently
+      usable modules. Each can be run standalone or composed into a full analysis pipeline.
+    </p>
+    <div class="uh-module-grid">
+      <div class="uh-module">
+        <code>map-core</code>
+        <h3>Map Core</h3>
+        <p>MapLibre GL JS base viewer, tile serving, and shared geo utilities.</p>
+      </div>
+      <div class="uh-module">
+        <code>geo-layers-at</code>
+        <h3>Austrian Geo Layers</h3>
+        <p>Adapters for Austrian open data: cadastre, planning zones, HORA flood risk, WMS endpoints.</p>
+      </div>
+      <div class="uh-module">
+        <code>vacancy</code>
+        <h3>Vacancy Detection</h3>
+        <p>Spatial heuristics for identifying potentially vacant or long-term non-used properties.</p>
+      </div>
+      <div class="uh-module">
+        <code>bioregions</code>
+        <h3>Bioregions</h3>
+        <p>Watershed, soil, and ecological connectivity overlays for bioregional context.</p>
+      </div>
+      <div class="uh-module">
+        <code>listings-matcher</code>
+        <h3>Listings Matcher</h3>
+        <p>Cross-reference property listings with cadastral data to surface discrepancies and opportunities.</p>
+      </div>
+      <div class="uh-module">
+        <code>writeback</code>
+        <h3>Logseq Writeback</h3>
+        <p>Export property investigations directly to your Logseq knowledge base.</p>
+      </div>
+    </div>
+    <div class="uh-tech-row">
+      <span class="uh-tag">SvelteKit</span>
+      <span class="uh-tag">MapLibre GL JS</span>
+      <span class="uh-tag">Valhalla routing</span>
+      <span class="uh-tag">GeoJSON / PMTiles</span>
+      <span class="uh-tag">Austrian Open Data</span>
+      <span class="uh-tag">INSPIRE geodata</span>
+      <span class="uh-tag">Podman containers</span>
+      <span class="uh-tag">QGIS-compatible</span>
+    </div>
+  </div>
+</section>
+
+<!-- Bio Pillar -->
+<section>
+  <div class="uh-section">
+    <h2>The Bio Pillar</h2>
+    <p>
+      Unlocking Housing is the flagship project of the <strong>evoBIOsys-bio</strong>
+      pillar &mdash; the branch of EvoBioSys concerned with living, biological, and
+      bioregional systems. Where the Sys pillar builds digital infrastructure and the
+      Evo pillar supports human development, the Bio pillar works with the living
+      substrate: land, housing, bioregions, and the material conditions of settlement.
+    </p>
+    <div class="uh-bio-card">
+      <h3>What evoBIOsys-bio builds toward</h3>
+      <p>
+        The Bio pillar&rsquo;s long-term work is to develop tools and frameworks for
+        communities to understand, steward, and inhabit their bioregions more
+        intentionally. Unlocking Housing is the first tool in that suite: starting
+        with the question of <em>where can people live?</em> and building toward
+        deeper questions of <em>how should communities relate to the land they occupy?</em>
+      </p>
+      <p>
+        The bioregional perspective is not decorative. Every analysis in Unlocking
+        Housing includes watershed context, soil data, and ecological connectivity
+        &mdash; not because planners usually ask for it, but because these dimensions
+        shape whether a development will be resilient over decades, not just permitted
+        for next year.
+      </p>
+    </div>
+    <h3 style="font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--uh-text-muted); font-family: var(--uh-sans); margin-top: 2rem;">Connected to</h3>
+    <div class="uh-connections">
+      <span class="uh-conn">Bioregional Mapping</span>
+      <span class="uh-conn">Community Hubs</span>
+      <span class="uh-conn">Bio Pillar</span>
+      <span class="uh-conn">Housing Cooperatives</span>
+      <span class="uh-conn">Austrian Land Data</span>
+      <span class="uh-conn">Local-First Architecture</span>
+      <span class="uh-conn">Logseq Integration</span>
+      <span class="uh-conn">Valhalla Routing</span>
+    </div>
+  </div>
+</section>
+
+</div><!-- /.uh-page -->
+<div class="back-link"><a href="/holons/">&larr; Back to all holons</a></div>
