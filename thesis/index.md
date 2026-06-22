@@ -256,7 +256,7 @@ version: "v0.1"
 **Contents**
 {:.thesis-toc-label}
 
-- [The claim in one page](#0-the-claim-in-one-page)
+- [The claim in one page](#the-claim-in-one-page)
 - [I. Worldview — The garden paradigm](#i-worldview--the-garden-paradigm)
 - [II. Ontology — What actually exists](#ii-ontology--what-actually-exists)
 - [III. Epistemology — The onion of truth](#iii-epistemology--the-onion-of-truth)
