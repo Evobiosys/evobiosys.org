@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Aggregator</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --color-bg: #f8f9fa;
+      --color-surface: #ffffff;
+      --color-border: #dee2e6;
+      --color-text: #212529;
+      --color-muted: #6c757d;
+      --color-post: #0066cc;
+      --color-event: #cc5500;
+      --color-toggle-active: #0066cc;
+      --color-toggle-inactive: #adb5bd;
+      --radius: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    body {
+      margin: 0;
+      padding: 1rem;
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    header.page-header { margin-bottom: 1.5rem; }
+    h1.page-title { font-size: 1.5rem; margin: 0 0 0.25rem; }
+    .page-subtitle { color: var(--color-muted); font-size: 0.875rem; margin: 0; }
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      padding: 0.75rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+    }
+    .filter-label { font-size: 0.8rem; color: var(--color-muted); align-self: center; }
+    .source-toggle {
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 2px solid var(--color-toggle-active);
+      background: var(--color-toggle-active);
+      color: #fff;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .source-toggle.inactive {
+      background: transparent;
+      color: var(--color-toggle-inactive);
+      border-color: var(--color-toggle-inactive);
+    }
+    .timeline { display: flex; flex-direction: column; gap: 1rem; }
+    .timeline-item {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-left: 4px solid transparent;
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      box-shadow: var(--shadow);
+      transition: opacity 0.2s;
+    }
+    .timeline-item.hidden { display: none; }
+    .item--post { border-left-color: var(--color-post); }
+    .item--event { border-left-color: var(--color-event); }
+    .item-header {
+      display: flex; align-items: center; flex-wrap: wrap;
+      gap: 0.5rem; margin-bottom: 0.5rem;
+    }
+    .item-type-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      background: var(--color-bg);
+    }
+    .item-source {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-muted);
+    }
+    .item-time {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      margin-left: auto;
+    }
+    .item-title { margin: 0 0 0.5rem; font-size: 1rem; font-weight: 600; }
+    .item-title a { color: inherit; text-decoration: none; }
+    .item-title a:hover { text-decoration: underline; }
+    .item-summary {
+      font-size: 0.875rem;
+      color: var(--color-muted);
+      margin: 0 0 0.5rem;
+    }
+    .item-footer { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .item-meta { font-size: 0.8rem; color: var(--color-muted); }
+    .item-link { font-size: 0.8rem; color: var(--color-post); text-decoration: none; margin-left: auto; }
+    .item-link:hover { text-decoration: underline; }
+    .no-items { text-align: center; color: var(--color-muted); padding: 2rem; }
+    footer.page-footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-border);
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1 class="page-title">Community Aggregator</h1>
+      <p class="page-subtitle">9 items from 2 communities — read-only unified view</p>
+    </header>
+
+    <div class="filter-bar" role="group" aria-label="Filter by community">
+      <span class="filter-label">Filter:</span>
+      <button class="source-toggle active" data-source="hackerspace-vienna">Hackerspace Vienna</button>
+        <button class="source-toggle active" data-source="transition-town-graz">Transition Town Graz</button>
+    </div>
+
+    <main class="timeline" id="timeline">
+      
+    <article class="timeline-item item--event" data-source="hackerspace-vienna">
+      <header class="item-header">
+        <span class="item-type-badge">📅 Event</span>
+        <span class="item-source">Hackerspace Vienna</span>
+        <time class="item-time" datetime="2026-07-12T19:00:00.000Z">12 Jul 2026, 21:00</time>
+      </header>
+      <h2 class="item-title"><a href="https://example-hackerspace.at/events/soldering-night-2026-07-12" target="_blank" rel="noopener noreferrer">Beginner Soldering Night</a></h2>
+      <p class="item-summary">Learn to solder. Kits provided (€5 materials cost). No prior experience needed.</p>
+      <footer class="item-footer">
+        <span class="item-meta">📍 Hackerspace Vienna, Mariahilfer Str. 89, 1060 Wien</span>
+        <span class="item-meta">→ 13 Jul 2026, 00:00</span>
+        <a class="item-link" href="https://example-hackerspace.at/events/soldering-night-2026-07-12" target="_blank" rel="noopener noreferrer">View →</a>
+      </footer>
+    </article>
+
+    <article class="timeline-item item--event" data-source="hackerspace-vienna">
+      <header class="item-header">
+        <span class="item-type-badge">📅 Event</span>
+        <span class="item-source">Hackerspace Vienna</span>
+        <time class="item-time" datetime="2026-07-05T11:00:00.000Z">5 Jul 2026, 13:00</time>
+      </header>
+      <h2 class="item-title"><a href="https://example-hackerspace.at/events/open-house-2026-07-05" target="_blank" rel="noopener noreferrer">Open House Day</a></h2>
+      <p class="item-summary">Annual open house. Tours, demos, and BBQ. Free entry. Bring a friend who&#39;s curious about making.</p>
+      <footer class="item-footer">
+        <span class="item-meta">📍 Hackerspace Vienna, Mariahilfer Str. 89, 1060 Wien</span>
+        <span class="item-meta">→ 5 Jul 2026, 19:00</span>
+        <a class="item-link" href="https://example-hackerspace.at/events/open-house-2026-07-05" target="_blank" rel="noopener noreferrer">View →</a>
+      </footer>
+    </article>
+
+    <article class="timeline-item item--event" data-source="transition-town-graz">
+      <header class="item-header">
+        <span class="item-type-badge">📅 Event</span>
+        <span class="item-source">Transition Town Graz</span>
+        <time class="item-time" datetime="2026-07-04T09:00:00.000Z">4 Jul 2026, 11:00</time>
+      </header>
+      <h2 class="item-title"><a href="https://example-transition-graz.at/events/seed-swap-2026-07-04" target="_blank" rel="noopener noreferrer">Monthly Seed Swap</a></h2>
+      <p class="item-summary">Bring surplus seeds, take what you need. Heritage and heirloom varieties welcome.</p>
+      <footer class="item-footer">
+        <span class="item-meta">📍 Grüner Markt, Graz Hauptplatz</span>
+        <span class="item-meta">→ 4 Jul 2026, 14:00</span>
+        <a class="item-link" href="https://example-transition-graz.at/events/seed-swap-2026-07-04" target="_blank" rel="noopener noreferrer">View →</a>
+      </footer>
+    </article>
+
+    <article class="timeline-item item--event" data-source="hackerspace-vienna">
+      <header class="item-header">
+        <span class="item-type-badge">📅 Event</span>
+        <span class="item-source">Hackerspace Vienna</span>
+        <time class="item-time" datetime="2026-06-27T14:00:00.000Z">27 Jun 2026, 16:00</time>
+      </header>
+      <h2 class="item-title"><a href="https://example-hackerspace.at/events/cnc-workshop-2026-06-27" target="_blank" rel="noopener noreferrer">CNC Mill Intro Workshop</a></h2>
+      <p class="item-summary">Hands-on intro to the new CNC mill. Bring safety glasses. Capacity: 8 people. First come, first served.</p>
+      <footer class="item-footer">
+        <span class="item-meta">📍 Hackerspace Vienna, Mariahilfer Str. 89, 1060 Wien</span>
+        <span class="item-meta">→ 27 Jun 2026, 20:00</span>
+        <a class="item-link" href="https://example-hackerspace.at/events/cnc-workshop-2026-06-27" target="_blank" rel="noopener noreferrer">View →</a>
+      </footer>
+    </article>
+
+    <article class="timeline-item item--post" data-source="hackerspace-vienna">
+      <header class="item-header">
+        <span class="item-type-badge">📰 Post</span>
+        <span class="item-source">Hackerspace Vienna</span>
+        <time class="item-time" datetime="2026-06-21T08:00:00.000Z">21 Jun 2026, 10:00</time>
+      </header>
+      <h2 class="item-title"><a href="https://example-hackerspace.at/posts/cnc-mill-arrived" target="_blank" rel="noopener noreferrer">New CNC mill arrived — workshop this Saturday</a></h2>
+      <p class="item-summary">We just received our new CNC mill. Join us Saturday for an intro workshop where we&#39;ll run the first cuts together. No experience needed.</p>
+      <footer class="item-footer">
+        
+        
+        <a class="item-link" href="https://example-hackerspace.at/posts/cnc-mill-arrived" target="_blank" rel="noopener noreferrer">View →</a>
+      </footer>
+    </article>
+
+    <article class="timeline-item item--post" data-source="transition-town-graz">
+      <header class="item-header">
+        <span class="item-type-badge">📰 Post</span>
+        <span class="item-source">Transition Town Graz</span>
+        <time class="item-time" datetime="2026-06-20T12:00:00.000Z">20 Jun 2026, 14:00</time>
+      </header>
+      <h2 class="item-title"><a href="https://example-transition-graz.at/news/seed-library-2026" target="_blank" rel="noopener noreferrer">Community seed library — new varieties for 2026</a></h2>
+      
+      <footer class="item-footer">
+        
+        
+        <a class="item-link" href="https://example-transition-graz.at/news/seed-library-2026" target="_blank" rel="noopener noreferrer">View →</a>
+      </footer>
+    </article>
+
+    <article class="timeline-item item--post" data-source="hackerspace-vienna">
+      <header class="item-header">
+        <span class="item-type-badge">📰 Post</span>
+        <span class="item-source">Hackerspace Vienna</span>
+        <time class="item-time" datetime="2026-06-06T16:30:00.000Z">6 Jun 2026, 18:30</time>
+      </header>
+      <h2 class="item-title"><a href="https://example-hackerspace.at/posts/board-may-2026" target="_blank" rel="noopener noreferrer">Monthly board meeting minutes — May 2026</a></h2>
+      <p class="item-summary">Summary of the May board meeting: membership fees, new tool procurement, and the upcoming open house date.</p>
+      <footer class="item-footer">
+        
+        
+        <a class="item-link" href="https://example-hackerspace.at/posts/board-may-2026" target="_blank" rel="noopener noreferrer">View →</a>
+      </footer>
+    </article>
+
+    <article class="timeline-item item--post" data-source="transition-town-graz">
+      <header class="item-header">
+        <span class="item-type-badge">📰 Post</span>
+        <span class="item-source">Transition Town Graz</span>
+        <time class="item-time" datetime="2026-05-30T10:00:00.000Z">30 May 2026, 12:00</time>
+      </header>
+      <h2 class="item-title"><a href="https://example-transition-graz.at/news/repair-cafe-basics" target="_blank" rel="noopener noreferrer">Workshop: Repair Café basics for beginners</a></h2>
+      
+      <footer class="item-footer">
+        
+        
+        <a class="item-link" href="https://example-transition-graz.at/news/repair-cafe-basics" target="_blank" rel="noopener noreferrer">View →</a>
+      </footer>
+    </article>
+
+    <article class="timeline-item item--post" data-source="hackerspace-vienna">
+      <header class="item-header">
+        <span class="item-type-badge">📰 Post</span>
+        <span class="item-source">Hackerspace Vienna</span>
+        <time class="item-time" datetime="2026-05-12T07:00:00.000Z">12 May 2026, 09:00</time>
+      </header>
+      <h2 class="item-title"><a href="https://example-hackerspace.at/posts/retro-computing-recap" target="_blank" rel="noopener noreferrer">Retro computing night recap</a></h2>
+      <p class="item-summary">Twenty people showed up for retro computing night. We booted a PDP-11 emulator and got Zork running on a C64.</p>
+      <footer class="item-footer">
+        
+        
+        <a class="item-link" href="https://example-hackerspace.at/posts/retro-computing-recap" target="_blank" rel="noopener noreferrer">View →</a>
+      </footer>
+    </article>
+      
+    </main>
+
+    <footer class="page-footer">
+      Generated 23 Jun 2026, 13:50 · community-aggregator
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const buttons = document.querySelectorAll('.source-toggle');
+      const items = document.querySelectorAll('.timeline-item[data-source]');
+
+      /** Set of currently active (visible) sources */
+      const activeSources = new Set(
+        Array.from(buttons).map((b) => b.dataset.source)
+      );
+
+      function refresh() {
+        items.forEach((item) => {
+          const src = item.dataset.source;
+          item.classList.toggle('hidden', !activeSources.has(src));
+        });
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const src = btn.dataset.source;
+          if (activeSources.has(src)) {
+            // Don't allow deselecting the last active source
+            if (activeSources.size === 1) return;
+            activeSources.delete(src);
+            btn.classList.add('inactive');
+          } else {
+            activeSources.add(src);
+            btn.classList.remove('inactive');
+          }
+          refresh();
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
