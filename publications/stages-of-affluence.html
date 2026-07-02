@@ -1,0 +1,787 @@
+---
+layout: default
+title: "Stages of Affluence & Impact"
+description: >-
+  A six-stage model of personal affluence — from barely surviving to
+  democratically dangerous wealth — and where investment in oneself stops
+  paying off and investment in others begins.
+permalink: /publications/stages-of-affluence/
+---
+
+<style>
+  /* === Stages of Affluence — reuses the Publications "Manuscript / Ink" palette === */
+  .soa-page {
+    --pub-ink: #1d2b24;
+    --pub-ink-soft: #44584d;
+    --pub-ink-faint: #7a8a82;
+    --pub-green: #2d6a4f;
+    --pub-green-light: #40916c;
+    --pub-green-pale: #eef5f1;
+    --pub-amber: #b58a2e;
+    --pub-amber-light: #cda348;
+    --pub-paper: #faf8f3;
+    --pub-paper-warm: #f4efe6;
+    --pub-line: #d8d2c4;
+    --pub-deep: #0f201a;
+  }
+
+  /* Header */
+  .soa-header {
+    padding: 7rem 2rem 4rem;
+    text-align: center;
+    background: linear-gradient(0deg, var(--color-bg) 0%, var(--pub-paper) 45%, var(--pub-green-pale) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .soa-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      repeating-linear-gradient(180deg, transparent, transparent 31px, rgba(45, 106, 79, 0.04) 32px);
+    pointer-events: none;
+  }
+
+  .soa-header .breadcrumb {
+    position: relative;
+    z-index: 1;
+  }
+
+  .soa-header .breadcrumb a {
+    color: var(--pub-green);
+  }
+
+  .soa-eyebrow {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: rgba(45, 106, 79, 0.08);
+    color: var(--pub-green);
+    border: 1px solid rgba(45, 106, 79, 0.15);
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .soa-header h1 {
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--pub-deep);
+    position: relative;
+    z-index: 1;
+  }
+
+  .soa-lead {
+    font-size: 1.1rem;
+    color: var(--pub-ink-soft);
+    max-width: 660px;
+    margin: 1rem auto 0;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+
+  .soa-edition-note {
+    margin: 1.5rem auto 0;
+    font-size: 0.82rem;
+    color: var(--pub-ink-faint);
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Framing / prose sections */
+  .soa-section {
+    padding: 5rem 2rem;
+  }
+
+  .soa-section.bg-alt {
+    background: var(--pub-paper);
+  }
+
+  .soa-section .prose h2 {
+    color: var(--pub-deep);
+  }
+
+  .soa-section .prose p,
+  .soa-section .prose li {
+    color: var(--pub-ink-soft);
+  }
+
+  .soa-highlight-line {
+    padding: 1rem 1.5rem;
+    background: var(--pub-green-pale);
+    border-left: 3px solid var(--pub-green);
+    border-radius: 0 8px 8px 0;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    color: var(--pub-green);
+    font-weight: 500;
+  }
+
+  /* ====== THE CASCADE ====== */
+  .soa-cascade-section {
+    padding: 5rem 2rem 6rem;
+  }
+
+  .soa-cascade-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .soa-cascade-inner .section-label {
+    color: var(--pub-green);
+    text-align: center;
+  }
+
+  .soa-cascade-inner .section-title {
+    color: var(--pub-deep);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .soa-cascade-sub {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--pub-ink-soft);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  /* Wide-content safety: cascade scrolls in its own box rather than the page */
+  .soa-cascade-scroll {
+    overflow-x: auto;
+    padding: 0.5rem 0.25rem 1.5rem;
+  }
+
+  .soa-cascade {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 280px;
+  }
+
+  .soa-step {
+    padding: 1.5rem 1.75rem;
+    border-radius: 14px;
+    background: var(--color-white);
+    border: 1px solid var(--pub-line);
+    position: relative;
+    transition: transform 0.25s, border-color 0.25s;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .soa-step:hover {
+    transform: translateY(-2px);
+    border-color: var(--pub-green-light);
+  }
+
+  /* Staircase: each stage climbs further right and narrows slightly */
+  .soa-step[data-stage="0"] { margin-left: 0; max-width: 100%; }
+  .soa-step[data-stage="1"] { margin-left: 3%; max-width: 97%; }
+  .soa-step[data-stage="2"] { margin-left: 6%; max-width: 94%; }
+  .soa-step[data-stage="3"] { margin-left: 9%; max-width: 91%; }
+  .soa-step[data-stage="4"] { margin-left: 12%; max-width: 88%; }
+  .soa-step[data-stage="5"] { margin-left: 15%; max-width: 85%; }
+
+  .soa-step[data-stage="5"] {
+    background: var(--pub-paper-warm);
+    border-color: rgba(181, 138, 46, 0.35);
+  }
+
+  .soa-step-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    margin-bottom: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .soa-step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.2rem;
+    height: 2.2rem;
+    padding: 0 0.4rem;
+    border-radius: 8px;
+    background: var(--pub-green);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+  }
+
+  .soa-step[data-stage="5"] .soa-step-num {
+    background: var(--pub-amber);
+  }
+
+  .soa-step-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--pub-deep);
+  }
+
+  .soa-step-warning {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 100px;
+    background: rgba(181, 138, 46, 0.15);
+    color: var(--pub-amber);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .soa-step p {
+    font-size: 0.92rem;
+    color: var(--pub-ink-soft);
+    line-height: 1.7;
+    margin: 0 0 0.6rem;
+  }
+
+  .soa-step p:last-child {
+    margin-bottom: 0;
+  }
+
+  .soa-substage {
+    margin-top: 0.85rem;
+    padding: 0.85rem 1rem;
+    background: var(--pub-green-pale);
+    border-radius: 0 8px 8px 0;
+    border-left: 3px solid var(--pub-green-light);
+    font-size: 0.86rem;
+    color: var(--pub-ink);
+  }
+
+  .soa-step[data-stage="5"] .soa-substage {
+    background: rgba(181, 138, 46, 0.08);
+    border-left-color: var(--pub-amber);
+  }
+
+  /* Pull quote */
+  .soa-pull-quote {
+    padding: 3.5rem 2rem;
+    text-align: center;
+  }
+
+  .soa-pull-quote.bg-paper { background: var(--pub-paper); }
+  .soa-pull-quote.bg-pale {
+    background: linear-gradient(0deg, var(--pub-paper), var(--pub-green-pale));
+  }
+
+  .soa-pull-quote blockquote {
+    max-width: 640px;
+    margin: 0 auto;
+    border: none;
+    padding: 0;
+    font-size: 1.15rem;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--pub-deep);
+  }
+
+  .soa-pull-quote blockquote::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--pub-green), var(--pub-amber));
+    margin: 0 auto 1.5rem;
+    border-radius: 2px;
+  }
+
+  /* Where impact begins — dark dramatic section */
+  .soa-impact {
+    padding: 5.5rem 2rem;
+    background: var(--pub-deep);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .soa-impact::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 25% 40%, rgba(181, 138, 46, 0.14) 0%, transparent 60%),
+      radial-gradient(ellipse at 75% 65%, rgba(45, 106, 79, 0.2) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .soa-impact-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .soa-impact-inner .section-label {
+    color: var(--pub-amber-light);
+  }
+
+  .soa-impact-inner h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1.25rem;
+  }
+
+  .soa-impact-inner p {
+    font-size: 0.98rem;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+  }
+
+  .soa-impact-inner blockquote {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    border-left: 3px solid var(--pub-amber-light);
+    padding-left: 1.25rem;
+    margin: 2rem 0;
+  }
+
+  /* SoFin progression */
+  .soa-progression {
+    padding: 6rem 2rem;
+    background: var(--pub-paper);
+  }
+
+  .soa-progression-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .soa-progression-inner .section-label {
+    color: var(--pub-amber);
+    text-align: center;
+  }
+
+  .soa-progression-inner .section-title {
+    color: var(--pub-deep);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .soa-progression-sub {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--pub-ink-soft);
+    max-width: 640px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  .soa-progression-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .soa-progression-card {
+    padding: 1.75rem;
+    background: var(--color-white);
+    border: 1px solid var(--pub-line);
+    border-radius: 12px;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .soa-progression-card:hover {
+    border-color: var(--pub-green-light);
+    transform: translateY(-2px);
+  }
+
+  .soa-progression-card .stage-num {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--pub-green);
+    margin-bottom: 0.5rem;
+  }
+
+  .soa-progression-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--pub-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .soa-progression-card p {
+    font-size: 0.86rem;
+    color: var(--pub-ink-soft);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .soa-progression-note {
+    margin-top: 2rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-white);
+    border: 1px solid var(--pub-line);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: var(--pub-ink-soft);
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  .soa-progression-note a {
+    color: var(--pub-green);
+    font-weight: 500;
+  }
+
+  /* Living draft footer note */
+  .soa-living-note {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(0deg, var(--pub-paper), var(--pub-green-pale));
+  }
+
+  .soa-living-note-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .soa-living-note-inner p {
+    font-size: 0.92rem;
+    color: var(--pub-ink-soft);
+    line-height: 1.75;
+    font-style: italic;
+  }
+
+  .soa-living-note-inner .soa-version {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.25rem 0.85rem;
+    background: rgba(45, 106, 79, 0.08);
+    border: 1px solid rgba(45, 106, 79, 0.15);
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--pub-green);
+    font-style: normal;
+  }
+
+  /* Back link override */
+  .soa-page .back-link a { color: var(--pub-green); }
+  .soa-page .back-link a:hover { color: var(--pub-green-light); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .soa-progression-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .soa-step[data-stage] {
+      margin-left: 0;
+      max-width: 100%;
+    }
+  }
+</style>
+
+<div class="soa-page">
+
+  <!-- Header -->
+  <header class="soa-header">
+    <p class="breadcrumb">
+      <a href="/">Home</a> &rsaquo;
+      <a href="/publications/">Publications</a> &rsaquo;
+      Stages of Affluence
+    </p>
+    <div class="soa-eyebrow">Concept publication &middot; Living draft</div>
+    <h1>Stages of Affluence &amp; Impact</h1>
+    <p class="soa-lead">
+      A six-stage model of personal affluence &mdash; from barely surviving to
+      democratically dangerous wealth &mdash; and a question that follows each
+      stage: what does more money change now, and for whom does it change it?
+    </p>
+    <p class="soa-edition-note">First web edition, from working notes v0.3.</p>
+  </header>
+
+  <!-- Framing -->
+  <section class="soa-section">
+    <div class="prose">
+      <h2>Affluence has stages, not just amounts</h2>
+      <p>
+        Most conversations about money treat it as one continuous line &mdash;
+        more is simply more. This model argues the opposite: affluence moves
+        through qualitatively distinct stages, and each stage carries a
+        different investment logic. What a euro buys, and who it helps most
+        when spent, changes as a person climbs from one stage to the next.
+      </p>
+      <p>
+        Two claims anchor the model. First, the return on investing in
+        oneself diminishes sharply once the &ldquo;enabling work-setup&rdquo;
+        stage closes out. Second, once personal comfort settles, investing in
+        others starts to yield more impact than continuing to invest in
+        oneself &mdash; and past a further threshold, concentrated wealth
+        turns from an asset into a danger for democratic life.
+      </p>
+      <div class="soa-highlight-line">
+        The stages describe a cascade, not a ladder to climb for its own
+        sake &mdash; each step changes what money is for.
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== THE CASCADE ====== -->
+  <section class="soa-cascade-section">
+    <div class="soa-cascade-inner">
+      <p class="section-label">The Model</p>
+      <h2 class="section-title">Six Stages, Cascading Upward</h2>
+      <p class="soa-cascade-sub">
+        Numbered from zero on purpose &mdash; the stage most often overlooked
+        precedes the one most people picture when they say &ldquo;I don&rsquo;t
+        have enough money.&rdquo;
+      </p>
+
+      <div class="soa-cascade-scroll">
+        <div class="soa-cascade">
+
+          <div class="soa-step" data-stage="0">
+            <div class="soa-step-head">
+              <span class="soa-step-num">0</span>
+              <span class="soa-step-name">Barely Surviving</span>
+            </div>
+            <p>
+              Life in a war zone is the clearest example. Stage 0 gets a
+              number deliberately, because it disappears from view for most
+              people who talk about money hardship: someone able to say
+              &ldquo;I don&rsquo;t have enough money&rdquo; on a video call
+              already lives at Stage 1, not Stage 0. In countries such as
+              Austria, the larger whole already largely absorbs this stage
+              &mdash; through institutions like Caritas and
+              <em>Grundsicherung</em> (German: means-tested basic income
+              support).
+            </p>
+          </div>
+
+          <div class="soa-step" data-stage="1">
+            <div class="soa-step-head">
+              <span class="soa-step-num">1</span>
+              <span class="soa-step-name">Digital Nomad</span>
+            </div>
+            <p>
+              The nine essential physical requirements (9EPhR &mdash; the
+              universal contexts every human needs met; see the
+              <a href="/holons/9ephr/">9EPhR holon page</a>) are covered,
+              plus a laptop and an internet connection. The larger whole
+              would do well to guarantee this stage for everyone &mdash;
+              potentially in a shrewder way than a plain UBI (Universal
+              Basic Income), by encouraging people to organize into SoUBR
+              structures (Sovereign Universal Basic Requirements &mdash;
+              see the <a href="/holons/soubr/">SoUBR holon page</a>) instead
+              of distributing cash alone.
+            </p>
+            <p>
+              The case for guaranteeing it: entrepreneurial spirit thrives
+              not in desperation but in security &mdash; secure people
+              innovate and take calculated risks; security-enhancing policy
+              raises productivity, reduces costly social problems, and
+              builds more resilient economies; and it counters the
+              pro-natalist tendencies that concentrate among the already
+              wealthy.
+            </p>
+          </div>
+
+          <div class="soa-step" data-stage="2">
+            <div class="soa-step-head">
+              <span class="soa-step-num">2</span>
+              <span class="soa-step-name">Enabling Work-Setup</span>
+            </div>
+            <p>
+              A laptop fast enough, a phone fast enough, an internet
+              connection fast enough &mdash; plus working English and
+              everything directly essential for very solid work: legally
+              encoded work and business expenses, even nootropics, justified
+              by the Pareto principle (small inputs placed at the point of
+              highest leverage). This is the stage where money buys impact
+              most directly.
+            </p>
+          </div>
+
+          <div class="soa-step" data-stage="3">
+            <div class="soa-step-head">
+              <span class="soa-step-num">3</span>
+              <span class="soa-step-name">Personal Comfort</span>
+            </div>
+            <p>
+              Realistic personal wishes find fulfillment soon &mdash; nobody
+              needs ten houses. Spending here can still feed the work-setup a
+              little, but returns diminish fast from this point on. A
+              calculable maximum exists for what a single personal economic
+              unit can meaningfully spend.
+            </p>
+            <div class="soa-substage">
+              <strong>Sub-stage 3.5</strong> &mdash; owning the highest
+              quality of everything, including a house and a car, both
+              owned rather than leased.
+            </div>
+          </div>
+
+          <div class="soa-step" data-stage="4">
+            <div class="soa-step-head">
+              <span class="soa-step-num">4</span>
+              <span class="soa-step-name">Investor: More Than Self-Recipient</span>
+            </div>
+            <p>
+              Surplus beyond personal comfort wants investing outward &mdash;
+              and investing in others now yields more impact than continuing
+              to invest in oneself. Impact here means two things at once:
+              return on investment, and an increase in the degrees of freedom
+              of what becomes possible. It makes little practical difference
+              whether a family owns three houses or four. This stage
+              describes wealth as liberation &mdash; free to expand, free to
+              invest &mdash; the register of the investor who argues for
+              taxing the rich more, since, in the model&rsquo;s own phrase,
+              &ldquo;there are only so many suits a person can buy.&rdquo;
+            </p>
+          </div>
+
+          <div class="soa-step" data-stage="5">
+            <div class="soa-step-head">
+              <span class="soa-step-num">5</span>
+              <span class="soa-step-name">Democratically Dangerously Wealthy</span>
+              <span class="soa-step-warning">Warning stage</span>
+            </div>
+            <p>
+              Wealth at the scale of commodity traders &mdash; wealth able to
+              meddle in elections. The model names this stage as a warning,
+              not an aspiration: a marker of where personal affluence starts
+              to erode the shared ground it grew from.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pull quote -->
+  <div class="soa-pull-quote bg-paper">
+    <blockquote>
+      Past a certain point, the question stops being &ldquo;how much more
+      can I hold&rdquo; and becomes &ldquo;how much more freedom can this
+      unlock for someone else.&rdquo;
+    </blockquote>
+  </div>
+
+  <!-- Where impact begins -->
+  <section class="soa-impact">
+    <div class="soa-impact-inner">
+      <p class="section-label">Where Impact Begins</p>
+      <h2>Investing in oneself has a ceiling</h2>
+      <p>
+        Returns on investing in oneself track closely with the first three
+        stages, then flatten. Stage 2 &mdash; the enabling work-setup &mdash;
+        marks the point of highest leverage: a faster laptop, a better
+        connection, or better working English changes what a person can
+        produce, directly and immediately. Past personal comfort at Stage 3,
+        additional spending on oneself buys steadily less.
+      </p>
+      <blockquote>
+        Working notes place the exact income threshold where self-investment
+        stops paying off as an open, unverified question &mdash; a working
+        hypothesis pending real study, not a settled figure. What stays
+        firm across the notes is the direction: the curve bends down well
+        before Stage 4.
+      </blockquote>
+      <p>
+        Once that ceiling arrives, the same surplus finds higher impact
+        somewhere else. Investing in others &mdash; funding, backing,
+        resourcing people and projects beyond oneself &mdash; produces a
+        greater increase in the degrees of freedom of possibility than a
+        fourth house produces for a family that already owns three. Left
+        unaddressed past this point, wealth keeps compounding for its own
+        sake until it reaches Stage 5, where it stops serving the people who
+        hold it and starts pressuring the democratic systems everyone else
+        depends on.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====== SoFin PROGRESSION ====== -->
+  <section class="soa-progression">
+    <div class="soa-progression-inner">
+      <p class="section-label">Where This Leads</p>
+      <h2 class="section-title">The SoFin Progression</h2>
+      <p class="soa-progression-sub">
+        Once SoUBR gets established as a floor, the
+        <a href="/holons/sofin/">SoFin</a> model orchestrates a natural
+        progression into higher layers of financial self-sufficiency and
+        regenerative affluence &mdash; the same six-stage cascade, cultivated
+        rather than merely climbed.
+      </p>
+
+      <div class="soa-progression-grid">
+        <div class="soa-progression-card">
+          <span class="stage-num">Stage 1</span>
+          <h3>Participate Globally</h3>
+          <p>The floor from SoUBR meets a connection to the wider world &mdash; the starting condition for everything that follows.</p>
+        </div>
+        <div class="soa-progression-card">
+          <span class="stage-num">Stage 2</span>
+          <h3>Enabling Work-Setup</h3>
+          <p>Monetizing aligned value creation in non-extractive ways: networked resourcing, sovereign entrepreneurship pathways, and community-backed financial support create revenue flows independent of the traditional job market &mdash; sustaining purpose-aligned work.</p>
+        </div>
+        <div class="soa-progression-card">
+          <span class="stage-num">Stage 3</span>
+          <h3>Personal Comfort &amp; Regenerative Growth</h3>
+          <p>Enough surplus to take creative risks, invest in long-term projects, and move beyond month-to-month survival thinking &mdash; supported by liquid governance models, collaborative funding pools, and decentralized co-ownership.</p>
+        </div>
+        <div class="soa-progression-card">
+          <span class="stage-num">Stage 4</span>
+          <h3>Networked Sovereignty &amp; Ecosystemic Wealth</h3>
+          <p>Reaching beyond individual affluence into ecosystemic wealth creation: allocating capital for others, funding new waves of metamodern projects, and designing financial architectures where wealth circulates in regenerative flows rather than extractive loops.</p>
+        </div>
+      </div>
+
+      <div class="soa-progression-note">
+        This progression sits inside the wider <a href="/holons/sofin/">SoFin &mdash; Sovereign Finance</a> holon, which carries the fuller architecture connecting SoUBR, capital flows, and regenerative governance.
+      </div>
+    </div>
+  </section>
+
+  <!-- Living draft footer note -->
+  <section class="soa-living-note">
+    <div class="soa-living-note-inner">
+      <p>
+        This page distills a working note, not a finished argument. The
+        stage boundaries, the income threshold where self-investment stops
+        paying off, and the SoFin progression will keep sharpening as they
+        meet more contexts and, eventually, real data. Publishing it now &mdash;
+        early and visibly unfinished &mdash; belongs to the same practice
+        the rest of the Publications holon follows: built in the open,
+        thought along rather than delivered whole.
+      </p>
+      <span class="soa-version">Working notes v0.3 &middot; First web edition</span>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="back-link">
+    <a href="/publications/">&larr; Back to Publications</a>
+    &nbsp;&middot;&nbsp;
+    <a href="/">Home</a>
+  </div>
+
+</div>
