@@ -10,25 +10,25 @@ permalink: /publications/metabookshelf/
 <style>
   /* === The Metabookshelf — reuses the Publications "Manuscript / Ink" palette === */
   .mbs-page {
-    --mbs-ink: #1d2b24;
-    --mbs-ink-soft: #44584d;
-    --mbs-ink-faint: #7a8a82;
-    --mbs-green: #2d6a4f;
-    --mbs-green-light: #40916c;
-    --mbs-green-pale: #eef5f1;
-    --mbs-amber: #b58a2e;
-    --mbs-amber-light: #cda348;
-    --mbs-paper: #faf8f3;
-    --mbs-paper-warm: #f4efe6;
-    --mbs-line: #d8d2c4;
-    --mbs-deep: #0f201a;
+    --pub-ink: #1d2b24;
+    --pub-ink-soft: #44584d;
+    --pub-ink-faint: #7a8a82;
+    --pub-green: #2d6a4f;
+    --pub-green-light: #40916c;
+    --pub-green-pale: #eef5f1;
+    --pub-amber: #b58a2e;
+    --pub-amber-light: #cda348;
+    --pub-paper: #faf8f3;
+    --pub-paper-warm: #f4efe6;
+    --pub-line: #d8d2c4;
+    --pub-deep: #0f201a;
   }
 
   /* Header */
   .mbs-header {
     padding: 7rem 2rem 4rem;
     text-align: center;
-    background: linear-gradient(0deg, var(--color-bg) 0%, var(--mbs-paper) 45%, var(--mbs-green-pale) 100%);
+    background: linear-gradient(0deg, var(--color-bg) 0%, var(--pub-paper) 45%, var(--pub-green-pale) 100%);
     position: relative;
     overflow: hidden;
   }
@@ -48,14 +48,14 @@ permalink: /publications/metabookshelf/
   }
 
   .mbs-header .breadcrumb a {
-    color: var(--mbs-green);
+    color: var(--pub-green);
   }
 
   .mbs-eyebrow {
     display: inline-block;
     padding: 0.3rem 1rem;
     background: rgba(45, 106, 79, 0.08);
-    color: var(--mbs-green);
+    color: var(--pub-green);
     border: 1px solid rgba(45, 106, 79, 0.15);
     border-radius: 100px;
     font-size: 0.78rem;
@@ -71,14 +71,14 @@ permalink: /publications/metabookshelf/
     font-size: clamp(2.1rem, 5vw, 3rem);
     font-weight: 600;
     letter-spacing: -0.03em;
-    color: var(--mbs-deep);
+    color: var(--pub-deep);
     position: relative;
     z-index: 1;
   }
 
   .mbs-lead {
     font-size: 1.1rem;
-    color: var(--mbs-ink-soft);
+    color: var(--pub-ink-soft);
     max-width: 660px;
     margin: 1rem auto 0;
     line-height: 1.8;
@@ -89,7 +89,7 @@ permalink: /publications/metabookshelf/
   .mbs-edition-note {
     margin: 1.5rem auto 0;
     font-size: 0.82rem;
-    color: var(--mbs-ink-faint);
+    color: var(--pub-ink-faint);
     font-style: italic;
     position: relative;
     z-index: 1;
@@ -101,33 +101,33 @@ permalink: /publications/metabookshelf/
   }
 
   .mbs-section.bg-alt {
-    background: var(--mbs-paper);
+    background: var(--pub-paper);
   }
 
   .mbs-section .prose h2 {
-    color: var(--mbs-deep);
+    color: var(--pub-deep);
   }
 
   .mbs-section .prose p,
   .mbs-section .prose li {
-    color: var(--mbs-ink-soft);
+    color: var(--pub-ink-soft);
   }
 
   .mbs-highlight-line {
     padding: 1rem 1.5rem;
-    background: var(--mbs-green-pale);
-    border-left: 3px solid var(--mbs-green);
+    background: var(--pub-green-pale);
+    border-left: 3px solid var(--pub-green);
     border-radius: 0 8px 8px 0;
     margin: 1.5rem 0;
     font-size: 0.95rem;
-    color: var(--mbs-green);
+    color: var(--pub-green);
     font-weight: 500;
   }
 
   /* Schmachtenberger connection — dark, dramatic */
   .mbs-generator {
     padding: 5.5rem 2rem;
-    background: var(--mbs-deep);
+    background: var(--pub-deep);
     color: #fff;
     position: relative;
     overflow: hidden;
@@ -151,7 +151,7 @@ permalink: /publications/metabookshelf/
   }
 
   .mbs-generator-inner .section-label {
-    color: var(--mbs-amber-light);
+    color: var(--pub-amber-light);
   }
 
   .mbs-generator-inner h2 {
@@ -173,7 +173,7 @@ permalink: /publications/metabookshelf/
     font-style: italic;
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.8;
-    border-left: 3px solid var(--mbs-amber-light);
+    border-left: 3px solid var(--pub-amber-light);
     padding-left: 1.25rem;
     margin: 2rem 0;
   }
@@ -190,9 +190,9 @@ permalink: /publications/metabookshelf/
     text-align: center;
   }
 
-  .mbs-pull-quote.bg-paper { background: var(--mbs-paper); }
+  .mbs-pull-quote.bg-paper { background: var(--pub-paper); }
   .mbs-pull-quote.bg-pale {
-    background: linear-gradient(0deg, var(--mbs-paper), var(--mbs-green-pale));
+    background: linear-gradient(0deg, var(--pub-paper), var(--pub-green-pale));
   }
 
   .mbs-pull-quote blockquote {
@@ -204,7 +204,7 @@ permalink: /publications/metabookshelf/
     font-weight: 500;
     font-style: italic;
     line-height: 1.7;
-    color: var(--mbs-deep);
+    color: var(--pub-deep);
   }
 
   .mbs-pull-quote blockquote::before {
@@ -212,7 +212,7 @@ permalink: /publications/metabookshelf/
     display: block;
     width: 40px;
     height: 3px;
-    background: linear-gradient(90deg, var(--mbs-green), var(--mbs-amber));
+    background: linear-gradient(90deg, var(--pub-green), var(--pub-amber));
     margin: 0 auto 1.5rem;
     border-radius: 2px;
   }
@@ -220,7 +220,7 @@ permalink: /publications/metabookshelf/
   /* ====== PROPERTIES ====== */
   .mbs-properties-section {
     padding: 5rem 2rem 6rem;
-    background: var(--mbs-paper);
+    background: var(--pub-paper);
   }
 
   .mbs-properties-inner {
@@ -229,12 +229,12 @@ permalink: /publications/metabookshelf/
   }
 
   .mbs-properties-inner .section-label {
-    color: var(--mbs-green);
+    color: var(--pub-green);
     text-align: center;
   }
 
   .mbs-properties-inner .section-title {
-    color: var(--mbs-deep);
+    color: var(--pub-deep);
     text-align: center;
     margin-bottom: 0.5rem;
   }
@@ -242,7 +242,7 @@ permalink: /publications/metabookshelf/
   .mbs-properties-sub {
     text-align: center;
     font-size: 0.95rem;
-    color: var(--mbs-ink-soft);
+    color: var(--pub-ink-soft);
     max-width: 640px;
     margin: 0 auto 3rem;
     line-height: 1.7;
@@ -257,20 +257,20 @@ permalink: /publications/metabookshelf/
   .mbs-property-card {
     padding: 1.75rem;
     background: var(--color-white);
-    border: 1px solid var(--mbs-line);
+    border: 1px solid var(--pub-line);
     border-radius: 12px;
     transition: border-color 0.25s, transform 0.25s;
   }
 
   .mbs-property-card:hover {
-    border-color: var(--mbs-green-light);
+    border-color: var(--pub-green-light);
     transform: translateY(-2px);
   }
 
   .mbs-property-card h3 {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--mbs-deep);
+    color: var(--pub-deep);
     margin-bottom: 0.6rem;
     display: flex;
     align-items: baseline;
@@ -284,7 +284,7 @@ permalink: /publications/metabookshelf/
     min-width: 1.6rem;
     height: 1.6rem;
     border-radius: 6px;
-    background: var(--mbs-green);
+    background: var(--pub-green);
     color: #fff;
     font-size: 0.75rem;
     font-weight: 700;
@@ -293,7 +293,7 @@ permalink: /publications/metabookshelf/
 
   .mbs-property-card p {
     font-size: 0.88rem;
-    color: var(--mbs-ink-soft);
+    color: var(--pub-ink-soft);
     line-height: 1.7;
     margin: 0;
   }
@@ -303,7 +303,7 @@ permalink: /publications/metabookshelf/
     margin-top: 2.5rem;
     padding: 1.5rem;
     background: var(--color-white);
-    border: 1px solid var(--mbs-line);
+    border: 1px solid var(--pub-line);
     border-radius: 12px;
     text-align: center;
   }
@@ -313,7 +313,7 @@ permalink: /publications/metabookshelf/
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--mbs-ink-faint);
+    color: var(--pub-ink-faint);
     margin-bottom: 1rem;
   }
 
@@ -329,9 +329,9 @@ permalink: /publications/metabookshelf/
 
   .mbs-pill-row li {
     font-size: 0.82rem;
-    color: var(--mbs-ink-soft);
+    color: var(--pub-ink-soft);
     padding: 0.35rem 0.9rem;
-    background: var(--mbs-green-pale);
+    background: var(--pub-green-pale);
     border: 1px solid rgba(45, 106, 79, 0.15);
     border-radius: 100px;
   }
@@ -339,7 +339,7 @@ permalink: /publications/metabookshelf/
   /* ====== 2026 UPGRADE ====== */
   .mbs-upgrade {
     padding: 6rem 2rem;
-    background: linear-gradient(0deg, var(--mbs-paper), var(--mbs-paper-warm));
+    background: linear-gradient(0deg, var(--pub-paper), var(--pub-paper-warm));
   }
 
   .mbs-upgrade-inner {
@@ -348,19 +348,19 @@ permalink: /publications/metabookshelf/
   }
 
   .mbs-upgrade-inner .section-label {
-    color: var(--mbs-amber);
+    color: var(--pub-amber);
     text-align: center;
   }
 
   .mbs-upgrade-inner .section-title {
-    color: var(--mbs-deep);
+    color: var(--pub-deep);
     text-align: center;
     margin-bottom: 2rem;
   }
 
   .mbs-upgrade-inner p {
     font-size: 0.98rem;
-    color: var(--mbs-ink-soft);
+    color: var(--pub-ink-soft);
     line-height: 1.85;
     margin-bottom: 1.25rem;
   }
@@ -368,9 +368,9 @@ permalink: /publications/metabookshelf/
   .mbs-upgrade-inner blockquote {
     font-size: 1.05rem;
     font-style: italic;
-    color: var(--mbs-deep);
+    color: var(--pub-deep);
     line-height: 1.8;
-    border-left: 3px solid var(--mbs-amber);
+    border-left: 3px solid var(--pub-amber);
     padding-left: 1.25rem;
     margin: 2rem 0;
   }
@@ -379,7 +379,7 @@ permalink: /publications/metabookshelf/
     margin-top: 2.5rem;
     padding: 2rem 1.5rem;
     text-align: center;
-    background: var(--mbs-deep);
+    background: var(--pub-deep);
     border-radius: 14px;
   }
 
@@ -389,7 +389,7 @@ permalink: /publications/metabookshelf/
     font-weight: 600;
     letter-spacing: -0.01em;
     line-height: 1.4;
-    background: linear-gradient(90deg, #fff, var(--mbs-amber-light));
+    background: linear-gradient(90deg, #fff, var(--pub-amber-light));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -399,7 +399,7 @@ permalink: /publications/metabookshelf/
   .mbs-living-note {
     padding: 4rem 2rem;
     text-align: center;
-    background: linear-gradient(0deg, var(--mbs-paper), var(--mbs-green-pale));
+    background: linear-gradient(0deg, var(--pub-paper), var(--pub-green-pale));
   }
 
   .mbs-living-note-inner {
@@ -409,7 +409,7 @@ permalink: /publications/metabookshelf/
 
   .mbs-living-note-inner p {
     font-size: 0.92rem;
-    color: var(--mbs-ink-soft);
+    color: var(--pub-ink-soft);
     line-height: 1.75;
     font-style: italic;
   }
@@ -424,7 +424,7 @@ permalink: /publications/metabookshelf/
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.04em;
-    color: var(--mbs-green);
+    color: var(--pub-green);
     font-style: normal;
   }
 
@@ -432,8 +432,8 @@ permalink: /publications/metabookshelf/
   .mbs-crosslinks {
     padding: 2.5rem 2rem;
     text-align: center;
-    background: var(--mbs-paper);
-    border-top: 1px solid var(--mbs-line);
+    background: var(--pub-paper);
+    border-top: 1px solid var(--pub-line);
   }
 
   .mbs-crosslinks h4 {
@@ -441,7 +441,7 @@ permalink: /publications/metabookshelf/
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--mbs-ink-faint);
+    color: var(--pub-ink-faint);
     margin-bottom: 1rem;
   }
 
@@ -459,22 +459,22 @@ permalink: /publications/metabookshelf/
     display: inline-block;
     padding: 0.5rem 1.1rem;
     background: var(--color-white);
-    border: 1px solid var(--mbs-line);
+    border: 1px solid var(--pub-line);
     border-radius: 100px;
     font-size: 0.85rem;
-    color: var(--mbs-green);
+    color: var(--pub-green);
     font-weight: 500;
     transition: border-color 0.2s, transform 0.2s;
   }
 
   .mbs-crosslinks li a:hover {
-    border-color: var(--mbs-green-light);
+    border-color: var(--pub-green-light);
     transform: translateY(-1px);
   }
 
   /* Back link override */
-  .mbs-page .back-link a { color: var(--mbs-green); }
-  .mbs-page .back-link a:hover { color: var(--mbs-green-light); }
+  .mbs-page .back-link a { color: var(--pub-green); }
+  .mbs-page .back-link a:hover { color: var(--pub-green-light); }
 
   /* Responsive */
   @media (max-width: 640px) {
