@@ -1,0 +1,1014 @@
+---
+layout: null
+title: "LogSilk — EvoBioSys Pitch"
+description: >-
+  LogSilk is a from-scratch Rust rewrite of file-based Logseq — the engine for SilkNotes,
+  an open-source, local-first, EU-sovereign knowledge OS. Your knowledge, on your machine, woven whole.
+permalink: /pitch/logsilk/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LogSilk — EvoBioSys</title>
+  <meta name="description" content="LogSilk: a from-scratch Rust rewrite of file-based Logseq, the engine for SilkNotes — an open-source, local-first, EU-sovereign knowledge OS.">
+  <link rel="canonical" href="https://evobiosys.org/pitch/logsilk/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#faf9f7;
+    --paper-2:#f5f2ee;
+    --paper-3:#f0ebe4;
+    --deep:#e8e2d9;
+    --ink:#2c2825;
+    --ink-2:#6b6360;
+    --ink-3:#a09890;
+    --violet:#8b6cc1;
+    --violet-deep:#6f52a6;
+    --violet-soft:rgba(139,108,193,.12);
+    --violet-glow:rgba(139,108,193,.06);
+    --thread:rgba(139,108,193,.30);
+    --green:#4a9e6e;
+    --green-bg:rgba(74,158,110,.10);
+    --amber:#c4903e;
+    --amber-bg:rgba(196,144,62,.10);
+
+    --night:#211c2b;
+    --night-2:#191320;
+    --night-card:#2a2338;
+    --night-line:#3b3150;
+    --night-ink:#efe9f5;
+    --night-ink-2:#b3a7c6;
+    --night-violet:#b79ae4;
+
+    --disp:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --body:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:var(--body); font-size:17px; line-height:1.7;
+    margin:0; -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--violet); color:#fff}
+
+  /* ---------- left rail nav (the silk thread) ---------- */
+  nav.rail{
+    position:fixed; top:0; left:0; bottom:0; width:222px;
+    padding:30px 0 30px 30px; box-sizing:border-box;
+    display:flex; flex-direction:column; z-index:50;
+  }
+  nav.rail .brand{
+    font-family:var(--disp); font-size:13px; font-weight:600; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--ink); margin-bottom:28px; line-height:1.6;
+  }
+  nav.rail .brand b{color:var(--violet); font-weight:600}
+  nav.rail .line{
+    position:relative; flex:1; display:flex; flex-direction:column;
+    justify-content:space-between; padding-left:18px;
+  }
+  nav.rail .line::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px; width:2px;
+    background:var(--thread);
+  }
+  nav.rail .line .progress{
+    position:absolute; left:5px; top:6px; width:2px; height:0;
+    background:var(--violet); transition:height .15s linear;
+  }
+  nav.rail a{
+    position:relative; display:block; text-decoration:none;
+    font-family:var(--disp); font-size:11.5px; font-weight:500; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--ink-2); padding:4px 0;
+  }
+  nav.rail a::before{
+    content:""; position:absolute; left:-17.5px; top:50%; transform:translateY(-50%);
+    width:7px; height:7px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--ink-3);
+    transition:background .2s,border-color .2s,box-shadow .2s;
+  }
+  nav.rail a:hover{color:var(--ink)}
+  nav.rail a.on{color:var(--violet); font-weight:600}
+  nav.rail a.on::before{background:var(--violet); border-color:var(--violet); box-shadow:0 0 0 4px var(--violet-soft)}
+  nav.rail a:focus-visible{outline:2px solid var(--violet); outline-offset:2px; border-radius:2px}
+
+  main{margin-left:222px}
+
+  /* ---------- shared section chrome ---------- */
+  section{padding:92px 60px; box-sizing:border-box; position:relative}
+  .inner{max-width:760px; margin:0 auto}
+  .inner.wide{max-width:1000px}
+  .warm{background:var(--paper-2)}
+  .glow{background:linear-gradient(165deg,var(--paper) 0%,var(--violet-glow) 60%,var(--violet-soft) 100%)}
+  .station{
+    display:inline-block; background:var(--violet); color:#fff;
+    font-family:var(--disp); font-size:11.5px; font-weight:600;
+    letter-spacing:.14em; text-transform:uppercase;
+    padding:6px 13px 5px; border-radius:20px; margin-bottom:22px;
+  }
+  h2{
+    font-family:var(--disp); font-weight:300; font-size:clamp(28px,4vw,42px);
+    line-height:1.14; letter-spacing:-.02em; margin:0 0 22px; text-wrap:balance;
+  }
+  h2 b{font-weight:600}
+  p{max-width:64ch; margin:0 0 18px}
+  .lede{font-size:20px; line-height:1.65; color:var(--ink)}
+  .muted{color:var(--ink-2)}
+  .de{font-style:italic}
+  em{font-style:italic}
+  .accent{color:var(--violet)}
+  .k{font-family:var(--mono); font-size:.86em; letter-spacing:.01em; color:var(--violet-deep)}
+  a.inline{color:var(--violet-deep); text-decoration:none; border-bottom:1px solid var(--thread)}
+  a.inline:hover{border-color:var(--violet)}
+
+  /* reveal */
+  .rv{opacity:0; transform:translateY(16px); transition:opacity .6s ease,transform .6s ease}
+  .rv.in{opacity:1; transform:none}
+  @media (prefers-reduced-motion:reduce){ .rv{opacity:1; transform:none; transition:none} }
+  @media print{ .rv{opacity:1; transform:none} nav.rail{display:none} main{margin-left:0} }
+
+  /* ---------- hero ---------- */
+  header.hero{
+    min-height:min(92vh,980px); display:flex; flex-direction:column; justify-content:center;
+    padding:64px 60px 210px; box-sizing:border-box; position:relative; overflow:hidden;
+    background:linear-gradient(165deg,var(--paper) 0%,var(--paper-2) 55%,var(--paper-3) 100%);
+  }
+  .hero .inner{max-width:860px; margin:0 auto; width:100%}
+  .hero .topline{
+    font-family:var(--disp); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-2); margin:0 0 30px; display:flex; gap:18px; flex-wrap:wrap; align-items:center;
+  }
+  .hero .topline a{color:var(--violet-deep); text-decoration:none}
+  .hero .topline a:hover{color:var(--violet)}
+  .hero .topline span{color:var(--ink-3)}
+  .hero .hi{
+    font-family:var(--disp); font-weight:300;
+    font-size:clamp(60px,11vw,128px); line-height:1; letter-spacing:-.045em;
+    margin:0 0 28px; color:var(--ink);
+  }
+  .hero .hi .dot{color:var(--violet); font-weight:400}
+  .hero .sub{font-size:clamp(19px,2.4vw,25px); line-height:1.55; max-width:22em; margin-bottom:14px; font-weight:300}
+  .hero .sub b{font-weight:500}
+  .hero .tag{
+    font-family:var(--disp); font-size:12.5px; letter-spacing:.13em; text-transform:uppercase;
+    color:var(--ink-2); margin-bottom:42px;
+  }
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap}
+  .btn{
+    font-family:var(--disp); font-size:13px; font-weight:600; letter-spacing:.05em;
+    text-decoration:none; padding:14px 26px 13px;
+    border-radius:26px; display:inline-block; transition:background .2s,border-color .2s,color .2s;
+  }
+  .btn.solid{background:var(--violet); color:#fff}
+  .btn.solid:hover{background:var(--violet-deep)}
+  .btn.ghost{color:var(--ink); border:1.5px solid var(--ink-3)}
+  .btn.ghost:hover{border-color:var(--violet); color:var(--violet-deep)}
+  .btn:focus-visible{outline:2px solid var(--violet); outline-offset:3px}
+
+  .hero-thread{position:absolute; left:0; right:0; bottom:0; height:190px; pointer-events:none}
+  .hero-thread svg{width:100%; height:100%; display:block}
+  .hero-thread .track{
+    stroke:var(--violet); stroke-width:1.6; fill:none; opacity:.55;
+    stroke-dasharray:1700; stroke-dashoffset:1700;
+    animation:draw 2.6s ease-out .3s forwards;
+  }
+  .hero-thread .track.two{stroke:var(--thread); stroke-width:1; opacity:1; animation-delay:.5s}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @media (prefers-reduced-motion:reduce){ .hero-thread .track{animation:none; stroke-dashoffset:0} }
+  .hero-thread .stn{fill:var(--paper); stroke:var(--violet); stroke-width:1.6}
+  .hero-thread .stn.lead{fill:var(--violet); stroke:var(--violet)}
+  .hero-thread text{
+    font-family:var(--disp); font-size:10px; font-weight:500; letter-spacing:.09em; text-transform:uppercase;
+    fill:var(--ink-3);
+  }
+  .hero-thread text.lead{fill:var(--violet-deep); font-weight:600}
+
+  /* ---------- stat tiles ---------- */
+  .tiles{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:36px 0 8px}
+  .tile{
+    background:#fff; border:1px solid var(--paper-3); border-radius:12px; padding:22px 18px 18px;
+    border-top:3px solid var(--violet);
+  }
+  .tile .big{
+    font-family:var(--disp); font-weight:300; font-size:32px; line-height:1.1;
+    margin-bottom:8px; letter-spacing:-.02em; color:var(--ink);
+  }
+  .tile .big small{font-size:15px; letter-spacing:.02em; color:var(--ink-2); font-weight:400}
+  .tile .cap{font-size:14px; line-height:1.5; color:var(--ink-2)}
+  .fineprint{font-size:13px; color:var(--ink-3); margin-top:16px}
+
+  /* ---------- concept chips ---------- */
+  .chips{display:flex; flex-wrap:wrap; gap:10px; margin:30px 0 8px}
+  .chip{
+    font-family:var(--disp); font-size:13px; font-weight:500; letter-spacing:.01em;
+    color:var(--ink); background:#fff; border:1px solid var(--deep); border-radius:22px;
+    padding:8px 15px; display:flex; align-items:center; gap:8px;
+  }
+  .chip .cd{width:7px; height:7px; border-radius:50%; background:var(--violet)}
+  .concepts{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:30px}
+  .concept{background:#fff; border:1px solid var(--paper-3); border-radius:12px; padding:20px 20px}
+  .concept h3{font-family:var(--disp); font-weight:600; font-size:14px; letter-spacing:.02em; margin:0 0 8px; color:var(--violet-deep)}
+  .concept p{font-size:14.5px; line-height:1.6; margin:0; color:var(--ink-2)}
+
+  /* ---------- decision cards ---------- */
+  .cards{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:32px}
+  .card{background:#fff; border:1px solid var(--paper-3); border-radius:14px; padding:24px 22px; position:relative; overflow:hidden}
+  .card::before{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--violet),transparent); opacity:.5}
+  .card .lock{font-family:var(--disp); font-size:10.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--green); margin-bottom:10px; display:flex; align-items:center; gap:7px}
+  .card .lock::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--green)}
+  .card h3{font-family:var(--disp); font-weight:600; font-size:16px; margin:0 0 8px}
+  .card p{font-size:14.5px; line-height:1.6; margin:0; color:var(--ink-2)}
+  .card p .rej{color:var(--ink-3); font-style:italic}
+
+  /* ---------- status grid ---------- */
+  .now-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:32px}
+  .now{background:#fff; border:1px solid var(--paper-3); border-radius:14px; padding:24px 22px}
+  .now.next{background:var(--paper-2); border-style:dashed; border-color:var(--deep)}
+  .now h3{font-family:var(--disp); font-weight:600; font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; margin:0 0 14px; display:flex; align-items:center; gap:8px}
+  .now.real h3{color:var(--green)} .now.real h3::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--green)}
+  .now.next h3{color:var(--amber)} .now.next h3::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--amber)}
+  .now ul{margin:0; padding-left:0; list-style:none; font-size:14.5px; color:var(--ink-2)}
+  .now li{margin-bottom:12px; padding-left:20px; position:relative; line-height:1.55}
+  .now li::before{content:""; position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--violet); opacity:.55}
+  .now li b{color:var(--ink); font-weight:600}
+  .deferred{margin-top:24px; background:var(--paper-2); border-left:3px solid var(--ink-3); border-radius:0 10px 10px 0; padding:16px 20px; font-size:14.5px; color:var(--ink-2)}
+  .deferred b{color:var(--ink); font-weight:600}
+
+  /* ---------- roadmap strip ---------- */
+  .roadmap{display:flex; gap:0; margin-top:34px; flex-wrap:wrap}
+  .rm{flex:1; min-width:135px; border-top:3px solid var(--deep); padding:14px 16px 0 0}
+  .rm.done{border-top-color:var(--green)}
+  .rm.on{border-top-color:var(--violet)}
+  .rm .v{font-family:var(--mono); font-size:12px; margin-bottom:6px; color:var(--ink-3)}
+  .rm.done .v{color:var(--green)} .rm.on .v{color:var(--violet)}
+  .rm p{font-size:13.5px; color:var(--ink-2); margin:0; line-height:1.5}
+  .rm.on p{color:var(--ink)}
+
+  /* ---------- constellation ---------- */
+  .constel{display:flex; align-items:stretch; gap:0; margin-top:34px; flex-wrap:wrap}
+  .cnode{flex:1; min-width:170px; background:#fff; border:1px solid var(--paper-3); border-radius:12px; padding:20px; position:relative}
+  .cnode.engine{border-color:var(--violet); box-shadow:0 4px 20px var(--violet-glow)}
+  .cnode .clbl{font-family:var(--disp); font-size:10.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px}
+  .cnode.engine .clbl{color:var(--violet)}
+  .cnode h3{font-family:var(--disp); font-weight:600; font-size:16px; margin:0 0 6px}
+  .cnode p{font-size:13.5px; color:var(--ink-2); margin:0; line-height:1.55}
+  .carrow{align-self:center; color:var(--ink-3); font-size:20px; padding:0 10px; flex:0 0 auto}
+  .cnode a{color:var(--violet-deep); text-decoration:none; border-bottom:1px solid var(--thread); font-size:13px}
+
+  /* ---------- horizon bridges ---------- */
+  .bridges{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:30px}
+  .bridge{background:#fff; border:1px solid var(--paper-3); border-radius:12px; padding:18px 18px}
+  .bridge .bs{font-family:var(--disp); font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:6px; color:var(--amber)}
+  .bridge .bs::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--amber)}
+  .bridge h4{font-family:var(--disp); font-weight:600; font-size:14.5px; margin:0 0 4px}
+  .bridge p{font-size:13px; color:var(--ink-2); margin:0; line-height:1.5}
+
+  /* ---------- vision line ---------- */
+  .vision-line{
+    font-family:var(--disp); font-weight:300; font-size:clamp(23px,3.3vw,34px);
+    line-height:1.32; max-width:20em; text-wrap:balance; margin:26px 0 0; letter-spacing:-.02em;
+  }
+  .vision-line .accent{color:var(--violet); font-weight:400}
+
+  /* ================= DEMO (dark silk) ================= */
+  section.night{background:linear-gradient(165deg,var(--night) 0%,var(--night-2) 100%); color:var(--night-ink)}
+  section.night h2{color:var(--night-ink)}
+  section.night .muted{color:var(--night-ink-2)}
+  section.night .station{background:var(--night-violet); color:var(--night-2)}
+  .demo{
+    background:var(--night-card); border:1px solid var(--night-line); border-radius:16px;
+    padding:26px 26px 22px; margin-top:32px;
+  }
+  .demo-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:6px}
+  .demo-head h3{font-family:var(--disp); font-weight:500; font-size:19px; letter-spacing:0; margin:0; color:var(--night-ink)}
+  .demo-badge{
+    font-family:var(--disp); font-size:10.5px; font-weight:600; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--night-2); background:var(--night-violet);
+    padding:5px 11px 4px; border-radius:20px;
+  }
+  .demo p.hint{font-size:14.5px; color:var(--night-ink-2); max-width:66ch; margin:6px 0 0}
+
+  .demo-grid{display:grid; grid-template-columns:1.55fr 1fr; gap:20px; margin-top:20px; align-items:start}
+
+  /* query bar */
+  .qbar{display:flex; flex-wrap:wrap; gap:9px; margin-bottom:16px; align-items:center}
+  .qbar .qlabel{font-family:var(--mono); font-size:11.5px; color:var(--night-ink-2); letter-spacing:.02em; margin-right:2px}
+  .qbtn{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.01em;
+    color:var(--night-ink); background:#211a2e; border:1px solid var(--night-line);
+    border-radius:20px; padding:6px 13px; cursor:pointer; transition:all .18s;
+  }
+  .qbtn:hover{border-color:var(--night-violet); color:#fff}
+  .qbtn.active{background:var(--night-violet); color:var(--night-2); border-color:var(--night-violet); font-weight:600}
+  .qbtn:focus-visible{outline:2px solid var(--night-violet); outline-offset:2px}
+  .qbtn.clear{color:var(--night-ink-2)}
+
+  /* outliner tree */
+  .tree{list-style:none; margin:0; padding:0; font-family:var(--body)}
+  .node{
+    position:relative; display:flex; align-items:baseline; flex-wrap:wrap; gap:8px;
+    padding:5px 10px 5px 6px; border-radius:8px; margin:1px 0;
+    transition:background .2s,opacity .25s,box-shadow .25s;
+  }
+  .node .bullet{flex:0 0 auto; width:6px; height:6px; border-radius:50%; background:var(--night-ink-2); margin-right:2px; transform:translateY(-2px)}
+  .node.lvl0{margin-top:12px}
+  .node.lvl0 .ntext{font-weight:600; color:var(--night-ink); letter-spacing:.01em}
+  .node.lvl0 .bullet{background:var(--night-violet)}
+  .node.lvl1{margin-left:26px}
+  .node .ntext{font-size:14.5px; color:var(--night-ink); line-height:1.5}
+  .node.lvl0::before{content:""}
+  .node.q-dim{opacity:.28}
+  .node.q-match{background:rgba(183,154,228,.14); box-shadow:inset 0 0 0 1px rgba(183,154,228,.4)}
+  .node.glow{background:rgba(183,154,228,.20); box-shadow:0 0 0 1px var(--night-violet),0 0 22px rgba(183,154,228,.35)}
+  .ntag{
+    font-family:var(--mono); font-size:12px; color:var(--night-violet);
+    background:rgba(183,154,228,.12); border:1px solid rgba(183,154,228,.3);
+    border-radius:14px; padding:2px 9px; cursor:pointer; transition:all .18s;
+  }
+  .ntag:hover{background:var(--night-violet); color:var(--night-2)}
+  .ntag.sel{background:var(--night-violet); color:var(--night-2); font-weight:600}
+  .ntag:focus-visible{outline:2px solid var(--night-violet); outline-offset:2px}
+  .nref{
+    font-family:var(--mono); font-size:12.5px; color:var(--night-violet);
+    border-bottom:1px dashed rgba(183,154,228,.6); cursor:pointer; padding:0 1px; border-radius:3px;
+  }
+  .nref:hover,.nref:focus-visible{background:rgba(183,154,228,.2); outline:none}
+  .nref:focus-visible{box-shadow:0 0 0 2px var(--night-violet)}
+  .qbadge{
+    font-family:var(--mono); font-size:11px; color:var(--night-2); background:var(--night-violet);
+    border-radius:10px; padding:1px 8px; margin-left:2px;
+  }
+
+  /* schema panel */
+  .panel{background:#211a2e; border:1px solid var(--night-line); border-radius:12px; padding:18px 18px; min-height:220px}
+  .panel .phead{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px}
+  .panel .ptag{font-family:var(--mono); font-size:15px; color:var(--night-violet); font-weight:600}
+  .panel .pclose{background:none; border:none; color:var(--night-ink-2); cursor:pointer; font-size:16px; line-height:1; padding:4px; border-radius:6px}
+  .panel .pclose:hover{color:var(--night-ink)}
+  .panel .pclose:focus-visible{outline:2px solid var(--night-violet); outline-offset:1px}
+  .panel .pkind{font-family:var(--disp); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--night-ink-2)}
+  .panel .pext{font-family:var(--mono); font-size:11.5px; color:var(--amber); margin:8px 0 14px; padding:6px 10px; background:rgba(196,144,62,.1); border-radius:8px}
+  .panel .pext b{color:var(--amber); font-weight:600}
+  .panel .fld{display:flex; justify-content:space-between; align-items:baseline; gap:10px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,.06)}
+  .panel .fld:last-child{border-bottom:none}
+  .panel .fname{font-family:var(--body); font-size:13.5px; color:var(--night-ink)}
+  .panel .finh{font-size:10px; font-family:var(--disp); letter-spacing:.06em; text-transform:uppercase; color:var(--amber); margin-left:7px}
+  .panel .ftype{font-family:var(--mono); font-size:11.5px; color:var(--night-ink-2); text-align:right}
+  .panel .pempty{color:var(--night-ink-2); font-size:14px; line-height:1.6; padding-top:20px}
+  .panel .pnode{margin-top:14px; padding-top:12px; border-top:1px dashed var(--night-line)}
+  .panel .pnode .pnh{font-family:var(--disp); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--night-ink-2); margin-bottom:6px}
+  .panel .pnv{display:flex; justify-content:space-between; gap:10px; font-size:12.5px; padding:3px 0}
+  .panel .pnv .k{color:var(--night-ink-2)} .panel .pnv .v{color:var(--night-ink); font-family:var(--mono); font-size:12px}
+
+  .qstatus{font-family:var(--mono); font-size:12px; color:var(--night-ink-2); margin-top:14px; min-height:1.4em}
+  .demo-foot{font-size:13px; color:#7d6f92; margin-top:18px; line-height:1.6}
+
+  /* ---------- talk + footer ---------- */
+  section.talk{background:linear-gradient(160deg,var(--violet) 0%,var(--violet-deep) 100%); color:#fff; padding-bottom:110px}
+  section.talk h2{color:#fff}
+  section.talk .station{background:rgba(255,255,255,.2); color:#fff}
+  section.talk p{color:rgba(255,255,255,.9)}
+  section.talk .who{font-family:var(--disp); font-size:14px; letter-spacing:.08em; text-transform:uppercase; color:#fff; margin-bottom:6px; font-weight:500}
+  section.talk .btn.solid{background:#fff; color:var(--violet-deep)}
+  section.talk .btn.solid:hover{background:var(--paper-2)}
+  section.talk .btn.ghost{color:#fff; border-color:rgba(255,255,255,.55)}
+  section.talk .btn.ghost:hover{background:rgba(255,255,255,.12); border-color:#fff; color:#fff}
+  .who-grid{display:flex; flex-wrap:wrap; gap:12px; margin:30px 0 4px}
+  .who-card{flex:1; min-width:180px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); border-radius:12px; padding:16px 18px}
+  .who-card h4{font-family:var(--disp); font-weight:600; font-size:13px; letter-spacing:.02em; margin:0 0 6px; color:#fff}
+  .who-card p{font-size:13.5px; margin:0; color:rgba(255,255,255,.85); line-height:1.55}
+  footer{
+    background:var(--violet-deep); color:rgba(255,255,255,.7); font-size:12.5px;
+    padding:0 60px 42px; text-align:left; line-height:1.7;
+  }
+  footer .inner{max-width:760px; margin:0 auto; border-top:1px solid rgba(255,255,255,.2); padding-top:20px}
+  footer a{color:#fff; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.35)}
+  footer a:hover{border-color:#fff}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:1060px){
+    nav.rail{
+      position:sticky; top:0; bottom:auto; width:auto; height:auto;
+      flex-direction:row; align-items:center; gap:18px;
+      padding:12px 20px; background:color-mix(in srgb,var(--paper) 92%,transparent);
+      backdrop-filter:blur(8px); border-bottom:1px solid var(--paper-3); overflow-x:auto;
+    }
+    nav.rail .brand{margin:0; white-space:nowrap; font-size:12px}
+    nav.rail .line{flex-direction:row; gap:18px; padding-left:0; flex:initial}
+    nav.rail .line::before,nav.rail .line .progress{display:none}
+    nav.rail a{white-space:nowrap; padding:4px 0}
+    nav.rail a::before{display:none}
+    main{margin-left:0}
+    section,header.hero{padding-left:26px; padding-right:26px}
+    footer{padding-left:26px; padding-right:26px}
+    .demo-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:860px){
+    .tiles{grid-template-columns:1fr 1fr}
+    .concepts,.cards,.now-grid{grid-template-columns:1fr}
+    .bridges{grid-template-columns:1fr}
+    header.hero{min-height:min(78vh,780px); padding-bottom:170px}
+    .carrow{transform:rotate(90deg); padding:6px 0}
+    .constel{flex-direction:column}
+  }
+  @media (max-width:480px){
+    body{font-size:16px}
+    .tiles{grid-template-columns:1fr}
+    section{padding:64px 22px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="rail" aria-label="Sections">
+  <div class="brand">LogSilk<br><b>/ EvoBioSys</b></div>
+  <div class="line">
+    <div class="progress" id="railProgress"></div>
+    <a href="#hero">Start</a>
+    <a href="#problem">The silo</a>
+    <a href="#wager">The wager</a>
+    <a href="#engine">Engine room</a>
+    <a href="#demo">The demo</a>
+    <a href="#decisions">Decisions</a>
+    <a href="#stands">Where it stands</a>
+    <a href="#horizon">SilkNotes</a>
+    <a href="#constellation">Constellation</a>
+    <a href="#talk">Let's talk</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="hero">
+  <div class="inner">
+    <p class="topline">
+      <a href="https://evobiosys.org">&larr; evobiosys.org</a>
+      <span>&middot;</span>
+      <a href="/holons/silknotes/">Holon page &rarr;</a>
+    </p>
+    <h1 class="hi">LogSilk<span class="dot">.</span></h1>
+    <p class="sub">Your knowledge, on your machine, woven whole &mdash; in plain <span class="k">.md</span> you can read in any editor, <b>forever</b>.</p>
+    <p class="tag">The engine of SilkNotes &mdash; a sovereign, local-first knowledge OS &middot; built in Vienna</p>
+    <div class="cta-row">
+      <a class="btn solid" href="#engine">See the engine</a>
+      <a class="btn ghost" href="#demo">Try the outliner</a>
+    </div>
+  </div>
+  <div class="hero-thread" aria-hidden="true">
+    <svg viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax meet">
+      <path class="track two" d="M10,60 C240,110 360,40 560,84 C740,122 860,52 1040,96 C1110,112 1160,120 1190,116"/>
+      <path class="track" d="M20,120 C220,70 380,140 540,110 C700,80 820,150 980,120 C1070,102 1140,110 1188,102"/>
+      <g>
+        <circle class="stn" cx="90" cy="112" r="4.5"/><text x="90" y="98" text-anchor="middle">Markdown</text>
+        <circle class="stn" cx="330" cy="126" r="4.5"/><text x="330" y="146" text-anchor="middle">Parser</text>
+        <circle class="stn lead" cx="560" cy="110" r="6.5"/><text class="lead" x="560" y="94" text-anchor="middle">Supertags</text>
+        <circle class="stn" cx="800" cy="122" r="4.5"/><text x="800" y="142" text-anchor="middle">Atoms</text>
+        <circle class="stn" cx="1030" cy="118" r="4.5"/><text x="1030" y="104" text-anchor="middle">Local AI</text>
+      </g>
+    </svg>
+  </div>
+</header>
+
+<!-- ================= PROBLEM ================= -->
+<section id="problem">
+  <div class="inner rv">
+    <span class="station">01 &middot; The silo</span>
+    <h2>Your second brain lives in <b>someone else's cloud.</b></h2>
+    <p class="lede">The outliner tools people now run their whole lives on hold something that has quietly turned mission-critical &mdash; typed supertags, fields, live queries, AI commands &mdash; behind closed source, on remote servers, with no exit.</p>
+    <p>Three walls close in at once. Your notes sit on <b>infrastructure you don't control</b>. The format stays <b>locked</b>, so leaving means losing the structure you built your thinking on. And every tool guards its own <b>silo</b> &mdash; knowledge that refuses to interoperate. For anyone who thinks in an outliner, that adds up to a dependency with no back door.</p>
+    <p>Zoom out and it reads as a European question too: <b>digital sovereignty</b>. Where do the notes of a continent's researchers, builders and institutions actually live &mdash; and who holds the keys? The honest local-first answer stays simple: <em>your data <span class="de">bleibt bei dir</span> (stays with you)</em>, in a format that outlives any single vendor.</p>
+  </div>
+</section>
+
+<!-- ================= WAGER ================= -->
+<section id="wager" class="warm">
+  <div class="inner rv">
+    <span class="station">02 &middot; The wager</span>
+    <h2>Rewrite the engine in Rust. Keep the notes as <b>boring files.</b></h2>
+    <p class="lede">LogSilk takes a deliberate bet: rebuild the engine of a file-based outliner from scratch, in Rust, and earn sovereignty through the least glamorous formats imaginable.</p>
+    <p>Plain Markdown stays <b>canonical</b> &mdash; the file on disk remains the truth, human-readable in any editor. A derived <b>SQLite index</b> rides alongside it for speed, sitting behind a storage trait (a swappable seam), so the fast layer can be replaced without touching your files. Nothing precious hides inside a proprietary database; the boring format <em>is</em> the guarantee.</p>
+    <p>Concretely, LogSilk grows as a from-scratch Rust rewrite of file-based <b>Logseq 0.10.15</b>. A sibling layer then reweaves the full feature envelope people rely on &mdash; the typed, queryable, AI-assisted workflow &mdash; on top of LogSilk's crates. Same daily workflow; sovereign foundations underneath.</p>
+  </div>
+</section>
+
+<!-- ================= ENGINE ROOM ================= -->
+<section id="engine">
+  <div class="inner wide rv">
+    <span class="station">03 &middot; The engine room</span>
+    <h2>Not a mock-up. A tested engine that already parses a real vault.</h2>
+    <p class="lede" style="max-width:60ch">The load-bearing risk in any rewrite lives in the parser &mdash; and that risk has been retired against real data, not a toy sample.</p>
+    <div class="tiles">
+      <div class="tile">
+        <div class="big">1096<small>/1096</small></div>
+        <div class="cap">Blocks of a real corpus parsed to a <b>100% match</b> against Logseq's own <span class="k">mldoc</span> grammar, differential-tested.</div>
+      </div>
+      <div class="tile">
+        <div class="big">226 <small>tests</small></div>
+        <div class="cap">Rust tests green across the LogSilk engine &mdash; parse, model, extract, serialize.</div>
+      </div>
+      <div class="tile">
+        <div class="big">104 <small>tests</small></div>
+        <div class="cap">Green across the parity layer that rebuilds the supertag / query / AI workflow.</div>
+      </div>
+      <div class="tile">
+        <div class="big">44 <small>MB</small></div>
+        <div class="cap">Desktop binary confirmed launching &mdash; Tauri (Rust) shell, React surface.</div>
+      </div>
+    </div>
+    <p class="fineprint">Parser <span class="k">mldoc</span> match completed 2026-06-12. Test counts as of the current milestone; figures come from the project's own suites, not projections.</p>
+
+    <div class="concepts">
+      <div class="concept">
+        <h3>Supertags</h3>
+        <p>Typed templates carrying fields &mdash; and <span class="k">extends</span> schema inheritance, so a <span class="k">#quest</span> can inherit everything a <span class="k">#project</span> defines and add its own.</p>
+      </div>
+      <div class="concept">
+        <h3>Atoms &amp; anchors</h3>
+        <p>Per-word and per-range references built on the <b>Loro CRDT</b>. Anchored ranges survive concurrent edits &mdash; tested for delete-boundary and concurrent-interior cases, documented in <span class="k">ADR-0001</span>.</p>
+      </div>
+      <div class="concept">
+        <h3>Live queries &amp; AI commands</h3>
+        <p>Queries filter the graph live; AI commands run through <b>local inference via Ollama</b> &mdash; live-verified with a local <span class="k">qwen3</span> model. No cloud calls, no data leaving the machine.</p>
+      </div>
+      <div class="concept">
+        <h3>Journal-safety gate</h3>
+        <p>A backup-first guard that refuses to touch today's journal file &mdash; because the one note you can never afford to corrupt is the one you're writing in right now.</p>
+      </div>
+    </div>
+    <div class="chips" aria-label="Stack">
+      <span class="chip"><span class="cd"></span>Rust core</span>
+      <span class="chip"><span class="cd"></span>Markdown canonical</span>
+      <span class="chip"><span class="cd"></span>SQLite index (trait seam)</span>
+      <span class="chip"><span class="cd"></span>Loro CRDT</span>
+      <span class="chip"><span class="cd"></span>Tauri + React</span>
+      <span class="chip"><span class="cd"></span>Ollama local AI</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEMO (dark silk) ================= -->
+<section id="demo" class="night">
+  <div class="inner wide rv">
+    <span class="station">04 &middot; The demo</span>
+    <h2>The outliner, alive.</h2>
+    <p class="muted" style="max-width:62ch">The real workflow, in miniature: supertags with typed fields, live queries that filter as you tap them, and block references that anchor across the tree. This runs as plain in-page JavaScript &mdash; a picture of the idea, not the engine itself.</p>
+
+    <div class="demo rv">
+      <div class="demo-head">
+        <h3>A daily note, three moves</h3>
+        <span class="demo-badge">Illustrative demo</span>
+      </div>
+      <p class="hint">1 &mdash; tap a <span class="k">#supertag</span> to read its schema. &nbsp;2 &mdash; tap a query to filter live. &nbsp;3 &mdash; hover a <span class="k">((reference))</span> to see its target glow.</p>
+
+      <div class="demo-grid">
+        <div>
+          <div class="qbar" role="group" aria-label="Preset live queries">
+            <span class="qlabel">query&nbsp;&rsaquo;</span>
+            <button class="qbtn" data-q="book" type="button">#book</button>
+            <button class="qbtn" data-q="quest" type="button">#quest · Owner :: Jakob</button>
+            <button class="qbtn" data-q="reading" type="button">Status :: reading</button>
+            <button class="qbtn clear" data-q="clear" type="button">clear</button>
+          </div>
+          <ul class="tree" id="tree" aria-label="Illustrative outliner"></ul>
+          <p class="qstatus" id="qstatus" aria-live="polite"></p>
+        </div>
+        <div class="panel" id="panel" aria-live="polite">
+          <div class="pempty" id="pEmpty">Tap any <span class="k" style="color:var(--night-violet)">#supertag</span> in the outliner to inspect its typed fields &mdash; including the <span class="k" style="color:var(--amber)">extends</span> inheritance on <span class="k" style="color:var(--night-violet)">#quest</span>.</div>
+          <div id="pBody" hidden>
+            <div class="phead">
+              <span class="ptag" id="pTag"></span>
+              <button class="pclose" id="pClose" type="button" aria-label="Close schema panel">&times;</button>
+            </div>
+            <div class="pkind">Supertag schema</div>
+            <div class="pext" id="pExt" hidden></div>
+            <div id="pFields"></div>
+            <div class="pnode" id="pNode" hidden>
+              <div class="pnh">On this node</div>
+              <div id="pNodeVals"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="demo-foot">Illustrative demo &mdash; the real engine runs local-first in Rust, parsing your actual <span class="k" style="color:#9d8bb8">.md</span> files. Schemas, queries and references shown here are hand-written for the picture; the working system computes them over a live vault, with all inference staying on your machine.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DECISIONS ================= -->
+<section id="decisions">
+  <div class="inner wide rv">
+    <span class="station">05 &middot; Decisions that hold</span>
+    <h2>Boring choices, deliberately.</h2>
+    <p class="lede" style="max-width:60ch">A sovereign tool earns trust by the architecture it commits to and refuses to walk back. These four are locked &mdash; each chosen because it stays legible, replaceable and hard to regret.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="lock">Locked</div>
+        <h3>Markdown + SQLite behind trait seams</h3>
+        <p>Files stay canonical; the index stays swappable. The storage engine hides behind a trait, so speed never costs you ownership of your notes.</p>
+      </div>
+      <div class="card">
+        <div class="lock">Locked</div>
+        <h3>Loro CRDT for atoms</h3>
+        <p>Conflict-free replicated data types anchor per-range references that survive concurrent edits &mdash; and keep multiplayer and sync <em>possible</em> later without a rewrite.</p>
+      </div>
+      <div class="card">
+        <div class="lock">Locked</div>
+        <h3>Tauri + React shell</h3>
+        <p>A Rust-native desktop shell with a familiar React surface &mdash; outliner, prose, canvas, daily notes. <span class="rej">Flutter was weighed and explicitly rejected.</span></p>
+      </div>
+      <div class="card">
+        <div class="lock">Locked</div>
+        <h3>Sibling-repo layering</h3>
+        <p>The parity layer lives beside the engine, building on its crates rather than forking it &mdash; so the boring core stays clean and independently testable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHERE IT STANDS ================= -->
+<section id="stands" class="warm">
+  <div class="inner wide rv">
+    <span class="station">06 &middot; Where it stands</span>
+    <h2>A working prototype &mdash; used daily by the person who built it.</h2>
+    <p class="lede" style="max-width:60ch">No launch date, no user counts, no beta sign-ups. What exists is honest: a tested engine and a parity layer that already carry a real workflow on the founder's own vault.</p>
+    <div class="now-grid">
+      <div class="now real">
+        <h3>Already real</h3>
+        <ul>
+          <li><b>Prototype Definition-of-Done reached</b> (2026-06-20) &mdash; the parity layer meets its own bar for a working prototype.</li>
+          <li><b>Milestone v0.5</b> (2026-07-02) &mdash; backlink badges, tag-vs-page detection, and domain <span class="k">.md</span> mirrors.</li>
+          <li><b>SuperLogseq</b> &mdash; vanilla Logseq running with the Rust parser dropped in, daily-driving the founder's <em>real</em> vault.</li>
+          <li><b>Local AI, verified</b> &mdash; AI commands answered by a local <span class="k">qwen3</span> model through Ollama, no cloud.</li>
+        </ul>
+      </div>
+      <div class="now next">
+        <h3>Next on the line</h3>
+        <ul>
+          <li><b>Cross-graph embeds (M3)</b> &mdash; resolving <span class="k">((block-uuid))</span> across nested graph boundaries; the next load-bearing gap.</li>
+          <li><b>Bidirectional writing</b> and <b>page&#8646;graph equivalence</b>, then all-pages filtering.</li>
+          <li><b>Semantic search</b> via local embeddings; automatic linking and unlinked mentions.</li>
+          <li><b>Canvas&#8646;outliner toggle</b> and a visual graph view.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="roadmap" aria-label="Milestone roadmap">
+      <div class="rm done"><div class="v">v0.1</div><p>Model</p></div>
+      <div class="rm done"><div class="v">v0.2</div><p>Supertags &amp; fields</p></div>
+      <div class="rm done"><div class="v">v0.3</div><p>Live queries</p></div>
+      <div class="rm done"><div class="v">v0.3.5</div><p>Journal safety</p></div>
+      <div class="rm done"><div class="v">v0.4</div><p>UI shell</p></div>
+      <div class="rm on"><div class="v">v0.5 &mdash; now</div><p>Backlinks, tag/page, mirrors</p></div>
+    </div>
+    <div class="deferred">
+      <b>Designed-for, deferred.</b> Multiplayer, federation, a Postgres or graph-DB backend, and Notion import/export do <em>not</em> exist yet &mdash; and none are claimed. The Loro CRDT and the storage trait seams exist precisely so these stay reachable without another rewrite.
+    </div>
+  </div>
+</section>
+
+<!-- ================= HORIZON (SilkNotes) ================= -->
+<section id="horizon" class="glow">
+  <div class="inner rv">
+    <span class="station">07 &middot; The SilkNotes horizon</span>
+    <h2>LogSilk is the engine. <b>SilkNotes</b> is where it's headed.</h2>
+    <p class="lede">Once the engine holds, the vision widens: <b>SilkNotes</b> &mdash; an open-source, local-first, EU-sovereign knowledge OS whose job is to let your knowledge silos <em>interoperate</em>, instead of each one hoarding a partial view of what you know.</p>
+    <p>The shape is typed <b>bridges</b> between tools: file-level for open formats like Logseq and Obsidian, API adapters for proprietary ones. Everything feeds a single <b>unified output API</b>, so dashboards, publishing pipelines and local AI agents can read your knowledge whatever tool it started in &mdash; <em>no Zapier required</em>. Bridges run on your machine, on your terms.</p>
+    <div class="bridges" aria-label="Planned interoperability bridges">
+      <div class="bridge">
+        <div class="bs">Planned</div>
+        <h4>File-level</h4>
+        <p>Logseq and Obsidian and other open-format tools, connected at the file layer with the least loss in translation.</p>
+      </div>
+      <div class="bridge">
+        <div class="bs">Planned</div>
+        <h4>API adapters</h4>
+        <p>Proprietary tools reached through adapter layers that preserve as much structure as each API allows.</p>
+      </div>
+      <div class="bridge">
+        <div class="bs">Planned</div>
+        <h4>Output API</h4>
+        <p>One interchange surface downstream consumers can read &mdash; the same knowledge, many destinations.</p>
+      </div>
+    </div>
+    <p style="margin-top:26px">The model stays simple and honest: an <b>open-source free tier</b> with <b>premium support</b>. Its future home, <a class="inline" href="https://silknotes.one" target="_blank" rel="noopener">silknotes.one</a>, holds a placeholder today &mdash; the product lives in this prototype, not yet at that address.</p>
+  </div>
+</section>
+
+<!-- ================= CONSTELLATION ================= -->
+<section id="constellation">
+  <div class="inner wide rv">
+    <span class="station">08 &middot; The constellation</span>
+    <h2>One thread in a larger weave.</h2>
+    <p class="lede" style="max-width:58ch">LogSilk doesn't stand alone. It sits inside a lineage that runs from a lifelong memory down to the substrate that carries it &mdash; and up to the tool you touch every day.</p>
+    <div class="constel">
+      <div class="cnode">
+        <div class="clbl">The source</div>
+        <h3>Complete Memory</h3>
+        <p>The lifelong-memory vision: everything you've thought and read, captured and made findable.</p>
+      </div>
+      <div class="carrow" aria-hidden="true">&rarr;</div>
+      <div class="cnode">
+        <div class="clbl">The substrate</div>
+        <h3><em>Kidur</em></h3>
+        <p>The foundational tech layer beneath &mdash; the binding infrastructure the knowledge OS rests on.</p>
+        <p style="margin-top:8px"><a href="/pitch/kidur/">Kidur pitch &rarr;</a></p>
+      </div>
+      <div class="carrow" aria-hidden="true">&rarr;</div>
+      <div class="cnode engine">
+        <div class="clbl">The engine &amp; the OS</div>
+        <h3>LogSilk &rarr; SilkNotes</h3>
+        <p>The tested Rust engine, and the sovereign knowledge OS it grows into &mdash; what you actually touch.</p>
+      </div>
+    </div>
+    <p style="margin-top:30px">All of it EU-sovereign and open-source, held to one principle: <b>tools that belong to the people who use them.</b></p>
+  </div>
+</section>
+
+<!-- ================= TALK ================= -->
+<section id="talk" class="talk">
+  <div class="inner rv">
+    <span class="station">09 &middot; Let's talk</span>
+    <h2>Come weave the sovereign layer.</h2>
+    <p style="max-width:56ch">The engine works and the vision is drawn. What it needs now are the right hands and the right backing &mdash; people who understand why notes should belong to the people who write them.</p>
+    <div class="who-grid">
+      <div class="who-card">
+        <h4>Open-source contributors</h4>
+        <p>Rust, CRDTs, parsers, local AI &mdash; help build the crates the OS rests on.</p>
+      </div>
+      <div class="who-card">
+        <h4>EU sovereign-tech funders</h4>
+        <p>Back a genuinely local-first, open-source alternative to cloud-locked knowledge tools.</p>
+      </div>
+      <div class="who-card">
+        <h4>Early adopters</h4>
+        <p>People who live in outliners and want an exit door that keeps their <span class="k" style="color:#fff">.md</span> readable forever.</p>
+      </div>
+    </div>
+    <p class="who" style="margin-top:32px">Jakob Possert-Bienzle &middot; EvoBioSys &middot; Vienna</p>
+    <div class="cta-row" style="margin-top:14px">
+      <a class="btn solid" href="mailto:connect@evobiosys.org?subject=LogSilk%20Pitch">Write to Jakob</a>
+      <a class="btn ghost" href="#hero">Back to the start</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    LogSilk &middot; a holon of the EvoBioSys thesis. &copy; 2026 EvoBioSys.<br>
+    <a href="/holons/silknotes/">Holon page</a> &nbsp;&middot;&nbsp;
+    <a href="https://evobiosys.org">evobiosys.org</a><br>
+    Test counts, parser match and milestone dates drawn from the project's own suites. Interoperability bridges and the SilkNotes platform are planned, not shipped; multiplayer, federation and Notion sync are designed-for and deferred.
+  </div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- scroll-spy + rail progress ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.rail a"));
+  var targets = links.map(function(a){ return document.querySelector(a.getAttribute("href")); });
+  function spy(){
+    var y = window.scrollY + window.innerHeight*0.35, idx = 0;
+    targets.forEach(function(t,i){ if(t && t.offsetTop <= y) idx = i; });
+    links.forEach(function(a,i){ a.classList.toggle("on", i===idx); });
+    var p = document.getElementById("railProgress");
+    if(p){
+      var doc = document.documentElement;
+      var frac = window.scrollY / Math.max(1, doc.scrollHeight - window.innerHeight);
+      p.style.height = (frac*100) + "%";
+    }
+  }
+  window.addEventListener("scroll", spy, {passive:true});
+  window.addEventListener("resize", spy, {passive:true});
+  spy();
+
+  /* ---------- reveals ---------- */
+  var rvEls = Array.prototype.slice.call(document.querySelectorAll(".rv"));
+  function reveal(){
+    if(!rvEls.length) return;
+    var line = window.innerHeight * 0.92;
+    rvEls = rvEls.filter(function(el){
+      if(el.getBoundingClientRect().top < line){ el.classList.add("in"); return false; }
+      return true;
+    });
+  }
+  window.addEventListener("scroll", reveal, {passive:true});
+  window.addEventListener("resize", reveal, {passive:true});
+  reveal();
+  var rvTimer = setInterval(function(){ reveal(); if(!rvEls.length) clearInterval(rvTimer); }, 350);
+
+  /* ================= INTERACTIVE OUTLINER ================= */
+
+  // Supertag schemas. #quest extends #project (inheritance demo).
+  var SCHEMAS = {
+    project: { tag:"#project", ext:null, fields:[
+      {n:"Status", t:"options · active | paused | shipped"},
+      {n:"Owner",  t:"person"}
+    ]},
+    quest: { tag:"#quest", ext:"project", fields:[
+      {n:"Due", t:"date"}
+    ]},
+    book: { tag:"#book", ext:null, fields:[
+      {n:"Author", t:"person"},
+      {n:"Status", t:"options · queued | reading | read"},
+      {n:"Rating", t:"number 1–5"}
+    ]},
+    person: { tag:"#person", ext:null, fields:[
+      {n:"Role", t:"plain"},
+      {n:"Based in", t:"plain"}
+    ]}
+  };
+
+  // Illustrative outliner nodes (hand-written for the picture).
+  var NODES = [
+    { id:"j",  lvl:0, text:"Journal — Tuesday" },
+    { id:"q1", lvl:1, text:"Finish the mldoc differential harness", tags:["quest"],
+      f:{Status:"shipped", Owner:"Jakob", Due:"2026-06-12"} },
+    { id:"q2", lvl:1, text:"Resolve cross-graph embeds (M3) — ", tags:["quest"],
+      f:{Status:"active", Owner:"Jakob", Due:"—"},
+      ref:{label:"anchored ranges", target:"n1"} },
+    { id:"r",  lvl:0, text:"Reading" },
+    { id:"b1", lvl:1, text:"Seeing Like a State — rec. by ", tags:["book"],
+      f:{Author:"Ada Lovelace-Berg", Status:"reading", Rating:"—"},
+      ref:{label:"Ada", target:"p1"} },
+    { id:"b2", lvl:1, text:"The Local-First Manifesto", tags:["book"],
+      f:{Author:"Ink & Switch", Status:"read", Rating:"5"} },
+    { id:"pp", lvl:0, text:"People" },
+    { id:"p1", lvl:1, text:"Ada Lovelace-Berg", tags:["person"],
+      f:{Role:"reviewer", "Based in":"Vienna"} },
+    { id:"nn", lvl:0, text:"Notes" },
+    { id:"n1", lvl:1, text:"Anchored ranges survive concurrent edits (ADR-0001)" }
+  ];
+
+  var tree = document.getElementById("tree");
+  function esc(s){ return String(s).replace(/[&<>]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]; }); }
+
+  if(tree){
+    tree.innerHTML = NODES.map(function(n){
+      var chips = (n.tags||[]).map(function(t){
+        return '<button class="ntag" type="button" data-tag="'+t+'" data-node="'+n.id+'" aria-label="supertag hashtag '+t+', show schema">#'+t+'</button>';
+      }).join("");
+      var ref = n.ref
+        ? '<span class="nref" tabindex="0" role="button" data-target="'+n.ref.target+'" aria-label="block reference to '+esc(n.ref.label)+', highlight target">(('+esc(n.ref.label)+'))</span>'
+        : "";
+      return '<li class="node lvl'+n.lvl+'" id="node-'+n.id+'" data-id="'+n.id+'">'
+        + '<span class="bullet" aria-hidden="true"></span>'
+        + '<span class="ntext">'+esc(n.text)+ref+'</span>'
+        + chips
+        + '</li>';
+    }).join("");
+  }
+
+  function nodeById(id){ for(var i=0;i<NODES.length;i++){ if(NODES[i].id===id) return NODES[i]; } return null; }
+
+  /* ---- schema panel ---- */
+  var panel = { empty:document.getElementById("pEmpty"), body:document.getElementById("pBody"),
+    tag:document.getElementById("pTag"), ext:document.getElementById("pExt"),
+    fields:document.getElementById("pFields"), node:document.getElementById("pNode"),
+    nodeVals:document.getElementById("pNodeVals") };
+  var pClose = document.getElementById("pClose");
+
+  function fieldRow(f, inherited){
+    return '<div class="fld"><div class="fname">'+esc(f.n)
+      + (inherited ? '<span class="finh">from '+esc(inherited)+'</span>' : '')
+      + '</div><div class="ftype">'+esc(f.t)+'</div></div>';
+  }
+
+  function openSchema(tagKey, nodeId){
+    var sc = SCHEMAS[tagKey];
+    if(!sc || !panel.body) return;
+    panel.empty.hidden = true;
+    panel.body.hidden = false;
+    panel.tag.textContent = sc.tag;
+
+    var rows = "", extName = null;
+    if(sc.ext && SCHEMAS[sc.ext]){
+      extName = SCHEMAS[sc.ext].tag;
+      panel.ext.hidden = false;
+      panel.ext.innerHTML = 'extends <b>'+esc(extName)+'</b> — inherits its fields';
+      rows += SCHEMAS[sc.ext].fields.map(function(f){ return fieldRow(f, extName); }).join("");
+    } else {
+      panel.ext.hidden = true;
+    }
+    rows += sc.fields.map(function(f){ return fieldRow(f, null); }).join("");
+    panel.fields.innerHTML = rows;
+
+    // "On this node" values, when opened from a specific node
+    var nd = nodeId ? nodeById(nodeId) : null;
+    if(nd && nd.f){
+      var vals = Object.keys(nd.f).map(function(k){
+        return '<div class="pnv"><span class="k">'+esc(k)+'</span><span class="v">'+esc(nd.f[k])+'</span></div>';
+      }).join("");
+      panel.nodeVals.innerHTML = vals;
+      panel.node.hidden = false;
+    } else {
+      panel.node.hidden = true;
+    }
+
+    // mark selected chip
+    Array.prototype.forEach.call(document.querySelectorAll(".ntag"), function(b){
+      b.classList.toggle("sel", b.dataset.tag===tagKey && (!nodeId || b.dataset.node===nodeId));
+    });
+  }
+  function closeSchema(){
+    if(!panel.body) return;
+    panel.body.hidden = true;
+    panel.empty.hidden = false;
+    Array.prototype.forEach.call(document.querySelectorAll(".ntag"), function(b){ b.classList.remove("sel"); });
+  }
+  if(pClose) pClose.addEventListener("click", closeSchema);
+  document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeSchema(); });
+
+  /* ---- reference hover/focus glow ---- */
+  function setGlow(id, on){
+    var el = document.getElementById("node-"+id);
+    if(el) el.classList.toggle("glow", on);
+  }
+
+  /* ---- delegated events on the tree ---- */
+  if(tree){
+    tree.addEventListener("click", function(e){
+      var chip = e.target.closest(".ntag");
+      if(chip){ openSchema(chip.dataset.tag, chip.dataset.node); return; }
+    });
+    tree.addEventListener("keydown", function(e){
+      var refEl = e.target.closest(".nref");
+      if(refEl && (e.key==="Enter" || e.key===" ")){
+        e.preventDefault();
+        var id = refEl.dataset.target;
+        setGlow(id, true);
+        setTimeout(function(){ setGlow(id, false); }, 1400);
+      }
+    });
+    // reference glow on hover + keyboard focus
+    tree.addEventListener("mouseover", function(e){ var r=e.target.closest(".nref"); if(r) setGlow(r.dataset.target, true); });
+    tree.addEventListener("mouseout",  function(e){ var r=e.target.closest(".nref"); if(r) setGlow(r.dataset.target, false); });
+    tree.addEventListener("focusin",   function(e){ var r=e.target.closest(".nref"); if(r) setGlow(r.dataset.target, true); });
+    tree.addEventListener("focusout",  function(e){ var r=e.target.closest(".nref"); if(r) setGlow(r.dataset.target, false); });
+  }
+
+  /* ---- live queries ---- */
+  var QUERIES = {
+    book:    { test:function(n){ return n.tags && n.tags.indexOf("book")>=0; }, badge:function(){ return "#book"; },
+               say:function(c){ return c+" node(s) carry #book"; } },
+    quest:   { test:function(n){ return n.tags && n.tags.indexOf("quest")>=0 && n.f && n.f.Owner==="Jakob"; },
+               badge:function(){ return "Owner: Jakob"; },
+               say:function(c){ return c+" #quest node(s) where Owner :: Jakob — a typed field, inherited from #project"; } },
+    reading: { test:function(n){ return n.f && n.f.Status==="reading"; }, badge:function(){ return "Status: reading"; },
+               say:function(c){ return c+" node(s) where Status :: reading — one field query across supertags"; } }
+  };
+  var qBtns = Array.prototype.slice.call(document.querySelectorAll(".qbtn"));
+  var qStatus = document.getElementById("qstatus");
+
+  function clearQuery(){
+    Array.prototype.forEach.call(document.querySelectorAll(".node"), function(el){
+      el.classList.remove("q-match","q-dim");
+      var b = el.querySelector(".qbadge"); if(b) b.remove();
+    });
+    qBtns.forEach(function(b){ b.classList.remove("active"); });
+    if(qStatus) qStatus.textContent = "";
+  }
+  function runQuery(key){
+    clearQuery();
+    var q = QUERIES[key];
+    if(!q) return;
+    var count = 0;
+    NODES.forEach(function(n){
+      var el = document.getElementById("node-"+n.id);
+      if(!el) return;
+      if(q.test(n)){
+        el.classList.add("q-match");
+        var badge = document.createElement("span");
+        badge.className = "qbadge";
+        badge.textContent = q.badge(n);
+        el.appendChild(badge);
+        count++;
+      } else if(n.lvl > 0){
+        el.classList.add("q-dim"); // keep group headers legible
+      }
+    });
+    if(qStatus) qStatus.textContent = q.say(count);
+  }
+  qBtns.forEach(function(b){
+    b.addEventListener("click", function(){
+      var key = b.dataset.q;
+      if(key==="clear"){ clearQuery(); return; }
+      if(b.classList.contains("active")){ clearQuery(); return; } // toggle off
+      runQuery(key);
+      b.classList.add("active");
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
