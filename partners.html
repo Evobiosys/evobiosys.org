@@ -227,23 +227,15 @@ permalink: /partners/
     <p class="section-subtitle" style="margin-bottom: 0;">
       Occasional updates on projects, partnerships, and invitations. No noise.
     </p>
-    <form id="listmonk-form-partners" class="newsletter-form">
+    <form class="newsletter-form">
       <input type="email" name="email" placeholder="your@email.com" required>
       <button type="submit" class="btn btn-primary">Subscribe</button>
     </form>
+    <p class="newsletter-msg" aria-live="polite"></p>
     <p class="newsletter-note">
-      Powered by <a href="https://listmonk.app" target="_blank">Listmonk</a> &middot; Self-hosted, no tracking
+      Self-hosted, double opt-in, no tracking
     </p>
   </div>
 </section>
 
-<script>
-  const form = document.getElementById('listmonk-form-partners');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = form.querySelector('input[name="email"]').value;
-      alert('Thanks! We\u2019ll be in touch at: ' + email);
-    });
-  }
-</script>
+<script src="/assets/js/newsletter.js" defer></script>

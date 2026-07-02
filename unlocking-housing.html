@@ -250,18 +250,23 @@ permalink: /unlocking-housing/
       fetch("https://subscriber.evobiosys.org/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email, source: "evobiosys.org/unlocking-housing", project: "Unlocking Housing" })
+        body: JSON.stringify({ email: email, source: window.location.pathname, project: "evobiosys", gdpr: true })
       })
         .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-        .then(function () {
-          document.getElementById("uh2-nl-email").value = "";
+        .then(function (data) {
           btn.disabled = false; btn.textContent = "Subscribe";
-          note.textContent = "Confirmed — check your inbox to complete your subscription.";
           note.style.color = "#2d5a3d"; note.style.fontSize = "1rem";
+          if (data && data.status === "already_subscribed") {
+            note.textContent = "You're already on the list.";
+          } else {
+            document.getElementById("uh2-nl-email").value = "";
+            note.textContent = "Almost there — check your inbox to confirm.";
+          }
         })
         .catch(function () {
           btn.disabled = false; btn.textContent = "Subscribe";
-          note.textContent = "Something went wrong — try again or email connect@evobiosys.org";
+          note.style.color = "#9c3b2e"; note.style.fontSize = "1rem";
+          note.textContent = "Subscription service is briefly unavailable — please try again later.";
         });
     });
   })();

@@ -876,6 +876,26 @@ section {
   margin-top: 0.75rem;
 }
 
+.newsletter-msg {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: 0.75rem;
+  min-height: 1.2em;
+}
+
+.newsletter-msg.is-success {
+  color: var(--color-accent-deep);
+}
+
+.newsletter-msg.is-error {
+  color: #9c3b2e;
+}
+
+.newsletter-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* ========================================
    Back link
    ======================================== */

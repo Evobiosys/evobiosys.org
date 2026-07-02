@@ -412,12 +412,13 @@ permalink: /about/
       Occasional updates on projects, ideas, and invitations. No noise.
     </p>
 
-    <form id="listmonk-form-about" class="newsletter-form">
+    <form class="newsletter-form">
       <input type="email" name="email" placeholder="your@email.com" required>
       <button type="submit" class="btn btn-primary">Subscribe</button>
     </form>
+    <p class="newsletter-msg" aria-live="polite"></p>
     <p class="newsletter-note">
-      Powered by <a href="https://listmonk.app" target="_blank">Listmonk</a> &middot; Self-hosted, no tracking
+      Self-hosted, double opt-in, no tracking
     </p>
   </div>
 </section>
@@ -427,14 +428,4 @@ permalink: /about/
   <a href="/">&larr; Back to EvoBioSys</a>
 </div>
 
-<script>
-  const aboutForm = document.getElementById('listmonk-form-about');
-  if (aboutForm) {
-    aboutForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = aboutForm.querySelector('input[name="email"]').value;
-      console.log('Subscribe (about):', email);
-      alert('Thanks! We\u2019ll be in touch at: ' + email);
-    });
-  }
-</script>
+<script src="/assets/js/newsletter.js" defer></script>
