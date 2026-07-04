@@ -77,6 +77,54 @@ permalink: /holons/evopaideia/
     line-height: 1.6;
   }
 
+  /* Minerva-style hero framing */
+  .ep-page .ep-hero-eyebrow {
+    font-family: var(--ep-sans);
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ep-gold);
+    margin-bottom: 0.8rem;
+  }
+  .ep-page .ep-hero-statement {
+    font-family: var(--ep-serif);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: var(--ep-wine);
+    max-width: 680px;
+    margin-bottom: 1rem;
+  }
+  .ep-page .ep-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1.6rem;
+  }
+  .ep-hero-cta {
+    display: inline-block;
+    font-family: var(--ep-sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.7em 1.4em;
+    border-radius: 4px;
+    background: var(--ep-wine);
+    color: #fff;
+    border: 1px solid var(--ep-wine);
+    transition: background 0.2s, color 0.2s;
+  }
+  .ep-hero-cta:hover { background: var(--ep-wine-deep); }
+  .ep-hero-cta-ghost {
+    background: transparent;
+    color: var(--ep-wine);
+  }
+  .ep-hero-cta-ghost:hover {
+    background: var(--ep-wine);
+    color: #fff;
+  }
+
   .ep-page .page-meta {
     margin-top: 1.5rem;
   }
@@ -387,6 +435,319 @@ permalink: /holons/evopaideia/
     border-top: 1px solid var(--ep-border);
     border-bottom: 1px solid var(--ep-border);
   }
+
+  /* Section label (eyebrow) */
+  .ep-label {
+    font-family: var(--ep-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ep-gold);
+    margin-bottom: 0.5rem;
+  }
+
+  /* Highlight line — inline emphasis bar */
+  .ep-highlight-line {
+    padding: 1rem 1.4rem;
+    background: var(--ep-cream);
+    border-left: 3px solid var(--ep-gold);
+    border-radius: 0 6px 6px 0;
+    margin: 1.5rem 0;
+    font-family: var(--ep-sans);
+    font-size: 0.97rem;
+    color: var(--ep-wine-deep);
+    font-weight: 500;
+    line-height: 1.7;
+  }
+
+  /* The learning cycle — numbered movements */
+  .ep-cycle {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    margin: 1.8rem 0;
+  }
+  .ep-cycle-step {
+    background: var(--ep-cream);
+    border: 1px solid var(--ep-border);
+    border-radius: 8px;
+    padding: 1.5rem 1.4rem;
+    position: relative;
+  }
+  .ep-cycle-step .ep-step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--ep-wine);
+    color: #fff;
+    font-family: var(--ep-serif);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+  }
+  .ep-cycle-step h4 {
+    font-family: var(--ep-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ep-wine);
+    margin-bottom: 0.4rem;
+  }
+  .ep-cycle-step p {
+    font-family: var(--ep-sans);
+    font-size: 0.9rem;
+    color: var(--ep-text-muted);
+    line-height: 1.6;
+  }
+  @media (max-width: 640px) {
+    .ep-cycle { grid-template-columns: 1fr; }
+  }
+
+  /* Developmental arc — vertical stage list */
+  .ep-arc {
+    position: relative;
+    margin: 1.8rem 0 0;
+    padding-left: 2.2rem;
+  }
+  .ep-arc::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--ep-gold), var(--ep-wine-light), var(--ep-wine-deep));
+    border-radius: 2px;
+  }
+  .ep-arc-stage {
+    position: relative;
+    padding: 0 0 1.6rem 0;
+  }
+  .ep-arc-stage:last-child { padding-bottom: 0; }
+  .ep-arc-stage::before {
+    content: '';
+    position: absolute;
+    left: -2.2rem;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--ep-wine);
+    background: var(--ep-cream);
+  }
+  .ep-arc-stage h4 {
+    font-family: var(--ep-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ep-wine-deep);
+    margin-bottom: 0.25rem;
+  }
+  .ep-arc-stage .ep-arc-tag {
+    font-family: var(--ep-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ep-gold);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .ep-arc-stage p {
+    font-family: var(--ep-sans);
+    font-size: 0.92rem;
+    color: var(--ep-text-muted);
+    line-height: 1.65;
+  }
+
+  /* Audience cards */
+  .ep-audience {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    margin: 1.8rem 0;
+  }
+  .ep-audience-card {
+    background: #fff;
+    border: 1px solid var(--ep-border);
+    border-top: 3px solid var(--ep-gold-muted);
+    border-radius: 6px;
+    padding: 1.4rem 1.4rem;
+  }
+  .ep-audience-card h4 {
+    font-family: var(--ep-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ep-wine);
+    margin-bottom: 0.4rem;
+  }
+  .ep-audience-card p {
+    font-family: var(--ep-sans);
+    font-size: 0.9rem;
+    color: var(--ep-text-muted);
+    line-height: 1.6;
+  }
+  @media (max-width: 640px) {
+    .ep-audience { grid-template-columns: 1fr; }
+  }
+
+  /* Principles grid */
+  .ep-principles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+    margin: 1.8rem 0;
+    list-style: none;
+    padding: 0;
+  }
+  .ep-principle {
+    background: var(--ep-cream);
+    border: 1px solid var(--ep-border);
+    border-radius: 8px;
+    padding: 1.5rem 1.4rem;
+    transition: border-color 0.2s;
+  }
+  .ep-principle:hover { border-color: var(--ep-wine-light); }
+  .ep-principle h4 {
+    font-family: var(--ep-serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ep-wine-deep);
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .ep-principle h4 .ep-pip {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ep-gold);
+    flex-shrink: 0;
+  }
+  .ep-principle p {
+    font-family: var(--ep-sans);
+    font-size: 0.9rem;
+    color: var(--ep-text-muted);
+    line-height: 1.6;
+  }
+
+  /* FAQ */
+  .ep-faq {
+    margin: 1.8rem 0 0;
+  }
+  .ep-faq-item {
+    border-bottom: 1px solid var(--ep-border);
+    padding: 1.3rem 0;
+  }
+  .ep-faq-item:first-child { padding-top: 0; }
+  .ep-faq-item:last-child { border-bottom: none; }
+  .ep-faq-item h4 {
+    font-family: var(--ep-serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ep-wine);
+    margin-bottom: 0.5rem;
+  }
+  .ep-faq-item p {
+    font-family: var(--ep-sans);
+    font-size: 0.94rem;
+    color: var(--ep-text);
+    line-height: 1.7;
+  }
+
+  /* Related holons */
+  .ep-related {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .ep-related-card {
+    display: block;
+    text-decoration: none;
+    background: var(--ep-cream);
+    border: 1px solid var(--ep-border);
+    border-radius: 8px;
+    padding: 1.3rem 1.2rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .ep-related-card:hover {
+    border-color: var(--ep-wine-light);
+    transform: translateY(-2px);
+  }
+  .ep-related-card h4 {
+    font-family: var(--ep-serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ep-wine);
+    margin-bottom: 0.3rem;
+  }
+  .ep-related-card p {
+    font-family: var(--ep-sans);
+    font-size: 0.82rem;
+    color: var(--ep-text-muted);
+    line-height: 1.5;
+  }
+  @media (max-width: 640px) {
+    .ep-related { grid-template-columns: 1fr; }
+  }
+
+  /* Participate CTA */
+  .ep-cta {
+    background: linear-gradient(160deg, var(--ep-cream) 0%, var(--ep-wine-bg) 100%);
+    border: 1px solid var(--ep-border);
+    border-radius: 10px;
+    padding: 2.5rem 2.2rem;
+    text-align: center;
+    margin: 1.5rem 0;
+  }
+  .ep-cta h3 {
+    font-family: var(--ep-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ep-wine-deep);
+    margin-bottom: 0.8rem;
+  }
+  .ep-cta p {
+    font-family: var(--ep-sans);
+    font-size: 0.97rem;
+    color: var(--ep-text-muted);
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .ep-cta-ways {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.8rem;
+  }
+  .ep-cta-way {
+    flex: 1 1 200px;
+    max-width: 240px;
+    background: #fff;
+    border: 1px solid var(--ep-border);
+    border-radius: 8px;
+    padding: 1.2rem 1rem;
+  }
+  .ep-cta-way h4 {
+    font-family: var(--ep-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ep-wine);
+    margin-bottom: 0.3rem;
+  }
+  .ep-cta-way p {
+    font-family: var(--ep-sans);
+    font-size: 0.85rem;
+    color: var(--ep-text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
 </style>
 
 <div class="ep-page">
@@ -406,11 +767,21 @@ permalink: /holons/evopaideia/
     <a href="/holons/">Holons</a> &rsaquo;
     EvoPaideia
   </p>
+  <p class="ep-hero-eyebrow">Developmental Education &middot; Evo Pillar</p>
   <h1>EvoPaideia</h1>
+  <p class="ep-hero-statement">
+    Education that grows people, not just minds &mdash; developing the human
+    capacities a more alive world depends on.
+  </p>
   <p class="lead">
     Developmental education for whole human beings &mdash; learning that honors
     where you are, where you have been, and what you are becoming.
   </p>
+
+  <div class="ep-hero-actions">
+    <a class="ep-hero-cta" href="#participate">Grow with EvoPaideia</a>
+    <a class="ep-hero-cta ep-hero-cta-ghost" href="#what">What EvoPaideia is</a>
+  </div>
 
   <dl class="page-meta">
     <div class="meta-item">
@@ -425,12 +796,53 @@ permalink: /holons/evopaideia/
       <dt>Type</dt>
       <dd>Holon</dd>
     </div>
-    <div class="meta-item">
-      <dt>Tag</dt>
-      <dd><span class="status-legacy">#my-legacy</span></dd>
-    </div>
   </dl>
 </div>
+
+
+<!-- ════════════════════════════════════════ -->
+<!-- What EvoPaideia Is                       -->
+<!-- ════════════════════════════════════════ -->
+<section id="what">
+  <div class="ep-section">
+    <p class="ep-label">Orientation</p>
+    <h2>What EvoPaideia Is</h2>
+    <p class="ep-subtitle">A holon for human development, not a school</p>
+
+    <p>
+      EvoPaideia is the developmental-education holon of EvoBioSys. It is not a
+      curriculum, a course catalogue, or an institution. It is a body of practice
+      &mdash; a way of thinking about and tending human growth &mdash; that can take
+      many concrete forms: a circle of peers, a mentoring relationship, a residency,
+      a community of practice, a single well-held conversation.
+    </p>
+
+    <p>
+      Three commitments distinguish it from conventional education. First, it
+      treats the <strong>whole person</strong> as the subject of learning, not just
+      the intellect. Second, it is <strong>developmental</strong>: it assumes that
+      human capacities unfold through recognisable stages, and that what helps a
+      person grow is different at each one. Third, it works by <strong>cultivating
+      conditions</strong> rather than delivering content &mdash; it tends the soil
+      rather than installing the plant.
+    </p>
+
+    <div class="ep-highlight-line">
+      Where most education asks &ldquo;what should this person know?&rdquo;,
+      EvoPaideia asks &ldquo;what is trying to grow in this person, and what would
+      let it?&rdquo;
+    </div>
+
+    <p>
+      As a holon, EvoPaideia is both a whole in itself &mdash; with its own
+      practices, language, and lineage &mdash; and a part of the larger EvoBioSys
+      organism. It sits within the <strong>Evo</strong> pillar, the branch concerned
+      with growing, and it supplies that whole network with something every living
+      system needs: people who are themselves developing.
+    </p>
+  </div>
+</section>
+
 
 <!-- ════════════════════════════════════════ -->
 <!-- The Greek Roots                         -->
@@ -482,52 +894,79 @@ permalink: /holons/evopaideia/
   </div>
 </section>
 
-<div class="ep-ring-divider" aria-hidden="true">
-  <span class="ring-dot"></span>
-  <span class="ring-dot"></span>
-  <span class="ring-dot"></span>
-  <span class="ring-dot"></span>
-  <span class="ring-dot"></span>
-</div>
 
 <!-- ════════════════════════════════════════ -->
-<!-- Athena                                  -->
+<!-- How the Learning Model Works            -->
 <!-- ════════════════════════════════════════ -->
 <section class="ep-section-alt">
   <div class="ep-section">
-    <h2>Athena</h2>
-    <p class="ep-subtitle">The developmental field project &mdash; EvoPaideia's first concrete initiative</p>
+    <p class="ep-label">The Method</p>
+    <h2>How the Learning Model Works</h2>
+    <p class="ep-subtitle">Tending a field is a cycle, not a syllabus</p>
 
-    <div class="ep-athena-card">
-      <span class="ep-badge">Sub-holon</span>
-      <h3>Athena &amp; EvoPaideia</h3>
-      <p>
-        Named for the Greek goddess of wisdom, strategic thinking, and civilized
-        conduct, Athena is a project focused on creating <strong>developmental
-        fields</strong> &mdash; structured environments where adult learners can
-        encounter their own growth edges and move through them with support.
-      </p>
-      <p>
-        A developmental field is not a classroom. It is a set of conditions
-        &mdash; relationships, practices, provocations, and reflective spaces
-        &mdash; arranged so that development becomes possible, not forced.
-        Athena designs these fields and tests them in practice.
-      </p>
-      <p>
-        Kaja and Jakob have been developing Athena together, combining backgrounds
-        in adult learning, culture work, and developmental psychology. The project
-        carries its own supertag in the EvoBioSys workspace and has dedicated
-        MCP configurations for AI-assisted research and facilitation.
-      </p>
-      <ul>
-        <li><strong>Adult developmental learning</strong> &mdash; stage-sensitive support for adults navigating complex transitions</li>
-        <li><strong>Sharing and peer exchange</strong> &mdash; knowledge transmission through relationship rather than instruction</li>
-        <li><strong>Developmental field design</strong> &mdash; creating environments where growth emerges naturally</li>
-        <li><strong>Cultural practice</strong> &mdash; connecting learning to living culture and community</li>
-      </ul>
+    <p>
+      If a developmental field is the &ldquo;what&rdquo;, then field-tending is the
+      &ldquo;how&rdquo;. Rather than marching learners through fixed content, a
+      facilitator moves through a repeating cycle &mdash; reading where people are,
+      offering what their growth needs, and adjusting as the field responds. The
+      same four movements recur whether the field lasts an afternoon or a year.
+    </p>
+
+    <div class="ep-cycle">
+      <div class="ep-cycle-step">
+        <span class="ep-step-num">1</span>
+        <h4>Meet</h4>
+        <p>
+          Begin with where each person actually is &mdash; their current way of
+          making sense, their gifts, their constraints. No development happens
+          from a place a person has not been genuinely met.
+        </p>
+      </div>
+      <div class="ep-cycle-step">
+        <span class="ep-step-num">2</span>
+        <h4>Hold</h4>
+        <p>
+          Establish enough safety and structure that people can risk the discomfort
+          of growth. The field holds the tension so the person does not have to brace
+          against it alone.
+        </p>
+      </div>
+      <div class="ep-cycle-step">
+        <span class="ep-step-num">3</span>
+        <h4>Provoke</h4>
+        <p>
+          Introduce the right challenge at the right edge &mdash; a question, a task,
+          a perspective that the current way of making sense cannot quite hold.
+          Growth lives at the edge of the manageable.
+        </p>
+      </div>
+      <div class="ep-cycle-step">
+        <span class="ep-step-num">4</span>
+        <h4>Reflect</h4>
+        <p>
+          Make room to integrate what moved. Reflection is where an experience
+          becomes development &mdash; where a person notices they now see what they
+          could not see before, and the field reads what to offer next.
+        </p>
+      </div>
     </div>
+
+    <p>
+      The cycle is not a ladder to be climbed once. A field returns to it again and
+      again, at finer and finer grain, because development is not a destination but a
+      continuous unfolding. The facilitator's craft lies in sensing which movement a
+      person or a group needs next &mdash; and resisting the urge to rush ahead of
+      what is actually ready.
+    </p>
+
+    <blockquote>
+      <p>You cannot make a seed grow faster by pulling on it. You can only tend the
+      conditions &mdash; soil, water, light &mdash; and trust the unfolding. Education
+      that forgets this does violence to the very thing it means to serve.</p>
+    </blockquote>
   </div>
 </section>
+
 
 <!-- ════════════════════════════════════════ -->
 <!-- Developmental Fields                    -->
@@ -580,13 +1019,327 @@ permalink: /holons/evopaideia/
   </div>
 </section>
 
-<div class="ep-ring-divider" aria-hidden="true">
-  <span class="ring-dot"></span>
-  <span class="ring-dot"></span>
-  <span class="ring-dot"></span>
-  <span class="ring-dot"></span>
-  <span class="ring-dot"></span>
-</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- Athena                                  -->
+<!-- ════════════════════════════════════════ -->
+<section class="ep-section-alt">
+  <div class="ep-section">
+    <p class="ep-label">Sub-holon</p>
+    <h2>Athena</h2>
+    <p class="ep-subtitle">The developmental field project &mdash; EvoPaideia's first concrete initiative</p>
+
+    <p>
+      Every body of practice needs a first place where it becomes real. For
+      EvoPaideia, that place is <strong>Athena</strong> &mdash; a sub-holon
+      devoted to designing and testing developmental fields for adults. Where
+      EvoPaideia holds the philosophy, Athena does the work of turning it into
+      lived experience: gathering people, holding conditions, and learning from
+      what actually helps them grow.
+    </p>
+
+    <div class="ep-athena-card">
+      <span class="ep-badge">Sub-holon</span>
+      <h3>Athena &amp; EvoPaideia</h3>
+      <p>
+        Named for the Greek goddess of wisdom, strategic thinking, and civilized
+        conduct, Athena is a project focused on creating <strong>developmental
+        fields</strong> &mdash; structured environments where adult learners can
+        encounter their own growth edges and move through them with support.
+      </p>
+      <p>
+        A developmental field is not a classroom. It is a set of conditions
+        &mdash; relationships, practices, provocations, and reflective spaces
+        &mdash; arranged so that development becomes possible, not forced.
+        Athena designs these fields and tests them in practice.
+      </p>
+      <p>
+        Kaja and Jakob have been developing Athena together, combining backgrounds
+        in adult learning, culture work, and developmental psychology. The project
+        carries its own supertag in the EvoBioSys workspace and has dedicated
+        MCP configurations for AI-assisted research and facilitation.
+      </p>
+      <ul>
+        <li><strong>Adult developmental learning</strong> &mdash; stage-sensitive support for adults navigating complex transitions</li>
+        <li><strong>Sharing and peer exchange</strong> &mdash; knowledge transmission through relationship rather than instruction</li>
+        <li><strong>Developmental field design</strong> &mdash; creating environments where growth emerges naturally</li>
+        <li><strong>Cultural practice</strong> &mdash; connecting learning to living culture and community</li>
+      </ul>
+    </div>
+
+    <p>
+      Why a goddess for a name? Athena, in the Greek imagination, was not wisdom
+      as abstraction. She was wisdom-in-action &mdash; the patron of those who must
+      think clearly under pressure, weave the disparate into the whole, and act with
+      both craft and conscience. That is precisely the capacity adult development
+      asks for: the ability to meet real complexity without collapsing it. The name
+      sets the aspiration for what these fields are meant to cultivate.
+    </p>
+
+    <p>
+      Athena is deliberately small and practice-led. Rather than scaling a fixed
+      programme, it runs developmental fields, watches closely what happens in them,
+      and lets the design evolve from evidence rather than theory. Each field is
+      both an offering to the people in it and a study of how human growth is best
+      supported &mdash; the prototype from which EvoPaideia's wider practice is drawn.
+    </p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!-- Developmental Arc                       -->
+<!-- ════════════════════════════════════════ -->
+<section>
+  <div class="ep-section">
+    <p class="ep-label">Stage-Sensitivity</p>
+    <h2>The Developmental Arc</h2>
+    <p class="ep-subtitle">What growth needs changes across the span of a life</p>
+
+    <p>
+      To be stage-sensitive is to recognise that the support which helps a child
+      is not the support which helps an adolescent, a maturing adult, or an elder.
+      Each phase of life has its own developmental task, its own gifts, and its own
+      characteristic ways of getting stuck. EvoPaideia's long-term aspiration is to
+      hold the <em>whole arc</em> &mdash; an educational ecosystem that accompanies a
+      person from childhood through elderhood, rather than abandoning them once
+      formal schooling ends.
+    </p>
+
+    <div class="ep-arc">
+      <div class="ep-arc-stage">
+        <span class="ep-arc-tag">Childhood</span>
+        <h4>Forming the ground</h4>
+        <p>
+          The work of belonging, trust, play, and wonder. Here development is
+          protected and invited, not instructed &mdash; the soil in which everything
+          later will grow is laid down in relationship and safety.
+        </p>
+      </div>
+      <div class="ep-arc-stage">
+        <span class="ep-arc-tag">Youth</span>
+        <h4>Finding a voice</h4>
+        <p>
+          The task of identity, agency, and meaning. Young people need fields that
+          take their questions seriously and offer real responsibility &mdash;
+          mentors and communities worth belonging to, not just content to absorb.
+        </p>
+      </div>
+      <div class="ep-arc-stage">
+        <span class="ep-arc-tag">Adulthood</span>
+        <h4>Meeting complexity</h4>
+        <p>
+          The terrain Athena works in most directly: adults navigating transitions,
+          holding contradiction, and growing the capacity to act wisely amid systems
+          too large to control. This is where developmental fields earn their keep.
+        </p>
+      </div>
+      <div class="ep-arc-stage">
+        <span class="ep-arc-tag">Elderhood</span>
+        <h4>Carrying it forward</h4>
+        <p>
+          The task of integration, perspective, and transmission. The most developed
+          members of a community become the field for others &mdash; stewards of a
+          living tradition, passing it on so it can be renewed rather than merely
+          preserved.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      The arc is a horizon, not a claim of completeness. EvoPaideia begins where it
+      can begin &mdash; with adults, through Athena &mdash; and grows toward the full
+      span as the practice deepens and the people to carry it emerge.
+    </p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!-- Who It's For                            -->
+<!-- ════════════════════════════════════════ -->
+<section>
+  <div class="ep-section">
+    <p class="ep-label">Orientation</p>
+    <h2>Who EvoPaideia Is For</h2>
+    <p class="ep-subtitle">People and communities at a growth edge</p>
+
+    <p>
+      Developmental work is not for everyone at every moment &mdash; and that honesty
+      is part of the practice. EvoPaideia speaks most directly to those who sense that
+      their current way of meeting the world is being outgrown, and who are willing to
+      let that be true. In practice, several kinds of people find their way here.
+    </p>
+
+    <div class="ep-audience">
+      <div class="ep-audience-card">
+        <h4>Adults in transition</h4>
+        <p>
+          People standing at a threshold &mdash; a change of role, vocation, or
+          life-stage &mdash; who want to grow through it rather than simply survive it.
+        </p>
+      </div>
+      <div class="ep-audience-card">
+        <h4>Builders of regenerative work</h4>
+        <p>
+          Those designing the next civilization &mdash; in the EvoBioSys network and
+          beyond &mdash; who know their projects can only develop as far as they have.
+        </p>
+      </div>
+      <div class="ep-audience-card">
+        <h4>Facilitators &amp; educators</h4>
+        <p>
+          Mentors, teachers, and culture-workers looking for a developmental language
+          and a field-tending craft that honours the whole person.
+        </p>
+      </div>
+      <div class="ep-audience-card">
+        <h4>Communities &amp; collectives</h4>
+        <p>
+          Groups that want to grow together &mdash; to become a developmental field
+          for their own members rather than relying on outside instruction.
+        </p>
+      </div>
+    </div>
+
+    <div class="ep-highlight-line">
+      The common thread is not a credential or a career stage. It is readiness
+      &mdash; the willingness to be met where you are and to risk becoming more.
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!-- Principles                              -->
+<!-- ════════════════════════════════════════ -->
+<section class="ep-section-alt">
+  <div class="ep-section">
+    <p class="ep-label">Commitments</p>
+    <h2>Principles</h2>
+    <p class="ep-subtitle">The convictions that shape every field</p>
+
+    <p>
+      These are not rules to be enforced but commitments that orient the work.
+      Each one names a choice EvoPaideia makes when the easier path would be to do
+      what conventional education does by default.
+    </p>
+
+    <ul class="ep-principles">
+      <li class="ep-principle">
+        <h4><span class="ep-pip"></span> Conditions over content</h4>
+        <p>
+          We tend the soil rather than installing the plant. The first question is
+          never &ldquo;what should they learn?&rdquo; but &ldquo;what would let growth
+          happen here?&rdquo;
+        </p>
+      </li>
+      <li class="ep-principle">
+        <h4><span class="ep-pip"></span> The whole person</h4>
+        <p>
+          Cognitive, emotional, somatic, relational, and spiritual dimensions are
+          treated as one. Faithful to the original meaning of <em>paideia</em>, never
+          reducing a person to their intellect.
+        </p>
+      </li>
+      <li class="ep-principle">
+        <h4><span class="ep-pip"></span> Meet, don't force</h4>
+        <p>
+          Development cannot be coerced. We begin where a person actually is and
+          offer what their stage needs &mdash; never pulling on the seed to make it
+          grow faster.
+        </p>
+      </li>
+      <li class="ep-principle">
+        <h4><span class="ep-pip"></span> Sovereignty and belonging</h4>
+        <p>
+          Grounded in Mutual Holarchic Sovereignty: a person is both a whole and a
+          part. Growth honours autonomy and community at once, never sacrificing one
+          for the other.
+        </p>
+      </li>
+      <li class="ep-principle">
+        <h4><span class="ep-pip"></span> Relationship as medium</h4>
+        <p>
+          Knowledge worth keeping is transmitted through relationship, not delivered
+          through instruction. The bond between people is where the real teaching lives.
+        </p>
+      </li>
+      <li class="ep-principle">
+        <h4><span class="ep-pip"></span> Depth over scale</h4>
+        <p>
+          We build slowly and well, valuing practice over theory and lineage over
+          reach. A tradition that lasts is worth more than a programme that spreads
+          and hollows.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!-- Questions                               -->
+<!-- ════════════════════════════════════════ -->
+<section>
+  <div class="ep-section">
+    <p class="ep-label">Questions</p>
+    <h2>Common Questions</h2>
+    <p class="ep-subtitle">What people ask when they first encounter the idea</p>
+
+    <div class="ep-faq">
+      <div class="ep-faq-item">
+        <h4>Is this a school or a course I can enrol in?</h4>
+        <p>
+          No. EvoPaideia is a holon &mdash; a body of practice &mdash; not an
+          institution. Its first concrete form is Athena, which runs developmental
+          fields for adults. There is no fixed curriculum to enrol in; there are
+          conditions to be invited into.
+        </p>
+      </div>
+      <div class="ep-faq-item">
+        <h4>What exactly is a &ldquo;developmental field&rdquo;?</h4>
+        <p>
+          A set of conditions &mdash; relationships, practices, provocations, and
+          reflective spaces &mdash; arranged so that genuine growth becomes possible.
+          It is the difference between a classroom that transmits information and an
+          environment that calls forth development in the people who enter it.
+        </p>
+      </div>
+      <div class="ep-faq-item">
+        <h4>How is this different from coaching or therapy?</h4>
+        <p>
+          It shares some ground with both but is neither. The frame is developmental
+          and educational rather than clinical or performance-focused: the question
+          is not how to fix a problem or hit a goal, but what is trying to grow in a
+          person, and what conditions would let it &mdash; held in community rather
+          than only one-to-one.
+        </p>
+      </div>
+      <div class="ep-faq-item">
+        <h4>Why does it sit inside EvoBioSys rather than stand alone?</h4>
+        <p>
+          Because living systems can only evolve as far as the people within them
+          have developed. EvoPaideia supplies the wider EvoBioSys network with its
+          deepest input &mdash; developing people &mdash; just as that network gives
+          EvoPaideia a living context to grow people for. Each is a whole; each is a
+          part of the other.
+        </p>
+      </div>
+      <div class="ep-faq-item">
+        <h4>Is it finished? Can I see results?</h4>
+        <p>
+          It is deliberately early and practice-led, built on a generational
+          timescale &mdash; slowly, well, and in a way
+          others can carry forward. What exists now is the philosophy, the
+          field-tending method, and Athena as the place where both are being tested
+          in practice.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- ════════════════════════════════════════ -->
 <!-- Legacy Vision                           -->
@@ -597,7 +1350,7 @@ permalink: /holons/evopaideia/
     <p class="ep-subtitle">A life's work spanning generations</p>
 
     <p>
-      EvoPaideia is tagged <strong>#my-legacy</strong> in the EvoBioSys system.
+      EvoPaideia is a life's-work commitment within the EvoBioSys system.
       This is not a project with a deadline. It is a lifelong commitment to creating
       educational structures that outlast any single contributor &mdash; structures
       that can be inherited, adapted, and deepened by future generations.
@@ -650,6 +1403,87 @@ permalink: /holons/evopaideia/
       <span class="ep-conn-tag">Community Hubs</span>
       <span class="ep-conn-tag">World Lore</span>
     </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!-- Related Holons                          -->
+<!-- ════════════════════════════════════════ -->
+<section>
+  <div class="ep-section">
+    <p class="ep-label">Ecosystem</p>
+    <h2>Related Holons</h2>
+    <p class="ep-subtitle">Where EvoPaideia meets the rest of the organism</p>
+
+    <p>
+      EvoPaideia does not develop people in a vacuum. It is woven into the wider
+      EvoBioSys network &mdash; drawing on its concepts, growing people for its
+      work, and sharing its regenerative voice.
+    </p>
+
+    <div class="ep-related">
+      <a class="ep-related-card" href="/holons/community-hubs/">
+        <h4>Community Hubs</h4>
+        <p>Places where developmental fields can take root in living community.</p>
+      </a>
+      <a class="ep-related-card" href="/holons/world-lore/">
+        <h4>World Lore</h4>
+        <p>Cultural and historical depth &mdash; the living memory growth draws on.</p>
+      </a>
+      <a class="ep-related-card" href="/holons/mhs/">
+        <h4>Mutual Holarchic Sovereignty</h4>
+        <p>The principle beneath the practice: every person a whole and a part.</p>
+      </a>
+      <a class="ep-related-card" href="/holons/collective/">
+        <h4>EvoBioSys Collective</h4>
+        <p>The community of practice EvoPaideia helps develop and is held by.</p>
+      </a>
+      <a class="ep-related-card" href="/holons/">
+        <h4>All Holons</h4>
+        <p>The full EvoBioSys network of which EvoPaideia is one living part.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════ -->
+<!-- Participate                             -->
+<!-- ════════════════════════════════════════ -->
+<section id="participate" class="ep-section-alt">
+  <div class="ep-section">
+    <p class="ep-label">Take Part</p>
+    <h2>Participate</h2>
+    <p class="ep-subtitle">Ways to enter the field</p>
+
+    <div class="ep-cta">
+      <h3>Grow with EvoPaideia</h3>
+      <p>
+        EvoPaideia grows through people, not enrolment. If the developmental wager
+        resonates &mdash; that a more alive world asks for more fully developed people
+        &mdash; there are several ways to step closer.
+      </p>
+      <div class="ep-cta-ways">
+        <div class="ep-cta-way">
+          <h4>Enter a field</h4>
+          <p>Join an Athena developmental field as a participant and meet your own growth edge.</p>
+        </div>
+        <div class="ep-cta-way">
+          <h4>Tend a field</h4>
+          <p>Bring facilitation or culture-work craft and help hold conditions for others.</p>
+        </div>
+        <div class="ep-cta-way">
+          <h4>Carry it forward</h4>
+          <p>Help build the lineage &mdash; the practice meant to outlast any single contributor.</p>
+        </div>
+      </div>
+    </div>
+
+    <blockquote>
+      <p>A tradition is not inherited by being told. It is inherited by being
+      practised &mdash; and then handed on, renewed, to the next who are ready.</p>
+    </blockquote>
   </div>
 </section>
 

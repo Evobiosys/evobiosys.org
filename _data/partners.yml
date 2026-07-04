@@ -5,21 +5,7 @@
 # Status: active, tbc, past
 # Used by: /partners/, /about/, footer, anywhere via {{ site.data.partners }}
 
-clients:
-  - name: Alia Tall-Khatib
-    role: Co-steward of Soaro
-    org: Soaro Stewardship
-    badge: Stewardship
-    description: >-
-      Co-steward of Soaro. Alia brings deep expertise in collaborative resource
-      allocation, shared outcome design, and relationship-led consulting.
-      Together we are building the Soaro Five framework and pursuing $3M in
-      impact funding.
-    holons:
-      - Soaro Stewardship
-      - Soaro MVP
-    link: /holons/soaro/
-    status: active
+clients: []
 
 partners:
   - name: Roberto Valenti

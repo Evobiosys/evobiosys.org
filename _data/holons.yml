@@ -54,14 +54,6 @@ bio:
   label: Bio — Living
   subtitle: Stewardship, consulting, social finance
   holons:
-    - name: Soaro
-      slug: soaro
-      status: active
-      description: Stewardship partnership & collaborative consulting
-      sub_holons:
-        - name: Soaro MVP
-          description: Minimum viable product for the Soaro platform
-
     - name: EvoBioSys Collective
       slug: collective
       status: active
