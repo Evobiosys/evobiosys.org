@@ -103,15 +103,16 @@ sys:
 
     - name: idea2.life
       slug: idea2life
-      status: legacy
-      description: Sovereign life infrastructure
+      status: active
+      description: Venture engine — idea-to-life pipeline for founders
+      link: https://idea2.life
       sub_holons:
-        - name: Signal Hub
-          description: Signal Orbit messaging
-        - name: Jakaja-Matrix
-          description: Self-hosted Matrix server
-        - name: best hosting
-          description: Private DNS & hosting
+        - name: Wondermachine
+          description: Agentic engine that runs the pipeline
+        - name: idea2Spiral (i2S)
+          description: VisionCasting referral funnel with Manuel Spornberger
+        - name: idea2.site
+          description: Gallery of ventures already spun up
 
     - name: semantic web
       status: vision
