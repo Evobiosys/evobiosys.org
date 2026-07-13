@@ -1,0 +1,363 @@
+---
+layout: null
+title: "Mutual Holarchic Sovereignty — EvoBioSys pitch"
+description: >-
+  MHS is the political philosophy running under every EvoBioSys holon: nested,
+  reciprocal sovereignty at every scale — individual, collective,
+  civilizational. A framework, not a product. Concept-stage, honestly.
+permalink: /pitch/mhs/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mutual Holarchic Sovereignty — EvoBioSys pitch</title>
+  <meta name="description" content="MHS is the political philosophy running under every EvoBioSys holon: nested, reciprocal sovereignty at every scale — individual, collective, civilizational.">
+  <link rel="canonical" href="https://evobiosys.org/pitch/mhs/">
+<style>
+  :root{
+    --paper:#ECEAE3;
+    --paper-2:#E2DFD5;
+    --ink:#21251F;
+    --ink-2:#585B50;
+    --ink-3:#8B8D80;
+    --accent:#5B6FD1;
+    --accent-deep:#3F4FA0;
+    --rail:#1C4B5E;
+    --night:#12172B;
+    --night-2:#0D1120;
+    --night-ink:#E9E5DA;
+    --night-ink-2:#A3AAD0;
+    --moss:#5A6B4F;
+    --disp:"Futura","Century Gothic","Avenir Next","Avenir",sans-serif;
+    --body:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+  body{ background:var(--paper); color:var(--ink); font-family:var(--body); font-size:17px; line-height:1.65; margin:0; }
+  ::selection{background:var(--accent); color:var(--paper)}
+
+  nav.rail{ position:fixed; top:0; left:0; bottom:0; width:216px; padding:28px 0 28px 28px; box-sizing:border-box; display:flex; flex-direction:column; gap:0; z-index:50; }
+  nav.rail .brand{ font-family:var(--disp); font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); margin-bottom:26px; line-height:1.5; }
+  nav.rail .brand b{color:var(--accent-deep); font-weight:600}
+  nav.rail .line{ position:relative; flex:1; display:flex; flex-direction:column; justify-content:space-between; padding-left:18px; }
+  nav.rail .line::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:2px; background:var(--ink-3); opacity:.45; }
+  nav.rail .line .progress{ position:absolute; left:5px; top:6px; width:2px; height:0; background:var(--accent-deep); transition:height .15s linear; }
+  nav.rail a{ position:relative; display:block; text-decoration:none; font-family:var(--disp); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2); padding:4px 0; }
+  nav.rail a::before{ content:""; position:absolute; left:-17.5px; top:50%; transform:translateY(-50%); width:7px; height:7px; border-radius:50%; background:var(--paper); border:2px solid var(--ink-3); transition:background .2s,border-color .2s; }
+  nav.rail a:hover{color:var(--ink)}
+  nav.rail a.on{color:var(--accent-deep); font-weight:600}
+  nav.rail a.on::before{background:var(--accent-deep); border-color:var(--accent-deep)}
+  nav.rail a:focus-visible{outline:2px solid var(--accent-deep); outline-offset:2px}
+  nav.rail .nav-foot{margin-top:24px; display:flex; flex-direction:column; gap:7px}
+  nav.rail .nav-foot a{ font-family:var(--disp); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); text-decoration:none; padding:2px 0; }
+  nav.rail .nav-foot a::before{display:none}
+  nav.rail .nav-foot a:hover{color:var(--accent-deep)}
+  main{margin-left:216px}
+
+  section{padding:88px 56px; box-sizing:border-box}
+  .inner{max-width:720px; margin:0 auto}
+  .inner.wide{max-width:960px}
+  .station{ display:inline-block; background:var(--rail); color:#F4F2EA; font-family:var(--disp); font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; padding:7px 14px 6px; border-radius:4px; margin-bottom:22px; }
+  h2{ font-family:var(--disp); font-weight:500; font-size:clamp(28px,4vw,40px); line-height:1.12; letter-spacing:.005em; margin:0 0 22px; text-wrap:balance; }
+  p{max-width:65ch; margin:0 0 18px}
+  .lede{font-size:20px; line-height:1.6; color:var(--ink)}
+  .muted{color:var(--ink-2)}
+  .de{font-style:italic}
+  em{font-style:italic}
+  .accent{color:var(--accent-deep)}
+  .k{font-family:var(--mono); font-size:.85em; letter-spacing:.02em}
+
+  .rv{opacity:0; transform:translateY(14px); transition:opacity .6s ease,transform .6s ease}
+  .rv.in{opacity:1; transform:none}
+  @media (prefers-reduced-motion:reduce){ .rv{opacity:1; transform:none; transition:none} }
+  @media print{ .rv{opacity:1; transform:none} nav.rail{display:none} main{margin-left:0} }
+
+  header.hero{ min-height:min(92vh,980px); display:flex; flex-direction:column; justify-content:center; padding:64px 56px 200px; box-sizing:border-box; position:relative; overflow:hidden; }
+  .hero .inner{max-width:840px; margin:0 auto; width:100%}
+  .hero .hi{ font-family:var(--disp); font-weight:500; font-size:clamp(64px,11vw,132px); line-height:1; letter-spacing:-.01em; margin:0 0 30px; color:var(--ink); }
+  .hero .hi .dot{color:var(--accent-deep)}
+  .hero .sub{font-size:clamp(19px,2.4vw,24px); line-height:1.55; max-width:34em; margin-bottom:14px}
+  .hero .tag{ font-family:var(--disp); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); margin-bottom:44px; }
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap}
+  .btn{ font-family:var(--disp); font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; padding:14px 24px 13px; border-radius:4px; display:inline-block; }
+  .btn.solid{background:var(--accent-deep); color:#F6F3EC}
+  .btn.solid:hover{background:var(--accent)}
+  .btn.ghost{color:var(--ink); border:1.5px solid var(--ink-2)}
+  .btn.ghost:hover{border-color:var(--ink); background:var(--paper-2)}
+  .btn:focus-visible{outline:2px solid var(--accent-deep); outline-offset:3px}
+
+  /* hero decoration: concentric sovereignty rings */
+  .hero-rings{position:absolute; left:0; right:0; bottom:-40px; height:260px; pointer-events:none; display:flex; align-items:center; justify-content:center}
+  .hero-rings svg{width:340px; height:260px; display:block}
+  .hero-rings circle{fill:none; stroke:var(--rail); stroke-width:1.6; opacity:0; animation:ringin 1s ease-out forwards}
+  .hero-rings circle.lead{stroke:var(--accent-deep)}
+  .hero-rings circle:nth-child(1){animation-delay:.1s}
+  .hero-rings circle:nth-child(2){animation-delay:.32s}
+  .hero-rings circle:nth-child(3){animation-delay:.54s}
+  @keyframes ringin{ from{opacity:0; transform:scale(.8)} to{opacity:1; transform:scale(1)} }
+  @media (prefers-reduced-motion:reduce){ .hero-rings circle{animation:none; opacity:1} }
+  .hero-rings text{ font-family:var(--disp); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; fill:var(--ink-2); }
+
+  .tiles{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:36px 0 8px}
+  .tile{ background:var(--paper-2); border-radius:6px; padding:22px 20px 18px; border-top:3px solid var(--rail); }
+  .tile.hot{border-top-color:var(--accent-deep)}
+  .tile .big{ font-family:var(--disp); font-weight:500; font-size:30px; line-height:1.15; margin-bottom:8px; letter-spacing:0; }
+  .tile .big small{font-size:15px; letter-spacing:.04em}
+  .tile .cap{font-size:14.5px; line-height:1.5; color:var(--ink-2)}
+  .fineprint{font-size:13px; color:var(--ink-3); margin-top:14px}
+
+  section.night{background:var(--night); color:var(--night-ink)}
+  section.night h2{color:var(--night-ink)}
+  section.night .muted{color:var(--night-ink-2)}
+  section.night .station{background:var(--accent-deep); color:#F4F2EA}
+  .layers{display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 6px}
+  .chip{ font-family:var(--mono); font-size:12px; letter-spacing:.02em; color:var(--night-ink-2); border:1px solid #35406B; border-radius:99px; padding:5px 12px; }
+
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:34px}
+  .card{background:var(--paper-2); border-radius:8px; padding:24px 22px}
+  .card h3{ font-family:var(--disp); font-weight:600; font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-deep); margin:0 0 12px; }
+  .card p{font-size:15px; line-height:1.6; margin-bottom:0}
+  .card p + p{margin-top:10px}
+
+  .wins{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:32px}
+  .win{border-top:3px solid var(--moss); padding-top:16px}
+  .win h3{font-family:var(--disp); font-weight:500; font-size:20px; margin:0 0 8px}
+  .win p{font-size:15px; color:var(--ink-2); margin:0}
+  .integral{ margin-top:36px; background:var(--paper-2); border-radius:8px; padding:22px 24px; font-size:16.5px; }
+
+  .now-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:32px}
+  .now{background:var(--paper-2); border-radius:8px; padding:22px}
+  .now h3{font-family:var(--disp); font-weight:600; font-size:13px; letter-spacing:.12em; text-transform:uppercase; margin:0 0 12px; color:var(--rail)}
+  .now ul{margin:0; padding-left:18px; font-size:15px; color:var(--ink-2)}
+  .now li{margin-bottom:8px}
+  .now li b{color:var(--ink); font-weight:600}
+
+  .vision-line{ font-family:var(--disp); font-weight:500; font-size:clamp(24px,3.4vw,34px); line-height:1.3; max-width:22em; text-wrap:balance; margin:26px 0 0; }
+  .vision-line .accent{color:var(--accent-deep)}
+  section.talk{background:var(--rail); color:#F0EEE5; padding-bottom:120px}
+  section.talk h2{color:#F0EEE5}
+  section.talk .station{background:var(--accent-deep); color:#F4F2EA}
+  section.talk p{color:#C9D3D3}
+  section.talk .who{font-family:var(--disp); font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:#F0EEE5; margin-bottom:6px}
+  section.talk .btn.solid{background:var(--accent-deep); color:#F6F3EC}
+  section.talk .btn.ghost{color:#F0EEE5; border-color:#7A99A3}
+  section.talk .btn.ghost:hover{background:#24576B; border-color:#F0EEE5}
+  footer{background:var(--rail); color:#7A99A3; font-size:12.5px; padding:0 56px 40px; text-align:left}
+  footer .inner{max-width:720px; margin:0 auto; border-top:1px solid #2E5A6B; padding-top:18px; line-height:2}
+  footer a{color:#A8C0C8}
+  footer a:hover{color:#F0EEE5}
+
+  blockquote{ border-left:3px solid var(--accent-deep); padding-left:16px; margin:22px 0; font-style:italic; color:var(--ink-2); max-width:60ch; }
+
+  @media (max-width:1060px){
+    nav.rail{ position:sticky; top:0; bottom:auto; width:auto; height:auto; flex-direction:row; align-items:center; gap:18px; padding:12px 20px; background:color-mix(in srgb,var(--paper) 92%,transparent); backdrop-filter:blur(6px); border-bottom:1px solid var(--paper-2); overflow-x:auto; }
+    nav.rail .brand{margin:0; white-space:nowrap}
+    nav.rail .line{flex-direction:row; gap:18px; padding-left:0; flex:initial}
+    nav.rail .line::before,nav.rail .line .progress{display:none}
+    nav.rail a{white-space:nowrap; padding:4px 0}
+    nav.rail .nav-foot{flex-direction:row; margin-top:0; gap:14px}
+    nav.rail a::before{display:none}
+    main{margin-left:0}
+    section,header.hero{padding-left:24px; padding-right:24px}
+    footer{padding-left:24px; padding-right:24px}
+  }
+  @media (max-width:820px){
+    .tiles,.cards,.wins{grid-template-columns:1fr}
+    .now-grid{grid-template-columns:1fr}
+    header.hero{min-height:min(74vh,760px)}
+  }
+</style>
+</head>
+<body>
+<nav class="rail" aria-label="Sections">
+  <div class="brand">MHS<br><b>/ EvoBioSys</b></div>
+  <div class="line">
+    <div class="progress" id="railProgress"></div>
+    <a href="#hello">Servus</a>
+    <a href="#problem">Why sovereignty nests</a>
+    <a href="#dimensions">Three dimensions</a>
+    <a href="#practice">MHS in practice</a>
+    <a href="#fields">Flourishing Fields</a>
+    <a href="#stage">Where it stands</a>
+    <a href="#talk">Let's talk</a>
+  </div>
+  <div class="nav-foot">
+    <a href="https://evobiosys.org">&larr; evobiosys.org</a>
+    <a href="/holons/mhs/">Holon page &rarr;</a>
+  </div>
+</nav>
+
+<main>
+
+<header class="hero" id="hello">
+  <div class="inner">
+    <h1 class="hi">Servus<span class="dot">.</span></h1>
+    <p class="sub">Mutual Holarchic Sovereignty is the political philosophy running underneath every EvoBioSys holon — not a product to build, but the operating logic the others run on. My sovereignty strengthens yours.</p>
+    <p class="tag">MHS — practice &amp; framework · Jakob's foundational IP, tagged #my-legacy</p>
+    <div class="cta-row">
+      <a class="btn solid" href="/holons/mhs/">Read the holon page ↗</a>
+      <a class="btn ghost" href="#dimensions">The three dimensions</a>
+      <a class="btn ghost" href="#talk">Let's talk</a>
+    </div>
+  </div>
+  <div class="hero-rings" aria-hidden="true">
+    <svg viewBox="0 0 340 260" preserveAspectRatio="xMidYMid meet">
+      <circle cx="170" cy="130" r="34"/>
+      <circle class="lead" cx="170" cy="130" r="72"/>
+      <circle cx="170" cy="130" r="112"/>
+      <text x="170" y="132" text-anchor="middle">You</text>
+    </svg>
+  </div>
+</header>
+
+<section id="problem">
+  <div class="inner rv">
+    <span class="station">01 · Why sovereignty nests</span>
+    <h2>Not zero-sum. Not libertarian isolation. Not communitarian absorption.</h2>
+    <p class="lede"><em>Holarchic</em> comes from <em>holon</em> (whole-part) and <em>archic</em> (governance): governance through nested wholes. Each circle of belonging — individual, community, region, civilization — has its own authority and rhythm, while participating in larger coordinating circles that do not command.</p>
+    <blockquote>&ldquo;Here is my best shot at the essential requirements for a (re)generative civilization: 1. Nine Essential Physical Requirements, 2. Holarchic Mutual Sovereignty, 3. Integral Theory as extension of natural sciences and big history, We-Space and sourcing.&rdquo;</blockquote>
+    <p><em>Mutual</em> means this sovereignty is reciprocal. My sovereignty strengthens yours; your flourishing enables mine. This is the third way: autonomy <em>through</em> relationship, not instead of it.</p>
+  </div>
+</section>
+
+<section class="night" id="dimensions">
+  <div class="inner wide rv">
+    <span class="station">02 · Three dimensions</span>
+    <h2>Every scale, at once. Each complete in itself.</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Individual</h3>
+        <p>The capacity to act from inner authority rather than external compulsion. Without sovereign individuals, collectives become coercive.</p>
+      </div>
+      <div class="card">
+        <h3>Collective</h3>
+        <p>Groups that govern themselves through consent, not command — the EvoBioSys Collective, SoFin Collective, Integrales Wien as practice grounds.</p>
+      </div>
+      <div class="card">
+        <h3>Civilizational</h3>
+        <p>Multi-polar, starting from EUropa's perspective. EU-sovereign, privacy-first technology and infrastructure as one pole among many.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="practice" style="background:var(--paper-2)">
+  <div class="inner rv">
+    <span class="station">03 · MHS in practice</span>
+    <h2>Not a standalone project — the logic every holon runs on.</h2>
+    <div class="wins">
+      <div class="win">
+        <h3>Collective</h3>
+        <p>A federation of freelancers, fair and simple rates, resonance and veto. Each member is sovereign; the collective is sovereign; both reinforce each other.</p>
+      </div>
+      <div class="win">
+        <h3>EvoPaideia</h3>
+        <p>Developmental education <em>is</em> sovereignty education — cultivating the inner capacities sovereignty requires.</p>
+      </div>
+      <div class="win">
+        <h3>SoFin</h3>
+        <p>Financial sovereignty — not dependence on a fund, but the capacity to resource oneself and one's community.</p>
+      </div>
+      <div class="win">
+        <h3>kidur</h3>
+        <p>Technological sovereignty — EU-sovereign, privacy-first, open-source infrastructure as lived, not just stated, reality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fields">
+  <div class="inner rv">
+    <span class="station">04 · Flourishing Fields</span>
+    <h2>Developmental hothouses, not withdrawal.</h2>
+    <p class="lede">The long-term expression of MHS: spaces, physical and digital, where sovereign individuals gather, co-create, and amplify each other's gifts. Not utopian communities that withdraw from the world — hothouses that engage with it more fully.</p>
+    <p>The practice includes EUropean affluent entrepreneurs with heart, clearing language, we-space practices, and the ongoing experiment of living mutual holarchic sovereignty in everyday relationships. No venue, format, or pilot exists yet — this remains vision-stage.</p>
+  </div>
+</section>
+
+<section id="stage" style="background:var(--paper-2)">
+  <div class="inner rv">
+    <span class="station">05 · Where it stands</span>
+    <h2>Idea, deliberately. Its life is measured by adoption, not by shipping.</h2>
+    <div class="now-grid">
+      <div class="now">
+        <h3>Already real</h3>
+        <ul>
+          <li><b>Live holon page</b> — the three-dimension framework, connected-holons map, and Flourishing Fields vision fully published.</li>
+          <li><b>Confirmed influence on the Wondermachine</b> — MHS is the direct design reason the Wondermachine LLM stack exists.</li>
+        </ul>
+      </div>
+      <div class="now">
+        <h3>Honestly missing</h3>
+        <ul>
+          <li><b>No dedicated planning workspace</b> exists beyond the public page and Jakob's own notes.</li>
+          <li><b>No Flourishing Fields pilot</b> — no venue, format, or participant list yet.</li>
+          <li><b>No economic engine — and it shouldn't have one.</b> MHS is a substrate other holons run on, not a holon competing for revenue alongside them.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="talk" id="talk">
+  <div class="inner rv">
+    <span class="station">06 · Let's talk</span>
+    <h2>This is philosophy other holons implement. Talk with the ones building it.</h2>
+    <p style="max-width:56ch">MHS itself isn't a build target — its build happens through Collective, SoFin, kidur, EvoPaideia, and Wondermachine. If Flourishing Fields resonates as a concrete next step, or you want to help scope what a first gathering would require, reach out.</p>
+    <p class="who" style="margin-top:34px">Jakob Possert-Bienzle · EvoBioSys · Vienna</p>
+    <div class="cta-row" style="margin-top:14px">
+      <a class="btn solid" href="mailto:connect@evobiosys.org?subject=MHS%20Pitch">Write to Jakob</a>
+      <a class="btn ghost" href="#hello">Back to the start</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">Mutual Holarchic Sovereignty · foundational philosophy, tag #my-legacy. No independent economic engine — and none is expected. © 2026 EvoBioSys.<br><a href="/holons/mhs/">Holon page →</a> · <a href="/pitch/kidur/">Sibling pitches</a> · <a href="https://evobiosys.org">evobiosys.org</a></div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.rail a[href^='#']"));
+  var targets = links.map(function(a){ return document.querySelector(a.getAttribute("href")); });
+  function spy(){
+    var y = window.scrollY + window.innerHeight*0.35, idx = 0;
+    targets.forEach(function(t,i){ if(t && t.offsetTop <= y) idx = i; });
+    links.forEach(function(a,i){ a.classList.toggle("on", i===idx); });
+    var p = document.getElementById("railProgress");
+    if(p){
+      var doc = document.documentElement;
+      var frac = window.scrollY / Math.max(1, doc.scrollHeight - window.innerHeight);
+      p.style.height = (frac*100) + "%";
+    }
+  }
+  window.addEventListener("scroll", spy, {passive:true});
+  spy();
+
+  var rvEls = Array.prototype.slice.call(document.querySelectorAll(".rv"));
+  function reveal(){
+    if(!rvEls.length) return;
+    var line = window.innerHeight * 0.92;
+    rvEls = rvEls.filter(function(el){
+      if(el.getBoundingClientRect().top < line){ el.classList.add("in"); return false; }
+      return true;
+    });
+  }
+  window.addEventListener("scroll", reveal, {passive:true});
+  window.addEventListener("resize", reveal, {passive:true});
+  reveal();
+  var rvTimer = setInterval(function(){
+    reveal();
+    if(!rvEls.length) clearInterval(rvTimer);
+  }, 350);
+})();
+</script>
+
+</body>
+</html>
