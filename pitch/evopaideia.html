@@ -706,7 +706,7 @@ permalink: /pitch/evopaideia/
   "use strict";
 
   /* ---------- scroll-spy + rail progress ---------- */
-  var links = Array.prototype.slice.call(document.querySelectorAll("nav.rail a"));
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.rail a[href^='#']"));
   var targets = links.map(function(a){ return document.querySelector(a.getAttribute("href")); });
   function spy(){
     var y = window.scrollY + window.innerHeight*0.35, idx = 0;
