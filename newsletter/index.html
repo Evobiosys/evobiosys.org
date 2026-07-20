@@ -1,0 +1,407 @@
+---
+layout: default
+title: "Newsletter — EvoBioSys"
+description: >-
+  The EvoBioSys changelog and holon roster — new holon pages, corrected
+  frameworks, and new publications, published as they ship, alongside every
+  project holon in the network.
+permalink: /newsletter/
+---
+
+<style>
+  /* === Newsletter — reuses the Publications "Manuscript / Ink" palette === */
+  .nl-page {
+    --pub-ink: #1d2b24;
+    --pub-ink-soft: #44584d;
+    --pub-ink-faint: #7a8a82;
+    --pub-green: #2d6a4f;
+    --pub-green-light: #40916c;
+    --pub-green-pale: #eef5f1;
+    --pub-amber: #b58a2e;
+    --pub-amber-light: #cda348;
+    --pub-paper: #faf8f3;
+    --pub-paper-warm: #f4efe6;
+    --pub-line: #d8d2c4;
+    --pub-deep: #0f201a;
+  }
+
+  .nl-header {
+    padding: 7rem 2rem 4rem;
+    text-align: center;
+    background: linear-gradient(0deg, var(--color-bg) 0%, var(--pub-paper) 45%, var(--pub-green-pale) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nl-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      repeating-linear-gradient(180deg, transparent, transparent 31px, rgba(45, 106, 79, 0.04) 32px);
+    pointer-events: none;
+  }
+
+  .nl-header h1 {
+    font-size: clamp(2.2rem, 5vw, 3.1rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--pub-deep);
+    position: relative;
+    z-index: 1;
+  }
+
+  .nl-eyebrow {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: rgba(45, 106, 79, 0.08);
+    color: var(--pub-green);
+    border: 1px solid rgba(45, 106, 79, 0.15);
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .nl-lead {
+    font-size: 1.1rem;
+    color: var(--pub-ink-soft);
+    max-width: 640px;
+    margin: 0.75rem auto 0;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+
+  .nl-page .back-link a { color: var(--pub-green); }
+  .nl-page .back-link a:hover { color: var(--pub-green-light); }
+
+  /* Issue list */
+  .nl-issues {
+    padding: 5rem 2rem;
+  }
+
+  .nl-issues-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .issue-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .issue-item {
+    padding: 1.75rem;
+    background: var(--color-white);
+    border: 1px solid var(--pub-line);
+    border-radius: 12px;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .issue-item:hover {
+    border-color: var(--pub-green-light);
+    transform: translateY(-2px);
+  }
+
+  .issue-date {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    background: var(--pub-green-pale);
+    color: var(--pub-green);
+  }
+
+  .issue-item h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--pub-deep);
+    margin-bottom: 0.5rem;
+  }
+
+  .issue-item p {
+    font-size: 0.92rem;
+    color: var(--pub-ink-soft);
+    line-height: 1.7;
+    margin: 0 0 0.75rem;
+  }
+
+  .issue-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--pub-green);
+  }
+</style>
+
+<div class="nl-page">
+
+  <!-- Page Header -->
+  <header class="nl-header">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Newsletter</p>
+    <div class="nl-eyebrow">Building in the open</div>
+    <h1>Newsletter</h1>
+    <p class="nl-lead">
+      A changelog of the EvoBioSys holonic network &mdash; new holon pages, corrected
+      frameworks, and new publications, written up as they ship. No polish added after
+      the fact; this is the same log the team works from.
+    </p>
+  </header>
+
+  <!-- Issues -->
+  <section class="nl-issues">
+    <div class="nl-issues-inner">
+      <ul class="issue-list">
+        <li class="issue-item">
+          <span class="issue-date">20 July 2026</span>
+          <h3>Issue #1 &mdash; Holon pages expand, 9EPhR corrected, Complete Chronology opens</h3>
+          <p>
+            Four holon pages grow out, the Nine Essential Physical Requirements are
+            corrected to their authoritative list, and a new concept publication opens:
+            Complete Chronology.
+          </p>
+          <a class="issue-link" href="/newsletter/issue-1/">Read issue &rarr;</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- All holons -->
+  <section class="section-alt">
+    <div class="container">
+      <p class="section-label">Ecosystem</p>
+      <h2 class="section-title">All holons</h2>
+      <p class="section-subtitle">
+        Every project holon across the three pillars, in brief &mdash; the full roster
+        this changelog draws its entries from. For the complete nested breakdown
+        (sub-holons included), see <a href="/holons/">the Holonic Map</a>.
+      </p>
+
+      <div class="holons-full-grid">
+        <!-- Evo -->
+        <div class="holon-card">
+          <span class="holon-card-badge">Evo</span>
+          <span class="status status-legacy">Legacy</span>
+          <h3><a href="/holons/evopaideia/">EvoPaideia</a></h3>
+          <p>Developmental education &amp; integral learning.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Evo</span>
+          <span class="status status-active">Active</span>
+          <h3><a href="/holons/world-lore/">World Lore</a></h3>
+          <p>Historical knowledge &amp; cultural memory.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Evo</span>
+          <span class="status status-draft">Draft</span>
+          <h3>Aligned European Ideology</h3>
+          <p>Book articulating an aligned European ideology (v0.1).</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Evo</span>
+          <span class="status status-draft">Draft</span>
+          <h3>Universal Policy</h3>
+          <p>Writing project on universal policy frameworks.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Evo</span>
+          <span class="status status-active">Active</span>
+          <h3><a href="/holons/community-hubs/">Community Hubs</a></h3>
+          <p>Local community building umbrella.</p>
+        </div>
+
+        <!-- Bio -->
+        <div class="holon-card">
+          <span class="holon-card-badge">Bio</span>
+          <span class="status status-active">Active</span>
+          <h3><a href="/holons/collective/">EvoBioSys Collective</a></h3>
+          <p>Governance &amp; coordination across EvoBioSys.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Bio</span>
+          <span class="status status-active">Active</span>
+          <h3><a href="/holons/sofin/">SoFin Collective</a></h3>
+          <p>Social finance collective (sofin.bio).</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Bio</span>
+          <span class="status status-vision">Vision</span>
+          <h3>Funding Flow Machine</h3>
+          <p>Financial flow management &amp; visualization system.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Bio</span>
+          <span class="status status-active">Active</span>
+          <h3><a href="/capital/">EvoBioSys Capital</a></h3>
+          <p>The animist investment studio.</p>
+        </div>
+
+        <!-- Sys -->
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-legacy">Legacy</span>
+          <h3><a href="/holons/kidur/">kidur</a></h3>
+          <p>The tech foundation &mdash; foundational binding structure.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-legacy">Legacy</span>
+          <h3><a href="/holons/silknotes/">SilkNotes</a></h3>
+          <p>Interoperating knowledge silos, local-first, open-source.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-vision">Vision</span>
+          <h3>In-Flow(.info)</h3>
+          <p>Flow-state tools: SenseMeet, Heliocalendar, PitchPerfect.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-legacy">Legacy</span>
+          <h3><a href="/holons/idea2life/">idea2.life</a></h3>
+          <p>Sovereign life infrastructure &amp; digital sovereignty.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-vision">Vision</span>
+          <h3>semantic web</h3>
+          <p>Structured knowledge for the living web.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-active">Active</span>
+          <h3>Singular Structure as a Service</h3>
+          <p>Portable desk &amp; personal software registry.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-vision">Vision</span>
+          <h3>Weave.txt / Weave.MD</h3>
+          <p>Text weaving tool for long-form writing.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-vision">Vision</span>
+          <h3>complete browser history</h3>
+          <p>Capturing a complete, searchable personal browsing history.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-vision">Vision</span>
+          <h3>Comprehensive FactChecker Truth Finder</h3>
+          <p>Systematic fact-checking &amp; truth verification.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-vision">Vision</span>
+          <h3>building our own tldraw board</h3>
+          <p>Custom infinite canvas for visual thinking &amp; planning.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-vision">Vision</span>
+          <h3>Update Flow in Outliners</h3>
+          <p>Keeping nested, interconnected notes fresh automatically.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-vision">Vision</span>
+          <h3>Writing in Logseq</h3>
+          <p>Bridging outliner thinking &amp; published prose.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-vision">Vision</span>
+          <h3>Drop into Logseq</h3>
+          <p>Quick-capture &amp; import tools for any source.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-vision">Vision</span>
+          <h3>FOSS replacement for proprietary tools</h3>
+          <p>Free &amp; open-source alternatives to proprietary software.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Sys</span>
+          <span class="status status-active">Active</span>
+          <h3>crypto</h3>
+          <p>Decentralized finance &amp; token economics projects.</p>
+        </div>
+
+        <!-- Personal -->
+        <div class="holon-card">
+          <span class="holon-card-badge">Personal</span>
+          <h3>JaKaja</h3>
+          <p>Joint projects with Kaja &mdash; a partnership that is itself a holon.</p>
+        </div>
+
+        <!-- Cross-cutting -->
+        <div class="holon-card">
+          <span class="holon-card-badge">Policy</span>
+          <span class="status status-vision">Vision</span>
+          <h3>universal access</h3>
+          <p>Universal internet &amp; resource access policy.</p>
+        </div>
+        <div class="holon-card">
+          <span class="holon-card-badge">Funding</span>
+          <span class="status status-active">Active</span>
+          <h3>Getting cloud startup credits</h3>
+          <p>Securing cloud infrastructure credits &amp; startup programs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter / how to follow -->
+  <section id="connect" class="newsletter">
+    <div class="newsletter-inner">
+      <p class="section-label">Stay connected</p>
+      <h2 class="section-title">Follow the changelog</h2>
+      <p class="section-subtitle" style="margin-bottom: 0;">
+        Get each issue as it ships &mdash; new holon pages, corrected frameworks, new
+        publications. No noise.
+      </p>
+
+      <form id="listmonk-form-newsletter" class="newsletter-form">
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+      <p class="newsletter-note">
+        Powered by <a href="https://listmonk.app" target="_blank">Listmonk</a> &middot; Self-hosted, no tracking
+      </p>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="back-link">
+    <a href="/">&larr; Back to EvoBioSys</a>
+    &nbsp;&middot;&nbsp;
+    <a href="/holons/">All holons</a>
+  </div>
+
+</div>
+
+<script>
+  const nlForm = document.getElementById('listmonk-form-newsletter');
+  if (nlForm) {
+    nlForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = nlForm.querySelector('input[name="email"]').value;
+      console.log('Subscribe (newsletter):', email);
+      alert('Thanks! We’ll be in touch at: ' + email);
+    });
+  }
+</script>
