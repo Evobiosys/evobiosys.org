@@ -1,0 +1,167 @@
+---
+layout: default
+title: "Newsletter Issue #1 — EvoBioSys"
+description: >-
+  Issue #1 of the EvoBioSys changelog — holon pages expand, 9EPhR is
+  corrected to its authoritative list, and Complete Chronology opens.
+permalink: /newsletter/issue-1/
+---
+
+<style>
+  /* === Newsletter Issue #1 — reuses the Publications "Manuscript / Ink" palette === */
+  .nli-page {
+    --pub-ink: #1d2b24;
+    --pub-ink-soft: #44584d;
+    --pub-ink-faint: #7a8a82;
+    --pub-green: #2d6a4f;
+    --pub-green-light: #40916c;
+    --pub-green-pale: #eef5f1;
+    --pub-amber: #b58a2e;
+    --pub-amber-light: #cda348;
+    --pub-paper: #faf8f3;
+    --pub-paper-warm: #f4efe6;
+    --pub-line: #d8d2c4;
+    --pub-deep: #0f201a;
+  }
+
+  .nli-header {
+    padding: 7rem 2rem 4rem;
+    text-align: center;
+    background: linear-gradient(0deg, var(--color-bg) 0%, var(--pub-paper) 45%, var(--pub-green-pale) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nli-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      repeating-linear-gradient(180deg, transparent, transparent 31px, rgba(45, 106, 79, 0.04) 32px);
+    pointer-events: none;
+  }
+
+  .nli-header .breadcrumb { position: relative; z-index: 1; }
+  .nli-header .breadcrumb a { color: var(--pub-green); }
+
+  .nli-eyebrow {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: rgba(45, 106, 79, 0.08);
+    color: var(--pub-green);
+    border: 1px solid rgba(45, 106, 79, 0.15);
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .nli-header h1 {
+    font-size: clamp(1.9rem, 4.5vw, 2.7rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--pub-deep);
+    position: relative;
+    z-index: 1;
+  }
+
+  .nli-body {
+    padding: 4rem 2rem 6rem;
+  }
+
+  .nli-body-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .nli-body-inner .prose h2 {
+    color: var(--pub-deep);
+    font-size: 1.3rem;
+    margin-top: 2.5rem;
+  }
+
+  .nli-body-inner .prose p {
+    color: var(--pub-ink-soft);
+    line-height: 1.8;
+  }
+
+  .nli-body-inner .prose ul {
+    color: var(--pub-ink-soft);
+    line-height: 1.8;
+    padding-left: 1.25rem;
+  }
+
+  .nli-body-inner .prose a {
+    color: var(--pub-green);
+    font-weight: 500;
+  }
+
+  .nli-page .back-link a { color: var(--pub-green); }
+  .nli-page .back-link a:hover { color: var(--pub-green-light); }
+</style>
+
+<div class="nli-page">
+
+  <!-- Page Header -->
+  <header class="nli-header">
+    <p class="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/newsletter/">Newsletter</a> &rsaquo; Issue #1</p>
+    <div class="nli-eyebrow">20 July 2026</div>
+    <h1>Issue #1 &mdash; Holon pages expand, 9EPhR corrected, Complete Chronology opens</h1>
+  </header>
+
+  <!-- Body -->
+  <section class="nli-body">
+    <div class="nli-body-inner">
+      <div class="prose">
+        <p>
+          This is Issue #1 of the EvoBioSys newsletter &mdash; a changelog of recent work
+          across the holonic network, not a polished announcement. Three threads moved
+          this cycle.
+        </p>
+
+        <h2>Four holon pages expand</h2>
+        <p>
+          <a href="/holons/community-hubs/">Community Hubs</a>,
+          <a href="/holons/evopaideia/">EvoPaideia</a>,
+          <a href="/holons/world-lore/">World Lore</a>, and
+          <a href="/holons/questhub/">QuestHub</a> all grew out, alongside a sync of the
+          <a href="/holons/">holon index</a> and home page. Each holon page now carries
+          more of its own detail rather than a placeholder summary.
+        </p>
+
+        <h2>9EPhR corrected to its authoritative list</h2>
+        <p>
+          The <a href="/holons/9ephr/">Nine Essential Physical Requirements</a> framework
+          was corrected to its authoritative nine-item list (Water, Food, Shelter, Energy,
+          Transportation, Hygiene &amp; Healthcare, Clothing, Security, Digital). Clothing
+          and Hygiene &amp; Healthcare were then swapped so the rows trace a rough
+          historical progression, and a &ldquo;Learn more &mdash; the eras of human
+          need&rdquo; disclosure was added, distinguishing the Homo erectus base from
+          pre-industrial additions and modern guarantees, and requirement from standard.
+        </p>
+
+        <h2>Complete Chronology opens</h2>
+        <p>
+          A new concept publication opened in <a href="/publications/">Publications</a>:
+          <a href="/publications/complete-chronology/">Complete Chronology</a>. Most
+          knowledge systems keep what was thought and lose when &mdash; and what it
+          followed from. Complete Chronology keeps one timeline across every chat, note,
+          and thought as the primary structure, with pages as views into it and semantic
+          zoom on top. A working intention, honestly partial.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="back-link">
+    <a href="/newsletter/">&larr; All issues</a>
+    &nbsp;&middot;&nbsp;
+    <a href="/">Back to EvoBioSys</a>
+  </div>
+
+</div>
