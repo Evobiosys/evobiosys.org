@@ -14,8 +14,10 @@ partners:
     badge: Technology
     description: >-
       Partner via holons.io on Singular Structure as a Service — the portable
-      desk and personal software registry project. Roberto brings technical
-      depth to the vision of a sovereign, reproducible computing environment.
+      desk and personal software registry, built on holons, that packages
+      EvoBioSys's sovereign infrastructure patterns for others to adopt.
+      Roberto brings technical depth to the vision of a sovereign,
+      reproducible computing environment.
     holons:
       - Singular Structure as a Service
       - holons.io

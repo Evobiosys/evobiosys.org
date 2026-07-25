@@ -122,7 +122,7 @@ sys:
 
     - name: Singular Structure as a Service
       status: active
-      description: Portable desk & personal software registry
+      description: Portable desk & personal software registry, built on holons
 
     - name: Comprehensive FactChecker
       status: vision
