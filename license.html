@@ -41,6 +41,60 @@ permalink: /license/
 
 <section>
   <div class="container">
+    <p class="section-label">Why this license</p>
+    <p>
+      Two reasons drove the choice, and both come down to the same thing: copyleft that acts at the
+      file level rather than swallowing whole works.
+    </p>
+
+    <h2>It fits AI-assisted coding</h2>
+    <p>
+      Most code now gets written with a model in the loop. That makes provenance genuinely blurry.
+      A developer can rarely say with confidence which lines came from a suggestion, which from a
+      pattern the model absorbed, and which they wrote unaided. Under a whole-work copyleft such as
+      the GPL or AGPL, that blurriness becomes a legal risk: if licensed code touches your codebase
+      anywhere, the obligation can reach everything it was combined with, and nobody can prove where
+      the boundary sits.
+    </p>
+    <p>
+      AMPL inherits the MPL's file-level scope, which draws the boundary somewhere a person can
+      actually verify. The obligation attaches to the files that carry EvoBiosys code and stops
+      there. Your own files, and the larger work you assemble, stay under whatever terms you choose.
+      That is a boundary a developer can honour without auditing a model's training data, and it is
+      why this license stays usable in an AI-assisted workflow where stricter copyleft quietly
+      becomes unusable.
+    </p>
+    <p>
+      It cuts the other way too. Code that a model helped write and that lands back in an EvoBiosys
+      project carries the same file-level obligation, no more, so contributing does not require
+      untangling provenance either.
+    </p>
+
+    <h2>It is reciprocal without being prohibitive</h2>
+    <p>
+      Open source works because people give back. The network clause is the reciprocity: if you run
+      a modified version as a service, those modifications go back to the commons rather than
+      disappearing behind an API. The MPL alone left that gap open, which is precisely the gap the
+      Affero clause was written to close, and this license closes it the same way.
+    </p>
+    <p>
+      But reciprocity should be a floor, not a wall. Whole-work copyleft asks for far more than
+      giving back what you took: it reaches into code you wrote yourself and had no obligation to
+      share. That overreach is why so many organizations refuse copyleft outright, and refusing it
+      means they contribute nothing at all. The file-level scope asks for exactly what you built on
+      top of this work and nothing beyond it.
+    </p>
+    <p>
+      The EUR 1 million threshold follows the same logic. It is not a restriction on use and it is
+      not a payment condition. It asks well-funded organizations to make contact before commercial
+      use, so that reciprocity can take a form other than code where code is not what is most
+      needed. Everyone below the threshold carries no such expectation.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
     <p class="section-label">Authoritative source</p>
     <p>
       The GitHub repository
