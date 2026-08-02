@@ -18,7 +18,6 @@
   /* Leaf radii: asymmetric two-corner rounding, the cell-membrane shape family */
   --radius-leaf-a: 1.5rem 0.6rem 1.5rem 0.6rem;
   --radius-leaf-b: 0.6rem 1.5rem 0.6rem 1.5rem;
-  --radius-cell: 1.75rem 0.9rem 1.5rem 0.9rem;
 }
 
 * {
@@ -1293,7 +1292,7 @@ pre {
 /* --- Living pillar map: three cells branching from one root --- */
 
 .holarchy-root {
-  max-width: 720px;
+  max-width: var(--max-width);
   margin: 0 auto -0.5rem;
 }
 
@@ -1392,7 +1391,7 @@ pre {
 }
 
 /* Tendril underline: grows from the left on hover */
-.holon-link .holon-name {
+.holons-pillars .holon-link .holon-name {
   width: fit-content;
   background-image: linear-gradient(var(--color-accent), var(--color-accent));
   background-size: 0% 1px;
@@ -1401,7 +1400,7 @@ pre {
   transition: background-size 0.45s var(--ease-grow);
 }
 
-.holon-link:hover .holon-name {
+.holons-pillars .holon-link:hover .holon-name {
   background-size: 100% 1px;
 }
 
@@ -1486,6 +1485,15 @@ pre {
   .grid-organic .principle-card,
   .holon-link .holon-name,
   .holons-pillars .holon-link::before {
+    transition: none;
+  }
+}
+
+/* Print: reveal everything, whether or not it was scrolled into view */
+@media print {
+  .grow-ready [data-grow] {
+    opacity: 1;
+    transform: none;
     transition: none;
   }
 }
