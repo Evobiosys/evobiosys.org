@@ -1140,3 +1140,350 @@ section {
     text-align: center;
   }
 }
+
+/* ========================================
+   Organic system — the network grows
+   through the page (homepage)
+   ======================================== */
+
+/* --- Hero accent swash: a hand-drawn tendril under the key phrase --- */
+
+.accent-swash {
+  position: relative;
+  white-space: nowrap;
+}
+
+.swash {
+  position: absolute;
+  left: 0;
+  bottom: -0.2em;
+  width: 100%;
+  height: 0.3em;
+  overflow: visible;
+}
+
+.swash path {
+  fill: none;
+  stroke: var(--color-accent-light);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .swash path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: swash-draw 1.1s var(--ease-grow) 0.5s forwards;
+  }
+}
+
+@keyframes swash-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* --- Connective tissue: filaments joining the sections --- */
+
+.filament {
+  width: 60px;
+  margin: -2.75rem auto 1.5rem;
+}
+
+.filament svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.filament path {
+  fill: none;
+  stroke: var(--color-accent-light);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+.filament circle {
+  fill: var(--color-accent-light);
+  opacity: 0.7;
+}
+
+/* --- Organic asymmetry: the principles grid grows in rings --- */
+
+@media (min-width: 901px) {
+  .grid-organic {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.75rem 2rem;
+  }
+
+  .grid-organic .principle-card {
+    grid-column: span 3;
+  }
+
+  .grid-organic .principle-card:nth-child(2) {
+    margin-top: 1.75rem;
+  }
+
+  .grid-organic .principle-card:nth-child(3),
+  .grid-organic .principle-card:nth-child(4),
+  .grid-organic .principle-card:nth-child(5) {
+    grid-column: span 2;
+  }
+
+  .grid-organic .principle-card:nth-child(4) {
+    margin-top: 1.5rem;
+  }
+
+  .grid-organic .principle-card:nth-child(6) {
+    grid-column: 2 / span 4;
+  }
+}
+
+.grid-organic .principle-card {
+  transition: border-color 0.3s, transform 0.5s var(--ease-bloom),
+    border-radius 0.5s var(--ease-bloom);
+}
+
+.grid-organic .principle-card:nth-child(odd) {
+  border-radius: var(--radius-leaf-a);
+}
+
+.grid-organic .principle-card:nth-child(even) {
+  border-radius: var(--radius-leaf-b);
+}
+
+.grid-organic .principle-card:nth-child(1) {
+  background: var(--color-accent-bg);
+}
+
+.grid-organic .principle-card:nth-child(4) {
+  background: var(--color-warm);
+}
+
+.grid-organic .principle-card:hover {
+  transform: scale(1.015);
+  border-radius: 1rem;
+}
+
+/* Principle icons sit in a soft node glow, quoting the canvas nodes */
+.grid-organic .principle-icon {
+  width: 2.6rem;
+  height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  color: var(--color-accent);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(64, 145, 108, 0.18) 0%, rgba(64, 145, 108, 0.05) 60%, transparent 100%);
+}
+
+/* --- Living pillar map: three cells branching from one root --- */
+
+.holarchy-root {
+  max-width: 720px;
+  margin: 0 auto -0.5rem;
+}
+
+.holarchy-root svg {
+  display: block;
+  width: 100%;
+  height: 90px;
+}
+
+.holarchy-root path {
+  fill: none;
+  stroke: var(--color-accent-light);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: 0.5;
+}
+
+.holarchy-root .root-core {
+  fill: var(--color-accent);
+}
+
+.holarchy-root .root-glow {
+  fill: var(--color-accent-light);
+  opacity: 0.2;
+}
+
+@media (max-width: 900px) {
+  .holarchy-root {
+    display: none;
+  }
+}
+
+.holons-pillars {
+  align-items: start;
+}
+
+.holons-pillars .pillar:nth-child(1) {
+  border-radius: 1.75rem 0.9rem 1.5rem 0.9rem;
+}
+
+.holons-pillars .pillar:nth-child(2) {
+  border-radius: 0.9rem 1.75rem 0.9rem 1.5rem;
+}
+
+.holons-pillars .pillar:nth-child(3) {
+  border-radius: 1.5rem 0.9rem 1.75rem 0.9rem;
+}
+
+@media (min-width: 901px) {
+  .holons-pillars .pillar:nth-child(2) {
+    margin-top: 2.25rem;
+  }
+
+  .holons-pillars .pillar:nth-child(3) {
+    margin-top: 0.75rem;
+  }
+}
+
+/* Holon links become nodes on a stem inside each pillar cell */
+.holons-pillars .pillar-body {
+  position: relative;
+}
+
+.holons-pillars .pillar-body::before {
+  content: '';
+  position: absolute;
+  top: 1.4rem;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--color-accent-light), rgba(64, 145, 108, 0.05));
+  opacity: 0.5;
+}
+
+.holons-pillars .holon-link {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.holons-pillars .holon-link::before {
+  content: '';
+  position: absolute;
+  left: 0.28rem;
+  top: 1.25rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-white);
+  border: 1.5px solid var(--color-accent-light);
+  transition: background 0.25s, box-shadow 0.25s;
+}
+
+.holons-pillars .holon-link:hover::before {
+  background: var(--color-accent-light);
+  box-shadow: 0 0 8px rgba(64, 145, 108, 0.6);
+}
+
+/* Tendril underline: grows from the left on hover */
+.holon-link .holon-name {
+  width: fit-content;
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.45s var(--ease-grow);
+}
+
+.holon-link:hover .holon-name {
+  background-size: 100% 1px;
+}
+
+.section-cta {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+/* --- Section titles: a root-line grows beneath on arrival --- */
+
+[data-underline].section-title::after {
+  content: '';
+  display: block;
+  width: 76px;
+  height: 3px;
+  margin-top: 0.6rem;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--color-accent-light), rgba(64, 145, 108, 0));
+  transform-origin: left;
+}
+
+.newsletter-inner [data-underline].section-title::after {
+  margin-left: auto;
+  margin-right: auto;
+  transform-origin: center;
+}
+
+/* --- Scroll growth: reveal states exist only when JS opted in
+       (html.grow-ready) and reduced motion is not requested --- */
+
+.grow-ready [data-grow] {
+  opacity: 0;
+  transform: translateY(16px) scale(0.985);
+  transition: opacity 0.8s var(--ease-grow) var(--grow-delay, 0ms),
+    transform 0.8s var(--ease-grow) var(--grow-delay, 0ms);
+}
+
+.grow-ready [data-grow].is-grown {
+  opacity: 1;
+  transform: none;
+}
+
+/* Filaments and the holarchy root draw their strokes instead of fading */
+.grow-ready .filament[data-grow],
+.grow-ready .holarchy-root[data-grow] {
+  opacity: 1;
+  transform: none;
+}
+
+.grow-ready .filament path,
+.grow-ready .holarchy-root path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.4s var(--ease-grow) 0.1s;
+}
+
+.grow-ready .filament.is-grown path,
+.grow-ready .holarchy-root.is-grown path {
+  stroke-dashoffset: 0;
+}
+
+.grow-ready .filament circle {
+  opacity: 0;
+  transition: opacity 0.5s ease 1.2s;
+}
+
+.grow-ready .filament.is-grown circle {
+  opacity: 0.7;
+}
+
+.grow-ready [data-underline].section-title::after {
+  transform: scaleX(0);
+  transition: transform 0.9s var(--ease-grow) 0.25s;
+}
+
+.grow-ready [data-underline].section-title.is-grown::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .grid-organic .principle-card,
+  .holon-link .holon-name,
+  .holons-pillars .holon-link::before {
+    transition: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .filament {
+    margin: -2rem auto 1rem;
+    width: 48px;
+  }
+}
