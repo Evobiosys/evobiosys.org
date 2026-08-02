@@ -1496,3 +1496,27 @@ pre {
     width: 48px;
   }
 }
+
+/* Narrow phones: the hero clips (overflow: hidden), so the badge and
+   accent phrase must wrap rather than run past the edge. The filament
+   ends and the tendril swash step back where there is no room. */
+@media (max-width: 420px) {
+  .hero-badge {
+    white-space: normal;
+  }
+
+  .hero-badge::before,
+  .hero-badge::after {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .accent-swash {
+    white-space: normal;
+  }
+
+  .swash {
+    display: none;
+  }
+}
