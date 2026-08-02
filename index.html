@@ -6,7 +6,7 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
 
 <!-- Hero -->
 <div class="hero-wrap">
-<canvas id="evolution-canvas" class="evolution-canvas"></canvas>
+<canvas id="evolution-canvas" class="evolution-canvas" aria-hidden="true"></canvas>
 <section class="hero">
   <span class="hero-badge">Evolutionary &middot; Biomimetic &middot; Systemic</span>
   <h1>Living systems that <span class="accent">evolve together</span></h1>
@@ -20,6 +20,7 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
     <a href="#principles" class="btn btn-secondary">Our principles</a>
   </div>
 </section>
+<p class="hero-hint" id="hero-hint" aria-hidden="true">tap twice to awaken the network</p>
 </div>
 
 <!-- Principles -->
@@ -279,23 +280,51 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
       this.canvas = canvas;
       this.ctx = canvas.getContext('2d');
       this.dpr = window.devicePixelRatio || 1;
-      this.time = 0;
       this.nodes = [];
       this.mouse = { x: -1000, y: -1000 };
+      this.pulse = null;
+      this.running = false;
+
+      // Touch-primary detection: coarse pointer, ontouchstart as fallback.
+      const coarse = window.matchMedia ? window.matchMedia('(pointer: coarse)') : null;
+      this.touchGated = coarse ? coarse.matches : 'ontouchstart' in window;
+      // prefers-reduced-motion: reduce → the network stays dormant
+      // permanently. A static, fully-formed network renders once; the hint
+      // stays hidden and double-tap does nothing. This deliberately trades
+      // the awaken interaction for a motion-free experience.
+      this.reducedMotion = !!(window.matchMedia
+        && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+      // wake: 0 = dormant (frozen), 1 = breathing. wakeTarget toggles via
+      // double-tap on touch devices; wake eases toward it over the same
+      // 0.3-time-unit window as the node birth/age easing, so awakening
+      // blooms and resting glides rather than snapping.
+      const dormant = this.touchGated || this.reducedMotion;
+      this.wakeTarget = dormant ? 0 : 1;
+      this.wake = this.wakeTarget;
+      // Dormant starts render fully formed: begin past every node and
+      // connection birth window instead of replaying the entrance.
+      this.time = dormant ? 3 : 0;
+
+      this.hintEl = document.getElementById('hero-hint');
 
       this.resize();
       window.addEventListener('resize', () => this.resize());
-      canvas.parentElement.addEventListener('mousemove', e => {
-        const r = canvas.getBoundingClientRect();
-        this.mouse.x = (e.clientX - r.left) * this.dpr;
-        this.mouse.y = (e.clientY - r.top) * this.dpr;
-      });
-      canvas.parentElement.addEventListener('mouseleave', () => {
-        this.mouse.x = -1000; this.mouse.y = -1000;
-      });
+
+      if (!this.touchGated) {
+        canvas.parentElement.addEventListener('mousemove', e => {
+          this.setPointer(e.clientX, e.clientY);
+        });
+        canvas.parentElement.addEventListener('mouseleave', () => {
+          this.mouse.x = -1000; this.mouse.y = -1000;
+        });
+      } else if (!this.reducedMotion) {
+        this.bindTouch();
+        this.showHint(true);
+      }
 
       this.seed();
-      this.tick();
+      this.start();
     }
 
     resize() {
@@ -307,6 +336,105 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
       this.canvas.height = this.H;
       this.canvas.style.width = w + 'px';
       this.canvas.style.height = h + 'px';
+      // Resizing clears the canvas; while dormant the loop sleeps, so run
+      // it once more — it repaints the static frame and sleeps again.
+      if (this.nodes && this.nodes.length) this.start();
+    }
+
+    setPointer(clientX, clientY) {
+      const r = this.canvas.getBoundingClientRect();
+      this.mouse.x = (clientX - r.left) * this.dpr;
+      this.mouse.y = (clientY - r.top) * this.dpr;
+    }
+
+    bindTouch() {
+      const wrap = this.canvas.parentElement;
+      let lastTap = { t: 0, x: 0, y: 0 };
+      let startPos = null;        // where the current touch began
+      let multi = false;          // pinch/multi-finger gesture in progress
+      let onInteractive = false;  // current touch started on a link/button
+
+      wrap.addEventListener('touchstart', e => {
+        if (e.touches.length > 1) { multi = true; return; }
+        multi = false;
+        onInteractive = !!(e.target && e.target.closest && e.target.closest('a, button'));
+        startPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        if (this.wakeTarget === 1 && !onInteractive) {
+          this.setPointer(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
+
+      // Non-passive on purpose: while AWAKE, a single-finger drag that
+      // started on the canvas area repels nodes instead of scrolling.
+      // Dormant touches, touches on links/buttons, and multi-finger
+      // gestures (pinch zoom) are never prevented — scrolling stays free.
+      wrap.addEventListener('touchmove', e => {
+        if (this.wakeTarget !== 1 || multi || onInteractive || e.touches.length > 1) return;
+        this.setPointer(e.touches[0].clientX, e.touches[0].clientY);
+        e.preventDefault();
+      }, { passive: false });
+
+      wrap.addEventListener('touchend', e => {
+        this.mouse.x = -1000; this.mouse.y = -1000;
+        if (multi) { if (e.touches.length === 0) multi = false; return; }
+        if (onInteractive) return; // CTA taps never count toward double-tap
+        const t = e.changedTouches[0];
+        if (!t) return;
+        // A drag or scroll flick is not a tap
+        if (startPos && Math.hypot(t.clientX - startPos.x, t.clientY - startPos.y) > 40) {
+          lastTap.t = 0;
+          return;
+        }
+        const now = performance.now();
+        const near = Math.hypot(t.clientX - lastTap.x, t.clientY - lastTap.y) < 40;
+        if (now - lastTap.t < 350 && near) {
+          lastTap.t = 0;
+          this.toggle(t.clientX, t.clientY);
+        } else {
+          lastTap = { t: now, x: t.clientX, y: t.clientY };
+        }
+      }, { passive: true });
+
+      wrap.addEventListener('touchcancel', () => {
+        this.mouse.x = -1000; this.mouse.y = -1000;
+      }, { passive: true });
+    }
+
+    toggle(clientX, clientY) {
+      if (this.wakeTarget === 1) this.rest();
+      else this.awaken(clientX, clientY);
+    }
+
+    awaken(clientX, clientY) {
+      this.wakeTarget = 1;
+      // Repulsion pulse from the tap point: same force model as the mouse,
+      // briefly with a larger radius, so the double-tap visibly moves nodes.
+      const r = this.canvas.getBoundingClientRect();
+      this.pulse = {
+        x: (clientX - r.left) * this.dpr,
+        y: (clientY - r.top) * this.dpr,
+        until: this.time + 0.3,
+      };
+      this.showHint(false);
+      this.start();
+    }
+
+    rest() {
+      this.wakeTarget = 0;
+      this.pulse = null;
+      this.mouse.x = -1000; this.mouse.y = -1000;
+      this.showHint(true);
+      this.start(); // keep running so nodes glide home, then auto-sleep
+    }
+
+    showHint(on) {
+      if (this.hintEl) this.hintEl.classList.toggle('is-visible', on);
+    }
+
+    start() {
+      if (this.running) return;
+      this.running = true;
+      requestAnimationFrame(() => this.tick());
     }
 
     seed() {
@@ -342,28 +470,56 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
       const ctx = this.ctx;
       const W = this.W, H = this.H;
 
+      // Ease wake toward its target — same 0.3-unit window as birth/age
+      if (this.wake !== this.wakeTarget) {
+        const step = 0.006 / 0.3;
+        this.wake = this.wakeTarget > this.wake
+          ? Math.min(this.wakeTarget, this.wake + step)
+          : Math.max(this.wakeTarget, this.wake - step);
+      }
+      // Smoothstepped motion amplitude: 0 dormant, 1 fully breathing
+      const w = this.wake * this.wake * (3 - 2 * this.wake);
+
+      if (this.pulse && this.time >= this.pulse.until) this.pulse = null;
+
       // Clear fully — crisp, no ghosting
       ctx.clearRect(0, 0, W, H);
+
+      let settled = true;
 
       // Update nodes
       this.nodes.forEach(n => {
         if (this.time < n.birth * 0.016) return;
         const age = Math.min(1, (this.time - n.birth * 0.016) / 0.3);
 
-        // Breathing motion around home position
-        const breathX = Math.sin(this.time * n.breath + n.phase) * 25 * this.dpr;
-        const breathY = Math.cos(this.time * n.breath * 0.7 + n.phase) * 20 * this.dpr;
+        // Breathing motion around home position (stilled while dormant)
+        const breathX = Math.sin(this.time * n.breath + n.phase) * 25 * this.dpr * w;
+        const breathY = Math.cos(this.time * n.breath * 0.7 + n.phase) * 20 * this.dpr * w;
         const tx = n.ox + breathX;
         const ty = n.oy + breathY;
 
-        // Mouse repulsion
-        const mdx = n.x - this.mouse.x, mdy = n.y - this.mouse.y;
-        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-        const mRadius = 150 * this.dpr;
-        if (mdist < mRadius && mdist > 0) {
-          const force = (1 - mdist / mRadius) * 1.5 * this.dpr;
-          n.vx += (mdx / mdist) * force;
-          n.vy += (mdy / mdist) * force;
+        // Pointer repulsion (mouse on desktop, touch drag while awake)
+        if (this.wakeTarget === 1) {
+          const mdx = n.x - this.mouse.x, mdy = n.y - this.mouse.y;
+          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+          const mRadius = 150 * this.dpr;
+          if (mdist < mRadius && mdist > 0) {
+            const force = (1 - mdist / mRadius) * 1.5 * this.dpr;
+            n.vx += (mdx / mdist) * force;
+            n.vy += (mdy / mdist) * force;
+          }
+        }
+
+        // Double-tap pulse: same force model, briefly larger radius
+        if (this.pulse) {
+          const pdx = n.x - this.pulse.x, pdy = n.y - this.pulse.y;
+          const pdist = Math.sqrt(pdx * pdx + pdy * pdy);
+          const pRadius = 280 * this.dpr;
+          if (pdist < pRadius && pdist > 0) {
+            const force = (1 - pdist / pRadius) * 1.5 * this.dpr;
+            n.vx += (pdx / pdist) * force;
+            n.vy += (pdy / pdist) * force;
+          }
         }
 
         // Spring back to target
@@ -374,9 +530,14 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
         n.x += n.vx;
         n.y += n.vy;
 
-        // Pulse radius
-        const pulse = 1 + Math.sin(this.time * 0.5 + n.phase) * 0.15;
-        const r = n.r * pulse * age;
+        if (Math.abs(n.vx) + Math.abs(n.vy) > 0.02 * this.dpr
+          || Math.abs(n.x - n.ox) + Math.abs(n.y - n.oy) > 0.6 * this.dpr) {
+          settled = false;
+        }
+
+        // Pulse radius (throb stilled while dormant)
+        const throb = 1 + Math.sin(this.time * 0.5 + n.phase) * 0.15 * w;
+        const r = n.r * throb * age;
 
         // Glow
         const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 5);
@@ -411,9 +572,9 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
           const strength = (1 - dist / connDist);
           const alpha = strength * 0.1 * Math.min(ageA, ageB);
 
-          // Curved connection via midpoint offset
-          const mx = (a.x + b.x) / 2 + Math.sin(this.time * 0.3 + i + j) * 15 * this.dpr;
-          const my = (a.y + b.y) / 2 + Math.cos(this.time * 0.25 + i) * 15 * this.dpr;
+          // Curved connection via midpoint offset (stilled while dormant)
+          const mx = (a.x + b.x) / 2 + Math.sin(this.time * 0.3 + i + j) * 15 * this.dpr * w;
+          const my = (a.y + b.y) / 2 + Math.cos(this.time * 0.25 + i) * 15 * this.dpr * w;
 
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -424,12 +585,18 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
         }
       }
 
+      // Sleep while dormant and fully settled — the static frame stays on
+      // the canvas, no rAF churn. start() resumes on awaken or resize.
+      if (this.wakeTarget === 0 && this.wake === 0 && !this.pulse && settled) {
+        this.running = false;
+        return;
+      }
       requestAnimationFrame(() => this.tick());
     }
   }
 
   document.addEventListener('DOMContentLoaded', () => {
     const c = document.getElementById('evolution-canvas');
-    if (c) new HolonicNetwork(c);
+    if (c) window.__holonic = new HolonicNetwork(c); // exposed for testing
   });
 </script>
