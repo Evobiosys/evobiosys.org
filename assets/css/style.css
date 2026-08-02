@@ -12,6 +12,13 @@
   --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --max-width: 1100px;
   --max-width-narrow: 760px;
+  /* Organic motion: settle like a plant finding rest, bloom with a slight overshoot */
+  --ease-grow: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bloom: cubic-bezier(0.34, 1.35, 0.64, 1);
+  /* Leaf radii: asymmetric two-corner rounding, the cell-membrane shape family */
+  --radius-leaf-a: 1.5rem 0.6rem 1.5rem 0.6rem;
+  --radius-leaf-b: 0.6rem 1.5rem 0.6rem 1.5rem;
+  --radius-cell: 1.75rem 0.9rem 1.5rem 0.9rem;
 }
 
 * {
@@ -20,8 +27,10 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -157,16 +166,32 @@ a:hover {
   z-index: 2;
 }
 
+/* Not a chip: a quiet label held between two filament ends,
+   quoting the connection lines of the network canvas. */
 .hero-badge {
   display: inline-block;
-  padding: 0.35rem 1rem;
-  background: var(--color-accent-bg);
+  padding: 0.35rem 0;
   color: var(--color-accent);
-  border-radius: 100px;
   font-size: 0.8rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   margin-bottom: 2rem;
+  white-space: nowrap;
+}
+
+.hero-badge::before,
+.hero-badge::after {
+  content: '';
+  display: inline-block;
+  width: 26px;
+  height: 1px;
+  vertical-align: middle;
+  margin: 0 0.75rem;
+  background: linear-gradient(to right, rgba(64, 145, 108, 0), var(--color-accent-light));
+}
+
+.hero-badge::after {
+  background: linear-gradient(to left, rgba(64, 145, 108, 0), var(--color-accent-light));
 }
 
 .hero h1 {
@@ -230,17 +255,24 @@ a:hover {
    Buttons
    ======================================== */
 
+/* Buttons carry the leaf shape; hovering flips the leaf,
+   a tissue response instead of the stock translateY lift. */
 .btn {
   display: inline-block;
   padding: 0.75rem 1.75rem;
-  border-radius: 8px;
+  border-radius: 1.25rem 0.5rem 1.25rem 0.5rem;
   font-size: 0.9rem;
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s,
+    border-radius 0.45s var(--ease-bloom);
   cursor: pointer;
   border: none;
   font-family: var(--font-main);
+}
+
+.btn:hover {
+  border-radius: 0.5rem 1.25rem 0.5rem 1.25rem;
 }
 
 .btn-primary {
@@ -251,7 +283,6 @@ a:hover {
 .btn-primary:hover {
   background: var(--color-accent-light);
   color: var(--color-white);
-  transform: translateY(-1px);
 }
 
 .btn-secondary {
@@ -295,6 +326,20 @@ section {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 1rem;
+}
+
+/* Section labels are nodes in the network: the same soft-glow dot
+   as the hero canvas nodes, carried through the whole page. */
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.55rem;
+  vertical-align: 8%;
+  background: var(--color-accent-light);
+  box-shadow: 0 0 0 3px var(--color-accent-bg), 0 0 10px rgba(64, 145, 108, 0.45);
 }
 
 .section-title {
