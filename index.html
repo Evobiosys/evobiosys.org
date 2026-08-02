@@ -347,16 +347,28 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
       this.mouse.y = (clientY - r.top) * this.dpr;
     }
 
+    // True when any node sits within the repulsion radius of (px, py)
+    nearAnyNode(px, py) {
+      const R = 150 * this.dpr;
+      for (let i = 0; i < this.nodes.length; i++) {
+        const n = this.nodes[i];
+        if (Math.hypot(n.x - px, n.y - py) < R) return true;
+      }
+      return false;
+    }
+
     bindTouch() {
       const wrap = this.canvas.parentElement;
       let lastTap = { t: 0, x: 0, y: 0 };
       let startPos = null;        // where the current touch began
+      let gesture = null;         // null until latched: 'scroll' | 'repel'
       let multi = false;          // pinch/multi-finger gesture in progress
       let onInteractive = false;  // current touch started on a link/button
 
       wrap.addEventListener('touchstart', e => {
         if (e.touches.length > 1) { multi = true; return; }
         multi = false;
+        gesture = null;
         onInteractive = !!(e.target && e.target.closest && e.target.closest('a, button'));
         startPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
         if (this.wakeTarget === 1 && !onInteractive) {
@@ -364,14 +376,31 @@ description: Cultivating evolutionary approaches & liberating systems. A holonic
         }
       }, { passive: true });
 
-      // Non-passive on purpose: while AWAKE, a single-finger drag that
-      // started on the canvas area repels nodes instead of scrolling.
-      // Dormant touches, touches on links/buttons, and multi-finger
-      // gestures (pinch zoom) are never prevented — scrolling stays free.
+      // Non-passive on purpose: while AWAKE, a single-finger drag may
+      // suppress scrolling in favor of the repel interaction — but ONLY
+      // when it is actively repelling: the gesture latched as horizontal-
+      // dominant (vertical-dominant drags stay scrolls in every state)
+      // AND at least one node sits within the repulsion radius of the
+      // finger. Dormant touches, touches on links/buttons, and
+      // multi-finger gestures (pinch zoom) are never prevented.
       wrap.addEventListener('touchmove', e => {
         if (this.wakeTarget !== 1 || multi || onInteractive || e.touches.length > 1) return;
-        this.setPointer(e.touches[0].clientX, e.touches[0].clientY);
-        e.preventDefault();
+        const t = e.touches[0];
+        // Latch the gesture axis on the first significant movement
+        if (!gesture && startPos) {
+          const gdx = t.clientX - startPos.x, gdy = t.clientY - startPos.y;
+          if (Math.hypot(gdx, gdy) > 8) {
+            gesture = Math.abs(gdy) > Math.abs(gdx) ? 'scroll' : 'repel';
+          }
+        }
+        if (gesture === 'scroll') {
+          this.mouse.x = -1000; this.mouse.y = -1000;
+          return; // the browser keeps full control of the scroll
+        }
+        this.setPointer(t.clientX, t.clientY);
+        if (gesture === 'repel' && this.nearAnyNode(this.mouse.x, this.mouse.y)) {
+          e.preventDefault();
+        }
       }, { passive: false });
 
       wrap.addEventListener('touchend', e => {
