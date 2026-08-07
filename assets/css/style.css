@@ -1103,7 +1103,11 @@ pre {
   }
 }
 
-@media (max-width: 768px) {
+/* Nav collapses to a hamburger well above the general 768px "mobile"
+   breakpoint below: with 11 links + the CTA button, the row needs
+   ~1220px of natural width, so anything narrower than that (most
+   laptop windows included) must not try to render it inline. */
+@media (max-width: 1280px) {
   .nav-links {
     display: none;
     position: absolute;
@@ -1113,19 +1117,38 @@ pre {
     background: rgba(250, 250, 247, 0.98);
     backdrop-filter: blur(12px);
     flex-direction: column;
+    align-items: stretch;
     padding: 1rem 2rem 1.5rem;
     gap: 0.75rem;
     border-bottom: 1px solid var(--color-border);
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
   }
 
   .nav-links.open {
     display: flex;
   }
 
+  .nav-links a {
+    font-size: 0.95rem;
+  }
+
+  .nav-links li:last-child {
+    margin-top: 0.25rem;
+  }
+
+  .nav-links li:last-child .btn {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  }
+
   .nav-toggle {
     display: block;
   }
+}
 
+@media (max-width: 768px) {
   .about-content {
     grid-template-columns: 1fr;
     gap: 2rem;
