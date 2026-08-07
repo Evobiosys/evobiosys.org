@@ -25,7 +25,7 @@
   <!-- Navigation -->
   <nav class="nav" id="nav">
     <a href="/" class="nav-logo">EvoBioSys</a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
     <ul class="nav-links" id="nav-links">
       <li><a href="/holons/">Holons</a></li>
       <li><a href="/legacy/">Legacy</a></li>
@@ -80,12 +80,24 @@
       nav.classList.toggle('scrolled', window.scrollY > 20);
     });
 
-    // Mobile nav toggle
+    // Collapsible nav toggle (kicks in below the 1280px breakpoint in style.css)
     const toggle = document.getElementById('nav-toggle');
     const links = document.getElementById('nav-links');
     if (toggle) {
+      const setOpen = (open) => {
+        links.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+      };
       toggle.addEventListener('click', () => {
-        links.classList.toggle('open');
+        setOpen(!links.classList.contains('open'));
+      });
+      // Close after choosing a link, and don't leave it stuck open if the
+      // window is later resized back past the breakpoint.
+      links.addEventListener('click', (e) => {
+        if (e.target.closest('a')) setOpen(false);
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 1280) setOpen(false);
       });
     }
   </script>
