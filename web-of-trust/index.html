@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web of Trust — decentralized, trust-gated sharing for real, in-person community</title>
+<meta name="description" content="A decentralized web of trust for real, in-person community: people meet face to face, confirm each other, and a trust graph they own themselves gates what each person can see and share — resonance calls become access to shared resources. The public front door of the idea2 / EvoBioSys sharing substrate. Early alpha.">
+<link rel="canonical" href="https://idea2.site/web-of-trust/">
+<meta property="og:title" content="Web of Trust — decentralized, trust-gated sharing for real, in-person community">
+<meta property="og:description" content="People meet face to face, confirm each other, and a trust graph nobody else owns gates what each person can see and share: events, offers, housing, loans, messages. Resonance calls become access to shared resources. Early alpha.">
+<meta property="og:url" content="https://idea2.site/web-of-trust/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web of Trust — decentralized, trust-gated sharing for real, in-person community">
+<meta name="twitter:description" content="People meet face to face, confirm each other, and a trust graph nobody else owns gates what each person can see and share. Early alpha prototype.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%95%B8%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#0f1a14; --bg-2:#152219; --bg-3:#1b2b20;
+    --text:#eae5d8; --text-soft:#c4c9bd; --text-muted:#8a9689;
+    --accent:#d99a5b; --accent-soft:rgba(217,154,91,0.55); --accent-glow:rgba(217,154,91,0.14);
+    --line:rgba(234,229,216,0.1); --ok:#9dc79a; --err:#e2a08a;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover,a:focus-visible{text-decoration:underline}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .skip{position:absolute;left:-999px}
+  .skip:focus{left:1rem;top:1rem;background:var(--bg-3);padding:.5rem 1rem;z-index:10}
+  .wrap{max-width:62rem;margin:0 auto;padding:0 1.25rem}
+  header{padding:4.5rem 0 3rem;text-align:center;background:radial-gradient(ellipse 70% 90% at 50% -20%,var(--accent-glow),transparent)}
+  .brand{font-family:var(--serif);font-size:1.05rem;letter-spacing:.14em;text-transform:lowercase;color:var(--text-muted)}
+  .brand a{color:var(--text-muted)}
+  h1{font-family:var(--serif);font-size:clamp(1.9rem,5vw,2.9rem);font-weight:400;margin:.8rem 0 .6rem}
+  h1 em{font-style:italic;color:var(--accent)}
+  .sub{color:var(--text-soft);max-width:40rem;margin:0 auto}
+  .status-pill{display:inline-block;margin-top:1.1rem;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--err);border:1px solid var(--err);border-radius:999px;padding:.25em 1em}
+  main{padding:2.5rem 0 3rem}
+  section{margin-bottom:3rem}
+  h2{font-family:var(--serif);font-weight:400;font-size:1.55rem;margin-bottom:.9rem}
+  h2 em{font-style:italic;color:var(--accent)}
+  section>p{color:var(--text-soft);max-width:44rem;margin-bottom:.9rem}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:1.1rem;list-style:none;margin-top:1.3rem}
+  .card{background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:1.25rem 1.3rem 1.15rem;display:flex;flex-direction:column;gap:.4rem}
+  .card h3{font-family:var(--serif);font-size:1.1rem;font-weight:400}
+  .card p{color:var(--text-muted);font-size:.92rem}
+  .kind{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-soft)}
+  .pillars{list-style:none;margin-top:1.3rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.1rem}
+  .pillars li{background:var(--bg-2);border:1px solid var(--line);border-top:3px solid var(--accent-soft);border-radius:10px;padding:1.2rem 1.3rem}
+  .pillars h3{font-family:var(--serif);font-weight:400;font-size:1.12rem;margin-bottom:.4rem}
+  .pillars p{color:var(--text-muted);font-size:.92rem}
+  .ladder{list-style:none;margin-top:1.3rem;display:grid;gap:.8rem;max-width:44rem}
+  .ladder li{background:var(--bg-2);border:1px solid var(--line);border-left:3px solid var(--accent-soft);border-radius:8px;padding:.9rem 1.2rem}
+  .ladder .lvl{font-family:var(--serif);color:var(--accent);margin-right:.5em}
+  .ladder p{color:var(--text-muted);font-size:.92rem;display:inline}
+  details{background:var(--bg-2);border:1px solid var(--line);border-radius:8px;margin:1.1rem 0 0;max-width:44rem}
+  summary{cursor:pointer;padding:.75rem 1.1rem;color:var(--accent);font-size:.92rem;letter-spacing:.03em}
+  summary:hover{text-decoration:underline}
+  details[open] summary{border-bottom:1px solid var(--line)}
+  details .inner{padding:.9rem 1.2rem 1.1rem}
+  details p,details li{color:var(--text-muted);font-size:.92rem}
+  details p{margin-bottom:.6rem;max-width:42rem}
+  details ul{margin:.2rem 0 .4rem 1.2rem}
+  details li{margin-bottom:.35rem}
+  details code{font-size:.85em;background:var(--bg-3);border-radius:4px;padding:.1em .35em}
+  .honesty{background:var(--bg-2);border:1px solid var(--err);border-radius:10px;padding:1.5rem 1.6rem;max-width:46rem}
+  .honesty h2{font-size:1.3rem;color:var(--err)}
+  .honesty p,.honesty>ul li{color:var(--text-soft);font-size:.95rem}
+  .honesty>ul{margin:.7rem 0 0 1.2rem}
+  .honesty>ul li{margin-bottom:.45rem}
+  .honesty details{background:var(--bg-3);max-width:none}
+  .split{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1.1rem;margin-top:1.3rem}
+  .split>div{background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:1.3rem 1.4rem}
+  .split h3{font-family:var(--serif);font-weight:400;font-size:1.15rem;margin-bottom:.6rem}
+  .split .now h3{color:var(--ok)}
+  .split .later h3{color:var(--accent)}
+  .split ul{list-style:none}
+  .split li{color:var(--text-muted);font-size:.92rem;padding:.3rem 0 .3rem 1.1rem;position:relative}
+  .split li::before{content:"·";position:absolute;left:.2rem;color:var(--accent-soft)}
+  .quote{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--text-soft);border-left:3px solid var(--accent-soft);padding:.4rem 0 .4rem 1.3rem;max-width:42rem;margin:1.5rem 0}
+  footer{padding:2.5rem 0 3rem;text-align:center;color:var(--text-muted);font-size:.9rem;border-top:1px solid var(--line)}
+  footer nav{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;margin-bottom:.8rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#about">Skip to content</a>
+<header>
+  <div class="wrap">
+    <p class="brand"><a href="https://idea2.site/">idea2.site</a></p>
+    <h1>A web of trust for <em>real, in-person community.</em></h1>
+    <p class="sub">People meet face to face and confirm each other. From those confirmations grows a trust graph, and the graph decides what each person can see and share: gatherings, offers, housing, loans of things, direct messages. Resonance calls become access to shared resources. It lives on your own devices and your community's own servers. No platform sits in the middle, and no company owns who trusts whom.</p>
+    <span class="status-pill">v0.1 alpha · research prototype</span>
+  </div>
+</header>
+<main class="wrap" id="about">
+
+  <section>
+    <h2>Why this <em>exists</em></h2>
+    <p>So much sits idle behind private doors: guest rooms, gardens, workshops, tools, land, time. Owners rarely lack generosity; they lack a way to open up without opening up to everyone. A web of trust gives them a middle path. You share with the people your own relationships vouch for, at exactly the depth of trust you choose, and no further.</p>
+    <p>The longer arc: a slow, step-by-step onboarding through moments of real resonance, a phased path from first visit toward genuine stewardship, and a growing distributed network of community servers with shared standards. A small contribution toward an economy of shared abundance, built on open-source, self-hostable infrastructure in Europe.</p>
+    <p class="quote">Trust first, access second. The network only ever grows at the speed of real relationships.</p>
+  </section>
+
+  <section>
+    <h2>Decentralized, because trust <em>can't be outsourced</em></h2>
+    <p>A trust graph is the most intimate map there is: who you know, how deeply, and what you would share with them. Handing that map to a platform recreates the very problem it should solve. So the Web of Trust starts from a hard requirement: nobody but you and your community can hold it.</p>
+    <ul class="pillars">
+      <li><h3>Nobody owns your graph</h3><p>Your relationships and your listings live with you, not in a company's database. There is no platform that could sell the map, mine it, or shut it down.</p></li>
+      <li><h3>Your keys stay home</h3><p>Your device generates its own keys and they never leave it. Your identity belongs to you, not to an account someone else can suspend.</p></li>
+      <li><h3>Nobody can lock you out</h3><p>No central server can revoke your access to your own community. The people who trusted you in are the only ones who can change that.</p></li>
+      <li><h3>Communities run themselves</h3><p>Each community can host its own server, and shared open standards let separate webs interweave into a larger distributed network: open-source, encrypted infrastructure grown in Europe.</p></li>
+    </ul>
+    <details>
+      <summary>How this works under the hood</summary>
+      <div class="inner">
+        <p>Each person's identity is a <a href="https://identity.foundation/peer-did-method-spec/" rel="external">did:peer</a> DID, a decentralized identifier minted between peers with no registry behind it. The browser generates the keypair locally and stores it on the device; it is never uploaded.</p>
+        <p>Agents talk to each other over a DIDComm-shaped peer-to-peer transport. When two devices cannot reach each other directly, a store-and-forward mediator holds encrypted envelopes for later delivery. The mediator follows a never-decrypt design: it sees only the recipient DID, the submitter address, and timing, never the payload, and no outer sender field.</p>
+        <p>Joining happens through people, not sign-up forms: you scan a QR code from someone already inside, your device mints its own keys, and a consent-gated connect request travels to them for approval.</p>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <h2>The <em>trust ladder</em></h2>
+    <p>Every connection starts in person. Two people meet, open the app's Meet screen, and one scans the other's QR code. That small ceremony creates the connection, and each side chooses its level for the other, independently:</p>
+    <ul class="ladder">
+      <li><span class="lvl">Contact</span><p>You have met. Public and lightly shared things reach you: open gatherings, general offers.</p></li>
+      <li><span class="lvl">Friend</span><p>Real mutual trust. Deeper listings open up: borrowing things, housing asks, private events, direct messages.</p></li>
+      <li><span class="lvl">Close</span><p>The inner circle. The most personal resources and invitations travel only along these edges.</p></li>
+    </ul>
+    <p style="margin-top:1rem">Levels gate depth everywhere. Something shared "close" never reaches a mere contact, a private note never leaves your own device, and a "no" looks the same as silence, so declining costs no face.</p>
+    <p style="margin-top:1rem">The ceremony mints the edge; a <strong>resonance call</strong> mints the access. A real conversation — not a form, not a score — produces a small, auditable credential: <em>"person X holds editor rights on layer Y, granted by Z on this date."</em> Whoever granted it can revoke it at any time; access lives and dies with the relationship that granted it.</p>
+    <details>
+      <summary>The data model in brief</summary>
+      <div class="inner">
+        <ul>
+          <li>The graph consists of pairwise edges created only by an in-person Meet ceremony (QR scan or paste-code exchange).</li>
+          <li>Edges are asymmetric: each side sets its own level (contact, friend, close) for the other, and the two need not match.</li>
+          <li>Listings carry a tier, and publication is owner-driven: a listing travels only to edges whose level qualifies, a <code>private</code> listing is never sent at all, and gated fields are stripped server-side for guest views.</li>
+          <li>Loans and direct messages exist only between connected people; a loan's "not yet" note stays local to the owner.</li>
+          <li>Requests can relay one hop through a mutual friend, with consent at every hop, revealing no more than a direct ask would.</li>
+          <li>Grants take the shape of verifiable credentials. The stack starts with Affinidi OpenVTC behind a pluggable credential-provider interface — swappable to Veramo or others — so no single vendor ever becomes a load-bearing wall.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <h2>What the graph <em>carries</em></h2>
+    <ul class="cards">
+      <li class="card"><span class="kind">Gatherings</span><h3>Events by tier</h3><p>Host a dinner, a ceremony, a work day. Choose which trust tier may even see it exists.</p></li>
+      <li class="card"><span class="kind">Offers &amp; loans</span><h3>Things that circulate</h3><p>Lend and borrow with a full loop: requested, approved, lent, returned, and a closing "do you feel complete?"</p></li>
+      <li class="card"><span class="kind">Housing</span><h3>Rooms and stays</h3><p>Housing asks and offers reach only the people your web vouches for.</p></li>
+      <li class="card"><span class="kind">People</span><h3>Warm introductions</h3><p>Requests can travel a hop through a mutual friend, with consent at every step, revealing no more than a direct ask would.</p></li>
+      <li class="card"><span class="kind">Messages</span><h3>Connected-only DMs</h3><p>Direct messages exist only between people who actually met and consented.</p></li>
+    </ul>
+    <p class="quote">Wherever we go, a place we can stay, provided free of charge… we could essentially just call into the web — and someone would say, "Yeah, actually, we have a place." <span style="font-style:normal;font-size:.85rem;color:var(--text-muted)">— from an early voice note</span></p>
+  </section>
+
+  <section>
+    <h2>One protocol, <em>many communities</em></h2>
+    <p>The Web of Trust is a protocol and a pattern, not a single app: the shared substrate under everything that circulates in this ecosystem, and this page serves as its public front door. The same trust graph wears different faces, called skins, each shaped for one kind of community. Four use cases exist so far:</p>
+    <ul class="cards">
+      <li class="card"><span class="kind">Live now</span><h3><a href="/rebiosys/" style="color:inherit">ReBioSys →</a></h3><p>Responsive resource sharing, running today: call into one person's network from your phone, watch the consent ladder answer. The first living instance of this substrate.</p></li>
+      <li class="card"><span class="kind">Use case</span><h3>Ecstatic World</h3><p>The first and most developed skin: ceremony-rich community life, with gatherings, offers, and lending among people who dance and sit in circle together.</p></li>
+      <li class="card"><span class="kind">Use case</span><h3>Housing</h3><p>Rooms, stays, and housing asks that circulate only through vouched-for relationships instead of open listings.</p></li>
+      <li class="card"><span class="kind">Use case</span><h3>Family</h3><p>The inner-circle skin: coordination and sharing among the people closest to you.</p></li>
+      <li class="card"><span class="kind">Use case</span><h3>Business</h3><p>Trust-gated offers and introductions between people who have actually worked together.</p></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Honesty <em>box</em></h2>
+    <div class="honesty">
+      <h2>What this is today, without varnish</h2>
+      <p>This project is a v0.1 alpha: a working TypeScript prototype plus a clickable design mockup, built at hackathon pace. The one-command demo boots six personas on a laptop and runs on a local WiFi network, in a closed room, among people who trust each other. It is not a product you can install today, and we would rather say so plainly.</p>
+      <ul>
+        <li>The alpha runs on a trusted local network only; it is a demo environment, not a deployment.</li>
+        <li>Today's privacy is honest but limited: v0 is not zero-knowledge, and claiming otherwise would be false. Provable zero-knowledge properties are a v1 commitment.</li>
+        <li>There is no live hosted infrastructure yet. A Matrix bridge via <code>matrix.myceli.al</code> and self-hosted community servers are later-milestone targets, not running services.</li>
+      </ul>
+      <details>
+        <summary>The mechanics behind those limits</summary>
+        <div class="inner">
+          <ul>
+            <li>The alpha's REST API has no authentication in front of it; anyone on the same LAN who can reach a persona's port can call it directly. That is a deliberate closed-room opt-in for the demo, and exactly why it must never run on an untrusted network.</li>
+            <li>What the protocol already protects, by design: an indistinguishable "no" (declining looks like silence) and consent-gated identity (nobody learns who you are without your approval).</li>
+            <li>What it does not yet protect against: an asker inspecting their own agent's raw traffic, peers reading request texts, and metadata analysis by the delivery mediator, which sees recipient DID, submitter address, and timing, though never the payload.</li>
+            <li>The planned path climbs numbered privacy rungs toward provable zero-knowledge queries: an asker learns only the aggregate answer, and non-matching peers learn nothing.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section>
+    <h2>Real today, <em>growing next</em></h2>
+    <div class="split">
+      <div class="now">
+        <h3>Working in the alpha</h3>
+        <ul>
+          <li>Six-persona LAN demo, one command, phones join by QR</li>
+          <li>In-browser key generation, self-sovereign identity</li>
+          <li>QR-based Meet ceremony with trust levels</li>
+          <li>Tier-gated listings: gatherings, offers, housing</li>
+          <li>Full borrow round trip and connected-only DMs</li>
+          <li>Encrypted relay that never reads what it carries</li>
+          <li>Four use-case skins: Ecstatic World, housing, family, business</li>
+        </ul>
+      </div>
+      <div class="later">
+        <h3>On the path ahead</h3>
+        <ul>
+          <li>Privacy rungs toward provable zero-knowledge queries</li>
+          <li>Verifiable credentials via a pluggable provider interface (Affinidi OpenVTC first, Veramo-ready)</li>
+          <li>Matrix transport and a hosted homeserver (matrix.myceli.al)</li>
+          <li>Self-hosted community servers with shared standards</li>
+          <li>Calendar integration to coordinate access and stays</li>
+          <li>Phased visitation and stewardship for opened resources</li>
+          <li>Slow, resonance-based onboarding of new circles</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Follow <em>along</em></h2>
+    <p>The Web of Trust grows inside the <a href="https://evobiosys.org">EvoBioSys</a> ecosystem alongside the other <a href="https://idea2.site/">idea2.site</a> seedlings. If you steward a place or a resource and this resonates, or you want to hear when the alpha opens beyond the closed room, write to <a href="mailto:connect@evobiosys.org">connect@evobiosys.org</a>.</p>
+  </section>
+
+</main>
+<footer>
+  <nav>
+    <a href="https://idea2.site/">idea2.site</a>
+    <a href="https://idea2.org">idea2.org</a>
+    <a href="https://evobiosys.org">EvoBioSys</a>
+    <a href="https://questhub.eco">QuestHub</a>
+    <a href="mailto:connect@evobiosys.org">Imprint</a>
+  </nav>
+  <p>Part of the EvoBioSys ecosystem · sovereign, self-hosted, EU-based · also reachable at <a href="/wot/">idea2.site/wot</a></p>
+</footer>
+</body>
+</html>
