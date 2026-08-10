@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReBioSys — responsive resource sharing</title>
+<meta name="description" content="ReBioSys: responsive resource sharing among living systems. Early alpha — consent-first queries across a web of trust.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%236b8f5e' stroke-width='2'%3E%3Cpath d='M4 26 C10 18 14 20 16 12 S24 6 28 8'/%3E%3C/g%3E%3Ccircle cx='16' cy='12' r='3.5' fill='%234a6741'/%3E%3C/svg%3E">
+<!-- Friendly Captcha commented out 2026-08-09 (keys pending — REMIND JAKOB to re-enable):
+<script type="module" src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.18/widget.module.min.js" async defer></script> -->
+<style>
+  :root {
+    --bg: #f6f4ec;            /* lichen-cream */
+    --bg-raise: #fdfcf7;
+    --ink: #2b2419;           /* humus */
+    --ink-soft: #5c5243;
+    --moss: #4a6741;
+    --moss-deep: #35502e;
+    --lichen: #dde3cf;
+    --line: #d8d2c0;
+    --accent: #6b8f5e;
+    --ok-bg: #e4eeda; --ok-ink: #2f4a27;
+    --err-bg: #f3e3dc; --err-ink: #7a3b25;
+    --thread: #a8b89a;
+    --gold: #b9862c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --bg-raise: #201c15;
+      --ink: #e8e3d5;
+      --ink-soft: #b0a893;
+      --moss: #8fae7f;
+      --moss-deep: #a9c799;
+      --lichen: #2a3122;
+      --line: #3a352a;
+      --accent: #7fa06f;
+      --ok-bg: #26331e; --ok-ink: #b9d3a8;
+      --err-bg: #3d2419; --err-ink: #e3a98f;
+      --thread: #4a5540;
+      --gold: #e6c076;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans", source-sans-pro, system-ui, sans-serif;
+    line-height: 1.6; font-size: 1.05rem;
+  }
+  h1, h2, h3 { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-weight: 600; line-height: 1.2; }
+  main, .shell { max-width: 44rem; margin: 0 auto; padding: 0 1.25rem; }
+  a { color: var(--moss); }
+
+  /* Hero — A2 "nutrient handover": two planets in a shared field, one gift travelling */
+  header.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+  .hero-inner { position: relative; max-width: 62rem; margin: 0 auto; padding: 4.5rem 1.25rem 3.5rem;
+    display: grid; grid-template-columns: 1.05fr .95fr; gap: 2.5rem; align-items: center; }
+  .hero-art { width: 100%; max-width: 440px; justify-self: center; }
+  .hero-art svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .fl { fill: none; stroke: var(--moss); stroke-width: 1.1; opacity: .55; }
+  .fl.soft { stroke: var(--thread); opacity: .85; }
+  .st { fill: var(--ink-soft); }
+  .drift-l { animation: driftL 16s ease-in-out infinite alternate; }
+  .drift-r { animation: driftR 13s ease-in-out infinite alternate; }
+  .sway { transform-origin: 268px 235px; animation: sway 34s ease-in-out infinite alternate; }
+  @keyframes driftL { to { transform: translate(7px,-5px); } }
+  @keyframes driftR { to { transform: translate(-8px,4px); } }
+  @keyframes sway { from { transform: rotate(-1.6deg); } to { transform: rotate(1.6deg); } }
+  .parcel-guide { fill: none; stroke: var(--gold); stroke-width: 2; stroke-dasharray: 1 10;
+    stroke-linecap: round; opacity: .35; }
+  .parcel-static { display: none; }
+  .pulse { fill: none; stroke: var(--gold); stroke-width: 1.6; opacity: 0; }
+  @media (prefers-reduced-motion: reduce) {
+    .drift-l, .drift-r, .sway { animation: none; }
+    .parcel-anim, .pulse { display: none; }
+    .parcel-static { display: inline; }
+    .parcel-guide { opacity: .6; }
+  }
+  @media (max-width: 780px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 1.6rem; padding: 3rem 1.25rem 2.8rem; }
+    .hero-art { order: -1; max-width: 300px; }
+  }
+  .hero h1 { font-size: clamp(2.6rem, 8vw, 4rem); margin: 0; letter-spacing: .01em; }
+  .hero .strap { font-size: clamp(1.15rem, 3.5vw, 1.5rem); color: var(--moss); margin: .5rem 0 0; font-style: italic;
+    font-family: "Iowan Old Style", Palatino, Georgia, serif; }
+  .hero .sub { color: var(--ink-soft); margin: .35rem 0 0; }
+  .alpha-note { display: inline-block; margin-top: 1.5rem; padding: .35rem .8rem; border: 1px solid var(--line);
+    border-radius: 999px; background: var(--bg-raise); font-size: .85rem; color: var(--ink-soft); }
+
+  section { padding: 2.8rem 0 0; }
+  section h2 { font-size: 1.7rem; margin: 0 0 1rem; color: var(--moss-deep); }
+  .quiet { color: var(--ink-soft); font-size: .92rem; }
+
+  /* Figures */
+  figure { margin: 1.6rem 0 0; }
+  figcaption { color: var(--ink-soft); font-size: .88rem; margin-top: .5rem; }
+  .fig-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line);
+    border-radius: 12px; background: var(--bg-raise); }
+  .fig-scroll svg { display: block; height: auto; }
+  svg.ladder-svg { min-width: 980px; width: 100%; }
+  svg.rings-svg { min-width: 420px; width: 100%; max-width: 34rem; margin: 0 auto; }
+  .ladder-svg text, .rings-svg text { font-family: inherit; fill: var(--ink); }
+  .ladder-svg .n { font-size: 14px; font-weight: 600; }
+  .ladder-svg .s { font-size: 12px; fill: var(--ink-soft); }
+  .ladder-svg .g { font-size: 12px; font-weight: 700; letter-spacing: .08em; fill: var(--moss-deep); }
+  .ladder-svg .q { font-size: 13px; font-weight: 600; }
+  .rings-svg text { paint-order: stroke; stroke: var(--bg-raise); stroke-width: 4px; stroke-linejoin: round; }
+  .rings-svg .rt { font-size: 13.5px; font-weight: 600; }
+  .rings-svg .rs { font-size: 11.5px; fill: var(--ink-soft); }
+  .rings-svg .in { stroke: none; fill: var(--bg); }
+  .rings-svg .in.rs { fill: var(--bg); opacity: .85; }
+
+  /* "The web, at scale" — many planets, continuous handover (EA2 motif) */
+  .nw-fig svg { width: 100%; max-width: 40rem; height: auto; display: block; margin: 0 auto; overflow: visible; }
+  .nw-mesh polyline { fill: none; stroke: var(--thread); stroke-width: 1; opacity: .55; }
+  .nw-mesh { animation: nwShimmer 15s ease-in-out infinite alternate; }
+  .nw-geo { fill: none; stroke: var(--moss); stroke-width: 1.3; stroke-dasharray: 3 8; stroke-linecap: round; opacity: .55; }
+  .nw-bob { animation: nwBob 16s ease-in-out infinite alternate; }
+  .nw-bob.b2 { animation-duration: 20s; animation-delay: -7s; }
+  .nw-bob.b3 { animation-duration: 24s; animation-delay: -12s; }
+  .nw-core { fill: var(--gold); }
+  .nw-halo { fill: var(--gold); opacity: .3; }
+  .nw-pulse { fill: none; stroke: var(--gold); stroke-width: 1.5; opacity: 0; }
+  .nw-static { display: none; fill: var(--gold); }
+  @keyframes nwShimmer { from { opacity: .55; } to { opacity: .95; } }
+  @keyframes nwBob { to { transform: translate(0,-4px); } }
+  @media (prefers-reduced-motion: reduce) {
+    .nw-mesh, .nw-bob { animation: none; }
+    .nw-parcel, .nw-pulse { display: none; }
+    .nw-static { display: inline; }
+  }
+
+  /* Preference list */
+  ol.prefs { margin: 0; padding-left: 1.4rem; }
+  ol.prefs li { margin-bottom: .7rem; }
+  ol.prefs b { color: var(--moss-deep); }
+
+  /* Forms */
+  form { background: var(--bg-raise); border: 1px solid var(--line); border-radius: 12px; padding: 1.4rem; margin-top: 1rem; }
+  label { display: block; font-weight: 600; margin: 1rem 0 .3rem; font-size: .95rem; }
+  label:first-child { margin-top: 0; }
+  .req::after { content: " *"; color: var(--err-ink); }
+  input[type=text], input[type=email], textarea {
+    width: 100%; padding: .6rem .7rem; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--bg); color: var(--ink); font: inherit; font-size: 1rem; }
+  input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  textarea { min-height: 7rem; resize: vertical; }
+  button, .btn { margin-top: 1.2rem; padding: .65rem 1.5rem; border: none; border-radius: 8px;
+    background: var(--moss); color: var(--bg); font: inherit; font-weight: 600; cursor: pointer;
+    display: inline-block; text-decoration: none; }
+  button:hover, .btn:hover { background: var(--moss-deep); color: var(--bg); }
+  button:disabled { opacity: .55; cursor: wait; }
+  .submit-row { display: flex; align-items: baseline; gap: 1.4rem; flex-wrap: wrap; }
+  .lane-switch { margin-top: 1.2rem; }
+  button.linklike { margin: 0; padding: 0; background: none; border: none; color: var(--moss);
+    font-weight: 400; font-size: .92rem; text-decoration: underline; cursor: pointer; }
+  button.linklike:hover { background: none; color: var(--moss-deep); }
+  .lane-switch .quiet { margin: .1rem 0 0; font-size: .8rem; }
+  .frc-captcha { margin-top: 1.2rem; }
+  .form-msg { display: none; margin-top: 1rem; padding: .7rem .9rem; border-radius: 8px; font-size: .95rem; }
+  .form-msg.ok { display: block; background: var(--ok-bg); color: var(--ok-ink); }
+  .form-msg.err { display: block; background: var(--err-bg); color: var(--err-ink); }
+  .field-err { color: var(--err-ink); font-size: .85rem; display: none; margin-top: .2rem; }
+
+  /* Agents + footer */
+  code, pre { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .88em;
+    background: var(--lichen); border-radius: 4px; padding: .1em .35em; }
+  pre { padding: .8rem 1rem; overflow-x: auto; }
+  details.agents-details { margin-top: .5rem; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--bg-raise); padding: .55rem .9rem; }
+  details.agents-details summary { cursor: pointer; color: var(--ink-soft); font-size: .95rem; }
+  details.agents-details[open] summary { margin-bottom: .6rem; }
+  footer { margin-top: 3.5rem; border-top: 1px solid var(--line); padding: 1.6rem 0 2.5rem;
+    font-size: .88rem; color: var(--ink-soft); }
+  footer .shell p { margin: .4rem 0; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <h1>ReBioSys</h1>
+      <p class="strap">responsive resource sharing</p>
+      <p class="sub">resourcing among living systems</p>
+      <span class="alpha-note">early alpha — one person's network is live</span>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 640 460" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="gP1" cx="38%" cy="32%" r="75%">
+            <stop offset="0%" stop-color="#a9c491"/><stop offset="55%" stop-color="#6d8757"/><stop offset="100%" stop-color="#31421f"/>
+          </radialGradient>
+          <radialGradient id="gP2" cx="40%" cy="30%" r="75%">
+            <stop offset="0%" stop-color="#f0d194"/><stop offset="55%" stop-color="#cf9c3a"/><stop offset="100%" stop-color="#6e4a12"/>
+          </radialGradient>
+          <radialGradient id="gBary" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="var(--gold)" stop-opacity=".38"/><stop offset="45%" stop-color="var(--gold)" stop-opacity=".15"/><stop offset="100%" stop-color="var(--gold)" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <g class="st" opacity=".45">
+          <circle cx="60" cy="60" r="1.6"/><circle cx="140" cy="30" r="1.1"/><circle cx="320" cy="24" r="1.4"/><circle cx="540" cy="46" r="1.2"/>
+          <circle cx="606" cy="120" r="1.6"/><circle cx="580" cy="330" r="1.2"/><circle cx="500" cy="420" r="1.5"/><circle cx="60" cy="400" r="1.3"/>
+          <circle cx="28" cy="250" r="1.2"/><circle cx="250" cy="430" r="1.1"/><circle cx="420" cy="60" r="1"/><circle cx="110" cy="140" r="1"/>
+        </g>
+        <g class="sway">
+          <ellipse class="fl soft" cx="290" cy="228" rx="268" ry="150" transform="rotate(-9 290 228)"/>
+          <ellipse class="fl soft" cx="285" cy="232" rx="236" ry="122" transform="rotate(-9 285 232)"/>
+          <path class="fl" d="M198,136 C262,132 288,186 330,182 C374,178 392,120 452,120 C516,120 550,164 546,202 C552,252 508,278 458,274 C402,270 380,238 330,246 C288,252 272,304 204,306 C124,308 88,258 94,222 C86,176 126,140 198,136 Z"/>
+        </g>
+        <circle cx="268" cy="235" r="74" fill="url(#gBary)"/>
+        <g class="drift-l">
+          <ellipse class="fl" cx="207" cy="247" rx="80" ry="73" transform="rotate(-12 207 247)"/>
+          <ellipse class="fl soft" cx="214" cy="244" rx="106" ry="94" transform="rotate(-12 214 244)"/>
+          <circle cx="200" cy="250" r="56" fill="url(#gP1)"/>
+          <ellipse cx="200" cy="250" rx="72" ry="15" class="fl" transform="rotate(-16 200 250)" opacity=".8"/>
+        </g>
+        <g class="drift-r">
+          <ellipse class="fl" cx="448" cy="199" rx="60" ry="55" transform="rotate(-12 448 199)"/>
+          <ellipse class="fl soft" cx="442" cy="203" rx="82" ry="73" transform="rotate(-12 442 203)"/>
+          <circle cx="455" cy="195" r="40" fill="url(#gP2)"/>
+        </g>
+        <circle cx="268" cy="235" r="3" fill="var(--ink-soft)"/>
+        <path id="handover" class="parcel-guide" d="M212,244 C270,188 352,266 442,204"/>
+        <circle class="pulse" cx="455" cy="195" r="46">
+          <animate attributeName="opacity" values="0;0;.55;0;0" keyTimes="0;.29;.315;.44;1" dur="16s" repeatCount="indefinite"/>
+          <animate attributeName="r" values="46;46;48;66;66" keyTimes="0;.29;.315;.44;1" dur="16s" repeatCount="indefinite"/>
+        </circle>
+        <circle class="pulse" cx="200" cy="250" r="62">
+          <animate attributeName="opacity" values="0;0;.55;0;0" keyTimes="0;.79;.815;.94;1" dur="16s" repeatCount="indefinite"/>
+          <animate attributeName="r" values="62;62;64;84;84" keyTimes="0;.79;.815;.94;1" dur="16s" repeatCount="indefinite"/>
+        </circle>
+        <g class="parcel-anim">
+          <circle r="10" fill="var(--gold)" opacity=".3"/>
+          <circle r="5" fill="var(--gold)"/>
+          <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1;0;0" keyTimes="0;.3;.5;.8;1" rotate="0">
+            <mpath href="#handover" xlink:href="#handover"/>
+          </animateMotion>
+          <animate attributeName="opacity" values="0;1;1;0;0;1;1;0;0" keyTimes="0;.03;.27;.31;.5;.53;.77;.81;1" dur="16s" repeatCount="indefinite"/>
+        </g>
+        <g class="parcel-static">
+          <circle cx="314" cy="227" r="10" fill="var(--gold)" opacity=".3"/>
+          <circle cx="314" cy="227" r="5" fill="var(--gold)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="what">
+    <h2>What this is, honestly</h2>
+    <p>ReBioSys lets people ask each other's networks for resources — a tool, a skill, a contact, a place to stay — without anyone's data ever being pooled on a server. Right now it is an early alpha: <b>one person's network (Jakob's) is live</b>. The consent-ladder and k-anonymity code exists and is tested; most of the rest is roadmap, not product.</p>
+  </section>
+
+  <section id="how">
+    <h2>How it works: the consent ladder</h2>
+    <p>Every query climbs a ladder of gates, and the owner of each node holds every gate: whether you may query them at all, whether the query runs now, and what — if anything — leaves their machine. The most that most queries ever produce is an anonymized aggregate like <b>"4 of 12 people are sharing"</b> — never shown when fewer than 3, so no one can be singled out.</p>
+
+    <figure>
+      <div class="fig-scroll" tabindex="0" role="group" aria-label="Consent ladder diagram, scrolls horizontally">
+        <svg class="ladder-svg" viewBox="0 0 1080 430" role="img" aria-labelledby="ladder-t ladder-d">
+          <title id="ladder-t">The ReBioSys consent ladder</title>
+          <desc id="ladder-d">A query arrives and waits on the relay until the device is online. Gate 0: may they query at all? — blocked, ask each time, or standing consent. Gate 1: run it now? — a small model keeps the machine usable, or a large model. Then local matching over the inventory. Gate 2: what leaves the machine? Three rungs: anonymized aggregate ("N people are sharing", only at three or more), identified introduction (explicit owner action only), or reveal my identity ("tell them it's my identity" — they reach out).</desc>
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--moss)"/>
+            </marker>
+          </defs>
+
+          <!-- query arrives -->
+          <rect x="10" y="160" width="150" height="80" rx="10" fill="var(--bg)" stroke="var(--line)"/>
+          <text class="n" x="85" y="188" text-anchor="middle">query arrives</text>
+          <text class="s" x="85" y="207" text-anchor="middle">waits on relay until</text>
+          <text class="s" x="85" y="223" text-anchor="middle">your device is online</text>
+
+          <line x1="160" y1="200" x2="194" y2="200" stroke="var(--moss)" stroke-width="1.6" marker-end="url(#arr)"/>
+
+          <!-- Gate 0 -->
+          <text class="g" x="262" y="138" text-anchor="middle">GATE 0</text>
+          <polygon points="198,200 262,152 326,200 262,248" fill="var(--lichen)" stroke="var(--moss)" stroke-width="1.4"/>
+          <text class="q" x="262" y="196" text-anchor="middle">may they</text>
+          <text class="q" x="262" y="212" text-anchor="middle">query at all?</text>
+          <text class="s" x="262" y="270" text-anchor="middle">blocked · ask each time</text>
+          <text class="s" x="262" y="286" text-anchor="middle">· standing consent</text>
+
+          <line x1="326" y1="200" x2="360" y2="200" stroke="var(--moss)" stroke-width="1.6" marker-end="url(#arr)"/>
+
+          <!-- Gate 1 -->
+          <text class="g" x="428" y="138" text-anchor="middle">GATE 1</text>
+          <polygon points="364,200 428,152 492,200 428,248" fill="var(--lichen)" stroke="var(--moss)" stroke-width="1.4"/>
+          <text class="q" x="428" y="204" text-anchor="middle">run it now?</text>
+          <text class="s" x="428" y="270" text-anchor="middle">small model keeps your</text>
+          <text class="s" x="428" y="286" text-anchor="middle">machine usable · or large model</text>
+
+          <line x1="492" y1="200" x2="526" y2="200" stroke="var(--moss)" stroke-width="1.6" marker-end="url(#arr)"/>
+
+          <!-- local matching -->
+          <rect x="528" y="160" width="160" height="80" rx="10" fill="var(--bg)" stroke="var(--line)"/>
+          <text class="n" x="608" y="194" text-anchor="middle">local matching</text>
+          <text class="s" x="608" y="213" text-anchor="middle">over your inventory</text>
+
+          <line x1="688" y1="200" x2="722" y2="200" stroke="var(--moss)" stroke-width="1.6" marker-end="url(#arr)"/>
+
+          <!-- Gate 2 -->
+          <text class="g" x="792" y="136" text-anchor="middle">GATE 2</text>
+          <polygon points="724,200 792,150 860,200 792,250" fill="var(--lichen)" stroke="var(--moss)" stroke-width="1.4"/>
+          <text class="q" x="792" y="196" text-anchor="middle">what leaves</text>
+          <text class="q" x="792" y="212" text-anchor="middle">the machine?</text>
+
+          <!-- three rungs -->
+          <path d="M860,200 C882,200 878,72 896,72" fill="none" stroke="var(--moss)" stroke-width="1.6" marker-end="url(#arr)"/>
+          <path d="M860,200 C876,200 880,208 896,208" fill="none" stroke="var(--moss)" stroke-width="1.6" marker-end="url(#arr)"/>
+          <path d="M860,200 C882,200 878,360 896,360" fill="none" stroke="var(--moss)" stroke-width="1.6" marker-end="url(#arr)"/>
+
+          <rect x="900" y="30" width="172" height="84" rx="10" fill="var(--bg)" stroke="var(--thread)"/>
+          <text class="n" x="986" y="56" text-anchor="middle">anonymized aggregate</text>
+          <text class="s" x="986" y="76" text-anchor="middle">"N people are sharing"</text>
+          <text class="s" x="986" y="92" text-anchor="middle">shown only at ≥ 3</text>
+
+          <rect x="900" y="173" width="172" height="70" rx="10" fill="var(--bg)" stroke="var(--thread)"/>
+          <text class="n" x="986" y="200" text-anchor="middle">identified introduction</text>
+          <text class="s" x="986" y="220" text-anchor="middle">explicit owner action only</text>
+
+          <rect x="900" y="316" width="172" height="88" rx="10" fill="var(--bg)" stroke="var(--thread)"/>
+          <text class="n" x="986" y="342" text-anchor="middle">reveal my identity</text>
+          <text class="s" x="986" y="361" text-anchor="middle">"tell them it's my identity"</text>
+          <text class="s" x="986" y="377" text-anchor="middle">— they reach out to you</text>
+        </svg>
+      </div>
+      <figcaption>The consent ladder: a query waits on the relay, passes three owner-held gates, and at most one of three rungs leaves the machine. Silence is a valid answer and looks identical to no one sharing.</figcaption>
+    </figure>
+  </section>
+
+  <section id="scale">
+    <h2>The web, at scale</h2>
+    <p class="quiet">What two planets practice becomes a network of gravities — gifts continuously handed along the geodesics.</p>
+    <figure class="nw-fig">
+      <svg viewBox="0 0 640 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Six planets of different sizes rest in a softly warped mesh; dashed geodesic paths join them, and small golden parcels travel from planet to planet while gentle pulses mark each arrival.">
+        <defs>
+          <radialGradient id="gS3" cx="36%" cy="30%" r="75%"><stop offset="0%" stop-color="#dd9468"/><stop offset="60%" stop-color="#a55429"/><stop offset="100%" stop-color="#5f2c12"/></radialGradient>
+          <radialGradient id="gS4" cx="38%" cy="30%" r="75%"><stop offset="0%" stop-color="#c3d0b2"/><stop offset="60%" stop-color="#8a9a78"/><stop offset="100%" stop-color="#46523a"/></radialGradient>
+          <radialGradient id="gSwell" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="var(--thread)" stop-opacity=".5"/><stop offset="100%" stop-color="var(--thread)" stop-opacity="0"/></radialGradient>
+        </defs>
+        <g class="nw-mesh" id="scaleMesh"></g>
+        <ellipse cx="140" cy="216" rx="66" ry="30" fill="url(#gSwell)" opacity=".7"/>
+        <ellipse cx="500" cy="238" rx="80" ry="36" fill="url(#gSwell)" opacity=".8"/>
+        <ellipse cx="240" cy="336" rx="48" ry="22" fill="url(#gSwell)" opacity=".6"/>
+        <path class="nw-geo" id="nwG1" d="M140,210 Q238,192 330,150"/>
+        <path class="nw-geo" id="nwG2" d="M330,150 Q420,196 500,230"/>
+        <path class="nw-geo" d="M140,210 Q182,276 240,330"/>
+        <path class="nw-geo" id="nwG3" d="M240,330 Q340,352 440,350"/>
+        <path class="nw-geo" d="M440,350 Q478,296 500,230"/>
+        <path class="nw-geo" d="M330,150 Q456,116 580,110"/>
+        <path class="nw-geo" id="nwG4" d="M500,230 Q548,174 580,110"/>
+        <path class="nw-geo" d="M240,330 Q282,240 330,150"/>
+        <g class="nw-bob"><circle cx="140" cy="210" r="30" fill="url(#gP1)"/></g>
+        <g class="nw-bob b2"><circle cx="330" cy="150" r="16" fill="url(#gP2)"/></g>
+        <g class="nw-bob b3"><circle cx="500" cy="230" r="36" fill="url(#gS3)"/><ellipse cx="500" cy="230" rx="54" ry="12" fill="none" stroke="var(--moss)" opacity=".5" transform="rotate(-14 500 230)"/></g>
+        <g class="nw-bob b2"><circle cx="240" cy="330" r="20" fill="url(#gS4)"/></g>
+        <g class="nw-bob"><circle cx="440" cy="350" r="14" fill="url(#gP2)"/></g>
+        <g class="nw-bob b3"><circle cx="580" cy="110" r="10" fill="url(#gP1)"/></g>
+        <circle class="nw-pulse" cx="330" cy="150" r="20"><animate attributeName="opacity" values="0;0;.6;0;0" keyTimes="0;.195;.215;.3;1" dur="24s" repeatCount="indefinite"/><animate attributeName="r" values="20;20;22;38;38" keyTimes="0;.195;.215;.3;1" dur="24s" repeatCount="indefinite"/></circle>
+        <circle class="nw-pulse" cx="500" cy="230" r="40"><animate attributeName="opacity" values="0;0;.6;0;0" keyTimes="0;.325;.345;.44;1" dur="24s" repeatCount="indefinite"/><animate attributeName="r" values="40;40;42;60;60" keyTimes="0;.325;.345;.44;1" dur="24s" repeatCount="indefinite"/></circle>
+        <circle class="nw-pulse" cx="240" cy="330" r="24"><animate attributeName="opacity" values="0;0;.6;0;0" keyTimes="0;.615;.635;.73;1" dur="24s" repeatCount="indefinite"/><animate attributeName="r" values="24;24;26;44;44" keyTimes="0;.615;.635;.73;1" dur="24s" repeatCount="indefinite"/></circle>
+        <circle class="nw-pulse" cx="500" cy="230" r="40"><animate attributeName="opacity" values="0;0;.6;0;0" keyTimes="0;.875;.895;.98;1" dur="24s" repeatCount="indefinite"/><animate attributeName="r" values="40;40;42;60;60" keyTimes="0;.875;.895;.98;1" dur="24s" repeatCount="indefinite"/></circle>
+        <g class="nw-parcel"><circle r="9" class="nw-halo"/><circle r="4.5" class="nw-core"/><animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;.02;.2;1"><mpath href="#nwG1" xlink:href="#nwG1"/></animateMotion><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.02;.045;.175;.2;1" dur="24s" repeatCount="indefinite"/></g>
+        <g class="nw-parcel"><circle r="8" class="nw-halo"/><circle r="4" class="nw-core"/><animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" keyPoints="1;1;0;0" keyTimes="0;.17;.33;1"><mpath href="#nwG4" xlink:href="#nwG4"/></animateMotion><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.17;.195;.305;.33;1" dur="24s" repeatCount="indefinite"/></g>
+        <g class="nw-parcel"><circle r="9" class="nw-halo"/><circle r="4.5" class="nw-core"/><animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" keyPoints="1;1;0;0" keyTimes="0;.44;.62;1"><mpath href="#nwG3" xlink:href="#nwG3"/></animateMotion><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.44;.465;.595;.62;1" dur="24s" repeatCount="indefinite"/></g>
+        <g class="nw-parcel"><circle r="8" class="nw-halo"/><circle r="4" class="nw-core"/><animateMotion dur="24s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;.7;.88;1"><mpath href="#nwG2" xlink:href="#nwG2"/></animateMotion><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.7;.725;.855;.88;1" dur="24s" repeatCount="indefinite"/></g>
+        <g class="nw-static"><circle cx="236" cy="186" r="9" opacity=".3"/><circle cx="236" cy="186" r="4.5"/><circle cx="340" cy="346" r="9" opacity=".3"/><circle cx="340" cy="346" r="4.5"/></g>
+      </svg>
+    </figure>
+  </section>
+
+  <section id="circles">
+    <figure>
+      <div class="fig-scroll" tabindex="0" role="group" aria-label="Concentric circles of sharing, scrolls horizontally if narrow">
+        <svg class="rings-svg" viewBox="0 0 480 440" role="img" aria-labelledby="rings-t rings-d">
+          <title id="rings-t">Three circles of sharing at Gate 2</title>
+          <desc id="rings-d">Concentric circles. Outer ring: anonymized aggregate — "N people are sharing". Middle ring: identified introduction — you connect two people knowingly. Inner circle: reveal my identity — they can reach out to you directly.</desc>
+          <circle cx="240" cy="215" r="165" fill="var(--bg)" stroke="var(--thread)" stroke-width="1.5"/>
+          <circle cx="240" cy="215" r="116" fill="var(--lichen)" stroke="var(--moss)" stroke-width="1.2"/>
+          <circle cx="240" cy="215" r="66" fill="var(--moss)"/>
+
+          <text class="rt" x="240" y="68" text-anchor="middle">anonymized aggregate</text>
+          <text class="rs" x="240" y="86" text-anchor="middle">"N people are sharing"</text>
+
+          <text class="rt" x="240" y="120" text-anchor="middle">identified introduction</text>
+          <text class="rs" x="240" y="136" text-anchor="middle">you connect two</text>
+          <text class="rs" x="240" y="150" text-anchor="middle">people knowingly</text>
+
+          <text class="rt in" x="240" y="206" text-anchor="middle">reveal my identity</text>
+          <text class="rs in" x="240" y="224" text-anchor="middle">they can reach out</text>
+          <text class="rs in" x="240" y="239" text-anchor="middle">to you directly</text>
+        </svg>
+      </div>
+      <figcaption>The three rungs of Gate 2 as circles of closeness: most sharing stays in the anonymized outer ring; every step inward is a separate, explicit choice by the owner.</figcaption>
+    </figure>
+  </section>
+
+  <section id="ask">
+    <h2>Call into the web</h2>
+    <p>You can ask Jakob's network something right now. Plain words work best: what you seek, or what you offer.</p>
+    <form id="query-form" data-lane="human" novalidate>
+      <label class="req" for="q-name">Your name</label>
+      <input type="text" id="q-name" name="name" required autocomplete="name">
+      <p class="field-err" data-for="q-name">Please tell us your name.</p>
+
+      <label class="req" for="q-email">Your email</label>
+      <input type="email" id="q-email" name="email" required autocomplete="email">
+      <p class="field-err" data-for="q-email">A valid email is needed so an answer can find you.</p>
+
+      <label class="req" for="q-request">Your request</label>
+      <textarea id="q-request" name="request" required placeholder="I'm looking for… / I can offer…"></textarea>
+      <p class="field-err" data-for="q-request">Please write what you seek or offer.</p>
+
+      <div id="q-access-wrap">
+        <label for="q-access">Access word <span style="opacity:.6">(optional — if Jakob gave you one)</span></label>
+        <input id="q-access" name="access" autocomplete="off" placeholder="handed out in person">
+      </div>
+
+      <!-- <div class="frc-captcha" data-sitekey="FRIENDLY_CAPTCHA_SITEKEY_PLACEHOLDER"></div> -->
+
+      <div class="submit-row">
+        <button type="submit">Send into the web</button>
+        <div class="lane-switch">
+          <button type="button" class="linklike" id="bot-toggle" aria-describedby="bot-sub">send by a bot instead</button>
+          <p class="quiet" id="bot-sub">let your agent play with it</p>
+        </div>
+      </div>
+      <p class="quiet" id="bot-hint" hidden>Bot lane: no captcha, honestly declared, rate-limited to 10 queries a day.</p>
+      <p class="form-msg" role="status"></p>
+      <p class="quiet">Your query waits on our relay (TLS in transit, tight file permissions at rest) until Jakob's laptop is online; only he reads it. End-to-end encryption to his device is in progress.</p>
+    </form>
+  </section>
+
+  <section id="waitlist">
+    <h2>Grow your own node</h2>
+    <p>Want your own network on ReBioSys once the alpha widens? Leave your email — nothing else happens with it.</p>
+    <form id="waitlist-form" novalidate>
+      <label class="req" for="w-email">Email</label>
+      <input type="email" id="w-email" name="email" required autocomplete="email">
+      <p class="field-err" data-for="w-email">A valid email is needed to reach you.</p>
+
+      <label for="w-interest">What would you share or seek? <span class="quiet">(optional)</span></label>
+      <textarea id="w-interest" name="interest"></textarea>
+
+      <!-- <div class="frc-captcha" data-sitekey="FRIENDLY_CAPTCHA_SITEKEY_PLACEHOLDER"></div> -->
+
+      <button type="submit">Join the waitlist</button>
+      <p class="form-msg" role="status"></p>
+    </form>
+  </section>
+
+  <section id="selfhost">
+    <h2>Run this for your own network</h2>
+    <p>ReBioSys is meant to be run by the people whose data it touches. In honest order of preference:</p>
+    <ol class="prefs">
+      <li><b>Self-host, decentralized.</b> Your data stays on your devices. This is what the design aims at, and what we most want you to do.</li>
+      <li><b>Your community hosts its own node.</b> A group you already trust runs the relay for its members.</li>
+      <li><b>We host for you.</b> Our least preferred option — offered only as an on-ramp until you can move to 1 or 2.</li>
+    </ol>
+    <p>Your inventory lives on your device as plain JSON(L) — trivially exportable. Only an open-source algorithm reads it, locally, to help you decide what to share. We don't see your data. Relay messages: end-to-end encryption to the owner's device is in progress; until then the relay stores only what you type into this form, readable solely by the network owner.</p>
+    <p><a class="btn" href="mailto:connect@evobiosys.org?subject=Self-hosting%20ReBioSys">reach out to let your own network use the ReBioSys process</a></p>
+  </section>
+
+  <section id="agents">
+    <details class="agents-details">
+      <summary>🤖 for agents</summary>
+      <p>AI agents (Claude Code, ChatGPT, Gemini, and kin) may query this network. There is a rate-limited lane without captcha: <code>POST https://idea2.site/rebiosys/api/query</code> with <code>"channel":"bot"</code> in the JSON body. Agents <b>must declare themselves</b> as bots — the form above has a "send by a bot instead" toggle for it, the API has the field.</p>
+      <pre>{"name":"…","email":"operator@…","request":"…","channel":"bot"}</pre>
+      <p>Norms and limits live at <a href="https://idea2.site/rebiosys/agents.txt">/rebiosys/agents.txt</a>: declared bot channel, 10 queries per day, no scraping the waitlist.</p>
+    </details>
+  </section>
+</main>
+
+<footer>
+  <div class="shell">
+    <p>alpha · built on a web-of-trust stack (Matrix transport today, OpenVTC/DIDComm next)</p>
+    <p>no accounts, no tracking, no analytics · AGPL intent</p>
+    <p>part of the <a href="/web-of-trust/">Web of Trust</a> substrate — resonance calls become access to shared resources</p>
+    <p>ReBioSys, maintained by Jakob · <a href="mailto:connect@evobiosys.org">connect@evobiosys.org</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  function showFieldError(form, key, show) {
+    var p = form.querySelector('.field-err[data-for="' + key + '"]');
+    if (p) p.style.display = show ? "block" : "none";
+  }
+  function setMsg(form, kind, text) {
+    var m = form.querySelector(".form-msg");
+    m.className = "form-msg " + kind;
+    m.textContent = text;
+  }
+  function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  // Lane toggle: captcha is the human path; "send by a bot instead" switches to the bot lane.
+  var queryForm = document.getElementById("query-form");
+  var botToggle = document.getElementById("bot-toggle");
+  var botSub = document.getElementById("bot-sub");
+  var botHint = document.getElementById("bot-hint");
+  function applyLane(lane) {
+    if (!queryForm) return;
+    queryForm.dataset.lane = lane;
+    var isBot = lane === "bot";
+    var captcha = queryForm.querySelector(".frc-captcha");
+    if (captcha) captcha.style.display = isBot ? "none" : "";
+    var access = document.getElementById("q-access-wrap");
+    if (access) access.style.display = isBot ? "none" : "";
+    if (botHint) botHint.hidden = !isBot;
+    if (botToggle) botToggle.textContent = isBot ? "send as a human instead" : "send by a bot instead";
+    if (botSub) botSub.textContent = isBot ? "welcome, agent — declare and be brief" : "let your agent play with it";
+  }
+  if (botToggle) {
+    botToggle.addEventListener("click", function () {
+      applyLane(queryForm.dataset.lane === "bot" ? "human" : "bot");
+    });
+  }
+
+  function wire(formId, endpoint, collect, validate) {
+    var form = document.getElementById(formId);
+    if (!form) return;
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      var data = collect(form);
+      if (!validate(form, data)) return;
+      // Friendly Captcha: human lane only. Include the solution if the widget
+      // loaded; degrade gracefully if not. The bot lane skips it entirely.
+      if (data.channel !== "bot") {
+        var frc = form.querySelector('input[name="frc-captcha-solution"]');
+        if (frc && frc.value) data["frc-captcha-solution"] = frc.value;
+      }
+      var btn = form.querySelector("button[type=submit]");
+      btn.disabled = true;
+      setMsg(form, "", "");
+      fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }).then(function (res) {
+        if (res.ok) {
+          if (formId === "query-form") {
+            return res.json().then(function (d) {
+              setMsg(form, "ok", "Received. Your query now waits on the relay for Jakob's device to come online. Check for an answer any time (save this link): https://idea2.site/rebiosys/api/status/" + d.id);
+              form.reset();
+            });
+          }
+          setMsg(form, "ok", "You're on the list. No newsletter, no noise — just a note when the alpha widens.");
+          form.reset();
+        } else {
+          return res.text().then(function (t) {
+            setMsg(form, "err", "The relay said no (" + res.status + "). " +
+              (t && t.length < 200 ? t : "Please try again, or email connect@evobiosys.org."));
+          });
+        }
+      }).catch(function () {
+        setMsg(form, "err", "Could not reach the relay. It may be down — this is an alpha. Email connect@evobiosys.org if it persists.");
+      }).finally(function () { btn.disabled = false; });
+    });
+  }
+
+  wire("query-form", "https://idea2.site/rebiosys/api/query",
+    function (form) {
+      return {
+        name: form.querySelector("#q-name").value.trim(),
+        email: form.querySelector("#q-email").value.trim(),
+        request: form.querySelector("#q-request").value.trim(),
+        access: form.querySelector("#q-access").value.trim(),
+        channel: form.dataset.lane === "bot" ? "bot" : "human"
+      };
+    },
+    function (form, d) {
+      var ok = true;
+      showFieldError(form, "q-name", !d.name); if (!d.name) ok = false;
+      var eBad = !validEmail(d.email);
+      showFieldError(form, "q-email", eBad); if (eBad) ok = false;
+      showFieldError(form, "q-request", !d.request); if (!d.request) ok = false;
+      if (!ok) setMsg(form, "err", "A few required fields still need you — see the notes above.");
+      return ok;
+    });
+
+  wire("waitlist-form", "https://idea2.site/rebiosys/api/waitlist",
+    function (form) {
+      return {
+        email: form.querySelector("#w-email").value.trim(),
+        interest: form.querySelector("#w-interest").value.trim()
+      };
+    },
+    function (form, d) {
+      var eBad = !validEmail(d.email);
+      showFieldError(form, "w-email", eBad);
+      if (eBad) setMsg(form, "err", "Please enter a valid email.");
+      return !eBad;
+    });
+})();
+</script>
+<script>
+/* "The web, at scale": warp a coordinate grid around the gravity wells (rubber-sheet stylization).
+   Fully namespaced — touches only #scaleMesh, declares nothing global. */
+(function () {
+  "use strict";
+  var NW_NS = "http://www.w3.org/2000/svg";
+  var nwWells = [[140,210,30],[330,150,16],[500,230,36],[240,330,20],[440,350,14],[580,110,10]];
+  function nwWarp(x, y) {
+    var dx = 0, dy = 0, i, vx, vy, d2, f;
+    for (i = 0; i < nwWells.length; i++) {
+      vx = nwWells[i][0] - x; vy = nwWells[i][1] - y;
+      d2 = vx * vx + vy * vy + 1100;
+      f = nwWells[i][2] * 62 / d2;
+      dx += vx * f; dy += vy * f;
+    }
+    var m = Math.sqrt(dx * dx + dy * dy), cap = 22;
+    if (m > cap) { dx = dx / m * cap; dy = dy / m * cap; }
+    return (x + dx).toFixed(1) + "," + (y + dy).toFixed(1);
+  }
+  function nwBuildMesh() {
+    var mesh = document.getElementById("scaleMesh");
+    if (!mesh || mesh.firstChild) return;
+    function polyline(pts) {
+      var p = document.createElementNS(NW_NS, "polyline");
+      p.setAttribute("points", pts.join(" "));
+      mesh.appendChild(p);
+    }
+    var x, y, pts;
+    for (y = 56; y <= 440; y += 36) {
+      pts = [];
+      for (x = 0; x <= 640; x += 16) pts.push(nwWarp(x, y));
+      polyline(pts);
+    }
+    for (x = 24; x <= 632; x += 38) {
+      pts = [];
+      for (y = 40; y <= 456; y += 16) pts.push(nwWarp(x, y));
+      polyline(pts);
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", nwBuildMesh);
+  else nwBuildMesh();
+})();
+</script>
+</body>
+</html>
