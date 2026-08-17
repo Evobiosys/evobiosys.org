@@ -1,0 +1,879 @@
+---
+layout: null
+title: "Unlocking Housing — EvoBioSys Pitch"
+description: >-
+  Europe's biggest bill meets Europe's biggest waste. Unlocking Housing locates
+  the continent's idle building stock and reweaves it into sovereign homes —
+  the lead move of the EvoBioSys thesis, Austria first.
+permalink: /unlocking-housing/pitch/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unlocking Housing — EvoBioSys</title>
+  <meta name="description" content="Europe's biggest bill meets Europe's biggest waste. Unlocking Housing locates the continent's idle building stock and reweaves it into sovereign homes — the lead move of the EvoBioSys thesis.">
+  <link rel="canonical" href="https://evobiosys.org/unlocking-housing/pitch/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ECEAE3;
+    --paper-2:#E2DFD5;
+    --ink:#21251F;
+    --ink-2:#585B50;
+    --ink-3:#8B8D80;
+    --oxide:#A23B2A;
+    --oxide-deep:#7E2E21;
+    --rail:#1C4B5E;
+    --night:#132730;
+    --night-2:#0E1E26;
+    --night-ink:#E9E5DA;
+    --night-ink-2:#9FB3BC;
+    --t1:#143F52;
+    --t15:#33697D;
+    --t2:#7FA8B8;
+    --moss:#5A6B4F;
+    --disp:"Futura","Century Gothic","Jost","Avenir Next","Avenir",sans-serif;
+    --body:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:var(--body); font-size:17px; line-height:1.65;
+    margin:0;
+  }
+  ::selection{background:var(--oxide); color:var(--paper)}
+
+  /* ---------- left rail nav (the corridor) ---------- */
+  nav.rail{
+    position:fixed; top:0; left:0; bottom:0; width:216px;
+    padding:28px 0 28px 28px; box-sizing:border-box;
+    display:flex; flex-direction:column; gap:0; z-index:50;
+  }
+  nav.rail .brand{
+    font-family:var(--disp); font-size:13px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink); margin-bottom:26px; line-height:1.5;
+  }
+  nav.rail .brand b{color:var(--oxide); font-weight:600}
+  nav.rail .line{
+    position:relative; flex:1; display:flex; flex-direction:column;
+    justify-content:space-between; padding-left:18px;
+  }
+  nav.rail .line::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px; width:2px;
+    background:var(--ink-3); opacity:.45;
+  }
+  nav.rail .line .progress{
+    position:absolute; left:5px; top:6px; width:2px; height:0;
+    background:var(--oxide); transition:height .15s linear;
+  }
+  nav.rail a{
+    position:relative; display:block; text-decoration:none;
+    font-family:var(--disp); font-size:11.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-2); padding:4px 0;
+  }
+  nav.rail a::before{
+    content:""; position:absolute; left:-17.5px; top:50%; transform:translateY(-50%);
+    width:7px; height:7px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--ink-3);
+    transition:background .2s,border-color .2s;
+  }
+  nav.rail a:hover{color:var(--ink)}
+  nav.rail a.on{color:var(--oxide); font-weight:600}
+  nav.rail a.on::before{background:var(--oxide); border-color:var(--oxide)}
+  nav.rail a:focus-visible{outline:2px solid var(--oxide); outline-offset:2px}
+
+  nav.rail .nav-foot{margin-top:24px; display:flex; flex-direction:column; gap:7px}
+  nav.rail .nav-foot a{
+    font-family:var(--disp); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--ink-3); text-decoration:none; padding:2px 0;
+  }
+  nav.rail .nav-foot a::before{display:none}
+  nav.rail .nav-foot a:hover{color:var(--oxide)}
+  main{margin-left:216px}
+
+  /* ---------- shared section chrome ---------- */
+  section{padding:88px 56px; box-sizing:border-box}
+  .inner{max-width:720px; margin:0 auto}
+  .inner.wide{max-width:960px}
+  .station{
+    display:inline-block; background:var(--rail); color:#F4F2EA;
+    font-family:var(--disp); font-size:12px; font-weight:600;
+    letter-spacing:.16em; text-transform:uppercase;
+    padding:7px 14px 6px; border-radius:4px; margin-bottom:22px;
+  }
+  h2{
+    font-family:var(--disp); font-weight:500; font-size:clamp(28px,4vw,40px);
+    line-height:1.12; letter-spacing:.005em; margin:0 0 22px; text-wrap:balance;
+  }
+  p{max-width:65ch; margin:0 0 18px}
+  .lede{font-size:20px; line-height:1.6; color:var(--ink)}
+  .muted{color:var(--ink-2)}
+  .de{font-style:italic}
+  em{font-style:italic}
+  .accent{color:var(--oxide)}
+  .k{font-family:var(--mono); font-size:.85em; letter-spacing:.02em}
+
+  /* reveal */
+  .rv{opacity:0; transform:translateY(14px); transition:opacity .6s ease,transform .6s ease}
+  .rv.in{opacity:1; transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .rv{opacity:1; transform:none; transition:none}
+  }
+  @media print{ .rv{opacity:1; transform:none} nav.rail{display:none} main{margin-left:0} }
+
+  /* ---------- hero ---------- */
+  header.hero{
+    min-height:min(92vh,980px); display:flex; flex-direction:column; justify-content:center;
+    padding:64px 56px 200px; box-sizing:border-box; position:relative; overflow:hidden;
+  }
+  .hero .inner{max-width:840px; margin:0 auto; width:100%}
+  .hero .hi{
+    font-family:var(--disp); font-weight:500;
+    font-size:clamp(64px,11vw,132px); line-height:1; letter-spacing:-.01em;
+    margin:0 0 30px; color:var(--ink);
+  }
+  .hero .hi .dot{color:var(--oxide)}
+  .hero .sub{font-size:clamp(19px,2.4vw,24px); line-height:1.55; max-width:34em; margin-bottom:14px}
+  .hero .tag{
+    font-family:var(--disp); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-2); margin-bottom:44px;
+  }
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap}
+  .btn{
+    font-family:var(--disp); font-size:13px; font-weight:600; letter-spacing:.1em;
+    text-transform:uppercase; text-decoration:none; padding:14px 24px 13px;
+    border-radius:4px; display:inline-block;
+  }
+  .btn.solid{background:var(--oxide); color:#F6F3EC}
+  .btn.solid:hover{background:var(--oxide-deep)}
+  .btn.ghost{color:var(--ink); border:1.5px solid var(--ink-2)}
+  .btn.ghost:hover{border-color:var(--ink); background:var(--paper-2)}
+  .btn:focus-visible{outline:2px solid var(--oxide); outline-offset:3px}
+  .hero-corridor{position:absolute; left:0; right:0; bottom:0; height:170px; pointer-events:none}
+  .hero-corridor svg{width:100%; height:100%; display:block}
+  .hero-corridor .track{
+    stroke:var(--rail); stroke-width:2.5; fill:none;
+    stroke-dasharray:1600; stroke-dashoffset:1600;
+    animation:draw 2.4s ease-out .3s forwards;
+  }
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @media (prefers-reduced-motion:reduce){ .hero-corridor .track{animation:none; stroke-dashoffset:0} }
+  .hero-corridor .stn{fill:var(--paper); stroke:var(--rail); stroke-width:2}
+  .hero-corridor .stn.lead{fill:var(--oxide); stroke:var(--oxide)}
+  .hero-corridor text{
+    font-family:var(--disp); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    fill:var(--ink-2);
+  }
+  .hero-corridor text.lead{fill:var(--oxide); font-weight:600}
+
+  /* ---------- stat tiles ---------- */
+  .tiles{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:36px 0 8px}
+  .tile{
+    background:var(--paper-2); border-radius:6px; padding:22px 20px 18px;
+    border-top:3px solid var(--rail);
+  }
+  .tile.hot{border-top-color:var(--oxide)}
+  .tile .big{
+    font-family:var(--disp); font-weight:500; font-size:30px; line-height:1.15;
+    margin-bottom:8px; letter-spacing:0;
+  }
+  .tile .big small{font-size:15px; letter-spacing:.04em}
+  .tile .cap{font-size:14.5px; line-height:1.5; color:var(--ink-2)}
+  .fineprint{font-size:13px; color:var(--ink-3); margin-top:14px}
+
+  /* ---------- matrix ---------- */
+  .matrix-wrap{margin-top:36px; overflow-x:auto; padding-bottom:6px}
+  .matrix{border-collapse:separate; border-spacing:3px; margin:0 auto}
+  .matrix th{
+    font-family:var(--disp); font-size:10px; font-weight:600; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--ink-2); padding:4px 6px; text-align:left;
+  }
+  .matrix thead th{vertical-align:bottom; max-width:64px;
+    writing-mode:vertical-rl; transform:rotate(180deg); height:96px; text-align:left; padding:6px 0 4px}
+  .matrix tbody th{white-space:nowrap; padding-right:10px}
+  .matrix td{
+    --cell:#F6F4EC;
+    width:34px; height:30px; border-radius:3px; background:var(--cell);
+    cursor:pointer; transition:filter .15s; position:relative;
+  }
+  .matrix td:hover{filter:brightness(.88)}
+  .matrix tr.lead-row td{--cell:#D8DED2}
+  .matrix td.lead-col{--cell:#D4DCE0}
+  .matrix tr.lead-row td.lead-col{--cell:#C6D1CE}
+  .matrix tr.lead-row td.lead-col.lead{--cell:var(--oxide); animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(162,59,42,.45)} 50%{box-shadow:0 0 0 7px rgba(162,59,42,0)}}
+  @media (prefers-reduced-motion:reduce){ .matrix td.lead{animation:none} }
+  .matrix-caption{
+    margin-top:18px; min-height:52px; font-size:15.5px; color:var(--ink-2);
+    border-left:3px solid var(--oxide); padding-left:14px;
+  }
+  .matrix-caption b{color:var(--ink); font-weight:600}
+
+  /* ---------- engine (dark) ---------- */
+  section.night{background:var(--night); color:var(--night-ink)}
+  section.night h2{color:var(--night-ink)}
+  section.night .muted{color:var(--night-ink-2)}
+  section.night .station{background:var(--oxide)}
+  .layers{display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 6px}
+  .chip{
+    font-family:var(--mono); font-size:12px; letter-spacing:.02em;
+    color:var(--night-ink-2); border:1px solid #2C4854; border-radius:99px;
+    padding:5px 12px;
+  }
+  .demo{
+    background:var(--night-2); border:1px solid #24404C; border-radius:10px;
+    padding:26px 26px 22px; margin-top:30px;
+  }
+  .demo-head{
+    display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap;
+    margin-bottom:4px;
+  }
+  .demo-head h3{
+    font-family:var(--disp); font-weight:500; font-size:19px; letter-spacing:.02em; margin:0;
+  }
+  .demo-badge{
+    font-family:var(--disp); font-size:10.5px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--night-2); background:var(--t2);
+    padding:4px 10px 3px; border-radius:3px;
+  }
+  .map-box{margin:16px 0 8px}
+  .map-box svg{width:100%; height:auto; display:block}
+  .map-track{stroke:#3E6B7D; stroke-width:2.5; fill:none}
+  .map-track.at{stroke:var(--t2); stroke-width:3}
+  .map-stn{fill:var(--night-2); stroke:var(--t2); stroke-width:2}
+  .map-stn.t1{fill:var(--t2)}
+  .map-lbl{font-family:var(--disp); font-size:11px; letter-spacing:.08em; text-transform:uppercase; fill:var(--night-ink-2)}
+  .map-lbl.t1{fill:var(--night-ink); font-weight:600}
+  .map-prop{fill:var(--oxide); stroke:var(--night-2); stroke-width:1.5; cursor:pointer; transition:r .15s}
+  .map-prop.dim{opacity:.28}
+  .map-note{font-family:var(--mono); font-size:11.5px; fill:#5E8292}
+  .sliders{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:18px 0 10px}
+  .slider label{
+    display:block; font-family:var(--disp); font-size:11.5px; font-weight:600;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--night-ink-2); margin-bottom:8px;
+  }
+  .slider label output{color:var(--night-ink); font-size:13px}
+  .slider input[type=range]{
+    width:100%; accent-color:var(--oxide); cursor:pointer; height:22px;
+  }
+  .plist{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:8px}
+  .prow{
+    display:grid; grid-template-columns:minmax(140px,1.1fr) 2fr minmax(120px,.9fr); gap:14px;
+    align-items:center; background:#152C36; border-radius:6px; padding:11px 16px;
+    transition:opacity .25s;
+  }
+  .prow.dim{opacity:.32}
+  .prow .pname{font-family:var(--disp); font-size:14px; font-weight:600; letter-spacing:.03em}
+  .prow .pnote{font-size:13.5px; color:var(--night-ink-2); line-height:1.45}
+  .prow .pull{display:flex; align-items:center; gap:10px}
+  .prow .bar{flex:1; height:6px; border-radius:3px; background:#22404C; overflow:hidden}
+  .prow .bar i{display:block; height:100%; background:var(--oxide); border-radius:3px; transition:width .3s}
+  .prow .pv{font-family:var(--mono); font-size:12px; color:var(--night-ink-2); min-width:30px; text-align:right}
+  .demo-foot{font-size:13px; color:#5E8292; margin-top:14px}
+
+  /* tiers */
+  .tiers{display:flex; flex-direction:column; gap:10px; margin-top:26px}
+  .tier{display:grid; grid-template-columns:110px 1fr; gap:16px; align-items:baseline}
+  .tier .tl{
+    font-family:var(--disp); font-size:11.5px; font-weight:600; letter-spacing:.12em;
+    text-transform:uppercase; padding:5px 10px 4px; border-radius:3px; text-align:center;
+    color:var(--night-ink);
+  }
+  .tier .tl.t1b{background:var(--t1)}
+  .tier .tl.t15b{background:var(--t15)}
+  .tier .tl.t2b{background:var(--t2); color:var(--night-2)}
+  .tier .tc{font-size:15px; color:var(--night-ink-2)}
+  .tier .tc b{color:var(--night-ink); font-weight:600}
+
+  /* ---------- model cards ---------- */
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:34px}
+  .card{
+    background:var(--paper-2); border-radius:8px; padding:24px 22px;
+  }
+  .card h3{
+    font-family:var(--disp); font-weight:600; font-size:13px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--oxide); margin:0 0 12px;
+  }
+  .card p{font-size:15px; line-height:1.6; margin-bottom:0}
+  .card p + p{margin-top:10px}
+  .dunbar{margin:34px 0 6px}
+  .dunbar canvas{width:100%; max-width:560px; height:auto; display:block}
+  .dunbar .cap{font-size:13.5px; color:var(--ink-2); margin-top:8px}
+
+  /* ---------- triple win ---------- */
+  .wins{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:32px}
+  .win{border-top:3px solid var(--moss); padding-top:16px}
+  .win h3{font-family:var(--disp); font-weight:500; font-size:20px; margin:0 0 8px}
+  .win p{font-size:15px; color:var(--ink-2); margin:0}
+  .integral{
+    margin-top:36px; background:var(--paper-2); border-radius:8px; padding:22px 24px;
+    font-size:16.5px;
+  }
+
+  /* ---------- domino ---------- */
+  .commits{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:32px 0}
+  .commit{background:var(--paper-2); border-radius:8px; padding:22px}
+  .commit .num{
+    font-family:var(--disp); font-weight:500; font-size:30px; color:var(--oxide); line-height:1;
+    margin-bottom:10px;
+  }
+  .commit h3{font-family:var(--disp); font-weight:600; font-size:14px; letter-spacing:.08em; text-transform:uppercase; margin:0 0 10px}
+  .commit p{font-size:14.5px; line-height:1.55; color:var(--ink-2); margin:0}
+  .path{margin-top:36px}
+  .path h3{font-family:var(--disp); font-weight:600; font-size:13px; letter-spacing:.12em; text-transform:uppercase; margin:0 0 18px; color:var(--ink-2)}
+  .steps{list-style:none; margin:0; padding:0; counter-reset:step}
+  .steps li{
+    counter-increment:step; position:relative; padding:0 0 22px 44px;
+  }
+  .steps li::before{
+    content:counter(step,upper-alpha); position:absolute; left:0; top:-1px;
+    width:26px; height:26px; border-radius:50%; background:var(--rail); color:#F4F2EA;
+    font-family:var(--disp); font-weight:600; font-size:12.5px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .steps li::after{
+    content:""; position:absolute; left:12.5px; top:28px; bottom:2px; width:1.5px;
+    background:var(--ink-3); opacity:.4;
+  }
+  .steps li:last-child::after{display:none}
+  .steps li b{font-family:var(--disp); font-weight:600; font-size:14px; letter-spacing:.04em}
+  .steps li span{display:block; font-size:14.5px; color:var(--ink-2); margin-top:2px; max-width:56ch}
+  .weeks{
+    margin-top:26px; font-size:17px; border-left:3px solid var(--oxide); padding-left:14px;
+  }
+
+  /* ---------- stage ---------- */
+  .now-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:32px}
+  .now{background:var(--paper-2); border-radius:8px; padding:22px}
+  .now h3{font-family:var(--disp); font-weight:600; font-size:13px; letter-spacing:.12em; text-transform:uppercase; margin:0 0 12px; color:var(--rail)}
+  .now ul{margin:0; padding-left:18px; font-size:15px; color:var(--ink-2)}
+  .now li{margin-bottom:8px}
+  .now li b{color:var(--ink); font-weight:600}
+  .roadmap{display:flex; gap:0; margin-top:30px; flex-wrap:wrap}
+  .rm{
+    flex:1; min-width:180px; border-top:3px solid var(--ink-3); padding:14px 18px 0 0;
+  }
+  .rm.on{border-top-color:var(--oxide)}
+  .rm .v{font-family:var(--mono); font-size:12px; color:var(--oxide); margin-bottom:6px}
+  .rm p{font-size:14.5px; color:var(--ink-2); margin:0}
+
+  /* ---------- vision + talk ---------- */
+  .vision-line{
+    font-family:var(--disp); font-weight:500; font-size:clamp(24px,3.4vw,34px);
+    line-height:1.3; max-width:22em; text-wrap:balance; margin:26px 0 0;
+  }
+  .vision-line .accent{color:var(--oxide)}
+  section.talk{background:var(--rail); color:#F0EEE5; padding-bottom:120px}
+  section.talk h2{color:#F0EEE5}
+  section.talk .station{background:var(--oxide)}
+  section.talk p{color:#C9D3D3}
+  section.talk .who{font-family:var(--disp); font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:#F0EEE5; margin-bottom:6px}
+  section.talk .btn.solid{background:var(--oxide)}
+  section.talk .btn.ghost{color:#F0EEE5; border-color:#7A99A3}
+  section.talk .btn.ghost:hover{background:#24576B; border-color:#F0EEE5}
+  footer{
+    background:var(--rail); color:#7A99A3; font-size:12.5px;
+    padding:0 56px 40px; text-align:left;
+  }
+  footer .inner{max-width:720px; margin:0 auto; border-top:1px solid #2E5A6B; padding-top:18px; line-height:2}
+  footer a{color:#A8C0C8}
+  footer a:hover{color:#F0EEE5}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:1060px){
+    nav.rail{
+      position:sticky; top:0; bottom:auto; width:auto; height:auto;
+      flex-direction:row; align-items:center; gap:18px;
+      padding:12px 20px; background:color-mix(in srgb,var(--paper) 92%,transparent);
+      backdrop-filter:blur(6px); border-bottom:1px solid var(--paper-2);
+      overflow-x:auto;
+    }
+    nav.rail .brand{margin:0; white-space:nowrap}
+    nav.rail .line{flex-direction:row; gap:18px; padding-left:0; flex:initial}
+    nav.rail .line::before,nav.rail .line .progress{display:none}
+    nav.rail a{white-space:nowrap; padding:4px 0}
+    nav.rail .nav-foot{flex-direction:row; margin-top:0; gap:14px}
+    nav.rail a::before{display:none}
+    main{margin-left:0}
+    section,header.hero{padding-left:24px; padding-right:24px}
+    footer{padding-left:24px; padding-right:24px}
+  }
+  @media (max-width:820px){
+    .tiles,.cards,.wins,.commits{grid-template-columns:1fr}
+    .now-grid,.sliders{grid-template-columns:1fr}
+    .prow{grid-template-columns:1fr; gap:6px}
+    .prow .pv{text-align:left}
+    header.hero{min-height:min(74vh,760px)}
+  }
+</style>
+</head>
+<body>
+<nav class="rail" aria-label="Sections">
+  <div class="brand">Unlocking<br>Housing <b>/ EvoBioSys</b></div>
+  <div class="line">
+    <div class="progress" id="railProgress"></div>
+    <a href="#hello">Servus</a>
+    <a href="#problem">The asymmetry</a>
+    <a href="#frame">The frame</a>
+    <a href="#engine">The engine</a>
+    <a href="#model">The model</a>
+    <a href="#win">The triple win</a>
+    <a href="#domino">First domino</a>
+    <a href="#stage">Where it stands</a>
+    <a href="#vision">The vision</a>
+    <a href="#talk">Let's talk</a>
+  </div>
+  <div class="nav-foot">
+    <a href="https://evobiosys.org">&larr; evobiosys.org</a>
+    <a href="/unlocking-housing/">Holon page &rarr;</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="hello">
+  <div class="inner">
+    <h1 class="hi">Servus<span class="dot">.</span></h1>
+    <p class="sub">Europe pays more for housing than for anything else — while an enormous stock of buildings stands empty. We locate that idle substance and reweave it into <em>sovereign homes</em>.</p>
+    <p class="tag">Unlocking Housing — the first move of the EvoBioSys thesis · Austria first</p>
+    <div class="cta-row">
+      <a class="btn solid" href="https://idea2.site/unlocking-housing/">Open the live map ↗</a>
+      <a class="btn ghost" href="#engine">See the engine</a>
+      <a class="btn ghost" href="#talk">Let's talk</a>
+    </div>
+  </div>
+  <div class="hero-corridor" aria-hidden="true">
+    <svg viewBox="0 0 1200 170" preserveAspectRatio="xMidYMax meet">
+      <path class="track" d="M20,38 C220,30 380,44 520,72 C640,96 700,118 790,124 C900,131 1050,120 1180,132"/>
+      <g>
+        <circle class="stn" cx="60" cy="37" r="5"/><text x="60" y="22" text-anchor="middle">Gdańsk</text>
+        <circle class="stn" cx="300" cy="36" r="5"/><text x="300" y="21" text-anchor="middle">Warsaw</text>
+        <circle class="stn lead" cx="560" cy="80" r="6.5"/><text class="lead" x="560" y="62" text-anchor="middle">Vienna</text>
+        <circle class="stn lead" cx="790" cy="124" r="6.5"/><text class="lead" x="790" y="106" text-anchor="middle">Graz</text>
+        <circle class="stn" cx="1140" cy="129" r="5"/><text x="1140" y="112" text-anchor="middle">Trieste</text>
+      </g>
+    </svg>
+  </div>
+</header>
+
+<!-- ================= PROBLEM ================= -->
+<section id="problem">
+  <div class="inner rv">
+    <span class="station">01 · The asymmetry</span>
+    <h2>Europe's biggest bill meets Europe's biggest waste.</h2>
+    <p class="lede">Two facts sit side by side. Housing takes the largest share of most household budgets on the continent. And at the same time, <span class="de">Landflucht</span> (rural exodus), speculation and second homes leave a vast share of Europe's building stock idle — emptied villages in Austria and Italy, depopulating Greek islands, upper floors above shuttered town squares.</p>
+    <div class="tiles">
+      <div class="tile hot">
+        <div class="big">№ 1 <small>household cost</small></div>
+        <div class="cap">Housing sits at the top of almost every European household's bill — the defining domestic pressure of the decade.</div>
+      </div>
+      <div class="tile">
+        <div class="big">Millions <small>of dwellings idle</small></div>
+        <div class="cap">Rural exodus and speculative holding leave whole villages and regional towns under-used — a stock so cheap Italy sells houses for one euro.</div>
+      </div>
+      <div class="tile">
+        <div class="big">1 <small>rail corridor to start</small></div>
+        <div class="cap">The Vienna–Graz axis on the EU's Baltic–Adriatic corridor: high demand-pull, visible vacancy, home-ground knowledge.</div>
+      </div>
+    </div>
+    <p class="fineprint">Directional framing; exact vacancy ratios carry citations in the thesis' evidence layer before any investor use.</p>
+    <p style="margin-top:26px">The mismatch names the opportunity: the cheapest existing buildings sit within reach of the strongest housing demand. What's missing is not capital or construction — it's an <b>engine that finds, scores and unlocks</b> that substance, and a <b>model that holds it well</b>.</p>
+  </div>
+</section>
+
+<!-- ================= FRAME ================= -->
+<section id="frame" style="background:var(--paper-2)">
+  <div class="inner wide rv">
+    <span class="station">02 · The frame</span>
+    <h2>Nine requirements × nine poles. Housing leads. Europa starts.</h2>
+    <div class="inner" style="margin:0">
+      <p>EvoBioSys inverts the usual venture logic: instead of funding apps, it funds the <b>physical substrate of civilization</b> — the nine Essential Physical Requirements (housing, energy, water, food, mobility, care &amp; education, essential goods, connectivity, safety), provisioned sovereignly in each of nine planetary power poles. Every cell of the matrix works as its own self-contained, investable holon (a whole that also serves a larger whole).</p>
+      <p><b>Housing leads</b> because it is the most investable cell — a real, cash-flowing asset with bounded downside — and the highest-leverage one: shelter anchors every other requirement. <b>Europa starts</b> because the model, the credibility and the reference system (Vienna's century of social housing) already sit at home.</p>
+    </div>
+    <div class="matrix-wrap">
+      <table class="matrix" id="matrix" aria-label="9 Essential Physical Requirements by 9 power poles"></table>
+    </div>
+    <div class="matrix-caption" id="matrixCaption"><b>Housing × Europa</b> — the lead cell. Hover the grid: each cell reads as its own investable thesis; the matrix fills cell by cell, starting here.</div>
+  </div>
+</section>
+
+<!-- ================= ENGINE ================= -->
+<section class="night" id="engine">
+  <div class="inner wide rv">
+    <span class="station">03 · The engine</span>
+    <h2>A map that turns empty stock on a rail corridor into a ranked acquisition pipeline.</h2>
+    <div class="inner" style="margin:0">
+      <p><b>Unlocking Housing</b> is a local-first geo-intelligence tool — <a href="https://idea2.site/unlocking-housing/" style="color:var(--t2)">live at idea2.site/unlocking-housing</a>, currently carrying 43,144 buildings across five Mur–Mürz corridor municipalities. It layers vacancy signals over official geodata and scores every candidate building by its <span class="de">Einzugsgebiet</span> (catchment-area) pull — how strongly nearby cities tug on the location, along the exact corridors where Europe's demand runs.</p>
+      <div class="layers" aria-label="Data layers">
+        <span class="chip">Leerstandsmelder.de — live vacancy reports</span>
+        <span class="chip">OpenRailwayMap</span>
+        <span class="chip">BEV Kataster</span>
+        <span class="chip">Flächenwidmung zoning</span>
+        <span class="chip">Esri imagery ~15 cm</span>
+        <span class="chip">Valhalla travel-time routing</span>
+      </div>
+      <div class="tiers">
+        <div class="tier"><span class="tl t1b">Tier 1</span><span class="tc"><b>Vienna · Berlin · Paris · Warsaw · Rome …</b> — maximum pull; being 3 h from one keeps a property globally connected.</span></div>
+        <div class="tier"><span class="tl t15b">Tier 1.5</span><span class="tc"><b>Munich · Zurich · Milan · Kraków …</b> — major metros that thicken the corridor.</span></div>
+        <div class="tier"><span class="tl t2b">Tier 2</span><span class="tc"><b>Graz · Salzburg · Innsbruck</b> — regional <span class="de">kleine Weltstädte</span>; 45 min from one keeps daily life anchored.</span></div>
+      </div>
+    </div>
+
+    <div class="demo rv">
+      <div class="demo-head">
+        <h3>Corridor scoring — try it</h3>
+        <span class="demo-badge">Illustrative demo data</span>
+      </div>
+      <p class="muted" style="font-size:14.5px; max-width:64ch">Two sliders, the tool's core idea: a <b>global</b> reach to a Tier-1 city and a <b>local</b> reach to a Tier-2 city. Move them and watch the candidate buildings on the Vienna–Graz segment re-rank.</p>
+
+      <div class="map-box">
+        <svg viewBox="0 0 900 250" aria-label="Schematic map of the Baltic–Adriatic corridor through Austria">
+          <text class="map-note" x="16" y="24">TEN-T Baltic–Adriatic corridor · schematic, not to scale</text>
+          <path class="map-track" d="M30,60 C150,52 260,58 360,84"/>
+          <path class="map-track at" d="M360,84 C430,102 470,148 520,172 C570,196 640,204 700,200"/>
+          <path class="map-track" d="M700,200 C760,196 820,208 880,224"/>
+          <g id="mapStations">
+            <circle class="map-stn" cx="60" cy="58" r="5"/><text class="map-lbl" x="60" y="44" text-anchor="middle">Gdańsk</text>
+            <circle class="map-stn" cx="230" cy="55" r="5"/><text class="map-lbl" x="230" y="41" text-anchor="middle">Warsaw</text>
+            <circle class="map-stn t1" cx="360" cy="84" r="7"/><text class="map-lbl t1" x="360" y="68" text-anchor="middle">Vienna · T1</text>
+            <circle class="map-stn t1" cx="700" cy="200" r="7"/><text class="map-lbl t1" x="700" y="230" text-anchor="middle">Graz · T2</text>
+            <circle class="map-stn" cx="866" cy="221" r="5"/><text class="map-lbl" x="852" y="244" text-anchor="middle">Trieste</text>
+          </g>
+          <g id="mapProps"></g>
+        </svg>
+      </div>
+
+      <div class="sliders">
+        <div class="slider">
+          <label for="gSlider">Global pull — within <output id="gOut">3.0 h</output> of Vienna (Tier 1)</label>
+          <input type="range" id="gSlider" min="10" max="40" step="1" value="30" aria-label="Maximum hours to a Tier-1 city">
+        </div>
+        <div class="slider">
+          <label for="lSlider">Local pull — within <output id="lOut">60 min</output> of Graz (Tier 2)</label>
+          <input type="range" id="lSlider" min="30" max="120" step="5" value="60" aria-label="Maximum minutes to a Tier-2 city">
+        </div>
+      </div>
+
+      <ul class="plist" id="plist"></ul>
+      <p class="demo-foot">Times and buildings shown for illustration. The real tool — <a href="https://idea2.site/unlocking-housing/" style="color:var(--t2)">open it live</a> — computes travel-time isochrones from routing data and scores live vacancy signals — acquisition below replacement cost, with catchment-backed occupancy security. Vacancy data stays sensitive; licences and privacy respected.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MODEL ================= -->
+<section id="model">
+  <div class="inner rv">
+    <span class="station">04 · The model</span>
+    <h2>Found cheap. Held well. Copied from Vienna.</h2>
+    <p class="lede">Finding the building is half the work. The other half — the half where social housing usually fails — is who holds it and how it stays alive. That model needs no invention; it draws on a century of Viennese practice.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Who holds it</h3>
+        <p>A small collective non-profit at <b>Dunbar scale — around 150 households</b> — the size at which trust still works. Housing stays small-and-many: a mesh of governable holons, not one central landlord.</p>
+      </div>
+      <div class="card">
+        <h3>How it stays alive</h3>
+        <p>Residents belong to a <span class="de">Solidaritätsgemeinschaft</span> (solidarity community) that maintains the housing. Upkeep becomes mutual obligation rather than landlord cost — membership, not contract.</p>
+      </div>
+      <div class="card">
+        <h3>How it grows</h3>
+        <p>Two paths: <span class="de">Selbstbau</span> (residents co-build, cutting cost and deepening the bond) and <span class="de">Sanierung</span> (buy undervalued stock, regenerate it — a good deal on day one).</p>
+      </div>
+    </div>
+    <div class="dunbar">
+      <canvas id="dunbarCanvas" width="560" height="150" role="img" aria-label="150 dots representing 150 households, one highlighted cluster"></canvas>
+      <div class="cap">≈150 households — one holon. Governance stays human-scale; above the ceiling, a larger collective steps in only for bulk purchasing and bargaining.</div>
+    </div>
+    <p>References: <b>Vienna Gemeindebau</b> for the public-trust standard, the Austrian <b>Genossenschaft</b> (cooperative) as legal vehicle, and <b>steward-ownership</b> where a pure non-profit won't stretch — profits serve the purpose, the asset can never be flipped. Financing runs evergreen: patient capital, lean proven building tech, no exit pressure.</p>
+  </div>
+</section>
+
+<!-- ================= TRIPLE WIN ================= -->
+<section id="win" style="background:var(--paper-2)">
+  <div class="inner rv">
+    <span class="station">05 · The triple win</span>
+    <h2>Every unlock pays three ways.</h2>
+    <div class="wins">
+      <div class="win">
+        <h3>The resident</h3>
+        <p>Gains a secure, affordable home they co-hold and can improve themselves — the opposite of tenant powerlessness.</p>
+      </div>
+      <div class="win">
+        <h3>The owner</h3>
+        <p>An idle, decaying asset returns to care and value — through structured deals and trust, never force or displacement.</p>
+      </div>
+      <div class="win">
+        <h3>The village</h3>
+        <p>Re-peopled streets, revived demand, restored social fabric — and the lowest-carbon home is the one that already exists.</p>
+      </div>
+    </div>
+    <div class="integral">
+      <b>Integral by design, not "alternative."</b> This must read as competent, rooted, prosperous regeneration: real deals, professional renovation, legal and insurance rigor — <em>and</em> parish-grade continuity, belonging, order. That double legibility lets aligned capital and conservative villagers say yes to the same project. It is the moat.
+    </div>
+  </div>
+</section>
+
+<!-- ================= DOMINO ================= -->
+<section id="domino">
+  <div class="inner rv">
+    <span class="station">06 · The first domino</span>
+    <h2>The first wave takes no rent — and needs no fund.</h2>
+    <p class="lede">Before any fund or market, one concrete invitation: to a person stuck in a get-by job who carries a real project — <em>"come live here, for free, and build it."</em> Three commitments make that sentence possible.</p>
+    <div class="commits">
+      <div class="commit">
+        <div class="num">①</div>
+        <h3>A building</h3>
+        <p>An owner lends a vacant structure — free, revocable anytime — via <span class="de">Prekarium</span> (gratuitous loan, an established Austrian legal instrument). We guarantee it loses no value in use. Vienna even runs a free matching service for vacant spaces.</p>
+      </div>
+      <div class="commit">
+        <div class="num">②</div>
+        <h3>A resource-provider</h3>
+        <p>One backer funds the stipend in kind: good beds, desks, strong internet, laptops held as foundation property. Small, concrete, reversible — a donate-able ask.</p>
+      </div>
+      <div class="commit">
+        <div class="num">③</div>
+        <h3>The people</h3>
+        <p>One to three residents with a real project and the will to live simply and build — inside a mutual developmental field, with food covered and an easy exit.</p>
+      </div>
+    </div>
+    <div class="path">
+      <h3>The shortest real path</h3>
+      <ol class="steps">
+        <li><b>Legal vehicle</b><span>A charitable <span class="de">Verein</span> (association) — foundable in days — signs contracts, holds the kit, carries liability.</span></li>
+        <li><b>One building on a Prekarium</b><span>Via Vienna's vacancy-matching service or a named owner on the corridor.</span></li>
+        <li><b>Liability insurance</b><span>How we guarantee the owner "no value loss" — and what makes lending safe.</span></li>
+        <li><b>One kit-funder</b><span>The stipend in kind for the first house.</span></li>
+        <li><b>A one-page agreement</b><span>House rules, the developmental field, food, easy exit — the contract that makes the offer real.</span></li>
+        <li><b>Invite the people</b><span>The sentence becomes speakable: <em>come live here and build.</em></span></li>
+      </ol>
+      <p class="weeks">Every step above sits in reach of <b>weeks, not years</b> — none needs a fund, a market, or new construction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STAGE ================= -->
+<section id="stage" style="background:var(--paper-2)">
+  <div class="inner rv">
+    <span class="station">07 · Where it stands</span>
+    <h2>Thesis written. Engine in development. Corridor chosen.</h2>
+    <div class="now-grid">
+      <div class="now">
+        <h3>Already real</h3>
+        <ul>
+          <li><b>The thesis holarchy</b> — problem, model, capital architecture, returns, risks and cross-pole expression, written and internally audited, with a separate evidence layer.</li>
+          <li><b>The map tool</b> — <a href="https://idea2.site/unlocking-housing/" style="color:var(--oxide)">live at idea2.site/unlocking-housing</a>: 43,144 corridor buildings (Leoben, Bruck, Kapfenberg, Vordernberg, Eisenerz), vacancy scoring, municipality filters, CSV export, Google Maps import — on a local-first stack (MapLibre, vector tiles, official Austrian geodata).</li>
+          <li><b>The pilot ground</b> — Eisenerz and the Vienna–Graz / Mur-Mürz corridor, on the EU's Baltic–Adriatic spine.</li>
+        </ul>
+      </div>
+      <div class="now">
+        <h3>Next on the line</h3>
+        <ul>
+          <li><b>Top-10 run</b> — score the Graz–Vienna segment, output the ten strongest buildings for the first deal memo.</li>
+          <li><b>First domino</b> — Verein, one Prekarium building, one kit-funder, first residents.</li>
+          <li><b>Ring two</b> — Italian villages, Greek islands, then everything in night-train distance from Vienna.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="roadmap">
+      <div class="rm on"><div class="v">v0.1 — now</div><p>Model + capital architecture + returns + cross-pole porting.</p></div>
+      <div class="rm"><div class="v">v0.2</div><p>Vienna pilot one-pager with real figures.</p></div>
+      <div class="rm"><div class="v">v0.3</div><p>Single-asset <span class="de">Sanierung</span> deal memo — the first acquisition.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VISION ================= -->
+<section id="vision">
+  <div class="inner rv">
+    <span class="station">08 · The vision</span>
+    <h2>One cell proves the matrix.</h2>
+    <p class="lede">The bet stays simple: make housing sovereignly self-reliant in one power pole — provided at cost, with local capital and local stewardship — and the template ports to the other eight. Then the next requirement unlocks: energy, food, care. Cell by cell, the matrix fills.</p>
+    <p class="vision-line">Housing is the proof-of-concept, the beachhead, the icebreaker — <span class="accent">the first domino of a civilization-scale portfolio.</span></p>
+  </div>
+</section>
+
+<!-- ================= TALK ================= -->
+<section class="talk" id="talk">
+  <div class="inner rv">
+    <span class="station">09 · Let's talk</span>
+    <h2>Lend a building. Fund a kit. Bring a project.</h2>
+    <p style="max-width:56ch">The pitch runs on three doors, and each one stands open: an owner with an idle structure, a backer for the first stipend in kind, a person with a project and the will to build. Or simply — an investor who wants to walk the corridor with us.</p>
+    <p class="who" style="margin-top:34px">Jakob Possert-Bienzle · EvoBioSys · Vienna</p>
+    <div class="cta-row" style="margin-top:14px">
+      <a class="btn solid" href="mailto:connect@evobiosys.org?subject=Unlocking%20Housing%20Pitch">Write to Jakob</a>
+      <a class="btn ghost" href="#hello">Back to the start</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">Unlocking Housing · EvoBioSys thesis, lead pillar. Figures marked as illustrative pending the evidence layer. Vacancy data handled under source licences and privacy care. © 2026 EvoBioSys.<br><a href="/unlocking-housing/">Holon page →</a> · <a href="/pitch/kidur/">Sibling pitches</a> · <a href="https://evobiosys.org">evobiosys.org</a></div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- scroll-spy + rail progress ---------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.rail a[href^='#']"));
+  var targets = links.map(function(a){ return document.querySelector(a.getAttribute("href")); });
+  function spy(){
+    var y = window.scrollY + window.innerHeight*0.35, idx = 0;
+    targets.forEach(function(t,i){ if(t && t.offsetTop <= y) idx = i; });
+    links.forEach(function(a,i){ a.classList.toggle("on", i===idx); });
+    var p = document.getElementById("railProgress");
+    if(p){
+      var doc = document.documentElement;
+      var frac = window.scrollY / Math.max(1, doc.scrollHeight - window.innerHeight);
+      p.style.height = (frac*100) + "%";
+    }
+  }
+  window.addEventListener("scroll", spy, {passive:true});
+  spy();
+
+  /* ---------- reveals ---------- */
+  var rvEls = Array.prototype.slice.call(document.querySelectorAll(".rv"));
+  function reveal(){
+    if(!rvEls.length) return;
+    var line = window.innerHeight * 0.92;
+    rvEls = rvEls.filter(function(el){
+      if(el.getBoundingClientRect().top < line){ el.classList.add("in"); return false; }
+      return true;
+    });
+  }
+  window.addEventListener("scroll", reveal, {passive:true});
+  window.addEventListener("resize", reveal, {passive:true});
+  reveal();
+  // fallback for environments that throttle scroll events (occluded windows, preview iframes)
+  var rvTimer = setInterval(function(){
+    reveal();
+    if(!rvEls.length) clearInterval(rvTimer);
+  }, 350);
+
+  /* ---------- matrix ---------- */
+  var EPHR = ["Housing","Energy","Water","Food","Mobility","Care & Edu","Goods","Connectivity","Safety"];
+  var POLES = ["Europa","Anglo-America+","Latin America","India+","China","ASEAN & Pacific","Sub-Sah. Africa","Arab League & ME","Russia & fSU"];
+  var mx = document.getElementById("matrix");
+  var cap = document.getElementById("matrixCaption");
+  var CAP_DEFAULT = "<b>Housing × Europa</b> — the lead cell. Hover the grid: each cell reads as its own investable thesis; the matrix fills cell by cell, starting here.";
+  if(mx){
+    var thead = "<thead><tr><th></th>" + POLES.map(function(p){ return "<th scope='col'>"+p+"</th>"; }).join("") + "</tr></thead>";
+    var rows = EPHR.map(function(r,ri){
+      var tds = POLES.map(function(pole,ci){
+        var cls = [];
+        if(ci===0) cls.push("lead-col");
+        if(ri===0 && ci===0) cls.push("lead");
+        return "<td class='"+cls.join(" ")+"' data-r='"+ri+"' data-c='"+ci+"' tabindex='0' aria-label='"+r+" × "+pole+"'></td>";
+      }).join("");
+      return "<tr"+(ri===0?" class='lead-row'":"")+"><th scope='row'>"+r+"</th>"+tds+"</tr>";
+    }).join("");
+    mx.innerHTML = thead + "<tbody>" + rows + "</tbody>";
+    function showCell(td){
+      var r = +td.dataset.r, c = +td.dataset.c;
+      if(r===0 && c===0){ cap.innerHTML = CAP_DEFAULT; return; }
+      cap.innerHTML = "<b>"+EPHR[r]+" × "+POLES[c]+"</b> — a self-contained holon: readable, actionable, bankable on its own. Sequenced after the lead cell proves the template.";
+    }
+    mx.addEventListener("mouseover", function(e){ var td = e.target.closest("td"); if(td) showCell(td); });
+    mx.addEventListener("focusin", function(e){ var td = e.target.closest("td"); if(td) showCell(td); });
+    mx.addEventListener("mouseleave", function(){ cap.innerHTML = CAP_DEFAULT; });
+  }
+
+  /* ---------- corridor demo ---------- */
+  var PROPS = [
+    {name:"Mürzzuschlag", note:"Gründerzeit house by the station", vienna:1.4, graz:50, x:560, y:186},
+    {name:"Bruck an der Mur", note:"Corner building at the rail junction", vienna:1.7, graz:35, x:618, y:200},
+    {name:"Semmering", note:"Former Pension, south side", vienna:1.3, graz:75, x:508, y:168},
+    {name:"Gloggnitz", note:"Villa quarter near the line", vienna:1.1, graz:95, x:462, y:146},
+    {name:"Eisenerz", note:"Former workers' housing block", vienna:2.8, graz:80, x:600, y:238},
+    {name:"Judenburg", note:"Upper floors on the town square", vienna:2.5, graz:65, x:748, y:222}
+  ];
+  var gS = document.getElementById("gSlider"), lS = document.getElementById("lSlider");
+  var gO = document.getElementById("gOut"), lO = document.getElementById("lOut");
+  var list = document.getElementById("plist");
+  var propsG = document.getElementById("mapProps");
+
+  if(propsG){
+    propsG.innerHTML = PROPS.map(function(p,i){
+      return "<g><circle class='map-prop' id='mp"+i+"' cx='"+p.x+"' cy='"+p.y+"' r='6'><title>"+p.name+" — "+p.note+"</title></circle></g>";
+    }).join("");
+  }
+
+  function score(p, gMax, lMax){
+    // pull = closeness to each anchor within its slider window, T1 weighted heavier
+    var g = Math.max(0, (gMax - p.vienna) / gMax);
+    var l = Math.max(0, (lMax - p.graz) / lMax);
+    var inReach = (p.vienna <= gMax) || (p.graz <= lMax);
+    return { pull: Math.round((g*0.55 + l*0.45)*100), inReach: inReach };
+  }
+  function render(){
+    if(!gS || !lS || !list) return;
+    var gMax = gS.value/10, lMax = +lS.value;
+    gO.textContent = gMax.toFixed(1) + " h";
+    lO.textContent = lMax + " min";
+    var scored = PROPS.map(function(p,i){
+      var s = score(p,gMax,lMax);
+      return {i:i, p:p, pull:s.pull, inReach:s.inReach};
+    }).sort(function(a,b){ return (b.inReach-a.inReach) || (b.pull-a.pull); });
+    list.innerHTML = scored.map(function(s){
+      var t = s.p.vienna.toFixed(1)+" h Vienna · "+s.p.graz+" min Graz";
+      return "<li class='prow"+(s.inReach?"":" dim")+"'>"
+        + "<div><div class='pname'>"+s.p.name+"</div><div class='pv' style='text-align:left;min-width:0'>"+t+"</div></div>"
+        + "<div class='pnote'>"+s.p.note+(s.inReach?"":" — outside both reach windows")+"</div>"
+        + "<div class='pull'><div class='bar'><i style='width:"+(s.inReach?s.pull:4)+"%'></i></div><span class='pv'>"+(s.inReach?s.pull:"–")+"</span></div>"
+        + "</li>";
+    }).join("");
+    scored.forEach(function(s){
+      var dot = document.getElementById("mp"+s.i);
+      if(dot) dot.classList.toggle("dim", !s.inReach);
+    });
+  }
+  if(gS && lS){
+    gS.addEventListener("input", render);
+    lS.addEventListener("input", render);
+    render();
+  }
+
+  /* ---------- dunbar dots ---------- */
+  var cv = document.getElementById("dunbarCanvas");
+  if(cv && cv.getContext){
+    var ctx = cv.getContext("2d");
+    var W = cv.width, H = cv.height;
+    var ink = "#585B50", oxide = "#A23B2A";
+    // deterministic pseudo-random (no Math.random per environment constraints)
+    var seed = 42;
+    function rnd(){ seed = (seed*1103515245 + 12345) % 2147483648; return seed/2147483648; }
+    var placed = [];
+    var n = 0, guard = 0;
+    while(n < 150 && guard < 4000){
+      guard++;
+      var a = rnd()*Math.PI*2, r = Math.pow(rnd(),0.62);
+      var x = W*0.5 + Math.cos(a)*r*W*0.46;
+      var y = H*0.52 + Math.sin(a)*r*H*0.40;
+      if(x<8||x>W-8||y<8||y>H-8) continue;
+      var ok = placed.every(function(q){ var dx=q[0]-x, dy=q[1]-y; return dx*dx+dy*dy > 90; });
+      if(!ok) continue;
+      placed.push([x,y]); n++;
+    }
+    placed.forEach(function(q,i){
+      ctx.beginPath();
+      ctx.arc(q[0], q[1], 3.4, 0, Math.PI*2);
+      ctx.fillStyle = (i % 30 === 0) ? oxide : ink;
+      ctx.globalAlpha = (i % 30 === 0) ? 1 : 0.75;
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -83,6 +83,24 @@ permalink: /unlocking-housing/
   }
   .uh-lp blockquote p { font-style: italic; color: var(--uh-forest-deep); margin: 0; }
 
+  .uh-lp .uh-bio-card {
+    background: linear-gradient(160deg, var(--uh-forest-deep) 0%, var(--uh-forest) 100%);
+    color: #fff; border-radius: 8px; padding: 2.5rem 2.2rem; margin: 2rem 0;
+  }
+  .uh-lp .uh-bio-card h3 { font-size: 1.4rem; color: #a8d5a2; margin: 0 0 0.8rem; }
+  .uh-lp .uh-bio-card p { color: rgba(255,255,255,0.9); line-height: 1.75; margin-bottom: 0.7rem; }
+  .uh-lp .uh-bio-card p:last-child { margin-bottom: 0; }
+  .uh-lp .uh-connections { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
+  .uh-lp .uh-conn {
+    font-size: 0.82rem; font-weight: 500; padding: 0.3em 0.8em;
+    border: 1px solid var(--uh-border); border-radius: 20px;
+    color: var(--uh-text-muted); background: var(--uh-paper);
+  }
+  .uh-lp .uh-conn-label {
+    font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--uh-text-muted); margin-top: 2rem;
+  }
+
   .uh-lp .uh-nl { max-width: 520px; margin: 0 auto; padding: 2rem 0; }
   .uh-lp .uh-nl h2 { margin-top: 0; }
   .uh-lp .uh-nl-form { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
@@ -109,7 +127,7 @@ permalink: /unlocking-housing/
       <div class="uh-cta-row">
         <a class="uh-btn uh-btn-forest" href="#thesis">The thesis</a>
         <a class="uh-btn uh-btn-outline" href="https://idea2.site/unlocking-housing/" target="_blank" rel="noopener">Explore the live map</a>
-        <a class="uh-btn uh-btn-outline" href="/pitch/unlocking-housing/">The pitch</a>
+        <a class="uh-btn uh-btn-outline" href="/unlocking-housing/pitch/">The pitch</a>
         <a class="uh-btn uh-btn-outline" href="#newsletter">Follow the work</a>
       </div>
     </div>
@@ -218,6 +236,46 @@ permalink: /unlocking-housing/
     </div>
   </section>
 
+  <!-- Bio Pillar -->
+  <section id="bio-pillar">
+    <div class="uh-inner">
+      <h2>The Bio Pillar</h2>
+      <p>
+        Unlocking Housing is the flagship project of the <strong>evoBIOsys-bio</strong>
+        pillar &mdash; the branch of EvoBioSys concerned with living, biological, and
+        bioregional systems. Where the Sys pillar builds digital infrastructure and the
+        Evo pillar supports human development, the Bio pillar works with the living
+        substrate: land, housing, bioregions, and the material conditions of settlement.
+      </p>
+      <div class="uh-bio-card">
+        <h3>What evoBIOsys-bio builds toward</h3>
+        <p>
+          The Bio pillar&rsquo;s long-term work is to create the conditions for communities
+          to understand, steward, and inhabit their bioregions more intentionally. Unlocking
+          Housing is the first concrete project in that suite: starting with the question of
+          <em>where can people live together?</em> and building toward <em>how should
+          communities relate to the land they occupy?</em>
+        </p>
+        <p>
+          Every property search in Unlocking Housing happens in bioregional context &mdash;
+          because the watershed, soil, and ecological connectivity of a place shape whether
+          a settlement will be resilient over decades, not just viable for this year.
+        </p>
+      </div>
+      <h3 class="uh-conn-label">Connected to</h3>
+      <div class="uh-connections">
+        <span class="uh-conn">Bioregional Community</span>
+        <span class="uh-conn">Foundation Stewardship</span>
+        <span class="uh-conn">Bio Pillar</span>
+        <span class="uh-conn">Italian Villages</span>
+        <span class="uh-conn">Styrian Infrastructure</span>
+        <span class="uh-conn">Night-Train Network</span>
+        <span class="uh-conn">Rural Regeneration</span>
+        <span class="uh-conn">EvoPaideia</span>
+      </div>
+    </div>
+  </section>
+
   <!-- Newsletter -->
   <section class="uh-alt" id="newsletter">
     <div class="uh-nl">
@@ -235,7 +293,7 @@ permalink: /unlocking-housing/
 
 </div><!-- /.uh-lp -->
 
-<div class="back-link"><a href="/holons/unlocking-housing/">Full project holon &rarr;</a></div>
+<div class="back-link"><a href="/holons/">&larr; All holons</a></div>
 
 <script>
   (function () {
