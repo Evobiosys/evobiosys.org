@@ -180,12 +180,13 @@ a:hover {
 }
 
 /* Temporary full logo (2026-08-20, see index.html's comment on the mark
-   itself) -- sized to read clearly above the badge without competing with
-   the h1 for attention. */
+   itself), sized to read clearly without competing with the h1 for
+   attention. Moved below the CTA block (owner: "switch the hero image and
+   the hero text") -- margin flipped from -bottom to -top to match. */
 .hero-mark {
   width: 4.5rem;
   height: auto;
-  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 /* Not a chip: a quiet label held between two filament ends,
