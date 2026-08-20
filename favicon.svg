@@ -7,7 +7,13 @@
      Framing: the design file's own viewBox is portrait 4 -12 198 310. Rather than
      widen that viewBox (which would alter the crop), the verbatim art is nested
      unchanged inside a square outer viewport and centred: content x-centre is
-     4 + 198/2 = 103, and -52 + 310/2 = 103. Geometry untouched. -->
+     4 + 198/2 = 103, and -52 + 310/2 = 103. Geometry untouched.
+     Backing tile added 2026-08-20 (orchestrator, post-review): the icon's own
+     strokes are dark-on-transparent, so a dark browser tab bar swallowed it
+     entirely; backing tile uses the same #f0ece1 cream the apple-touch-icon
+     already uses, rounded to read as a tile rather than a hard square at
+     favicon scale. -->
+  <rect x="-52" y="-12" width="310" height="310" rx="48" fill="#f0ece1"/>
   <svg x="4" y="-12" width="198" height="310" viewBox="4 -12 198 310">
   <defs><clipPath id="ebs-mark-clip"><path d="M 100 30 C 124 60, 150 110, 141 170 C 134 216, 113 242, 100 258 C 86 240, 67 214, 60 168 C 51 108, 78 58, 100 30 Z"/></clipPath></defs>
   <g transform="translate(0,25.86) skewY(-14.5)" fill="none" stroke="#1d4433" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M 34 272 L 100 272"/><path d="M 100 272 C 144.0 272, 144.0 240.1, 100 240.1"/><path d="M 100 240.1 C 32.0 240.1, 32.0 199.3, 100 199.3"/><path d="M 100 199.3 C 184.0 199.3, 184.0 147, 100 147"/><path d="M 100 147 C 2.0 147, 2.0 117.1, 100 117.1"/><path d="M 100 117.1 C 208.0 117.1, 208.0 78.9, 100 78.9"/><path d="M 100 78.9 C -18.0 78.9, -18.0 30, 100 30"/><path d="M 100 30 L 166 30"/></g>
