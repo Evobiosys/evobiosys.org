@@ -79,6 +79,19 @@ a:hover {
   color: var(--color-text);
   text-decoration: none;
   letter-spacing: -0.02em;
+  /* Icon + wordmark lockup. inline-flex (not flex) keeps the anchor shrink-to-fit
+     inside .nav's space-between row, so the nav links stay hard right. */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* The mark is portrait (viewBox 198x310), so at 25px tall it is 16px wide. That
+   fits inside the wordmark's 1.1rem x 1.7 = ~30px line box, so adding it does not
+   change the fixed nav's height and nothing below needs re-spacing. */
+.nav-logo-mark {
+  flex: none;
+  display: block;
 }
 
 .nav-links {

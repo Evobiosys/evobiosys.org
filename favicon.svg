@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -12 310 310" role="img" aria-label="EvoBioSys">
+<!-- EvoBioSys mark, light-background cut. Owner-supplied via the claude.ai/design
+     project "Evobiosys logo refinement" (5d8ef26a-0779-4440-b189-996e51bad39f),
+     turn 15, variant "15a - Simple" (NOT the "Fancy - steel chip" panel beside it).
+     Path data transcribed VERBATIM; the only change is the clipPath id,
+     namespaced off "lcI2" to avoid collisions when inlined into a page.
+     Framing: the design file's own viewBox is portrait 4 -12 198 310. Rather than
+     widen that viewBox (which would alter the crop), the verbatim art is nested
+     unchanged inside a square outer viewport and centred: content x-centre is
+     4 + 198/2 = 103, and -52 + 310/2 = 103. Geometry untouched. -->
+  <svg x="4" y="-12" width="198" height="310" viewBox="4 -12 198 310">
+  <defs><clipPath id="ebs-mark-clip"><path d="M 100 30 C 124 60, 150 110, 141 170 C 134 216, 113 242, 100 258 C 86 240, 67 214, 60 168 C 51 108, 78 58, 100 30 Z"/></clipPath></defs>
+  <g transform="translate(0,25.86) skewY(-14.5)" fill="none" stroke="#1d4433" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M 34 272 L 100 272"/><path d="M 100 272 C 144.0 272, 144.0 240.1, 100 240.1"/><path d="M 100 240.1 C 32.0 240.1, 32.0 199.3, 100 199.3"/><path d="M 100 199.3 C 184.0 199.3, 184.0 147, 100 147"/><path d="M 100 147 C 2.0 147, 2.0 117.1, 100 117.1"/><path d="M 100 117.1 C 208.0 117.1, 208.0 78.9, 100 78.9"/><path d="M 100 78.9 C -18.0 78.9, -18.0 30, 100 30"/><path d="M 100 30 L 166 30"/></g>
+  <path d="M 100 254 C 100 261, 100 267, 100 272" fill="none" stroke="#1d4433" stroke-width="5.52" stroke-linecap="round"/>
+  <path d="M 100 30 C 124 60, 150 110, 141 170 C 134 216, 113 242, 100 258 C 86 240, 67 214, 60 168 C 51 108, 78 58, 100 30 Z" fill="#4f9a6f" stroke="#1d4433" stroke-width="6.72" stroke-linejoin="round"/>
+  <g clip-path="url(#ebs-mark-clip)"><path d="M 100 36 C 105 68, 95 112, 100 140 M 100 154 C 105 188, 96 222, 100 254" fill="none" stroke="#1d4433" stroke-width="5.52" stroke-linecap="round"/><path d="M 98.9 108 C 107 98, 115 90, 123 82 M 98.9 108 C 91 98, 83 90, 75 82 M 100.6 202 C 110 192, 118 184, 126 175 M 100.6 202 C 91 192, 83 184, 75 175" fill="none" stroke="#1d4433" stroke-width="5.04" stroke-linecap="round"/></g>
+  <rect x="82" y="130" width="36" height="36" rx="3" fill="none" stroke="#1d4433" stroke-width="6.48" stroke-linejoin="round"/><rect x="93.88" y="141.88" width="12.24" height="12.24" rx="1.4" fill="none" stroke="#1d4433" stroke-width="5.184000000000001"/><g stroke="#1d4433" stroke-width="6.48" stroke-linecap="round"><line x1="91.72" y1="130" x2="91.72" y2="123"/><line x1="108.28" y1="130" x2="108.28" y2="123"/><line x1="91.72" y1="166" x2="91.72" y2="173"/><line x1="108.28" y1="166" x2="108.28" y2="173"/><line x1="82" y1="140.8" x2="75" y2="140.8"/><line x1="82" y1="155.2" x2="75" y2="155.2"/><line x1="118" y1="140.8" x2="125" y2="140.8"/><line x1="118" y1="155.2" x2="125" y2="155.2"/></g><rect x="93" y="140" width="14" height="14" rx="2" fill="#1d4433"/>
+  </svg>
+</svg>

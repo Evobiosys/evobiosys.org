@@ -7,6 +7,15 @@
   <meta name="description" content="{{ page.description | default: site.description }}">
   {% seo %}
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+  <!-- Favicons: the EvoBioSys leaf/vine mark (owner-supplied, Claude Design
+       "Evobiosys logo refinement" turn 15, variant "15a - Simple"), light-
+       background cut. SVG first for modern browsers, PNG fallbacks after. -->
+  <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | relative_url }}">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -24,7 +33,25 @@
 
   <!-- Navigation -->
   <nav class="nav" id="nav">
-    <a href="/" class="nav-logo">EvoBioSys</a>
+    <a href="/" class="nav-logo">
+    <!-- Nav mark: the owner-supplied EvoBioSys leaf/vine mark, LIGHT-background
+         cut (dark-green #1d4433 linework on a #4f9a6f leaf), because .nav is
+         rgba(250,250,247,0.92) over --color-bg #fafaf7. Path data transcribed
+         VERBATIM from the design file; only the clipPath id is namespaced
+         ("lcI2" -> "ebs-nav-mark-clip") so it cannot collide with other inline
+         SVGs on the page. Sized 16x25 - the mark is portrait (198x310), so 25px
+         tall is 16px wide at true aspect, which sits inside the 1.1rem/1.7 =
+         ~30px nav-logo line box and therefore does not grow the fixed nav. -->
+      <svg class="nav-logo-mark" width="16" height="25" viewBox="4 -12 198 310" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <defs><clipPath id="ebs-nav-mark-clip"><path d="M 100 30 C 124 60, 150 110, 141 170 C 134 216, 113 242, 100 258 C 86 240, 67 214, 60 168 C 51 108, 78 58, 100 30 Z"/></clipPath></defs>
+  <g transform="translate(0,25.86) skewY(-14.5)" fill="none" stroke="#1d4433" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M 34 272 L 100 272"/><path d="M 100 272 C 144.0 272, 144.0 240.1, 100 240.1"/><path d="M 100 240.1 C 32.0 240.1, 32.0 199.3, 100 199.3"/><path d="M 100 199.3 C 184.0 199.3, 184.0 147, 100 147"/><path d="M 100 147 C 2.0 147, 2.0 117.1, 100 117.1"/><path d="M 100 117.1 C 208.0 117.1, 208.0 78.9, 100 78.9"/><path d="M 100 78.9 C -18.0 78.9, -18.0 30, 100 30"/><path d="M 100 30 L 166 30"/></g>
+  <path d="M 100 254 C 100 261, 100 267, 100 272" fill="none" stroke="#1d4433" stroke-width="5.52" stroke-linecap="round"/>
+  <path d="M 100 30 C 124 60, 150 110, 141 170 C 134 216, 113 242, 100 258 C 86 240, 67 214, 60 168 C 51 108, 78 58, 100 30 Z" fill="#4f9a6f" stroke="#1d4433" stroke-width="6.72" stroke-linejoin="round"/>
+  <g clip-path="url(#ebs-nav-mark-clip)"><path d="M 100 36 C 105 68, 95 112, 100 140 M 100 154 C 105 188, 96 222, 100 254" fill="none" stroke="#1d4433" stroke-width="5.52" stroke-linecap="round"/><path d="M 98.9 108 C 107 98, 115 90, 123 82 M 98.9 108 C 91 98, 83 90, 75 82 M 100.6 202 C 110 192, 118 184, 126 175 M 100.6 202 C 91 192, 83 184, 75 175" fill="none" stroke="#1d4433" stroke-width="5.04" stroke-linecap="round"/></g>
+  <rect x="82" y="130" width="36" height="36" rx="3" fill="none" stroke="#1d4433" stroke-width="6.48" stroke-linejoin="round"/><rect x="93.88" y="141.88" width="12.24" height="12.24" rx="1.4" fill="none" stroke="#1d4433" stroke-width="5.184000000000001"/><g stroke="#1d4433" stroke-width="6.48" stroke-linecap="round"><line x1="91.72" y1="130" x2="91.72" y2="123"/><line x1="108.28" y1="130" x2="108.28" y2="123"/><line x1="91.72" y1="166" x2="91.72" y2="173"/><line x1="108.28" y1="166" x2="108.28" y2="173"/><line x1="82" y1="140.8" x2="75" y2="140.8"/><line x1="82" y1="155.2" x2="75" y2="155.2"/><line x1="118" y1="140.8" x2="125" y2="140.8"/><line x1="118" y1="155.2" x2="125" y2="155.2"/></g><rect x="93" y="140" width="14" height="14" rx="2" fill="#1d4433"/>
+      </svg>
+      <span>EvoBioSys</span>
+    </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
     <ul class="nav-links" id="nav-links">
       <li><a href="/holons/">Holons</a></li>
