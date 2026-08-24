@@ -267,7 +267,7 @@ The 9x9 grid is the investment universe. Every cell is a deployment opportunity,
 
 **Layer 2 - The innovation layer.** Everything built on top of a secure foundation - new products, services, improvements to the essentials, technology that makes them more efficient or accessible - operates within an eco-social market economy. This is where market-rate returns live. Not from extracting value from the essentials, but from co-evolving with them.
 
-SOFIN (sofin.bio) endows the floor. idea2life (idea2.life) builds on top. Neither works without the other. The pairing is itself biomimetic: roots and canopy, mycelium and fruiting body - the floor stabilizes; the innovation layer reaches for light.
+SOFIN (sofin.bio) endows the floor. idea2life (idea2.life) builds on top. Neither works without the other. The pairing is itself living: roots and canopy, mycelium and fruiting body - the floor stabilizes; the innovation layer reaches for light.
 
 ---
 
