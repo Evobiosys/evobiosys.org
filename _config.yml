@@ -16,3 +16,8 @@ exclude:
   - access-test.md
   - test-pr.txt
   - vendor/
+  - DEVLOG/
+  - legal/
+  - license/
+  - cosbiosys/
+  - EVOBIOSYS-LICENSE.md
