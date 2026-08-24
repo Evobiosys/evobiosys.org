@@ -18,6 +18,6 @@ exclude:
   - vendor/
   - DEVLOG/
   - legal/
-  - license/
+  - license.html
   - cosbiosys/
   - EVOBIOSYS-LICENSE.md
