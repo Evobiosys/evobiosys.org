@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Public Map: EvoBioSys
+title: "Public Map: EvoBioSys"
 description: The living public map of EvoBioSys work, holons (the cells doing the building) and quests (things that ought to exist, open for anyone to pick up).
 permalink: /map/
 ---
@@ -63,13 +63,13 @@ permalink: /map/
                 <div class="map-holon-row">
                   {% if holon.status %}<span class="status status-{{ holon.status }}">{{ holon.status | capitalize }}</span>{% endif %}
                   {% if holon.slug %}
-                    <a href="/holons/{{ holon.slug }}/">{{ holon.name }}</a>
+                    <a href="/holons/{{ holon.slug }}/">{{ holon.name | escape }}</a>
                   {% elsif holon.link %}
-                    <a href="{{ holon.link }}">{{ holon.name }}</a>
+                    <a href="{{ holon.link | escape }}">{{ holon.name | escape }}</a>
                   {% else %}
-                    <span class="map-holon-name">{{ holon.name }}</span>
+                    <span class="map-holon-name">{{ holon.name | escape }}</span>
                   {% endif %}
-                  {% if holon.description %}<span class="map-holon-desc">{{ holon.description }}</span>{% endif %}
+                  {% if holon.description %}<span class="map-holon-desc">{{ holon.description | escape }}</span>{% endif %}
                 </div>
 
                 {% if holon.sub_holons %}
@@ -80,13 +80,13 @@ permalink: /map/
                       <div class="map-holon-row map-sub-row">
                         {% if sub.status %}<span class="status status-{{ sub.status }}">{{ sub.status | capitalize }}</span>{% endif %}
                         {% if sub.slug %}
-                          <a href="/holons/{{ sub.slug }}/">{{ sub.name }}</a>
+                          <a href="/holons/{{ sub.slug }}/">{{ sub.name | escape }}</a>
                         {% elsif sub.link %}
-                          <a href="{{ sub.link }}">{{ sub.name }}</a>
+                          <a href="{{ sub.link | escape }}">{{ sub.name | escape }}</a>
                         {% else %}
-                          <span class="map-holon-name">{{ sub.name }}</span>
+                          <span class="map-holon-name">{{ sub.name | escape }}</span>
                         {% endif %}
-                        {% if sub.description %}<span class="map-holon-desc">{{ sub.description }}</span>{% endif %}
+                        {% if sub.description %}<span class="map-holon-desc">{{ sub.description | escape }}</span>{% endif %}
                       </div>
 
                       {% if sub.sub_holons %}
@@ -97,13 +97,13 @@ permalink: /map/
                             <div class="map-holon-row map-subsub-row">
                               {% if leaf.status %}<span class="status status-{{ leaf.status }}">{{ leaf.status | capitalize }}</span>{% endif %}
                               {% if leaf.slug %}
-                                <a href="/holons/{{ leaf.slug }}/">{{ leaf.name }}</a>
+                                <a href="/holons/{{ leaf.slug }}/">{{ leaf.name | escape }}</a>
                               {% elsif leaf.link %}
-                                <a href="{{ leaf.link }}">{{ leaf.name }}</a>
+                                <a href="{{ leaf.link | escape }}">{{ leaf.name | escape }}</a>
                               {% else %}
-                                <span class="map-holon-name">{{ leaf.name }}</span>
+                                <span class="map-holon-name">{{ leaf.name | escape }}</span>
                               {% endif %}
-                              {% if leaf.description %}<span class="map-holon-desc">{{ leaf.description }}</span>{% endif %}
+                              {% if leaf.description %}<span class="map-holon-desc">{{ leaf.description | escape }}</span>{% endif %}
                             </div>
                           </li>
                           {% endunless %}
@@ -158,10 +158,10 @@ permalink: /map/
             <tbody>
               {% for quest in group %}
               <tr>
-                <td>{{ quest.title }}</td>
-                <td>{{ quest.description }}</td>
+                <td>{{ quest.title | escape }}</td>
+                <td>{{ quest.description | escape }}</td>
                 <td><span class="status status-{{ quest.status }}">{{ quest.status | capitalize }}</span></td>
-                <td>{% if quest.link %}<a href="{{ quest.link }}" target="_blank" rel="noopener">View</a>{% endif %}</td>
+                <td>{% if quest.link %}<a href="{{ quest.link | escape }}" target="_blank" rel="noopener">View</a>{% endif %}</td>
               </tr>
               {% endfor %}
             </tbody>
