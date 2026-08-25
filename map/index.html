@@ -1,0 +1,196 @@
+---
+layout: default
+title: Public Map: EvoBioSys
+description: The living public map of EvoBioSys work, holons (the cells doing the building) and quests (things that ought to exist, open for anyone to pick up).
+permalink: /map/
+---
+
+<!-- Page Header -->
+<div class="page-header">
+  <p class="breadcrumb"><a href="/">Home</a> &rsaquo; Map</p>
+  <h1>The Public Map</h1>
+  <p class="lead">
+    This is the living public map of EvoBioSys: <strong>holons</strong> (organizational cells,
+    each whole in itself and part of a greater whole) and <strong>quests</strong> (things that
+    ought to exist, open for anyone to pick up). Nothing here is final: holons grow and shift
+    pillars, quests get claimed, statuses change as the work does.
+  </p>
+</div>
+
+<!-- States Legend -->
+<section>
+  <div class="container-narrow">
+    <p class="section-label">States</p>
+    <h2 class="section-title">One vocabulary, six states</h2>
+    <p class="section-subtitle">
+      Every holon and every quest on this page carries exactly one of these states.
+    </p>
+    <ul class="map-legend">
+      <li><span class="status status-active">Active</span> in progress, being worked on right now</li>
+      <li><span class="status status-draft">Draft</span> written or built in a first pass, not yet finished</li>
+      <li><span class="status status-vision">Vision</span> imagined and scoped, not yet started</li>
+      <li><span class="status status-legacy">Legacy</span> built before, now dormant or superseded</li>
+      <li><span class="status status-identified">Identified</span> captured, nobody working on it yet</li>
+      <li><span class="status status-paused">Paused</span> on hold</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Project Holons -->
+<section class="section-alt" id="holons">
+  <div class="container">
+    <p class="section-label">Project Holons</p>
+    <h2 class="section-title">The holonic structure, compact</h2>
+    <p class="section-subtitle">
+      Every project in EvoBioSys nests into one of three pillars: Evo (growing), Bio (living),
+      Sys (systems). This is a compact second view of the same data as
+      <a href="/holons/">the full holonic map</a>: same holons, same statuses, condensed to a
+      list.
+    </p>
+
+    <div class="map-holons">
+      {% assign pillar_keys = "evo,bio,sys" | split: "," %}
+      {% for key in pillar_keys %}
+        {% assign pillar = site.data.holons[key] %}
+        {% if pillar %}
+        <div class="map-pillar">
+          <h3 class="map-pillar-title">{{ pillar.label }}</h3>
+          <p class="map-pillar-subtitle">{{ pillar.subtitle }}</p>
+          <ul class="map-holon-list">
+            {% for holon in pillar.holons %}
+              {% unless holon.visibility == "later" %}
+              <li>
+                <div class="map-holon-row">
+                  {% if holon.status %}<span class="status status-{{ holon.status }}">{{ holon.status | capitalize }}</span>{% endif %}
+                  {% if holon.slug %}
+                    <a href="/holons/{{ holon.slug }}/">{{ holon.name }}</a>
+                  {% elsif holon.link %}
+                    <a href="{{ holon.link }}">{{ holon.name }}</a>
+                  {% else %}
+                    <span class="map-holon-name">{{ holon.name }}</span>
+                  {% endif %}
+                  {% if holon.description %}<span class="map-holon-desc">{{ holon.description }}</span>{% endif %}
+                </div>
+
+                {% if holon.sub_holons %}
+                <ul class="map-sub-list">
+                  {% for sub in holon.sub_holons %}
+                    {% unless sub.visibility == "later" %}
+                    <li>
+                      <div class="map-holon-row map-sub-row">
+                        {% if sub.status %}<span class="status status-{{ sub.status }}">{{ sub.status | capitalize }}</span>{% endif %}
+                        {% if sub.slug %}
+                          <a href="/holons/{{ sub.slug }}/">{{ sub.name }}</a>
+                        {% elsif sub.link %}
+                          <a href="{{ sub.link }}">{{ sub.name }}</a>
+                        {% else %}
+                          <span class="map-holon-name">{{ sub.name }}</span>
+                        {% endif %}
+                        {% if sub.description %}<span class="map-holon-desc">{{ sub.description }}</span>{% endif %}
+                      </div>
+
+                      {% if sub.sub_holons %}
+                      <ul class="map-subsub-list">
+                        {% for leaf in sub.sub_holons %}
+                          {% unless leaf.visibility == "later" %}
+                          <li>
+                            <div class="map-holon-row map-subsub-row">
+                              {% if leaf.status %}<span class="status status-{{ leaf.status }}">{{ leaf.status | capitalize }}</span>{% endif %}
+                              {% if leaf.slug %}
+                                <a href="/holons/{{ leaf.slug }}/">{{ leaf.name }}</a>
+                              {% elsif leaf.link %}
+                                <a href="{{ leaf.link }}">{{ leaf.name }}</a>
+                              {% else %}
+                                <span class="map-holon-name">{{ leaf.name }}</span>
+                              {% endif %}
+                              {% if leaf.description %}<span class="map-holon-desc">{{ leaf.description }}</span>{% endif %}
+                            </div>
+                          </li>
+                          {% endunless %}
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                    </li>
+                    {% endunless %}
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </li>
+              {% endunless %}
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Quests -->
+<section id="quests">
+  <div class="container">
+    <p class="section-label">Quests</p>
+    <h2 class="section-title">Open quests</h2>
+    <p class="section-subtitle">
+      Quests are things that ought to exist: tools, projects, and ideas that are named but not
+      necessarily claimed. Anyone is free to pick one up. Grouped by state, active first.
+    </p>
+
+    {% assign quest_statuses = "active,identified,draft,vision,paused,legacy" | split: "," %}
+    {% for status in quest_statuses %}
+      {% assign group = site.data.quests | where: "status", status %}
+      {% if group.size > 0 %}
+      <div class="quests-group">
+        <h3 class="quests-group-title">
+          <span class="status status-{{ status }}">{{ status | capitalize }}</span>
+          <span class="quests-count">{{ group.size }} quest{% if group.size != 1 %}s{% endif %}</span>
+        </h3>
+        <div class="table-wrap">
+          <table class="quests-table">
+            <thead>
+              <tr>
+                <th scope="col">Quest</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th scope="col">Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for quest in group %}
+              <tr>
+                <td>{{ quest.title }}</td>
+                <td>{{ quest.description }}</td>
+                <td><span class="status status-{{ quest.status }}">{{ quest.status | capitalize }}</span></td>
+                <td>{% if quest.link %}<a href="{{ quest.link }}" target="_blank" rel="noopener">View</a>{% endif %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Outro -->
+<section class="section-warm" id="collaborate">
+  <div class="container-narrow" style="text-align: center;">
+    <p class="section-label">Get involved</p>
+    <h2 class="section-title">Let's collaborate</h2>
+    <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">
+      If a holon here calls to you, or a quest is one you would like to pick up, or you have a
+      project that belongs on this map but is not on it yet, reach out. This map stays alive
+      through people building on it.
+    </p>
+    <p>
+      <a href="mailto:connect@evobiosys.org" class="btn btn-primary">connect@evobiosys.org</a>
+      <a href="https://questhub.eco" class="btn btn-secondary" target="_blank" rel="noopener">Explore questhub.eco</a>
+    </p>
+  </div>
+</section>
+
+<!-- Back link -->
+<div class="back-link">
+  <a href="/">&larr; Back to EvoBioSys</a>
+</div>
