@@ -1113,6 +1113,258 @@ pre {
   color: var(--color-accent);
 }
 
+.status-identified {
+  background: #e2e6ea;
+  color: #384652;
+}
+
+.status-paused {
+  background: #f4dcc9;
+  color: #7a3b12;
+}
+
+/* ========================================
+   Map page (/map/): states legend, compact
+   holon hierarchy, grouped quests tables
+   ======================================== */
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.map-legend li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+.map-holons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+.map-pillar {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-white);
+  padding: 1.5rem 1.75rem;
+}
+
+.map-pillar-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-accent-deep);
+  margin-bottom: 0.2rem;
+}
+
+.map-pillar-subtitle {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+.map-holon-list,
+.map-sub-list,
+.map-subsub-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.map-holon-list > li {
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.map-holon-list > li:first-child {
+  border-top: none;
+}
+
+.map-sub-list {
+  margin: 0.5rem 0 0 1.1rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--color-border);
+}
+
+.map-sub-list > li {
+  padding: 0.35rem 0;
+}
+
+.map-subsub-list {
+  margin: 0.3rem 0 0 1.1rem;
+  padding-left: 0.75rem;
+  border-left: 1px dashed var(--color-border);
+}
+
+.map-subsub-list > li {
+  padding: 0.25rem 0;
+}
+
+.map-holon-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.map-holon-row a {
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.map-holon-row a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.map-holon-name {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.map-sub-row .map-holon-name,
+.map-subsub-row .map-holon-name {
+  font-weight: 400;
+  font-size: 0.92rem;
+}
+
+.map-holon-desc {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.quests-group {
+  margin-bottom: 2.5rem;
+}
+
+.quests-group:last-child {
+  margin-bottom: 0;
+}
+
+.quests-group-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-accent-deep);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.quests-count {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.quests-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.quests-table th,
+.quests-table td {
+  padding: 0.7rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.quests-table th {
+  background: var(--color-accent-bg);
+  color: var(--color-accent-deep);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.quests-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.quests-table tbody tr:hover {
+  background: var(--color-accent-bg);
+}
+
+.quests-table td:first-child {
+  font-weight: 500;
+  min-width: 200px;
+}
+
+.quests-table td:nth-child(2) {
+  color: var(--color-text-muted);
+  min-width: 280px;
+}
+
+.quests-table td:last-child a {
+  color: var(--color-accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.quests-table td:last-child a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .map-pillar {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .map-sub-list,
+  .map-subsub-list {
+    margin-left: 0.75rem;
+  }
+
+  .quests-table {
+    font-size: 0.8rem;
+  }
+
+  .quests-table th,
+  .quests-table td {
+    padding: 0.55rem 0.7rem;
+  }
+}
+
+@media print {
+  /* Scoped to the map page's own components only. Deliberately does NOT
+     touch .nav/.footer/.back-link: those classes are shared site-wide
+     (_layouts/default.html), so hiding them here would silently change
+     print output on every other page, not just /map/. */
+  .table-wrap {
+    overflow-x: visible;
+    border: none;
+  }
+
+  .quests-table {
+    min-width: 0;
+    font-size: 0.75rem;
+  }
+}
+
 /* ========================================
    Responsive
    ======================================== */

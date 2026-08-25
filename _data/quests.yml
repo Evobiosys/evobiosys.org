@@ -1,0 +1,1014 @@
+# _data/quests.yml
+#
+# Unified public quest list for evobiosys.org/map -- merged from two sources:
+#   Source A: Tana workspace 34saXxFYBC, #quest tag (id 72brQ5Y21b10)
+#             export date: 2026-08-24
+#   Source B: https://questhub.eco/api/quests
+#             snapshot date: 2026-08-24
+#
+# Canonical status vocabulary: active | draft | vision | legacy | identified | paused
+#   - "identified" and "paused" are extensions beyond the original four (active,
+#     draft, vision, legacy), used because most entries here are still at the
+#     "named but not yet built" stage that questhub calls lifecycle_stage=identified,
+#     or because a quest has explicitly stalled.
+#
+# This file is the canonical public store for evobiosys.org's quest map.
+# Edit here -- do not regenerate by hand without updating provenance above.
+#
+# Sources per entry:
+#   sources: [tana]              -- only in the private Tana workspace
+#   sources: [questhub]          -- only on the public questhub.eco API
+#   sources: [tana, questhub]    -- same concept found in both, deduped to one
+#                                    entry (title/description preferred from
+#                                    questhub, since it is already public)
+
+- title: Obsidian Canvas to Logseq Whiteboard Converter
+  description: Obsidian Canvas and Logseq Whiteboard both let you arrange notes spatially, but in incompatible
+    formats. An open converter with round-trip fidelity so you are not locked into one spatial thinking
+    tool and can share visual knowledge maps across both ecosystems.
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/019e1c23-3f52-7680-a511-74e5a24f0c76/
+  sources: [tana, questhub]
+- title: Making BrowserOS as Safe as Brave
+  description: 'Brave has fingerprinting protection, aggressive tracker blocking, and a clean default
+    config. The quest: bring the same security baseline to a browser-centric OS so privacy is a platform
+    property, not an extension you have to install and configure yourself.'
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c23-3de1-7510-a479-c63b20798aa4/
+  sources: [tana, questhub]
+- title: Used Phones Brand as Alternative to Fairphone
+  description: A certified-refurbished phone brand that competes on sustainability by extending device
+    lifespans rather than manufacturing new ones. Rigorous quality standards, privacy-by-default OS, and
+    full transparency on provenance and repair history. Extends the life of existing hardware instead
+    of mining for new.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c23-3c66-7ad2-bab5-b79a5def2809/
+  sources: [tana, questhub]
+- title: interHarness
+  description: 'An internal EvoBioSys tool: a bridge between AI agents (Claude, Gemini) and the developer
+    terminal - enabling Claude Code to send keyboard input, read terminal output, and interact with TUI
+    applications in a running session. Built on the ACP protocol. Enables autonomous multi-step development
+    workflows.'
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/019e1c21-73df-71c1-9706-1abe41312c61/
+  sources: [tana, questhub]
+- title: Overlap with the Mycelial Net
+  description: 'The mycelial network metaphor - distributed, resilient, nourishing - applied to knowledge
+    infrastructure. The quest: map where existing regenerative knowledge commons already function like
+    mycelium, identify the missing connective tissue, and build bridges between nodes that don''t yet
+    know each other.'
+  status: identified
+  category: knowledge
+  link: https://questhub.eco/quest/019e1c21-721a-7e11-813a-3b2e55754f81/
+  sources: [tana, questhub]
+- title: EvoBioSys-Style Augmented Intelligence
+  description: 'AI tools designed to amplify collective intelligence rather than replace individual thinking
+    - surfacing connections across conversations, mapping consensus and dissent, helping groups hold more
+    complexity. Grounded in EvoBioSys principles: the system serves life, not efficiency metrics.'
+  status: identified
+  category: knowledge
+  link: https://questhub.eco/quest/019e1c21-7065-78f1-85b4-5b9f338452dc/
+  sources: [tana, questhub]
+- title: Forming Evopaydeia
+  description: An open learning institution in the EvoBioSys tradition - where knowledge is co-created
+    through living practice, not delivered through curriculum. Combines apprenticeship, peer dialogue,
+    and field projects. The quest is to prototype the governance model and run the first cohort.
+  status: identified
+  category: knowledge
+  link: https://questhub.eco/quest/019e1c21-6e8c-7b13-8b15-73cea272ca4f/
+  sources: [tana, questhub]
+- title: Inspire Others to Create
+  description: A movement and practice for lowering the activation energy of making - the gap between
+    'I have an idea' and 'I started'. Combines mentorship matching, small-stakes publishing norms, and
+    celebration of first attempts. The goal is more people creating, not more polished products.
+  status: identified
+  category: culture
+  link: https://questhub.eco/quest/019e1c21-6cd9-7b83-86bf-0397aabfdceb/
+  sources: [tana, questhub]
+- title: Practical Privacy for Everyone
+  description: A curated, maintained guide to reclaiming digital privacy that is realistic for non-experts
+    - concrete steps, not exhaustive options. Covers email, phone, browser, payments, and home network.
+    Updated quarterly as the threat landscape shifts. Free, translated, forkable.
+  status: identified
+  category: culture
+  link: https://questhub.eco/quest/019e1c21-6b2e-7a20-a868-99c42810c8e9/
+  sources: [tana, questhub]
+- title: Co-Create Visions of Meaningful Events
+  description: A collaborative format for designing events that matter - gatherings, ceremonies, rituals
+    - using structured facilitation methods. Moves event planning from logistics to meaning-making. A
+    toolkit of practices that communities can use to create shared experiences worth remembering.
+  status: identified
+  category: culture
+  link: https://questhub.eco/quest/019e1c21-6976-7103-bc12-b2ad5369a56e/
+  sources: [tana, questhub]
+- title: Self-Curated Media Feed
+  description: A personal media environment where you control what enters your attention - RSS-style curation
+    across video, audio, and text, with no algorithmic override. Includes tools to set daily time budgets
+    per source type and a weekly digest mode that replaces the infinite scroll.
+  status: identified
+  category: culture
+  link: https://questhub.eco/quest/019e1c21-678d-7072-b2b3-286f573e28da/
+  sources: [tana, questhub]
+- title: Aligned Streaming Service
+  description: A music and media streaming cooperative where artists receive fair share of revenue, listeners
+    own their listening history, and the recommendation algorithm is published and adjustable. Not Spotify
+    - a service whose incentives are structurally aligned with the people using it.
+  status: identified
+  category: culture
+  link: https://questhub.eco/quest/019e1c21-65dd-7930-b6e1-8c88b9ff5c9c/
+  sources: [tana, questhub]
+- title: Alternative to Hacker News - Globally Inclusive
+  description: 'Hacker News is the best link aggregator for technology and ideas but has a narrow demographic
+    and no multilingual support. The quest: a federated equivalent with non-English front pages, regional
+    moderation, and a ranking algorithm that surfaces global perspectives rather than amplifying English-language
+    defaults.'
+  status: identified
+  category: society
+  link: https://questhub.eco/quest/019e1c21-640e-7923-8137-988abf2d99fb/
+  sources: [tana, questhub]
+- title: 'Legal Quest: Biometric Unlock Under Nemo Tenetur'
+  description: 'In most jurisdictions, biometric device unlocking (fingerprint, face ID) is legally distinct
+    from password disclosure - authorities may compel the former but not the latter. The quest: litigation
+    and legislative clarity establishing that biometric unlock is protected speech under nemo tenetur.'
+  status: identified
+  category: society
+  link: https://questhub.eco/quest/019e1c21-622f-70f3-9659-b2624ea20425/
+  sources: [tana, questhub]
+- title: Complete Map of the Powerful Ones
+  description: A living, open-source knowledge graph mapping who holds real power in global systems -
+    ownership structures, board memberships, foundation ties, revolving doors. Not a conspiracy map -
+    a factual, citable resource built from public records. Helps anyone trace influence chains.
+  status: identified
+  category: knowledge
+  link: https://questhub.eco/quest/019e1c21-6064-7663-b98c-a6fec238cdca/
+  sources: [tana, questhub]
+- title: Automated Hiring System for Craftsmen
+  description: A platform that matches skilled craftspeople (electricians, plumbers, carpenters) with
+    job requests using verified portfolios and transparent scheduling - without the opacity of current
+    trade directories. Reduces the asymmetry where good craftspeople are invisible and bad ones game the
+    reviews.
+  status: identified
+  category: society
+  link: https://questhub.eco/quest/019e1c21-5eaa-7470-b456-bbebff97bd29/
+  sources: [tana, questhub]
+- title: Car Sharing Upgrade Initiative
+  description: 'Upgrade existing car sharing systems - Zipcar-style fleets, neighbourhood cooperatives
+    - with open APIs, interoperability between providers, and community governance models. The goal: a
+    city where car sharing is as reliable and standardised as public transit, without platform lock-in.'
+  status: identified
+  category: society
+  link: https://questhub.eco/quest/019e1c21-5cda-7ab3-b42a-4094fdb2cc1b/
+  sources: [tana, questhub]
+- title: Second-Hand Book and Goods Network
+  description: A federated platform for exchanging used books, tools, and durable goods within communities
+    - not for profit, but for circulation. Combines donation, swap, and low-price sale in one interface.
+    Reduces the friction between 'I no longer need this' and 'someone nearby does'.
+  status: identified
+  category: society
+  link: https://questhub.eco/quest/019e1c21-5b23-7422-b325-6c0cc62852b5/
+  sources: [tana, questhub]
+- title: Trust-Based Marketplace (Willhaben Alternative)
+  description: A peer-to-peer marketplace for used goods governed by community trust scores rather than
+    anonymous ratings. Prioritises local exchange, item history transparency, and fair dispute resolution.
+    An alternative to Willhaben and eBay that aligns incentives with long-term community health.
+  status: identified
+  category: society
+  link: https://questhub.eco/quest/019e1c21-5962-7bd3-be6f-5ebe2cb7352a/
+  sources: [tana, questhub]
+- title: Repair Culture Infrastructure
+  description: A city-scale system supporting repair over replacement - repair cafes, certified repair
+    vouchers, spare parts libraries, and social recognition for people who fix things. Combines policy
+    advocacy with platform tools to make repair the culturally normal choice.
+  status: identified
+  category: society
+  link: https://questhub.eco/quest/019e1c21-5778-7243-b260-9f84810d4ed5/
+  sources: [tana, questhub]
+- title: Trustworthy Food System
+  description: An end-to-end food provenance system where ingredients are traceable from field to fork
+    - with independent lab audits, not just supply chain claims. Combines QR codes, open databases, and
+    community verification to make 'locally grown' and 'no pesticides' statements checkable by anyone.
+  status: identified
+  category: society
+  link: https://questhub.eco/quest/019e1c21-5595-7671-aa77-bbf9d4a0988a/
+  sources: [tana, questhub]
+- title: Application Helper Development
+  description: An in-app assistant layer that knows the current application's full capability - shortcuts,
+    hidden features, obscure settings - and surfaces contextual suggestions as you work. Not a general
+    AI - a deep per-app expert that reduces the documentation gap for power users.
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/019e1c21-5411-7e83-bada-b48003f6254a/
+  sources: [tana, questhub]
+- title: Version History for Passwords
+  description: 'Password managers discard old passwords on update. The quest: a password vault with full
+    version history per entry - so you can recover access to old accounts that never got the change notification,
+    and audit when each credential was created or modified.'
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/019e1c21-528b-7a42-88c3-af4870277dfd/
+  sources: [tana, questhub]
+- title: Framework for Context Switching
+  description: A system - part software, part protocol - for switching between work contexts without losing
+    state. Closes all the right apps, saves browser sessions, parks unfinished tasks, then restores the
+    full environment when you return. The missing layer between OS and productivity workflow.
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/019e1c21-50f0-7ce0-bdc6-3cb4851fba0d/
+  sources: [tana, questhub]
+- title: Distraction-Free Mode for Signal
+  description: 'A mode in Signal that silences all notifications and hides unread counts for a chosen
+    duration - deep work compatible messaging. Optionally shows only messages from a starred contacts
+    list. The goal: use Signal for important communication without it becoming another distraction source.'
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/019e1c21-4f6a-7833-a138-ecd576c7d615/
+  sources: [tana, questhub]
+- title: Contribute to Handy for Wispr Flow Parity
+  description: 'Handy is an open-source voice input tool that nearly matches Wispr Flow. The remaining
+    gaps: global hotkey reliability on all macOS versions, custom vocabulary injection, and a clean preference
+    pane. Contributing these upstream closes the last reason to use proprietary dictation.'
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/019e1c21-4ded-72b3-86f9-4ecea4870b09/
+  sources: [tana, questhub]
+- title: Recreate Wispr Flow Open-Source
+  description: 'Wispr Flow is a macOS voice-to-text tool that works in any text field. The quest: build
+    an open-source equivalent - local Whisper model, system-wide dictation, learns your vocabulary, no
+    cloud dependency. Handy (by cjpais) is close; the gap is feature parity and polish.'
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/019e1c21-4b89-7e32-b386-a899e34e1ff9/
+  sources: [tana, questhub]
+- title: Word Count and Writing Stats on Zed
+  description: 'Zed editor has no word count or writing statistics. For writers using Zed for long-form
+    work, this is the one missing piece. A plugin or built-in feature: live word count, reading time,
+    daily writing goal tracker - without leaving the editor.'
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/019e1c21-49af-79e2-b153-22f3d3ec03c3/
+  sources: [tana, questhub]
+- title: Transcription for Jitsi
+  description: Real-time and post-meeting transcription built into Jitsi Meet - fully on-premise, no Zoom,
+    no Google Meet. Speaker diarisation, automatic summary, and export to Markdown. Makes self-hosted
+    video conferencing a complete alternative for organisations that need meeting records.
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/019e1c21-47f1-7ec0-82bf-842b2322b86b/
+  sources: [tana, questhub]
+- title: Adapter Between Logseq and Obsidian
+  description: A live sync bridge so a Logseq graph and an Obsidian vault stay in sync - translating block
+    references, page links, and properties in both directions. Lets teams where different members prefer
+    different tools collaborate on one knowledge base without losing structure.
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/019e1c21-461f-7d91-bd29-f9c520f1871a/
+  sources: [tana, questhub]
+- title: Resilient Collaboration Without Google Sheets
+  description: A genuinely offline-first, conflict-free collaborative spreadsheet that works without Google.
+    Combines CRDTs for real-time sync, end-to-end encryption for shared workspaces, and an import path
+    from Sheets. Not a worse copy - a structurally different approach to shared tabular data.
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/019e1c21-4434-7391-a197-3017e823f56b/
+  sources: [tana, questhub]
+- title: Deduplication Engine for the Web Archive
+  description: The Internet Archive contains vast amounts of duplicate content from mirror sites and re-hosts.
+    A smart deduplication pass - with provenance tracking so originals are preserved - would meaningfully
+    reduce storage cost and improve search quality across decades of saved web.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-42a9-72b1-94e8-0bab20c82f2f/
+  sources: [tana, questhub]
+- title: Lean Wireshark Default Mode
+  description: 'Wireshark is powerful but overwhelming for the 80% use case of ''what is this process
+    calling home?''. The quest: a curated default mode that shows only significant traffic with plain-language
+    explanations of suspicious patterns - like a security dashboard, not a packet dump.'
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-40eb-7792-a229-9bd5b7732fde/
+  sources: [tana, questhub]
+- title: Per-Person Timeline
+  description: A private, locally-stored chronological log of everywhere you have been - like Google Timeline
+    but self-hosted, open-source, and never leaving your device. Imports from GPS logs, photos, and check-ins.
+    Useful for memory, insurance claims, and personal history.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-3f4e-70b2-915f-d978002e004c/
+  sources: [tana, questhub]
+- title: Universal Read-Write External Drive Format
+  description: A file system format for external hard drives that is fully read-write on macOS, Linux,
+    and Windows out of the box - no NTFS-3G hacks, no exFAT patent worries, no ext4 third-party drivers.
+    An obvious gap that has resisted standardisation for 20 years.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-3dc7-7531-af09-be98a09f976f/
+  sources: [tana, questhub]
+- title: Extend VeraCrypt to All Operating Systems
+  description: 'VeraCrypt is the gold standard for encrypted volumes but its cross-platform support is
+    uneven and the UX is stuck in 2010. The quest: modernise the GUI, add iOS and Android support, integrate
+    with system keychain, and contribute upstream maintenance capacity.'
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-3c47-77f3-9c62-6b283826c39e/
+  sources: [tana, questhub]
+- title: Interoperable Encrypted Filesystem Standard
+  description: A shared open standard for encrypted filesystem containers - readable and writable on macOS,
+    Linux, and Windows without third-party drivers. Replaces the VeraCrypt ecosystem with something that
+    ships in all OS kernels. Extends VeraCrypt's model to universal read-write support.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-3ada-7f03-b49f-746d5d0e6e9c/
+  sources: [tana, questhub]
+- title: Interoperable Calendar Standard
+  description: A shared protocol layer so Google Calendar, Proton, Fastmail, and self-hosted instances
+    can exchange events with full fidelity - recurrences, attachments, attendee responses. Extends CalDAV
+    with a trust and identity layer. Ends the calendar fragmentation that forces lock-in.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-3961-7350-ade0-515d0d102fb5/
+  sources: [tana, questhub]
+- title: Proton Calendar and CalDAV Interoperability
+  description: 'Today Proton Calendar is walled off from standard CalDAV clients. The quest: a full bidirectional
+    CalDAV bridge so encrypted Proton events sync to Thunderbird, Apple Calendar, and any open client.
+    Breaks the privacy-vs-openness false trade-off.'
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-37c8-7603-a138-6354a2c3fa70/
+  sources: [tana, questhub]
+- title: End-to-End Encrypted Calendar
+  description: A calendar where the server never sees your events - encryption and decryption happen on-device,
+    keys stay with the user. Compatible with existing CalDAV clients. Fills the gap between Proton Calendar
+    (good but siloed) and fully open, self-hostable e2ee scheduling.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-363a-7e10-aa9e-295fe639de77/
+  sources: [tana, questhub]
+- title: Copyright-Respecting LLM
+  description: A large language model trained exclusively on consented or permissively licensed data,
+    with full training provenance published. Every token traced, every dataset audited. Demonstrates that
+    capable AI does not require harvesting the world's text without permission.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-34d1-74b0-9211-306d15a045ef/
+  sources: [tana, questhub]
+- title: OpenMac - Auditable macOS Builds
+  description: Community-institution-approved macOS builds with a public audit ledger - so security researchers
+    and enterprises can verify what shipped. Closes the gap between Apple's closed update process and
+    the need for reproducible, inspectable OS releases for regulated environments.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-3358-77b0-8575-5bb4d72f47d0/
+  sources: [tana, questhub]
+- title: OpenWindows - A Community Windows Fork
+  description: A community-maintained, de-telemetrised fork of Windows that removes forced updates, ads,
+    and data collection while remaining compatible with existing software. The goal is not another Linux
+    distro - it is Windows-as-it-was-promised, governed by users.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-31d1-7642-bd70-dea160d81ffa/
+  sources: [tana, questhub]
+- title: Firefox-Based BrowserOS
+  description: A lightweight OS where the browser is the shell - built on Firefox/Gecko to escape Chromium
+    monoculture. Targeted at low-spec devices and privacy-conscious users. Combines Flatpak-style app
+    isolation with a web-first interface and no Google bundling.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-3064-7203-afb8-8904c2c067bd/
+  sources: [tana, questhub]
+- title: Modular Compute Module Standard
+  description: A shared open standard for swappable compute modules - so laptops, desktops, and embedded
+    devices can share the same CPU/RAM card. Like SODIMM but for entire compute units. Needs cross-manufacturer
+    agreement and a governance body. Directly enables the upgradeable devices quest.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-2ee5-7301-98c2-5aa4508d3d92/
+  sources: [tana, questhub]
+- title: Upgradeable Chips on a Sleek Exterior
+  description: Consumer devices that separate aesthetic shell from compute module - so you keep the body
+    for 10 years and only replace the silicon when needed. Requires standardised compute modules and a
+    design language that makes upgrade panels normal. Radical longevity by design.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-2d73-7540-8899-ee350307f680/
+  sources: [tana, questhub]
+- title: A Green, Universal Laptop Design
+  description: 'An open-hardware laptop with: repairability from day one, standardised battery and port
+    form factors, conflict-free material sourcing, and a community governance board. Not just a Fairphone
+    for laptops - a reference design others can manufacture and improve.'
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-2bee-78e1-add5-10870bdb542e/
+  sources: [tana, questhub]
+- title: Extending the FUTO Keyboard
+  description: 'FUTO Keyboard is a rare open-source mobile keyboard with voice input. The quest: extend
+    it with multilingual voice correction, clipboard history, and optional on-device LLM suggestions -
+    keeping all processing local. Contributes to a privacy-first input layer for mobile devices.'
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-2a7d-75b2-9d8d-cc4718644543/
+  sources: [tana, questhub]
+- title: Modular Phone with Upgradeable Components
+  description: A smartphone designed like LEGO - swap the camera module, upgrade the battery, replace
+    only the screen. Real modularity, not the Project Ara marketing version. Addresses e-waste at the
+    source and decouples device longevity from manufacturer update cycles.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-2906-7012-b9cf-60e168480901/
+  sources: [tana, questhub]
+- title: LibrePhone Project
+  description: A fully open-source smartphone from hardware to OS - no proprietary blobs, no lock-in.
+    Community-auditable baseband, documented schematics, and a governance model that keeps it sovereign.
+    Builds on Replicant, PinePhone, and Fairphone learnings but goes further on openness.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-2797-70f2-901f-9f7bcb97d82f/
+  sources: [tana, questhub]
+- title: Buy and Open-Source the Sono Car
+  description: 'The Sono Sion - a solar-integrated car cancelled in 2023 - had genuine promise and thousands
+    of pre-orders. The quest: acquire the IP, release the full engineering specs as open-source, and let
+    communities build it. A test case for rescuing stranded innovation through collective ownership.'
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-2615-7183-8b6c-d586247a5f76/
+  sources: [tana, questhub]
+- title: Open-Source Car Designs
+  description: Make the mechanical and software blueprints of road vehicles publicly available under open
+    licenses - so anyone can build, repair, or improve them. Combines hardware openness with the right
+    to repair. Reduces dependency on proprietary supply chains and enables community-driven safety improvements.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019e1c21-248f-7703-9f5a-d65ae682bfc1/
+  sources: [tana, questhub]
+- title: Reliable DB
+  description: making it realistic that short flights within Europe are not necessary anymore (which then
+    enables levying taxes without diminishing trade and activity) because there are real alternatives
+    by trains
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019f5ccf-8bdf-7f91-80c5-03e4b35e92e3/
+  sources: [questhub]
+- title: Inner Light Network
+  description: International Network of places for fostering creativity
+  status: identified
+  category: knowledge
+  link: https://questhub.eco/quest/019d8c23-63e1-7b53-99a7-f81e83046c21/
+  sources: [questhub]
+- title: OpenHarness
+  description: ClawCode and OpenClaw in one
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/019d8b7d-9f4c-76f3-8c1a-5b58e4210089/
+  sources: [questhub]
+- title: Signal Orbit / Signal Hub
+  description: General communications asset management workflow — unified signal routing across sovereign
+    infrastructure.
+  status: active
+  category: tech
+  link: https://questhub.eco/quest/630b14e4-3445-4ce6-8171-269f7d70d1ce/
+  sources: [questhub]
+- title: Trustworthy Servers
+  description: Trusted hosting infrastructure where sovereignty is the default, not the exception. EU-first,
+    open-source, auditable.
+  status: active
+  category: tech
+  link: https://questhub.eco/quest/ecf54631-bec8-47e7-a930-d33a3cb58642/
+  sources: [questhub]
+- title: Orgwide OpenClaw
+  description: Organization-wide AI assistant — a shared intelligence layer that respects boundaries and
+    amplifies collective capability.
+  status: active
+  category: tech
+  link: https://questhub.eco/quest/14e8da96-729e-420d-bb3e-ab009a537ced/
+  sources: [questhub]
+- title: EU Tech Stack
+  description: Sovereign European technology — mapping, curating, and building a complete stack free from
+    non-EU jurisdictional risk.
+  status: active
+  category: tech
+  link: https://questhub.eco/quest/a944bd61-dd2a-4b73-8a3c-8e9d4c030ce1/
+  sources: [questhub]
+- title: EU-based Netlify Alternative
+  description: Self-hosted deployment platform — because where your code ships from matters as much as
+    the code itself.
+  status: active
+  category: tech
+  link: https://questhub.eco/quest/476c87ec-89a2-4789-b99c-67cf1d701f0f/
+  sources: [questhub]
+- title: The Integrated LLM System
+  description: A personal AI that knows your context, respects your data, and grows with you — not against
+    you.
+  status: active
+  category: tech
+  link: https://questhub.eco/quest/28b164a8-4996-447b-b401-48738171cac3/
+  sources: [questhub]
+- title: Talk to the App to Change the App
+  description: Meta-programming through conversation — software that reshapes itself when you describe
+    what you need.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/0230fe02-ce6b-4371-bf6e-595c7d7e45de/
+  sources: [questhub]
+- title: LLM Chat with Open Threads
+  description: A chat experience where conversations branch, reconnect, and persist — threads that stay
+    alive across sessions.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/7a1584d0-6857-4663-84e0-650dff83283c/
+  sources: [questhub]
+- title: Fork Excalidraw
+  description: A sovereign whiteboard tool — visual thinking infrastructure that lives on your terms.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/758427a0-394e-4eac-84b1-7f0a11309c92/
+  sources: [questhub]
+- title: Obsidian Plugin
+  description: Bridging personal knowledge management with the broader EvoBioSys ecosystem through plugin
+    development.
+  status: identified
+  category: tech
+  link: https://questhub.eco/quest/343ed4ff-63f4-4846-8a23-babb525dca25/
+  sources: [questhub]
+- title: Bridging Worldviews in Politics
+  description: Finding synergy and omni-win solutions across political divides — because the best answer
+    usually lives between the camps.
+  status: active
+  category: society
+  link: https://questhub.eco/quest/1958c431-1c5a-47c8-bd12-18fe44450d99/
+  sources: [questhub]
+- title: Political Options Mapped, Autoupdated
+  description: Political intelligence that stays current — a living map of positions, proposals, and possibilities
+    across the spectrum.
+  status: active
+  category: society
+  link: https://questhub.eco/quest/a4f80766-5954-4604-9403-c2eacf16806a/
+  sources: [questhub]
+- title: Geopolitical Game-Theoretic Machine
+  description: Strategy simulation for geopolitics — modeling interdependencies, incentives, and outcomes
+    at the systems level.
+  status: identified
+  category: society
+  link: https://questhub.eco/quest/fa261e07-eb60-40e3-8fd7-138b3a41e8df/
+  sources: [questhub]
+- title: Regenerate Ukraine
+  description: Regenerative reconstruction — rebuilding that goes beyond restoration to create something
+    stronger and more resilient.
+  status: active
+  category: society
+  link: https://questhub.eco/quest/de418be6-2bc8-40a5-9d51-825672fba0dd/
+  sources: [questhub]
+- title: Enabling Refugees as Valued Residents
+  description: Pathways that recognize refugees as contributors from day one — not burdens to be managed
+    but potential to be unlocked.
+  status: active
+  category: society
+  link: https://questhub.eco/quest/e6b881e2-0bef-4e8e-b3d1-dc527829a4c5/
+  sources: [questhub]
+- title: Mirror EU Politicians to Mastodon/Bluesky
+  description: Freeing political communication from Twitter — mirroring EU politicians onto open, decentralized
+    platforms.
+  status: identified
+  category: society
+  link: https://questhub.eco/quest/f4b0cc3d-b593-4a00-9be2-70ddcbb2353e/
+  sources: [questhub]
+- title: Personal Regenerative Endowment
+  description: Sovereign wealth for individuals — a personal endowment model that compounds purpose alongside
+    capital.
+  status: active
+  category: finance
+  link: https://questhub.eco/quest/c05f3fcd-c17d-4986-b915-a57dd96339eb/
+  sources: [questhub]
+- title: Funding Flow
+  description: Capital flow management — making money move with intention, transparency, and alignment
+    to regenerative outcomes.
+  status: active
+  category: finance
+  link: https://questhub.eco/quest/5609b44c-a23c-4531-abde-0bd5ad36a570/
+  sources: [questhub]
+- title: flexGmbH
+  description: A flexible company structure — reimagining the GmbH for fluid, purpose-driven ventures
+    that evolve over time.
+  status: identified
+  category: finance
+  link: https://questhub.eco/quest/fe882ffd-ee89-468e-adfc-7eae0a97ffa0/
+  sources: [questhub]
+- title: Fractal Seed Investment Fund
+  description: Investment at every scale — fractal funding that flows from micro-grants to major capital
+    through one coherent model.
+  status: active
+  category: finance
+  link: https://questhub.eco/quest/11441ff9-9171-40bc-b4c2-7a54bbe5dc1c/
+  sources: [questhub]
+- title: Cognition-Amplification through LLMs
+  description: Using language models not as replacements for thinking but as amplifiers — extending cognitive
+    reach without losing depth.
+  status: active
+  category: knowledge
+  link: https://questhub.eco/quest/550b2ed4-f4a1-41ef-8411-d71eae399b94/
+  sources: [questhub]
+- title: Historical Library
+  description: A curated collection that bridges past and present — historical knowledge made accessible
+    and searchable.
+  status: identified
+  category: knowledge
+  link: https://questhub.eco/quest/e5c90a8f-5cb1-46f1-a8e4-e28ad3241d01/
+  sources: [questhub]
+- title: Magic to Learn Cognitive Complexity
+  description: Using the structure and surprise of magic to teach systems thinking and cognitive flexibility.
+  status: identified
+  category: knowledge
+  link: https://questhub.eco/quest/41cd409f-eaac-4290-8c27-28d7237d8368/
+  sources: [questhub]
+- title: Playbook of Creation
+  description: Patterns, recipes, and principles for bringing ideas into existence — a living playbook
+    for makers and builders.
+  status: active
+  category: knowledge
+  link: https://questhub.eco/quest/8ce6fa54-2ca5-44fd-a010-9ad733a34677/
+  sources: [questhub]
+- title: Up-to-Date Books
+  description: Books that evolve — living publications that update as knowledge grows, rather than freezing
+    at the moment of printing.
+  status: active
+  category: knowledge
+  link: https://questhub.eco/quest/cd19877e-86c4-40d7-b861-a0e519a90c8b/
+  sources: [questhub]
+- title: Purpose Pilot
+  description: A purpose discovery tool — helping people find and articulate what they are here to do,
+    with structure and honesty.
+  status: active
+  category: tools
+  link: https://questhub.eco/quest/bf02c40e-4c62-4a4a-8f2a-946a05e8224a/
+  sources: [questhub]
+- title: Co-ordinat.ing
+  description: A coordination platform — making it possible for groups to move together without a central
+    command-and-control layer.
+  status: active
+  category: tools
+  link: https://questhub.eco/quest/e5c85e65-c152-457a-b8b4-a1e4e8673b00/
+  sources: [questhub]
+- title: Paper Notes to Transcription
+  description: Bridging analog and digital — turning handwritten notes into structured, searchable, connected
+    text.
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/c592d395-d925-4ecd-a457-ac21ea014411/
+  sources: [questhub]
+- title: Affirmation Engine
+  description: 'Intentional self-reinforcement — a tool that delivers the right affirmation at the right
+    moment, not random positivity. Live demo: https://questhub.eco/affirmation-engine'
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/50353f6b-eaf0-446a-b28f-8fb162c31541/
+  sources: [questhub]
+- title: SenseMeet
+  description: A meeting tool built for sense-making — where meetings produce shared understanding, not
+    just action items.
+  status: active
+  category: tools
+  link: https://questhub.eco/quest/90670456-3b07-46fb-961e-0a5176ce64a8/
+  sources: [questhub]
+- title: Distributed Substack
+  description: Decentralized publishing — the newsletter model without the platform dependency. Your audience,
+    your infrastructure.
+  status: active
+  category: tools
+  link: https://questhub.eco/quest/b68a19df-d9c9-41d8-bf43-657e55f5c264/
+  sources: [questhub]
+- title: Trust Network Tool Sharing
+  description: Sharing tools and resources within trusted networks — collaborative access without the
+    overhead of formal institutions.
+  status: identified
+  category: tools
+  link: https://questhub.eco/quest/01365222-4137-4286-a2a9-308bef4991bb/
+  sources: [questhub]
+- title: Green AI Service
+  description: AI infrastructure that accounts for its environmental cost — compute that is powerful and
+    responsible.
+  status: active
+  category: tools
+  link: https://questhub.eco/quest/976de37c-791e-4c6e-a2a0-a5ae4d9ad51d/
+  sources: [questhub]
+- title: Authentic-Flirting
+  description: The art and practice of genuine human connection — playful, honest, embodied presence without
+    performance.
+  status: active
+  category: culture
+  link: https://questhub.eco/quest/605a7fc8-b482-4fab-8ab4-46914a720d60/
+  sources: [questhub]
+- title: Second-hand Buchhandlung
+  description: A second-hand bookshop as cultural infrastructure — where books find new readers and readers
+    find community.
+  status: identified
+  category: culture
+  link: https://questhub.eco/quest/108bf2bc-20e6-48d4-8d9d-b5cb2b0a0e13/
+  sources: [questhub]
+- title: Overnight Ships Between Cities
+  description: Coastal and river-city connections via overnight ships — slow travel as infrastructure,
+    not just nostalgia.
+  status: identified
+  category: culture
+  link: https://questhub.eco/quest/9175d505-dfd1-4e3a-ac9d-7ab6636e0719/
+  sources: [questhub]
+- title: Respectful Living in Old Buildings
+  description: Inhabiting historic structures with care — practices that honor what was built while adapting
+    it for living now.
+  status: active
+  category: culture
+  link: https://questhub.eco/quest/58770b9f-dd14-42ca-ad6e-a2d0923f523e/
+  sources: [questhub]
+- title: Has someone replicated Google Timeline as open source, with its data?
+  status: identified
+  sources: [tana]
+- title: On-demand book printing technology
+  status: identified
+  sources: [tana]
+- title: The Good Car
+  description: A trustworthy, modular, recyclable car with right to repair, mechanical fallback, and a
+    swappable motor.
+  status: identified
+  sources: [tana]
+- title: Re-map the online presence field, including profiles.eco
+  description: Re-map the online presence field, including profiles.eco, once Complete Memory finishes
+    running.
+  status: identified
+  sources: [tana]
+- title: Global Money Monitor
+  status: identified
+  sources: [tana]
+- title: EUropean Youtube
+  status: identified
+  sources: [tana]
+- title: Spotube AI filter
+  description: 'Or: Spotify without AI-generated music.'
+  status: identified
+  sources: [tana]
+- title: Distraction free flow
+  description: Speak or type on a blank screen and it opens the right app and window.
+  status: identified
+  sources: [tana]
+- title: Quest scaffolding
+  description: For every node lacking a spec, ARCHITECTURE.md, or first PR, generate the first draft.
+  status: identified
+  sources: [tana]
+- title: How to make these three great outliner tools talk with one another seamlessly
+  status: identified
+  sources: [tana]
+- title: Since capitalists are actually corrupt
+  status: identified
+  sources: [tana]
+- title: 2nd box for Altkleider gegenüber von Zeugen Jehovas
+  description: Request to the municipal government for a second used-clothing donation box.
+  status: identified
+  sources: [tana]
+- title: Rich file types in Zed
+  status: identified
+  sources: [tana]
+- title: Get a new device
+  description: 'Part of Sovereign Switch: get a new device, with data from the old one quarantined and
+    multi-scanned before being copied over.'
+  status: identified
+  sources: [tana]
+- title: Develop a modular architecture for Open Harness
+  status: identified
+  sources: [tana]
+- title: What is the expectation for the impact of job cuts in Volkswagen
+  status: identified
+  sources: [tana]
+- title: Streaming service
+  status: identified
+  sources: [tana]
+- title: Qwant and Ecosia work with Brave
+  status: identified
+  sources: [tana]
+- title: Creating a digital library from old book collections
+  status: identified
+  sources: [tana]
+- title: 'FlowTunes: local hum-to-detect + hum-to-continue'
+  description: Hum, whistle, or sing and the app identifies the song or continues it instrumentally, fully
+    on-device with no third-party audio API and no audio leaving the device.
+  status: identified
+  sources: [tana]
+- title: Modified CotEditor
+  status: identified
+  sources: [tana]
+- title: Intra-Commons sharing
+  status: identified
+  sources: [tana]
+- title: Digital Commons Initiative
+  status: identified
+  sources: [tana]
+- title: Recreate Wispr Flow scratchpad
+  status: identified
+  sources: [tana]
+- title: Find alternatives to Substack due to them being unopinionated against outspoken, self-declared
+    Nazis
+  status: identified
+  sources: [tana]
+- title: Europäischer Service
+  description: A conscription alternative, at a time when many countries are reintroducing conscription,
+    needing broad public buy-in and nuance.
+  status: identified
+  sources: [tana]
+- title: Sovereign Switch
+  description: Making sovereignty and privacy easy for non-techies -- deGoogle, sovereign LLMs, familiar
+    UX without proprietary lock-in.
+  status: identified
+  sources: [tana]
+- title: Privacy full stack
+  status: identified
+  sources: [tana]
+- title: Soft olfactory alignment
+  description: Scent-based alignment during healing sessions, similar to how Brain.fm uses sound.
+  status: identified
+  sources: [tana]
+- title: Open-source SmartWatch
+  status: identified
+  sources: [tana]
+- title: Patient incubator
+  status: identified
+  sources: [tana]
+- title: Cross-functional between Debian and Fedora
+  status: identified
+  sources: [tana]
+- title: 'ForkAway: auto-apply fork patches on upstream updates'
+  description: Maintain a living fork of FreeFlow (and any upstream tool) where all custom changes are
+    recorded in a fork.md patch file, and a pi-harness watcher auto-applies them whenever the upstream
+    releases an update, with a Claude print-review step to verify correctness.
+  status: identified
+  sources: [tana]
+- title: Creating a semantic web for personalized education
+  status: identified
+  sources: [tana]
+- title: Low-skilled unemployed should do menial important human work that humans can't yet
+  status: identified
+  sources: [tana]
+- title: 'Overall goal: be able to choose which system to use'
+  status: identified
+  sources: [tana]
+- title: Open-source transparent what machines do
+  description: Open-source transparency into what machines do, to end surveillance and reduce bullshit
+    jobs.
+  status: identified
+  sources: [tana]
+- title: Intersectional Type Analysis
+  status: identified
+  sources: [tana]
+- title: SoTranscribe
+  description: Transcribe everything you've recorded, no eavesdropping needed. The transcription module
+    of Complete Memory; Whisper Large v3 plus speaker diarization, local-first, EU-sovereign hosting.
+  status: active
+  sources: [tana]
+- title: Make regulations startup-friendly
+  status: identified
+  sources: [tana]
+- title: On working condition regulations in Europe
+  status: identified
+  sources: [tana]
+- title: Complete API-based domain, pro email, and suite
+  description: An API-based domain, professional email, and suite setup for idea2.life (checking whether
+    Infomaniak can provide it).
+  status: identified
+  sources: [tana]
+- title: Holons for Matrix/Element
+  status: identified
+  sources: [tana]
+- title: World news integration
+  status: identified
+  sources: [tana]
+- title: Nano testing for device equivalence
+  description: Nano-scale testing to verify that a device's physical structure genuinely matches its blueprint,
+    preventing tampering.
+  status: identified
+  sources: [tana]
+- title: secureOpenHarness
+  description: Sandboxed AI execution environment, inspired by Vitalik Buterin's sovereign LLM setup,
+    ensuring AI harnesses cannot access passwords, tokens, or sensitive files outside their sandbox.
+  status: identified
+  sources: [tana]
+- title: .hub domain name
+  status: identified
+  sources: [tana]
+- title: Soft gustatory alignment
+  status: identified
+  sources: [tana]
+- title: 'ForkAway simple tier: watcher applies patches and reviews the diff'
+  status: identified
+  sources: [tana]
+- title: Creating a utopia through the web of trust
+  description: Using a web of trust so people can access free housing, food, and resources wherever they
+    travel.
+  status: identified
+  sources: [tana]
+- title: Open-source permission library that can be integrated into open-source tools easily
+  status: identified
+  sources: [tana]
+- title: OpenMac (macOS UI clone for Linux)
+  description: Open-source macOS UI clone for Linux, legally precedented by Apple v. Microsoft (1994);
+    part of Sovereign Switch.
+  status: identified
+  sources: [tana]
+- title: Fair market criteria tool
+  description: A tool with adjustable criteria sliders (locality, regenerative production, quality, etc.)
+    so buyers see symmetric pricing information and sellers can price fairly.
+  status: identified
+  sources: [tana]
+- title: Building an early version of self-designed master
+  status: identified
+  sources: [tana]
+- title: Proton tampering proof
+  description: Have Proton refuse to send mail when the recipient's MX records look tampered with or weird.
+  status: identified
+  sources: [tana]
+- title: Ideal Restaurants
+  description: An extension of Ideal Groceries into restaurant selection.
+  status: identified
+  sources: [tana]
+- title: Default email
+  status: identified
+  sources: [tana]
+- title: Spiral Dynamics game to share with anyone wanting to teach SD
+  status: identified
+  sources: [tana]
+- title: Finding the best token deals
+  status: identified
+  sources: [tana]
+- title: Have an Interharness interface for all of them
+  status: identified
+  sources: [tana]
+- title: Integrate private models into chats
+  description: Integrate private, locally-run models into chats by default.
+  status: identified
+  sources: [tana]
+- title: Let a local LLM go through my entire workspace to identify quests
+  status: identified
+  sources: [tana]
+- title: European financial advisor qualification, recognized in lieu of the Austrian one
+  status: identified
+  sources: [tana]
+- title: Connect with someone like Craig Mod
+  description: Connect with a well-connected public voice, similar to writer Craig Mod, to help surface
+    and share more quests.
+  status: identified
+  sources: [tana]
+- title: Feminine spaceholder for Hostacov
+  status: identified
+  sources: [tana]
+- title: .labs domain
+  status: identified
+  sources: [tana]
+- title: Commons-wide sliding scale
+  status: identified
+  sources: [tana]
+- title: Telegram-style community in Element
+  status: identified
+  sources: [tana]
+- title: How to make the canvases of Obsidian and Logseq work seamlessly together
+  status: identified
+  sources: [tana]
+- title: Open-source AirTags
+  status: identified
+  sources: [tana]
+- title: Agent to move files to private
+  description: An agent that finds drive-linked files in messages, moves them to a private drive, and
+    can send a forwardable right-to-be-forgotten email.
+  status: identified
+  sources: [tana]
+- title: Decoupling from big tech (e.g. using SearXNG)
+  status: identified
+  sources: [tana]
+- title: Voxtral fine-tune
+  status: identified
+  sources: [tana]
+- title: Automagical meta-curation briefing platform
+  status: identified
+  sources: [tana]
+- title: Mass-adoption of open-source
+  status: identified
+  sources: [tana]
+- title: Building a chain of trust for open hardware verification
+  description: A human chain of trust, verified by trusted technologists, so open hardware pieces can
+    be confirmed to test correctly against each other.
+  status: identified
+  sources: [tana]
+- title: 'ForkAway advanced tier: check if upstream already fixed it, then smoke-test'
+  status: identified
+  sources: [tana]
+- title: Plugin to let Obsidian, Logseq, and Tana work interchangeably
+  description: One-click translation of notes, canvases, assets, and links between Obsidian, Logseq, and
+    Tana.
+  status: identified
+  sources: [tana]
+- title: Curriculum evolution exploration
+  status: identified
+  sources: [tana]
+- title: Liquid sensemaking
+  description: Trusting certain people for certain things, within a broader semantic graph of sensemaking.
+  status: identified
+  sources: [tana]
+- title: Post-ADHD tech
+  status: identified
+  sources: [tana]
