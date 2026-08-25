@@ -1350,12 +1350,10 @@ pre {
 }
 
 @media print {
-  .nav,
-  .footer,
-  .back-link {
-    display: none;
-  }
-
+  /* Scoped to the map page's own components only. Deliberately does NOT
+     touch .nav/.footer/.back-link: those classes are shared site-wide
+     (_layouts/default.html), so hiding them here would silently change
+     print output on every other page, not just /map/. */
   .table-wrap {
     overflow-x: visible;
     border: none;
