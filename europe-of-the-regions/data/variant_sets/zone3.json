@@ -1,0 +1,108 @@
+[
+ {
+  "id": "basque",
+  "label": "Basque Country",
+  "anchor": [
+   -2.6,
+   42.9
+  ],
+  "default_view": "current",
+  "views": [
+   {
+    "id": "current",
+    "label": "Within current states",
+    "show": [
+     "es-basque"
+    ]
+   },
+   {
+    "id": "connected",
+    "label": "Unified cross-border",
+    "show": [
+     "basque-unified"
+    ],
+    "note": "French-side geometry (FRI15/Pyrénées-Atlantiques) over-covers: it includes all of Béarn, a distinct non-Basque territory, not just Iparralde. See basque-unified's conflict_flags for the honest over-coverage statement and the geoBoundaries FRA ADM3 (Bayonne arrondissement) finer-geometry recommendation for a future pipeline pass."
+   },
+   {
+    "id": "overlap",
+    "label": "Overlapping claims",
+    "show": [
+     "es-basque",
+     "basque-unified"
+    ],
+    "overlap": true,
+    "note": "The 'unified' shape shown here over-covers the French side (see the connected view's note); the overlap is therefore larger than the true Basque-Béarn boundary would produce."
+   }
+  ]
+ },
+ {
+  "id": "leon-castile",
+  "label": "Castile: separate ⇄ unified",
+  "anchor": [
+   -4.5,
+   41.3
+  ],
+  "default_view": "current",
+  "views": [
+   {
+    "id": "current",
+    "label": "Current separate units (León / La Mancha)",
+    "show": [
+     "es-castile-leon",
+     "es-castile-la-mancha"
+    ]
+   },
+   {
+    "id": "connected",
+    "label": "Greater Castile (unified, Madrid excluded)",
+    "show": [
+     "es-greater-castile"
+    ]
+   },
+   {
+    "id": "overlap",
+    "label": "Overlapping claims",
+    "show": [
+     "es-castile-leon",
+     "es-castile-la-mancha",
+     "es-greater-castile"
+    ],
+    "overlap": true
+   }
+  ]
+ },
+ {
+  "id": "madrid",
+  "label": "Madrid: city-region ⇄ with surroundings",
+  "anchor": [
+   -3.7,
+   40.35
+  ],
+  "default_view": "city-region",
+  "views": [
+   {
+    "id": "city-region",
+    "label": "Current city-region",
+    "show": [
+     "es-madrid"
+    ]
+   },
+   {
+    "id": "with-surroundings",
+    "label": "Madrid & surroundings (commuter belt)",
+    "show": [
+     "es-madrid-extended"
+    ]
+   },
+   {
+    "id": "overlap",
+    "label": "Overlapping claims",
+    "show": [
+     "es-madrid",
+     "es-madrid-extended"
+    ],
+    "overlap": true
+   }
+  ]
+ }
+]

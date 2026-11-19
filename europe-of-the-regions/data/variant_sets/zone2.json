@@ -1,0 +1,26 @@
+[
+  {
+    "id": "auvergne",
+    "label": "Auvergne & Rhône-Alpes",
+    "anchor": [3.95, 45.6],
+    "default_view": "separate",
+    "views": [
+      {
+        "id": "separate",
+        "label": "Auvergne separate (Clermont-Ferrand ≠ Lyon)",
+        "show": ["fr-auvergne", "fr-rhone-alpes"]
+      },
+      {
+        "id": "fused",
+        "label": "Fused ARA bloc under Lyon (Clermont secondary hub)",
+        "show": ["fr-auvergne-rhone-alpes"]
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": ["fr-auvergne", "fr-rhone-alpes", "fr-auvergne-rhone-alpes"],
+        "overlap": true
+      }
+    ]
+  }
+]

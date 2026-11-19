@@ -1,0 +1,106 @@
+[
+  {
+    "region": "at-vienna-east",
+    "name": "Vienna & Eastern Austria",
+    "country": "AT",
+    "parliaments_inside": ["Wiener Landtag", "Niederösterreichischer Landtag", "Burgenländischer Landtag"],
+    "parliament_count": 3,
+    "why_kept_merged": "Matches the real NUTS-1 Ostösterreich macro-region (Vienna + Lower Austria + Burgenland) exactly, and Vienna's metropolitan commuter/economic gravity already spans all three Länder in practice; splitting the cultural unit along Land lines would cut through one functioning catchment area rather than honor a real internal boundary."
+  },
+  {
+    "region": "ch-basel",
+    "name": "Basel",
+    "country": "CH",
+    "parliaments_inside": ["Grosser Rat Basel-Stadt", "Landrat Basel-Landschaft", "Grosser Rat Aargau"],
+    "parliament_count": 3,
+    "why_kept_merged": "Mirrors the official Swiss Grossregion Nordwestschweiz exactly (Basel-Stadt + Basel-Landschaft + Aargau) — Switzerland's own statistical/economic macro-region convention already treats these three cantons as one functional unit around Basel's urban core."
+  },
+  {
+    "region": "ch-bern-mittelland",
+    "name": "Bern-Mittelland",
+    "country": "CH",
+    "parliaments_inside": ["Grosser Rat des Kantons Bern", "Grand Conseil de Fribourg", "Kantonsrat Solothurn", "Grand Conseil de Neuchâtel", "Parlement de la République et Canton du Jura"],
+    "parliament_count": 5,
+    "why_kept_merged": "Mirrors the official Swiss Grossregion Espace Mittelland exactly (Bern + Fribourg + Solothurn + Neuchâtel + Jura); no single one of the five cantons clears a standalone-catchment threshold on its own, and Bern's federal-capital gravity already organizes the cluster."
+  },
+  {
+    "region": "ch-romandie",
+    "name": "Romandie / Geneva-Lausanne",
+    "country": "CH",
+    "parliaments_inside": ["Grand Conseil de Genève", "Grand Conseil de Vaud", "Grand Conseil du Valais"],
+    "parliament_count": 3,
+    "why_kept_merged": "Mirrors the official Swiss Grossregion Région lémanique exactly (Genève + Vaud + Valais); the three cantons share the Lac Léman/Rhône-valley catchment and Francophone identity that the cultural-unit layer is organized around."
+  },
+  {
+    "region": "ch-central-eastern",
+    "name": "Central & Eastern Switzerland",
+    "country": "CH",
+    "parliaments_inside": ["Kantonsrat Luzern", "Landsgemeinde Uri", "Kantonsrat Schwyz", "Kantonsrat Obwalden", "Landsgemeinde Nidwalden", "Kantonsrat Zug", "Kantonsrat St. Gallen", "Grosser Rat Thurgau", "Kantonsrat Appenzell Ausserrhoden", "Landsgemeinde Appenzell Innerrhoden", "Landsgemeinde Glarus", "Grosser Rat Graubünden"],
+    "parliament_count": 12,
+    "why_kept_merged": "Approximates the official Swiss Grossregionen Zentralschweiz + Ostschweiz combined, per the v0.1.0 zone-1 spec's broad-combination call; the widest single exception in the dataset, flagged there as a future-subdivision candidate. Schaffhausen (v0.1.2) is the first canton split back out of it, for its distinct 1501 founding-era history — the remaining eleven still read as one cultural-unit atom even though each canton keeps its own parliament."
+  },
+  {
+    "region": "pl-silesia",
+    "name": "Upper Silesia (Katowice)",
+    "country": "PL",
+    "parliaments_inside": ["Sejmik Województwa Śląskiego", "Sejmik Województwa Opolskiego"],
+    "parliament_count": 2,
+    "why_kept_merged": "Śląskie and Opolskie voivodeships both sit inside the historic, dialectally-continuous Upper Silesian identity zone (Ślązacy self-declaration, shared Silesian ethnolect); splitting on the voivodeship-sejmik line would cut through one linguistic-cultural continuum for a purely statistical boundary."
+  },
+  {
+    "region": "pl-wielkopolska",
+    "name": "Wielkopolska & Western Poland (Poznań)",
+    "country": "PL",
+    "parliaments_inside": ["Sejmik Województwa Wielkopolskiego", "Sejmik Województwa Zachodniopomorskiego", "Sejmik Województwa Lubuskiego"],
+    "parliament_count": 3,
+    "why_kept_merged": "Poznań's historic Wielkopolska core organizes the wider western-Poland catchment; none of Zachodniopomorskie or Lubuskie alone clears a distinct urban-hub identity strong enough to justify a separate cultural unit from Poznań's gravity."
+  },
+  {
+    "region": "pl-pomerania",
+    "name": "Pomerania, Kuyavia & Warmia-Masuria (Gdańsk)",
+    "country": "PL",
+    "parliaments_inside": ["Sejmik Województwa Pomorskiego", "Sejmik Województwa Kujawsko-Pomorskiego", "Sejmik Województwa Warmińsko-Mazurskiego"],
+    "parliament_count": 3,
+    "why_kept_merged": "Matches Statistics Poland's own PL6 macroregion exactly; kept as the default cultural unit's broad view, but the strength of this merge is honestly graded (strong for Kashubia, weak for Kuyavia, weakest for Warmia-Masuria per the user-supplied fit table) — see the variant-set section below for the split view that exposes this gradient directly."
+  },
+  {
+    "region": "pl-eastern-poland",
+    "name": "Eastern Poland (Lublin-Rzeszów-Białystok)",
+    "country": "PL",
+    "parliaments_inside": ["Sejmik Województwa Lubelskiego", "Sejmik Województwa Podkarpackiego", "Sejmik Województwa Podlaskiego", "Sejmik Województwa Świętokrzyskiego"],
+    "parliament_count": 4,
+    "why_kept_merged": "Mirrors the EU's own 'Polska Wschodnia' (Eastern Poland) cohesion-policy macroregion precedent exactly; none of the four voivodeships has a dominant single urban hub on the scale of Poznań, Wrocław or Kraków, so they are kept as one polycentric catch-all rather than four thin, hub-less units."
+  },
+  {
+    "region": "cz-bohemia",
+    "name": "Bohemia (Prague)",
+    "country": "CZ",
+    "parliaments_inside": ["Krajská zastupitelstva (Bohemian kraje)"],
+    "parliament_count": "several",
+    "why_kept_merged": "Bohemia's own identity (Čechy) sits a full level above the kraj (region council) tier introduced in 2000 for administrative decentralization, not to express cultural boundaries; kraj lines routinely bisect functionally and dialectally continuous Bohemian territory."
+  },
+  {
+    "region": "cz-moravia",
+    "name": "Moravia (Brno)",
+    "country": "CZ",
+    "parliaments_inside": ["Jihomoravský kraj assembly", "Zlínský kraj assembly", "Olomoucký kraj assembly", "Vysočina kraj assembly"],
+    "parliament_count": 4,
+    "why_kept_merged": "Matches the Czech usage 'Morava a Slezsko' convention that already pairs Czech Silesia with the Moravian kraje in everyday and administrative language; Moravian self-identification (2011 census 'Moravian nationality' entries) runs across all four kraje as one continuum, not four separate ones."
+  },
+  {
+    "region": "sk-bratislava-west",
+    "name": "Bratislava & Western Slovakia",
+    "country": "SK",
+    "parliaments_inside": ["Bratislavský samosprávny kraj", "Trnavský samosprávny kraj", "Trenčiansky samosprávny kraj", "Nitriansky samosprávny kraj", "Žilinský samosprávny kraj", "Banskobystrický samosprávny kraj"],
+    "parliament_count": 6,
+    "why_kept_merged": "Amendment A1.8 supersedes an earlier finer split: Slovakia is authored as exactly two units (capital-region west, Košice-Prešov east), so the capital region's own catchment necessarily absorbs six kraj-level self-governing regions; the reasoning is the strength of Bratislava's west-Slovak gravity, not a claim that the six kraje lack real assemblies."
+  },
+  {
+    "region": "sk-east",
+    "name": "Eastern Slovakia (Košice-Prešov)",
+    "country": "SK",
+    "parliaments_inside": ["Košický samosprávny kraj", "Prešovský samosprávny kraj"],
+    "parliament_count": 2,
+    "why_kept_merged": "Amendment A1.8: Košice and Prešov are kept as one dipole cultural unit on the strength of their shared Rusyn/Ukrainian-minority basis and joint distinctness from the Bratislava-oriented west, even though each kraj retains its own samosprávny kraj assembly."
+  }
+]

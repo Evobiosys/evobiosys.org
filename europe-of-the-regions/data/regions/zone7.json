@@ -1,0 +1,2167 @@
+{
+  "zone": "zone7",
+  "notes": [
+    "ZONE 7 SCOPE AND COUNT (v0.1.0, background): this file originally authored 22 regions across RO/BG/GR/CY/MT/RS/BA/ME/MK/AL/XK. draft_v0.1.2 raises this to 26 default-visible regions via three mandated supersessions: RO gains ro-szekely-land (A1.12, +1); GR splits gr-thessaloniki-macedonia into gr-macedonia + gr-thrace (+1); BA's single region becomes 3 entity-level units (+2). Per Global Constraint #4 ('let the count emerge from criteria... flag this tension explicitly, do NOT silently truncate'), no compensating merges were made elsewhere in this zone to hold the count down — see data/groupings/zone67.json for how the representation layer re-consolidates.",
+    "SZEKELY LAND (RO, A1.12 mandate): Covasna, Harghita and Mureș counties are carved out of Transylvania as their own visible cultural unit, ro-szekely-land. This is this zone's most contested application of the third inclusion-test criterion (dependent, not seeking independence): a real, organized Székely autonomy movement exists (Szekler National Council), closer to the separatism/autonomy line than any other region in this file, though it stops short of an independence claim and has no current legal standing under Romanian law. The conflict_flags overlay is RETAINED on ro-transylvania per the mandate, even though the territory itself is now a separate visible unit — the overlay marks the historic Hungarian/Saxon minority layer that predates and exceeds the modern county boundaries.",
+    "GREECE MACEDONIA/THRACE SPLIT (mandated): the former gr-thessaloniki-macedonia (EL51+EL52+EL53) splits along the EL51 (Thrace) / EL52+EL53 (Macedonia proper) boundary, isolating Western Thrace's Lausanne-Treaty-protected Muslim minority (Turkish, Pomak, Roma) as its own visible unit. IONIAN ISLANDS VERDICT: kept attached to gr-peloponnese-central-greece (renamed 'Peloponnese, Central Greece & Ionian Islands' for clarity) as the 'northern/western mainland' attachment the brief's decision criterion names, on the strength of the islands' geographic adjacency to Epirus/Western Greece (not the Aegean) and ferry/administrative ties to the opposite mainland coast — a borderline call stated explicitly rather than left ambiguous. THESSALONIKI REACH: gr-macedonia carries a reach entry into North Macedonia (Skopje's historic sea-outlet via the Vardar/Axios corridor), stated as an economic-geography fact given the post-2019 Prespa Agreement's naming sensitivity, not a territorial claim.",
+    "CYPRUS GEOMETRY VERDICT (checked, not fabricated): the plan asked us to check for a Greek/Turkish Cypriot geometry source within 5 minutes before falling back to a single flagged region. Two checks were made: (1) the committed GISCO NUTS2024 raw geometry file (pipeline/raw/NUTS_RG_20M_2024_4326.geojson) carries only whole-island CY/CY0/CY00/CY000 — verified programmatically, no sub-island feature exists. (2) A live geoBoundaries API check (github.com/wmgeolab/geoBoundaries, CYP ADM1) found exactly 6 administrative units, but these are Cyprus's 6 historic PRE-1974 districts (Nicosia, Limassol, Larnaca, Famagusta, Paphos, Kyrenia) — several of which (notably Nicosia and Famagusta) are themselves bisected by the 1974 Green Line, meaning using them as a north/south proxy would misrepresent the actual de facto division rather than depict it. VERDICT (per the plan's own pre-authorized fallback): kept as ONE region, single_unit_exception unchanged (true), added special_status ('cy-defacto-division', dashed rendering) and a strengthened conflict_flag documenting the limitation explicitly as 'north/south split pending geometry source' — a deliberate, stated limitation rather than a fabricated boundary.",
+    "BOSNIA AND HERZEGOVINA SUPERSEDES v0.1.0's single-region-with-flag verdict (SUPERSEDED, not merely refined): the 1995 Dayton entities — Federation of Bosnia and Herzegovina, Republika Srpska, Brčko District — are now three separate cultural units, each carrying its own real constitutional parliament (Parliament of the Federation, National Assembly of Republika Srpska, Brčko District Assembly), satisfying the schema v2 parliament rule directly. IMPORTANT PIPELINE FINDING, obviating the plan's own hedge: the plan anticipated needing a 'BA_ADM1'/geoBoundaries/shapeName-based workaround if the SR2024 sub-codes lacked geometry. They do NOT lack geometry — BA01 (Federacija Bosne i Hercegovine), BA02 (Republika Srpska) and BA03 (Brčko distrikt) all resolve directly against the SAME committed GISCO raw geometry file used for every other region in this dataset (pipeline/raw/NUTS_RG_20M_2024_4326.geojson), verified programmatically before authoring. NO pipeline coordination, workaround, or geoBoundaries fetch is needed for BA — this should simplify, not complicate, Task P's integration. v0.1.0's original 'Dayton partition is not organic regionalism' argument is preserved as background in each entity's conflict_flags/identity_basis rather than deleted, since it remains true as a historical claim even though the parliament rule now overrides it as the operative criterion. The three BA units are re-collapsed into ONE 'Bosnia & Herzegovina' representation grouping in data/groupings/zone67.json, per the explicit two-layer model instruction.",
+    "SLOVAKIA/HUNGARY/CROATIA cross-references: see data/regions/zone6.json notes for the A1.8 (Slovakia), Hungary-4-unit-supersession, and A1.9 (Croatia/Rijeka) methodology — those countries are authored in zone6, not here, but interact with this file's groupings (data/groupings/zone67.json spans both zones).",
+    "SCHEMA v2 FIELD CONVENTIONS FOR THIS FILE: parliament.has_own is true for RO/BG/GR county-equivalent administrative units per the explicit 'HR/RO/BG counties no' rule extended consistently to Greek perifereies (false for all of them); true for Vojvodina (real constitutional Autonomous Province Assembly) and false for central Serbia (no separate assembly); true for all three BA entities (real Dayton-constitutional legislatures) and re-collapsed at the grouping layer; true for every single-unit-exception sovereign country in this zone (CY/MT/ME/MK/AL/XK — each unit IS the whole state, so 'own parliament' means the national parliament) and false for Székely Land (no current legal parliament exists, despite the active autonomy movement — this is precisely why it does not get a standalone representation grouping the way Vojvodina and the BA entities collectively do)."
+  ],
+  "regions": [
+    {
+      "id": "ro-transylvania",
+      "name": "Transylvania",
+      "name_local": "Transilvania",
+      "countries": [
+        "RO"
+      ],
+      "urban_core": "Cluj-Napoca",
+      "secondary_centers": [
+        "Brașov",
+        "Sibiu",
+        "Oradea"
+      ],
+      "identity_basis": "Historic autonomous principality (14th-1867) inside the Hungarian/Habsburg sphere; Transylvanian Saxon heritage over a Romanian Orthodox/Greek-Catholic majority; distinct 'Ardelean' civic identity, dialect features, and Austro-Hungarian-era urban fabric set it apart from Wallachia and Moldavia within a united, non-separatist Romania. A1.12 SUPERSEDES the v0.1.0 conflict_flag-only treatment: Covasna, Harghita and Mureș (the Székely-Hungarian-majority/plurality counties) are now carved OUT as their own visible cultural unit, ro-szekely-land — this record's territory and NUTS-3 code list shrink accordingly (Alba, Brașov, Sibiu remain from the old Centru NUTS-2, plus all of Nord-Vest).",
+      "key_industries": [
+        "IT/software (Cluj tech cluster)",
+        "automotive components",
+        "furniture",
+        "machinery",
+        "wine"
+      ],
+      "population": 3851000,
+      "population_note": "Sum of Nord-Vest (RO11, ~2.59M: Bihor/Bistrița-Năsăud/Cluj/Maramureș/Satu Mare/Sălaj) plus Alba/Brașov/Sibiu (~1.26M, the Centru remainder once Covasna/Harghita/Mureș move to ro-szekely-land), Institutul Național de Statistică (INS) 2021 census; approximate, rounded.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "RO111",
+        "RO112",
+        "RO113",
+        "RO114",
+        "RO115",
+        "RO116",
+        "RO121",
+        "RO122",
+        "RO126"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Cluj-Napoca",
+        "note": "Cluj-Napoca is the largest single cultural/tech hub, but Brașov and Sibiu are genuinely comparable secondary Transylvanian cities, not mere satellites.",
+        "centers": [
+          "Cluj-Napoca",
+          "Brașov",
+          "Sibiu"
+        ],
+        "central_coord": [
+          23.6,
+          46.77
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Romanian județe (counties) are deconcentrated administrative units with weak elected councils, not legislative parliaments — per the explicit HR/RO/BG audit rule."
+      },
+      "conflict_flags": [
+        {
+          "id": "transylvania-szekler-overlay",
+          "description": "Székely Land / Hungarian-minority overlay retained per the mandated instruction even though the territory is now its own visible unit (ro-szekely-land): this flag marks the historic Transylvania-wide Hungarian/Saxon minority layer that predates and exceeds the modern Covasna/Harghita/Mureș county boundaries (e.g. Cluj and Târgu Mureș itself have long-standing Hungarian urban populations outside the three carved-out counties).",
+          "zone_nuts_codes": [
+            "RO123",
+            "RO124",
+            "RO125"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Cluj-Napoca — metro >400k, largest non-capital cultural/university hub in Romania",
+        "diversified_industry": "IT/software, automotive supply, furniture, machinery, viticulture",
+        "dependent_identity": "strong regional identity and dialect distinctness within Romania; no separatist movement at the (now-narrower) Transylvania-proper level"
+      },
+      "nuts1_disagreement": "Previously matched RO1 (Nord-Vest + Centru) as one aggregate code; now authored as explicit NUTS-3 codes since Covasna/Harghita/Mureș (part of Centru/RO12) move to ro-szekely-land per A1.12 — the aggregate RO1 code no longer describes this record's true territory.",
+      "lang_family": "Eastern Romance (Romanian); historic Transylvanian Saxon (German) heritage minority",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.6,
+        "rationale": "Carpathian water/forestry base and diversified food production keep Water/Food solid; strong road/rail hub at Cluj lifts Transportation; industrial base is real but mid-scale, capping Energy and Clothing.",
+        "rationales": {
+          "water": "Carpathian water/forestry base keeps this solid across the shrunk territory.",
+          "food": "Diversified food production (Alba/Sibiu agriculture, Nord-Vest orchards) keeps this solid.",
+          "energy": "Industrial base is real but mid-scale, capping energy self-sufficiency; no major regional generation asset.",
+          "transportation": "Strong road/rail hub at Cluj lifts transportation."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "Institutul Național de Statistică (INS) — Recensământul Populației și Locuințelor 2021",
+        "Livezeanu, I. (1995) Cultural Politics in Greater Romania: Regionalism, Nation Building and Ethnic Struggle, 1918-1930 (Cornell UP)"
+      ]
+    },
+    {
+      "id": "ro-szekely-land",
+      "name": "Székely Land",
+      "name_local": "Székelyföld / Ținutul Secuiesc",
+      "countries": [
+        "RO"
+      ],
+      "urban_core": "Târgu Mureș",
+      "secondary_centers": [
+        "Miercurea Ciuc",
+        "Sfântu Gheorghe",
+        "Odorheiu Secuiesc"
+      ],
+      "identity_basis": "A1.12 mandate: Covasna, Harghita and (with a caveat) Mureș counties carved OUT of Transylvania as their own visible cultural unit. Covasna and Harghita have Hungarian-speaking (Székely) super-majorities (~73% and ~85% respectively per the 2021 census); Mureș is more ethnically mixed (~38% Hungarian, plurality but not majority, concentrated in Târgu Mureș and its Székely hinterland) — included per the user's explicit RO12x instruction but flagged honestly as the unit's weakest-fit county. A live, organized Székely autonomy movement (Szekler National Council, Székely flag, periodic autonomy-day marches) exists, seeking territorial autonomy WITHIN Romania, not independence — this sits close to but does not cross the inclusion test's third-criterion line (dependent, not separatist), an honest tension worth flagging given how much stronger this autonomy movement is than any other in this file's zone.",
+      "key_industries": [
+        "agriculture and dairy",
+        "forestry/timber",
+        "tourism (Székely heritage, spas)",
+        "light manufacturing (Târgu Mureș)"
+      ],
+      "population": 988000,
+      "population_note": "Sum of Covasna (~192,000), Harghita (~286,000) and Mureș (~510,000) counties, INS 2021 census; approximate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "RO123",
+        "RO124",
+        "RO125"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Târgu Mureș",
+        "note": "No single Székely capital historically (the medieval 'Székely seats' were plural); Târgu Mureș is by far the largest city but is more ethnically mixed than the historic Székely core towns Miercurea Ciuc and Sfântu Gheorghe — honest polycentric marking rather than a false single monopole.",
+        "centers": [
+          "Târgu Mureș",
+          "Miercurea Ciuc",
+          "Sfântu Gheorghe"
+        ],
+        "central_coord": [
+          24.55,
+          46.55
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "No legally-recognized Székely Land parliament or autonomous assembly currently exists in Romanian law — the Szekler National Council is a civil-society/advocacy body, not a constituted legislature. This is precisely why, per the parliament-rule's own logic, Székely Land does NOT get a standalone representation grouping the way Vojvodina (a real constitutional assembly) does — see data/groupings/zone67.json rationale."
+      },
+      "conflict_flags": [
+        {
+          "id": "szekely-autonomy-movement",
+          "description": "Live, organized Székely/Hungarian territorial-autonomy movement (Szekler National Council; periodic autonomy-day demonstrations; own flag) seeking self-government within Romania. Romania's central government has consistently rejected territorial-autonomy proposals; no legal Székely Land entity exists. Shown as an identity/political layer on this unit, not a redrawn or seceded territory.",
+          "zone_nuts_codes": [
+            "RO123",
+            "RO124",
+            "RO125"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Târgu Mureș (~130k, largest city but ethnically mixed, not purely Székely) vs. the smaller, more homogeneously Székely seats Miercurea Ciuc (~38k) and Sfântu Gheorghe (~50k) — a genuine three-way split rather than one dominant hub",
+        "diversified_industry": "agriculture/dairy, forestry, heritage tourism, modest light manufacturing in Târgu Mureș — thinner industrial diversification than Transylvania proper",
+        "dependent_identity": "an active, organized autonomy-seeking movement exists (Szekler National Council) — closer to the separatism/autonomy line than any other unit in this dataset, though it stops short of independence claims and Romania's constitution and courts have repeatedly rejected the territorial-autonomy proposals; retained as dependent-not-seeking-independence but flagged as this file's most contested application of that criterion"
+      },
+      "nuts1_disagreement": "Carved out of the old RO1/RO12 (Centru) aggregate per A1.12; verified NUTS-3 codes RO123 (Covasna), RO124 (Harghita), RO125 (Mureș) against both nuts_index.json and the GISCO raw geometry file.",
+      "lang_family": "Uralic (Hungarian, Székely sub-dialect) super-majority in Covasna/Harghita; plurality in Mureș alongside Romanian",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 2.7,
+        "rationale": "A genuine Székely pastoral/dairy agricultural tradition and Carpathian water resources support Water and Food; the region is otherwise Romania's most rural in this file's Transylvanian cluster, with thinner Shelter, Transportation and Hygiene & Healthcare infrastructure than Cluj-anchored Transylvania proper.",
+        "rationales": {
+          "water": "Carpathian headwaters (Târnava, Olt sources) give solid freshwater access.",
+          "food": "Genuine dairy/agriculture base (Székely traditional pastoral economy) supports a solid food score.",
+          "energy": "No major regional generation asset; grid/import-dependent, a modest rural economy overall."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "Institutul Național de Statistică (INS) — Recensământul Populației și Locuințelor 2021",
+        "Szekler National Council public documents",
+        "Bottoni, S. (2018) Stalin's Legacy in Romania: The Hungarian Autonomous Region"
+      ]
+    },
+    {
+      "id": "ro-banat-timisoara",
+      "name": "Banat (Timișoara)",
+      "name_local": "Banat",
+      "countries": [
+        "RO"
+      ],
+      "urban_core": "Timișoara",
+      "secondary_centers": [
+        "Arad",
+        "Reșița"
+      ],
+      "identity_basis": "Banat (RO42) is real at its Timișoara-Timiș-Caraș-Severin core but weaker at its edges: Arad county is transitional Banat/Crișana and Hunedoara county is arguably more Transylvanian (iron-and-coal Hunedoara/Hațeg belt) than Banatian. We keep the mandated split and the NUTS-2 RO42 boundary (the only cleanly resolvable option) rather than inventing an unresolvable sub-county carve-out; the mandate is stronger in its core than at its administrative edges.",
+      "key_industries": [
+        "automotive components and electronics (Timișoara)",
+        "agriculture",
+        "engineering",
+        "IT"
+      ],
+      "population": 1712000,
+      "population_note": "Vest (RO42) NUTS-2 region, INS 2021 census.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "RO42"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Timișoara",
+        "note": "Timișoara dominates; Arad and Reșița are clearly secondary.",
+        "centers": [
+          "Timișoara"
+        ],
+        "central_coord": [
+          21.23,
+          45.75
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Romanian județe are deconcentrated administrative units, not legislative parliaments."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Timișoara — metro ~330k, Romania's 3rd city, historic multi-ethnic Habsburg administrative seat",
+        "diversified_industry": "automotive/electronics components, agriculture, engineering, growing IT sector",
+        "dependent_identity": "genuine Banat regional identity, strongest at the Timișoara-Timiș-Caraș-Severin core; weaker at the Arad (transitional) and formerly-included Hunedoara (more Transylvanian) edges, honestly noted"
+      },
+      "nuts1_disagreement": "Uses the NUTS-2 RO42 boundary as the only cleanly resolvable option even though Banat's cultural core (Timiș/Caraș-Severin) is narrower than the full RO42 (which also includes Arad and Hunedoara) — the mandate is honored at the administrative level available.",
+      "lang_family": "Eastern Romance (Romanian); historic Banat Swabian (German), Serbian and Hungarian minority heritage",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Danube-Carpathian mixed farming and river resources keep Water/Food solid; a genuine industrial base (automotive, electronics) supports Transportation, but the region imports most finished consumer goods (Clothing low) and healthcare capacity concentrates in Timișoara, thinning Hygiene & Healthcare elsewhere.",
+        "rationales": {
+          "water": "Danube-Carpathian mixed river resources keep this solid.",
+          "food": "Danube-Carpathian mixed farming keeps Food solid.",
+          "energy": "A genuine industrial base (automotive, electronics) supports employment but the region imports most of its energy; no major regional generation asset.",
+          "transportation": "A genuine industrial base (automotive, electronics) supports Transportation infrastructure."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "Institutul Național de Statistică (INS) — Recensământul Populației și Locuințelor 2021"
+      ]
+    },
+    {
+      "id": "ro-wallachia-bucharest",
+      "name": "Wallachia & Bucharest",
+      "name_local": "Muntenia și Oltenia (Regatul Vechi)",
+      "countries": [
+        "RO"
+      ],
+      "urban_core": "Bucharest",
+      "secondary_centers": [
+        "Ploiești",
+        "Craiova",
+        "Pitești"
+      ],
+      "identity_basis": "Historic Wallachia (Țara Românească), the pre-1859 Danubian Principality that united with Moldavia to form modern Romania; Bucharest as national 'primate city' overwhelmingly dominates, with Oltenia (Craiova, Sud-Vest) sharing the same Ottoman-vassal Wallachian historical trajectory as Sud-Muntenia.",
+      "key_industries": [
+        "government/public administration and finance (Bucharest)",
+        "oil refining (Ploiești)",
+        "agriculture (Danube-plain grain/vegetables)",
+        "automotive (Dacia/Pitești)"
+      ],
+      "population": 7070000,
+      "population_note": "Sum of Sud-Muntenia (RO31), București-Ilfov (RO32) and Sud-Vest Oltenia (RO41), INS 2021 census.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "RO311",
+        "RO312",
+        "RO313",
+        "RO314",
+        "RO315",
+        "RO316",
+        "RO317",
+        "RO321",
+        "RO322",
+        "RO411",
+        "RO412",
+        "RO413",
+        "RO414",
+        "RO415"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Bucharest",
+        "note": "Overwhelmingly dominant national capital and primate city; Craiova/Ploiești/Pitești are real but clearly secondary.",
+        "centers": [
+          "Bucharest"
+        ],
+        "central_coord": [
+          26.1,
+          44.43
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Romanian județe are deconcentrated administrative units, not legislative parliaments; Bucharest's own municipal government is not a regional parliament in the sense used by this audit."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Bucharest — national capital, dominant metro >2.2M",
+        "diversified_industry": "government/finance, oil refining (Ploiești), agriculture, automotive (Dacia)",
+        "dependent_identity": "Romanian national identity centered on the capital; Oltenia's distinct sub-regional character is real but shares Wallachia's broader historical trajectory closely enough to justify one region"
+      },
+      "nuts1_disagreement": "Merges three NUTS-2 units (Sud-Muntenia, București-Ilfov, Sud-Vest Oltenia) into one historically-coherent Wallachia region, since Oltenia's identity, while real, tracks Wallachia's pre-1859 principality history rather than forming an independently mandated split.",
+      "lang_family": "Eastern Romance (Romanian)",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "Danube-plain agriculture (Sud-Muntenia, Oltenia grain/vegetables) supports Food; capital transport infrastructure (Bucharest hub airport, rail, metro) is the country's strongest, but the region imports most manufactured clothing and a large share of energy despite Ploiești refining capacity.",
+        "rationales": {
+          "water": "Danube-plain access is adequate, unremarkable relative to the capital's demand.",
+          "food": "Danube-plain agriculture (Sud-Muntenia, Oltenia grain/vegetables) supports Food.",
+          "energy": "The region imports a large share of energy despite Ploiești refining capacity, which processes more than it produces domestically.",
+          "transportation": "Capital transport infrastructure (Bucharest hub airport, rail, metro) is the country's strongest."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "Institutul Național de Statistică (INS) — Recensământul Populației și Locuințelor 2021"
+      ]
+    },
+    {
+      "id": "ro-moldavia-dobrogea",
+      "name": "Moldavia & Dobrogea",
+      "name_local": "Moldova și Dobrogea",
+      "countries": [
+        "RO"
+      ],
+      "urban_core": "Iași",
+      "secondary_centers": [
+        "Constanța",
+        "Galați",
+        "Bacău",
+        "Tulcea"
+      ],
+      "identity_basis": "Historic Moldavia (the other pre-1859 Danubian Principality) anchored by Iași, its former capital and cultural/university center, paired here with Dobrogea (Constanța/Tulcea, Black Sea coast, only annexed to Romania in 1878) for coverage — a genuinely bipolar Moldavia-interior/Dobrogea-coast identity, honestly noted as two historically distinct areas joined for regional coverage rather than one shared civic identity.",
+      "key_industries": [
+        "agriculture (fertile Moldavian plain)",
+        "Black Sea port trade and shipping (Constanța)",
+        "shipbuilding (Galați)",
+        "tourism (Danube Delta, Black Sea coast)"
+      ],
+      "population": 5649000,
+      "population_note": "Sum of Nord-Est (RO21) and Sud-Est (RO22), INS 2021 census.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "RO211",
+        "RO212",
+        "RO213",
+        "RO214",
+        "RO215",
+        "RO216",
+        "RO221",
+        "RO222",
+        "RO223",
+        "RO224",
+        "RO225",
+        "RO226"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "central": "Iași",
+        "note": "Iași (Moldavia's historic capital/university seat) and Constanța (Romania's main Black Sea port) are genuinely separate poles of comparable regional weight, not one dominant hub.",
+        "centers": [
+          "Iași",
+          "Constanța"
+        ],
+        "central_coord": [
+          27.6,
+          47.16
+        ],
+        "secondary": "Constanța",
+        "secondary_coord": [
+          28.65,
+          44.18
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Romanian județe are deconcentrated administrative units, not legislative parliaments."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Iași — metro >400k, former Moldavian capital and major university center; Constanța — Romania's main Black Sea port, comparable weight",
+        "diversified_industry": "agriculture, Black Sea port trade, shipbuilding (Galați), Danube Delta/coastal tourism",
+        "dependent_identity": "Moldavia's own historic-principality identity is real and strong at Iași; Dobrogea's Ottoman/Black-Sea coastal history and 1878 annexation date are genuinely distinct — this region is Romania's most economically lagging (Nord-Est is the EU's poorest NUTS-2 region by GDP per capita), an honest coverage-driven pairing rather than one shared identity"
+      },
+      "nuts1_disagreement": "Merges Nord-Est (Moldavia proper) with Sud-Est (which includes both Dobrogea's coast and Danube-plain Brăila/Galați/Buzău/Vrancea) into one region for coverage; the Moldavia/Dobrogea pairing is honestly the weaker of this file's macro-groupings on shared-identity grounds, though each half is individually strong.",
+      "lang_family": "Eastern Romance (Romanian); Dobrogea has a historic Turkish/Tatar Muslim minority",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 2.9,
+        "rationale": "Fertile Moldavian plain and Danube-delta wetlands support Food; the region is Romania's most economically lagging (Nord-Est is the EU's poorest NUTS-2 region by GDP per capita), which caps Shelter, Energy and Transportation infrastructure quality outside Iași and the Constanța port corridor.",
+        "rationales": {
+          "water": "Danube-delta wetlands and the fertile Moldavian plain support a solid water base.",
+          "food": "Fertile Moldavian plain and Danube-delta wetlands support Food strongly.",
+          "energy": "Caps at a low score outside Constanța's port-adjacent processing; the region is Romania's most economically lagging (Nord-Est is the EU's poorest NUTS-2 region by GDP per capita)."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "Institutul Național de Statistică (INS) — Recensământul Populației și Locuințelor 2021",
+        "European Commission Cohesion Report — Nord-Est GDP per capita ranking"
+      ]
+    },
+    {
+      "id": "bg-sofia-west",
+      "name": "Sofia & West Bulgaria",
+      "name_local": "София и Западна България / Sofiya i Zapadna Balgariya",
+      "countries": [
+        "BG"
+      ],
+      "urban_core": "Sofia",
+      "secondary_centers": [
+        "Pernik",
+        "Blagoevgrad",
+        "Vidin"
+      ],
+      "identity_basis": "Sofia as national capital dominates West Bulgaria economically and politically; Rila/Pirin mountain hinterland (Blagoevgrad) shares a Macedonian-adjacent southwestern identity.",
+      "key_industries": [
+        "finance and business services",
+        "ICT (Sofia tech cluster)",
+        "government/public administration",
+        "mining (Pernik legacy)"
+      ],
+      "population": 2020000,
+      "population_note": "Sum of Yugozapaden NUTS-2 pre-reform correspondence (Sofia-capital + Sofia-district + Blagoevgrad + Pernik + Kyustendil), NSI (Bulgarian National Statistical Institute) 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "BG41"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Sofia",
+        "note": "Overwhelmingly dominant national capital.",
+        "centers": [
+          "Sofia"
+        ],
+        "central_coord": [
+          23.32,
+          42.7
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Bulgarian oblasti (provinces) are deconcentrated administrative units, not legislative parliaments — per the explicit HR/RO/BG audit rule."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Sofia — national capital, dominant metro >1.2M",
+        "diversified_industry": "finance/ICT, government, legacy mining (Pernik)",
+        "dependent_identity": "Bulgarian national identity centered on the capital; no separatism"
+      },
+      "nuts1_disagreement": "DATA-SOURCE DISCREPANCY (see zone notes): data/nuts_index.json lists Bulgaria under a newer NUTS scheme (single NUTS-1 'BG5', NUTS-2 'BG51'-'BG54'), which does not resolve against the committed GISCO raw geometry file (pipeline/raw/NUTS_RG_20M_2024_4326.geojson), still carrying pre-reform codes (BG3/BG4 NUTS-1, BG41/BG42 etc. NUTS-2). We authored using the codes that resolve against the raw geometry, unchanged from v0.1.0.",
+      "lang_family": "South Slavic (Bulgarian)",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "Rila/Pirin mountain water resources are abundant; capital transport and healthcare infrastructure lead the country, but the region is a net food importer relative to the Thracian plain and imports nearly all finished clothing.",
+        "rationales": {
+          "water": "Rila/Pirin mountain water resources are abundant.",
+          "food": "The region is a net food importer relative to the Thracian plain.",
+          "energy": "No major regional generation asset; grid/import-dependent despite the capital's demand.",
+          "transportation": "Capital transport infrastructure leads the country."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "National Statistical Institute (NSI) of Bulgaria 2023"
+      ]
+    },
+    {
+      "id": "bg-plovdiv-thrace",
+      "name": "Plovdiv & Thrace",
+      "name_local": "Пловдив и Тракия / Plovdiv i Trakiya",
+      "countries": [
+        "BG"
+      ],
+      "urban_core": "Plovdiv",
+      "secondary_centers": [
+        "Smolyan",
+        "Kardzhali",
+        "Haskovo"
+      ],
+      "identity_basis": "The Thracian plain, Bulgaria's richest agricultural belt, anchored by Plovdiv, one of Europe's oldest continuously-inhabited cities; the Rhodope interior (Smolyan, Kardzhali) has a genuine Bulgarian-Muslim/Pomak minority layer distinct from the Thracian-plain Bulgarian-Orthodox majority.",
+      "key_industries": [
+        "agriculture (Thracian plain)",
+        "textiles",
+        "tobacco (Kardzhali/Haskovo)",
+        "logistics"
+      ],
+      "population": 1360000,
+      "population_note": "Sum of pre-reform correspondence for Plovdiv/Haskovo/Kardzhali/Smolyan/Pazardzhik, NSI 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "BG42"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Plovdiv",
+        "note": "Plovdiv dominates the Thracian plain; the Rhodope interior towns are clearly secondary.",
+        "centers": [
+          "Plovdiv"
+        ],
+        "central_coord": [
+          24.75,
+          42.14
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Bulgarian oblasti are deconcentrated administrative units, not legislative parliaments."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Plovdiv — metro ~675k, Bulgaria's second city",
+        "diversified_industry": "agriculture, textiles, tobacco, logistics",
+        "dependent_identity": "strong regional pride; a genuine Pomak/Turkish minority layer in the Rhodope interior, no separatism"
+      },
+      "nuts1_disagreement": "Same BG NUTS vintage discrepancy noted on bg-sofia-west; uses pre-reform BG42 code, which resolves against the committed GISCO raw geometry file.",
+      "lang_family": "South Slavic (Bulgarian); Bulgarian-Muslim (Pomak) and Turkish minority in the Rhodope interior",
+      "autarky": {
+        "water": 4,
+        "food": 5,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.4,
+        "rationale": "The Thracian plain is Bulgaria's richest agricultural belt (Food strong); textile manufacturing gives Clothing a genuine (if modest) domestic base rare among this zone's regions; the Rhodope interior (Smolyan, Kardzhali) pulls Transportation and Shelter down from Plovdiv's own higher baseline.",
+        "rationales": {
+          "water": "Thracian-plain river access (Maritsa basin) is abundant.",
+          "food": "The Thracian plain is Bulgaria's richest agricultural belt — the zone's top food score.",
+          "energy": "No major regional generation asset; grid/import-dependent despite some hydro in the Rhodope interior.",
+          "clothing": "Textile manufacturing gives Clothing a genuine, if modest, domestic base."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "National Statistical Institute (NSI) of Bulgaria 2023"
+      ]
+    },
+    {
+      "id": "bg-varna-black-sea",
+      "name": "Varna & Black Sea Coast",
+      "name_local": "Варна и Черноморието / Varna i Chernomorieto",
+      "countries": [
+        "BG"
+      ],
+      "urban_core": "Varna",
+      "secondary_centers": [
+        "Burgas",
+        "Shumen"
+      ],
+      "identity_basis": "Bulgaria's Black Sea coast, anchored by Varna (the country's 'maritime capital') and Burgas (refining/port); a distinct coastal-tourism and trade identity from the interior grain belt.",
+      "key_industries": [
+        "tourism (Black Sea coast)",
+        "port trade and shipping",
+        "oil refining (Burgas)",
+        "fisheries"
+      ],
+      "population": 1825000,
+      "population_note": "Sum of pre-reform correspondence for Varna/Burgas/Shumen/Dobrich/Yambol/Sliven, NSI 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "BG33",
+        "BG34"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "central": "Varna",
+        "note": "Varna (cultural/maritime capital) and Burgas (refining/port) are genuinely comparable coastal poles.",
+        "centers": [
+          "Varna",
+          "Burgas"
+        ],
+        "central_coord": [
+          27.91,
+          43.21
+        ],
+        "secondary": "Burgas",
+        "secondary_coord": [
+          27.47,
+          42.5
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Bulgarian oblasti are deconcentrated administrative units, not legislative parliaments."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Varna — metro ~475k, Bulgaria's 'maritime capital'; Burgas — comparable weight, refining/port",
+        "diversified_industry": "tourism, port trade, oil refining (Burgas), fisheries",
+        "dependent_identity": "distinct coastal-trade/tourism identity from the interior grain belt, no separatism"
+      },
+      "nuts1_disagreement": "Same BG NUTS vintage discrepancy noted on bg-sofia-west; uses pre-reform BG33/BG34 codes, which resolve against the committed GISCO raw geometry file.",
+      "lang_family": "South Slavic (Bulgarian)",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Coastal fisheries and the Danube-delta edge support Food; Burgas refining gives some energy processing capacity but the region imports its crude, capping Energy; port infrastructure lifts Transportation.",
+        "rationales": {
+          "water": "Coastal access is good, though summer tourist inflows strain supply seasonally.",
+          "food": "Coastal fisheries and the Danube-delta edge support Food.",
+          "energy": "Burgas refining gives some energy processing capacity but the region imports its crude, capping Energy.",
+          "transportation": "Port infrastructure lifts Transportation."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "National Statistical Institute (NSI) of Bulgaria 2023"
+      ]
+    },
+    {
+      "id": "bg-north-danube",
+      "name": "North Bulgaria (Danube Plain)",
+      "name_local": "Северна България (Дунавска равнина) / Severna Balgariya",
+      "countries": [
+        "BG"
+      ],
+      "urban_core": "Ruse",
+      "secondary_centers": [
+        "Pleven",
+        "Veliko Tarnovo",
+        "Vratsa"
+      ],
+      "identity_basis": "Bulgaria's northern Danube-plain grain belt, Bulgaria's most economically lagging and depopulating region; Ruse ('Little Vienna', Bulgaria's main Danube river port) is the largest but not overwhelming city, alongside Pleven (WWI/liberation-war heritage) and the former medieval capital Veliko Tarnovo.",
+      "key_industries": [
+        "agriculture (Danube-plain grain belt)",
+        "river-freight logistics (Ruse)",
+        "food processing"
+      ],
+      "population": 1426000,
+      "population_note": "Sum of pre-reform correspondence for Ruse/Pleven/Veliko Tarnovo/Vratsa/Montana/Gabrovo/Lovech/Silistra/Razgrad/Targovishte, NSI 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "BG31",
+        "BG32"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Ruse",
+        "note": "No single dominant city — Ruse, Pleven and Veliko Tarnovo are comparably sized, an honest reflection of this region's borderline inclusion-test status.",
+        "centers": [
+          "Ruse",
+          "Pleven",
+          "Veliko Tarnovo"
+        ],
+        "central_coord": [
+          25.96,
+          43.85
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Bulgarian oblasti are deconcentrated administrative units, not legislative parliaments."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "No single dominant hub — Ruse, Pleven and Veliko Tarnovo are comparably sized; one of this zone's weaker urban-hub cases alongside gr-aegean-islands and gr-peloponnese",
+        "diversified_industry": "agriculture (Danube-plain grain belt), river-freight logistics, food processing — thin diversification, chronic depopulation",
+        "dependent_identity": "shared northern Danube-plain agrarian identity, distinct from the capital and the Black Sea coast; no separatism"
+      },
+      "nuts1_disagreement": "Same BG NUTS vintage discrepancy noted on bg-sofia-west; uses pre-reform BG31/BG32 codes, which resolve against the committed GISCO raw geometry file.",
+      "lang_family": "South Slavic (Bulgarian)",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Danube water access and the country's grain belt keep Water/Food solid; chronic depopulation and under-investment show up directly in Shelter and Hygiene & Healthcare (rural hospital closures); Ruse's river-freight role lifts Transportation only modestly above the regional baseline.",
+        "rationales": {
+          "water": "Danube water access is abundant.",
+          "food": "The country's grain belt keeps Food solid.",
+          "energy": "Modest hydro/grid mix; no major standalone generation asset."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "National Statistical Institute (NSI) of Bulgaria 2023"
+      ]
+    },
+    {
+      "id": "gr-athens-attica",
+      "name": "Athens & Attica",
+      "name_local": "Αθήνα και Αττική / Athina kai Attiki",
+      "countries": [
+        "GR"
+      ],
+      "urban_core": "Athens",
+      "secondary_centers": [
+        "Piraeus"
+      ],
+      "identity_basis": "Athens as national capital overwhelmingly dominates Greece economically, politically and culturally, with Piraeus as its port.",
+      "key_industries": [
+        "shipping and maritime services",
+        "tourism",
+        "finance and business services",
+        "government/public administration"
+      ],
+      "population": 3750000,
+      "population_note": "Attiki (EL30) NUTS-2 region, ELSTAT 2021 census.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "EL30"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Athens",
+        "note": "Overwhelmingly dominant national capital.",
+        "centers": [
+          "Athens"
+        ],
+        "central_coord": [
+          23.73,
+          37.98
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Greek perifereies (regions) are deconcentrated administrative units with elected councils but not legislative parliaments — extending the HR/RO/BG audit rule to Greece."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Athens — national capital, dominant metro >3.1M",
+        "diversified_industry": "shipping/maritime services (world's largest merchant fleet by beneficial ownership), tourism, finance, government",
+        "dependent_identity": "Greek national identity centered on the capital; no separatism"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "Hellenic (Greek)",
+      "autarky": {
+        "water": 2,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 3,
+        "composite": 3.4,
+        "rationale": "Attica depends on imported water (Mornos/Evinos reservoirs, extended pipelines) and food from other regions, but leads the country on transport infrastructure (metro, port, airport) and healthcare capacity.",
+        "rationales": {
+          "water": "Attica depends on imported water (Mornos/Evinos reservoirs, extended pipelines) — the zone's characteristic capital-region weak point.",
+          "food": "Food is imported from other regions; the capital is not agriculturally self-sufficient.",
+          "energy": "Grid/import-dependent with no major regional generation asset.",
+          "transportation": "Leads the country on transport infrastructure (metro, Piraeus port, airport).",
+          "hygiene_healthcare": "Leads the country on healthcare capacity."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "ELSTAT — Population and Housing Census 2021"
+      ]
+    },
+    {
+      "id": "gr-macedonia",
+      "name": "Macedonia (Thessaloniki)",
+      "name_local": "Μακεδονία / Makedonia",
+      "countries": [
+        "GR"
+      ],
+      "urban_core": "Thessaloniki",
+      "secondary_centers": [
+        "Kavala",
+        "Kozani",
+        "Serres"
+      ],
+      "identity_basis": "GR SPLIT (mandated, supersedes v0.1.0's merged gr-thessaloniki-macedonia): Greek Macedonia, anchored by Thessaloniki (Greece's co-capital, former Ottoman/Sephardic-Jewish port city), now separated from Western Thrace's distinct Muslim-minority identity (see gr-thrace). Kentriki Makedonia (Thessaloniki core) and Dytiki Makedonia (Kozani lignite basin) share a Macedonian-Greek identity without Thrace's minority-demographic layer.",
+      "key_industries": [
+        "port logistics & trade (Thessaloniki)",
+        "agriculture/agro-processing",
+        "lignite power (Kozani/West Macedonia)"
+      ],
+      "population": 2143000,
+      "population_note": "Sum of Kentriki Makedonia (EL52, ~1.88M) and Dytiki Makedonia (EL53, ~0.26M), ELSTAT 2021 census; approximate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "EL52",
+        "EL53"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Thessaloniki",
+        "note": "Overwhelmingly dominant; Kozani (West Macedonia) is a real but much smaller secondary industrial center.",
+        "centers": [
+          "Thessaloniki"
+        ],
+        "central_coord": [
+          22.94,
+          40.64
+        ]
+      },
+      "reach": [
+        {
+          "target": "North Macedonia (Skopje corridor)",
+          "note": "Thessaloniki functions as North Macedonia's historic outlet to the sea via the Vardar/Axios valley rail and road corridor (the shortest route from Skopje to a major port). The shared 'Macedonia' toponym remains politically sensitive even after the 2019 Prespa Agreement renamed the neighboring country North Macedonia; this reach entry describes an economic-geography fact (transit corridor, port hinterland), not a territorial or naming claim."
+        }
+      ],
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Greek perifereies are deconcentrated administrative units, not legislative parliaments."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Thessaloniki — metro >1M, Greece's second city and de facto northern capital",
+        "diversified_industry": "port trade, agro-processing, lignite-based power generation (West Macedonia)",
+        "dependent_identity": "strong regional identity; no separatism; now cleanly separated from Thrace's distinct minority-demographic layer"
+      },
+      "nuts1_disagreement": "Splits the former gr-thessaloniki-macedonia (EL51+EL52+EL53) along the EL51/EL52-53 boundary, isolating Western Thrace (Anatoliki Makedonia-Thraki, EL51) as its own unit — see gr-thrace.",
+      "lang_family": "Hellenic (Greek)",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "Macedonian plain agriculture and Thessaloniki's port keep Food/Transportation strong; West Macedonia's lignite plants (Kozani/Ptolemaida) give the region unusually high domestic Energy generation capacity for Greece, even as national policy phases lignite out.",
+        "rationales": {
+          "water": "Macedonian-plain river access (Axios/Aliakmon) is adequate.",
+          "food": "Macedonian plain agriculture keeps Food strong.",
+          "energy": "West Macedonia's lignite plants (Kozani/Ptolemaida) give the region unusually high domestic Energy generation capacity for Greece, even as national policy phases lignite out.",
+          "transportation": "Thessaloniki's port keeps Transportation strong."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "ELSTAT — Population and Housing Census 2021"
+      ]
+    },
+    {
+      "id": "gr-thrace",
+      "name": "Thrace (Komotini-Alexandroupoli)",
+      "name_local": "Θράκη / Thraki",
+      "countries": [
+        "GR"
+      ],
+      "urban_core": "Alexandroupoli",
+      "secondary_centers": [
+        "Komotini",
+        "Xanthi",
+        "Kavala",
+        "Drama"
+      ],
+      "identity_basis": "GR SPLIT (mandated, supersedes v0.1.0's merged gr-thessaloniki-macedonia): Western Thrace carries Greece's officially-recognized Muslim minority (Turkish, Pomak, Roma), protected under the 1923 Treaty of Lausanne — a genuinely distinct demographic/religious layer from Macedonia's Greek-Orthodox majority, now given its own visible unit rather than a folded-in note.",
+      "key_industries": [
+        "tobacco (Xanthi/Kavala)",
+        "agriculture",
+        "lignite/energy transit",
+        "cross-border trade (Turkey/Bulgaria)"
+      ],
+      "population": 570000,
+      "population_note": "Anatoliki Makedonia kai Thraki (EL51), ELSTAT 2021 census.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "EL51"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Alexandroupoli",
+        "note": "Alexandroupoli is the largest city and regional administrative capital, but Komotini (the historic Ottoman-era seat and largest Muslim-minority population center) and Xanthi are comparably significant — no single city organizes the whole area's identity.",
+        "centers": [
+          "Alexandroupoli",
+          "Komotini",
+          "Xanthi"
+        ],
+        "central_coord": [
+          25.87,
+          40.85
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Greek perifereies are deconcentrated administrative units, not legislative parliaments."
+      },
+      "conflict_flags": [
+        {
+          "id": "gr-thrace-muslim-minority",
+          "description": "Officially-recognized Muslim minority (Turkish, Pomak, Roma) protected under the 1923 Treaty of Lausanne, concentrated in the Xanthi-Komotini-Rodopi area — Greece's only legally recognized religious (not just ethnic) minority, a live and occasionally diplomatically sensitive Greek-Turkish bilateral issue.",
+          "zone_nuts_codes": [
+            "EL512",
+            "EL513"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "No single dominant hub — Alexandroupoli (~72k, admin capital), Komotini (~50k, minority center) and Xanthi (~55k) are comparable; a genuine weak point shared with gr-aegean-islands and bg-north-danube",
+        "diversified_industry": "tobacco, agriculture, lignite/energy transit, cross-border trade — thin diversification",
+        "dependent_identity": "a real, internationally-recognized minority-religious/ethnic layer (Lausanne Treaty) distinct from the rest of Greece; no separatism, but a live bilateral-diplomatic sensitivity with Turkey"
+      },
+      "nuts1_disagreement": "Splits the former gr-thessaloniki-macedonia (EL51+EL52+EL53) along the EL51/EL52-53 boundary, isolating this NUTS-2 unit exactly.",
+      "lang_family": "Hellenic (Greek) majority; Turkish, Pomak (Slavic-Muslim) and Roma minorities under Lausanne Treaty protection",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 2.4,
+        "rationale": "A thinner agricultural and industrial base than Macedonia proper, reflecting the historically under-invested Greek-Turkish border position; tobacco farming and cross-border trade are its clearest economic assets.",
+        "rationales": {
+          "water": "Nestos/Evros river access is adequate.",
+          "food": "Tobacco/agriculture base is real but thinner than the Macedonian plain.",
+          "energy": "Lignite/energy transit infrastructure passes through but does not generate significant local capacity; import/grid-dependent."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "ELSTAT — Population and Housing Census 2021",
+        "Treaty of Lausanne (1923), Section III on the Greek Muslim minority"
+      ]
+    },
+    {
+      "id": "gr-crete",
+      "name": "Crete",
+      "name_local": "Κρήτη / Kriti",
+      "countries": [
+        "GR"
+      ],
+      "urban_core": "Heraklion",
+      "secondary_centers": [
+        "Chania",
+        "Rethymno"
+      ],
+      "identity_basis": "Crete has a strong, historically-grounded distinct identity, having been an autonomous state (the Cretan State, 1898-1913) before uniting with Greece — a genuinely different case from the more diffuse Aegean Islands, kept deliberately separate rather than merged.",
+      "key_industries": [
+        "tourism",
+        "agriculture (olive oil, wine)",
+        "shipping"
+      ],
+      "population": 630000,
+      "population_note": "Kriti (EL43), ELSTAT 2021 census.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "EL43"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Heraklion",
+        "note": "Heraklion dominates; Chania/Rethymno are real but clearly secondary.",
+        "centers": [
+          "Heraklion"
+        ],
+        "central_coord": [
+          25.14,
+          35.34
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Greek perifereies are deconcentrated administrative units, not legislative parliaments; Crete's historic 1898-1913 autonomous statehood is a cultural-identity fact, not a current legal status."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Heraklion — metro ~215k, Crete's dominant city",
+        "diversified_industry": "tourism, olive/wine agriculture, shipping",
+        "dependent_identity": "a strong, historically-grounded distinct identity (former Cretan State, 1898-1913) within Greece; no current separatism"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "Hellenic (Greek); distinct Cretan dialect",
+      "autarky": {
+        "water": 2,
+        "food": 4,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.7,
+        "rationale": "Mediterranean water scarcity and heavy summer tourist-population swings strain Water; olive/wine agriculture is genuinely strong; the island imports nearly all fuel and manufactured goods.",
+        "rationales": {
+          "water": "Mediterranean water scarcity and heavy summer tourist-population swings strain Water.",
+          "food": "Olive/wine agriculture is genuinely strong.",
+          "energy": "The island imports nearly all fuel; no major domestic generation asset."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "ELSTAT — Population and Housing Census 2021"
+      ]
+    },
+    {
+      "id": "gr-aegean-islands",
+      "name": "Aegean Islands",
+      "name_local": "Νησιά Αιγαίου / Nisia Aigaiou",
+      "countries": [
+        "GR"
+      ],
+      "urban_core": "Rhodes",
+      "secondary_centers": [
+        "Mytilene",
+        "Ermoupoli",
+        "Kos"
+      ],
+      "identity_basis": "The North and South Aegean island groups (Lesvos, Chios, Samos; the Cyclades and Dodecanese including Rhodes) share a maritime, historically Genoese/Venetian/Ottoman-administered island culture distinct from mainland Greece, but are themselves a loose archipelago without one shared urban center.",
+      "key_industries": [
+        "tourism (dominant, near-monoculture)",
+        "fishing",
+        "small-scale agriculture (olives, wine)"
+      ],
+      "population": 510000,
+      "population_note": "Sum of Voreio Aigaio (EL41, ~200k) + Notio Aigaio (EL42, ~310k), ELSTAT 2021 census; approximate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "EL41",
+        "EL42"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Rhodes",
+        "note": "No dominant hub across the archipelago — Rhodes (Dodecanese) and Mytilene (North Aegean) anchor separate island groups.",
+        "centers": [
+          "Rhodes",
+          "Mytilene"
+        ],
+        "central_coord": [
+          28.23,
+          36.44
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Greek perifereies are deconcentrated administrative units, not legislative parliaments."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "No single dominant hub — Rhodes (~50k town) and Mytilene (~28k) are the largest, both far below this zone's other urban cores; FAILS this prong on any strict reading",
+        "diversified_industry": "tourism monoculture; fishing and small agriculture are marginal by comparison — FAILS the diversification prong",
+        "dependent_identity": "genuine shared maritime-island identity within Greece; no separatism"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "Hellenic (Greek)",
+      "autarky": {
+        "water": 1,
+        "food": 2,
+        "shelter": 2,
+        "energy": 1,
+        "transportation": 2,
+        "hygiene_healthcare": 2,
+        "clothing": 1,
+        "composite": 1.6,
+        "rationale": "The zone's clearest case of a region failing the diversified-industry and single-urban-hub prongs of the inclusion test: near-total tourism dependence, imported water via tanker/desalination on several islands, imported fuel and virtually all manufactured goods. Retained as its own region only because Global Constraint #4's national-coverage requirement leaves no honest alternative home for ~510k islanders; kept deliberately separate from Crete (which does pass the test) rather than diluting Crete's strong case by merger.",
+        "rationales": {
+          "water": "Imported water via tanker/desalination on several islands — one of the dataset's lowest scores.",
+          "food": "Near-total tourism dependence leaves little room for food self-sufficiency.",
+          "energy": "Imported fuel; no significant domestic generation asset, one of the dataset's lowest scores."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "ELSTAT — Population and Housing Census 2021"
+      ]
+    },
+    {
+      "id": "gr-peloponnese-central-greece",
+      "name": "Peloponnese, Central Greece & Ionian Islands",
+      "name_local": "Πελοπόννησος, Στερεά Ελλάδα και Ιόνια Νησιά",
+      "countries": [
+        "GR"
+      ],
+      "urban_core": "Patras",
+      "secondary_centers": [
+        "Ioannina",
+        "Larissa",
+        "Kalamata",
+        "Volos",
+        "Corfu"
+      ],
+      "identity_basis": "A mainland-plus-Ionian catch-all combining Epirus, Thessaly, the Ionian Islands, Western Greece, Central Greece (Sterea) and the Peloponnese. IONIAN ISLANDS VERDICT (explicit decision per draft_v0.1.2's coverage mandate): the Ionian Islands (EL62 — Corfu, Zakynthos, Kefalonia, Lefkada) are kept HERE, attached to the western/Epirus mainland side, rather than split into their own unit or attached to the Aegean archipelago. Reasoning: geographically the Ionian chain runs immediately off the Epirus/Western-Greece coast (Corfu faces Epirus, Kefalonia/Zakynthos face Achaia/Elis), with historic ferry/administrative links to the mainland opposite each island (not to the Aegean, which lies on the other side of the country); this is the 'northern/western mainland' attachment the brief's decision criterion names. The Ionian Islands' own Venetian-ruled (never Ottoman) history is a genuine distinguishing layer we note rather than erase by making a separate-unit case for them, since Aegean-style archipelago-wide urban/industry weakness (see gr-aegean-islands) does not apply as strongly here (Corfu town is a substantial, UNESCO-listed urban center) — a borderline call, stated honestly rather than silently resolved.",
+      "key_industries": [
+        "agriculture (olives, citrus, cotton)",
+        "tourism",
+        "shipping (Patras port)",
+        "light manufacturing"
+      ],
+      "population": 2955000,
+      "population_note": "Sum of Ipeiros (EL54, ~330k), Thessalia (EL61, ~680k), Ionia Nisia (EL62, ~205k), Dytiki Ellada (EL63, ~640k), Sterea Ellada (EL64, ~540k), Peloponnisos (EL65, ~560k), ELSTAT 2021 census; approximate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "EL54",
+        "EL61",
+        "EL62",
+        "EL63",
+        "EL64",
+        "EL65"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Patras",
+        "note": "No city dominates the way Athens/Thessaloniki/Heraklion do for their regions; Patras is largest but Ioannina and Corfu are real, distinct sub-poles — honest reflection of this catch-all's weak identity case.",
+        "centers": [
+          "Patras",
+          "Ioannina",
+          "Corfu"
+        ],
+        "central_coord": [
+          21.73,
+          38.25
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Greek perifereies are deconcentrated administrative units, not legislative parliaments."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Patras — metro ~215k, the largest single city, but no city here dominates the way Athens/Thessaloniki/Heraklion do for their regions; a genuinely weak fit",
+        "diversified_industry": "agriculture, tourism, port trade, light manufacturing — real but dispersed across six sub-areas rather than concentrated",
+        "dependent_identity": "the Peloponnese sub-area has strong distinct identity; Epirus, Thessaly and the Ionian Islands likewise each have real distinct character; the combined region as drawn has no single shared identity — retained for coverage, explicitly flagged as this zone's other borderline inclusion-test case alongside the Aegean Islands and Northern Bulgaria"
+      },
+      "nuts1_disagreement": "Real NUTS-1 groupings (EL6 'Kentriki Ellada' = Thessaly+Ionian+W.Greece+Sterea+Peloponnese) already merge five distinct sub-areas; we additionally fold in Epirus (EL54, part of NUTS-1 EL5 with Macedonia) because splitting it out alone would add a 24th zone-7 region for ~330k people with a thin urban hub (Ioannina, ~65k). This remains the single most defensible-but-uncomfortable merge in this file; the Ionian Islands' attachment here (rather than a standalone unit or Aegean-archipelago attachment) is the explicit new verdict for draft_v0.1.2.",
+      "lang_family": "Hellenic (Greek); Ionian Islands' Venetian-era Catholic minority heritage (small, historic)",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Broad Mediterranean agricultural base (olives, citrus, cotton) supports Food; Patras port and moderate road network support middling Transportation; the region imports most manufactured clothing and much of its fuel.",
+        "rationales": {
+          "water": "Broad Mediterranean/Ionian coastal access is adequate but unremarkable.",
+          "food": "Broad Mediterranean agricultural base (olives, citrus, cotton) supports Food.",
+          "energy": "Grid/import-dependent; no major domestic generation asset."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "ELSTAT — Population and Housing Census 2021"
+      ]
+    },
+    {
+      "id": "cy-cyprus",
+      "name": "Cyprus",
+      "name_local": "Κύπρος / Kýpros",
+      "countries": [
+        "CY"
+      ],
+      "urban_core": "Nicosia",
+      "secondary_centers": [
+        "Limassol",
+        "Larnaca",
+        "Paphos"
+      ],
+      "identity_basis": "Single-unit exception per Global Constraints; island nation, EU member since 2004, de facto divided since 1974 (Green Line). GEOMETRY VERDICT (checked, documented limitation rather than a fake boundary): NO clean north/south geometry source exists. (1) The committed GISCO NUTS2024 raw file carries only whole-island CY/CY0/CY00/CY000 codes (verified against pipeline/raw/NUTS_RG_20M_2024_4326.geojson — no sub-island feature exists). (2) A live geoBoundaries API check found CYP ADM1 has 6 units, but these are Cyprus's 6 pre-1974 historic districts (Nicosia, Limassol, Larnaca, Famagusta, Paphos, Kyrenia) — several of which (Nicosia, Famagusta) are THEMSELVES bisected by the 1974 ceasefire Green Line, so using them would misrepresent the actual de facto division rather than depict it, the opposite of the honesty this dataset otherwise insists on. DECISION: keep ONE region, add special_status (dashed rendering) and a strengthened conflict_flag documenting the split explicitly as a north/south-split-pending-geometry-source limitation, per the plan's own pre-authorized fallback.",
+      "key_industries": [
+        "financial/professional services",
+        "shipping registry",
+        "tourism",
+        "real estate"
+      ],
+      "population": 920000,
+      "population_note": "CY0, Statistical Service of Cyprus (CYSTAT) Census 2021, government-controlled area; approximate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "CY0"
+      ],
+      "single_unit_exception": true,
+      "default_visible": true,
+      "special_status": "cy-defacto-division",
+      "pole": {
+        "type": "monopole",
+        "central": "Nicosia",
+        "note": "Capital and largest city, itself bisected by the Green Line (a fact the special_status/dashed rendering should visually echo, per the app-wave legend).",
+        "centers": [
+          "Nicosia"
+        ],
+        "central_coord": [
+          33.36,
+          35.17
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "House of Representatives (Vouli ton Antiprosopon)",
+        "note": "Single-unit exception country: 'own parliament' here is Cyprus's own national parliament (government-controlled area only); the self-declared 'Turkish Republic of Northern Cyprus' assembly is not internationally recognized (recognized only by Turkey) and is not modeled as a second parliament in this dataset."
+      },
+      "conflict_flags": [
+        {
+          "id": "cy-north-south-division",
+          "description": "De facto division since the 1974 Turkish intervention: the Republic of Cyprus (EU member, government-controlled ~63% of the island, modeled here) vs. the self-declared, Turkey-only-recognized 'Turkish Republic of Northern Cyprus' (~37%), separated by the UN-patrolled Green Line (itself bisecting Nicosia). NO CLEAN GEOMETRY SOURCE EXISTS for a north/south sub-division (see identity_basis for the documented 5-minute geometry check: GISCO whole-island-only; geoBoundaries CYP ADM1's 6 districts predate 1974 and are themselves split by the line). North/south split explicitly PENDING a better geometry source — a deliberate, stated limitation, not a silently-resolved one.",
+          "zone_nuts_codes": [
+            "CY0"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Nicosia — capital and largest city",
+        "diversified_industry": "financial services, shipping registry, tourism, real estate",
+        "dependent_identity": "EU member state; single-unit exception per Global Constraints"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "Hellenic (Greek Cypriot majority, government-controlled area); Turkish (Turkish Cypriot) in the de facto administered north, outside this dataset's population/economic figures",
+      "autarky": {
+        "water": 2,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 2.7,
+        "rationale": "Mediterranean water scarcity is chronic and desalination-dependent; the island imports nearly all fuel and manufactured goods, but has strong healthcare capacity for its size.",
+        "rationales": {
+          "water": "Mediterranean water scarcity is chronic and desalination-dependent.",
+          "food": "The island imports a significant share of its food; agriculture is real but limited by water scarcity.",
+          "energy": "The island imports nearly all fuel; no significant domestic generation asset."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "Statistical Service of Cyprus (CYSTAT) — Population Census 2021",
+        "geoBoundaries CYP ADM1 metadata (checked 2026-07-05: 6 pre-1974 districts, not a north/south split)"
+      ]
+    },
+    {
+      "id": "mt-malta",
+      "name": "Malta",
+      "name_local": "Malta",
+      "countries": [
+        "MT"
+      ],
+      "urban_core": "Valletta",
+      "secondary_centers": [
+        "Birkirkara",
+        "Mosta"
+      ],
+      "identity_basis": "Single-unit exception per Global Constraints; small island nation, EU member since 2004.",
+      "key_industries": [
+        "financial/professional services",
+        "tourism",
+        "iGaming",
+        "shipping registry"
+      ],
+      "population": 520000,
+      "population_note": "Malta (MT00), National Statistics Office Malta 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "MT0"
+      ],
+      "single_unit_exception": true,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Valletta",
+        "note": "Small, dense island-state; Valletta is the formal capital though the urban conurbation is largely continuous.",
+        "centers": [
+          "Valletta"
+        ],
+        "central_coord": [
+          14.51,
+          35.9
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "House of Representatives of Malta",
+        "note": "Single-unit exception country: 'own parliament' here is Malta's own national parliament."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Valletta/greater urban area — the whole main island functions as one dense conurbation",
+        "diversified_industry": "financial services, tourism, iGaming, shipping registry",
+        "dependent_identity": "EU member state; single-unit exception per Global Constraints"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "Semitic (Maltese, Arabic-derived with Italian/English superstrate)",
+      "autarky": {
+        "water": 1,
+        "food": 2,
+        "shelter": 3,
+        "energy": 1,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 2.3,
+        "rationale": "Malta has essentially no domestic freshwater or energy resources (desalination and imported fuel/interconnector power dominate); dense urban fabric and EU-funded healthcare give it comparatively strong Shelter and Hygiene & Healthcare for its size.",
+        "rationales": {
+          "water": "Essentially no domestic freshwater resources; desalination dominates.",
+          "food": "Very limited arable land; the island imports most food.",
+          "energy": "Essentially no domestic energy resources; imported fuel and the Malta-Sicily interconnector dominate."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "National Statistics Office (NSO) Malta 2023"
+      ]
+    },
+    {
+      "id": "rs-belgrade-central-serbia",
+      "name": "Belgrade & Central Serbia",
+      "name_local": "Београд и централна Србија / Beograd i centralna Srbija",
+      "countries": [
+        "RS"
+      ],
+      "urban_core": "Belgrade",
+      "secondary_centers": [
+        "Niš",
+        "Kragujevac"
+      ],
+      "identity_basis": "Belgrade as national capital overwhelmingly dominates central Serbia (Šumadija and western/southern Serbia) economically, politically and culturally.",
+      "key_industries": [
+        "government/public administration and finance (Belgrade)",
+        "automotive (Fiat/Stellantis Kragujevac)",
+        "lignite power (Kolubara/Kostolac)",
+        "IT"
+      ],
+      "population": 4560000,
+      "population_note": "Sum of Beogradski region and Region Šumadije i Zapadne Srbije + Region Južne i Istočne Srbije, RZS (Statistical Office of Serbia) 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "RS11",
+        "RS21",
+        "RS22"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Belgrade",
+        "note": "Overwhelmingly dominant national capital.",
+        "centers": [
+          "Belgrade"
+        ],
+        "central_coord": [
+          20.46,
+          44.79
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Central Serbia has no separate autonomous assembly (unlike Vojvodina); ordinary Serbian administrative regions, per the explicit RS audit rule."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Belgrade — national capital, dominant metro >1.7M",
+        "diversified_industry": "government/finance, automotive (Fiat/Stellantis Kragujevac), lignite power, IT",
+        "dependent_identity": "Serbian national identity centered on the capital; no separatism"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "South Slavic (Serbian)",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.6,
+        "rationale": "The Kolubara/Kostolac lignite basins make this region (and Serbia generally) unusually energy self-sufficient for the zone, though coal-heavy and environmentally costly — a genuinely mid rather than high score given air-quality and long-term supply tradeoffs; Belgrade's infrastructure lifts Transportation and Hygiene & Healthcare above the regional baseline.",
+        "rationales": {
+          "water": "Danube/Sava/Morava river-basin access is abundant.",
+          "food": "Šumadija/central-Serbia agriculture supports a solid food score.",
+          "energy": "The Kolubara/Kostolac lignite basins make this region (and Serbia generally) unusually energy self-sufficient for the zone, though coal-heavy and environmentally costly.",
+          "transportation": "Belgrade's infrastructure lifts Transportation above the regional baseline."
+        }
+      },
+      "sources": [
+        "Eurostat/CNTR correspondence tables",
+        "Statistical Office of the Republic of Serbia (RZS) 2023"
+      ]
+    },
+    {
+      "id": "rs-vojvodina",
+      "name": "Vojvodina (Novi Sad)",
+      "name_local": "Војводина / Vojvodina",
+      "countries": [
+        "RS"
+      ],
+      "urban_core": "Novi Sad",
+      "secondary_centers": [
+        "Subotica",
+        "Zrenjanin"
+      ],
+      "identity_basis": "Vojvodina's Habsburg-era autonomous heritage and its present-day constitutionally-recognized Autonomous Province status (with its own Assembly) set it clearly apart from central Serbia; a genuinely multi-ethnic province (Hungarian, Slovak, Croatian, Rusyn and Romanian minorities alongside a Serb majority).",
+      "key_industries": [
+        "agriculture (Pannonian grain belt)",
+        "food processing",
+        "petrochemicals (Novi Sad/Pančevo)",
+        "IT"
+      ],
+      "population": 1880000,
+      "population_note": "Autonomna Pokrajina Vojvodina (RS12 correspondence), RZS 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "RS12"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Novi Sad",
+        "note": "Novi Sad dominates as the provincial capital; Subotica (Hungarian-minority center) is a real but clearly secondary city.",
+        "centers": [
+          "Novi Sad"
+        ],
+        "central_coord": [
+          19.85,
+          45.27
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Assembly of the Autonomous Province of Vojvodina (Skupština APV)",
+        "note": "Real, constitutionally-recognized autonomous provincial assembly under the Serbian Constitution — the clearest 'has_own: true' case in this file alongside the BA entities."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Novi Sad — metro ~380k, Vojvodina's capital and second city of Serbia",
+        "diversified_industry": "Pannonian grain belt agriculture, food processing, petrochemicals, growing IT sector",
+        "dependent_identity": "genuine Habsburg-era autonomous heritage and present constitutional Autonomous Province status; multi-ethnic composition (Hungarian/Slovak/Croatian/Rusyn/Romanian minorities); no separatism, organic historically-grown distinctness (contrasted in v0.1.0's push-back note with post-conflict administrative partitions like BA's entities)"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "South Slavic (Serbian) majority; Hungarian, Slovak, Rusyn, Croatian and Romanian minorities with co-official status in parts of the province",
+      "autarky": {
+        "water": 4,
+        "food": 5,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "The Pannonian plain is Serbia's (and one of Europe's) most productive grain belts, giving Food the zone's near-top score; Novi Sad's river/rail position supports Transportation, but Vojvodina lacks central Serbia's coal-power base, capping Energy.",
+        "rationales": {
+          "water": "The Danube-Tisza-Danube canal system and Pannonian plain give abundant water access.",
+          "food": "The Pannonian plain is Serbia's (and one of Europe's) most productive grain belts, giving Food the zone's near-top score.",
+          "energy": "Vojvodina lacks central Serbia's coal-power base, capping Energy despite Pančevo's petrochemical processing.",
+          "transportation": "Novi Sad's river/rail position supports Transportation."
+        }
+      },
+      "sources": [
+        "Eurostat/CNTR correspondence tables",
+        "Statistical Office of the Republic of Serbia (RZS) 2023",
+        "Constitution of the Republic of Serbia, Art. 182-183 on Vojvodina's autonomy"
+      ]
+    },
+    {
+      "id": "ba-federation-bih",
+      "name": "Federation of Bosnia and Herzegovina",
+      "name_local": "Federacija Bosne i Hercegovine",
+      "countries": [
+        "BA"
+      ],
+      "urban_core": "Sarajevo",
+      "secondary_centers": [
+        "Mostar",
+        "Tuzla",
+        "Zenica"
+      ],
+      "identity_basis": "SUPERSEDES v0.1.0's single-region verdict: Bosnia's three Dayton Agreement (1995) entities are now modeled as three separate units, each with its own real constitutional parliament (the parliament rule mandates this). The Federation of Bosnia and Herzegovina — itself a federation of 10 cantons — is the more urbanized, Bosniak-Croat-majority entity, anchored by Sarajevo (the shared, though contested, national capital) and including Mostar (Croat-Bosniak divided city) and the Tuzla/Zenica industrial belt.",
+      "key_industries": [
+        "metals/steel (Zenica)",
+        "IT/services (Sarajevo)",
+        "tourism (Mostar, Sarajevo)",
+        "agriculture"
+      ],
+      "population": 2219000,
+      "population_note": "Agency for Statistics of Bosnia and Herzegovina, Census 2013 (last full census; contested — see ba-republika-srpska for the same caveat).",
+      "area_km2": null,
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "BA01"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Sarajevo",
+        "note": "The Federation is itself a federation of 10 cantons; Sarajevo dominates but Mostar and Tuzla are real, distinct secondary poles, an honest polycentric case.",
+        "centers": [
+          "Sarajevo",
+          "Mostar",
+          "Tuzla"
+        ],
+        "central_coord": [
+          18.36,
+          43.86
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Parliament of the Federation of Bosnia and Herzegovina",
+        "note": "Real constitutional legislature (Dayton Agreement, 1995); one of the two entity-level parliaments alongside Republika Srpska's National Assembly, plus Brčko District's Assembly — the clearest 3-way parliament-rule case in this dataset."
+      },
+      "conflict_flags": [
+        {
+          "id": "ba-entity-boundaries",
+          "description": "Internal entity boundaries from the 1995 Dayton Peace Agreement. Now modeled as three separate cultural units (ba-federation-bih, ba-republika-srpska, ba-brcko-district) rather than one region with an overlay flag, per the parliament rule (each entity has a real constitutional legislature) — SUPERSEDES v0.1.0's single-unit-with-flag treatment, which itself argued the Dayton partition was 'not organic regionalism'. That argument is preserved in the zone notes as background even though the mandate has changed: the three units exist because of real, current constitutional government, independent of whether the original 1995 partition was organic.",
+          "zone_nuts_codes": [
+            "BA01"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Sarajevo — metro ~550k, national and entity capital, historic Ottoman-then-Austro-Hungarian crossroads city",
+        "diversified_industry": "steel/metals (Zenica), IT/services (Sarajevo), tourism, agriculture",
+        "dependent_identity": "the Federation exists as a constitutional entity within the sovereign state of Bosnia and Herzegovina; no separatism at the Federation level (unlike some Republika Srpska political rhetoric — see that record)"
+      },
+      "nuts1_disagreement": "Uses the SR2024 statistical-regions code BA01, which resolves directly against the committed GISCO raw geometry file (pipeline/raw/NUTS_RG_20M_2024_4326.geojson) — NO geoBoundaries/ADM1 workaround is needed; the code and its geometry are already present in the same source used for the rest of this dataset.",
+      "lang_family": "South Slavic (Bosnian/Croatian, mutually intelligible with Serbian)",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Neretva-basin hydropower and river resources give a real domestic energy base; mountainous terrain and post-war infrastructure gaps keep Transportation modest; Sarajevo's university-hospital complex supports healthcare relative to the rest of the entity.",
+        "rationales": {
+          "water": "Neretva/Bosna river basins give solid freshwater access.",
+          "food": "Adequate, unremarkable agriculture; imports supplement domestic production.",
+          "energy": "Hydroelectric capacity (Neretva basin) gives a genuine domestic generation base, though smaller than Republika Srpska's Drina/Vrbas hydro assets."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO SR2024 statistical regions",
+        "Agency for Statistics of Bosnia and Herzegovina — Census 2013 (last full census; contested)",
+        "Dayton Peace Agreement (1995), Annex 4 (Constitution of Bosnia and Herzegovina)"
+      ]
+    },
+    {
+      "id": "ba-republika-srpska",
+      "name": "Republika Srpska",
+      "name_local": "Република Српска / Republika Srpska",
+      "countries": [
+        "BA"
+      ],
+      "urban_core": "Banja Luka",
+      "secondary_centers": [
+        "Bijeljina",
+        "Prijedor"
+      ],
+      "identity_basis": "SUPERSEDES v0.1.0's single-region verdict: Republika Srpska, the Serb-majority Dayton entity, has its own real constitutional National Assembly, president, and a high degree of governmental autonomy within Bosnia and Herzegovina (including periodic secessionist political rhetoric from entity leadership, though no legal secession has occurred) — the strongest real 'has_own parliament' case in this dataset alongside Vojvodina.",
+      "key_industries": [
+        "hydroelectric power (Drina, Vrbas basins)",
+        "timber/wood processing",
+        "agriculture",
+        "light manufacturing (Banja Luka)"
+      ],
+      "population": 1228000,
+      "population_note": "Agency for Statistics of Bosnia and Herzegovina, Census 2013 (last full census; contested between entities over methodology and diaspora counting).",
+      "area_km2": null,
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "BA02"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Banja Luka",
+        "note": "Banja Luka dominates as the entity's de facto administrative capital.",
+        "centers": [
+          "Banja Luka"
+        ],
+        "central_coord": [
+          17.19,
+          44.77
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "National Assembly of Republika Srpska",
+        "note": "Real constitutional legislature (Dayton Agreement, 1995) with an unusually high degree of practical autonomy, including its own president, government and periodic political rhetoric about further autonomy or secession (not currently legally enacted)."
+      },
+      "conflict_flags": [
+        {
+          "id": "ba-rs-autonomy-rhetoric",
+          "description": "Republika Srpska's entity-level leadership has periodically floated further autonomy or secession referenda (most prominently under President Milorad Dodik); no such move has legal effect under Bosnia's constitution or international law, and Republika Srpska remains a constituent entity of Bosnia and Herzegovina. Flagged as a live political fact distinct from the more settled Vojvodina/Federation cases.",
+          "zone_nuts_codes": [
+            "BA02"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Banja Luka — metro ~200k, entity's largest city and de facto capital",
+        "diversified_industry": "hydropower, timber, agriculture, light manufacturing",
+        "dependent_identity": "constitutionally a Bosnian entity, though with the dataset's most active autonomy/secession-adjacent political rhetoric — the honest edge case for the inclusion test's 'dependent, not seeking independence' criterion, alongside ro-szekely-land"
+      },
+      "nuts1_disagreement": "Uses the SR2024 statistical-regions code BA02, which resolves directly against the committed GISCO raw geometry file — no pipeline coordination or geoBoundaries workaround needed.",
+      "lang_family": "South Slavic (Serbian)",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Extensive hydroelectric capacity (Drina, Vrbas basins) makes this entity a genuinely decent domestic energy producer and a regional electricity exporter, unusual for the zone; mountainous terrain and post-war infrastructure gaps keep Transportation low.",
+        "rationales": {
+          "water": "Drina/Vrbas river basins give strong freshwater access.",
+          "food": "Adequate agriculture, comparable to the Federation.",
+          "energy": "Extensive hydroelectric capacity (Drina, Vrbas basins) makes this entity a genuinely decent domestic energy producer and a regional electricity exporter, unusual for the zone."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO SR2024 statistical regions",
+        "Agency for Statistics of Bosnia and Herzegovina — Census 2013 (last full census; contested)",
+        "Dayton Peace Agreement (1995), Annex 4"
+      ]
+    },
+    {
+      "id": "ba-brcko-district",
+      "name": "Brčko District",
+      "name_local": "Brčko distrikt",
+      "countries": [
+        "BA"
+      ],
+      "urban_core": "Brčko",
+      "secondary_centers": [],
+      "identity_basis": "SUPERSEDES v0.1.0's single-region verdict: Brčko District is a self-governing administrative unit under international (2000 arbitration) supervision, belonging to neither entity — jointly held by both under a condominium arrangement — with its own Assembly. The smallest of Bosnia's three parliament-rule units, included as its own unit precisely because the parliament rule does not carve out exceptions for size.",
+      "key_industries": [
+        "river-port logistics (Sava river)",
+        "agriculture",
+        "cross-border trade (Croatia)"
+      ],
+      "population": 93000,
+      "population_note": "Brčko District Statistics Office / Agency for Statistics of Bosnia and Herzegovina, Census 2013 (last full census; contested).",
+      "area_km2": null,
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "BA03"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Brčko",
+        "note": "Brčko town is the district's only urban center; the whole district is roughly town-sized.",
+        "centers": [
+          "Brčko"
+        ],
+        "central_coord": [
+          18.81,
+          44.87
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Brčko District Assembly (Skupština Brčko distrikta)",
+        "note": "Real self-governing assembly established by the 1999/2000 Brčko Arbitration Award, held jointly by both entities under international supervision — a unique third case alongside the Federation and Republika Srpska parliaments."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Brčko — the district's only town, ~40k; small by this dataset's usual standards but a genuine, distinct self-governing unit",
+        "diversified_industry": "river-port logistics on the Sava, agriculture, modest cross-border trade with Croatia",
+        "dependent_identity": "self-governing under international arbitration, held jointly by both Bosnian entities rather than belonging to either — no separatism, a genuine condominium arrangement"
+      },
+      "nuts1_disagreement": "Uses the SR2024 statistical-regions code BA03, which resolves directly against the committed GISCO raw geometry file — no pipeline coordination or geoBoundaries workaround needed, despite the district's small size and unusual legal status.",
+      "lang_family": "South Slavic (mixed Bosnian/Croatian/Serbian population, roughly equal thirds post-war)",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 2.4,
+        "rationale": "A small river-port district with modest agriculture and logistics; too small for major domestic energy generation, and healthcare/shelter infrastructure is thinner than in either entity's larger cities.",
+        "rationales": {
+          "water": "Sava river access is adequate.",
+          "food": "Small-scale agriculture; the smallest and most rural of the three BA units.",
+          "energy": "No domestic generation asset; import/grid-dependent via both entities' grids."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO SR2024 statistical regions",
+        "Agency for Statistics of Bosnia and Herzegovina — Census 2013 (last full census; contested)",
+        "Brčko Final Award (1999) and Supplemental Award (2000)"
+      ]
+    },
+    {
+      "id": "me-montenegro",
+      "name": "Montenegro",
+      "name_local": "Crna Gora",
+      "countries": [
+        "ME"
+      ],
+      "urban_core": "Podgorica",
+      "secondary_centers": [
+        "Nikšić",
+        "Bar",
+        "Kotor"
+      ],
+      "identity_basis": "Single-unit exception per Global Constraints; small independent nation-state (independence 2006).",
+      "key_industries": [
+        "tourism (Adriatic coast)",
+        "aluminum (Podgorica smelter legacy)",
+        "hydroelectric power",
+        "maritime shipping (Bar)"
+      ],
+      "population": 620000,
+      "population_note": "MONSTAT (Statistical Office of Montenegro) 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "ME0"
+      ],
+      "single_unit_exception": true,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Podgorica",
+        "note": "Overwhelmingly dominant national capital; the Adriatic coast (Kotor, Budva) is a real tourism-economic secondary pole but not a population/administrative one.",
+        "centers": [
+          "Podgorica"
+        ],
+        "central_coord": [
+          19.26,
+          42.44
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Parliament of Montenegro (Skupština Crne Gore)",
+        "note": "Single-unit exception country: 'own parliament' here is Montenegro's own national parliament."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Podgorica — capital and largest city",
+        "diversified_industry": "tourism, aluminum, hydro, maritime shipping",
+        "dependent_identity": "independent sovereign state; single-unit exception per Global Constraints"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "South Slavic (Montenegrin/Serbian)",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Mountainous terrain gives good freshwater and hydro capacity; coastal tourism dominates the economy over food self-sufficiency; road/rail connectivity through the Dinaric mountains remains genuinely limited.",
+        "rationales": {
+          "water": "Mountainous terrain gives good freshwater and hydro capacity.",
+          "food": "Coastal tourism dominates the economy over food self-sufficiency; agriculture is real but limited.",
+          "energy": "Hydro capacity is genuine, though the aluminum smelter's historic demand strains the domestic grid."
+        }
+      },
+      "sources": [
+        "Eurostat/CNTR correspondence tables",
+        "MONSTAT (Statistical Office of Montenegro) 2023"
+      ]
+    },
+    {
+      "id": "mk-north-macedonia",
+      "name": "North Macedonia",
+      "name_local": "Северна Македонија / Severna Makedonija",
+      "countries": [
+        "MK"
+      ],
+      "urban_core": "Skopje",
+      "secondary_centers": [
+        "Bitola",
+        "Tetovo",
+        "Ohrid"
+      ],
+      "identity_basis": "Single-unit exception per Global Constraints; independent nation-state, renamed from 'Macedonia' to 'North Macedonia' under the 2018 Prespa Agreement with Greece.",
+      "key_industries": [
+        "textiles (Štip/Prilep)",
+        "agriculture (Pelagonia plain)",
+        "automotive supply",
+        "tourism (Ohrid)"
+      ],
+      "population": 1832000,
+      "population_note": "State Statistical Office of North Macedonia 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "MK0"
+      ],
+      "single_unit_exception": true,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Skopje",
+        "note": "Overwhelmingly dominant national capital.",
+        "centers": [
+          "Skopje"
+        ],
+        "central_coord": [
+          21.43,
+          41.99
+        ]
+      },
+      "reach": [
+        {
+          "target": "Thessaloniki (Greece)",
+          "note": "See gr-macedonia's reciprocal reach entry: North Macedonia's historic economic outlet to the sea runs via Thessaloniki port and the Vardar/Axios corridor, an economic-geography fact independent of the two countries' post-Prespa-Agreement naming settlement."
+        }
+      ],
+      "parliament": {
+        "has_own": true,
+        "name": "Assembly of the Republic of North Macedonia (Sobranie)",
+        "note": "Single-unit exception country: 'own parliament' here is North Macedonia's own national parliament."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Skopje — capital and largest city",
+        "diversified_industry": "textiles, agriculture, automotive supply, tourism",
+        "dependent_identity": "independent sovereign state; single-unit exception per Global Constraints; a real Albanian-minority regional layer in the west (Tetovo) noted but not split per the exception list"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "South Slavic (Macedonian); significant Albanian minority (Tetovo/west)",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.1,
+        "rationale": "Pelagonia-plain agriculture supports Food; a genuine (if low-margin) textile industry gives Clothing a real domestic base, comparable to Plovdiv/Thrace in this zone; landlocked geography and mountainous terrain constrain Transportation.",
+        "rationales": {
+          "water": "Vardar river-basin access is adequate.",
+          "food": "Pelagonia-plain agriculture supports Food.",
+          "energy": "Coal/hydro mix, moderate; landlocked geography limits import flexibility somewhat.",
+          "clothing": "A genuine, if low-margin, textile industry gives Clothing a real domestic base."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "State Statistical Office of North Macedonia 2023",
+        "Prespa Agreement (2018)"
+      ]
+    },
+    {
+      "id": "al-albania",
+      "name": "Albania",
+      "name_local": "Shqipëria",
+      "countries": [
+        "AL"
+      ],
+      "urban_core": "Tirana",
+      "secondary_centers": [
+        "Durrës",
+        "Vlorë",
+        "Shkodër"
+      ],
+      "identity_basis": "Single-unit exception per Global Constraints; independent nation-state.",
+      "key_industries": [
+        "hydroelectric power (Drin cascade, net exporter)",
+        "tourism (Albanian Riviera)",
+        "agriculture",
+        "textiles/footwear (contract manufacturing)"
+      ],
+      "population": 2400000,
+      "population_note": "INSTAT (Albanian Institute of Statistics) 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "AL0"
+      ],
+      "single_unit_exception": true,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Tirana",
+        "note": "Overwhelmingly dominant national capital; Durrës (main port) is a real but clearly secondary city.",
+        "centers": [
+          "Tirana"
+        ],
+        "central_coord": [
+          19.82,
+          41.33
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Assembly of Albania (Kuvendi)",
+        "note": "Single-unit exception country: 'own parliament' here is Albania's own national parliament."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Tirana — capital and largest city",
+        "diversified_industry": "hydropower, tourism, agriculture, contract textiles/footwear manufacturing",
+        "dependent_identity": "independent sovereign state; single-unit exception per Global Constraints"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "Albanian (independent Indo-European branch)",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 2,
+        "energy": 4,
+        "transportation": 2,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Albania is one of Europe's most hydro-dependent power systems and a net electricity exporter in wet years (Drin river cascade), giving Energy a genuinely high score for the zone; chronic under-investment in housing stock and healthcare outside Tirana, plus mountainous terrain, keep Shelter, Transportation and Hygiene & Healthcare low.",
+        "rationales": {
+          "water": "Abundant Alpine/Dinaric freshwater resources feed the Drin river cascade.",
+          "food": "Agriculture is real though under-modernized; adequate rather than exceptional.",
+          "energy": "Albania is one of Europe's most hydro-dependent power systems and a net electricity exporter in wet years (Drin river cascade), giving Energy a genuinely high score for the zone."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 correspondence tables",
+        "INSTAT (Albanian Institute of Statistics) 2023"
+      ]
+    },
+    {
+      "id": "xk-kosovo",
+      "name": "Kosovo",
+      "name_local": "Kosova / Косово",
+      "countries": [
+        "XK"
+      ],
+      "urban_core": "Pristina",
+      "secondary_centers": [
+        "Prizren",
+        "Peja",
+        "Mitrovica"
+      ],
+      "identity_basis": "Single-unit exception per Global Constraints; partially-recognized independent state (declared 2008, recognized by ~100 UN members, not by Serbia/Russia/China/5 EU states). Mitrovica's Serb-majority north is a live, distinct minority-conflict layer within the single-unit treatment.",
+      "key_industries": [
+        "lignite power (Kosovo A/B plants)",
+        "mining (Trepča legacy)",
+        "textiles/apparel (export)",
+        "diaspora remittances"
+      ],
+      "population": 1790000,
+      "population_note": "Kosovo Agency of Statistics 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "XK0"
+      ],
+      "single_unit_exception": true,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Pristina",
+        "note": "Overwhelmingly dominant national capital.",
+        "centers": [
+          "Pristina"
+        ],
+        "central_coord": [
+          21.17,
+          42.67
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Assembly of Kosovo (Kuvendi i Kosovës)",
+        "note": "Single-unit exception country: 'own parliament' here is Kosovo's own (partially-recognized) national parliament."
+      },
+      "conflict_flags": [
+        {
+          "id": "xk-north-mitrovica-serb-minority",
+          "description": "Serb-majority North Mitrovica and adjacent municipalities remain a live flashpoint (parallel Serbian-backed institutions, periodic unrest, EU/NATO-mediated normalization talks); a distinct minority-conflict layer within the single-unit treatment, not modeled as a separate geometry given Kosovo's own single-unit exception status.",
+          "zone_nuts_codes": [
+            "XK"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Pristina — capital and largest city",
+        "diversified_industry": "lignite power, legacy mining (Trepča), textiles/apparel export, diaspora remittances",
+        "dependent_identity": "partially-recognized independent state; single-unit exception per Global Constraints; the North Mitrovica Serb-minority layer is a live, internationally-mediated issue noted via conflict_flag rather than a redrawn boundary"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "Albanian majority; Serbian minority concentrated in North Mitrovica",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 2,
+        "energy": 4,
+        "transportation": 2,
+        "hygiene_healthcare": 2,
+        "clothing": 3,
+        "composite": 2.7,
+        "rationale": "The Kosovo A/B lignite plants near Pristina make Kosovo highly energy self-sufficient in raw generation terms (if environmentally very costly and technically unreliable); a real textile/apparel export sector gives Clothing a workable score; landlocked, mountainous terrain and a housing stock strained by post-war reconstruction and heavy return-migration keep Shelter and Transportation low.",
+        "rationales": {
+          "water": "Adequate but strained by aging Yugoslav-era infrastructure.",
+          "food": "Agriculture is real but under-modernized; moderate self-sufficiency.",
+          "energy": "The Kosovo A/B lignite plants near Pristina make Kosovo highly energy self-sufficient in raw generation terms, if environmentally very costly and technically unreliable."
+        }
+      },
+      "sources": [
+        "Eurostat/CNTR correspondence tables",
+        "Kosovo Agency of Statistics 2023"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,733 @@
+/* site.css — shared design tokens + header/nav (used by every /regions/ page)
+   plus the map-page layout. Tasks 6/7 link this file for the tokens/header
+   and add their own page-specific stylesheet on top; keep the section below
+   the "MAP PAGE" marker specific to regions/index.html only. */
+
+:root {
+  color-scheme: dark;
+  --bg: #0b0b0f;
+  --bg-panel: #16161c;
+  --bg-panel-raised: #1e1e26;
+  --border: #2a2a33;
+  --fg: #eee;
+  --fg-dim: rgba(238, 238, 238, 0.6);
+  --fg-dimmer: rgba(238, 238, 238, 0.4);
+  --accent: #8ab4ff;
+  --accent-dim: rgba(138, 180, 255, 0.25);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --radius: 8px;
+  --header-height: 3.25rem;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+}
+
+a { color: var(--accent); }
+
+/* ---------------------------------------------------------------------- */
+/* SHARED HEADER / NAV                                                     */
+/* ---------------------------------------------------------------------- */
+
+.site-header {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-panel);
+}
+
+.site-header .brand {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-right: auto;
+  white-space: nowrap;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+}
+
+.site-header nav a {
+  color: var(--fg-dim);
+  text-decoration: none;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.site-header nav a:hover,
+.site-header nav a[aria-current="page"] {
+  color: var(--fg);
+  border-bottom-color: var(--accent);
+}
+
+.sidebar-toggle-btn {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  border-radius: var(--radius);
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------------------------- */
+/* MAP PAGE (regions/index.html)                                          */
+/* ---------------------------------------------------------------------- */
+
+.app-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  height: calc(100vh - var(--header-height));
+}
+
+#map {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: #061019; /* visible before OSM tiles / on tile failure */
+}
+
+#sidebar {
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 0.75rem 1rem 2rem;
+}
+
+#sidebar h2 {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg-dimmer);
+  margin: 1.25rem 0 0.5rem;
+}
+
+#sidebar section:first-of-type h2 { margin-top: 0.25rem; }
+
+.field-row { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.5rem; }
+
+/* Scoped to .map-page (class on regions/index.html's <body>) so these
+   generic element selectors don't leak into other pages (Tasks 6/7) that
+   link site.css only for the shared tokens/header. */
+.map-page select,
+.map-page input[type="text"] {
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.5rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  width: 100%;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+
+.override-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--fg-dim);
+  margin-left: 0.25rem;
+}
+
+.override-list label { display: flex; align-items: center; gap: 0.4rem; }
+
+#about-panel {
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 0.85rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--fg-dim);
+  position: relative;
+}
+
+#about-panel.collapsed .about-body { display: none; }
+
+#about-panel .about-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#about-panel h1 {
+  font-size: 0.95rem;
+  color: var(--fg);
+  margin: 0;
+}
+
+#about-toggle {
+  background: none;
+  border: none;
+  color: var(--fg-dim);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* A4.2: master toggle gates this div; explicit rule for consistency with
+   the [hidden]-vs-authored-display fix already applied to
+   #scheme-selector-row and .variant-chip-menu above, even though no
+   competing author rule currently targets this specific id. */
+#conflicts-overlay-body[hidden] { display: none; }
+
+ul#conflict-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-height: 16rem;
+  overflow-y: auto;
+}
+
+.conflict-item {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.conflict-item label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.conflict-desc {
+  margin: 0.25rem 0 0 1.35rem;
+  font-size: 0.75rem;
+}
+
+#search-results {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+}
+
+#search-results li {
+  padding: 0.3rem 0.5rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+
+#search-results li:hover { background: var(--accent-dim); }
+
+#search-notice {
+  font-size: 0.75rem;
+  color: #ffb454;
+  margin-top: 0.35rem;
+  line-height: 1.4;
+}
+
+#search-notice:empty { display: none; }
+
+/* F5.1: user-visible failure banner when the datasets fail to load. */
+.load-error {
+  background: #2a1215;
+  border: 1px solid #7a2e35;
+  border-radius: var(--radius);
+  color: var(--fg);
+  padding: 0.85rem 1rem;
+  margin: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  z-index: 30;
+  position: relative;
+}
+
+.load-error strong { color: #ff8a8a; }
+
+.load-error p { margin: 0.35rem 0 0.6rem; color: var(--fg-dim); }
+
+.load-error button {
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  border-radius: var(--radius);
+  padding: 0.35rem 0.9rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.load-error button:hover { border-color: #7a2e35; }
+
+.legend-swatches { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.78rem; }
+.legend-swatches i { display: inline-block; width: 0.85rem; height: 0.85rem; border-radius: 2px; margin-right: 0.4rem; vertical-align: -1px; }
+
+.legend-ramp { display: flex; height: 0.85rem; border-radius: 2px; overflow: hidden; }
+.legend-ramp i { flex: 1; }
+.legend-scale-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--fg-dimmer); margin-top: 0.15rem; }
+
+#legend-footer { font-size: 0.72rem; color: var(--fg-dimmer); line-height: 1.5; }
+
+.badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--border);
+  color: var(--fg-dim);
+}
+
+.badge-small { font-size: 0.6rem; opacity: 0.7; }
+.badge-variant { border-color: #fde725; color: #fde725; }
+.badge-conflict { border-color: #ff8a00; color: #ff8a00; }
+
+.muted { color: var(--fg-dim); }
+
+/* ---- detail panel ---- */
+
+#detail-panel {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 340px;
+  max-width: calc(100vw - 1.5rem);
+  max-height: calc(100% - 1.5rem);
+  overflow-y: auto;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem 1.25rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  display: none;
+  font-size: 0.85rem;
+}
+
+#detail-panel.detail-open { display: block; }
+
+.detail-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.6rem;
+  background: none;
+  border: none;
+  color: var(--fg-dim);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.detail-title { margin: 0 0.5rem 0.1rem 0; font-size: 1.15rem; }
+.detail-local { margin: 0 0 0.5rem; font-style: italic; }
+
+.badge-row { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.75rem; }
+
+.detail-facts { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 0.6rem; margin: 0 0 0.75rem; font-size: 0.8rem; }
+.detail-facts dt { color: var(--fg-dimmer); }
+.detail-facts dd { margin: 0; }
+
+#detail-panel h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fg-dimmer); margin: 0.9rem 0 0.3rem; }
+#detail-panel p { margin: 0 0 0.5rem; line-height: 1.45; }
+#detail-panel ul { margin: 0 0 0.5rem; padding-left: 1.1rem; }
+
+.score-chart { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.5rem; }
+.score-row { display: grid; grid-template-columns: 6.2rem 1fr 1.4rem; align-items: center; gap: 0.4rem; font-size: 0.72rem; }
+.score-label { color: var(--fg-dim); }
+.score-track { background: var(--bg-panel-raised); border-radius: 3px; height: 0.55rem; overflow: hidden; }
+.score-fill { background: var(--accent); height: 100%; }
+.score-value { text-align: right; color: var(--fg-dim); }
+
+/* ---------------------------------------------------------------------- */
+/* RESPONSIVE — sidebar collapses to a drawer below 720px, full-width      */
+/* usability preserved down to 320px                                      */
+/* ---------------------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  .sidebar-toggle-btn { display: inline-flex; align-items: center; justify-content: center; }
+
+  .app-layout { grid-template-columns: 1fr; position: relative; }
+
+  #sidebar {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: min(85vw, 320px);
+    z-index: 20;
+    transform: translateX(-105%);
+    transition: transform 0.2s ease;
+    box-shadow: 8px 0 24px rgba(0, 0, 0, 0.5);
+  }
+
+  #sidebar.sidebar-open { transform: translateX(0); }
+
+  #detail-panel {
+    left: 0.5rem;
+    right: 0.5rem;
+    width: auto;
+    top: auto;
+    bottom: 0.5rem;
+    max-height: 60vh;
+  }
+}
+
+@media (max-width: 360px) {
+  .site-header .brand { font-size: 0.8rem; }
+  .site-header nav { gap: 0.6rem; }
+}
+
+/* ---------------------------------------------------------------------- */
+/* draft_v0.1.2 additions (Task U)                                         */
+/* ---------------------------------------------------------------------- */
+
+.region-count-line {
+  font-size: 0.72rem;
+  color: var(--fg-dimmer);
+  margin: 0 0 0.6rem;
+}
+
+/* ---- collapsible sidebar sections (req 10) ---- */
+
+.sidebar-section .section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-section h2 { margin-bottom: 0.35rem; }
+
+.chevron-toggle {
+  background: none;
+  border: none;
+  color: var(--fg-dimmer);
+  cursor: pointer;
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 0.15rem 0.3rem;
+  transition: transform 0.15s ease;
+}
+
+.sidebar-section.section-collapsed .chevron-toggle { transform: rotate(-90deg); }
+.sidebar-section.section-collapsed .section-body { display: none; }
+
+/* A5.2: "Contested" nested as a subsection of "Variant sets" — visual
+   indent/nesting distinguishes it from top-level sidebar sections without
+   touching the shared collapse/chevron mechanics above (they already work
+   correctly for a nested .sidebar-section: querySelectorAll matches both
+   the outer and inner section elements independently, and each one's
+   in-scope querySelector("chevron-toggle") resolves to its own header
+   button since that button precedes any further-nested section in
+   document order). */
+.sidebar-subsection {
+  margin: 0.75rem 0 0;
+  padding: 0.1rem 0 0 0.6rem;
+  border-left: 2px solid var(--border);
+}
+
+.sidebar-subsection h2 { margin-top: 0; }
+
+/* ---- perspectives panel (req 11) ---- */
+
+.perspective-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+}
+
+.perspective-list label { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+.perspective-list .perspective-planned { color: var(--fg-dimmer); cursor: not-allowed; }
+.perspective-list .perspective-planned input { cursor: not-allowed; }
+
+/* ---- variant sets: on-map chips + sidebar mirror (req 2) ---- */
+
+/* No `position` override here: the marker element already gets
+   `position: absolute` from vendor/maplibre-gl.css's .maplibregl-marker
+   rule, which is already a valid containing block for .variant-chip-menu's
+   `position: absolute` below — redeclaring `position: relative` on this
+   same class at equal specificity would win by source order (this
+   stylesheet loads after maplibre-gl.css) and silently break marker
+   placement (block width collapses to 100% of the map container). */
+
+.variant-chip-btn {
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--accent);
+  color: var(--fg);
+  border-radius: 999px;
+  font-size: 0.68rem;
+  padding: 0.15rem 0.55rem;
+  max-width: 9.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.variant-chip-btn:hover { background: var(--accent-dim); }
+
+.variant-chip-menu {
+  position: absolute;
+  bottom: calc(100% + 0.3rem);
+  left: 0;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  z-index: 5;
+}
+
+.variant-chip-menu label { display: flex; align-items: center; gap: 0.35rem; cursor: pointer; }
+
+/* [hidden] has the same specificity as .variant-chip-menu above and would
+   otherwise lose the display:flex/display:none tie-break to source order —
+   this rule must stay declared AFTER the base rule so the menu actually
+   hides when JS sets the `hidden` attribute. */
+.variant-chip-menu[hidden] { display: none; }
+
+.variant-mirror-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.78rem;
+}
+
+.variant-mirror-label { flex: 1; color: var(--fg-dim); }
+.variant-mirror-row select { width: auto; max-width: 55%; font-size: 0.72rem; padding: 0.2rem 0.3rem; }
+
+/* ---- search row: text input + alphabetical jump dropdown (req 9) ---- */
+
+.search-row { display: flex; gap: 0.4rem; }
+.search-row #search-input { flex: 1.2; }
+.search-row #region-jump-select { flex: 1; }
+
+/* ---- compass/reset control (req 8) ---- */
+
+.compass-reset-ctrl { margin-top: 4px; }
+.compass-reset-btn {
+  width: 29px;
+  height: 29px;
+  background: #fff;
+  border: none;
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #1a1a1a;
+}
+.compass-reset-btn:hover { background: #f0f0f0; }
+
+/* ---- popup special-status line ---- */
+
+.popup-special { font-size: 0.72rem; color: #ffd25a; }
+
+/* ---- badges (special status, beta) ---- */
+
+.badge-special { border-color: #ffd25a; color: #ffd25a; }
+.badge-beta { border-color: #8ab4ff; color: #8ab4ff; }
+
+/* ---- per-dimension rationale box (req 5) ---- */
+
+.rationale-box {
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--accent-dim);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.65rem;
+  margin: 0.35rem 0 0.75rem;
+}
+
+.rationale-box.rationale-beta { border-left-color: #8ab4ff; }
+
+.rationale-head { display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; }
+.rationale-dim { font-weight: 600; }
+.rationale-score { color: var(--fg-dim); margin-left: auto; }
+.rationale-text { font-size: 0.78rem; margin: 0.3rem 0 0; }
+.rationale-beta-note { font-size: 0.68rem; margin: 0.25rem 0 0; }
+
+/* ---- legend: static symbols block + compact linguistic swatches ---- */
+
+.legend-swatches-compact { max-height: 9rem; overflow-y: auto; }
+
+.legend-dash-swatch,
+.legend-dot-swatch,
+.legend-dot-hollow-swatch,
+.legend-ring-swatch {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-right: 0.4rem;
+  vertical-align: -1px;
+}
+
+.legend-dash-swatch {
+  border-top: 2px dashed #ffd25a;
+  height: 0;
+}
+
+.legend-dot-swatch {
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #0b0b0f;
+}
+
+.legend-dot-hollow-swatch {
+  border-radius: 50%;
+  background: transparent;
+  border: 1.4px solid #ffffff;
+}
+
+.legend-ring-swatch {
+  border-radius: 50%;
+  background: transparent;
+  border: 1.2px solid #ffffff;
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+#legend-symbols { margin-bottom: 0.6rem; }
+
+/* ---- representation-group DOM labels (req 3) ---- */
+
+.grouping-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 0 3px #0b0b0f, 0 0 3px #0b0b0f, 0 0 3px #0b0b0f;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Task A3-app: multi-scheme representation UI                            */
+/* ---------------------------------------------------------------------- */
+
+/* ---- scheme selector + per-unit alignment (map page) ---- */
+
+.scheme-selector-label { font-size: 0.78rem; color: var(--fg-dim); display: block; margin-bottom: 0.2rem; }
+
+/* [hidden] shares specificity with the .field-row rule above (both a single
+   class/attribute selector) — same fix as .variant-chip-menu[hidden] below,
+   an explicit rule is needed or the attribute silently loses the cascade. */
+#scheme-selector-row[hidden] { display: none; }
+
+.link-button {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 0.75rem;
+  padding: 0;
+  margin-top: 0.4rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.link-button:hover { color: var(--fg); }
+
+.badge-aligned { border-color: #59d18f; color: #59d18f; }
+.popup-aligned { font-size: 0.72rem; color: #59d18f; }
+
+.align-popover { font-size: 0.8rem; max-width: 220px; }
+.align-popover-title { margin: 0 0 0.4rem; font-weight: 600; }
+.align-popover .override-list label { cursor: pointer; }
+
+/* ---- A6.2 variant-set alert box (detail panel) ---- */
+/* Amber left-bar, more prominent than .badge-variant, dark-theme consistent
+   with the existing .rationale-box pattern (same radius/panel background). */
+
+.variant-alert {
+  background: var(--bg-panel-raised);
+  border: 1px solid rgba(255, 180, 84, 0.45);
+  border-left: 3px solid #ffb454;
+  border-radius: var(--radius);
+  padding: 0.55rem 0.7rem;
+  margin: 0.3rem 0 0.75rem;
+  font-size: 0.78rem;
+}
+
+.variant-alert-head { margin: 0 0 0.3rem; font-weight: 600; color: #ffd9a0; }
+.variant-alert-row { margin: 0.2rem 0; line-height: 1.4; }
+
+.variant-alert-link {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font: inherit;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.variant-alert-link:hover { color: var(--fg); }
+
+/* ---- A6.3 collapsed Kaliningrad note (legend footer) ---- */
+
+.legend-note-details { margin-bottom: 0.4rem; }
+.legend-note-details summary {
+  cursor: pointer;
+  color: var(--fg-dim);
+  font-size: 0.72rem;
+}
+.legend-note-details summary:hover { color: var(--fg); }
+.legend-note-details .legend-note { margin: 0.3rem 0 0; color: var(--fg-dim); font-size: 0.72rem; }
+
+/* ---- A6.4 version badge (bottom-left map corner, near the attribution
+   corner) — rendered via a custom MapLibre control (see VersionBadgeControl
+   in map.js) so it shares the standard .maplibregl-ctrl-bottom-left
+   float/margin behavior with any other bottom-left control. ---- */
+
+.map-version-badge {
+  background: rgba(22, 22, 28, 0.85);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.15rem 0.5rem;
+  font-size: 0.68rem;
+  color: var(--fg-dim);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ---- multi-scheme factor comparison (table.html + methodology.html) ---- */
+
+.scheme-factor-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0.75rem 0;
+}
+
+.scheme-factor-card {
+  flex: 1 1 320px;
+  min-width: 280px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  background: var(--bg-panel-raised);
+}
+
+.scheme-factor-card h4 { margin: 0 0 0.4rem; font-size: 1rem; }
+.scheme-factor-card .extremes-grid,
+.scheme-factor-card .stat-strip { margin: 0.5rem 0; }

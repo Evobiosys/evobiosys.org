@@ -1,0 +1,84 @@
+[
+  {
+    "id": "upper-austria",
+    "label": "Upper Austria: split ⇄ joins Vienna-Danube corridor",
+    "anchor": [14.3, 48.3],
+    "default_view": "split",
+    "views": [
+      {
+        "id": "split",
+        "label": "Split (Salzburg ≠ Upper Austria)",
+        "show": ["at-salzburg", "at-upper-austria"]
+      },
+      {
+        "id": "vienna-join",
+        "label": "Upper Austria joins the Vienna-Danube corridor",
+        "show": ["at-salzburg", "at-vienna-danube-extended"],
+        "note": "Models the real Vienna-Linz Danube-valley rail/river economic axis by merging at-upper-austria into at-vienna-east's territory (at-vienna-danube-extended); this is an alternative economic-geography framing, not a claim that Upper Austrians identify primarily with Vienna."
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": ["at-salzburg", "at-upper-austria", "at-vienna-danube-extended"],
+        "overlap": true
+      }
+    ]
+  },
+  {
+    "id": "schaffhausen",
+    "label": "Schaffhausen: within Ostschweiz ⇄ separate",
+    "anchor": [8.63, 47.7],
+    "default_view": "separate",
+    "views": [
+      {
+        "id": "separate",
+        "label": "Separate (Schaffhausen ≠ Central & Eastern Switzerland)",
+        "show": ["ch-schaffhausen", "ch-central-eastern"]
+      },
+      {
+        "id": "current",
+        "label": "Within Ostschweiz (v0.1.0 framing)",
+        "show": ["ch-central-eastern-combined"],
+        "note": "Reproduces the v0.1.0 combined framing that statistically bundled Schaffhausen into the broad Zentral-/Ostschweiz macro-region, kept available as a toggle rather than deleted outright."
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": ["ch-schaffhausen", "ch-central-eastern", "ch-central-eastern-combined"],
+        "overlap": true
+      }
+    ]
+  },
+  {
+    "id": "bremen-lower-saxony",
+    "label": "Bremen ⇄ Lower Saxony: together / split / united",
+    "anchor": [8.8, 53.08],
+    "default_view": "together",
+    "views": [
+      {
+        "id": "together",
+        "label": "Together (current default: Bremen and Lower Saxony as separate Länder)",
+        "show": ["de-bremen", "de-lower-saxony"]
+      },
+      {
+        "id": "split",
+        "label": "Lower Saxony split (west / east around Bremen)",
+        "show": ["de-bremen", "de-lower-saxony-west", "de-lower-saxony-east"],
+        "note": "West = Weser-Ems (Oldenburg/Cloppenburg/East Frisia, urban core Oldenburg); East = Braunschweig+Hannover+Lüneburg, urban core Hannover."
+      },
+      {
+        "id": "united",
+        "label": "Lower Saxony united (Bremen enclave absorbed)",
+        "show": ["de-lower-saxony-bremen-united"],
+        "note": "Reflects Bremen's historical origin as a Lower-Saxon Hanseatic city and its complete geographic enclosure by Lower Saxony; the default map keeps Bremen as its own sovereign city-state Land."
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": ["de-bremen", "de-lower-saxony-bremen-united"],
+        "overlap": true,
+        "note": "Demonstrates Bremen's enclave status within Lower Saxony's territory. This variant set merges the plan's separately named 'lower-saxony' and 'bremen' mandates into one set (4 views) because both would otherwise toggle visibility on the same underlying de-lower-saxony/de-bremen records, producing conflicting view states if kept as two independent sets -- documented in zone1.json's notes."
+      }
+    ]
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "pomerania",
+    "label": "Pomerania: broad ⇄ split (Kashubia / Kuyavia / Warmia-Masuria)",
+    "anchor": [
+      18.3,
+      53.9
+    ],
+    "default_view": "broad",
+    "views": [
+      {
+        "id": "broad",
+        "label": "Broad Pomerania (Statistics Poland PL6 macroregion)",
+        "show": [
+          "pl-pomerania"
+        ]
+      },
+      {
+        "id": "split",
+        "label": "Split: Kashubia / Kuyavia / Warmia-Masuria",
+        "show": [
+          "pl-kashubia-core",
+          "pl-kuyavia",
+          "pl-warmia-masuria"
+        ],
+        "note": "Demonstrates the strong (Kashubia) / weak (Kuyavia) / weakest (Warmia-Masuria) 'fit' gradient for the Pomerania label per the user-provided table; the broad default view is Statistics Poland's own PL6 macroregion, which papers over this gradient."
+      }
+    ]
+  },
+  {
+    "id": "silesia",
+    "label": "Silesia: within current states (PL≠CZ) ⇄ unified cross-border",
+    "anchor": [
+      18.6,
+      50.0
+    ],
+    "default_view": "current",
+    "views": [
+      {
+        "id": "current",
+        "label": "Within current states (Poland ≠ Czechia)",
+        "show": [
+          "pl-silesia",
+          "cz-czech-silesia"
+        ]
+      },
+      {
+        "id": "connected",
+        "label": "Unified cross-border Silesia",
+        "show": [
+          "silesia-unified"
+        ],
+        "note": "Historic Duchy of Silesia reunited across the modern Polish-Czech border; a cultural-mapping view, not a territorial claim (A1.13)."
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": [
+          "pl-silesia",
+          "cz-czech-silesia",
+          "silesia-unified"
+        ],
+        "overlap": true
+      }
+    ]
+  }
+]

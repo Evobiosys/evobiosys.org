@@ -1,0 +1,82 @@
+[
+ {
+  "id": "tyrol",
+  "label": "Tyrol",
+  "anchor": [
+   11.4,
+   47.0
+  ],
+  "default_view": "current",
+  "views": [
+   {
+    "id": "current",
+    "label": "Within current states",
+    "show": [
+     "at-tyrol",
+     "it-south-tyrol"
+    ]
+   },
+   {
+    "id": "connected",
+    "label": "Unified Tyrol (AT+IT)",
+    "show": [
+     "tyrol-unified"
+    ]
+   },
+   {
+    "id": "overlap",
+    "label": "Overlapping readings",
+    "show": [
+     "at-tyrol",
+     "it-south-tyrol",
+     "tyrol-unified"
+    ],
+    "overlap": true
+   }
+  ]
+ },
+ {
+  "id": "flanders",
+  "label": "Flanders / Dutch language area",
+  "anchor": [
+   4.5,
+   51.4
+  ],
+  "default_view": "current",
+  "views": [
+   {
+    "id": "current",
+    "label": "Flanders and Netherlands separate",
+    "show": [
+     "be-flanders",
+     "nl-amsterdam-noord-holland-utrecht",
+     "nl-rotterdam-zuid-holland-zeeland",
+     "nl-groningen-north",
+     "nl-deventer-overijssel-achterhoek",
+     "nl-south-brabant-limburg"
+    ]
+   },
+   {
+    "id": "connected",
+    "label": "Dutch language area united",
+    "show": [
+     "dutch-lowlands-unified"
+    ]
+   },
+   {
+    "id": "overlap",
+    "label": "Overlapping readings",
+    "show": [
+     "be-flanders",
+     "nl-amsterdam-noord-holland-utrecht",
+     "nl-rotterdam-zuid-holland-zeeland",
+     "nl-groningen-north",
+     "nl-deventer-overijssel-achterhoek",
+     "nl-south-brabant-limburg",
+     "dutch-lowlands-unified"
+    ],
+    "overlap": true
+   }
+  ]
+ }
+]

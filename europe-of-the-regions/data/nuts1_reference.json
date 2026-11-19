@@ -1,0 +1,812 @@
+[
+  {
+    "code": "AL0",
+    "label": "Shqipëria",
+    "country": "AL"
+  },
+  {
+    "code": "ALZ",
+    "label": "Extra-Regio level 1",
+    "country": "AL"
+  },
+  {
+    "code": "AT1",
+    "label": "Ostösterreich",
+    "country": "AT"
+  },
+  {
+    "code": "AT2",
+    "label": "Südösterreich",
+    "country": "AT"
+  },
+  {
+    "code": "AT3",
+    "label": "Westösterreich",
+    "country": "AT"
+  },
+  {
+    "code": "ATZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "AT"
+  },
+  {
+    "code": "BA0",
+    "label": "Bosna i Hercegovina",
+    "country": "BA"
+  },
+  {
+    "code": "BAZ",
+    "label": "Extra-Regio level 1",
+    "country": "BA"
+  },
+  {
+    "code": "BE1",
+    "label": "Région de Bruxelles-Capitale/Brussels Hoofdstedelijk Gewest",
+    "country": "BE"
+  },
+  {
+    "code": "BE2",
+    "label": "Vlaams Gewest",
+    "country": "BE"
+  },
+  {
+    "code": "BE3",
+    "label": "Région wallonne",
+    "country": "BE"
+  },
+  {
+    "code": "BEZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "BE"
+  },
+  {
+    "code": "BG5",
+    "label": "БЪЛГАРИЯ",
+    "country": "BG"
+  },
+  {
+    "code": "BGZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "BG"
+  },
+  {
+    "code": "CH0",
+    "label": "Schweiz/Suisse/Svizzera",
+    "country": "CH"
+  },
+  {
+    "code": "CHZ",
+    "label": "Extra-Regio level 1",
+    "country": "CH"
+  },
+  {
+    "code": "CY0",
+    "label": "Κύπρος",
+    "country": "CY"
+  },
+  {
+    "code": "CYZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "CY"
+  },
+  {
+    "code": "CZ0",
+    "label": "Česko",
+    "country": "CZ"
+  },
+  {
+    "code": "CZZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "CZ"
+  },
+  {
+    "code": "DE1",
+    "label": "Baden-Württemberg",
+    "country": "DE"
+  },
+  {
+    "code": "DE2",
+    "label": "Bayern",
+    "country": "DE"
+  },
+  {
+    "code": "DE3",
+    "label": "Berlin",
+    "country": "DE"
+  },
+  {
+    "code": "DE4",
+    "label": "Brandenburg",
+    "country": "DE"
+  },
+  {
+    "code": "DE5",
+    "label": "Bremen",
+    "country": "DE"
+  },
+  {
+    "code": "DE6",
+    "label": "Hamburg",
+    "country": "DE"
+  },
+  {
+    "code": "DE7",
+    "label": "Hessen",
+    "country": "DE"
+  },
+  {
+    "code": "DE8",
+    "label": "Mecklenburg-Vorpommern",
+    "country": "DE"
+  },
+  {
+    "code": "DE9",
+    "label": "Niedersachsen",
+    "country": "DE"
+  },
+  {
+    "code": "DEA",
+    "label": "Nordrhein-Westfalen",
+    "country": "DE"
+  },
+  {
+    "code": "DEB",
+    "label": "Rheinland-Pfalz",
+    "country": "DE"
+  },
+  {
+    "code": "DEC",
+    "label": "Saarland",
+    "country": "DE"
+  },
+  {
+    "code": "DED",
+    "label": "Sachsen",
+    "country": "DE"
+  },
+  {
+    "code": "DEE",
+    "label": "Sachsen-Anhalt",
+    "country": "DE"
+  },
+  {
+    "code": "DEF",
+    "label": "Schleswig-Holstein",
+    "country": "DE"
+  },
+  {
+    "code": "DEG",
+    "label": "Thüringen",
+    "country": "DE"
+  },
+  {
+    "code": "DEZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "DE"
+  },
+  {
+    "code": "DK0",
+    "label": "Danmark",
+    "country": "DK"
+  },
+  {
+    "code": "DKZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "DK"
+  },
+  {
+    "code": "EE0",
+    "label": "Eesti",
+    "country": "EE"
+  },
+  {
+    "code": "EEZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "EE"
+  },
+  {
+    "code": "EL3",
+    "label": "Αττική ",
+    "country": "EL"
+  },
+  {
+    "code": "EL4",
+    "label": "Νησιά Αιγαίου, Κρήτη",
+    "country": "EL"
+  },
+  {
+    "code": "EL5",
+    "label": "Βόρεια Ελλάδα",
+    "country": "EL"
+  },
+  {
+    "code": "EL6",
+    "label": "Κεντρική Ελλάδα",
+    "country": "EL"
+  },
+  {
+    "code": "ELZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "EL"
+  },
+  {
+    "code": "ES1",
+    "label": "Noroeste",
+    "country": "ES"
+  },
+  {
+    "code": "ES2",
+    "label": "Noreste",
+    "country": "ES"
+  },
+  {
+    "code": "ES3",
+    "label": "Comunidad de Madrid",
+    "country": "ES"
+  },
+  {
+    "code": "ES4",
+    "label": "Centro (ES)",
+    "country": "ES"
+  },
+  {
+    "code": "ES5",
+    "label": "Este",
+    "country": "ES"
+  },
+  {
+    "code": "ES6",
+    "label": "Sur",
+    "country": "ES"
+  },
+  {
+    "code": "ES7",
+    "label": "Canarias",
+    "country": "ES"
+  },
+  {
+    "code": "ESZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "ES"
+  },
+  {
+    "code": "FI1",
+    "label": "Manner-Suomi",
+    "country": "FI"
+  },
+  {
+    "code": "FI2",
+    "label": "Åland",
+    "country": "FI"
+  },
+  {
+    "code": "FIZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "FI"
+  },
+  {
+    "code": "FR1",
+    "label": "Ile-de-France",
+    "country": "FR"
+  },
+  {
+    "code": "FRB",
+    "label": "Centre — Val de Loire",
+    "country": "FR"
+  },
+  {
+    "code": "FRC",
+    "label": "Bourgogne-Franche-Comté",
+    "country": "FR"
+  },
+  {
+    "code": "FRD",
+    "label": "Normandie",
+    "country": "FR"
+  },
+  {
+    "code": "FRE",
+    "label": "Hauts-de-France",
+    "country": "FR"
+  },
+  {
+    "code": "FRF",
+    "label": "Grand Est",
+    "country": "FR"
+  },
+  {
+    "code": "FRG",
+    "label": "Pays de la Loire",
+    "country": "FR"
+  },
+  {
+    "code": "FRH",
+    "label": "Bretagne",
+    "country": "FR"
+  },
+  {
+    "code": "FRI",
+    "label": "Nouvelle-Aquitaine",
+    "country": "FR"
+  },
+  {
+    "code": "FRJ",
+    "label": "Occitanie",
+    "country": "FR"
+  },
+  {
+    "code": "FRK",
+    "label": "Auvergne-Rhône-Alpes",
+    "country": "FR"
+  },
+  {
+    "code": "FRL",
+    "label": "Provence-Alpes-Côte d’Azur",
+    "country": "FR"
+  },
+  {
+    "code": "FRM",
+    "label": "Corse",
+    "country": "FR"
+  },
+  {
+    "code": "FRY",
+    "label": "RUP FR — Régions Ultrapériphériques Françaises",
+    "country": "FR"
+  },
+  {
+    "code": "FRZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "FR"
+  },
+  {
+    "code": "HR0",
+    "label": "Hrvatska",
+    "country": "HR"
+  },
+  {
+    "code": "HRZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "HR"
+  },
+  {
+    "code": "HU1",
+    "label": "Közép-Magyarország",
+    "country": "HU"
+  },
+  {
+    "code": "HU2",
+    "label": "Dunántúl",
+    "country": "HU"
+  },
+  {
+    "code": "HU3",
+    "label": "Alföld és Észak",
+    "country": "HU"
+  },
+  {
+    "code": "HUZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "HU"
+  },
+  {
+    "code": "IE0",
+    "label": "Ireland",
+    "country": "IE"
+  },
+  {
+    "code": "IEZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "IE"
+  },
+  {
+    "code": "IS0",
+    "label": "Ísland",
+    "country": "IS"
+  },
+  {
+    "code": "ISZ",
+    "label": "Extra-Regio level 1",
+    "country": "IS"
+  },
+  {
+    "code": "ITC",
+    "label": "Nord-Ovest",
+    "country": "IT"
+  },
+  {
+    "code": "ITF",
+    "label": "Sud",
+    "country": "IT"
+  },
+  {
+    "code": "ITG",
+    "label": "Isole",
+    "country": "IT"
+  },
+  {
+    "code": "ITH",
+    "label": "Nord-Est",
+    "country": "IT"
+  },
+  {
+    "code": "ITI",
+    "label": "Centro (IT)",
+    "country": "IT"
+  },
+  {
+    "code": "ITZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "IT"
+  },
+  {
+    "code": "LI0",
+    "label": "Liechtenstein",
+    "country": "LI"
+  },
+  {
+    "code": "LIZ",
+    "label": "Extra-Regio level 1",
+    "country": "LI"
+  },
+  {
+    "code": "LT0",
+    "label": "Lietuva",
+    "country": "LT"
+  },
+  {
+    "code": "LTZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "LT"
+  },
+  {
+    "code": "LU0",
+    "label": "Luxembourg",
+    "country": "LU"
+  },
+  {
+    "code": "LUZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "LU"
+  },
+  {
+    "code": "LV0",
+    "label": "Latvija",
+    "country": "LV"
+  },
+  {
+    "code": "LVZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "LV"
+  },
+  {
+    "code": "ME0",
+    "label": "Црна Гора ",
+    "country": "ME"
+  },
+  {
+    "code": "MEZ",
+    "label": "Extra-Regio level 1",
+    "country": "ME"
+  },
+  {
+    "code": "MK0",
+    "label": "Северна Македонија",
+    "country": "MK"
+  },
+  {
+    "code": "MKZ",
+    "label": "Extra-Regio level 1",
+    "country": "MK"
+  },
+  {
+    "code": "MT0",
+    "label": "Malta",
+    "country": "MT"
+  },
+  {
+    "code": "MTZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "MT"
+  },
+  {
+    "code": "NL1",
+    "label": "Noord-Nederland",
+    "country": "NL"
+  },
+  {
+    "code": "NL2",
+    "label": "Oost-Nederland",
+    "country": "NL"
+  },
+  {
+    "code": "NL3",
+    "label": "West-Nederland",
+    "country": "NL"
+  },
+  {
+    "code": "NL4",
+    "label": "Zuid-Nederland",
+    "country": "NL"
+  },
+  {
+    "code": "NLZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "NL"
+  },
+  {
+    "code": "NO0",
+    "label": "Norge",
+    "country": "NO"
+  },
+  {
+    "code": "NOZ",
+    "label": "Extra-Regio level 1",
+    "country": "NO"
+  },
+  {
+    "code": "PL2",
+    "label": "Makroregion południowy",
+    "country": "PL"
+  },
+  {
+    "code": "PL4",
+    "label": "Makroregion północno-zachodni",
+    "country": "PL"
+  },
+  {
+    "code": "PL5",
+    "label": "Makroregion południowo-zachodni",
+    "country": "PL"
+  },
+  {
+    "code": "PL6",
+    "label": "Makroregion północny",
+    "country": "PL"
+  },
+  {
+    "code": "PL7",
+    "label": "Makroregion centralny",
+    "country": "PL"
+  },
+  {
+    "code": "PL8",
+    "label": "Makroregion wschodni",
+    "country": "PL"
+  },
+  {
+    "code": "PL9",
+    "label": "Makroregion województwo mazowieckie",
+    "country": "PL"
+  },
+  {
+    "code": "PLZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "PL"
+  },
+  {
+    "code": "PT1",
+    "label": "Continente",
+    "country": "PT"
+  },
+  {
+    "code": "PT2",
+    "label": "Região Autónoma dos Açores",
+    "country": "PT"
+  },
+  {
+    "code": "PT3",
+    "label": "Região Autónoma da Madeira",
+    "country": "PT"
+  },
+  {
+    "code": "PTZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "PT"
+  },
+  {
+    "code": "RO1",
+    "label": "Macroregiunea Unu",
+    "country": "RO"
+  },
+  {
+    "code": "RO2",
+    "label": "Macroregiunea Doi",
+    "country": "RO"
+  },
+  {
+    "code": "RO3",
+    "label": "Macroregiunea Trei",
+    "country": "RO"
+  },
+  {
+    "code": "RO4",
+    "label": "Macroregiunea Patru",
+    "country": "RO"
+  },
+  {
+    "code": "ROZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "RO"
+  },
+  {
+    "code": "RS1",
+    "label": "Србија - север ",
+    "country": "RS"
+  },
+  {
+    "code": "RS2",
+    "label": "Србија - југ ",
+    "country": "RS"
+  },
+  {
+    "code": "RSZ",
+    "label": "Extra-Regio level 1",
+    "country": "RS"
+  },
+  {
+    "code": "SE1",
+    "label": "Östra Sverige",
+    "country": "SE"
+  },
+  {
+    "code": "SE2",
+    "label": "Södra Sverige",
+    "country": "SE"
+  },
+  {
+    "code": "SE3",
+    "label": "Norra Sverige",
+    "country": "SE"
+  },
+  {
+    "code": "SEZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "SE"
+  },
+  {
+    "code": "SI0",
+    "label": "Slovenija",
+    "country": "SI"
+  },
+  {
+    "code": "SIZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "SI"
+  },
+  {
+    "code": "SK0",
+    "label": "Slovensko",
+    "country": "SK"
+  },
+  {
+    "code": "SKZ",
+    "label": "Extra-Regio NUTS 1",
+    "country": "SK"
+  },
+  {
+    "code": "TR1",
+    "label": "İstanbul",
+    "country": "TR"
+  },
+  {
+    "code": "TR2",
+    "label": "Batı Marmara",
+    "country": "TR"
+  },
+  {
+    "code": "TR3",
+    "label": "Ege",
+    "country": "TR"
+  },
+  {
+    "code": "TR4",
+    "label": "Doğu Marmara",
+    "country": "TR"
+  },
+  {
+    "code": "TR5",
+    "label": "Batı Anadolu",
+    "country": "TR"
+  },
+  {
+    "code": "TR6",
+    "label": "Akdeniz",
+    "country": "TR"
+  },
+  {
+    "code": "TR7",
+    "label": "Orta Anadolu",
+    "country": "TR"
+  },
+  {
+    "code": "TR8",
+    "label": "Batı Karadeniz",
+    "country": "TR"
+  },
+  {
+    "code": "TR9",
+    "label": "Doğu Karadeniz",
+    "country": "TR"
+  },
+  {
+    "code": "TRA",
+    "label": "Kuzeydoğu Anadolu",
+    "country": "TR"
+  },
+  {
+    "code": "TRB",
+    "label": "Ortadoğu Anadolu",
+    "country": "TR"
+  },
+  {
+    "code": "TRC",
+    "label": "Güneydoğu Anadolu",
+    "country": "TR"
+  },
+  {
+    "code": "TRZ",
+    "label": "Extra-Regio level 1",
+    "country": "TR"
+  },
+  {
+    "code": "UA2",
+    "label": "Cтатистичний Макрорегіон_02",
+    "country": "UA"
+  },
+  {
+    "code": "UA4",
+    "label": "Cтатистичний Макрорегіон_04",
+    "country": "UA"
+  },
+  {
+    "code": "UA5",
+    "label": "Cтатистичний Макрорегіон_05",
+    "country": "UA"
+  },
+  {
+    "code": "UA7",
+    "label": "Cтатистичний Макрорегіон_07",
+    "country": "UA"
+  },
+  {
+    "code": "UA8",
+    "label": "Cтатистичний Макрорегіон_08",
+    "country": "UA"
+  },
+  {
+    "code": "UA9",
+    "label": "Cтатистичний Макрорегіон_09",
+    "country": "UA"
+  },
+  {
+    "code": "UAA",
+    "label": "Cтатистичний Cтатистичний Макрорегіон_A",
+    "country": "UA"
+  },
+  {
+    "code": "UAB",
+    "label": "Cтатистичний Макрорегіон_B",
+    "country": "UA"
+  },
+  {
+    "code": "UAC",
+    "label": "Cтатистичний Макрорегіон_C",
+    "country": "UA"
+  },
+  {
+    "code": "UAZ",
+    "label": "Extra-Regio level 1",
+    "country": "UA"
+  },
+  {
+    "code": "XK0",
+    "label": "Kosovë/Kosovo",
+    "country": "XK"
+  },
+  {
+    "code": "XKZ",
+    "label": "Extra-Regio level 1",
+    "country": "XK"
+  }
+]

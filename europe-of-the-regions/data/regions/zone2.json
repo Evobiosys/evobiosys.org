@@ -1,0 +1,2372 @@
+{
+ "zone": "zone2",
+ "notes": [
+  "Schema v2 (draft_v0.1.2): variant_group/variant_role removed; every record now carries default_visible, pole (with central_coord per A1.4), parliament, lang_family, and autarky.rationales (water/food/energy score basis per A1.6). Aquitaine participates in zone3's 'basque' variant set (its FRI15 code is reused by basque-unified) but remains default_visible true here.",
+  "v0.1.2 content wave — FR splits: (1) Auvergne (Clermont-Ferrand, FRK11-14) split OUT of Aquitaine into new unit fr-auvergne, per user mandate 'Clermont-Ferrand ≠ Bordeaux'; a variant set 'auvergne' (data/variant_sets/zone2.json) offers the fused Auvergne-Rhône-Alpes bloc under Lyon as a non-default view (record fr-auvergne-rhone-alpes, default_visible false). (2) Bourgogne-Franche-Comté (Dijon/Besançon, incl. Auxerre/Yonne FRC14) split OUT of Lyon/Rhône-Alpes into new unit fr-burgundy-franche-comte, fixing the 'Valence ≠ Auxerre' over-stretch. (3) Lorraine ↔ Champagne-Ardenne checked the same way — VERDICT: SPLIT. Champagne-Ardenne (Reims, FRF21-24) becomes new unit fr-champagne: Reims is a genuine organizing pole (champagne industry, cathedral/coronation heritage, TGV Est hub) exactly parallel to Clermont-Ferrand's case, and the original merge rested on the same 'non-Alsace Grand-Est leftovers' convenience logic that the user rejected for Auvergne and Burgundy. Champenois identity is honestly noted as moderate (langue d'oïl continuum with Lorraine, no linguistic break) — the split is carried by the economic-pole and Einzugsgebiet logic, not by a hard cultural boundary.",
+  "v0.1.2 NL breakup (user: nl-groningen-north-east mega-region too big): the former Noord- en Oost-Nederland unit is dissolved into (a) nl-groningen-north = the three northern provinces only (Groningen/Friesland/Drenthe); (b) NEW nl-deventer-overijssel-achterhoek = Overijssel + Gelderland-Achterhoek with Deventer as the mandated southern organizing hub (honesty flag: Zwolle and Enschede both exceed Deventer in population — see that record's inclusion_test/pole note); (c) the remaining Gelderland-south/Utrecht-adjacent NUTS-3 units (Veluwe NL221, Zuidwest-Gelderland NL224, Arnhem/Nijmegen NL226) plus Flevoland NL230 join the Amsterdam-Utrecht unit (mandate: prefer Utrecht region over South Holland; South Holland was not specifically named). No NUTS-3 code is claimed by two default-visible NL units; full NL coverage is preserved.",
+  "Groupings for zone2 units live in data/groupings/zone2.json: 12 groupings partitioning all 25 default-visible zone2 units (aim was ~8-11; 12 was chosen because compressing further would have produced either a >20M Paris-basin bloc or culturally dishonest NL merges — flagged rather than force-fit).",
+  "Iparralde (French Basque Country): no separate Iparralde region is authored here. Aquitaine/Bordeaux retains its full historic-Aquitaine codes including FRI15 (Pyrénées-Atlantiques). The unified cross-border Basque record (zone3, basque-unified) reuses FRI15 in the zone3 'basque' variant set views; Aquitaine itself stays default_visible true.",
+  "Eupen-Malmedy: flagged as a conflict_flags micro-cultural layer on the Wallonia region (zone_nuts_codes ['BE336'], the Bezirk Verviers / Deutschsprachige Gemeinschaft NUTS-3 unit). This is Belgium's constitutionally recognized third linguistic community with its own parliament and government.",
+  "German-Netherlands border micro-culture: flagged as a conflict_flags layer on the Zuid-Nederland (South-NL) region, covering all three Limburg NUTS-3 units (NL421/NL422/NL423), reflecting the Limburgish dialect continuum across the Dutch-German border.",
+  "Corsica is authored as its own region (NUTS-1 FRM) with a mandated identity/autonomy conflict_flags entry; the conflict is about internal autonomy status, not cross-border unification, hence a conflict_flag rather than a variant set.",
+  "Parliament rule note (zone2): all French records carry parliament.has_own true for their conseils régionaux with the explicit caveat 'administrative region council, not a legislative parliament' — France is a unitary state and no French région legislates, so the parliament rule does NOT force further FR splits. Where a unit spans two former administrative régions (e.g. fr-pays-de-la-loire incl. Centre-Val de Loire) the note lists both councils. Belgian Flanders/Wallonia/Brussels have genuine legislative parliaments (has_own true). Dutch provinces have Provinciale Staten (provincial councils, not parliaments) — has_own false with note. Luxembourg's Chambre des Députés is a sovereign national parliament.",
+  "Overseas French territories (NUTS-1 FRY) remain out of scope per Global Constraints.",
+  "Population figures for merged/split regions are sums of constituent NUTS-2/3 populations from Eurostat/INSEE/CBS/Statbel 2022-2023 regional statistics; splits (Auvergne, Burgundy-Franche-Comté, Champagne, NL units) were recomputed from the same sources and flagged via population_note."
+ ],
+ "regions": [
+  {
+   "id": "fr-paris-ile-de-france",
+   "name": "Paris & Île-de-France",
+   "name_local": "Île-de-France",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Paris",
+   "secondary_centers": [
+    "Versailles",
+    "Saint-Denis",
+    "Créteil"
+   ],
+   "identity_basis": "The historic royal domaine/couronne around Paris; not a dialect region but a capital-region identity built on centralized administrative, cultural and economic primacy within the French state.",
+   "lang_family": "romance/oïl",
+   "key_industries": [
+    "finance",
+    "luxury goods/fashion",
+    "aerospace (Safran, Thales)",
+    "media/publishing",
+    "tourism"
+   ],
+   "population": 12300000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FR101-FR108 (all 8 départements of Île-de-France)",
+   "nuts_codes": [
+    "FR101",
+    "FR102",
+    "FR103",
+    "FR104",
+    "FR105",
+    "FR106",
+    "FR107",
+    "FR108"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Paris — metro >12M, the EU's largest urban agglomeration outside London/Moscow",
+    "diversified_industry": "finance (La Défense), luxury/fashion (LVMH, Kering HQs), aerospace/defense, publishing, tourism",
+    "dependent_identity": "capital-region identity fully integrated into the French state; no separatism, though a distinct 'Parisien vs. province' cultural friction is widely noted"
+   },
+   "nuts1_disagreement": null,
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Île-de-France regional statistics)",
+    "IAU Île-de-France (regional planning institute)"
+   ],
+   "autarky": {
+    "water": 3,
+    "food": 2,
+    "shelter": 2,
+    "energy": 2,
+    "transportation": 5,
+    "hygiene_healthcare": 5,
+    "clothing": 3,
+    "composite": 3.1,
+    "rationale": "Dense capital region imports most food and energy from the wider Bassin Parisien and national grid; land scarcity keeps housing supply and food self-sufficiency low despite outer Grande Couronne wheat farming. World-class transport (Roissy, Orly, TGV hub) and hospital/university-medicine capacity are the region's clear strengths.",
+    "rationales": {
+     "water": "Seine-basin abstraction plus the large upstream Grands Lacs de Seine reservoirs cover supply, but 12M consumers leave little buffer in drought years — mid score.",
+     "food": "Grande Couronne grain farming is real but feeds only a fraction of 12M residents; the region depends structurally on Bassin Parisien and national food logistics.",
+     "energy": "No significant generation inside the région; electricity and gas are imported wholesale from the national grid (the supplying nuclear plants sit outside Île-de-France)."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Paris"
+    ],
+    "central": "Paris",
+    "central_coord": [
+     2.3522,
+     48.8566
+    ],
+    "note": "Textbook monopole: Paris dominates the unit and the whole French state (capital primacy)."
+   },
+   "reach": [
+    {
+     "target": "France-wide",
+     "note": "National capital primacy: administrative, financial, media and transport reach extends over the entire French territory, well beyond Île-de-France."
+    }
+   ],
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional d'Île-de-France",
+    "note": "Administrative region council, not a legislative parliament (France is a unitary state)."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-hauts-de-france",
+   "name": "Hauts-de-France (Lille/Nord)",
+   "name_local": "Hauts-de-France",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Lille",
+   "secondary_centers": [
+    "Amiens",
+    "Dunkirk",
+    "Calais"
+   ],
+   "identity_basis": "Merges the former Nord-Pas-de-Calais (Picard/Ch'ti dialect area, coal-mining and textile heritage) with Picardie; Nord-Pas-de-Calais carries the stronger, more distinct regional identity of the two.",
+   "lang_family": "romance/oïl",
+   "key_industries": [
+    "automotive assembly",
+    "rail equipment",
+    "agri-food/sugar beet",
+    "textiles (historic)",
+    "logistics/ports"
+   ],
+   "population": 5970000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRE1+FRE2 (Nord-Pas-de-Calais + Picardie)",
+   "nuts_codes": [
+    "FRE11",
+    "FRE12",
+    "FRE21",
+    "FRE22",
+    "FRE23"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Lille — metro ~1.2M, cross-border hub with Belgium (Eurostar/Eurotunnel node)",
+    "diversified_industry": "automotive (Toyota, Renault), rail (Bombardier/Alstom), agri-food, logistics via Dunkirk/Calais ports",
+    "dependent_identity": "strong Ch'ti/Picard cultural identity within France; no separatism"
+   },
+   "nuts1_disagreement": "NUTS-1 FRE (Hauts-de-France, 2016 merger of Nord-Pas-de-Calais + Picardie) is kept whole here rather than split: Picardie's own urban hub (Amiens, metro ~180,000) is real but does not clear a comparable bar to Lille, and the zone's region-count budget favors treating it as Lille's hinterland.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Hauts-de-France regional statistics)",
+    "Eurométropole Lille-Kortrijk-Tournai (EGTC documentation)"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 4,
+    "shelter": 3,
+    "energy": 5,
+    "transportation": 4,
+    "hygiene_healthcare": 4,
+    "clothing": 3,
+    "composite": 3.9,
+    "rationale": "Hosts Gravelines, Western Europe's largest nuclear power station, giving very high energy self-sufficiency, alongside some of France's most productive grain and sugar-beet farmland. Historic Lille-Roubaix-Tourcoing textile heritage supports a modest residual clothing/design base; Channel ports (Calais, Dunkirk) anchor transportation.",
+    "rationales": {
+     "water": "Chalk-aquifer groundwater of the Artois-Picardie basin covers most demand; industrial-legacy pollution pressures quality, not quantity.",
+     "food": "Among France's most productive arable land: wheat, sugar beet and potatoes at surplus scale relative to the regional population.",
+     "energy": "Gravelines (6 reactors, Western Europe's largest nuclear plant) plus the Dunkirk LNG terminal make the region a structural net electricity exporter."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Lille"
+    ],
+    "central": "Lille",
+    "central_coord": [
+     3.0573,
+     50.6292
+    ],
+    "note": "Lille dominates; Amiens is a real but clearly subordinate Picard secondary center."
+   },
+   "reach": [
+    {
+     "target": "Belgian Flanders and Wallonia (Kortrijk, Tournai, Mouscron)",
+     "note": "Lille's functional urban area crosses the border: the Eurométropole Lille-Kortrijk-Tournai (first European Grouping of Territorial Cooperation, 2008) institutionalizes ~2.1M inhabitants of cross-border catchment."
+    }
+   ],
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional des Hauts-de-France",
+    "note": "Administrative region council, not a legislative parliament."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-normandy",
+   "name": "Normandy",
+   "name_local": "Normandie",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Rouen",
+   "secondary_centers": [
+    "Caen",
+    "Le Havre",
+    "Cherbourg"
+   ],
+   "identity_basis": "Historic Duchy of Normandy; residual Norman dialect (langue d'oïl branch) and a strong maritime/D-Day-heritage regional identity, reunified administratively in 2016 after the 1956 Haute/Basse split.",
+   "lang_family": "romance/oïl",
+   "key_industries": [
+    "dairy/agri-food (Camembert, Calvados)",
+    "automotive supply",
+    "chemicals/refining (Le Havre)",
+    "nuclear energy",
+    "tourism"
+   ],
+   "population": 3320000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRD1+FRD2 (Basse- + Haute-Normandie, reunified NUTS-1 FRD)",
+   "nuts_codes": [
+    "FRD11",
+    "FRD12",
+    "FRD13",
+    "FRD21",
+    "FRD22"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Rouen — metro ~660,000; Le Havre is France's second-largest container port",
+    "diversified_industry": "dairy/cider agri-food, automotive supply, petrochemicals, two nuclear plants",
+    "dependent_identity": "Norman regional identity and D-Day/maritime heritage within France; no separatism"
+   },
+   "nuts1_disagreement": null,
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Normandie regional statistics)",
+    "Regional Council of Normandy heritage/identity documentation"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 5,
+    "shelter": 3,
+    "energy": 5,
+    "transportation": 4,
+    "hygiene_healthcare": 4,
+    "clothing": 2,
+    "composite": 3.9,
+    "rationale": "Dense dairy, cider and livestock farming (Camembert, Calvados) plus nuclear plants (Flamanville, Paluel, Penly) give Normandy strong food and energy scores; Le Havre and Cherbourg add real port-based transport capacity. Clothing manufacture is negligible, as in most of deindustrialized northern France.",
+    "rationales": {
+     "water": "Atlantic-facing rainfall and the Seine/Orne river systems provide reliable supply; no structural scarcity.",
+     "food": "One of Europe's densest dairy/livestock landscapes (Camembert, Pont-l'Évêque, cider/Calvados) plus grain in the Caen plain — clear surplus producer.",
+     "energy": "Three coastal nuclear sites (Flamanville incl. the EPR, Paluel, Penly) plus Le Havre refining make the region a heavy net energy exporter."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "dipole",
+    "centers": [
+     "Rouen",
+     "Caen"
+    ],
+    "central": "Rouen",
+    "central_coord": [
+     1.0993,
+     49.4431
+    ],
+    "secondary": "Caen",
+    "secondary_coord": [
+     -0.3707,
+     49.1829
+    ],
+    "note": "Historic Haute/Basse-Normandie dipole survives reunification: Rouen holds the prefecture, Caen hosts the conseil régional seat."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional de Normandie",
+    "note": "Administrative region council, not a legislative parliament."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-brittany",
+   "name": "Brittany",
+   "name_local": "Bretagne / Breizh",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Rennes",
+   "secondary_centers": [
+    "Brest",
+    "Quimper",
+    "Saint-Malo"
+   ],
+   "identity_basis": "Breton language (Brythonic Celtic, distinct from the surrounding langue d'oïl area) and historic Duchy of Brittany; one of France's most distinct regional identities, with an active (non-separatist) cultural-autonomy movement.",
+   "lang_family": "celtic/brythonic",
+   "key_industries": [
+    "agri-food (pork, poultry, dairy)",
+    "fishing",
+    "defense/naval (DCNS Brest)",
+    "digital/telecom (Rennes)",
+    "tourism"
+   ],
+   "population": 3360000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRH01-FRH04",
+   "nuts_codes": [
+    "FRH01",
+    "FRH02",
+    "FRH03",
+    "FRH04"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Rennes — metro ~750,000, major tech/telecom cluster",
+    "diversified_industry": "agri-food (France's top livestock region), fishing fleet, naval defense, digital services",
+    "dependent_identity": "strong Breton linguistic/cultural identity within France; regionalist movement (Bonnets Rouges, Breton-language schools) is cultural-autonomist, not separatist"
+   },
+   "nuts1_disagreement": "NUTS-1 FRH matches historic Brittany minus the Loire-Atlantique/Nantes département, which was administratively detached in 1941 and sits in Pays de la Loire (FRG) in this dataset — a long-standing 'Réunification de la Bretagne' grievance noted but not redrawn here, consistent with current NUTS boundaries.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Bretagne regional statistics)",
+    "RTE (French grid operator) Brittany energy-security reports",
+    "Broudic, Breton language sociolinguistics"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 5,
+    "shelter": 3,
+    "energy": 2,
+    "transportation": 3,
+    "hygiene_healthcare": 4,
+    "clothing": 2,
+    "composite": 3.3,
+    "rationale": "France's top agri-food peninsula (pork, poultry, dairy) gives Brittany strong food self-sufficiency, but it hosts no nuclear plant and is structurally electricity-import-dependent via the mainland grid — a long-standing regional energy-security concern flagged by RTE. Coastal water abundance and Brest/Saint-Malo ports are solid; clothing production is minimal.",
+    "rationales": {
+     "water": "High Atlantic rainfall and a dense small-river network; nitrate pollution from intensive livestock constrains quality, not quantity.",
+     "food": "France's leading livestock region (roughly half of national pork output, plus poultry, dairy, vegetables) — large structural surplus.",
+     "energy": "No nuclear or major thermal plant on the peninsula; RTE has repeatedly flagged Brittany as an electricity-security 'peninsula' importing most of its power."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Rennes"
+    ],
+    "central": "Rennes",
+    "central_coord": [
+     -1.6778,
+     48.1173
+    ],
+    "note": "Rennes organizes eastern Brittany and the region administratively; Brest is a strong western maritime counterweight but clearly second."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional de Bretagne",
+    "note": "Administrative region council, not a legislative parliament (despite the cultural-autonomy movement seeking more)."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-pays-de-la-loire",
+   "name": "Pays de la Loire (Loire/Nantes)",
+   "name_local": "Pays de la Loire",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Nantes",
+   "secondary_centers": [
+    "Angers",
+    "Le Mans",
+    "Orléans",
+    "Tours"
+   ],
+   "identity_basis": "Nantes-Saint-Nazaire industrial/Atlantic identity merged here with the Val de Loire chateaux corridor (Orléans-Tours); both share the Loire river as a geographic and cultural spine.",
+   "lang_family": "romance/oïl",
+   "key_industries": [
+    "shipbuilding/naval (Saint-Nazaire, Airbus wings)",
+    "agri-food",
+    "cosmetics ('Cosmetic Valley', Chartres-Orléans)",
+    "aerospace subcontracting",
+    "wine/tourism (Val de Loire)"
+   ],
+   "population": 6450000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRG01-05 (Pays de la Loire) + FRB01-06 (Centre-Val de Loire)",
+   "nuts_codes": [
+    "FRG01",
+    "FRG02",
+    "FRG03",
+    "FRG04",
+    "FRG05",
+    "FRB01",
+    "FRB02",
+    "FRB03",
+    "FRB04",
+    "FRB05",
+    "FRB06"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Nantes — metro ~970,000, one of France's fastest-growing cities",
+    "diversified_industry": "aerospace (Airbus Nantes/Saint-Nazaire), shipbuilding, cosmetics/pharma (Cosmetic Valley), agri-food",
+    "dependent_identity": "regional pride tied to Loire-Atlantique/Nantes and Val de Loire heritage within France; no separatism"
+   },
+   "nuts1_disagreement": "Centre-Val de Loire (NUTS-1 FRB) is a genuine NUTS-1 unit but lacks a sufficiently distinct sub-national identity — it sits in the historic Francien-dialect core with no strong separate provincial boundary — relative to the zone's other listed anchors. It is folded into Pays de la Loire via the shared Loire-valley/chateaux corridor (Orléans-Tours-Angers-Nantes). Re-checked in v0.1.2 against the Auvergne/Burgundy/Champagne split logic: kept merged, because neither Orléans nor Tours presents an organizing-pole case comparable to Clermont-Ferrand or Reims — the Loire corridor genuinely chains these cities into one axis.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Pays de la Loire and Centre-Val de Loire regional statistics)",
+    "RTE nuclear generation data by département"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 4,
+    "shelter": 3,
+    "energy": 5,
+    "transportation": 4,
+    "hygiene_healthcare": 4,
+    "clothing": 2,
+    "composite": 3.7,
+    "rationale": "Combines Pays de la Loire's Nantes-Saint-Nazaire industrial/agri base with Centre-Val de Loire's cluster of Loire nuclear plants (Chinon, Saint-Laurent, Dampierre, Belleville), pushing the merged region's energy self-sufficiency to among the highest in the zone; grain and market-garden farming along the Loire corridor supports solid food scores.",
+    "rationales": {
+     "water": "The Loire and its tributaries plus Atlantic-facing rainfall cover demand; summer low-flow episodes on the Loire occasionally constrain nuclear cooling and irrigation.",
+     "food": "Beauce grain plains ('granary of France', Centre-Val de Loire component) plus Loire-Atlantique livestock and market gardening — solid surplus.",
+     "energy": "Four Loire-valley nuclear plants (Chinon, Saint-Laurent, Dampierre, Belleville) inside the unit's codes make it a major net electricity exporter."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "polycentric",
+    "centers": [
+     "Nantes",
+     "Tours",
+     "Orléans"
+    ],
+    "central": "Nantes",
+    "central_coord": [
+     -1.5536,
+     47.2184
+    ],
+    "note": "Nantes organizes the Atlantic end; Tours and Orléans are genuine mid-Loire poles of the merged Centre-Val de Loire component — the unit reads as a Loire-corridor chain rather than one catchment."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional des Pays de la Loire; Conseil régional du Centre-Val de Loire",
+    "note": "Two administrative region councils (the unit spans two administrative régions); neither is a legislative parliament."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-aquitaine",
+   "name": "Aquitaine (incl. Poitou-Charentes, Limousin)",
+   "name_local": "Aquitaine",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Bordeaux",
+   "secondary_centers": [
+    "La Rochelle",
+    "Poitiers",
+    "Limoges"
+   ],
+   "identity_basis": "Gascon/Occitan-language southwest French identity centered on Bordeaux wine culture, extended to the historic Poitou and Limousin provinces via the medieval Duchy of Aquitaine. Auvergne, formerly folded in here, is split out as its own unit in v0.1.2 (Clermont-Ferrand ≠ Bordeaux).",
+   "lang_family": "romance/occitan",
+   "key_industries": [
+    "wine (Bordeaux, Cognac)",
+    "aerospace (Dassault, Thales)",
+    "nuclear energy (Blayais)",
+    "insurance (Niort)",
+    "agri-food (Landes, Charentes)"
+   ],
+   "population": 6070000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRI11-15 + FRI21-23 + FRI31-34 (Nouvelle-Aquitaine, NUTS-1 FRI); Auvergne (FRK11-14) removed in the v0.1.2 split",
+   "nuts_codes": [
+    "FRI11",
+    "FRI12",
+    "FRI13",
+    "FRI14",
+    "FRI15",
+    "FRI21",
+    "FRI22",
+    "FRI23",
+    "FRI31",
+    "FRI32",
+    "FRI33",
+    "FRI34"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Bordeaux — metro ~1M, dominant hub of the French southwest",
+    "diversified_industry": "wine/agri-food (Bordeaux, Cognac), aerospace/defense (Dassault), nuclear energy, insurance (Niort)",
+    "dependent_identity": "Gascon/Occitan regional identity within France; no separatism"
+   },
+   "nuts1_disagreement": "NUTS-1 FRI (Nouvelle-Aquitaine) is kept whole rather than split into its three historic components (Aquitaine, Poitou-Charentes, Limousin), since neither Poitiers/La Rochelle nor Limoges clears the urban-hub bar independently at the zone's target granularity. The v0.1.0 addition of Auvergne (FRK1) to this unit is REVERSED in v0.1.2 per user mandate — see fr-auvergne.",
+   "conflict_flags": [
+    {
+     "id": "fr-iparralde-basque-layer",
+     "description": "The French Basque Country (Iparralde/Pays Basque) forms a cultural micro-layer within Pyrénées-Atlantiques (FRI15), alongside the distinct, non-Basque Béarnais territory in the same département. A unified cross-border Basque region (Euskadi + Navarre + Iparralde) is modeled in zone3 ('basque-unified', shown via the zone3 basque variant set), reusing this NUTS-3 code without altering Aquitaine's own boundaries here.",
+     "zone_nuts_codes": [
+      "FRI15"
+     ]
+    }
+   ],
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Nouvelle-Aquitaine regional statistics)",
+    "RTE nuclear generation data",
+    "Collins, 'The Basques' (Iparralde cultural geography)"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 5,
+    "shelter": 3,
+    "energy": 4,
+    "transportation": 4,
+    "hygiene_healthcare": 4,
+    "clothing": 2,
+    "composite": 3.7,
+    "rationale": "Bordeaux wine/aerospace anchors a diversified base; the Blayais nuclear plant (Gironde) and abundant Pyrenean/Atlantic water keep energy and water scores solid, while Nouvelle-Aquitaine's status as France's largest farming region (grain, wine, livestock, Cognac) supports strong food self-sufficiency.",
+    "rationales": {
+     "water": "Garonne/Dordogne/Charente basins plus Pyrenean runoff and high Atlantic rainfall; increasing summer irrigation tension in the Charentes is noted but not yet structural scarcity.",
+     "food": "France's largest farming region by output value: grain, wine (Bordeaux, Cognac), maize, poultry (Landes), oysters (Marennes) — strong surplus.",
+     "energy": "Blayais nuclear plant (4 reactors, Gironde estuary) covers regional demand with margin; growing solar capacity in the Landes supplements it."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Bordeaux"
+    ],
+    "central": "Bordeaux",
+    "central_coord": [
+     -0.5792,
+     44.8378
+    ],
+    "note": "Bordeaux dominates the southwest; Limoges and Poitiers are subordinate provincial centers."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional de Nouvelle-Aquitaine",
+    "note": "Administrative region council, not a legislative parliament."
+   },
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-auvergne",
+   "name": "Auvergne (Clermont-Ferrand)",
+   "name_local": "Auvèrnhe / Auvergne",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Clermont-Ferrand",
+   "secondary_centers": [
+    "Montluçon",
+    "Aurillac",
+    "Le Puy-en-Velay"
+   ],
+   "identity_basis": "Historic province of Auvergne in the volcanic heart of the Massif Central; Auvergnat Occitan dialect (north-Occitan branch) and a strong upland pastoral identity (Cantal/Saint-Nectaire cheese country), organized around Clermont-Ferrand and its Michelin industrial anchor. Split out of Aquitaine in v0.1.2 per user mandate: Clermont-Ferrand's Einzugsgebiet (catchment) never pointed to Bordeaux.",
+   "lang_family": "romance/occitan",
+   "key_industries": [
+    "tyre/rubber manufacturing (Michelin HQ)",
+    "agri-food (AOP cheeses: Cantal, Saint-Nectaire, Bleu d'Auvergne)",
+    "mineral water (Volvic)",
+    "metallurgy (Issoire aerospace aluminium)",
+    "thermal spa tourism (Vichy)"
+   ],
+   "population": 1370000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRK11-14 (Allier, Cantal, Haute-Loire, Puy-de-Dôme)",
+   "nuts_codes": [
+    "FRK11",
+    "FRK12",
+    "FRK13",
+    "FRK14"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Clermont-Ferrand — metro ~500,000, global HQ of Michelin and clear organizing center of the Massif Central; modest for a standalone unit but unambiguous as the region's hub",
+    "diversified_industry": "Michelin tyre/rubber R&D and manufacturing, AOP cheese/livestock agri-food, Volvic mineral water, Issoire aerospace metallurgy, Vichy spa economy",
+    "dependent_identity": "Auvergnat (north-Occitan) upland identity within France; no separatism"
+   },
+   "nuts1_disagreement": "Auvergne is NUTS-2 FRK1 within NUTS-1 FRK (Auvergne-Rhône-Alpes, 2016 merger). It is authored standalone here: the v0.1.0 grouping with Aquitaine (Massif Central/Limousin contiguity) was rejected by user feedback ('Clermont-Ferrand ≠ Bordeaux'), and the merger with Rhône-Alpes is offered only as a variant-set view (fused ARA bloc, fr-auvergne-rhone-alpes), not as the default cultural unit.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Auvergne-Rhône-Alpes regional statistics, Auvergne sub-detail)",
+    "Michelin corporate reports (Clermont-Ferrand HQ employment)",
+    "Bec, 'La langue occitane' (Auvergnat dialect classification)"
+   ],
+   "autarky": {
+    "water": 5,
+    "food": 4,
+    "shelter": 4,
+    "energy": 3,
+    "transportation": 2,
+    "hygiene_healthcare": 3,
+    "clothing": 2,
+    "composite": 3.3,
+    "rationale": "Massif Central headwaters (Loire, Allier, Dordogne all rise here) and famous aquifers (Volvic) give top water scores; upland livestock/cheese farming plus Limagne-plain grain support solid food self-sufficiency for only 1.37M people. Landlocked mid-mountain terrain with no TGV line keeps transportation the weak dimension; energy relies on hydro and imports (no nuclear plant).",
+    "rationales": {
+     "water": "The Massif Central is France's water tower: Loire, Allier and Dordogne headwaters plus volcanic aquifers (Volvic) — abundant supply for a small population.",
+     "food": "Extensive upland livestock and five AOP cheeses plus Limagne-plain cereals comfortably exceed the needs of 1.37M inhabitants.",
+     "energy": "No nuclear or major thermal plant; modest hydro and wind mean structural electricity imports, partly offset by low regional demand."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Clermont-Ferrand"
+    ],
+    "central": "Clermont-Ferrand",
+    "central_coord": [
+     3.087,
+     45.7772
+    ],
+    "note": "Clermont-Ferrand is the unrivalled hub; Vichy/Montluçon/Aurillac are small subordinate towns."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional d'Auvergne-Rhône-Alpes (shared, seat Lyon)",
+    "note": "Administrative region council, not a legislative parliament; since 2016 Auvergne shares it with Rhône-Alpes — the historic Conseil régional d'Auvergne (Clermont-Ferrand) was merged away, which is itself part of the identity grievance behind this split."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-midi-pyrenees",
+   "name": "Midi-Pyrénées (Toulouse/Occitanie-west)",
+   "name_local": "Miègjorn-Pirenèus",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Toulouse",
+   "secondary_centers": [
+    "Tarbes",
+    "Albi",
+    "Rodez"
+   ],
+   "identity_basis": "Western Occitanie, Occitan-language (Languedocien/Gascon-transition) area anchored on Toulouse ('la Ville Rose'); deliberately treated as distinct from the eastern, Montpellier-anchored Languedoc-Roussillon component of the merged NUTS-1 Occitanie region.",
+   "lang_family": "romance/occitan",
+   "key_industries": [
+    "aerospace (Airbus, ATR)",
+    "space/satellite (CNES Toulouse)",
+    "agri-food (Gers foie gras, Aveyron cattle)",
+    "nuclear energy (Golfech)"
+   ],
+   "population": 3150000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRJ21-28 (former Midi-Pyrénées, now NUTS-2 FRJ2 within Occitanie)",
+   "nuts_codes": [
+    "FRJ21",
+    "FRJ22",
+    "FRJ23",
+    "FRJ24",
+    "FRJ25",
+    "FRJ26",
+    "FRJ27",
+    "FRJ28"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Toulouse — metro ~1.5M, Europe's aerospace-industry capital",
+    "diversified_industry": "civil aerospace (Airbus), space (CNES/Thales Alenia), agri-food, nuclear energy",
+    "dependent_identity": "Occitan-language regional identity within France; no separatism"
+   },
+   "nuts1_disagreement": "NUTS-1 FRJ (Occitanie, 2016 merger of Midi-Pyrénées + Languedoc-Roussillon) is split here into its two historic components: the zone brief's own 'Toulouse/Occitanie-west' label signals a deliberate west/east distinction, and Montpellier independently clears the urban-hub and industry bar with a genuinely distinct Mediterranean identity layer.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Occitanie regional statistics)",
+    "RTE nuclear generation data"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 4,
+    "shelter": 3,
+    "energy": 4,
+    "transportation": 3,
+    "hygiene_healthcare": 4,
+    "clothing": 2,
+    "composite": 3.4,
+    "rationale": "Aerospace (Airbus Toulouse) is a manufacturing/export strength rather than a survival good, so autarky rests more on diversified agriculture (Gers foie gras/wine, Aveyron cattle) and the Golfech nuclear plant (Tarn-et-Garonne); Pyrenean water reserves are ample, but the region lacks a major seaport, holding transportation to a middling score.",
+    "rationales": {
+     "water": "Garonne headwaters and Pyrenean snowpack feed reliable supply plus substantial hydro reservoirs; summer irrigation draw on the Garonne is a managed tension.",
+     "food": "Diversified surplus agriculture: Gers poultry/foie gras, Aveyron cattle, Lauragais grain, Fronton/Gaillac wine.",
+     "energy": "Golfech nuclear plant plus dense Pyrenean hydropower give near self-sufficiency in electricity."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Toulouse"
+    ],
+    "central": "Toulouse",
+    "central_coord": [
+     1.4442,
+     43.6047
+    ],
+    "note": "Toulouse utterly dominates — no secondary city in the unit exceeds ~80,000."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional d'Occitanie (shared, seat Toulouse)",
+    "note": "Administrative region council, not a legislative parliament; shared with the Languedoc-Roussillon unit since the 2016 merger, seated in Toulouse."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-languedoc-roussillon",
+   "name": "Languedoc-Roussillon (Montpellier)",
+   "name_local": "Lengadòc-Rosselhon",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Montpellier",
+   "secondary_centers": [
+    "Nîmes",
+    "Perpignan",
+    "Béziers"
+   ],
+   "identity_basis": "Eastern, Mediterranean-facing Occitanie, Languedocien-Occitan speaking, with a distinct Catalan-language minority layer in Roussillon (Perpignan/Pyrénées-Orientales) bordering Catalonia.",
+   "lang_family": "romance/occitan",
+   "key_industries": [
+    "viticulture (Languedoc wine, world's largest single wine-growing area)",
+    "digital/tech ('French Tech' Montpellier)",
+    "tourism",
+    "renewable energy (solar)"
+   ],
+   "population": 2900000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRJ11-15 (former Languedoc-Roussillon, now NUTS-2 FRJ1 within Occitanie)",
+   "nuts_codes": [
+    "FRJ11",
+    "FRJ12",
+    "FRJ13",
+    "FRJ14",
+    "FRJ15"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Montpellier — metro ~650,000, France's fastest-growing major city over the past two decades",
+    "diversified_industry": "viticulture, digital/health-tech cluster, tourism, solar energy",
+    "dependent_identity": "Occitan/Languedocien identity plus a distinct Catalan-speaking Roussillon minority; no separatism"
+   },
+   "nuts1_disagreement": "See fr-midi-pyrenees: this region is the eastern half of the merged NUTS-1 Occitanie, split out as its own node because it independently clears the inclusion test rather than being absorbed as Toulouse's hinterland.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Occitanie regional statistics)",
+    "Institut Français de Catalogne Nord (Roussillon Catalan minority documentation)"
+   ],
+   "autarky": {
+    "water": 3,
+    "food": 3,
+    "shelter": 3,
+    "energy": 2,
+    "transportation": 3,
+    "hygiene_healthcare": 4,
+    "clothing": 2,
+    "composite": 2.9,
+    "rationale": "A major wine region with limited staple-food output and no nuclear generation, Languedoc-Roussillon scores only moderately on food and low on energy; Mediterranean drought pressure and irrigation-dependent viticulture strain water, while Montpellier's rapid urban growth adds further land/shelter pressure rather than easing it.",
+    "rationales": {
+     "water": "Mediterranean drought regime with recurring summer restrictions; the Rhône-to-Montpellier Aqua Domitia canal partially de-risks supply but dependence on transfers caps the score.",
+     "food": "Vast wine output but thin staple production (grain, dairy) on the dry coastal plain — wine does not feed a region.",
+     "energy": "No nuclear or major thermal plant in the unit; growing solar and wind but still a structural electricity importer from the Rhône valley."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Montpellier"
+    ],
+    "central": "Montpellier",
+    "central_coord": [
+     3.8767,
+     43.6108
+    ],
+    "note": "Montpellier leads; Nîmes and Perpignan are sizeable but clearly within its regional orbit (Perpignan retains a distinct Catalan orientation)."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional d'Occitanie (shared, seat Toulouse)",
+    "note": "Administrative region council, not a legislative parliament; shared with Midi-Pyrénées, seated in Toulouse (assembly sessions in Montpellier)."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-provence-alpes-cote-dazur",
+   "name": "Provence-Alpes-Côte d'Azur",
+   "name_local": "Provença-Aups-Còsta d'Azur",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Marseille",
+   "secondary_centers": [
+    "Nice",
+    "Toulon",
+    "Aix-en-Provence"
+   ],
+   "identity_basis": "Provençal identity (historic County of Provence, Provençal-Occitan dialect) spanning the Mediterranean coast from Marseille to Nice/Côte d'Azur.",
+   "lang_family": "romance/occitan",
+   "key_industries": [
+    "port/logistics (Marseille-Fos)",
+    "tourism",
+    "aerospace/energy research (Cadarache/ITER)",
+    "petrochemicals",
+    "perfume (Grasse)"
+   ],
+   "population": 5080000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRL01-06",
+   "nuts_codes": [
+    "FRL01",
+    "FRL02",
+    "FRL03",
+    "FRL04",
+    "FRL05",
+    "FRL06"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Marseille — metro ~1.9M, France's largest port and second-largest city",
+    "diversified_industry": "port/logistics, petrochemicals, tourism (Côte d'Azur), energy research (ITER), perfume industry",
+    "dependent_identity": "Provençal regional identity within France; no separatism"
+   },
+   "nuts1_disagreement": null,
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (PACA regional statistics)",
+    "Grand Port Maritime de Marseille annual report"
+   ],
+   "autarky": {
+    "water": 3,
+    "food": 3,
+    "shelter": 2,
+    "energy": 3,
+    "transportation": 4,
+    "hygiene_healthcare": 5,
+    "clothing": 2,
+    "composite": 3.1,
+    "rationale": "Marseille's port and airport, plus the Cadarache/ITER research-energy complex, give reasonable transport and energy footing, but dense Riviera urbanization and recurring Mediterranean drought constrain food, water and shelter; Marseille's major hospital and university-medicine base lifts healthcare capacity to the zone's top tier.",
+    "rationales": {
+     "water": "Durance/Verdon transfers (Canal de Provence) engineered around a structurally dry Mediterranean climate; supply holds but depends on Alpine snowpack in decline.",
+     "food": "Fruit/vegetable and wine specialization on scarce coastal land; staples are imported — the region cannot feed 5M from its own territory.",
+     "energy": "Durance hydro chain and Fos petrochemical/LNG infrastructure give partial coverage; no nuclear generation, so net imports remain."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "dipole",
+    "centers": [
+     "Marseille",
+     "Nice"
+    ],
+    "central": "Marseille",
+    "central_coord": [
+     5.3698,
+     43.2965
+    ],
+    "secondary": "Nice",
+    "secondary_coord": [
+     7.262,
+     43.7102
+    ],
+    "note": "Marseille organizes Provence proper; Nice/Côte d'Azur (historic County of Nice, Italian until 1860) is a genuinely separate eastern pole rather than a suburb."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional de Provence-Alpes-Côte d'Azur",
+    "note": "Administrative region council, not a legislative parliament."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-rhone-alpes",
+   "name": "Rhône-Alpes (Lyon)",
+   "name_local": "Rhône-Alpes",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Lyon",
+   "secondary_centers": [
+    "Grenoble",
+    "Saint-Étienne",
+    "Annecy"
+   ],
+   "identity_basis": "Lyon's historic identity as France's 'second city' and the Rhône-Alpine industrial/Alpine base (Franco-Provençal/Arpitan substrate area). Bourgogne-Franche-Comté, folded in here in v0.1.0, is split out as its own unit in v0.1.2 — Valence (Rhône valley) and Auxerre (Yonne) never belonged to one catchment.",
+   "lang_family": "romance/arpitan",
+   "key_industries": [
+    "chemicals/pharma (Sanofi, Lyon 'biotech valley')",
+    "nuclear energy",
+    "high-tech/microelectronics (Grenoble)",
+    "machinery/metallurgy (Saint-Étienne)",
+    "wine (Beaujolais, Côtes du Rhône)"
+   ],
+   "population": 6770000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRK21-28 (Rhône-Alpes); Bourgogne-Franche-Comté (FRC) removed in the v0.1.2 split",
+   "nuts_codes": [
+    "FRK21",
+    "FRK22",
+    "FRK23",
+    "FRK24",
+    "FRK25",
+    "FRK26",
+    "FRK27",
+    "FRK28"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Lyon — metro ~2.3M, France's second-largest urban area",
+    "diversified_industry": "chemicals/pharma, nuclear energy, microelectronics (Grenoble/STMicroelectronics), machinery, Beaujolais/Côtes du Rhône wine",
+    "dependent_identity": "Lyonnais and Franco-Provençal (Arpitan) substrate identity within France; no separatism"
+   },
+   "nuts1_disagreement": "Per the v0.1.0 mandate, Rhône-Alpes (NUTS-2 FRK2) is kept independent of Auvergne (now its own unit fr-auvergne; the fused ARA bloc exists only as a variant-set view). The v0.1.0 folding-in of Bourgogne-Franche-Comté (FRC) is REVERSED in v0.1.2 per user feedback ('Valence ≠ Auxerre') — see fr-burgundy-franche-comte.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Auvergne-Rhône-Alpes regional statistics, Rhône-Alpes sub-detail)",
+    "RTE nuclear generation data",
+    "Martin, Franco-Provençal (Arpitan) dialectology"
+   ],
+   "autarky": {
+    "water": 5,
+    "food": 4,
+    "shelter": 3,
+    "energy": 5,
+    "transportation": 5,
+    "hygiene_healthcare": 5,
+    "clothing": 3,
+    "composite": 4.3,
+    "rationale": "Alpine water reserves, three nuclear plants (Bugey, Saint-Alban, Cruas) plus Rhône hydro, and Lyon's rail/air/river hub status combine for the zone's strongest overall profile; Rhône valley orchards, Bresse poultry and Beaujolais wine keep food solid, and Lyon's silk/textile heritage leaves a residual clothing-industry edge.",
+    "rationales": {
+     "water": "Alpine snowpack, Lake Geneva/Annecy reserves and the Rhône itself — among the most water-rich units in the dataset.",
+     "food": "Rhône-valley fruit/vegetables, Bresse poultry (AOP), alpine dairy and Beaujolais vineyards give a diversified near-surplus for 6.8M people.",
+     "energy": "Three nuclear plants (Bugey, Saint-Alban, Cruas) plus the Rhône hydro cascade make this one of Europe's largest net electricity-exporting regions."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Lyon"
+    ],
+    "central": "Lyon",
+    "central_coord": [
+     4.8357,
+     45.764
+    ],
+    "note": "Lyon dominates; Grenoble and Saint-Étienne are large but functionally within Lyon's regional system."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional d'Auvergne-Rhône-Alpes (seat Lyon)",
+    "note": "Administrative region council, not a legislative parliament; shared with the Auvergne unit since the 2016 merger."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-burgundy-franche-comte",
+   "name": "Burgundy–Franche-Comté (Dijon/Besançon)",
+   "name_local": "Bourgogne-Franche-Comté",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Dijon",
+   "secondary_centers": [
+    "Besançon",
+    "Auxerre",
+    "Belfort",
+    "Chalon-sur-Saône"
+   ],
+   "identity_basis": "Historic Duchy of Burgundy (Dijon, Côte d'Or wine culture, Bourguignon oïl dialect) joined with the Franche-Comté ('free county' of Burgundy — Besançon, Jura watchmaking/microtechnique, Comtois identity shaped by centuries outside the French crown until 1678). Split out of the Lyon unit in v0.1.2: the Saône corridor links them commercially, but Auxerre and the Yonne drain toward the Paris basin and neither Dijon nor Besançon sits in Lyon's Einzugsgebiet — fixing the user-flagged 'Valence ≠ Auxerre' over-stretch.",
+   "lang_family": "romance/oïl",
+   "key_industries": [
+    "wine (Burgundy/Côte d'Or, Chablis)",
+    "automotive (Peugeot Sochaux-Montbéliard)",
+    "microtechnique/watchmaking (Besançon)",
+    "agri-food (Charolais beef, Comté cheese)",
+    "rail equipment (Alstom Belfort)"
+   ],
+   "population": 2790000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRC11-14 (Bourgogne) + FRC21-24 (Franche-Comté)",
+   "nuts_codes": [
+    "FRC11",
+    "FRC12",
+    "FRC13",
+    "FRC14",
+    "FRC21",
+    "FRC22",
+    "FRC23",
+    "FRC24"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Dijon — metro ~400,000, historic Burgundian capital and the unit's administrative center; Besançon (~280,000) is a genuine second pole with its own Comtois identity",
+    "diversified_industry": "world-brand viticulture (Burgundy), automotive (Sochaux, PSA's historic plant), precision microtechnique/watchmaking, Comté/Charolais agri-food, rail equipment (Alstom)",
+    "dependent_identity": "Bourguignon and Comtois identities within France; no separatism — identity strength is regional-historical (duchy/county heritage) rather than linguistic"
+   },
+   "nuts1_disagreement": "NUTS-1 FRC (Bourgogne-Franche-Comté) is authored as one standalone unit rather than split into Burgundy and Franche-Comté: the two halves were merged administratively in 2016, share the Saône axis, and neither Dijon nor Besançon dominates the other — modeled as a dipole instead. Its v0.1.0 absorption into fr-rhone-alpes is REVERSED per user feedback.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Bourgogne-Franche-Comté regional statistics)",
+    "BIVB (Burgundy wine board) economic reports",
+    "Comité interprofessionnel du Comté (AOP filière statistics)"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 4,
+    "shelter": 4,
+    "energy": 2,
+    "transportation": 4,
+    "hygiene_healthcare": 3,
+    "clothing": 2,
+    "composite": 3.3,
+    "rationale": "Charolais beef, Comté/Morbier dairy filières, Burgundy grain and world-price viticulture give comfortable food self-sufficiency for 2.8M people, and low density leaves shelter headroom; the Paris-Lyon rail/motorway spine and Saône waterway support transport. The clear weakness is energy: no nuclear or major thermal plant operates in the unit, leaving it dependent on imports from neighboring regions.",
+    "rationales": {
+     "water": "Saône/Doubs river systems, Jura karst springs and Morvan reservoirs provide reliable supply with low demand pressure.",
+     "food": "Charolais beef, AOP Comté dairy, Burgundy/Chablis wine and Yonne cereals — a clear net food exporter.",
+     "energy": "No power plant of scale in either half; electricity is imported from Rhône-valley nuclear and eastern hydro — the unit's weakest dimension."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "dipole",
+    "centers": [
+     "Dijon",
+     "Besançon"
+    ],
+    "central": "Dijon",
+    "central_coord": [
+     5.0415,
+     47.322
+    ],
+    "secondary": "Besançon",
+    "secondary_coord": [
+     6.0243,
+     47.2378
+    ],
+    "note": "Dijon (Burgundy, administrative seat) and Besançon (Franche-Comté, university/microtechnique) form a genuine dipole reflecting the 2016 merger of two historic territories."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional de Bourgogne-Franche-Comté (seat Dijon/Besançon)",
+    "note": "Administrative region council, not a legislative parliament; council seat split between Dijon (assembly) and Besançon (offices) — institutionalizing the dipole."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-alsace",
+   "name": "Alsace",
+   "name_local": "Elsass",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Strasbourg",
+   "secondary_centers": [
+    "Mulhouse",
+    "Colmar"
+   ],
+   "identity_basis": "Alsatian (Elsässisch, Alemannic-German dialect) linguistic identity; historic back-and-forth between France and Germany (1871-1918, 1940-1945) gives Alsace one of France's most distinct regional identities, standalone per the zone brief mandate despite being folded into Grand Est administratively since 2016.",
+   "lang_family": "germanic/alemannic",
+   "key_industries": [
+    "automotive (PSA Mulhouse)",
+    "wine (Alsace Route des Vins)",
+    "EU institutions (Strasbourg — European Parliament)",
+    "chemicals (potash legacy)"
+   ],
+   "population": 1900000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRF11+FRF12 (Bas-Rhin + Haut-Rhin)",
+   "nuts_codes": [
+    "FRF11",
+    "FRF12"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Strasbourg — metro ~800,000, seat of the European Parliament and Council of Europe",
+    "diversified_industry": "automotive, wine, chemicals, EU-institution administration/services",
+    "dependent_identity": "Alemannic Alsatian identity within France; no separatism despite the historically contested Franco-German border status"
+   },
+   "nuts1_disagreement": "NUTS-1 FRF (Grand Est, 2016 merger of Alsace + Champagne-Ardenne + Lorraine) is split here per the zone brief's explicit mandate to keep Alsace standalone. In v0.1.2 the other two Grand-Est fragments are ALSO separated from each other (fr-lorraine, fr-champagne) — the full 2016 merger is now fully unwound in this dataset.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Grand Est regional statistics, Alsace sub-detail)",
+    "RTE (Fessenheim closure impact reports)",
+    "Philipp/Bothorel, Alsatian (Alemannic) dialectology"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 4,
+    "shelter": 3,
+    "energy": 3,
+    "transportation": 4,
+    "hygiene_healthcare": 4,
+    "clothing": 2,
+    "composite": 3.4,
+    "rationale": "The Fessenheim nuclear plant's 2020 closure moved Alsace from a former energy surplus to grid dependence, though the Rhine hydro cascade partly compensates; fertile Rhine-plain agriculture (wine, hops, market gardens) and Strasbourg's EU-institution transport links remain solid strengths.",
+    "rationales": {
+     "water": "The Rhine and one of Europe's largest groundwater bodies (Upper Rhine aquifer) underlie the plain — abundant, with some legacy potash-salination monitoring.",
+     "food": "Fertile Rhine-plain agriculture: wine, hops, cabbage/market gardens plus cereals — comfortably feeds the region with surplus specialty exports.",
+     "energy": "Post-Fessenheim (closed 2020) the region imports most electricity; Rhine run-of-river hydro shared with Germany covers only part of demand."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Strasbourg"
+    ],
+    "central": "Strasbourg",
+    "central_coord": [
+     7.7521,
+     48.5734
+    ],
+    "note": "Strasbourg dominates; Mulhouse anchors the industrial south but within Strasbourg's regional orbit."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Collectivité européenne d'Alsace (assembly); Conseil régional du Grand Est",
+    "note": "The Collectivité européenne d'Alsace (since 2021) restored an Alsace-wide elected assembly with departmental + some devolved powers — still an administrative council, not a legislative parliament; regional-council competences sit with Grand Est (Strasbourg seat)."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-lorraine",
+   "name": "Lorraine",
+   "name_local": "Lorraine / Lothringen",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Nancy",
+   "secondary_centers": [
+    "Metz",
+    "Thionville",
+    "Épinal"
+   ],
+   "identity_basis": "Historic Duchy of Lorraine (Francique Lorrain/Lorrain dialect in the Moselle east, langue d'oïl elsewhere), organized around the Nancy-Metz twin cities and the post-steel Moselle industrial valley. Champagne-Ardenne, folded in here in v0.1.0 as the 'other non-Alsace Grand-Est fragment', is split out as fr-champagne in v0.1.2 (see zone notes for the verdict).",
+   "lang_family": "romance/oïl",
+   "key_industries": [
+    "nuclear energy (Cattenom)",
+    "steel legacy / advanced materials (Nancy-Metz basin)",
+    "cross-border work (Luxembourg frontaliers)",
+    "agri-food (mirabelle, dairy)",
+    "timber (Vosges)"
+   ],
+   "population": 2330000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRF31-34 (Meurthe-et-Moselle, Meuse, Moselle, Vosges); Champagne-Ardenne (FRF21-24) removed in the v0.1.2 split",
+   "nuts_codes": [
+    "FRF31",
+    "FRF32",
+    "FRF33",
+    "FRF34"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Nancy-Metz — combined metro ~1.1M, a classic twin-city (dipole) system 50 km apart",
+    "diversified_industry": "nuclear energy (Cattenom), post-steel advanced materials, cross-border services economy (100k+ daily commuters to Luxembourg), Vosges timber, agri-food",
+    "dependent_identity": "Lorrain regional identity within France (with a Germanic Francique fringe along the Moselle border); no separatism"
+   },
+   "nuts1_disagreement": "Lorraine is NUTS-2 FRF3 within NUTS-1 FRF (Grand Est). The v0.1.0 merge with Champagne-Ardenne is REVERSED in v0.1.2: it rested on 'non-Alsace Grand-Est leftovers' convenience rather than a shared catchment — Reims looks toward Paris and its own champagne economy, Nancy-Metz toward the Moselle/Luxembourg corridor. Parallel to the mandated Auvergne and Burgundy splits.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Grand Est regional statistics, Lorraine sub-detail)",
+    "RTE nuclear generation data",
+    "STATEC/INSEE cross-border commuter statistics (Luxembourg frontaliers)"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 3,
+    "shelter": 3,
+    "energy": 5,
+    "transportation": 4,
+    "hygiene_healthcare": 4,
+    "clothing": 2,
+    "composite": 3.6,
+    "rationale": "Cattenom (4 reactors, one of France's largest plants) makes Lorraine a heavy electricity exporter; Moselle/Meuse water and the Vosges massif are ample. Food is only moderate — dairy, grain and the mirabelle orchard belt feed the region but without Champagne's crop surpluses — and the post-steel Nancy-Metz basin keeps shelter/clothing average.",
+    "rationales": {
+     "water": "Moselle/Meuse basins and high Vosges rainfall; former mining-basin groundwater rebound is managed, supply is ample.",
+     "food": "Dairy, cereals and the mirabelle/orchard belt cover regional demand roughly at parity — no large surplus after losing Champagne's crop plains in the split.",
+     "energy": "Cattenom's 4 reactors alone produce several times regional consumption — clear structural exporter."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "dipole",
+    "centers": [
+     "Nancy",
+     "Metz"
+    ],
+    "central": "Nancy",
+    "central_coord": [
+     6.1844,
+     48.6921
+    ],
+    "secondary": "Metz",
+    "secondary_coord": [
+     6.1757,
+     49.1193
+    ],
+    "note": "Classic twin-city dipole: Nancy (historic ducal capital, university) vs Metz (Moselle valley, Grand Est prefecture seat); rivalry is a running regional joke and a real institutional split."
+   },
+   "reach": [
+    {
+     "target": "Luxembourg",
+     "note": "Over 120,000 Lorraine residents commute daily into Luxembourg (largest cross-border labor flow in the EU) — northern Lorraine functions economically as Luxembourg's hinterland."
+    }
+   ],
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional du Grand Est (shared, seat Strasbourg)",
+    "note": "Administrative region council, not a legislative parliament; shared with the Alsace and Champagne units since the 2016 merger."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-champagne",
+   "name": "Champagne-Ardenne (Reims)",
+   "name_local": "Champagne-Ardenne",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Reims",
+   "secondary_centers": [
+    "Troyes",
+    "Châlons-en-Champagne",
+    "Charleville-Mézières"
+   ],
+   "identity_basis": "Historic county of Champagne — coronation city Reims (cathedral of the French kings), the medieval Champagne fairs, and the globally protected champagne wine appellation — plus the Ardennes forest fringe. Champenois identity is honestly moderate: a langue d'oïl continuum with neighboring Lorraine, no linguistic break; the unit stands on its economic pole (Reims + champagne filière) and its Paris-facing Einzugsgebiet, split out of Lorraine in v0.1.2 (controller-ratified verdict).",
+   "lang_family": "romance/oïl",
+   "key_industries": [
+    "champagne (Reims/Épernay — globally exported appellation)",
+    "grain/sugar-beet agro-industry (Marne, Aube plains)",
+    "nuclear energy (Chooz, Nogent)",
+    "textiles/hosiery heritage (Troyes, outlet economy)",
+    "metalworking (Ardennes foundries)"
+   ],
+   "population": 1310000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRF21-24 (Ardennes, Aube, Marne, Haute-Marne)",
+   "nuts_codes": [
+    "FRF21",
+    "FRF22",
+    "FRF23",
+    "FRF24"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Reims — metro ~320,000, the champagne industry's capital and historic coronation city; modest scale for a standalone unit but the unambiguous organizing center between Paris and Lorraine",
+    "diversified_industry": "champagne wine (a global luxury export), large-scale grain/beet agro-industry, two nuclear plants, Troyes textile/outlet economy, Ardennes metalworking",
+    "dependent_identity": "Champenois identity within France; no separatism — identity strength is moderate (heritage/economic rather than linguistic), stated openly"
+   },
+   "nuts1_disagreement": "Champagne-Ardenne is NUTS-2 FRF2 within NUTS-1 FRF (Grand Est). Authored standalone in v0.1.2, reversing the v0.1.0 merge into Lorraine: the merge logic ('the two non-Alsace Grand-Est fragments') was administrative-residual, not cultural or catchment-based — Reims orients toward Paris (45 min TGV) and its own wine economy, not toward Nancy-Metz. The Ardennes département leans Meuse-ward and Belgian-border-ward; kept here with the rest of the historic Champagne orbit rather than split at NUTS-3 grain.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Grand Est regional statistics, Champagne-Ardenne sub-detail)",
+    "Comité Champagne (Champagne wine industry statistics)",
+    "RTE nuclear generation data"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 5,
+    "shelter": 4,
+    "energy": 5,
+    "transportation": 3,
+    "hygiene_healthcare": 3,
+    "clothing": 2,
+    "composite": 3.7,
+    "rationale": "Europe-scale grain and sugar-beet plains (Marne/Aube) plus the champagne appellation make this a heavyweight food producer for only 1.3M people, and two nuclear plants (Chooz in the Ardennes, Nogent-sur-Seine on the Aube border) deliver massive electricity surplus. Low density gives shelter headroom; the thin point is tertiary infrastructure — healthcare and transport depend partly on Paris's proximity.",
+    "rationales": {
+     "water": "Chalk-aquifer groundwater of the Champagne crayeuse plus Marne/Seine headwater reservoirs (Lac du Der, Europe's largest artificial lake, regulates the Seine) — ample.",
+     "food": "One of Europe's most productive cereal/sugar-beet zones plus the champagne appellation: an extreme per-capita food-value surplus for 1.3M inhabitants.",
+     "energy": "Chooz (2 large reactors) and Nogent nuclear plants generate far beyond regional demand — structural exporter."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Reims"
+    ],
+    "central": "Reims",
+    "central_coord": [
+     4.0317,
+     49.2583
+    ],
+    "note": "Reims is the economic/cultural pole; Châlons-en-Champagne holds the préfecture title but is a third its size — administrative and functional centrality diverge here."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional du Grand Est (shared, seat Strasbourg)",
+    "note": "Administrative region council, not a legislative parliament; shared with the Alsace and Lorraine units since the 2016 merger."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-corsica",
+   "name": "Corsica",
+   "name_local": "Corsica",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Ajaccio",
+   "secondary_centers": [
+    "Bastia",
+    "Corte"
+   ],
+   "identity_basis": "Corsican language (Italo-Romance, Tuscan-derived) and a distinct island national identity with a long-running (occasionally violent, now largely institutionalized) autonomist/nationalist movement, granted enhanced 'collectivité de Corse' status in 2018.",
+   "lang_family": "romance/italo-dalmatian",
+   "key_industries": [
+    "tourism",
+    "agri-food (chestnut, wine, cheese — Brocciu)",
+    "maritime/ferry transport",
+    "renewable/insular energy (solar, undersea interconnection)"
+   ],
+   "population": 355000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRM01+FRM02",
+   "nuts_codes": [
+    "FRM01",
+    "FRM02"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Ajaccio — regional capital and largest city (~70,000), functioning cultural/administrative hub for the island",
+    "diversified_industry": "tourism, agri-food (AOC chestnut/wine/cheese), maritime transport; limited industrial diversification given insularity",
+    "dependent_identity": "distinct Corsican national identity; historically included an armed nationalist movement (FLNC, disbanded 2014) and an active mainstream autonomist party (now leading the territorial assembly) seeking greater self-government within, not independence from, France — an active and unresolved identity-conflict layer"
+   },
+   "nuts1_disagreement": "NUTS-1 FRM (Corse) matches the island exactly; no disagreement on boundaries, but the identity-conflict status itself is flagged (see conflict_flags) per the zone brief's mandated toggle.",
+   "conflict_flags": [
+    {
+     "id": "fr-corsica-identity-autonomy",
+     "description": "Corsica carries an active, unresolved autonomy/identity conflict distinct from the zone's other regions: a nationalist movement historically included an armed insurgency (FLNC, ceasefire 2014) and now holds a governing mainstream-autonomist majority in the territorial assembly, seeking expanded self-government and constitutional recognition of the Corsican people. Flagged as a toggleable identity-conflict layer over the whole region rather than resolved either way.",
+     "zone_nuts_codes": [
+      "FRM01",
+      "FRM02"
+     ]
+    }
+   ],
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Corse regional statistics)",
+    "Collectivité de Corse (autonomy-status documentation)",
+    "RTE Corsica insular grid reports"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 2,
+    "shelter": 3,
+    "energy": 2,
+    "transportation": 2,
+    "hygiene_healthcare": 3,
+    "clothing": 1,
+    "composite": 2.4,
+    "rationale": "An import-dependent island with limited arable land and no domestic nuclear or major thermal capacity — power arrives substantially via undersea interconnection from mainland France and Sardinia/Italy — Corsica scores low on food, energy and transport self-sufficiency despite abundant mountain water; healthcare access is constrained by insularity and large seasonal tourist-population swings.",
+    "rationales": {
+     "water": "Steep granite mountains catch substantial rainfall and feed reservoirs; seasonal tourist demand spikes strain but do not break supply.",
+     "food": "Limited arable land (mountainous interior, maquis); AOC niche products (chestnut, Brocciu, wine) cannot cover staples — the island imports most of its food by ferry.",
+     "energy": "No nuclear or large thermal plant; dependent on the SACOI/SARCO undersea interconnections to mainland Italy/Sardinia plus small diesel and solar — structurally import-dependent."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "dipole",
+    "centers": [
+     "Ajaccio",
+     "Bastia"
+    ],
+    "central": "Ajaccio",
+    "central_coord": [
+     8.7386,
+     41.9192
+    ],
+    "secondary": "Bastia",
+    "secondary_coord": [
+     9.4509,
+     42.6977
+    ],
+    "note": "Ajaccio (administration, south/west) and Bastia (commerce/port, north/east) split island functions — the historic Pumonti/Cismonte divide."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Assemblée de Corse (Collectivité de Corse)",
+    "note": "Elected territorial assembly with statute-based devolved powers — the strongest sub-national assembly in metropolitan France, though still short of legislative parliament status; constitutional autonomy negotiations ongoing."
+   },
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "fr-auvergne-rhone-alpes",
+   "name": "Auvergne-Rhône-Alpes (fused bloc, Lyon)",
+   "name_local": "Auvergne-Rhône-Alpes",
+   "countries": [
+    "FR"
+   ],
+   "urban_core": "Lyon",
+   "secondary_centers": [
+    "Clermont-Ferrand",
+    "Grenoble",
+    "Saint-Étienne"
+   ],
+   "identity_basis": "The 2016 administrative super-region as a single cultural-unit reading: Lyon as the organizing metropole of the whole Rhône-Saône-Massif Central east, with Clermont-Ferrand as a clear secondary hub. Offered ONLY as the 'fused' view of the auvergne variant set (default_visible false); the default map shows fr-auvergne and fr-rhone-alpes separately.",
+   "lang_family": "romance/arpitan",
+   "key_industries": [
+    "chemicals/pharma (Lyon)",
+    "nuclear energy",
+    "tyre/rubber (Michelin, Clermont-Ferrand)",
+    "microelectronics (Grenoble)",
+    "agri-food (AOP cheeses, Rhône valley produce)"
+   ],
+   "population": 8140000,
+   "population_note": "Eurostat/INSEE 2023 estimate, sum FRK11-14 + FRK21-28 (full NUTS-1 FRK, Auvergne-Rhône-Alpes)",
+   "nuts_codes": [
+    "FRK11",
+    "FRK12",
+    "FRK13",
+    "FRK14",
+    "FRK21",
+    "FRK22",
+    "FRK23",
+    "FRK24",
+    "FRK25",
+    "FRK26",
+    "FRK27",
+    "FRK28"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Lyon — metro ~2.3M; Clermont-Ferrand (~500,000) as explicit secondary hub of the fused bloc",
+    "diversified_industry": "the union of both component units: chemicals/pharma, nuclear, Michelin, microelectronics, alpine and Massif Central agri-food",
+    "dependent_identity": "administrative super-region identity (2016) over Arpitan/Occitan substrate; contested — the separate-units view is the dataset default precisely because lived identity splits at the Massif Central rim"
+   },
+   "nuts1_disagreement": "This record equals NUTS-1 FRK exactly. It exists as the non-default 'fused ARA bloc' view of the auvergne variant set; the dataset's position (default view) is that Auvergne and Rhône-Alpes are distinct cultural units.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "INSEE (Auvergne-Rhône-Alpes regional statistics)",
+    "RTE nuclear generation data"
+   ],
+   "autarky": {
+    "water": 5,
+    "food": 4,
+    "shelter": 3,
+    "energy": 5,
+    "transportation": 4,
+    "hygiene_healthcare": 4,
+    "clothing": 3,
+    "composite": 4.0,
+    "rationale": "Union of the two component units: Alpine + Massif Central water towers, three nuclear plants plus Rhône hydro, Lyon's transport hub, and diversified agri-food; averaged scores sit slightly below Rhône-Alpes alone because Auvergne's weak transport/healthcare dimensions dilute the bloc.",
+    "rationales": {
+     "water": "Combines the Alpine snowpack/Rhône system with the Massif Central headwaters — the most water-secure bloc in France.",
+     "food": "Rhône-valley produce, Bresse poultry, alpine and Auvergne AOP dairy, Limagne cereals — comfortable surplus.",
+     "energy": "Bugey, Saint-Alban and Cruas nuclear plants plus the Rhône hydro cascade dwarf combined regional demand."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": false,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Lyon"
+    ],
+    "central": "Lyon",
+    "central_coord": [
+     4.8357,
+     45.764
+    ],
+    "note": "Lyon core; Clermont-Ferrand functions as the clear secondary hub of the fused bloc (per plan mandate)."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Conseil régional d'Auvergne-Rhône-Alpes (seat Lyon)",
+    "note": "Administrative region council, not a legislative parliament; in this fused view the 2016 council maps 1:1 onto the unit."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "be-flanders",
+   "name": "Flanders",
+   "name_local": "Vlaanderen",
+   "countries": [
+    "BE"
+   ],
+   "urban_core": "Antwerp",
+   "secondary_centers": [
+    "Ghent",
+    "Bruges",
+    "Leuven"
+   ],
+   "identity_basis": "Dutch-speaking (Flemish) linguistic community with its own regional government, parliament and a strong sub-national identity within federal Belgium; historically the more industrially dominant of Belgium's two main communities since the late 20th century.",
+   "lang_family": "germanic/dutch",
+   "key_industries": [
+    "port/petrochemicals (Antwerp, Europe's 2nd-largest port)",
+    "diamond trade",
+    "horticulture/agri-food",
+    "biotech/pharma (Ghent)",
+    "textiles (historic, Kortrijk)"
+   ],
+   "population": 6890000,
+   "population_note": "Eurostat 2023 estimate, sum BE21-25 (Vlaams Gewest, excluding Brussels)",
+   "nuts_codes": [
+    "BE21",
+    "BE22",
+    "BE23",
+    "BE24",
+    "BE25"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Antwerp — metro ~1.2M, Europe's second-largest port and a global diamond-trading center",
+    "diversified_industry": "petrochemicals, port logistics, diamond trade, biotech/pharma, horticulture",
+    "dependent_identity": "Flemish linguistic/cultural identity with strong regionalist (and some separatist-leaning, e.g. N-VA/Vlaams Belang) sentiment within the Belgian federal state"
+   },
+   "nuts1_disagreement": "NUTS-1 BE2 (Vlaams Gewest) matches Flanders exactly.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "Statbel (Belgian statistical office)",
+    "Port of Antwerp-Bruges annual report"
+   ],
+   "autarky": {
+    "water": 3,
+    "food": 4,
+    "shelter": 2,
+    "energy": 5,
+    "transportation": 5,
+    "hygiene_healthcare": 4,
+    "clothing": 3,
+    "composite": 3.7,
+    "rationale": "Antwerp's port and petrochemical cluster plus the Doel nuclear plant give Flanders very high energy and transport self-sufficiency; intensive horticulture and livestock farming support solid food output, while dense urbanization along the Brussels-Antwerp-Ghent triangle limits shelter and land-based water buffering.",
+    "rationales": {
+     "water": "Flat, densely built terrain with limited natural storage; supply relies on Meuse/Albert Canal transfers and imports from Wallonia — a recognized drought-stress region.",
+     "food": "Intensive horticulture (greenhouse/vegetable), pig and poultry farming produce a real surplus, though dependent on imported feed.",
+     "energy": "Doel nuclear plant, Zeebrugge LNG terminal and North Sea offshore wind landing points give the region strong, diversified energy supply."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "polycentric",
+    "centers": [
+     "Antwerp",
+     "Ghent",
+     "Leuven",
+     "Bruges"
+    ],
+    "central": "Antwerp",
+    "central_coord": [
+     4.4025,
+     51.2194
+    ],
+    "note": "The 'Flemish Diamond' is genuinely polycentric — Antwerp is the largest node but Ghent, Leuven and Bruges hold independent economic/cultural weight; the political capital of Flanders is Brussels, which lies outside the unit."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Vlaams Parlement (Flemish Parliament)",
+    "note": "Genuine legislative parliament of the federated Flemish Community/Region — passes decrees with force of law."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "be-wallonia",
+   "name": "Wallonia",
+   "name_local": "Wallonie",
+   "countries": [
+    "BE"
+   ],
+   "urban_core": "Liège",
+   "secondary_centers": [
+    "Charleroi",
+    "Namur",
+    "Mons"
+   ],
+   "identity_basis": "French-speaking (Walloon) community with its own regional government; historic coal-and-steel industrial heartland of 19th-century Belgium, now post-industrial, with a distinct Walloon regionalist identity and a small German-speaking sub-community in the east (Eupen-Malmedy).",
+   "lang_family": "romance/oïl",
+   "key_industries": [
+    "nuclear energy (Tihange)",
+    "aerospace/logistics (Liège Airport)",
+    "biotech/life sciences",
+    "agri-food (Ardennes)",
+    "post-steel advanced manufacturing"
+   ],
+   "population": 3660000,
+   "population_note": "Eurostat 2023 estimate, sum BE31-35 (Région wallonne, excluding Brussels)",
+   "nuts_codes": [
+    "BE31",
+    "BE32",
+    "BE33",
+    "BE34",
+    "BE35"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Liège — metro ~750,000, historic coal/steel city now an aerospace-logistics hub (Liège Airport)",
+    "diversified_industry": "nuclear energy, air-cargo logistics, biotech, post-steel manufacturing, agri-food",
+    "dependent_identity": "Walloon regional/linguistic identity within the Belgian federal state; no separatism, though economic asymmetry with Flanders is a persistent political fault line"
+   },
+   "nuts1_disagreement": "NUTS-1 BE3 (Région wallonne) matches Wallonia exactly; the Eupen-Malmedy German-speaking Community (within BE33/Liège province) is flagged separately as a micro-cultural conflict layer per the zone brief's mandate.",
+   "conflict_flags": [
+    {
+     "id": "be-eupen-malmedy-german-community",
+     "description": "Eupen-Malmedy (Bezirk Verviers, the German-speaking Community of Belgium) is a small but constitutionally recognized third linguistic community embedded within Wallonia/Liège province, with its own parliament and government. Flagged as a toggleable micro-cultural layer distinct from the surrounding French-speaking Walloon identity, without redrawing Wallonia's own boundaries.",
+     "zone_nuts_codes": [
+      "BE336"
+     ]
+    }
+   ],
+   "sources": [
+    "Eurostat NUTS 2024",
+    "Statbel (Belgian statistical office)",
+    "Deutschsprachige Gemeinschaft Belgiens (German Community of Belgium) official documentation"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 3,
+    "shelter": 3,
+    "energy": 4,
+    "transportation": 3,
+    "hygiene_healthcare": 3,
+    "clothing": 2,
+    "composite": 3.1,
+    "rationale": "The Tihange nuclear plant and Ardennes water/forest reserves are real strengths, but post-industrial decline in the Sambre-Meuse steel/coal belt (Charleroi, Liège) has left healthcare and transport infrastructure investment below Flanders' level, and food self-sufficiency is only moderate outside the Ardennes agri-food niche.",
+    "rationales": {
+     "water": "Ardennes rainfall and the Meuse basin make Wallonia Belgium's water reservoir — it exports drinking water to Flanders and Brussels.",
+     "food": "Hesbaye grain/sugar-beet plains and Ardennes livestock cover a moderate share; less intensive output than Flanders' horticulture belt.",
+     "energy": "Tihange nuclear plant (3 reactors, phased closure ongoing) plus Ardennes hydro/pumped storage (Coo) still deliver a regional surplus."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "polycentric",
+    "centers": [
+     "Liège",
+     "Charleroi",
+     "Namur"
+    ],
+    "central": "Liège",
+    "central_coord": [
+     5.5797,
+     50.6326
+    ],
+    "note": "Sambre-Meuse polycentric belt: Liège (largest, eastern), Charleroi (western industrial), Namur (political capital of Wallonia — parliament seat). Functional centrality (Liège) and political centrality (Namur) diverge."
+   },
+   "parliament": {
+    "has_own": true,
+    "name": "Parlement de Wallonie (seat Namur)",
+    "note": "Genuine legislative parliament of the Walloon Region — passes decrees with force of law."
+   },
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "be-brussels",
+   "name": "Brussels-Capital Region",
+   "name_local": "Brussel / Bruxelles",
+   "countries": [
+    "BE"
+   ],
+   "urban_core": "Brussels",
+   "secondary_centers": [],
+   "identity_basis": "Bilingual (French/Dutch) capital-region enclave, constitutionally the third of Belgium's three regions; de facto capital of the EU and seat of NATO headquarters, giving it a distinct international-administrative identity separate from both Flemish and Walloon regionalism.",
+   "lang_family": "romance/oïl",
+   "key_industries": [
+    "EU/international institutions",
+    "finance/consulting",
+    "diplomacy/lobbying",
+    "conference/tourism"
+   ],
+   "population": 1241000,
+   "population_note": "Eurostat 2023 estimate, BE10 (Région de Bruxelles-Capitale)",
+   "nuts_codes": [
+    "BE100"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Brussels — metro ~2.1M including commuter belt; EU/NATO administrative capital",
+    "diversified_industry": "EU-institution administration, international finance/consulting, diplomacy, conference tourism",
+    "dependent_identity": "bilingual capital-region identity constitutionally distinct from Flanders/Wallonia; no separatism, though its status is itself a recurring subject of Belgian federal negotiation"
+   },
+   "nuts1_disagreement": "NUTS-1 BE1 (Région de Bruxelles-Capitale) matches Brussels exactly; unlike Flanders/Wallonia it has no further NUTS-2 subdivision below the single arrondissement BE100.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "Statbel (Belgian statistical office)",
+    "perspective.brussels (Brussels regional planning institute)"
+   ],
+   "autarky": {
+    "water": 2,
+    "food": 1,
+    "shelter": 2,
+    "energy": 2,
+    "transportation": 5,
+    "hygiene_healthcare": 5,
+    "clothing": 2,
+    "composite": 2.7,
+    "rationale": "As a dense, landlocked city-region and EU/NATO administrative hub, Brussels imports nearly all its food, water buffering and energy, scoring lowest in the zone on material self-sufficiency; it compensates with top-tier transport connectivity (Zaventem airport, Thalys/Eurostar) and concentrated tertiary-care hospital capacity.",
+    "rationales": {
+     "water": "Almost no abstraction of its own — drinking water is piped in from Walloon sources (Meuse basin); fully import-dependent.",
+     "food": "A 162 km² fully urbanized enclave: negligible agricultural production, essentially 100% food imports.",
+     "energy": "No generation of scale inside the region; electricity and gas arrive entirely via the federal grid — lowest energy autarky in the zone."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "special_status": "capital enclave / EU district",
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Brussels"
+    ],
+    "central": "Brussels",
+    "central_coord": [
+     4.3517,
+     50.8503
+    ],
+    "note": "Single-city enclave region — the pole IS the unit."
+   },
+   "reach": [
+    {
+     "target": "European Union (all member states)",
+     "note": "Seat of the European Commission, Council and (committee weeks) Parliament plus NATO HQ — Brussels' administrative reach extends over the whole EU, uniquely beyond any national frame."
+    },
+    {
+     "target": "Flemish and Walloon Brabant commuter belt",
+     "note": "~350,000 daily in-commuters; the functional urban area (~2.1M) spills far into both surrounding regions, while the enclave's political boundary stays frozen — a standing Belgian fault line."
+    }
+   ],
+   "parliament": {
+    "has_own": true,
+    "name": "Parlement de la Région de Bruxelles-Capitale / Brussels Hoofdstedelijk Parlement",
+    "note": "Genuine legislative parliament of the bilingual capital region — passes ordinances with force of law."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "nl-amsterdam-noord-holland-utrecht",
+   "name": "Noord-Holland, Utrecht & Gelderland-South (Amsterdam)",
+   "name_local": "Noord-Holland, Utrecht en Zuid-Gelderland",
+   "countries": [
+    "NL"
+   ],
+   "urban_core": "Amsterdam",
+   "secondary_centers": [
+    "Utrecht",
+    "Haarlem",
+    "Arnhem",
+    "Nijmegen",
+    "Almere"
+   ],
+   "identity_basis": "Randstad-north economic/cultural core built around Amsterdam's historic Golden Age trading identity and Utrecht's status as the Netherlands' rail hub and fourth city; extended in v0.1.2 with the Utrecht-adjacent central belt (Flevoland's Almere commuter city, the Veluwe, Rivierenland and the Arnhem-Nijmegen city-region) after the breakup of the former north-east mega-region. Identity is capital-region/economic rather than linguistic.",
+   "lang_family": "germanic/dutch",
+   "key_industries": [
+    "finance/fintech (Amsterdam Zuidas)",
+    "aviation (Schiphol)",
+    "media (Hilversum broadcasting)",
+    "tech/IT (Utrecht Science Park)",
+    "energy/health campus (Arnhem-Nijmegen)",
+    "tourism"
+   ],
+   "population": 6550000,
+   "population_note": "Eurostat/CBS 2023 estimate, sum NL32 (Noord-Holland) + NL35 (Utrecht) + NL23 (Flevoland) + NL221/NL224/NL226 (Gelderland minus Achterhoek)",
+   "nuts_codes": [
+    "NL321",
+    "NL323",
+    "NL325",
+    "NL327",
+    "NL328",
+    "NL32A",
+    "NL32B",
+    "NL350",
+    "NL230",
+    "NL221",
+    "NL224",
+    "NL226"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Amsterdam — metro ~2.5M, Netherlands' largest city and Schiphol its main air hub; Utrecht and Arnhem-Nijmegen are substantial internal sub-hubs",
+    "diversified_industry": "finance/fintech, aviation logistics, media broadcasting, tech, health/energy tech (Nijmegen/Arnhem), tourism",
+    "dependent_identity": "capital-region economic identity within the Netherlands; no separatism"
+   },
+   "nuts1_disagreement": "Spans parts of NUTS-1 NL3 (West) and NL2 (East). v0.1.2 change: after the north-east mega-region breakup, the Gelderland-south/Utrecht-adjacent NUTS-3 units (Veluwe NL221, Zuidwest-Gelderland NL224, Arnhem/Nijmegen NL226) and Flevoland NL230 were assigned here per the mandate 'prefer Utrecht region' (South Holland was not specifically named). Honest tension: Arnhem-Nijmegen (~750,000) is a real city-region of its own and the Veluwe leans Low Saxon at its eastern rim; assignment follows commuter/rail orientation toward Utrecht/Randstad (A1/A12/A15 corridors) rather than a clean cultural boundary.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "CBS (Statistics Netherlands)",
+    "Schiphol Group annual report",
+    "CBS commuter-flow statistics (Gelderland-Utrecht/Randstad orientation)"
+   ],
+   "autarky": {
+    "water": 3,
+    "food": 3,
+    "shelter": 2,
+    "energy": 3,
+    "transportation": 5,
+    "hygiene_healthcare": 5,
+    "clothing": 2,
+    "composite": 3.3,
+    "rationale": "Schiphol and the Amsterdam-Utrecht-Arnhem rail corridors make this the zone's transport leader, and Dutch water-management infrastructure is world-class engineering rather than raw natural abundance; intense Randstad housing pressure keeps shelter low. The v0.1.2 addition of Flevoland polder farmland and the Betuwe fruit belt slightly strengthens food, but the unit still depends on national agri-logistics.",
+    "rationales": {
+     "water": "Below-sea-level polders demand continuous pumped management; supply is engineered (IJsselmeer freshwater buffer) rather than naturally buffered — resilient but infrastructure-dependent.",
+     "food": "Flevoland's polders (Europe's most productive arable land per hectare) and the Betuwe fruit belt offset the urban core's near-zero production; still a net importer for 6.5M people.",
+     "energy": "No large generation inside the unit (Hemweg coal closed, no nuclear); reliant on the national grid, offshore-wind landings and imports."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "dipole",
+    "centers": [
+     "Amsterdam",
+     "Utrecht"
+    ],
+    "central": "Amsterdam",
+    "central_coord": [
+     4.9041,
+     52.3676
+    ],
+    "secondary": "Utrecht",
+    "secondary_coord": [
+     5.1214,
+     52.0907
+    ],
+    "note": "Amsterdam (finance/culture/air hub) and Utrecht (rail hub, geographic pivot to the added Gelderland belt) form the organizing dipole; Arnhem-Nijmegen is a further internal sub-pole, honestly noted."
+   },
+   "parliament": {
+    "has_own": false,
+    "name": null,
+    "note": "No region-level parliament; the constituent provinces (Noord-Holland, Utrecht, Flevoland, Gelderland) each have Provinciale Staten — provincial councils, not legislative parliaments."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "nl-rotterdam-zuid-holland-zeeland",
+   "name": "Zuid-Holland & Zeeland (Rotterdam-The Hague)",
+   "name_local": "Zuid-Holland en Zeeland",
+   "countries": [
+    "NL"
+   ],
+   "urban_core": "Rotterdam",
+   "secondary_centers": [
+    "The Hague",
+    "Delft",
+    "Middelburg"
+   ],
+   "identity_basis": "Rhine-Meuse-Scheldt delta region built on Rotterdam's port economy and The Hague's status as seat of government and international law; Zeeland's Delta Works engineering and maritime-Zeeuws dialect heritage folded in via shared delta geography and port-economy linkage.",
+   "lang_family": "germanic/dutch",
+   "key_industries": [
+    "port/logistics (Rotterdam, Europe's largest port)",
+    "petrochemicals/refining",
+    "government/international law (The Hague — ICJ, ICC)",
+    "greenhouse horticulture (Westland)",
+    "nuclear energy (Borssele)"
+   ],
+   "population": 4180000,
+   "population_note": "Eurostat/CBS 2023 estimate, sum NL36 (Zuid-Holland) + NL34 (Zeeland)",
+   "nuts_codes": [
+    "NL361",
+    "NL362",
+    "NL363",
+    "NL364",
+    "NL365",
+    "NL366",
+    "NL341",
+    "NL342"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Rotterdam — metro ~1.3M, Europe's largest seaport by cargo volume",
+    "diversified_industry": "port logistics, petrochemical refining, international governance/law, horticulture, nuclear energy",
+    "dependent_identity": "delta/maritime regional identity within the Netherlands; no separatism"
+   },
+   "nuts1_disagreement": "Zeeland (NUTS-2 NL34) is not separately listed in the zone brief; it is grouped with Zuid-Holland here via shared Rhine-Meuse-Scheldt delta geography, the Delta Works flood-defense system, and Rotterdam-port-linked economic ties, rather than left as an orphan.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "CBS (Statistics Netherlands)",
+    "Port of Rotterdam Authority annual report",
+    "Rijkswaterstaat (Delta Works documentation)"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 4,
+    "shelter": 2,
+    "energy": 4,
+    "transportation": 5,
+    "hygiene_healthcare": 4,
+    "clothing": 2,
+    "composite": 3.6,
+    "rationale": "Europe's largest port and its refining/petrochemical complex, plus the Borssele nuclear plant in Zeeland, give this region the zone's strongest energy-and-transport combination; Zeeland's Delta Works engineering and the Westland greenhouse-horticulture belt support solid water management and food output, though land remains scarce and expensive throughout.",
+    "rationales": {
+     "water": "The Delta Works and Rhine-Meuse management give world-leading engineered water security; salinization of the delta under sea-level rise is the monitored long-term risk.",
+     "food": "Westland greenhouse horticulture (the world's densest glasshouse cluster) plus Zeeland arable/mussel farming produce high-value surplus, though grain staples are imported.",
+     "energy": "Borssele nuclear plant, Rotterdam's refining/LNG complex and offshore-wind landing infrastructure — strong and diversified for its size."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "dipole",
+    "centers": [
+     "Rotterdam",
+     "The Hague"
+    ],
+    "central": "Rotterdam",
+    "central_coord": [
+     4.4777,
+     51.9244
+    ],
+    "secondary": "The Hague",
+    "secondary_coord": [
+     4.3007,
+     52.0705
+    ],
+    "note": "Rotterdam (port/economy) and The Hague (government/international law) form an institutionalized dipole (Metropoolregio Rotterdam Den Haag)."
+   },
+   "parliament": {
+    "has_own": false,
+    "name": null,
+    "note": "No region-level parliament; provinces Zuid-Holland and Zeeland each have Provinciale Staten — provincial councils, not legislative parliaments. (The Hague hosts the NATIONAL Staten-Generaal, which is not a regional body.)"
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "nl-groningen-north",
+   "name": "Noord-Nederland (Groningen/Friesland/Drenthe)",
+   "name_local": "Noord-Nederland",
+   "countries": [
+    "NL"
+   ],
+   "urban_core": "Groningen",
+   "secondary_centers": [
+    "Leeuwarden",
+    "Assen",
+    "Emmen"
+   ],
+   "identity_basis": "The three northern provinces: Groningen's Low Saxon (Gronings) identity and gas-extraction legacy, the officially recognized West Frisian (Frysk) language nation in Fryslân, and rural Drenthe — bound by peripheral, non-Randstad orientation and the northern Low Saxon/Frisian linguistic landscape. v0.1.2: reduced from the former north-east mega-region to the north proper (user: mega-region too big); Overijssel/Achterhoek now form the separate Deventer unit.",
+   "lang_family": "germanic/low-saxon",
+   "key_industries": [
+    "natural gas (Groningen field, legacy/wind-down)",
+    "agri-food/dairy (Friesland — FrieslandCampina)",
+    "energy transition (Eemshaven hydrogen/data centers)",
+    "water technology (Leeuwarden WaterCampus)",
+    "chemicals (Delfzijl)"
+   ],
+   "population": 1750000,
+   "population_note": "Eurostat/CBS 2023 estimate, sum NL11 (Groningen) + NL12 (Friesland) + NL13 (Drenthe)",
+   "nuts_codes": [
+    "NL112",
+    "NL114",
+    "NL115",
+    "NL126",
+    "NL127",
+    "NL128",
+    "NL131",
+    "NL132",
+    "NL133"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Groningen — metro ~230,000, dominant university/cultural hub of the northern Netherlands with no rival north of Zwolle",
+    "diversified_industry": "gas legacy and its energy-transition successor cluster (Eemshaven), dairy agri-food at global scale (FrieslandCampina), water tech, chemicals",
+    "dependent_identity": "Gronings Low Saxon identity plus the constitutionally recognized Frisian language minority (official second state language); regionalist sentiment ('gas colony' grievance over earthquake damage) but no separatism"
+   },
+   "nuts1_disagreement": "Matches NUTS-1 NL1 (Noord-Nederland) exactly after the v0.1.2 breakup — the v0.1.0 annexation of NL2 (Oost-Nederland) via the Low Saxon dialect-continuum argument is REVERSED per user feedback; the dialect continuum is real but does not make Groningen an organizing hub for the Achterhoek 100+ km south.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "CBS (Statistics Netherlands)",
+    "EBN (Dutch state gas-field operator) Groningen field reports",
+    "Provinsje Fryslân (Frisian-language status documentation)"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 5,
+    "shelter": 4,
+    "energy": 4,
+    "transportation": 3,
+    "hygiene_healthcare": 4,
+    "clothing": 2,
+    "composite": 3.7,
+    "rationale": "Friesland's dairy belt (FrieslandCampina, global top-5 dairy co-op) and Groningen/Drenthe arable land make the north a strong net food exporter for only 1.75M people; the wound-down but still-operational gas infrastructure plus Eemshaven power/hydrogen cluster keep energy solid. Low density gives shelter headroom; distance from the Randstad caps transport.",
+    "rationales": {
+     "water": "Ample northern rainfall, IJsselmeer buffer access and low demand density; Wadden-coast salinization is managed at the margins.",
+     "food": "Friesland dairy plus Groningen grain (historically 'the granary of the Netherlands') and Drenthe potatoes — the strongest per-capita food surplus in the Benelux part of the zone.",
+     "energy": "Groningen field is in political wind-down (earthquake damage) but Eemshaven concentrates power plants, offshore-wind landings and hydrogen projects — still a net energy hub."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Groningen"
+    ],
+    "central": "Groningen",
+    "central_coord": [
+     6.5665,
+     53.2194
+    ],
+    "note": "Groningen is the unrivalled hub of the three northern provinces; Leeuwarden is Fryslân's own capital but half the size and within Groningen's higher-education/healthcare orbit."
+   },
+   "parliament": {
+    "has_own": false,
+    "name": null,
+    "note": "No region-level parliament; provinces Groningen, Fryslân and Drenthe each have Provinciale Staten (provincial councils, not legislative parliaments). Fryslân's council carries extra weight as guardian of the co-official Frisian language, still short of legislative competence."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "nl-deventer-overijssel-achterhoek",
+   "name": "Overijssel & Achterhoek (Deventer)",
+   "name_local": "Overijssel en de Achterhoek",
+   "countries": [
+    "NL"
+   ],
+   "urban_core": "Deventer",
+   "secondary_centers": [
+    "Zwolle",
+    "Enschede",
+    "Doetinchem"
+   ],
+   "identity_basis": "The Dutch Low Saxon (Nedersaksisch) heartland along the IJssel and toward the German border: Salland, Twente and the Gelderland Achterhoek. Deventer — a Hanseatic IJssel city at the seam of all three — is set as the organizing hub per user mandate. The unit carries the strongest regional-language identity in the eastern Netherlands (Twents, Sallands, Achterhoeks — Nedersaksisch is a recognized regional language under the European Charter).",
+   "lang_family": "germanic/low-saxon",
+   "key_industries": [
+    "high-tech/nanotech (Twente — University of Twente, Thales NL)",
+    "machine building (VMI, Aebi Schmidt)",
+    "agri-food/dairy (Salland, Achterhoek)",
+    "logistics/publishing heritage (Deventer)",
+    "salt/chemicals (Nobian Hengelo)"
+   ],
+   "population": 1570000,
+   "population_note": "Eurostat/CBS 2023 estimate, sum NL21 (Overijssel: NL211+NL212+NL213) + NL225 (Achterhoek)",
+   "nuts_codes": [
+    "NL211",
+    "NL212",
+    "NL213",
+    "NL225"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Deventer — ~102,000, the mandated organizing hub. HONESTY FLAG: Zwolle (~132,000, fastest-growing northern rail hub) and Enschede (~161,000, Twente's university city) both exceed Deventer in size and can each claim the hub role; Deventer's case is positional (IJssel-Hanse seam between Salland and Achterhoek, A1 corridor midpoint), not primacy. Recorded as a contestable choice, per mandate.",
+    "diversified_industry": "Twente high-tech/nanotech cluster, machine building, dairy/agri-food, salt-chemicals, logistics",
+    "dependent_identity": "Nedersaksisch (Low Saxon) regional-language identity — Twents/Sallands/Achterhoeks — within the Netherlands; no separatism"
+   },
+   "nuts1_disagreement": "Combines NUTS-2 NL21 (Overijssel) with NUTS-3 NL225 (Achterhoek) from NL22 (Gelderland) — deliberately crossing the provincial boundary because the Achterhoek's Low Saxon identity and Deventer/Twente orientation outweigh its administrative attachment to Arnhem's Gelderland. Created in v0.1.2 from the breakup of the former north-east mega-region.",
+   "sources": [
+    "Eurostat NUTS 2024",
+    "CBS (Statistics Netherlands)",
+    "SONT / Nedersaksisch covenant (2018 recognition of Low Saxon)",
+    "University of Twente / Novel-T regional-economy reports"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 4,
+    "shelter": 4,
+    "energy": 2,
+    "transportation": 3,
+    "hygiene_healthcare": 3,
+    "clothing": 3,
+    "composite": 3.3,
+    "rationale": "Solid mixed farming (Salland/Achterhoek dairy, Twente livestock) and low-density housing headroom; the IJssel corridor and A1/Berlin rail line give adequate transport. Energy is the weak point — no major generation since the Twente gas storage is minor. Twente's textile history (Enschede was the Dutch Manchester) leaves a residual technical-textiles base, lifting clothing above the Dutch norm.",
+    "rationales": {
+     "water": "IJssel river, Twente canals and sandy-soil aquifers cover demand; the 2018-2022 droughts exposed sandy-east vulnerability, actively managed since.",
+     "food": "Dense dairy and mixed livestock across Salland and the Achterhoek plus arable pockets — a clear net producer for 1.57M people.",
+     "energy": "No power plant of scale; minor gas storage and growing rooftop/wind capacity still leave the unit a structural electricity importer."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "polycentric",
+    "centers": [
+     "Deventer",
+     "Zwolle",
+     "Enschede"
+    ],
+    "central": "Deventer",
+    "central_coord": [
+     6.1552,
+     52.2552
+    ],
+    "note": "Honestly polycentric: Zwolle (north) and Enschede/Twente (east) are larger; Deventer is designated central per user mandate on positional grounds (IJssel-Hanse seam, southern organizing hub). Contestable and flagged."
+   },
+   "parliament": {
+    "has_own": false,
+    "name": null,
+    "note": "No region-level parliament; Overijssel's Provinciale Staten covers most of the unit, the Achterhoek falls under Gelderland's — provincial councils, not legislative parliaments."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "nl-south-brabant-limburg",
+   "name": "Zuid-Nederland (Eindhoven-Brabant/Limburg)",
+   "name_local": "Zuid-Nederland",
+   "countries": [
+    "NL"
+   ],
+   "urban_core": "Eindhoven",
+   "secondary_centers": [
+    "Tilburg",
+    "'s-Hertogenbosch",
+    "Maastricht",
+    "Heerlen"
+   ],
+   "identity_basis": "Historically Catholic 'southern' Netherlands (below the great rivers), distinct in religious-cultural heritage from the Protestant north; Limburg additionally carries a Limburgish (recognized regional language, Ripuarian/Low Franconian) identity with cross-border affinities to neighboring Germany and Belgium.",
+   "lang_family": "germanic/dutch",
+   "key_industries": [
+    "high-tech electronics (ASML, Philips/Brainport Eindhoven)",
+    "chemicals (Chemelot, Limburg)",
+    "agri-food/logistics",
+    "automotive (VDL)"
+   ],
+   "population": 3730000,
+   "population_note": "Eurostat/CBS 2023 estimate, sum NL41 (Noord-Brabant) + NL42 (Limburg)",
+   "nuts_codes": [
+    "NL411",
+    "NL414",
+    "NL415",
+    "NL416",
+    "NL421",
+    "NL422",
+    "NL423"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Eindhoven — metro ~750,000, the 'Brainport' high-tech cluster (ASML, NXP, Philips origin)",
+    "diversified_industry": "semiconductor lithography equipment, chemicals, agri-food/logistics, automotive",
+    "dependent_identity": "southern Catholic-heritage Dutch identity plus a distinct Limburgish regional language in Limburg; no separatism"
+   },
+   "nuts1_disagreement": "NUTS-1 NL4 (Zuid-Nederland) matches this region exactly.",
+   "conflict_flags": [
+    {
+     "id": "nl-limburg-german-border-microculture",
+     "description": "Dutch Limburg's Ripuarian/Low Franconian dialect continuum (Limburgish, a recognized regional language) extends across the Dutch-German border into neighboring North Rhine-Westphalia, forming a German-Dutch border micro-cultural zone around Maastricht-Heerlen-Aachen distinct from the rest of Zuid-Nederland. Flagged as a toggleable cross-border micro-layer per the zone brief's mandate.",
+     "zone_nuts_codes": [
+      "NL421",
+      "NL422",
+      "NL423"
+     ]
+    }
+   ],
+   "sources": [
+    "Eurostat NUTS 2024",
+    "CBS (Statistics Netherlands)",
+    "Brainport Eindhoven regional statistics",
+    "Frins, Limburgish (Ripuarian/Low Franconian) dialectology"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 4,
+    "shelter": 3,
+    "energy": 3,
+    "transportation": 4,
+    "hygiene_healthcare": 4,
+    "clothing": 2,
+    "composite": 3.4,
+    "rationale": "Eindhoven's Brainport high-tech cluster (ASML, semiconductor lithography) is an industrial/export strength rather than a survival good, so autarky rests more on Brabant/Limburg's solid mixed farming and Meuse-basin water management; energy and transport sit at an unremarkable middling level for the sub-region, with no major port or nuclear plant of its own.",
+    "rationales": {
+     "water": "Meuse basin and Brabant sandy-soil aquifers cover demand; Meuse low-flow summers (shared with Belgium) require coordination but supply holds.",
+     "food": "Intensive Brabant pig/poultry farming and Limburg horticulture/orchards produce surplus, with the same imported-feed dependence as Flanders.",
+     "energy": "No major generation (Borssele and coastal wind sit outside the unit); Chemelot's demand makes it a heavy net energy importer."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": false,
+   "default_visible": true,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Eindhoven"
+    ],
+    "central": "Eindhoven",
+    "central_coord": [
+     5.4697,
+     51.4416
+    ],
+    "note": "Eindhoven/Brainport dominates economically; Maastricht anchors a culturally distinct Limburg sub-identity without rivaling Eindhoven's scale."
+   },
+   "parliament": {
+    "has_own": false,
+    "name": null,
+    "note": "No region-level parliament; provinces Noord-Brabant and Limburg each have Provinciale Staten — provincial councils, not legislative parliaments."
+   },
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "lu-luxembourg",
+   "name": "Luxembourg",
+   "name_local": "Lëtzebuerg",
+   "countries": [
+    "LU"
+   ],
+   "urban_core": "Luxembourg City",
+   "secondary_centers": [
+    "Esch-sur-Alzette"
+   ],
+   "identity_basis": "Sovereign Grand Duchy; distinct Luxembourgish national identity and language (Lëtzebuergesch, a Moselle Franconian variety with official status alongside French/German). Single-unit exception per Global Constraints.",
+   "lang_family": "germanic/moselle-franconian",
+   "key_industries": [
+    "finance",
+    "steel (historic, ArcelorMittal origin)",
+    "logistics (Cargolux)",
+    "EU institutions (Court of Justice, Court of Auditors)"
+   ],
+   "population": 660800,
+   "population_note": "Eurostat 2023 estimate, national population",
+   "nuts_codes": [
+    "LU"
+   ],
+   "inclusion_test": {
+    "urban_hub": "Luxembourg City — major global financial hub, EU institutions",
+    "diversified_industry": "finance/fund administration, logistics (Cargolux air cargo), EU administration, steel legacy",
+    "dependent_identity": "distinct Luxembourgish identity within a sovereign, EU-integrated state; not applicable as a sub-national region since Luxembourg is itself a full member state"
+   },
+   "nuts1_disagreement": null,
+   "sources": [
+    "Eurostat NUTS 2024",
+    "STATEC (Luxembourg statistical office)"
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 2,
+    "shelter": 3,
+    "energy": 2,
+    "transportation": 4,
+    "hygiene_healthcare": 4,
+    "clothing": 2,
+    "composite": 3.0,
+    "rationale": "Small, wealthy, import-dependent for food and energy; strong services base (finance, EU administration) offsets low material self-sufficiency, and Cargolux gives it outsized air-cargo transport capacity for its size.",
+    "rationales": {
+     "water": "Ardennes/Oesling rainfall and the Sûre reservoir (Esch-sur-Sûre) cover national demand comfortably at this population scale.",
+     "food": "Small agricultural base (Moselle wine, dairy) against a dense, wealthy population — most food is imported from the surrounding Greater Region.",
+     "energy": "Essentially no domestic generation beyond the Vianden pumped-storage plant (which stores, not produces, net energy); nearly full import dependence on the German/Belgian grid."
+    }
+   },
+   "area_km2": null,
+   "single_unit_exception": true,
+   "default_visible": true,
+   "pole": {
+    "type": "monopole",
+    "centers": [
+     "Luxembourg City"
+    ],
+    "central": "Luxembourg City",
+    "central_coord": [
+     6.1296,
+     49.6116
+    ],
+    "note": "Luxembourg City dominates; Esch-sur-Alzette anchors the southern former steel belt."
+   },
+   "reach": [
+    {
+     "target": "Greater Region (Saar-Lor-Lux: Lorraine, Saarland, Rhineland-Palatinate, Wallonia)",
+     "note": "~200,000 daily cross-border commuters (nearly half the national workforce) — the EU's most commuter-dependent labor market; Luxembourg City's economic catchment far exceeds the state's territory."
+    }
+   ],
+   "parliament": {
+    "has_own": true,
+    "name": "Chambre des Députés",
+    "note": "Sovereign national parliament of an EU member state — categorically above the sub-national parliaments in this dataset."
+   },
+   "conflict_flags": [],
+   "nuts_source": "NUTS2024"
+  },
+  {
+   "id": "dutch-lowlands-unified",
+   "name": "Dutch Language Area (Flanders + Netherlands)",
+   "name_local": "Nederlandse taalruimte / Dietse Lage Landen",
+   "countries": [
+    "BE",
+    "NL"
+   ],
+   "urban_core": "Amsterdam",
+   "secondary_centers": [
+    "Antwerp",
+    "Rotterdam",
+    "Ghent",
+    "Eindhoven"
+   ],
+   "identity_basis": "The contiguous Dutch-speaking lowlands as one cultural space: Flanders and the Netherlands share the standard Dutch language (Taalunie), intertwined delta economies (Antwerp-Rotterdam port range) and a common early-modern Burgundian-Habsburg Netherlands heritage. Offered ONLY as the 'connected' view of the flanders variant set (default_visible false); Brussels is deliberately excluded as a francophone-majority capital enclave (own special-status unit), and lived state identities (BE/NL, separated since 1830) keep the separate-units view as the dataset default.",
+   "lang_family": "germanic/dutch",
+   "key_industries": [
+    "port logistics (Rotterdam, Antwerp)",
+    "chemicals/petrochemicals (ARRRA cluster)",
+    "high-tech systems (Eindhoven/ASML, Leuven/imec)",
+    "agri-food and horticulture",
+    "financial/business services (Amsterdam, Brussels-rim)"
+   ],
+   "population": 24700000,
+   "population_note": "Eurostat 2023 estimate: NL ~17.9M + Flanders ~6.8M (BE21-BE25); Brussels excluded",
+   "area_km2": null,
+   "nuts_source": "NUTS2024",
+   "nuts_codes": [
+    "BE21",
+    "BE22",
+    "BE23",
+    "BE24",
+    "BE25",
+    "NL"
+   ],
+   "default_visible": false,
+   "single_unit_exception": false,
+   "conflict_flags": [],
+   "inclusion_test": {
+    "urban_hub": "polycentric Randstad + Flemish diamond; Amsterdam as the largest single hub of the joint space",
+    "diversified_industry": "union of the two component economies: ports, chemicals, high-tech, agri-food, services",
+    "dependent_identity": "language-area identity is real (Taalunie) but political unification has no live movement; the connected view is an explicitly hypothetical cultural reading"
+   },
+   "nuts1_disagreement": "No NUTS unit spans BE+NL; this record exists only as the non-default 'connected' view of the flanders variant set.",
+   "parliament": {
+    "has_own": false,
+    "name": "",
+    "note": "hypothetical connected view; component units keep their parliaments (Vlaams Parlement, Staten-Generaal)"
+   },
+   "pole": {
+    "type": "polycentric",
+    "centers": [
+     "Amsterdam",
+     "Antwerp",
+     "Rotterdam"
+    ],
+    "central": "Amsterdam",
+    "central_coord": [
+     4.9041,
+     52.3676
+    ],
+    "note": "Randstad + Flemish diamond polycentric system"
+   },
+   "reach": [
+    {
+     "target": "Dutch-speaking communities worldwide",
+     "note": "Taalunie language union incl. Suriname; Amsterdam and Antwerp as joint cultural anchors"
+    }
+   ],
+   "autarky": {
+    "water": 4,
+    "food": 5,
+    "shelter": 2,
+    "energy": 3,
+    "transportation": 5,
+    "hygiene_healthcare": 4,
+    "clothing": 3,
+    "composite": 3.7,
+    "rationale": "Union of the Flemish and Dutch units: world-class agri-food surplus and port/transport infrastructure; shelter tight in both housing markets; energy in transition (post-Groningen gas, offshore wind build-out).",
+    "rationales": {
+     "water": "Rhine-Meuse-Scheldt delta abundance with world-leading water management (Rijkswaterstaat, polder system); quality pressures from agriculture, not scarcity.",
+     "food": "Netherlands is the world's #2 agri-food exporter by value; Flanders adds intensive horticulture and food processing — joint space is a clear net food exporter.",
+     "energy": "Groningen gas closure leaves import dependence; large offshore-wind pipeline (IJmuiden Ver, Princess Elisabeth zone) and Doel/Borssele nuclear partially compensate — transition-stage 3."
+    }
+   },
+   "sources": [
+    "Eurostat NUTS 2024",
+    "CBS (Statistics Netherlands) 2023",
+    "Statbel 2023",
+    "Nederlandse Taalunie"
+   ]
+  }
+ ]
+}

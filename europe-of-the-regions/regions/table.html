@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Europe of the Regions — Data table</title>
+<meta name="description" content="Sortable, filterable table of all 191 regions with population, area, industries, autarky scores, and a flat-vs-Bundesrat-weighted representation model.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="meta-democracy.org">
+<meta property="og:title" content="Europe of the Regions — Data table">
+<meta property="og:description" content="Sortable, filterable table of all 191 regions with population, area, industries, autarky scores, and a flat-vs-Bundesrat-weighted representation model.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Europe of the Regions — Data table">
+<meta name="twitter:description" content="Sortable, filterable table of all 191 regions with population, area, industries, autarky scores, and a flat-vs-Bundesrat-weighted representation model.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/table.css">
+</head>
+<body>
+<header class="site-header">
+  <nav class="site-nav">
+    <a href="./">Map</a>
+    <span aria-hidden="true">·</span>
+    <a href="./table" aria-current="page">Table</a>
+    <span aria-hidden="true">·</span>
+    <a href="./methodology">Methodology</a>
+    <span aria-hidden="true">·</span>
+    <a href="../">Home</a>
+  </nav>
+</header>
+
+<main id="app">
+  <section class="intro">
+    <h1>Europe of the Regions — data table</h1>
+    <p class="lede">
+      All 191 authored regions (188 congruent-mode base/congruent records plus 3 unified
+      alternatives for Tyrol, the Basque Country, and Ireland). Click a column header to sort;
+      use the filter box to search by name, country, urban core, industry, or identity basis.
+    </p>
+  </section>
+
+  <section class="controls">
+    <label for="filter-input">Filter</label>
+    <input id="filter-input" type="search" placeholder="Search regions… e.g. &quot;automotive&quot;, &quot;Catalonia&quot;, &quot;DE&quot;" autocomplete="off">
+    <p id="counts-line" class="counts-line" role="status">Loading…</p>
+  </section>
+
+  <section class="table-section">
+    <div class="table-scroll">
+      <table id="regions-table">
+        <thead id="table-head"></thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="extremes-section">
+    <h2>Extremes</h2>
+    <p class="section-note">Computed at runtime from the loaded dataset (all 191 regions).</p>
+    <div id="extremes" class="extremes-grid"></div>
+  </section>
+
+  <section class="representation-section">
+    <h2>Representation model</h2>
+    <p class="section-note">
+      Based on the 188 congruent-mode regions (variant role null or "congruent" — the 3 unified
+      alternatives are excluded here to avoid double-counting a region under two representation
+      schemes at once).
+    </p>
+
+    <h3>Flat model — 2 representatives per region</h3>
+    <p class="section-note">
+      Every congruent-mode region gets exactly 2 representatives, aggregated by country.
+      Convention for multi-country regions (none currently in the congruent-mode set, but
+      applied generally): representatives split evenly across the region's constituent
+      countries — e.g. 1+1 for a 2-country region.
+    </p>
+    <div id="flat-table" class="seat-table-wrap"></div>
+
+    <h3>Bundesrat-weighted comparison</h3>
+    <p class="section-note">
+      Each region's population is banded per Germany's Bundesrat formula (Art. 51 GG):
+      ≤2M → 3 votes, &gt;2M–6M → 4 votes, &gt;6M–7M → 5 votes, &gt;7M → 6 votes. The same
+      multi-country split convention applies.
+    </p>
+    <div id="bundesrat-table" class="seat-table-wrap"></div>
+
+    <h3>Country share comparison</h3>
+    <p class="section-note">Sorted by flat-model share, largest first. Top bar = flat model, bottom bar = Bundesrat-weighted.</p>
+    <div id="bar-chart" class="bar-chart"></div>
+
+    <div id="representation-analysis" class="analysis"></div>
+
+    <h3>EP delegation model — population balance across representation groupings</h3>
+    <p class="section-note">
+      Amendment A2.2 (round-3 feedback) set the model: reuse the European Parliament chamber
+      as-is, but send each <em>representation grouping</em> a roughly equal delegation instead of
+      national delegations sized by degressive proportionality — target spread a max factor of
+      3–7 between the largest and smallest grouping's population, 10 at the outside. Today's EP
+      is looser than that already: Germany's ~96 seats against Malta's 6 is a 16× gap by seat
+      count, and the per-seat population gap runs to roughly 10× (Malta ≈86,000 people/seat vs.
+      Germany ≈860,000). Amendment A3 (round-4 feedback) adds a second grouping layer purpose-built
+      to hit that target, and Amendment A4.1 (round-5 feedback) adds a state-boundary-respecting
+      third: <code>data/grouping_schemes.json</code> (documented in
+      <a href="./methodology#two-level-model">the methodology page</a>) carries the original
+      <strong>Affinity (66)</strong> scheme plus however many further schemes the current data
+      build defines — every one of them is shown side by side below, generated from the data file
+      rather than a fixed pair. Groupings a scheme marks <code>factor_exempt</code> (sovereign
+      microstates, exclaves, and similar singletons) sit outside that scheme's factor calculation
+      and are listed separately as special status. A scheme may additionally mark a
+      <code>sovereign_floor</code> list (A4.1 — small sovereign states that cannot merge upward
+      without crossing a state border under a no-cross-border-merge rule); those are excluded from
+      the factor too, but labeled distinctly as "sovereign minimum" rather than "special status".
+    </p>
+    <div id="scheme-factor-comparison" class="scheme-factor-columns">
+      <p class="analysis">Loading…</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Data: <code>data/regions.json</code>, 191 authored regions. Sources per region are listed in the underlying dataset (Eurostat NUTS/GISCO, national statistical offices, academic regionalism literature).</p>
+  <p>Formerly at <a href="https://meta-democracy.org">meta-democracy.org</a> (now Meta Party) · Made with love in Europe</p>
+</footer>
+
+<script type="module" src="../assets/js/table.js"></script>
+</body>
+</html>

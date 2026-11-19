@@ -1,0 +1,1663 @@
+{
+  "zone": "zone8",
+  "notes": [
+    "Kaliningrad Oblast, a Russian exclave of roughly 15,000 km2 and ~1.0 million residents wedged between Poland and Lithuania on the Baltic coast, is geographically inside the mapped space of this dataset but is not included as a region record or geometry: it is non-EU Russian sovereign territory, cut off from mainland Russia by the 1945 territorial reorganisation that renamed the formerly German/Prussian city of Konigsberg (annexed from Germany, its ethnic-German population expelled) as Kaliningrad. It is rendered in the map legend and methodology purely as a text note, per the Global Constraints' instruction to acknowledge it as a geographic exclave note despite falling outside the EU+neighbours+microstates scope of this framework.",
+    "Ukraine's 27 SR2024 level-2 units are grouped into twelve regions (draft-v0.1.2): six mandated distinct (Kyiv, Lviv/Galicia, Odesa, Kharkiv, Donetsk, Luhansk), Zakarpattia and Dnipro/Zaporizhzhia assessed and kept, Crimea isolated for its distinct 2014 occupation timeline, and the former nine-oblast 'Central Ukraine (Podillia-Poltava)' catch-all - previously flagged as the zone's weakest inclusion-test case - dissolved into three historic-land regions: Cossack Hetmanate (Poltava UA92 + Cherkasy UA93 + Chernihiv UAA1), Podillia (Vinnytsia UA51 + Khmelnytskyi UA53) and Volhynia-Polissia (Volyn UA81 + Rivne UA83 + Zhytomyr UA82). Kirovohrad (UA91) is re-homed to ua-dnipro-zaporizhzhia: its history is Zaporozhian free-steppe frontier rather than Hetmanate regimental territory, and its economic gravity (Kryvyi Rih basin) points south-east; grouping it with Poltava/Cherkasy would have repeated the SR2024 statistical convenience this split exists to correct.",
+    "This design produces 20 zone8 regions (12 Ukrainian + Moldova + Georgia + Armenia + Andorra + Monaco + San Marino + Vatican City + East Thrace), up from 16 in v0.1.0. The growth is a direct consequence of draft-v0.1.2 mandates: the central-catch-all dissolution (+2 net), the Armenia scope amendment (+1) and the East Thrace landmass mandate (+1). Per the region-count tension-flagging principle this is disclosed, not truncated; the representation layer (data/groupings/zone58.json) re-compresses these units into 8 zone8 groupings.",
+    "Population figures for Donetsk, Luhansk, and Crimea are pre-war/pre-occupation ceilings (2021 and 2014 Ukrainian state statistics respectively): active occupation, war damage, and mass displacement since 2014/2022 make current, verifiable population counts for these three regions unavailable from Ukrainian government sources, and occupying/de-facto authorities' figures are not treated as reliable census data. Autarky scores for occupied and front-line regions (Donetsk, Luhansk, Crimea, and the occupied portions of Kherson/Zaporizhzhia within ua-odesa-south and ua-dnipro-zaporizhzhia) reflect substantial war-driven degradation relative to pre-war baselines and carry higher uncertainty than the zone's other regions.",
+    "Moldova and Georgia are each modelled as single CNTR-geometry regions with empty conflict_flags.zone_nuts_codes for their Transnistria and Abkhazia/South-Ossetia flags respectively: the CNTR country-polygon geometry source provides no sub-national subdivision to map these breakaway territories separately, so per the validation rule that non-empty zone_nuts_codes must resolve to real geometry, these flags carry their full substantive description in the 'description' field with an empty zone_nuts_codes list, which the build pipeline correctly and silently skips from conflicts.geojson - an accepted data limitation rather than an error.",
+    "CRITICAL BLOCKER (flagged, not silently worked around): the committed pipeline/raw/NUTS_RG_20M_2024_4326.geojson contains exactly ONE feature for Ukraine - a single country-level polygon with NUTS_ID='UA' (LEVL_CODE 0) - and none of the 177 SR2024 oblast/district codes listed in data/nuts_index.json (sourced from the xlsx in Task 1) have corresponding sub-national geometry in that file. This means every ua-* region's nuts_codes in this file (all SR2024 codes at level 2) will fail check_codes_resolve/validate_all, even though the schema, content, cross-record, and CNTR-based checks all pass. This is a Task 2 (geometry-fetch) / pipeline-raw-data gap, not a defect in this file's authored content: Eurostat's GISCO NUTS_RG product evidently ships Ukraine only as a candidate-country outline, not with the SR2024 statistical-region breakdown the brief assumed was 'verified reachable' in that same file. See zone8-report.md for the exact failing test names and a recommended fix (source real Ukraine oblast boundary geometry, e.g. an admin-1 GeoJSON keyed to SR2024 NUTS_ID-compatible codes, into pipeline/raw/, or fall back to a single undivided 'UA' region with the mandated splits documented as deferred-pending-geometry).",
+    "Five zone8 conflict_flags (zakarpattia-minority-identity, kherson-frontline-occupation, donetsk-occupation-frontline, luhansk-occupation-status, zaporizhzhia-npp-and-frontline) were originally authored with sub-oblast (raion/district-level) zone_nuts_codes (e.g. UA213, UA432) to pinpoint occupied or minority-concentration areas more precisely than the oblast as a whole. Task 4 geometry integration resolves Ukraine only at the oblast (ADM1) level via geoBoundaries -- no raion-level geometry is available in this pipeline -- so those five flags' zone_nuts_codes were cleared to [] per the same accepted-limitation precedent already documented above for Moldova/Georgia's Transnistria and Abkhazia/South-Ossetia flags: their full substantive description is retained, and the validation rule that non-empty zone_nuts_codes must resolve to real geometry means the build pipeline correctly and silently skips them from conflicts.geojson rather than failing or misrepresenting the affected area as the entire oblast. crimea-occupation-status is unaffected (UA44/UA45 are oblast-level codes that already resolve).",
+    "Schema v2 migration (draft-v0.1.2): variant_group/variant_role removed; default_visible, special_status, pole (with central_coord per amendment A1), reach, parliament, lang_family and autarky.rationales (water/food/energy) added to every record. All four microstates carry mandated special_status values (Vatican 'sovereign enclave', San Marino 'enclave microstate', Monaco 'sovereign city-state microstate', Andorra 'co-principality microstate') rendered with dashed strokes. Ukrainian units carry parliament.has_own=false with the oblast-council note: oblasna rada are local self-government organs under the unitary constitution, not regional parliaments.",
+    "Armenia (am-armenia) is added per controller amendment A1 as a single-unit sovereign state with CNTR geometry (CNTR_ID 'AM'), following the Moldova/Georgia precedent, with a Nagorno-Karabakh displacement conflict_flag (text-only, empty zone_nuts_codes, per the MD/GE precedent for CNTR-geometry states).",
+    "East Thrace (tr-east-thrace, NUTS2024 TR21) is included solely for European-landmass completeness per the draft-v0.1.2 coverage mandate: Turkey remains excluded as a whole, Istanbul province (TR10) is excluded with it even though partly European, and the unit carries a special_status dashed stroke plus an Istanbul reach note to keep its exceptional basis visible on the map itself."
+  ],
+  "regions": [
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "ua-kyiv",
+      "name": "Kyiv",
+      "name_local": "Київ",
+      "countries": [
+        "UA"
+      ],
+      "urban_core": "Kyiv",
+      "secondary_centers": [
+        "Bila Tserkva",
+        "Brovary",
+        "Boryspil"
+      ],
+      "identity_basis": "Capital region; seat of Ukrainian statehood since Kyivan Rus'; distinct administrative status as a city of national significance separate from surrounding Kyiv Oblast.",
+      "key_industries": [
+        "public administration",
+        "IT/software services",
+        "finance",
+        "food processing",
+        "logistics"
+      ],
+      "population": 4747000,
+      "population_note": "Sum of Kyiv city (~2.95M) and Kyiv Oblast (~1.79M), 2021 Ukrstat estimates. Wartime displacement (2022- ) reduced city population by an estimated 20-25% at the invasion's peak with partial return since, so current figures carry substantial uncertainty.",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "UAC1",
+        "UAC3"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Kyiv, metro >3M, national political/cultural/media capital",
+        "diversified_industry": "IT services, finance, food processing, logistics, public administration",
+        "dependent_identity": "capital-region identity fully integrated into Ukrainian statehood, no separatism"
+      },
+      "nuts1_disagreement": "Ukraine has no official EU-style NUTS-1; the SR2024 substitute groups Kyiv city and Kyiv Oblast under separate level-2 codes (UAC3, UAC1) within Macroregion C (UAC) with no other oblasts, so this region matches the SR macroregion boundary exactly.",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 4,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.7,
+        "rationale": "Capital and national transport/rail hub with strong administrative/service economy; energy repeatedly targeted by missile strikes since 2022, reducing that score; relies on surrounding oblasts for food rather than being a major agricultural producer itself.",
+        "rationales": {
+          "water": "Dnipro reservoirs cascade through the region; supply ample though quality-stressed.",
+          "food": "Kyiv oblast chernozem is productive, but the metro is a net consumer.",
+          "energy": "Hosts grid-control hub and thermal plants, yet the capital depends on national generation repeatedly damaged by strikes."
+        }
+      },
+      "sources": [
+        "State Statistics Service of Ukraine (Ukrstat), 2021 population estimates",
+        "Kyiv City State Administration statistical yearbook",
+        "Eurostat/GISCO NUTS non-EU correspondence tables"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Kyiv"
+        ],
+        "central": "Kyiv",
+        "central_coord": [
+          30.5234,
+          50.4501
+        ],
+        "note": "Capital monopole: Kyiv city plus oblast orient entirely on the capital."
+      },
+      "reach": [
+        {
+          "target": "Ukraine (national)",
+          "note": "Kyiv's political, media and wartime-coordination reach spans the whole state; its labour catchment covers several neighbouring oblasts."
+        }
+      ],
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional legislature; oblast councils (oblasna rada) are organs of local self-government under Ukraine's unitary constitution, not parliaments."
+      },
+      "lang_family": "slavic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "ua-lviv-galicia",
+      "name": "Lviv / Galicia",
+      "name_local": "Львів / Галичина",
+      "countries": [
+        "UA"
+      ],
+      "urban_core": "Lviv",
+      "secondary_centers": [
+        "Ivano-Frankivsk",
+        "Ternopil",
+        "Chernivtsi"
+      ],
+      "identity_basis": "Historic Eastern Galicia (Austro-Hungarian Empire, then interwar Poland until 1939) plus Bukovina (Chernivtsi; Austro-Hungarian/Romanian until 1940); strong Ukrainian Greek Catholic identity, distinct dialect and pro-European civic culture. Grouped as a broader 'Western Ukraine' region for zone-coverage reasons - Bukovina's distinct Austro-Romanian heritage differs from Galicia proper and is bundled here rather than modelled as a separate region, given the zone's target region count (caveat stated explicitly, see zone notes).",
+      "key_industries": [
+        "IT/software (Lviv tech hub)",
+        "furniture and woodworking",
+        "light manufacturing",
+        "tourism",
+        "food processing"
+      ],
+      "population": 5764000,
+      "population_note": "Sum of 2021 Ukrstat oblast estimates for Lviv, Ivano-Frankivsk, Ternopil, and Chernivtsi. This region absorbed large numbers of internally displaced persons from eastern/southern Ukraine after 2022, so current population likely exceeds this pre-war baseline.",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "UA73",
+        "UA72",
+        "UA52",
+        "UA74"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Lviv, metro ~1.7M (city+region), major cultural/university/tech centre",
+        "diversified_industry": "IT services, furniture/wood, tourism, food processing",
+        "dependent_identity": "strong regional Galician identity within Ukraine; pro-Ukrainian, no separatism"
+      },
+      "nuts1_disagreement": "SR2024 places these oblasts in Macroregion 07 (UA7) with no additional oblasts beyond the four grouped here, so the region matches the SR macroregion; however it merges two historically distinct entities (Galicia proper: Lviv/Ivano-Frankivsk/Ternopil, vs Bukovina: Chernivtsi) for coverage reasons - flagged explicitly rather than silently assumed identical.",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 4,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.7,
+        "rationale": "Western Ukraine largely spared direct ground war; solid agriculture though less black-soil than the central steppe; light industry (furniture, textiles, IT); still dependent on the national grid for energy despite some EU interconnection.",
+        "rationales": {
+          "water": "Carpathian foothill catchments give reliable supply.",
+          "food": "Mixed farming solid though less fertile than the chernozem belt.",
+          "energy": "Western grid interconnection to the EU (ENTSO-E) is a strategic asset; generation itself modest."
+        }
+      },
+      "sources": [
+        "Ukrstat 2021 oblast population estimates",
+        "Lviv IT Cluster industry reports",
+        "Magocsi, P.R. - Historical Atlas of Central Europe (Galicia/Bukovina boundaries)"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Lviv"
+        ],
+        "central": "Lviv",
+        "central_coord": [
+          24.0297,
+          49.8397
+        ],
+        "note": "Lviv is Galicia's uncontested cultural-economic capital."
+      },
+      "reach": [
+        {
+          "target": "Ukrainian diaspora and western borderlands",
+          "note": "Lviv functions as the gateway for the Polish/Slovak/Hungarian borderlands and for the large Ukrainian diaspora; since 2022 it is also the primary safe-haven hub and westward logistics corridor."
+        }
+      ],
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional legislature; oblast councils (oblasna rada) are organs of local self-government under Ukraine's unitary constitution, not parliaments."
+      },
+      "lang_family": "slavic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "zakarpattia-minority-identity",
+          "description": "Concentrated ethnic Hungarian minority (~100,000-150,000, plurality in Berehove/Berehovo district) and a distinct Rusyn identity movement (recognised as a separate ethnicity by Slovakia, Serbia, and others; treated as a Ukrainian sub-ethnos, not a nationality, under Ukrainian law) create a genuine cross-border/identity layer distinct from the oblast's Ukrainian majority.",
+          "zone_nuts_codes": []
+        }
+      ],
+      "id": "ua-zakarpattia",
+      "name": "Zakarpattia",
+      "name_local": "Закарпаття",
+      "countries": [
+        "UA"
+      ],
+      "urban_core": "Uzhhorod",
+      "secondary_centers": [
+        "Mukachevo",
+        "Khust"
+      ],
+      "identity_basis": "Former Subcarpathian Rus', part of Hungary/Czechoslovakia until 1945; distinct Rusyn ethnolinguistic identity (recognised as a separate nationality by several neighbouring states but classified as a Ukrainian sub-group domestically) and a concentrated ethnic Hungarian minority (plurality in Berehove district); isolated west of the Carpathian ridge from the rest of Ukraine.",
+      "key_industries": [
+        "furniture/woodworking",
+        "viticulture and fruit growing",
+        "tourism (Carpathian)",
+        "light manufacturing/electronics assembly (border free-economic-zone plants)"
+      ],
+      "population": 1251000,
+      "population_note": "2021 Ukrstat oblast estimate. The least war-disrupted Ukrainian oblast and a net recipient of internally displaced persons since 2022, so current population is likely higher.",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "UA71"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Uzhhorod, regional administrative/cultural centre, ~115k",
+        "diversified_industry": "furniture, viticulture/fruit growing, tourism, cross-border light manufacturing",
+        "dependent_identity": "distinct Rusyn/Hungarian-minority layered identity, dependent within Ukraine, no separatist movement despite historical border changes"
+      },
+      "nuts1_disagreement": "SR2024 Macroregion 07 (UA7) groups Zakarpattia with Ivano-Frankivsk/Ternopil/Chernivtsi; split out here as its own region given its markedly distinct Subcarpathian-Rusyn/Hungarian-minority identity, Carpathian geographic isolation, and separate historical trajectory (Hungary/Czechoslovakia vs Polish Galicia).",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 4,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.4,
+        "rationale": "Mountainous region with abundant mineral-water sources and moderate fruit/viticulture agriculture but limited arable land; Carpathian isolation reduces transport connectivity; the least war-affected Ukrainian oblast, functioning partly as an internal-refugee haven.",
+        "rationales": {
+          "water": "Carpathian headwaters (Tysa basin) give abundant water.",
+          "food": "Mountain terrain limits arable; lowland strip vineyards/orchards only.",
+          "energy": "Small hydro plus the EU grid interconnect; largely import-dependent."
+        }
+      },
+      "sources": [
+        "Ukrstat 2021 oblast estimate",
+        "Council of Europe minority-rights reporting on Hungarian/Rusyn populations in Zakarpattia",
+        "Magocsi, P.R. - history of Subcarpathian Rus'"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Uzhhorod"
+        ],
+        "central": "Uzhhorod",
+        "central_coord": [
+          22.2879,
+          48.6208
+        ],
+        "note": "Uzhhorod anchors the oblast; Mukachevo is a close second in a small region."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional legislature; oblast councils (oblasna rada) are organs of local self-government under Ukraine's unitary constitution, not parliaments."
+      },
+      "lang_family": "slavic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "kherson-frontline-occupation",
+          "description": "Parts of Kherson Oblast east of the Dnipro river remain under Russian occupation since 2022 with an active front line along the river; the Kakhovka dam destruction (June 2023) caused catastrophic flooding and destroyed regional irrigation infrastructure.",
+          "zone_nuts_codes": []
+        }
+      ],
+      "id": "ua-odesa-south",
+      "name": "Odesa / Southern Ukraine",
+      "name_local": "Одеса / Південна Україна",
+      "countries": [
+        "UA"
+      ],
+      "urban_core": "Odesa",
+      "secondary_centers": [
+        "Mykolaiv",
+        "Kherson"
+      ],
+      "identity_basis": "Black Sea maritime/port identity centred on multi-ethnic, historically cosmopolitan Odesa (founded under Catherine II; Greek/Jewish/Italian/multi-ethnic heritage). Mykolaiv and Kherson share the Black Sea steppe coastal economy and are grouped with Odesa as the dominant regional hub, per the zone-8 mandate that Odesa be modelled as its own distinct region.",
+      "key_industries": [
+        "port/maritime logistics",
+        "grain export",
+        "shipbuilding (Mykolaiv)",
+        "agriculture (grain, sunflower)",
+        "tourism"
+      ],
+      "population": 4514000,
+      "population_note": "Sum of 2021 Ukrstat oblast estimates (Odesa, Mykolaiv, Kherson). Kherson Oblast figures are highly uncertain post-2022 given partial Russian occupation (2022-2023), the November 2022 liberation of Kherson city, and the June 2023 Kakhovka dam destruction, which displaced tens of thousands from the flood zone.",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "UA42",
+        "UA41",
+        "UA43"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Odesa, metro ~1M, Ukraine's principal Black Sea port and a UNESCO World Heritage historic centre",
+        "diversified_industry": "port logistics, grain export, shipbuilding, agriculture, tourism",
+        "dependent_identity": "cosmopolitan Black Sea regional identity within Ukraine, no separatism despite historical 'Novorossiya' Russian irredentist claims (rejected locally)"
+      },
+      "nuts1_disagreement": "SR2024 Macroregion 04 (UA4) groups Odesa, Mykolaiv, Kherson AND Crimea/Sevastopol together; this region excludes Crimea/Sevastopol, modelled separately (ua-crimea) given their distinct occupied status since 2014, eight years before Kherson's occupation began.",
+      "autarky": {
+        "water": 3,
+        "food": 5,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Prime agricultural/grain-export region (Odesa port) drives the food score, but war has severely damaged port infrastructure, Kherson front-line fighting has devastated shelter, and the Kakhovka dam destruction (2023) crippled regional irrigation/hydropower.",
+        "rationales": {
+          "water": "Dnister/Dnipro lowland abstraction; Kherson canal systems war-damaged (Kakhovka dam destruction).",
+          "food": "Steppe grain and sunflower belt plus the grain-export ports.",
+          "energy": "Thermal and wind assets degraded by strikes; net importer."
+        }
+      },
+      "sources": [
+        "Ukrstat 2021 oblast estimates",
+        "UN OCHA Ukraine situation reports on Kherson flood/occupation impacts",
+        "Odesa Port Authority statistics"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Odesa"
+        ],
+        "central": "Odesa",
+        "central_coord": [
+          30.7233,
+          46.4825
+        ],
+        "note": "Odesa dominates the Black Sea littoral; Mykolaiv and Kherson are secondary."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional legislature; oblast councils (oblasna rada) are organs of local self-government under Ukraine's unitary constitution, not parliaments."
+      },
+      "lang_family": "slavic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "ua-kharkiv-sloboda",
+      "name": "Kharkiv / Slobozhanshchyna",
+      "name_local": "Харків / Слобожанщина",
+      "countries": [
+        "UA"
+      ],
+      "urban_core": "Kharkiv",
+      "secondary_centers": [
+        "Sumy"
+      ],
+      "identity_basis": "Historic Sloboda Ukraine (Slobozhanshchyna), settled by Cossack frontier militia in the 17th century; Kharkiv served as Ukraine's first Soviet-era capital (1919-1934) and remains a major scientific/university/industrial centre with a mixed Ukrainian-Russian-speaking urban culture.",
+      "key_industries": [
+        "machine building/aerospace (Kharkiv)",
+        "higher education/research",
+        "agriculture",
+        "food processing"
+      ],
+      "population": 3716000,
+      "population_note": "Sum of 2021 Ukrstat oblast estimates (Kharkiv, Sumy). Kharkiv city and oblast experienced the heaviest population outflow of any major Ukrainian region after February 2022 due to sustained shelling near the Russian border, with only partial return as of 2024-25.",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "UAA3",
+        "UAA2"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Kharkiv, pre-war metro ~2M, Ukraine's second city, major university/research/industrial centre",
+        "diversified_industry": "machine building, aerospace components, research institutes, agriculture",
+        "dependent_identity": "Sloboda Ukrainian regional identity within Ukraine, historically Russian-speaking but strongly pro-Ukrainian since 2022, no separatism"
+      },
+      "nuts1_disagreement": "SR2024 Macroregion A (UAA) groups Kharkiv, Sumy AND Chernihiv together; Chernihiv is modelled here instead within the Central-Podillia catch-all region given its Polissia-woodland geography and weaker functional ties to Kharkiv's Sloboda-steppe identity.",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 2.9,
+        "rationale": "Kharkiv city repeatedly shelled/near the front since 2022 with heavy infrastructure damage; surrounding Sloboda farmland remains productive; the energy grid is frequently targeted, causing recurring blackouts.",
+        "rationales": {
+          "water": "Siverskyi Donets basin adequate in peacetime; infrastructure repeatedly struck.",
+          "food": "Productive chernozem despite front-line proximity.",
+          "energy": "Generation and grid systematically targeted since 2022; severe deficit."
+        }
+      },
+      "sources": [
+        "Ukrstat 2021 oblast estimates",
+        "Kharkiv Regional Military Administration humanitarian reports",
+        "Kharkiv Polytechnic/university industry partnerships literature"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Kharkiv"
+        ],
+        "central": "Kharkiv",
+        "central_coord": [
+          36.2304,
+          49.9935
+        ],
+        "note": "Kharkiv, Ukraine's second city, entirely dominates Slobozhanshchyna."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional legislature; oblast councils (oblasna rada) are organs of local self-government under Ukraine's unitary constitution, not parliaments."
+      },
+      "lang_family": "slavic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "donetsk-occupation-frontline",
+          "description": "Approximately 70-80% of Donetsk Oblast's pre-war territory, including the regional capital Donetsk city, Mariupol, and Horlivka, has been under Russian occupation since 2014 (partial) and April-May 2022 (Mariupol), with an active front line running through the remainder; Ukrainian government administration relocated to Kramatorsk.",
+          "zone_nuts_codes": []
+        }
+      ],
+      "id": "ua-donetsk",
+      "name": "Donetsk",
+      "name_local": "Донеччина",
+      "countries": [
+        "UA"
+      ],
+      "urban_core": "Kramatorsk",
+      "secondary_centers": [
+        "Mariupol (occupied since 2022)",
+        "Sloviansk"
+      ],
+      "identity_basis": "Historic Donbas coal-and-steel industrial basin, heavily Russified under Soviet industrialisation; Ukrainian regional administration relocated from occupied Donetsk city to Kramatorsk after 2014; distinct industrial-proletarian identity now overlaid by active war and large-scale Russian occupation since 2014 (partial) and 2022 (major expansion).",
+      "key_industries": [
+        "coal mining (severely disrupted)",
+        "steel/metallurgy (severely disrupted)",
+        "heavy machinery",
+        "chemical industry (pre-war)"
+      ],
+      "population": 4100000,
+      "population_note": "2021 Ukrstat oblast estimate for the whole oblast as of that date. By 2024-25 the government-controlled portion of Donetsk Oblast has lost the large majority of its pre-war population to displacement, and a substantial share of the oblast (including Donetsk city, Mariupol, and most industrial areas) is under Russian occupation with population figures unverifiable from Ukrainian sources - treat this figure as a pre-war ceiling, not a current count.",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "UA21"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Kramatorsk (relocated oblast administrative seat) / historic hub Donetsk city (occupied); pre-war conurbation >2M",
+        "diversified_industry": "coal, steel, heavy machinery (pre-war baseline; severely war-degraded)",
+        "dependent_identity": "distinct Donbas industrial identity within Ukraine; the Russian-backed separatist project since 2014 is explicitly rejected as illegitimate by the Ukrainian state and the vast majority of the international community - included here as Ukrainian territory per international law, with occupation flagged, not as an endorsement of separatist claims"
+      },
+      "nuts1_disagreement": "SR2024 Macroregion 02 (UA2) groups Donetsk with Luhansk; modelled as two separate regions here per the zone-8 mandate that Donetsk and Luhansk each be distinct, reflecting their historically separate oblast administrations despite a shared Donbas identity.",
+      "autarky": {
+        "water": 2,
+        "food": 2,
+        "shelter": 1,
+        "energy": 1,
+        "transportation": 2,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 1.7,
+        "rationale": "Active war zone with large portions occupied/destroyed since 2014/2022; heavy industry (coal/steel) devastated; infrastructure severely war-degraded across every dimension, most acutely shelter and energy.",
+        "rationales": {
+          "water": "Siverskyi Donets canal largely destroyed; acute wartime shortage.",
+          "food": "Steppe farmland heavily mined and depopulated.",
+          "energy": "Coal-industrial base wrecked or under occupation."
+        }
+      },
+      "sources": [
+        "Ukrstat 2021 oblast estimate (pre-war baseline)",
+        "UN OCHA/UNHCR Ukraine displacement reporting for Donetsk Oblast",
+        "Kyiv School of Economics war-damage assessments"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Donetsk"
+        ],
+        "central": "Donetsk",
+        "central_coord": [
+          37.8028,
+          48.0159
+        ],
+        "note": "Donetsk city was the agglomeration core; Mariupol was the second pole before its 2022 destruction."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional legislature; oblast councils (oblasna rada) are organs of local self-government under Ukraine's unitary constitution, not parliaments."
+      },
+      "lang_family": "slavic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "luhansk-occupation-status",
+          "description": "Nearly the entire pre-war territory of Luhansk Oblast, including the former administrative centre Luhansk city and the wartime-relocated seat Sievierodonetsk, has been under Russian or Russian-backed separatist control since 2014 (partial) and 2022 (near-total); Ukrainian government control is limited to small border areas.",
+          "zone_nuts_codes": []
+        }
+      ],
+      "id": "ua-luhansk",
+      "name": "Luhansk",
+      "name_local": "Луганщина",
+      "countries": [
+        "UA"
+      ],
+      "urban_core": "Sievierodonetsk",
+      "secondary_centers": [
+        "Starobilsk"
+      ],
+      "identity_basis": "Eastern Donbas coal-mining oblast; the vast majority of Luhansk Oblast has been under Russian/separatist occupation since 2014, expanding to near-total occupation after 2022; shares a Donbas industrial-Russified identity with Donetsk but is administered as a historically separate oblast.",
+      "key_industries": [
+        "coal mining (severely disrupted)",
+        "chemical industry (pre-war)",
+        "heavy industry"
+      ],
+      "population": 2101000,
+      "population_note": "2021 Ukrstat oblast estimate as a pre-war ceiling. The oblast is now almost entirely under Russian occupation and current population is unverifiable from Ukrainian government sources; treat with high uncertainty.",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "UA22"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Luhansk city (occupied) / Sievierodonetsk (relocated seat, occupied since June 2022)",
+        "diversified_industry": "coal mining, chemical industry (pre-war baseline, severely war-degraded)",
+        "dependent_identity": "Donbas industrial identity within Ukraine; Russian-backed separatist claims since 2014 rejected as illegitimate under international law - included as Ukrainian territory with occupation flagged"
+      },
+      "nuts1_disagreement": "SR2024 Macroregion 02 (UA2) groups Luhansk with Donetsk; modelled separately per the zone-8 mandate for distinct Donetsk/Luhansk regions.",
+      "autarky": {
+        "water": 2,
+        "food": 2,
+        "shelter": 1,
+        "energy": 1,
+        "transportation": 2,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 1.7,
+        "rationale": "Comparable war devastation to Donetsk: near-total occupation since 2014/2022, collapsed coal/chemical industry, and severely degraded infrastructure across every autarky dimension.",
+        "rationales": {
+          "water": "Donets tributaries adequate physically; systems war-damaged.",
+          "food": "Steppe farming disrupted by full occupation.",
+          "energy": "Coal-based generation under occupation; effectively severed from Ukraine's grid."
+        }
+      },
+      "sources": [
+        "Ukrstat 2021 oblast estimate (pre-war baseline)",
+        "UN OCHA Ukraine situation reports",
+        "OSCE Special Monitoring Mission to Ukraine archival reporting (2014-2022)"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Luhansk"
+        ],
+        "central": "Luhansk",
+        "central_coord": [
+          39.3078,
+          48.574
+        ],
+        "note": "Luhansk city dominates; Sievierodonetsk agglomeration destroyed/occupied since 2022."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional legislature; oblast councils (oblasna rada) are organs of local self-government under Ukraine's unitary constitution, not parliaments."
+      },
+      "lang_family": "slavic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "zaporizhzhia-npp-and-frontline",
+          "description": "The Zaporizhzhia Nuclear Power Plant, Europe's largest, and roughly the eastern half of Zaporizhzhia Oblast (including Melitopol and Berdiansk) have been under Russian occupation since 2022, with the plant offline and repeatedly at risk amid front-line fighting; flag limited to the occupied/frontline districts of the oblast, distinct from unoccupied Dnipropetrovsk.",
+          "zone_nuts_codes": []
+        }
+      ],
+      "id": "ua-dnipro-zaporizhzhia",
+      "name": "Dnipro / Zaporizhzhia",
+      "name_local": "Дніпро / Запоріжжя",
+      "countries": [
+        "UA"
+      ],
+      "urban_core": "Dnipro",
+      "secondary_centers": [
+        "Zaporizhzhia",
+        "Kryvyi Rih",
+        "Kropyvnytskyi"
+      ],
+      "identity_basis": "Central-eastern industrial heartland along the lower Dnipro; historic Zaporozhian Sich free-steppe territory (origin of the Zaporizhzhia name) later colonised as the empire's 'New Russia' frontier; major heavy-industry/aerospace/metallurgy base (Dnipro rocket engines, Kryvyi Rih iron-ore basin, Zaporizhzhia steel and nuclear power). Kirovohrad oblast (Kropyvnytskyi) is re-homed here from the former central catch-all: its steppe settlement history is Zaporozhian-frontier rather than Hetmanate-regimental, and its economy ties into the Kryvyi Rih mining basin that straddles the oblast line.",
+      "key_industries": [
+        "steel/metallurgy",
+        "iron-ore mining (Kryvyi Rih)",
+        "aerospace/rocketry (Dnipro - Yuzhmash)",
+        "nuclear power (Zaporizhzhia NPP, currently Russian-occupied and offline)",
+        "machine building"
+      ],
+      "population": 5680000,
+      "population_note": "Sum of 2021 Ukrstat oblast estimates (Dnipropetrovsk, Zaporizhzhia, Kirovohrad ~0.90M). Zaporizhzhia city and the government-controlled western part of that oblast lie near an active front line since 2022, causing significant displacement not yet reflected in this baseline.",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "UAB1",
+        "UAB2",
+        "UA91"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Dnipro, metro >1.5M, major industrial/aerospace centre",
+        "diversified_industry": "steel, iron ore, aerospace/rocketry, nuclear power, machine building",
+        "dependent_identity": "distinct Cossack-heritage industrial regional identity within Ukraine, no separatism in government-controlled areas"
+      },
+      "nuts1_disagreement": "SR2024 Macroregion B (UAB) groups Dnipropetrovsk and Zaporizhzhia; Kirovohrad (UA91, SR macroregion UA9) is added here on Zaporozhian-steppe historical and Kryvyi-Rih economic grounds - the explicit re-homing decision required by draft-v0.1.2 when the central catch-all was dissolved.",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.0,
+        "rationale": "Major industrial base (steel, iron ore, aerospace, nuclear) and solid agriculture, but Zaporizhzhia city's proximity to the front and the occupied/offline Zaporizhzhia Nuclear Power Plant - a major national energy loss - depress shelter and energy scores.",
+        "rationales": {
+          "water": "Dnipro reservoir cascade, though the Kakhovka collapse disrupted downstream balance.",
+          "food": "Steppe chernozem plus Kirovohrad's grain belt keep the region a net producer.",
+          "energy": "Zaporizhzhia NPP occupied and offline - a national-scale loss; hydro dams and thermal plants damaged."
+        }
+      },
+      "sources": [
+        "Ukrstat 2021 oblast estimates",
+        "IAEA reporting on Zaporizhzhia Nuclear Power Plant status",
+        "Kyiv School of Economics regional war-damage assessments"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Dnipro",
+          "Zaporizhzhia",
+          "Kryvyi Rih"
+        ],
+        "central": "Dnipro",
+        "central_coord": [
+          35.0462,
+          48.4647
+        ],
+        "note": "Polycentric industrial belt along the lower Dnipro: Dnipro (largest), Zaporizhzhia and Kryvyi Rih each anchor a distinct industrial complex; Kropyvnytskyi joins as the steppe-agricultural fourth center."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional legislature; oblast councils (oblasna rada) are organs of local self-government under Ukraine's unitary constitution, not parliaments."
+      },
+      "lang_family": "slavic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "crimea-occupation-status",
+          "description": "The Russian Federation unilaterally annexed Crimea (Autonomous Republic of Crimea + Sevastopol) in March 2014 following an internationally unrecognised referendum; the UN General Assembly (Resolution 68/262) and the vast majority of states continue to recognise Crimea as Ukrainian sovereign territory under military occupation. Included here on that basis, with occupation status flagged as an independently toggleable layer.",
+          "zone_nuts_codes": [
+            "UA44",
+            "UA45"
+          ]
+        }
+      ],
+      "id": "ua-crimea",
+      "name": "Crimea",
+      "name_local": "Крим / Къырым",
+      "countries": [
+        "UA"
+      ],
+      "urban_core": "Simferopol",
+      "secondary_centers": [
+        "Sevastopol",
+        "Yalta"
+      ],
+      "identity_basis": "Autonomous Republic of Crimea plus the separately-administered city of Sevastopol; historic homeland of the Crimean Tatars (deported en masse by Stalin in 1944, partial return since the 1990s) alongside a Russian-speaking majority population; internationally recognised as Ukrainian territory but under Russian military occupation and unilateral annexation since March 2014.",
+      "key_industries": [
+        "tourism (pre-occupation)",
+        "viticulture",
+        "naval/military (Sevastopol, historic Black Sea Fleet base)",
+        "agriculture"
+      ],
+      "population": 2356000,
+      "population_note": "2014 Ukrainian State Statistics Service estimate (last pre-occupation figure). Russian occupation authorities report different, contested figures reflecting large-scale demographic change (Russian in-migration, Crimean Tatar and pro-Ukrainian emigration) since 2014 that Ukraine and most of the international community do not recognise as valid census data.",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "UA44",
+        "UA45"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Simferopol, regional administrative centre, ~340k",
+        "diversified_industry": "tourism, viticulture, naval/military, agriculture (pre-occupation baseline)",
+        "dependent_identity": "layered Crimean Tatar/Russian-speaking/Ukrainian identity; occupation has suppressed the region's dependent (non-separatist) status as recognised under Ukrainian sovereignty"
+      },
+      "nuts1_disagreement": "SR2024 Macroregion 04 (UA4) groups Crimea/Sevastopol with Odesa/Mykolaiv/Kherson; split out here as its own region given its distinct occupied status since 2014 (eight years before the rest of southern Ukraine came under partial occupation) and its historically separate Autonomous Republic status (1991-2014) within Ukraine.",
+      "autarky": {
+        "water": 1,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.4,
+        "rationale": "Chronic water crisis since Ukraine severed the North Crimean Canal in 2014 (partially restored by Russia post-2022 occupation of the Kherson canal source, but precarious); moderate agriculture/viticulture; occupied status creates data/access limitations, so scores are approximate, extrapolated from pre-2014 baselines adjusted for the known canal disruption.",
+        "rationales": {
+          "water": "Chronically water-scarce; dependent on the North Crimean Canal (weaponised since 2014).",
+          "food": "Dry-steppe agriculture and viticulture; irrigation-dependent.",
+          "energy": "Isolated from Ukraine's grid since occupation; supplied from Russia."
+        }
+      },
+      "sources": [
+        "Ukrstat 2014 pre-occupation population estimate (last available)",
+        "UN General Assembly Resolution 68/262 (2014)",
+        "OHCHR human rights monitoring reports on occupied Crimea"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Simferopol"
+        ],
+        "central": "Simferopol",
+        "central_coord": [
+          34.1108,
+          44.9521
+        ],
+        "note": "Simferopol is the administrative hub; Sevastopol a separate naval city."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "Under Ukrainian law an Autonomous Republic with its own constitution and (suspended) Verkhovna Rada of Crimea; under occupation since 2014, so no legitimate regional legislature currently functions."
+      },
+      "lang_family": "slavic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "transnistria-breakaway-status",
+          "description": "Transnistria (Pridnestrovian Moldavian Republic), a strip of territory on the east bank of the Dniester river (~4,163 km2, ~350,000-370,000 residents per its own unrecognised authorities), has functioned as a de facto independent, Russian-garrisoned state since a 1990-92 war, recognised by no UN member state. No NUTS/CNTR sub-geometry exists to map it separately from Moldova's single CNTR country polygon, so this flag is descriptive only and will not produce a distinct shape on conflicts.geojson (documented data limitation).",
+          "zone_nuts_codes": []
+        }
+      ],
+      "id": "md-moldova",
+      "name": "Moldova",
+      "name_local": "Republica Moldova / Молдова",
+      "countries": [
+        "MD"
+      ],
+      "urban_core": "Chișinău",
+      "secondary_centers": [
+        "Bălți"
+      ],
+      "identity_basis": "Single sovereign state, modelled as one unit given CNTR-only geometry (no NUTS subdivision). Romanian-speaking majority with a historic Bessarabian identity shaped by Russian/Soviet then Romanian then Soviet rule; the Transnistrian breakaway region (east bank of the Dniester) has functioned as an unrecognised de facto state since 1990.",
+      "key_industries": [
+        "wine and viticulture",
+        "agriculture (fruit, grain)",
+        "textiles",
+        "light manufacturing",
+        "IT services (Chișinău)"
+      ],
+      "population": 2437000,
+      "population_note": "National Bureau of Statistics of the Republic of Moldova (NBS), 2023 estimate for government-controlled territory (~2.44M), excluding Transnistria. Transnistrian authorities separately report ~350,000-370,000 residents, bringing a combined estimate to roughly 2.8M, though Transnistrian figures are not independently verified. Heavy outward labour emigration (EU, Russia) affects both figures.",
+      "nuts_source": "CNTR",
+      "nuts_codes": [
+        "MD"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Chișinău, metro ~700k, national capital and cultural/economic centre",
+        "diversified_industry": "wine, agriculture, textiles, light manufacturing, a growing IT sector",
+        "dependent_identity": "single sovereign state, not a sub-national region; modelled as one unit purely because CNTR geometry provides no internal subdivision (see Global Constraints geometry-source list)"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Fertile black-soil agriculture and viticulture support strong food self-sufficiency, but Moldova is critically energy-import-dependent (historically reliant on Transnistria's Cuciurgan power station and Russian gas transiting Ukraine, a supply that ended in January 2025), and its light-industrial/clothing base remains modest post-Soviet.",
+        "rationales": {
+          "water": "Dnister and Prut abstraction adequate but pollution-stressed.",
+          "food": "Chernozem-based agriculture (wine, fruit, grain) is the economy's backbone.",
+          "energy": "Nearly all gas historically imported; MGRES power plant sits in breakaway Transnistria."
+        }
+      },
+      "sources": [
+        "National Bureau of Statistics of the Republic of Moldova, 2023 population estimate",
+        "International Crisis Group reporting on Transnistria",
+        "IEA/Energy Community Secretariat reporting on Moldova's energy dependence"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Chisinau"
+        ],
+        "central": "Chisinau",
+        "central_coord": [
+          28.8638,
+          47.0105
+        ],
+        "note": "Chisinau is the single dominant urban center of the state."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Parliament of the Republic of Moldova",
+        "note": "Sovereign state modelled as one unit; national unicameral legislature."
+      },
+      "lang_family": "romance"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "abkhazia-south-ossetia-de-facto-status",
+          "description": "Abkhazia (~8,600 km2, ~245,000 residents) and South Ossetia/the Tskhinvali Region (~3,900 km2, ~30,000 residents) declared independence and have functioned as de facto states under Russian military protection since the 1992-93 and 2008 conflicts respectively; recognised by Russia and a small number of other states but not by Georgia or the great majority of the UN. No NUTS/CNTR sub-geometry exists to map them separately from Georgia's single CNTR country polygon (documented data limitation, consistent with the Moldova/Transnistria treatment).",
+          "zone_nuts_codes": []
+        }
+      ],
+      "id": "ge-georgia",
+      "name": "Georgia",
+      "name_local": "საქართველო (Sakartvelo)",
+      "countries": [
+        "GE"
+      ],
+      "urban_core": "Tbilisi",
+      "secondary_centers": [
+        "Batumi",
+        "Kutaisi"
+      ],
+      "identity_basis": "Single sovereign state, modelled as one unit given CNTR-only geometry. Distinct Georgian language/script (not Indo-European) and Georgian Orthodox Christian identity dating to the 4th century; Abkhazia and South Ossetia are de facto independent following the 2008 Russo-Georgian war.",
+      "key_industries": [
+        "viticulture and winemaking",
+        "agriculture (fruit, historically tea)",
+        "tourism",
+        "hydropower",
+        "mining (manganese, copper)"
+      ],
+      "population": 3700000,
+      "population_note": "National Statistics Office of Georgia (Geostat), 2023 estimate (~3.7M) for territory under Tbilisi's control, excluding Abkhazia and South Ossetia. Long-term emigration since the 1990s has substantially reduced Georgia's population from a Soviet-era peak of over 5M.",
+      "nuts_source": "CNTR",
+      "nuts_codes": [
+        "GE"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Tbilisi, metro ~1.2M, national capital and cultural/economic centre",
+        "diversified_industry": "viticulture, agriculture, tourism, hydropower, mining",
+        "dependent_identity": "single sovereign state; modelled as one unit purely because CNTR geometry provides no internal subdivision"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 5,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Abundant mountain-river hydropower and water resources plus historically strong wine/fruit/tea agriculture drive the higher water and food scores; industrial and clothing/textile bases remain comparatively modest, and Abkhazia/South Ossetia's de facto separation removes meaningful territory and resources from Tbilisi's effective control.",
+        "rationales": {
+          "water": "Caucasus rivers give one of Europe's richest per-capita water endowments.",
+          "food": "Diverse subtropical-to-alpine agriculture; net importer of grain.",
+          "energy": "Hydro covers most electricity; gas imported (Azerbaijan)."
+        }
+      },
+      "sources": [
+        "National Statistics Office of Georgia (Geostat), 2023 population estimate",
+        "International Crisis Group reporting on Abkhazia/South Ossetia",
+        "Georgian Ministry of Energy hydropower capacity reports"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Tbilisi"
+        ],
+        "central": "Tbilisi",
+        "central_coord": [
+          44.8271,
+          41.7151
+        ],
+        "note": "Tbilisi dominates; Batumi and Kutaisi are secondary."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Parliament of Georgia (Sakartvelos Parlamenti)",
+        "note": "Sovereign state modelled as one unit; national unicameral legislature."
+      },
+      "lang_family": "kartvelian"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": true,
+      "conflict_flags": [],
+      "id": "ad-andorra",
+      "name": "Andorra",
+      "name_local": "Andorra",
+      "countries": [
+        "AD"
+      ],
+      "urban_core": "Andorra la Vella",
+      "secondary_centers": [
+        "Escaldes-Engordany"
+      ],
+      "identity_basis": "Single-unit exception microstate; a co-principality since 1278 (shared sovereignty of the President of France and the Bishop of Urgell), with a distinct Catalan-speaking Pyrenean identity.",
+      "key_industries": [
+        "tourism/skiing",
+        "retail (duty-free)",
+        "banking/finance"
+      ],
+      "population": 80000,
+      "population_note": "Departament d'Estadística d'Andorra, 2023 estimate (~80,000), of whom a large share are foreign-born residents/workers.",
+      "nuts_source": "CNTR",
+      "nuts_codes": [
+        "AD"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Andorra la Vella, national capital, ~23k, sole urban/administrative centre",
+        "diversified_industry": "tourism, duty-free retail, banking - narrow but genuinely diversified within a microstate economy",
+        "dependent_identity": "single-unit exception microstate per Global Constraints; sovereign co-principality, not a sub-national region"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 4,
+        "food": 1,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 2,
+        "hygiene_healthcare": 4,
+        "clothing": 1,
+        "composite": 2.4,
+        "rationale": "Alpine Pyrenean water supply is ample, but negligible arable land forces near-total food imports; strong healthcare/hygiene from high per-capita income; virtually no domestic clothing manufacturing; a tourism/banking economy leaves little energy self-sufficiency.",
+        "rationales": {
+          "water": "Pyrenean headwaters give ample supply.",
+          "food": "Negligible arable land; near-total import dependence.",
+          "energy": "Small hydro covers a fraction; electricity imported from ES/FR."
+        }
+      },
+      "sources": [
+        "Departament d'Estadística d'Andorra, 2023 population estimate",
+        "Govern d'Andorra economic diversification reports"
+      ],
+      "default_visible": true,
+      "special_status": "co-principality microstate",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Andorra la Vella"
+        ],
+        "central": "Andorra la Vella",
+        "central_coord": [
+          1.5218,
+          42.5063
+        ],
+        "note": "Single urban valley; the capital and Escaldes-Engordany form one continuous center."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Consell General d'Andorra",
+        "note": "Sovereign co-principality; the Consell General (est. 1419) is among Europe's oldest continuous parliaments."
+      },
+      "lang_family": "romance"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": true,
+      "conflict_flags": [],
+      "id": "mc-monaco",
+      "name": "Monaco",
+      "name_local": "Monaco / Múnegu",
+      "countries": [
+        "MC"
+      ],
+      "urban_core": "Monaco-Ville / Monte Carlo",
+      "secondary_centers": [],
+      "identity_basis": "Single-unit exception microstate; sovereign principality since 1297 under the House of Grimaldi; the densest sovereign state in the world, entirely urbanised.",
+      "key_industries": [
+        "banking/finance",
+        "tourism/casino",
+        "real estate",
+        "yachting/luxury services"
+      ],
+      "population": 39000,
+      "population_note": "IMSEE (Monaco statistics institute), 2023 estimate (~39,150); over half of residents are foreign nationals.",
+      "nuts_source": "CNTR",
+      "nuts_codes": [
+        "MC"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Monaco-Ville/Monte Carlo - the entire state is one contiguous urban centre",
+        "diversified_industry": "banking, casino/tourism, real estate, luxury services - a dense service economy",
+        "dependent_identity": "single-unit exception microstate; sovereign principality, not a sub-national region"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 3,
+        "food": 1,
+        "shelter": 1,
+        "energy": 1,
+        "transportation": 2,
+        "hygiene_healthcare": 5,
+        "clothing": 1,
+        "composite": 2.0,
+        "rationale": "Entirely reclaimed/built-up urban territory (2.1 km2) leaves no room for food, energy, or housing self-sufficiency, and it imports essentially everything; world-class private healthcare (a wealthy resident base) is the sole standout dimension.",
+        "rationales": {
+          "water": "Supplied via French networks and local desalination; no autonomous source.",
+          "food": "Zero agriculture on 2.1 km2 of built-up land.",
+          "energy": "Entirely dependent on the French grid."
+        }
+      },
+      "sources": [
+        "IMSEE (Institut Monegasque de la Statistique), 2023 population estimate",
+        "Monaco Government Tourism and Economic Development reports"
+      ],
+      "default_visible": true,
+      "special_status": "sovereign city-state microstate",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Monaco"
+        ],
+        "central": "Monaco",
+        "central_coord": [
+          7.4246,
+          43.7384
+        ],
+        "note": "The entire state is one urban center."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Conseil National de Monaco",
+        "note": "Sovereign principality; elected Conseil National shares legislative power with the Prince."
+      },
+      "lang_family": "romance"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": true,
+      "conflict_flags": [],
+      "id": "sm-san-marino",
+      "name": "San Marino",
+      "name_local": "San Marino",
+      "countries": [
+        "SM"
+      ],
+      "urban_core": "City of San Marino",
+      "secondary_centers": [
+        "Serravalle"
+      ],
+      "identity_basis": "Single-unit exception microstate; claims to be the world's oldest surviving republic (founded 301 CE per tradition); fully enclaved within Italy, with a distinct Sammarinese civic identity.",
+      "key_industries": [
+        "tourism",
+        "banking/finance",
+        "ceramics and textiles",
+        "postage stamps/collectibles"
+      ],
+      "population": 34000,
+      "population_note": "Ufficio di Stato per l'Informatica e le Statistica di San Marino, 2023 estimate (~34,000).",
+      "nuts_source": "CNTR",
+      "nuts_codes": [
+        "SM"
+      ],
+      "inclusion_test": {
+        "urban_hub": "City of San Marino (hilltop capital) and Serravalle (largest settlement/commercial centre)",
+        "diversified_industry": "tourism, banking, ceramics/textiles, collectibles",
+        "dependent_identity": "single-unit exception microstate; sovereign republic enclaved within Italy, not a sub-national region"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 3,
+        "food": 2,
+        "shelter": 2,
+        "energy": 1,
+        "transportation": 2,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 2.3,
+        "rationale": "A hilltop enclave surrounded entirely by Italy with minimal arable land forces heavy food imports; healthcare integrated with the Italian system supports the hygiene score; a modest historic textile/ceramics industry keeps clothing above the microstate floor.",
+        "rationales": {
+          "water": "No significant own catchment; supplied through Italian networks.",
+          "food": "Minimal arable land on Monte Titano's slopes.",
+          "energy": "Fully dependent on the Italian grid."
+        }
+      },
+      "sources": [
+        "Ufficio di Stato per l'Informatica e le Statistica (San Marino), 2023 population estimate",
+        "Eurostat correspondence data for San Marino"
+      ],
+      "default_visible": true,
+      "special_status": "enclave microstate",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "City of San Marino"
+        ],
+        "central": "City of San Marino",
+        "central_coord": [
+          12.4578,
+          43.9424
+        ],
+        "note": "Hilltop capital plus Serravalle below form the single center of the enclave."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio Grande e Generale",
+        "note": "Sovereign republic; 60-member Grand and General Council, continuous since the medieval Arengo."
+      },
+      "lang_family": "romance"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": true,
+      "conflict_flags": [],
+      "id": "va-vatican-city",
+      "name": "Vatican City",
+      "name_local": "Città del Vaticano / Status Civitatis Vaticanae",
+      "countries": [
+        "VA"
+      ],
+      "urban_core": "Vatican City",
+      "secondary_centers": [],
+      "identity_basis": "Single-unit exception microstate; the world's smallest sovereign state (0.49 km2), seat of the Holy See and the Roman Catholic Church since 1929 (Lateran Treaty); population consists almost entirely of clergy, Swiss Guards, and Curia staff rather than an ordinary resident population.",
+      "key_industries": [
+        "religious administration (Holy See/Curia)",
+        "museums and tourism",
+        "publishing (Vatican press)"
+      ],
+      "population": 800,
+      "population_note": "Approximate resident population per Holy See press office figures (~800, overwhelmingly clergy and Swiss Guard); a separate, smaller cohort (~450) hold Vatican citizenship, which is granted by office and lapses on leaving that office rather than by birth or residence.",
+      "nuts_source": "CNTR",
+      "nuts_codes": [
+        "VA"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Vatican City itself - the entire state is one urban/ecclesiastical precinct",
+        "diversified_industry": "religious administration, museums/tourism, publishing - narrow by design, not a general economy",
+        "dependent_identity": "single-unit exception microstate; sovereign city-state, not a sub-national region"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 2,
+        "food": 1,
+        "shelter": 2,
+        "energy": 1,
+        "transportation": 1,
+        "hygiene_healthcare": 3,
+        "clothing": 1,
+        "composite": 1.6,
+        "rationale": "Entirely import-dependent enclave within Rome with zero agriculture or industry; even water and electricity are supplied via Italian infrastructure agreements; included per the brief's instruction to score Food 1 for the world's smallest sovereign state.",
+        "rationales": {
+          "water": "Water supplied by Rome's utility under the Lateran Treaty arrangements.",
+          "food": "Zero agriculture; fully import-dependent.",
+          "energy": "Electricity supplied via Italian infrastructure agreements."
+        }
+      },
+      "sources": [
+        "Holy See Press Office population/citizenship figures",
+        "Lateran Treaty (1929) territorial and status provisions"
+      ],
+      "default_visible": true,
+      "special_status": "sovereign enclave",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Vatican City"
+        ],
+        "central": "Vatican City",
+        "central_coord": [
+          12.4534,
+          41.9029
+        ],
+        "note": "The entire state is one ecclesiastical precinct."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "Legislative power rests with the appointed Pontifical Commission for Vatican City State - an absolute elective monarchy, not a parliament."
+      },
+      "lang_family": "romance"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "ua-hetmanate",
+      "name": "Cossack Hetmanate (Left-Bank Ukraine)",
+      "name_local": "Гетьманщина (Лівобережна Україна)",
+      "countries": [
+        "UA"
+      ],
+      "urban_core": "Poltava",
+      "secondary_centers": [
+        "Cherkasy",
+        "Chernihiv",
+        "Kremenchuk",
+        "Nizhyn"
+      ],
+      "identity_basis": "Heartland of the Cossack Hetmanate (1649-1764), the autonomous Cossack polity founded by Bohdan Khmelnytskyi that anchors modern Ukrainian national historiography: Poltava and Chernihiv formed its Left-Bank regimental core (capitals at Baturyn and Hlukhiv in Chernihiv land), while Cherkasy - though on the Right Bank - was the original Cossack cradle, holding Khmelnytskyi's capital Chyhyryn and the Kholodnyi Yar insurgent tradition. A shared regimental-town heritage, baroque church landscape ('Cossack baroque'), and the Poltava dialect basis of literary Ukrainian bind the three oblasts.",
+      "key_industries": [
+        "grain and sugar-beet agriculture",
+        "oil and gas extraction (Poltava basin)",
+        "food processing",
+        "machine building (Kremenchuk vehicles, refinery)"
+      ],
+      "population": 3530000,
+      "population_note": "Sum of 2021 Ukrstat oblast estimates: Poltava (~1.37M) + Cherkasy (~1.18M) + Chernihiv (~0.98M). Chernihiv oblast suffered heavy 2022 invasion damage in its north; displacement not reflected in this baseline.",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "UA92",
+        "UA93",
+        "UAA1"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Poltava (~280k) is the largest center and historic-symbolic anchor; stated honestly, this is a three-oblast region of mid-size regimental towns rather than a single-metro region",
+        "diversified_industry": "chernozem grain/sugar agriculture, Ukraine's main onshore oil-and-gas basin (Poltava), Kremenchuk's refinery and vehicle plants, food processing",
+        "dependent_identity": "the Hetmanate legacy is the founding myth of modern Ukrainian statehood - an identity emphatically within, indeed constitutive of, Ukraine; no separatism"
+      },
+      "nuts1_disagreement": "SR2024 places Poltava and Cherkasy in macroregion UA9 with Kirovohrad, and Chernihiv in UAA with Sumy/Kharkiv; this region instead unites the three historic Hetmanate-core oblasts, re-homing Kirovohrad to the Dnipro industrial-steppe region (Zaporozhian free-lands heritage, Kryvyi Rih economic ties) and leaving Sumy with Slobozhanshchyna where its settlement history belongs.",
+      "autarky": {
+        "water": 4,
+        "food": 5,
+        "shelter": 4,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.6,
+        "rationale": "Prime chernozem agriculture and Ukraine's principal domestic gas basin give strong food and fair energy standing; the Dnipro and Kremenchuk reservoir anchor water; dispersed mid-size towns keep transport and services moderate.",
+        "rationales": {
+          "water": "Dnipro river frontage with the Kremenchuk reservoir plus Desna/Vorskla basins.",
+          "food": "Core chernozem belt: grain, sugar beet and dairy make this one of Ukraine's strongest food-surplus areas.",
+          "energy": "Poltava oblast hosts most of Ukraine's domestic gas production and the Kremenchuk refinery (war-damaged); still short of full self-supply."
+        }
+      },
+      "sources": [
+        "Ukrstat 2021 oblast population estimates",
+        "Subtelny, 'Ukraine: A History' (Hetmanate chapters)",
+        "Naftogaz/UkrGasVydobuvannya production reporting (Poltava basin)",
+        "Eurostat/GISCO SR2024 non-EU statistical regions documentation"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Poltava",
+          "Cherkasy",
+          "Chernihiv"
+        ],
+        "central": "Poltava",
+        "central_coord": [
+          34.5514,
+          49.5883
+        ],
+        "note": "Three regimental-heritage oblast capitals of similar order; Poltava listed central as the largest and the region's historic-symbolic anchor."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional legislature; oblast councils (oblasna rada) are organs of local self-government under Ukraine's unitary constitution, not parliaments."
+      },
+      "lang_family": "slavic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "ua-podillia",
+      "name": "Podillia",
+      "name_local": "Поділля",
+      "countries": [
+        "UA"
+      ],
+      "urban_core": "Vinnytsia",
+      "secondary_centers": [
+        "Khmelnytskyi",
+        "Kamianets-Podilskyi"
+      ],
+      "identity_basis": "Historic Podillia (Podolia): the upland between the Dnister and Southern Buh, a distinct named land since the 14th century (Podolian Voivodeship under Poland-Lithuania, later Podolia Governorate), with its emblematic fortress capital Kamianets-Podilskyi. Right-Bank agrarian Ukraine shaped by Polish-Lithuanian landlord heritage, dense small-town (shtetl) history, and the Podillian dialect group; today organized by Vinnytsia, one of Ukraine's fastest-modernising mid-size cities, with Khmelnytskyi as second pole.",
+      "key_industries": [
+        "grain, sugar-beet and fruit agriculture",
+        "food processing (Vinnytsia poultry/confectionery)",
+        "nuclear power (Khmelnytskyi NPP)",
+        "light manufacturing and logistics"
+      ],
+      "population": 2770000,
+      "population_note": "Sum of 2021 Ukrstat oblast estimates: Vinnytsia (~1.53M) + Khmelnytskyi (~1.24M). A significant IDP destination since 2022; current population likely exceeds this baseline.",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "UA51",
+        "UA53"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Vinnytsia (~370k) - the region's dominant city and a national model of municipal reform",
+        "diversified_industry": "sugar/grain/fruit agribusiness, major food-processing plants, the Khmelnytskyi nuclear power plant, growing logistics role on the western corridors",
+        "dependent_identity": "Podillia is one of Ukraine's oldest named historic lands, an identity fully within Ukraine; no separatism"
+      },
+      "nuts1_disagreement": "SR2024 macroregion UA5 groups Vinnytsia and Khmelnytskyi with Ternopil; Ternopil sits in ua-lviv-galicia here (its Galician history under Austria diverges from Podillia's Russian-imperial governorate history), so this region is UA5 minus Ternopil.",
+      "autarky": {
+        "water": 4,
+        "food": 5,
+        "shelter": 4,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.7,
+        "rationale": "Chernozem agribusiness surplus plus the Khmelnytskyi nuclear plant (with expansion under way) make Podillia unusually self-sufficient in both food and electricity; the Dnister/Buh uplands secure water; rail links to the EU corridors are improving from a modest base.",
+        "rationales": {
+          "water": "Dnister and Southern Buh headwater uplands with reliable flow.",
+          "food": "Ukraine's sugar-beet heartland with strong grain, fruit and poultry output - clear surplus producer.",
+          "energy": "Khmelnytskyi NPP (2 operating units, 2 more under construction) plus Dnister-basin hydro nearby make the region a net electricity exporter."
+        }
+      },
+      "sources": [
+        "Ukrstat 2021 oblast population estimates",
+        "Energoatom, Khmelnytskyi NPP status reporting",
+        "Magocsi, 'A History of Ukraine' (Podolia chapters)",
+        "Eurostat/GISCO SR2024 non-EU statistical regions documentation"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Vinnytsia",
+          "Khmelnytskyi"
+        ],
+        "central": "Vinnytsia",
+        "central_coord": [
+          28.4682,
+          49.2331
+        ],
+        "secondary": "Khmelnytskyi",
+        "secondary_coord": [
+          26.9871,
+          49.4229
+        ],
+        "note": "Two oblast capitals of the same order; Vinnytsia is the clearly stronger organizing center, Khmelnytskyi the western counterweight."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional legislature; oblast councils (oblasna rada) are organs of local self-government under Ukraine's unitary constitution, not parliaments."
+      },
+      "lang_family": "slavic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "ua-volhynia",
+      "name": "Volhynia and Polissia",
+      "name_local": "Волинь і Полісся",
+      "countries": [
+        "UA"
+      ],
+      "urban_core": "Lutsk",
+      "secondary_centers": [
+        "Rivne",
+        "Zhytomyr",
+        "Kovel"
+      ],
+      "identity_basis": "Historic Volhynia - a named land since Kyivan Rus (Volodymyr-Volynskyi principality), later the Volhynian Voivodeship and Governorate - together with the Polissia woodland belt that stretches east across Zhytomyr. Flat glacial lowlands of forest, marsh and lakes distinct from both Galicia's Austrian heritage to the south and the chernozem steppe to the east; the Volhynian and Polissian dialect groups, a Polish-Czech-German settlement layer, and the interwar Polish/Soviet border experience mark the region. Lutsk (historic Volhynian capital) and Rivne form the western core, Zhytomyr the eastern Polissian extension.",
+      "key_industries": [
+        "nuclear power (Rivne NPP)",
+        "timber and wood processing (Polissia forests)",
+        "agriculture (flax, hops, dairy)",
+        "amber extraction (Rivne)",
+        "logistics on the Polish/Belarusian corridors"
+      ],
+      "population": 3370000,
+      "population_note": "Sum of 2021 Ukrstat oblast estimates: Volyn (~1.03M) + Rivne (~1.15M) + Zhytomyr (~1.20M).",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "UA81",
+        "UA83",
+        "UA82"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Lutsk (~220k, historic Volhynian capital) with Rivne (~245k) as near-equal twin; stated honestly a polycentric region of mid-size capitals rather than a single-metro region",
+        "diversified_industry": "Rivne nuclear plant, Polissia timber industry, flax/hops/dairy farming, amber, border-corridor logistics toward Poland",
+        "dependent_identity": "Volhynian identity is a historic-land identity fully within Ukraine; no separatism"
+      },
+      "nuts1_disagreement": "Matches SR2024 macroregion UA8 (Volyn, Rivne, Zhytomyr) exactly - the only one of the three ua-central-podillia successor regions that coincides with an SR macroregion; named here for the historic land rather than the statistical code.",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 4,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.6,
+        "rationale": "Polissia's water and timber wealth, solid mixed farming on sandier soils, and the Rivne nuclear plant give balanced self-sufficiency; Chornobyl-zone contamination in eastern Zhytomyr and modest road/rail density hold back the top scores.",
+        "rationales": {
+          "water": "Pripyat-basin lakes, marshes and rivers make this Ukraine's most water-abundant belt.",
+          "food": "Flax, hops, potato and dairy farming on Polissian soils - a solid producer, below chernozem-belt yields.",
+          "energy": "Rivne NPP (4 units) makes the region a large net electricity exporter."
+        }
+      },
+      "sources": [
+        "Ukrstat 2021 oblast population estimates",
+        "Energoatom, Rivne NPP status reporting",
+        "Magocsi, 'A History of Ukraine' (Volhynia chapters)",
+        "Eurostat/GISCO SR2024 non-EU statistical regions documentation"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Lutsk",
+          "Rivne",
+          "Zhytomyr"
+        ],
+        "central": "Lutsk",
+        "central_coord": [
+          25.3424,
+          50.7472
+        ],
+        "note": "Three mid-size oblast capitals; Lutsk listed central as the historic Volhynian capital, with Rivne its near-equal twin and Zhytomyr anchoring eastern Polissia."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional legislature; oblast councils (oblasna rada) are organs of local self-government under Ukraine's unitary constitution, not parliaments."
+      },
+      "lang_family": "slavic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "nagorno-karabakh-displacement",
+          "description": "The September 2023 Azerbaijani offensive ended the Nagorno-Karabakh Armenian polity; over 100,000 ethnic Armenians fled to Armenia within weeks - roughly 3% added to the state's population - and Armenia-Azerbaijan border demarcation remains contested with recurring armed incidents. Flag covers the displacement burden and unsettled border, not any territorial claim rendered on this map.",
+          "zone_nuts_codes": []
+        }
+      ],
+      "id": "am-armenia",
+      "name": "Armenia",
+      "name_local": "Հայաստան (Hayastan)",
+      "countries": [
+        "AM"
+      ],
+      "urban_core": "Yerevan",
+      "secondary_centers": [
+        "Gyumri",
+        "Vanadzor"
+      ],
+      "identity_basis": "Sovereign republic modelled as a single unit (scope amendment alongside Georgia): the world's oldest Christian state (301 CE), with its own alphabet (Mashtots, 405 CE) and a language forming its own branch of Indo-European; a highland nation defined by the Ararat plain, a worldwide diaspora larger than the home population, and the post-2020/2023 loss of Nagorno-Karabakh reshaping national identity.",
+      "key_industries": [
+        "mining (copper, molybdenum)",
+        "IT and software services (a leading post-Soviet tech hub)",
+        "brandy and food processing",
+        "tourism",
+        "diaspora remittances"
+      ],
+      "population": 2990000,
+      "population_note": "Armstat estimate ~2.99M (early 2024), including the ~100k ethnic-Armenian refugees who arrived from Nagorno-Karabakh in late 2023.",
+      "nuts_source": "CNTR",
+      "nuts_codes": [
+        "AM"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Yerevan - capital, ~1.1M, over a third of the state's population and its single dominant center",
+        "diversified_industry": "copper/molybdenum mining, a genuinely strong IT-services sector, food/brandy processing, tourism, remittance economy",
+        "dependent_identity": "sovereign state modelled as one unit at the dataset's edge, like Georgia and Moldova; internal regions (marzer) have no separate political identities of the kind this map tracks"
+      },
+      "nuts1_disagreement": "Outside the NUTS classification; geometry via the GISCO CNTR countries file (CNTR_ID 'AM'), following the Moldova/Georgia precedent for non-EU eastern-partnership states in scope.",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Highland water and the Metsamor nuclear plant plus hydro give fair basics, but a landlocked position with two of four borders (Turkey, Azerbaijan) closed cripples transport, and food/energy still lean on imports through Georgia and Iran.",
+        "rationales": {
+          "water": "Highland catchments and Lake Sevan give ample water, though Sevan's level is managed under stress.",
+          "food": "Ararat-plain orchards/vineyards and livestock cover part of demand; grain largely imported (historically from Russia).",
+          "energy": "Metsamor NPP (~30-40% of electricity) plus hydro; all gas imported (Russia via Georgia, Iran swap)."
+        }
+      },
+      "sources": [
+        "Armstat (Statistical Committee of Armenia), 2024 population estimate",
+        "UNHCR, Nagorno-Karabakh displacement reporting (Oct 2023)",
+        "IAEA, Metsamor operational status",
+        "GISCO CNTR_RG_20M_2024 countries file (AM)"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Yerevan"
+        ],
+        "central": "Yerevan",
+        "central_coord": [
+          44.5152,
+          40.1872
+        ],
+        "note": "Extreme capital primacy: Yerevan holds over a third of the national population."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "National Assembly (Azgayin Zhoghov)",
+        "note": "Sovereign state modelled as one unit; national unicameral legislature."
+      },
+      "lang_family": "armenian"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "tr-east-thrace",
+      "name": "East Thrace",
+      "name_local": "Doğu Trakya",
+      "countries": [
+        "TR"
+      ],
+      "urban_core": "Tekirdağ",
+      "secondary_centers": [
+        "Edirne",
+        "Kırklareli",
+        "Çorlu"
+      ],
+      "identity_basis": "The European-continent portion of Turkey west of Istanbul province (Tekirdağ, Edirne, Kırklareli): Ottoman Rumelia's remnant, with Edirne (Adrianople) a former Ottoman capital and seat of Sinan's Selimiye Mosque, a Thracian-plain agricultural identity shared with Greek and Bulgarian Thrace across the borders, and an industrial corridor (Çorlu-Çerkezköy) functioning as Istanbul's overspill zone. SPECIAL NOTE: Turkey is excluded from this dataset as a whole; this unit is included solely so the European landmass is covered without a hole west of Istanbul - its presence implies no position on Turkey's inclusion otherwise (Istanbul province itself, though partly European, is excluded with the rest of Turkey).",
+      "key_industries": [
+        "textiles and leather (Çorlu-Çerkezköy industrial zone)",
+        "sunflower and wheat agriculture (Thracian plain)",
+        "viticulture",
+        "logistics on the Europe-Istanbul corridor"
+      ],
+      "population": 1930000,
+      "population_note": "TurkStat 2023 province estimates: Tekirdağ (~1.14M) + Edirne (~0.42M) + Kırklareli (~0.37M).",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "TR21"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Tekirdağ (~1.1M province anchored by the Tekirdağ-Çorlu urban belt) - though the region's true metropolis, Istanbul, lies just outside its (and the dataset's) boundary",
+        "diversified_industry": "one of Turkey's densest textile/leather manufacturing zones, Thracian-plain export agriculture, wine, trans-border logistics",
+        "dependent_identity": "Rumelian/Thracian identity within Turkey; included for landmass completeness, not as a statement on Turkish regionalism"
+      },
+      "nuts1_disagreement": "NUTS-1 TR2 (Batı Marmara) also contains TR22 (Balıkesir, Çanakkale) on the Anatolian side of the straits; only TR21 - the purely European portion - is included, since the dataset's coverage rule concerns the European landmass and Turkey is otherwise out of scope.",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 4,
+        "composite": 3.4,
+        "rationale": "The Thracian plain's grain/sunflower surplus and the Çorlu textile complex give strong food and clothing scores - the latter the dataset's rare textile-self-sufficiency case; the E80/rail corridor to Istanbul and Europe carries transport; water is adequate but strained by industry.",
+        "rationales": {
+          "water": "Ergene basin supplies the plain but suffers heavy industrial pollution; Istranca reservoirs supplement.",
+          "food": "Turkey's sunflower heartland with strong wheat and rice (Meriç) output - a clear surplus producer.",
+          "energy": "Hamitabat gas-fired plant and growing wind capacity on the Thracian ridges; still a net importer."
+        }
+      },
+      "sources": [
+        "TurkStat (TÜİK), 2023 address-based population statistics",
+        "Eurostat/GISCO NUTS 2024 classification (TR21)",
+        "Trakya Development Agency (Trakya Kalkınma Ajansı) regional reports"
+      ],
+      "default_visible": true,
+      "special_status": "out-of-scope-state landmass inclusion (Turkey excluded as a whole; East Thrace shown for European landmass completeness)",
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Tekirdag",
+          "Edirne"
+        ],
+        "central": "Tekirdag",
+        "central_coord": [
+          27.511,
+          40.9781
+        ],
+        "secondary": "Edirne",
+        "secondary_coord": [
+          26.5557,
+          41.6771
+        ],
+        "note": "Tekirdağ anchors the industrial-demographic east, Edirne the historic-cultural west (former Ottoman capital); the region's actual gravitational center, Istanbul, lies outside the dataset."
+      },
+      "reach": [
+        {
+          "target": "Istanbul (TR10, excluded)",
+          "note": "The region functions substantially within Istanbul's catchment - the Çorlu-Çerkezköy zone is Istanbul-overspill industry and the E80/rail corridor ties the plain to the metropolis - but Istanbul province is excluded with the rest of Turkey."
+        }
+      ],
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional legislature; Turkish provinces are centrally administered (appointed governors plus elected provincial councils with limited powers)."
+      },
+      "lang_family": "turkic"
+    }
+  ]
+}

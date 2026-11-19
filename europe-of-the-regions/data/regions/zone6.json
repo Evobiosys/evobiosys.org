@@ -1,0 +1,2218 @@
+{
+  "zone": "zone6",
+  "notes": [
+    "HUNGARY PUSH-BACK VERDICT (mandated challenge, v0.1.0, SUPERSEDED for v0.1.2): the brief originally proposed a four-way Hungarian subdivision — Budapest / Győr-Western Transdanubia / Pécs-Southern Transdanubia / Szombathely-Balaton — which v0.1.0 rejected down to 2 regions (hu-budapest, hu-videk) for the reasons preserved below. draft_v0.1.2's content brief explicitly OVERRIDES that v0.1.0 verdict: the user re-mandated exactly 4 Hungarian units (Budapest; West/Szombathely; Lake Balaton; East/Debrecen), acknowledging the v0.1.0 identity critique but choosing finer administrative units anyway, with the GROUPINGS layer (data/groupings/zone67.json) re-collapsing them for representation (grp-hu-budapest, grp-hu-videk) — the two-layer cultural-atom/representation-group model added in v0.1.2 is precisely what makes this supersession clean: Hungary's Budapest-centralized political-cultural identity is preserved at the grouping layer even though the cultural-unit layer now has 4 finer atoms. All 20 HU NUTS-3 codes are covered exactly once across hu-budapest/hu-west/hu-balaton/hu-east-debrecen (verified programmatically). Two coverage-driven extensions beyond the user's literal 4-name list are stated plainly in the affected records rather than silently absorbed: (a) Fejér and Komárom-Esztergom (the Közép-Dunántúl remainder once Veszprém moves to Balaton) join hu-budapest as its western commuter-industrial periphery; (b) Baranya and Tolna (the Dél-Dunántúl remainder once Somogy moves to Balaton) join hu-balaton, producing the honest tension that hu-balaton's largest city (Pécs) sits ~150km from the lake itself. v0.1.0's original push-back evidence (Assembly of European Regions 2021; regscience.hu) is retained below as background — it remains true that Hungary's abolished NUTS-2 planning regions never acquired organic identity; the user's re-mandate is understood as choosing administrative-geographic fineness for map purposes over strict identity-purity, which the schema v2 two-layer model now accommodates without contradiction. [v0.1.0 text retained:] Three WebSearch-verified findings: (1) Hungary's NUTS-2 regions were imposed top-down under EU pressure in 1999 and never acquired an organic regional identity — 'the failure of regional reforms can be explained not just by the lack of regional identity, but rather by the unwillingness of the central political elite to decentralize ... top-down regionalisation ... failed to create a regional identity' (Assembly of European Regions, 2021; regscience.hu). (2) Where genuine sub-national identity DOES surface in Hungary, it operates at the county (megye) level. (3) Hungarian dialectology (Transdanubian vs. Alföld) rides on no organized regionalist movement.",
+    "SLOVAKIA A1.8 SUPERSEDES v0.1.0's Bratislava-west/Košice-east 2-way split composition: the two units are RETAINED (still exactly 2) but Eastern Slovakia is renamed sk-east and re-modeled as a Košice-Prešov DIPOLE (SK041+SK042) rather than a Košice-dominant single pole, foregrounding the Rusyn/Ukrainian minority concentrated in Prešov kraj as co-equal identity basis alongside Košice's steel/industrial economy. sk-bratislava-west is unchanged in composition (SK01+SK02+SK03) with its Central-Slovakia/SNP-heritage reasoning restated per A1.8's request.",
+    "CROATIA A1.9 SUPERSEDES v0.1.0's 3-way split (Zagreb-Continental / Dalmatia / Istria-Rijeka merged): Rijeka/Kvarner is carved out as its OWN 4th unit (hr-rijeka, HR031), isolating its distinct Fiuman/Habsburg-port-city civic heritage from Istria's bilingual Croatian-Italian regionalist identity (hr-istria, HR036 alone). hr-zagreb-continental and hr-dalmatia are unchanged in composition; Ličko-senjska (Lika) stays attached to hr-dalmatia per v1 rather than moving to hr-rijeka despite arguably closer geographic/hinterland ties to Rijeka — flagged as a candidate future reassignment rather than silently resolved.",
+    "SILESIA CROSS-BORDER VARIANT SET (A1.13): Upper Silesia (pl-silesia, Katowice) and Czech Silesia (cz-czech-silesia, Ostrava) are unchanged as separate congruent-with-current-states records (the \"current\" view of the new \"silesia\" variant set in data/variant_sets/zone67.json), but a new hidden noncongruent record silesia-unified (default_visible false, PL22+PL52+CZ08) is added for the \"connected\" and \"overlap\" views, following the same pattern as tyrol-unified in zone1. Bielsko-Biała is explicitly noted as a borderland inclusion within pl-silesia (administratively Śląskie voivodeship, culturally transitional toward Lesser Poland/Galicia) per A1.13's instruction.",
+    "SLOVENIA A1.5 SUPERSEDES ITS OWN EARLIER AMENDMENT: an East/West (Maribor-Štajerska vs. Ljubljana-and-west) variant set was drafted for the original C4 dispatch (SI03 Vzhodna Slovenija vs. SI04 Zahodna Slovenija, a clean pre-existing NUTS-2 boundary), then explicitly REJECTED by the user before this file was finalized ('small enough as it is') — DROPPED entirely per A1.5, not even retained as a hidden fragment. si-slovenia stays the single-unit exception it always was, now with schema v2 fields added.",
+    "SILESIAN IDENTITY (Poland, pl-silesia conflict_flag): the 2021 Polish census recorded 596,224 self-declarations of Silesian nationality (down from 846,700 in 2011), a decline Polish sociologists (e.g. Prof. Małgorzata Myśliwiec, University of Silesia) partly attribute to the harder-to-navigate online census form rather than a real decline in Silesian self-identification. Silesian nationality remains formally unrecognized by the Polish state.",
+    "MORAVIAN IDENTITY (Czechia, cz-moravia): the 2021 Czech census recorded 359,621 Moravian-nationality declarations (5.0% of respondents, down from 522,474 in 2011), with dual Czech-Moravian declarations rising ~80% to 179,721. Concentration reaches 21.6% in Jihomoravský (Brno region), 15.0% in Zlínský and 12.4% in Olomoucký.",
+    "POLAND REGION COUNT (8 visible regions covering all 16 voivodeships, no gaps/overlaps, unchanged from v0.1.0): Opolskie attaches to Katowice/Silesia rather than Wrocław/Lower Silesia on shared Upper-Silesian dialect/German-minority grounds; Szczecin/Zachodniopomorskie and Lubuskie fold into Poznań/Wielkopolska matching NUTS-1 PL4; Podkarpackie/Lubelskie/Podlaskie/Świętokrzyskie merge into one Eastern Poland bloc matching the EU's own 'Polska Wschodnia' category. v0.1.2 additionally authors a hidden 3-way SPLIT variant view of pl-pomerania (pl-kashubia-core/pl-kuyavia/pl-warmia-masuria, all default_visible false) per the mandated \"pomerania\" variant set, demonstrating the Kashubia(strong)/Kuyavia(weak)/Warmia-Masuria(weakest) fit-strength gradient the broad default view otherwise papers over.",
+    "SCHEMA v2 MIGRATION NOTE: this file has no v1 variant_group/variant_role members (the old tyrol-style congruent/noncongruent pairing was never used in zone6), so every pre-existing region defaults to default_visible: true with no ambiguity. pole/parliament/reach/lang_family/special_status/autarky.rationales are new v2 additions per the draft_v0.1.2 plan; parliament.has_own is marked true-with-note for PL/CZ/SK (real elected regional assemblies — sejmiki/zastupitelstva/samosprávne kraje — exist but this cultural unit's multi-voivodeship/kraj composition means several co-exist per unit, flagged for the CA parliament_exceptions audit) and false for HU/HR/SI-country-level-true (Hungarian megyei and Croatian županije assemblies are deconcentrated-administrative, no legislative function, per the explicit HR audit rule extended consistently to HU)."
+  ],
+  "regions": [
+    {
+      "id": "pl-mazovia",
+      "name": "Mazovia (Warsaw)",
+      "name_local": "Mazowsze",
+      "countries": [
+        "PL"
+      ],
+      "urban_core": "Warsaw",
+      "secondary_centers": [
+        "Radom",
+        "Płock",
+        "Siedlce"
+      ],
+      "identity_basis": "Historic Mazovia (Mazowsze) heartland of the Polish state; Warsaw as national capital dominates economically and culturally; a real core-periphery divide between the metropolitan Warszawski stołeczny subregion and the poorer Mazowiecki regionalny periphery led Statistics Poland to split the voivodeship into two NUTS-2 units in 2021.",
+      "key_industries": [
+        "finance and business services",
+        "ICT",
+        "public administration",
+        "logistics",
+        "food processing"
+      ],
+      "population": 5400000,
+      "population_note": "Eurostat/GUS 2023 estimate for Mazowieckie voivodeship (PL91+PL92).",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "PL91",
+        "PL92"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Warsaw",
+        "note": "Overwhelmingly dominant national capital; Radom/Płock/Siedlce are minor secondary centers within its orbit.",
+        "centers": [
+          "Warsaw"
+        ],
+        "central_coord": [
+          21.01,
+          52.23
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Sejmik Województwa Mazowieckiego",
+        "note": "Real elected regional assembly (sejmik) at voivodeship level; this cultural unit corresponds to one voivodeship split into two NUTS-2 statistical units, so the sejmik itself is unified even though the statistical geography is not — no exception-list entry needed."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Warsaw — national capital, dominant metro >3M",
+        "diversified_industry": "finance/business services, ICT, government, logistics, food processing",
+        "dependent_identity": "Polish national identity centered on the capital; no separatism"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "West Slavic (Polish)",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "Capital-region strength in transport and healthcare infrastructure; housing (shelter) strained by rapid in-migration and high prices; energy reliant on national grid/import; clothing manufacturing largely offshored.",
+        "rationales": {
+          "water": "Vistula river-basin access gives Warsaw reliable freshwater infrastructure.",
+          "food": "The capital region is a net food importer from surrounding agricultural voivodeships.",
+          "energy": "Energy draws on the national grid/import mix with no major regional generation asset.",
+          "transportation": "Warsaw's rail/motorway/airport hub gives the zone's top transport score.",
+          "hygiene_healthcare": "Warsaw's hospital/university-medicine concentration is the strongest in the zone."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "GUS (Statistics Poland) 2023",
+        "Statistics Poland 2021 NUTS-2 Mazowieckie split methodology"
+      ]
+    },
+    {
+      "id": "pl-malopolska",
+      "name": "Małopolska (Kraków)",
+      "name_local": "Małopolska",
+      "countries": [
+        "PL"
+      ],
+      "urban_core": "Kraków",
+      "secondary_centers": [
+        "Tarnów",
+        "Nowy Sącz"
+      ],
+      "identity_basis": "Historic Lesser Poland (Małopolska) core around Kraków, Poland's former royal capital and pre-eminent cultural/university center; distinct from both the Silesian industrial belt and the eastern borderland.",
+      "key_industries": [
+        "tourism and culture",
+        "IT/BPO",
+        "advanced manufacturing",
+        "agriculture (Tarnów-Nowy Sącz)"
+      ],
+      "population": 3400000,
+      "population_note": "Eurostat/GUS 2023 estimate for Małopolskie voivodeship (PL21).",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "PL21"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Kraków",
+        "note": "Poland's second city, overwhelmingly dominant within the voivodeship.",
+        "centers": [
+          "Kraków"
+        ],
+        "central_coord": [
+          19.94,
+          50.06
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Sejmik Województwa Małopolskiego",
+        "note": "Real elected regional assembly; one voivodeship = one sejmik, no exception."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Kraków — metro >1.5M, former royal capital, major university/cultural/tech hub",
+        "diversified_industry": "tourism/culture, IT/BPO, advanced manufacturing, agriculture",
+        "dependent_identity": "strong regional pride, no separatism"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "West Slavic (Polish)",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Agricultural hinterland (Tarnów-Nowy Sącz) gives above-average food self-sufficiency; energy remains coal/import-dependent as the former Nowa Huta steel-coal complex diversifies; tourism-driven demand strains housing in Kraków's old town.",
+        "rationales": {
+          "water": "Vistula headwaters and Carpathian foothill catchments give above-average water security.",
+          "food": "The Tarnów-Nowy Sącz agricultural hinterland supports above-average food self-sufficiency.",
+          "energy": "Energy remains coal/import-dependent as the former Nowa Huta steel-coal complex diversifies away from coal."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "GUS (Statistics Poland) 2023"
+      ]
+    },
+    {
+      "id": "pl-silesia",
+      "name": "Upper Silesia (Katowice)",
+      "name_local": "Górny Śląsk / Śląsk Opolski",
+      "countries": [
+        "PL"
+      ],
+      "urban_core": "Katowice",
+      "secondary_centers": [
+        "Gliwice",
+        "Bytom",
+        "Opole",
+        "Sosnowiec",
+        "Bielsko-Biała"
+      ],
+      "identity_basis": "Historic Upper Silesia; a distinct Silesian (Ślązacy) ethnolinguistic identity with genuine, contested self-declaration in Polish censuses — 596,224 people declared Silesian nationality in 2021 (down from 846,700 in 2011, a drop activists attribute partly to the harder-to-navigate online census form); Opole voivodeship shares the Upper Silesian dialect continuum and hosts Poland's largest German minority. Bielsko-Biała (Podbeskidzie) is included as a borderland case: administratively part of Śląskie voivodeship (hence this Silesian unit) but culturally transitional toward Lesser Poland/Galicia — noted honestly rather than silently absorbed.",
+      "key_industries": [
+        "coal mining (in transition)",
+        "steel",
+        "automotive manufacturing",
+        "chemicals",
+        "logistics",
+        "textiles (Bielsko-Biała)"
+      ],
+      "population": 5240000,
+      "population_note": "Sum of Śląskie (~4.3M) and Opolskie (~0.94M) voivodeships, GUS 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "PL22",
+        "PL52"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Katowice",
+        "note": "The Katowice/Górnośląsko-Zagłębiowska Metropolia is one of Poland's few genuinely polycentric conurbations — no single dominant town, a dense coal-belt string of cities of comparable size.",
+        "centers": [
+          "Katowice",
+          "Gliwice",
+          "Bytom",
+          "Sosnowiec"
+        ],
+        "central_coord": [
+          19.02,
+          50.26
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Sejmik Województwa Śląskiego + Sejmik Województwa Opolskiego",
+        "note": "Two real elected regional sejmiks co-exist within this cultural unit (Śląskie and Opolskie voivodeships); flagged for the CA parliament-exceptions audit as a multi-sejmik cultural unit rather than one unified regional legislature."
+      },
+      "conflict_flags": [
+        {
+          "id": "pl-silesian-identity",
+          "description": "Silesian (Ślązacy) ethnolinguistic self-identification, contested minority-recognition status; 2021 census self-declarations (596,224 nationwide) concentrated in the Katowice conurbation.",
+          "zone_nuts_codes": [
+            "PL22A",
+            "PL228",
+            "PL229",
+            "PL22B",
+            "PL22C",
+            "PL227"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Katowice — center of the Górnośląsko-Zagłębiowska Metropolia, ~2.3M metro, Poland's largest polycentric urban agglomeration",
+        "diversified_industry": "coal (declining, EU just-transition region), steel, automotive (Stellantis Tychy, Opel Gliwice), chemicals, growing logistics/BPO, textiles (Bielsko-Biała)",
+        "dependent_identity": "a recognized-in-practice (though not officially certified as a national/ethnic minority) Silesian identity with an active advocacy movement (Ruch Autonomii Śląska) seeking greater autonomy WITHIN Poland, not independence"
+      },
+      "nuts1_disagreement": "NUTS-1 PL5 (Makroregion południowo-zachodni) groups Opolskie with Dolnośląskie (Wrocław); we instead attach Opolskie to Śląskie, reflecting the shared Upper Silesian dialect continuum and German-minority heritage Opole shares with the Katowice conurbation rather than with Lower Silesian Wrocław. Bielsko-Biała (Bielski NUTS-3, part of PL22) sits at the Silesian/Lesser-Poland (Galician) cultural boundary; we keep it here purely because it is administratively inside Śląskie voivodeship, not because its identity is unambiguously Silesian.",
+      "lang_family": "West Slavic (Polish; Silesian ethnolect, contested minority status)",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Historic coal self-sufficiency is winding down under EU just-transition funding, keeping energy at a moderate 3 rather than higher; dense industrial land-use constrains shelter; a strong intra-conurbation rail/road network supports transportation.",
+        "rationales": {
+          "water": "Odra-basin water access is adequate but industrially stressed by decades of mining subsidence.",
+          "food": "Food self-sufficiency is average; the conurbation's dense industrial land-use leaves little room for agriculture.",
+          "energy": "Historic coal self-sufficiency is winding down under EU just-transition funding, keeping energy at a moderate score rather than higher.",
+          "transportation": "A strong intra-conurbation rail/road network supports transportation."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "GUS (Statistics Poland) 2021 census — Silesian nationality declarations",
+        "Statistical Office in Katowice",
+        "EU Just Transition Fund Śląskie programme"
+      ]
+    },
+    {
+      "id": "pl-wielkopolska",
+      "name": "Wielkopolska & Western Poland (Poznań)",
+      "name_local": "Wielkopolska",
+      "countries": [
+        "PL"
+      ],
+      "urban_core": "Poznań",
+      "secondary_centers": [
+        "Szczecin",
+        "Zielona Góra",
+        "Gorzów Wielkopolski"
+      ],
+      "identity_basis": "Historic Wielkopolska (Greater Poland), the cradle of the Polish state (Gniezno, Poznań); Szczecin/Zachodniopomorskie and Lubuskie fold in here matching NUTS-1 PL4, since Szczecin's port-city identity did not independently clear the bar for a 9th Polish region.",
+      "key_industries": [
+        "logistics and manufacturing (Poznań)",
+        "agriculture ('granary of Poland')",
+        "Baltic/Oder port trade (Szczecin)",
+        "furniture"
+      ],
+      "population": 6180000,
+      "population_note": "Sum of Wielkopolskie, Zachodniopomorskie and Lubuskie voivodeships, GUS 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "PL41",
+        "PL42",
+        "PL43"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "central": "Poznań",
+        "note": "Poznań dominates Wielkopolska proper; Szczecin is a genuinely separate secondary pole on the Baltic/Oder coast, ~260km away, not economically subordinate to Poznań.",
+        "centers": [
+          "Poznań",
+          "Szczecin"
+        ],
+        "central_coord": [
+          16.93,
+          52.41
+        ],
+        "secondary": "Szczecin",
+        "secondary_coord": [
+          14.55,
+          53.43
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Sejmiki Województw Wielkopolskiego, Zachodniopomorskiego i Lubuskiego",
+        "note": "Three real elected sejmiks co-exist within this cultural unit; flagged for the CA parliament-exceptions audit."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Poznań — metro ~1M, historic seat of the Polish state; Szczecin ~700k as secondary Baltic-coast pole",
+        "diversified_industry": "logistics, agriculture, port trade, furniture manufacturing",
+        "dependent_identity": "strong regional pride (Greater Poland as cradle of statehood), no separatism"
+      },
+      "nuts1_disagreement": "Deliberately MATCHES (does not diverge from) NUTS-1 PL4 macroregion: Szczecin's real distinct port-city identity did not clear a high enough bar to justify a 9th Polish region beyond the six brief-named items.",
+      "lang_family": "West Slavic (Polish)",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Baltic/Oder port access (Szczecin) and a strong agricultural hinterland (Wielkopolska, historically 'the granary of Poland') support water and food scores; energy remains grid/import-dependent; healthcare capacity is thinner outside the two metro cores.",
+        "rationales": {
+          "water": "Baltic/Oder port access (Szczecin) gives strong water-transport infrastructure.",
+          "food": "Wielkopolska, historically 'the granary of Poland', supports a strong agricultural hinterland.",
+          "energy": "Energy remains grid/import-dependent with no major regional generation asset."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "GUS (Statistics Poland) 2023"
+      ]
+    },
+    {
+      "id": "pl-pomerania",
+      "name": "Pomerania, Kuyavia & Warmia-Masuria (Gdańsk)",
+      "name_local": "Pomorze, Kujawy i Warmia-Mazury",
+      "countries": [
+        "PL"
+      ],
+      "urban_core": "Gdańsk",
+      "secondary_centers": [
+        "Gdynia",
+        "Bydgoszcz",
+        "Toruń",
+        "Olsztyn"
+      ],
+      "identity_basis": "Historic Gdańsk Pomerania with a distinct Kashubian (Kaszëbë) ethnolinguistic minority concentrated inland of the Tricity; grouped with Kuyavia (Bydgoszcz-Toruń, Hanseatic/Royal-Prussia heritage) and Warmia-Masuria (post-German East Prussian lake district), matching the real NUTS-1 PL6 macroregion. This is the BROAD/default view of a variant set (see data/variant_sets/zone67.json \"pomerania\"): a SPLIT view is also available showing Kashubia core, Kuyavia and Warmia-Masuria as three separate hidden regions per the Kashubia/Kuyavia/Warmia/Masuria fit-strength table (strong/weak/weak/weakest) — this broad record stays the default because Statistics Poland's own PL6 macroregion groups exactly these three voivodeships, but the split view exists precisely because that official grouping papers over real strength-of-fit differences.",
+      "key_industries": [
+        "maritime port and shipbuilding",
+        "IT (Tricity tech cluster)",
+        "agriculture",
+        "tourism (Masurian Lake District)"
+      ],
+      "population": 5780000,
+      "population_note": "Sum of Pomorskie, Kujawsko-Pomorskie and Warmińsko-Mazurskie voivodeships, GUS 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "PL63",
+        "PL61",
+        "PL62"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Gdańsk",
+        "note": "Best-effort: the Tricity (Gdańsk-Gdynia-Sopot) dominates the broad-view region economically, though Bydgoszcz-Toruń and Olsztyn are real secondary poles surfaced separately in the split variant view.",
+        "centers": [
+          "Gdańsk"
+        ],
+        "central_coord": [
+          18.65,
+          54.35
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Sejmiki Województw Pomorskiego, Kujawsko-Pomorskiego i Warmińsko-Mazurskiego",
+        "note": "Three real elected sejmiks co-exist within this cultural unit; flagged for the CA parliament-exceptions audit."
+      },
+      "conflict_flags": [
+        {
+          "id": "pl-kashubia",
+          "description": "Kashubian (Kaszëbë) ethnolinguistic minority with recognized regional-language status since 2005, concentrated in the rural hinterland southwest of the Tricity.",
+          "zone_nuts_codes": [
+            "PL634"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Gdańsk-Gdynia-Sopot Tricity — metro >1.08M, major container port and IT hub",
+        "diversified_industry": "shipbuilding/maritime logistics, IT/BPO, amber and tourism, agriculture and inland lake-district tourism",
+        "dependent_identity": "the Kashubian ethnolinguistic minority (recognized regional-language status under Polish law since 2005) is concentrated in the Kartuzy/Kościerzyna/Wejherowo area inland of Gdańsk — a genuine sub-regional layer flagged separately rather than defining the whole macro-region"
+      },
+      "nuts1_disagreement": "This region MATCHES NUTS-1 PL6 (Makroregion północny) exactly, retaining GUS's own macroregion grouping of Pomorskie, Kujawsko-Pomorskie and Warmińsko-Mazurskie.",
+      "lang_family": "West Slavic (Polish; Kashubian minority ethnolect)",
+      "autarky": {
+        "water": 5,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "The Baltic coastline, Vistula/Oder river access and the Masurian lake district give strong water self-sufficiency; agricultural Kuyavia supports food; port logistics keep transportation high; healthcare capacity is concentrated in the Tricity, thinner in rural Warmia-Masuria.",
+        "rationales": {
+          "water": "The Baltic coastline, Vistula/Oder river access and the Masurian lake district give strong water self-sufficiency.",
+          "food": "Agricultural Kuyavia supports a solid food score.",
+          "energy": "Energy remains grid/import-dependent with no major regional generation asset.",
+          "transportation": "Port logistics keep transportation high."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "GUS (Statistics Poland) 2023",
+        "Polish 2005 Act on National and Ethnic Minorities and Regional Language (Kashubian status)",
+        "Statistics Poland macroregion definitions"
+      ]
+    },
+    {
+      "id": "pl-kashubia-core",
+      "name": "Kashubia & Gdańsk Pomerania",
+      "name_local": "Kaszëbë / Pomorze Gdańskie",
+      "countries": [
+        "PL"
+      ],
+      "urban_core": "Gdańsk",
+      "secondary_centers": [
+        "Gdynia",
+        "Kartuzy",
+        "Kościerzyna"
+      ],
+      "identity_basis": "Split-view alt of pl-pomerania (variant set \"pomerania\", view \"split\"): the strong-fit core — Tricity + the Kashubian ethnolinguistic hinterland, recognized regional-language minority since 2005, continuous Baltic seaside identity.",
+      "key_industries": [
+        "maritime port and shipbuilding",
+        "IT (Tricity tech cluster)",
+        "tourism",
+        "amber"
+      ],
+      "population": 2346000,
+      "population_note": "Pomorskie voivodeship, GUS 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "PL63"
+      ],
+      "single_unit_exception": false,
+      "default_visible": false,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Gdańsk",
+        "note": "Tricity dominance, unchanged from the broad view.",
+        "centers": [
+          "Gdańsk"
+        ],
+        "central_coord": [
+          18.65,
+          54.35
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Sejmik Województwa Pomorskiego",
+        "note": ""
+      },
+      "conflict_flags": [
+        {
+          "id": "pl-kashubia-split-view",
+          "description": "Kashubian ethnolinguistic minority, recognized regional-language status since 2005 (split-view duplicate of pl-pomerania's pl-kashubia flag, renamed for global conflict_flag-id uniqueness).",
+          "zone_nuts_codes": [
+            "PL634"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Gdańsk-Gdynia-Sopot Tricity — metro >1.08M",
+        "diversified_industry": "shipbuilding/maritime logistics, IT/BPO, tourism",
+        "dependent_identity": "strongest Pomerania fit of the three split-view units per the user's own fit table ('strong')"
+      },
+      "nuts1_disagreement": "Alt-view fragment of PL63 alone, split out of the broader PL6 macroregion used in the default pl-pomerania record.",
+      "lang_family": "West Slavic (Polish; Kashubian minority ethnolect)",
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Alt-view fragment carrying forward the Tricity's water/transport strengths without Kuyavia's grain-belt food contribution.",
+        "rationales": {
+          "water": "Baltic coastline gives strong water self-sufficiency.",
+          "food": "Coastal/Kashubian hinterland agriculture is more modest than Kuyavia's grain belt.",
+          "energy": "Energy remains grid/import-dependent with no major regional generation asset."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "GUS (Statistics Poland) 2023",
+        "Polish 2005 Act on National and Ethnic Minorities and Regional Language"
+      ]
+    },
+    {
+      "id": "pl-kuyavia",
+      "name": "Kuyavia (Bydgoszcz-Toruń)",
+      "name_local": "Kujawy",
+      "countries": [
+        "PL"
+      ],
+      "urban_core": "Bydgoszcz",
+      "secondary_centers": [
+        "Toruń",
+        "Włocławek"
+      ],
+      "identity_basis": "Split-view alt of pl-pomerania: Hanseatic/Royal-Prussia river-trade towns along the Vistula/Brda, a WEAK fit for the 'Pomerania' label per the user's own table — genuinely twin-city (Bydgoszcz administrative / Toruń historic-university) rather than Pomeranian coastal identity.",
+      "key_industries": [
+        "river-freight logistics",
+        "agriculture",
+        "chemicals",
+        "electronics"
+      ],
+      "population": 2043000,
+      "population_note": "Kujawsko-Pomorskie voivodeship, GUS 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "PL61"
+      ],
+      "single_unit_exception": false,
+      "default_visible": false,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "central": "Bydgoszcz",
+        "note": "Bydgoszcz (larger, administrative) and Toruń (historic, UNESCO old town, university) form a genuine twin-city dipole neither side dominates culturally.",
+        "centers": [
+          "Bydgoszcz",
+          "Toruń"
+        ],
+        "central_coord": [
+          18.0,
+          53.12
+        ],
+        "secondary": "Toruń",
+        "secondary_coord": [
+          18.6,
+          53.01
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Sejmik Województwa Kujawsko-Pomorskiego",
+        "note": ""
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Bydgoszcz-Toruń dipole — combined metro ~700k",
+        "diversified_industry": "river logistics, agriculture, chemicals, electronics",
+        "dependent_identity": "WEAK fit for 'Pomerania' per the user's own table: Hanseatic/Royal-Prussia river-trade heritage, not coastal/Kashubian"
+      },
+      "nuts1_disagreement": "Alt-view fragment of PL61 alone, split out of the broader PL6 macroregion; explicitly the split view's demonstration that Kuyavia's 'Pomerania' fit is weak.",
+      "lang_family": "West Slavic (Polish)",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Kuyavia's own grain-belt agriculture is the split view's clearest strength, separated out from the Tricity's water/transport dominance in the broad record.",
+        "rationales": {
+          "water": "Vistula/Brda river access is solid but unremarkable.",
+          "food": "Kuyavian grain-belt agriculture is a genuine regional strength.",
+          "energy": "Energy remains grid/import-dependent with no major regional generation asset."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "GUS (Statistics Poland) 2023"
+      ]
+    },
+    {
+      "id": "pl-warmia-masuria",
+      "name": "Warmia & Masuria (Olsztyn)",
+      "name_local": "Warmia i Mazury",
+      "countries": [
+        "PL"
+      ],
+      "urban_core": "Olsztyn",
+      "secondary_centers": [
+        "Elbląg",
+        "Ełk"
+      ],
+      "identity_basis": "Split-view alt of pl-pomerania: post-German East Prussian lake district, Catholic Warmia / Protestant-heritage-then-resettled Masuria — the WEAKEST fit for 'Pomerania' per the user's own table, a post-1945 resettled population with no continuous pre-war community link to Gdańsk Pomerania.",
+      "key_industries": [
+        "tourism (Masurian Lake District)",
+        "agriculture",
+        "forestry"
+      ],
+      "population": 1391000,
+      "population_note": "Warmińsko-Mazurskie voivodeship, GUS 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "PL62"
+      ],
+      "single_unit_exception": false,
+      "default_visible": false,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Olsztyn",
+        "note": "Olsztyn is the only city of note; the lake district itself has no urban center at all, a genuine weak point noted honestly.",
+        "centers": [
+          "Olsztyn"
+        ],
+        "central_coord": [
+          20.49,
+          53.78
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Sejmik Województwa Warmińsko-Mazurskiego",
+        "note": ""
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Olsztyn — ~170k, modest regional capital, no comparable secondary city",
+        "diversified_industry": "tourism-dominated (lake district), agriculture, forestry — thin diversification",
+        "dependent_identity": "WEAKEST fit for 'Pomerania' per the user's own table: a resettled post-1945 population (expulsion of the pre-war German-East-Prussian population) with no organic Pomeranian-coastal identity link"
+      },
+      "nuts1_disagreement": "Alt-view fragment of PL62 alone, split out of the broader PL6 macroregion; explicitly the split view's demonstration that Masuria's 'Pomerania' fit is weakest.",
+      "lang_family": "West Slavic (Polish)",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 2,
+        "hygiene_healthcare": 2,
+        "clothing": 1,
+        "composite": 2.3,
+        "rationale": "The split view's weakest fragment on nearly every dimension except lake-district water abundance, honestly reflecting its post-1945 resettled, under-industrialized profile.",
+        "rationales": {
+          "water": "The Masurian Lake District itself gives strong freshwater abundance, offsetting otherwise weak scores.",
+          "food": "Agriculture is real but thin relative to Kuyavia's grain belt.",
+          "energy": "No regional generation asset; grid/import-dependent, weakest of the three split-view fragments."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "GUS (Statistics Poland) 2023"
+      ]
+    },
+    {
+      "id": "pl-lower-silesia",
+      "name": "Lower Silesia (Wrocław)",
+      "name_local": "Dolny Śląsk",
+      "countries": [
+        "PL"
+      ],
+      "urban_core": "Wrocław",
+      "secondary_centers": [
+        "Wałbrzych",
+        "Legnica",
+        "Jelenia Góra"
+      ],
+      "identity_basis": "Historic Lower Silesia, culturally and dialectally distinct from Upper Silesia (post-1945 German-expulsion resettlement history, weaker surviving Silesian-ethnolect self-identification than Katowice); Wrocław is one of Poland's fastest-growing tech/FDI hubs.",
+      "key_industries": [
+        "copper/silver mining (KGHM)",
+        "advanced manufacturing/FDI",
+        "IT",
+        "automotive supply"
+      ],
+      "population": 2900000,
+      "population_note": "Eurostat/GUS 2023 estimate for Dolnośląskie voivodeship (PL51).",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "PL51"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Wrocław",
+        "note": "Wrocław dominates; Wałbrzych/Legnica/Jelenia Góra are minor secondary industrial towns.",
+        "centers": [
+          "Wrocław"
+        ],
+        "central_coord": [
+          17.03,
+          51.11
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Sejmik Województwa Dolnośląskiego",
+        "note": ""
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Wrocław — metro >1.2M, major FDI/tech destination",
+        "diversified_industry": "KGHM copper-silver complex, advanced manufacturing, IT, automotive supply",
+        "dependent_identity": "distinct Lower Silesian post-resettlement identity, weaker ethnolect self-identification than Upper Silesia; no separatism"
+      },
+      "nuts1_disagreement": "NUTS-1 PL5 groups this with Opolskie; we instead attach Opolskie to pl-silesia (see that record), leaving this region as Dolnośląskie alone.",
+      "lang_family": "West Slavic (Polish)",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "KGHM's copper-silver complex gives a genuine, if narrow, raw-material base; Wrocław's tech/manufacturing FDI economy supports healthcare and transport infrastructure; food and water are average, unremarkable Odra-basin agriculture.",
+        "rationales": {
+          "water": "Average Odra-basin water access, unremarkable.",
+          "food": "Average, unremarkable Odra-basin agriculture.",
+          "energy": "No major regional generation asset beyond KGHM's own industrial cogeneration; grid/import-dependent.",
+          "transportation": "Wrocław's FDI-driven economy supports strong transport infrastructure.",
+          "hygiene_healthcare": "Wrocław's hospital/university-medicine base is comparatively strong."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "GUS (Statistics Poland) 2023"
+      ]
+    },
+    {
+      "id": "pl-lodz",
+      "name": "Łódź",
+      "name_local": "Łódzkie",
+      "countries": [
+        "PL"
+      ],
+      "urban_core": "Łódź",
+      "secondary_centers": [
+        "Piotrków Trybunalski"
+      ],
+      "identity_basis": "Łódź's 19th-century textile-industrial boomtown identity, distinct from both agrarian Mazovia and the older royal-capital identity of Kraków; this is the zone's weakest identity case (civic/industrial-heritage rather than ethnolinguistic), retained standalone because it independently clears the urban-scale and industrial-diversification criteria.",
+      "key_industries": [
+        "textiles (legacy)",
+        "logistics (central-Poland motorway crossroads)",
+        "film/media (Łódź Film School heritage)",
+        "BPO"
+      ],
+      "population": 2400000,
+      "population_note": "Eurostat/GUS 2023 estimate for Łódzkie voivodeship (PL71).",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "PL71"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Łódź",
+        "note": "Łódź itself dominates; no comparable secondary city.",
+        "centers": [
+          "Łódź"
+        ],
+        "central_coord": [
+          19.46,
+          51.76
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Sejmik Województwa Łódzkiego",
+        "note": ""
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Łódź — metro ~1.0M, Poland's 3rd-largest city",
+        "diversified_industry": "post-textile logistics, BPO, film/media heritage",
+        "dependent_identity": "civic/industrial-heritage identity, genuinely weaker than the zone's ethnolinguistic/historic-polity cases — honestly the file's thinnest identity claim, retained on urban-scale/industry grounds alone"
+      },
+      "nuts1_disagreement": null,
+      "lang_family": "West Slavic (Polish)",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.0,
+        "rationale": "The textile-heritage manufacturing base gives Łódź the zone's only above-average clothing score; the central-Poland motorway crossroads supports transportation; energy remains import/grid-dependent with no major domestic generation asset.",
+        "rationales": {
+          "water": "Average, unremarkable water access, no notable river/coastal asset.",
+          "food": "Average food self-sufficiency; not a major agricultural producer.",
+          "energy": "Import/grid-dependent with no major domestic generation asset.",
+          "clothing": "The textile-heritage manufacturing base gives Łódź the zone's only above-average clothing score."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "GUS (Statistics Poland) 2023"
+      ]
+    },
+    {
+      "id": "pl-eastern-poland",
+      "name": "Eastern Poland (Lublin-Rzeszów-Białystok)",
+      "name_local": "Polska Wschodnia",
+      "countries": [
+        "PL"
+      ],
+      "urban_core": "Lublin",
+      "secondary_centers": [
+        "Rzeszów",
+        "Białystok",
+        "Kielce"
+      ],
+      "identity_basis": "Podkarpackie (Rzeszów/Aviation Valley), Lubelskie, Podlaskie and Świętokrzyskie merged into one Eastern Poland bloc — none individually clears the sub-national-identity criterion cleanly (agrarian/borderland 'Kresy' profile shared across all four, no distinct dialect or historic-polity claim); matches the EU's own 'Polska Wschodnia' macro-regional development category.",
+      "key_industries": [
+        "agriculture (grain/orchard belt)",
+        "aerospace (Rzeszów 'Aviation Valley')",
+        "logistics (EU external border)",
+        "food processing"
+      ],
+      "population": 6460000,
+      "population_note": "Sum of Lubelskie, Podkarpackie, Podlaskie and Świętokrzyskie voivodeships, GUS 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "PL81",
+        "PL82",
+        "PL84",
+        "PL72"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Lublin",
+        "note": "No single dominant city — Lublin, Rzeszów and Białystok are comparably-sized regional capitals, an honest reflection of this catch-all's thin identity case.",
+        "centers": [
+          "Lublin",
+          "Rzeszów",
+          "Białystok"
+        ],
+        "central_coord": [
+          22.57,
+          51.25
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Sejmiki Województw Lubelskiego, Podkarpackiego, Podlaskiego i Świętokrzyskiego",
+        "note": "Four real elected sejmiks co-exist within this cultural unit; flagged for the CA parliament-exceptions audit."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "No single dominant hub — Lublin, Rzeszów and Białystok are comparably sized; a genuine weak point of this catch-all region",
+        "diversified_industry": "agriculture (grain/orchard belt), Rzeszów's real aerospace cluster ('Aviation Valley'), EU-external-border logistics, food processing",
+        "dependent_identity": "agrarian/borderland 'Kresy' profile shared across all four voivodeships, no distinct dialect or historic-polity claim strong enough to justify four separate regions"
+      },
+      "nuts1_disagreement": "Diverges from a naive four-way voivodeship split by merging Lubelskie/Podkarpackie/Podlaskie/Świętokrzyskie into one region, consistent with the EU's own 'Polska Wschodnia' macro-regional development programme category.",
+      "lang_family": "West Slavic (Polish; historic Kresy borderland mix incl. Belarusian/Lithuanian/Ukrainian minority pockets in Podlaskie)",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 2,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 2.6,
+        "rationale": "A strong agricultural base (Poland's grain/orchard belt) supports food; the region has Poland's weakest motorway/rail density and lowest healthcare-facility density per capita, dragging down transportation and hygiene/healthcare; energy remains import/grid-dependent with no major domestic generation asset besides small Rzeszów-area gas fields.",
+        "rationales": {
+          "water": "Average, unremarkable water access; no major river/coastal asset beyond the Vistula's upper reaches.",
+          "food": "A strong agricultural base (Poland's grain/orchard belt) supports food self-sufficiency.",
+          "energy": "Import/grid-dependent with no major domestic generation asset besides small Rzeszów-area gas fields.",
+          "transportation": "The region has Poland's weakest motorway/rail density, the zone's lowest transportation score."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "GUS (Statistics Poland) 2023",
+        "European Commission 'Polska Wschodnia' Operational Programme"
+      ]
+    },
+    {
+      "id": "cz-bohemia",
+      "name": "Bohemia (Prague)",
+      "name_local": "Čechy",
+      "countries": [
+        "CZ"
+      ],
+      "urban_core": "Prague",
+      "secondary_centers": [
+        "Plzeň",
+        "České Budějovice",
+        "Liberec",
+        "Hradec Králové"
+      ],
+      "identity_basis": "Historic Kingdom of Bohemia; Prague overwhelmingly dominates as national capital and cultural/economic center; distinct from Moravia both administratively and dialectally.",
+      "key_industries": [
+        "finance and business services",
+        "ICT",
+        "advanced manufacturing (Škoda Plzeň heritage)",
+        "tourism",
+        "nuclear power (Temelín)"
+      ],
+      "population": 6740000,
+      "population_note": "Eurostat/CZSO 2023 estimate for the Bohemian kraje (Praha, Středočeský, Jihočeský, Plzeňský, Karlovarský, Ústecký, Liberecký, Královéhradecký, Pardubický, Vysočina).",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "CZ01",
+        "CZ02",
+        "CZ03",
+        "CZ04",
+        "CZ05"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Prague",
+        "note": "Overwhelmingly dominant national capital.",
+        "centers": [
+          "Prague"
+        ],
+        "central_coord": [
+          14.42,
+          50.09
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Krajská zastupitelstva (Bohemian kraje)",
+        "note": "Real elected regional assemblies exist at kraj level (parity with Polish sejmiks); this cultural unit spans several kraje/assemblies, flagged for the CA parliament-exceptions audit."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Prague — national capital, dominant metro >2.7M",
+        "diversified_industry": "finance/ICT, advanced manufacturing, tourism, nuclear power (Temelín)",
+        "dependent_identity": "Czech national identity centered on the capital; no separatism"
+      },
+      "nuts1_disagreement": "Czechia's NUTS-1 (CZ0) is the whole country as one unit; we follow the existing NUTS-2 kraj groupings that keep Bohemia administratively distinct from Moravia and Moravian-Silesia.",
+      "lang_family": "West Slavic (Czech)",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Prague's transport and healthcare infrastructure is the strongest in Czechia; nuclear generation at Temelín (South Bohemia) gives the wider region reasonable low-carbon capacity, though overall energy self-sufficiency stays mid due to import dependence; dense Prague housing demand strains shelter.",
+        "rationales": {
+          "water": "Vltava/Labe river-basin access gives Prague reliable freshwater infrastructure.",
+          "food": "The capital region is a net food importer relative to South Bohemia's own agriculture.",
+          "energy": "Nuclear generation at Temelín (South Bohemia) gives the wider region reasonable low-carbon capacity, though overall energy self-sufficiency stays mid due to import dependence.",
+          "transportation": "Prague's transport infrastructure is the strongest in Czechia.",
+          "hygiene_healthcare": "Prague's hospital/university-medicine concentration is the strongest in Czechia."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Czech Statistical Office (CZSO) 2023"
+      ]
+    },
+    {
+      "id": "cz-moravia",
+      "name": "Moravia (Brno)",
+      "name_local": "Morava",
+      "countries": [
+        "CZ"
+      ],
+      "urban_core": "Brno",
+      "secondary_centers": [
+        "Olomouc",
+        "Zlín",
+        "Jihlava"
+      ],
+      "identity_basis": "Historic Margraviate of Moravia; the 2021 Czech census recorded 359,621 Moravian-nationality declarations (5.0% of respondents, down from 522,474 in 2011), with dual Czech-Moravian declarations rising ~80% to 179,721; concentration reaches 21.6% in Jihomoravský (Brno region), 15.0% in Zlínský and 12.4% in Olomoucký. Unlike Silesian identity in Czech Silesia, Moravian identity does not carry a cross-border minority-rights dimension.",
+      "key_industries": [
+        "IT/software (Brno tech cluster)",
+        "wine (South Moravia)",
+        "aerospace/defense",
+        "electronics"
+      ],
+      "population": 2960000,
+      "population_note": "Sum of Jihomoravský, Zlínský, Olomoucký and Vysočina kraje, CZSO 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "CZ06",
+        "CZ07"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Brno",
+        "note": "Brno dominates; Olomouc/Zlín are real but clearly secondary.",
+        "centers": [
+          "Brno"
+        ],
+        "central_coord": [
+          16.61,
+          49.2
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Krajská zastupitelstva (Jihomoravský, Zlínský, Olomoucký, Vysočina)",
+        "note": "Real elected regional assemblies at kraj level; this cultural unit spans four kraje, flagged for the CA parliament-exceptions audit."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Brno — metro >600k, Czechia's second city, major IT/tech hub",
+        "diversified_industry": "IT/software, wine, aerospace/defense, electronics",
+        "dependent_identity": "quantified, real Moravian sub-ethnic self-identification (5.0% nationally, 21.6% in Jihomoravský) within the Czech state; no separatism"
+      },
+      "nuts1_disagreement": "Czechia's NUTS-1 (CZ0) is the whole country as one unit; the Czech NUTS-2 level itself already keeps Moravskoslezský (Czech Silesia) separate from the Jihovýchod/Střední Morava kraje we group as 'Moravia' — we follow that existing administrative distinction rather than inventing a new one.",
+      "lang_family": "West Slavic (Czech; Moravian sub-ethnic self-identification)",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "South Moravian wine/agriculture and Vysočina forestry support food and water; the Dukovany nuclear plant (Vysočina) anchors regional energy generation; Brno's university-hospital complex supports healthcare.",
+        "rationales": {
+          "water": "South Moravian and Vysočina forestry/river resources support solid water self-sufficiency.",
+          "food": "South Moravian wine/agriculture gives above-average food self-sufficiency.",
+          "energy": "The Dukovany nuclear plant (Vysočina) anchors regional energy generation.",
+          "hygiene_healthcare": "Brno's university-hospital complex supports healthcare."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Czech Statistical Office (CZSO) 2021 census — Moravian nationality declarations"
+      ]
+    },
+    {
+      "id": "cz-czech-silesia",
+      "name": "Czech Silesia (Ostrava)",
+      "name_local": "Slezsko / Moravskoslezský kraj",
+      "countries": [
+        "CZ"
+      ],
+      "urban_core": "Ostrava",
+      "secondary_centers": [
+        "Karviná",
+        "Havířov",
+        "Opava"
+      ],
+      "identity_basis": "A remnant of the historic Duchy of (Czech/Austrian) Silesia, administratively distinct from both Bohemia and Moravia; a heavy coal/steel industrial identity (Ostrava-Karviná coal basin, Vítkovice steelworks) plus a genuine Polish national minority in the Zaolzie/Těšín Silesia area straddling the Czech-Polish border. Twinned with pl-silesia across the border in the new \"silesia\" variant set (data/variant_sets/zone67.json): the \"current\" view shows both as separate congruent-with-current-states records (unchanged here); a \"connected\" view shows a unified silesia-unified region (default_visible false) spanning both.",
+      "key_industries": [
+        "coal mining (in transition)",
+        "steel (Vítkovice legacy)",
+        "automotive supply",
+        "engineering"
+      ],
+      "population": 1170000,
+      "population_note": "Eurostat/CZSO 2023 estimate for Moravskoslezský kraj (CZ08).",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "CZ08"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Ostrava",
+        "note": "Ostrava dominates the Karviná-Havířov conurbation.",
+        "centers": [
+          "Ostrava"
+        ],
+        "central_coord": [
+          18.29,
+          49.83
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Krajské zastupitelstvo Moravskoslezského kraje",
+        "note": ""
+      },
+      "conflict_flags": [
+        {
+          "id": "cz-zaolzie-polish-minority",
+          "description": "Polish national minority in the Zaolzie/Těšín Silesia area on the Czech side of the historic Cieszyn Silesia partition — a cross-border Silesian-identity layer distinct from the Moravian census self-identification recorded elsewhere in Czechia.",
+          "zone_nuts_codes": [
+            "CZ080"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Ostrava — metro ~1.0M with the Karviná-Havířov conurbation, Czechia's 3rd-largest urban agglomeration",
+        "diversified_industry": "coal (declining, EU just-transition region), steel, automotive supply (near the Hyundai Nošovice plant), engineering",
+        "dependent_identity": "a distinct Silesian regional-administrative identity (kept as Moravskoslezský kraj rather than folded into a Moravian kraj); a genuine Polish-minority Zaolzie/Těšín Silesia layer, historically contested between Poland and Czechoslovakia (1919-20, 1938)"
+      },
+      "nuts1_disagreement": "Czechia's NUTS-1 (CZ0) treats the whole country as one unit; the Czech NUTS-2 level itself already keeps Moravskoslezský separate from the Jihovýchod/Střední Morava kraje we group as 'Moravia' — we follow that existing administrative distinction rather than inventing a new one.",
+      "lang_family": "West Slavic (Czech; Polish minority in Zaolzie/Těšín Silesia)",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.7,
+        "rationale": "Historic coal self-sufficiency is winding down under EU just-transition funding, mirroring Polish Upper Silesia across the border, keeping energy only moderate; dense post-industrial land use constrains shelter; cross-border road/rail links to Poland support transportation.",
+        "rationales": {
+          "water": "Odra-basin water access, industrially stressed, mirroring Polish Upper Silesia across the border.",
+          "food": "Average food self-sufficiency; dense industrial land use leaves little room for agriculture.",
+          "energy": "Historic coal self-sufficiency is winding down under EU just-transition funding, mirroring Polish Upper Silesia across the border, keeping energy only moderate.",
+          "transportation": "Cross-border road/rail links to Poland support transportation."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Czech Statistical Office 2023",
+        "EU Just Transition Fund Moravskoslezský programme",
+        "Zahra (2008) on the Cieszyn Silesia partition"
+      ]
+    },
+    {
+      "id": "silesia-unified",
+      "name": "Silesia (unified, PL+CZ)",
+      "name_local": "Śląsk / Slezsko",
+      "countries": [
+        "PL",
+        "CZ"
+      ],
+      "urban_core": "Katowice",
+      "secondary_centers": [
+        "Ostrava",
+        "Gliwice",
+        "Opole"
+      ],
+      "identity_basis": "Unified-view record for the \"silesia\" variant set (like tyrol-unified): historic Upper+Czech Silesia (Duchy of Silesia, later Prussian/Austrian partition) reunited across the modern Polish-Czech border, spanning the same coal/steel industrial basin and Ślązacy/Silesian-ethnolect continuum on both sides. Shown only in the \"connected\" and \"overlap\" views; the \"current\" (default) view shows pl-silesia and cz-czech-silesia separately, reflecting today's state borders.",
+      "key_industries": [
+        "coal mining (in transition, both sides)",
+        "steel",
+        "automotive manufacturing",
+        "chemicals",
+        "logistics"
+      ],
+      "population": 6410000,
+      "population_note": "Sum of pl-silesia (5,240,000) and cz-czech-silesia (1,170,000).",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "PL22",
+        "PL52",
+        "CZ08"
+      ],
+      "single_unit_exception": false,
+      "default_visible": false,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "central": "Katowice",
+        "note": "Two comparably-weighted coal-basin conurbations, historically one Duchy of Silesia, now split by the Polish-Czech border; neither side is subordinate to the other.",
+        "centers": [
+          "Katowice",
+          "Ostrava"
+        ],
+        "central_coord": [
+          19.02,
+          50.26
+        ],
+        "secondary": "Ostrava",
+        "secondary_coord": [
+          18.29,
+          49.83
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "No cross-border legislature exists; this is a cultural/historical unified view only, not a governance proposal."
+      },
+      "conflict_flags": [
+        {
+          "id": "silesia-cross-border-unification",
+          "description": "The historic Duchy of Silesia was partitioned between Prussia/Germany and Austria-Hungary/Czechoslovakia; today's Polish-Czech border bisects a continuous coal/steel industrial basin and Silesian-ethnolect dialect continuum. Shown as a toggleable unified view, not a territorial claim.",
+          "zone_nuts_codes": [
+            "PL22",
+            "PL52",
+            "CZ08"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Katowice/Ostrava — combined conurbation >3M across the border",
+        "diversified_industry": "coal, steel, automotive, chemicals on both sides of the border",
+        "dependent_identity": "cross-border cultural/ethnolinguistic continuity; this unified view is a cultural-mapping exercise, not a political claim — both Poland and Czechia keep their Silesian populations firmly within the national state"
+      },
+      "nuts1_disagreement": "Spans two countries' NUTS-1/2 systems (PL5/PL22/PL52 and CZ08); this is a noncongruent unified record analogous to tyrol-unified.",
+      "lang_family": "West Slavic (Polish/Czech; shared Silesian ethnolect continuum)",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "A straightforward sum of the two congruent-view records' profiles; the cross-border coal-basin economy reads as one system on the ground even though governed by two states.",
+        "rationales": {
+          "water": "Odra-basin water access on both sides of the border, industrially stressed.",
+          "food": "Average food self-sufficiency; dense cross-border industrial land use.",
+          "energy": "Combined coal self-sufficiency winding down under EU just-transition funding on both sides."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "GUS 2021 census",
+        "Czech Statistical Office 2023",
+        "Zahra (2008) on the Cieszyn Silesia partition"
+      ]
+    },
+    {
+      "id": "sk-bratislava-west",
+      "name": "Bratislava & Western Slovakia",
+      "name_local": "Bratislavský a západné Slovensko",
+      "countries": [
+        "SK"
+      ],
+      "urban_core": "Bratislava",
+      "secondary_centers": [
+        "Trnava",
+        "Nitra",
+        "Žilina",
+        "Trenčín",
+        "Banská Bystrica"
+      ],
+      "identity_basis": "Bratislava-centered western and central Slovakia forms an integrated automotive-manufacturing corridor (Bratislava-Trnava-Nitra-Žilina) along the Váh valley. A1.8 confirms the capital-region unit explicitly INCLUDES western AND central Slovakia (SK01+SK02+SK03): Central Slovakia's Žilina and Banská Bystrica kraje, though historically the 1944 Slovak National Uprising (SNP) heartland, are drawn into this bloc on the strength of the shared automotive-industrial corridor (Kia Žilina is functionally continuous with the Bratislava-Trnava-Nitra supply chain) rather than kept as a third region — a runner-up case for a future 3-way split, flagged rather than silently erased.",
+      "key_industries": [
+        "automotive manufacturing (Volkswagen Bratislava, Kia Žilina, Jaguar Land Rover Nitra, Stellantis Trnava)",
+        "finance and EU-institution-adjacent services (Bratislava)",
+        "electronics"
+      ],
+      "population": 3780000,
+      "population_note": "Sum of Bratislavský, Západné Slovensko and Stredné Slovensko NUTS-2 regions, Statistical Office of the Slovak Republic 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "SK01",
+        "SK02",
+        "SK03"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Bratislava",
+        "note": "Bratislava is the dominant single pole, but the automotive corridor genuinely spans multiple comparable industrial cities rather than radiating purely from the capital.",
+        "centers": [
+          "Bratislava",
+          "Nitra",
+          "Žilina"
+        ],
+        "central_coord": [
+          17.11,
+          48.15
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Krajské zastupiteľstvá (Bratislavský, Trnavský, Trenčiansky, Nitriansky, Žilinský, Banskobystrický)",
+        "note": "Real elected regional assemblies (samosprávne kraje) exist at kraj level; this cultural unit spans six kraje/assemblies, flagged for the CA parliament-exceptions audit."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Bratislava — metro ~660k, national capital, seat of government and EU-adjacent financial-services base",
+        "diversified_industry": "one of the world's highest per-capita car-production corridors (VW Bratislava, Stellantis Trnava, Kia Žilina, Jaguar Land Rover Nitra), plus electronics and finance",
+        "dependent_identity": "Bratislava's cosmopolitan, EU-oriented identity is distinct from the rest of Slovakia; Central Slovakia (Žilina, Banská Bystrica) carries its own real Slovak National Uprising (SNP) historical identity, which we do not split out separately here per A1.8's mandated 2-way framing"
+      },
+      "nuts1_disagreement": "Slovakia's NUTS-1 (SK0) is the whole country as a single unit; our split follows the country's own NUTS-2 regions grouped into two (per A1.8) rather than the four official NUTS-2 units, collapsing Stredné Slovensko into the western/capital bloc rather than retaining it as a third national region.",
+      "lang_family": "West Slavic (Slovak)",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "The automotive-manufacturing corridor supports strong transportation infrastructure (the motorway/rail spine along the Váh); Bratislava's healthcare capacity and Danube-basin water access are strong; food self-sufficiency is only moderate given how much agricultural land has shifted to industrial/logistics use.",
+        "rationales": {
+          "water": "Danube-basin water access is strong around Bratislava.",
+          "food": "Food self-sufficiency is only moderate given how much agricultural land has shifted to industrial/logistics use.",
+          "energy": "Energy draws on the national grid mix (incl. Jaslovské Bohunice/Mochovce nuclear plants nearby) but is not scored as a standalone regional generation asset.",
+          "transportation": "The automotive-manufacturing corridor supports strong transportation infrastructure (the motorway/rail spine along the Váh)."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistical Office of the Slovak Republic 2023",
+        "Slovak Investment and Trade Development Agency (SARIO) automotive-sector reports"
+      ]
+    },
+    {
+      "id": "sk-east",
+      "name": "Eastern Slovakia (Košice-Prešov)",
+      "name_local": "Východné Slovensko",
+      "countries": [
+        "SK"
+      ],
+      "urban_core": "Košice",
+      "secondary_centers": [
+        "Prešov",
+        "Michalovce"
+      ],
+      "identity_basis": "A1.8 SUPERSEDES the prior single-pole framing: Eastern Slovakia is modeled as a Košice-Prešov DIPOLE (the two Východné Slovensko NUTS-3 kraje, SK042 and SK041), not a Košice-dominant single region. Prešov carries the Rusyn/Ukrainian national minority (recognized minority-language status) concentrated in its northeastern districts — a distinct identity basis from Košice's steel/industrial economy; Slovakia's poorer, more agricultural east also has a significant Roma minority presence. The East Slovak dialect group is linguistically distinct from the Central/West Slovak dialects underlying standard Slovak.",
+      "key_industries": [
+        "steel (U.S. Steel Košice)",
+        "IT/BPO (Košice IT Valley)",
+        "agriculture",
+        "cross-border logistics (EU external border with Ukraine)"
+      ],
+      "population": 1610000,
+      "population_note": "Sum of Prešovský kraj (~811,000) and Košický kraj (~793,000), Statistical Office of the Slovak Republic 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "SK041",
+        "SK042"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "central": "Košice",
+        "note": "Košice (steel/industrial, ~230k) and Prešov (~90k, administrative seat of the Rusyn/Ukrainian minority's cultural institutions) are a genuine dipole ~35km apart, not a single-pole region.",
+        "centers": [
+          "Košice",
+          "Prešov"
+        ],
+        "central_coord": [
+          21.26,
+          48.72
+        ],
+        "secondary": "Prešov",
+        "secondary_coord": [
+          21.24,
+          49.0
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Krajské zastupiteľstvá (Košický, Prešovský)",
+        "note": "Real elected regional assemblies (samosprávne kraje); this cultural unit spans two kraje, flagged for the CA parliament-exceptions audit."
+      },
+      "conflict_flags": [
+        {
+          "id": "sk-rusyn-minority",
+          "description": "Rusyn/Ukrainian national minority concentrated in the northeastern Prešov region, with its own recognized minority-language status distinct from the Slovak national majority.",
+          "zone_nuts_codes": [
+            "SK041"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Košice-Prešov dipole — Košice ~230k city/~400k region (Slovakia's second-largest urban economy), Prešov ~90k",
+        "diversified_industry": "U.S. Steel Košice (one of Europe's largest integrated steelworks), a growing IT/BPO sector ('Košice IT Valley'), agriculture, EU-external-border logistics with Ukraine",
+        "dependent_identity": "the East Slovak dialect and a distinct Rusyn/Ukrainian and Roma minority presence (concentrated in Prešov kraj) give the region a genuinely different ethnolinguistic texture from the west; no separatism, but strong regional economic-development advocacy vis-à-vis Bratislava"
+      },
+      "nuts1_disagreement": "Slovakia's NUTS-1 (SK0) is the whole country as a single unit; we split East Slovakia out as its own dipole region while collapsing Stredné Slovensko into the western/capital bloc (see sk-bratislava-west), per A1.8's mandated 2-way framing.",
+      "lang_family": "West Slavic (Slovak, East Slovak dialect); Rusyn/Ukrainian (East Slavic) minority in Prešov region",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "The agricultural East Slovak lowlands support an above-average food score; energy remains import/grid-dependent, with the region's own generation limited largely to the U.S. Steel Košice cogeneration plant; the EU-external-border position adds transport friction not otherwise captured by this index.",
+        "rationales": {
+          "water": "Average water access; the Tisza/Bodrog river system gives adequate but unremarkable supply.",
+          "food": "The agricultural East Slovak lowlands support an above-average food score.",
+          "energy": "Energy remains import/grid-dependent, with the region's own generation limited largely to the U.S. Steel Košice cogeneration plant."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistical Office of the Slovak Republic 2023",
+        "U.S. Steel Košice company reports",
+        "Council of Europe Framework Convention reporting on the Rusyn minority in Slovakia"
+      ]
+    },
+    {
+      "id": "hu-budapest",
+      "name": "Budapest & Central Hungary",
+      "name_local": "Budapest és Közép-Dunántúl (rész)",
+      "countries": [
+        "HU"
+      ],
+      "urban_core": "Budapest",
+      "secondary_centers": [
+        "Érd",
+        "Szentendre",
+        "Székesfehérvár",
+        "Tatabánya",
+        "Esztergom"
+      ],
+      "identity_basis": "Budapest and its Pest-county commuter belt form Hungary's single overwhelmingly dominant metropolitan region — roughly 30% of the national population and a still-larger share of GDP, media and cultural institutions concentrated in the capital ('vidék' cleavage). COVERAGE-DRIVEN EXTENSION beyond the user's literal Budapest/Pest naming: Fejér (Székesfehérvár) and Komárom-Esztergom (Tatabánya, Esztergom) are added here rather than left an orphaned remainder of the old Közép-Dunántúl NUTS-2 unit once Veszprém is reassigned to hu-balaton. Both counties sit on the M1 motorway/Danube corridor between Budapest and the Austrian/Slovak border, function economically as Budapest's western industrial-commuter periphery, and are NOT part of the 'West/Szombathely' or 'Balaton' identity — this is an honest coverage necessity, not a claim that Székesfehérvár or Esztergom are culturally 'Budapest'.",
+      "key_industries": [
+        "finance and business services",
+        "ICT",
+        "government/public administration",
+        "pharmaceuticals (Richter Gedeon)",
+        "logistics",
+        "automotive (Suzuki Esztergom)"
+      ],
+      "population": 3740000,
+      "population_note": "Sum of Budapest (~1.68M), Pest (~1.35M), Fejér (~0.41M) and Komárom-Esztergom (~0.30M) counties, KSH 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "HU110",
+        "HU120",
+        "HU211",
+        "HU212"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Budapest",
+        "note": "Overwhelmingly dominant national capital; Fejér/Komárom-Esztergom are commuter-industrial periphery, not independent poles.",
+        "centers": [
+          "Budapest"
+        ],
+        "central_coord": [
+          19.04,
+          47.5
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Hungarian county (megyei) assemblies were stripped of any meaningful policy-making function after 2010; Budapest itself has no separate sub-national parliament beyond its municipal government. See this file's HU push-back notes."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Budapest — metro ~3.0M (nearly a third of Hungary's population), overwhelmingly dominant national capital",
+        "diversified_industry": "finance/business services, ICT, government, pharmaceuticals, logistics, automotive (Suzuki Esztergom)",
+        "dependent_identity": "Budapest's cosmopolitan, opposition-leaning political culture is well-documented as distinct from the rest of Hungary, with no separatist dimension — dependence-within-the-state par excellence"
+      },
+      "nuts1_disagreement": "No longer matches HU1 (Közép-Magyarország) alone: extends into two NUTS-3 units of the former Közép-Dunántúl NUTS-2 (HU21) — Fejér and Komárom-Esztergom — for coverage, since Veszprém (the third HU21 county) moves to hu-balaton per the mandated 4-unit Hungary carve-up. This is a deliberate, stated deviation, not a silent one.",
+      "lang_family": "Uralic (Hungarian)",
+      "autarky": {
+        "water": 4,
+        "food": 2,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Overwhelming transport (Liszt Ferenc Airport, national rail/motorway hub) and healthcare (Semmelweis University hospital network) concentration; food self-sufficiency is the weakest score, since the capital region imports most of its food from the agricultural vidék it otherwise dominates economically.",
+        "rationales": {
+          "water": "Danube-basin access is abundant, though the capital's food and industrial demand strain per-capita supply less than elsewhere in the region.",
+          "food": "Food self-sufficiency is the weakest score in the zone: the capital region imports most of its food from the agricultural vidék it otherwise dominates economically.",
+          "energy": "Energy draws on the national grid (Paks nuclear plant, outside this unit) with no major regional generation asset of its own.",
+          "transportation": "Overwhelming transport concentration (Liszt Ferenc Airport, national rail/motorway hub, Suzuki/automotive logistics corridor).",
+          "hygiene_healthcare": "Semmelweis University hospital network gives the strongest healthcare concentration in Hungary."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "KSH (Hungarian Central Statistical Office) 2023 population estimates",
+        "Assembly of European Regions (2021), 'Regionalisation in Hungary: once again a centralised country'"
+      ]
+    },
+    {
+      "id": "hu-west",
+      "name": "West Hungary (Győr-Szombathely)",
+      "name_local": "Nyugat-Dunántúl (rész)",
+      "countries": [
+        "HU"
+      ],
+      "urban_core": "Győr",
+      "secondary_centers": [
+        "Szombathely",
+        "Sopron",
+        "Mosonmagyaróvár"
+      ],
+      "identity_basis": "Historic Nyugat-Dunántúl (West Transdanubia) minus Zala (reassigned to hu-balaton per the user's explicit Balaton composition). Győr anchors a genuine automotive-export corridor (Audi Győr, one of Hungary's largest single employers) on the Vienna-Budapest axis; Szombathely (Vas county) carries its own distinct Pannonian/Austrian-facing civic identity, historically the seat of Roman Savaria and closest Hungarian city to Austria.",
+      "key_industries": [
+        "automotive manufacturing (Audi Győr)",
+        "logistics (Vienna-Budapest corridor)",
+        "electronics",
+        "cross-border trade (Sopron/Austria)"
+      ],
+      "population": 703000,
+      "population_note": "Sum of Győr-Moson-Sopron (~453,000) and Vas (~250,000) counties, KSH 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "HU221",
+        "HU222"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Győr",
+        "note": "Győr is the largest single city (Audi plant), but Szombathely (Vas county seat) and Sopron (historic border town, voted 1921 to stay in Hungary) are real secondary identity centers, not mere Győr suburbs — best-effort polycentric marking.",
+        "centers": [
+          "Győr",
+          "Szombathely",
+          "Sopron"
+        ],
+        "central_coord": [
+          17.63,
+          47.68
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Hungarian county assemblies have no meaningful legislative function post-2010."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Győr — metro ~130k, dominant single hub of the reduced West-Hungary unit once Zala moves to hu-balaton",
+        "diversified_industry": "automotive export manufacturing (Audi Győr), logistics on the Vienna-Budapest transit corridor, electronics, cross-border trade with Austria",
+        "dependent_identity": "a real Pannonian/Austrian-facing civic identity distinct from both Budapest and the Alföld; Sopron's 1921 plebiscite to remain Hungarian (against the Treaty of Trianon's original Austria assignment) is the zone's clearest concrete evidence of a locally-salient, non-separatist regional identity choice"
+      },
+      "nuts1_disagreement": "Narrower than official Nyugat-Dunántúl (HU22), which also includes Zala; we move Zala to hu-balaton per the mandated Balaton composition (Somogy/Veszprém/Zala), stated here rather than silently absorbed.",
+      "lang_family": "Uralic (Hungarian)",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "The Vienna-Budapest transit corridor and Audi's export-manufacturing base support transportation and industrial employment; food and water are average; the region imports most energy and finished consumer goods, typical of Hungary's mid-sized industrial counties.",
+        "rationales": {
+          "water": "Danube/Rába river access is adequate, unremarkable.",
+          "food": "Average food self-sufficiency; agricultural land has shifted toward automotive-industrial use around Győr.",
+          "energy": "Grid/import-dependent, no major regional generation asset.",
+          "transportation": "The Vienna-Budapest transit corridor and Sopron/Austria cross-border links give this unit's strongest score."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "KSH (Hungarian Central Statistical Office) 2023",
+        "Audi Hungaria company reports"
+      ]
+    },
+    {
+      "id": "hu-balaton",
+      "name": "Lake Balaton & South Transdanubia",
+      "name_local": "Balaton és Dél-Dunántúl",
+      "countries": [
+        "HU"
+      ],
+      "urban_core": "Pécs",
+      "secondary_centers": [
+        "Veszprém",
+        "Kaposvár",
+        "Szekszárd",
+        "Keszthely",
+        "Siófok"
+      ],
+      "identity_basis": "Composed per the user's explicit instruction that Balaton spans Somogy/Veszprém/Zala counties (verified: HU213/HU232/HU223). Once assembled, this leaves Baranya and Tolna (the remainder of the old Dél-Dunántúl NUTS-2 unit after Somogy moves here) needing a coverage home: they are geographically contiguous with Somogy (not with hu-west or hu-east-debrecen, which are non-adjacent), so we fold them in rather than orphan them. HONEST TENSION FLAGGED: the resulting unit's largest city by far is Pécs (Baranya, ~140k, UNESCO World Heritage old town, university), ~150km from the lake itself — the 'Lake Balaton' identity in the unit's name reflects the user's mandated naming and the lakeside tourism economy's cultural salience, not the unit's real urban-population center of gravity, which sits in Pécs. This mirrors the honesty already applied to hu-east-debrecen in v1: we keep the mandated name while stating plainly where it strains the inclusion test.",
+      "key_industries": [
+        "tourism (Lake Balaton)",
+        "wine (Balaton-felvidék, Villány/Pécs)",
+        "coal/uranium legacy (Pécs-Komló, decommissioned)",
+        "agriculture",
+        "pharmaceuticals (Pécs university-medical cluster)"
+      ],
+      "population": 1454000,
+      "population_note": "Sum of Veszprém (~330,000), Zala (~267,000), Somogy (~290,000), Baranya (~360,000) and Tolna (~207,000) counties, KSH 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "HU213",
+        "HU223",
+        "HU232",
+        "HU231",
+        "HU233"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Pécs",
+        "note": "HONEST CASE: Pécs is the largest city but sits far south of the lake; Veszprém is the lake district's own administrative center. Marked polycentric rather than a single monopole to reflect this real duality rather than pretend one city organizes the whole territory.",
+        "centers": [
+          "Pécs",
+          "Veszprém"
+        ],
+        "central_coord": [
+          18.23,
+          46.08
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Hungarian county assemblies have no meaningful legislative function post-2010."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "No single hub matches the 'Balaton' identity cleanly — Pécs (~140k) is the largest city but sits ~150km from the lake; Veszprém (~60k) is the lake district's own seat. A coverage-driven merger of two distinct sub-identities (lakeside tourism arc + South Transdanubian Pécs hinterland), stated honestly rather than glossed over.",
+        "diversified_industry": "lakeside tourism, wine (both Balaton-felvidék and Villány/Pécs), Pécs university-medical/pharma cluster, agriculture",
+        "dependent_identity": "both sub-areas (Balaton tourism belt, Pécs/South Transdanubia) are dependent, non-separatist Hungarian regional identities; no shared civic identity unites them beyond geographic contiguity and the mandated 4-unit carve-up"
+      },
+      "nuts1_disagreement": "Diverges from both former NUTS-2 units it draws from (Közép-Dunántúl HU21 and Dél-Dunántúl HU23): takes only Veszprém from HU21 (Fejér/Komárom-Esztergom go to hu-budapest) and Zala from the old HU22 Nyugat-Dunántúl, while taking all of the HU23 remainder (Somogy/Baranya/Tolna) once none of them fit hu-west or hu-east-debrecen contiguously.",
+      "lang_family": "Uralic (Hungarian)",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Lake Balaton and the region's wine/agriculture give solid Water and Food scores; Pécs's university-medical cluster supports Hygiene & Healthcare; energy has no major remaining domestic asset since the Pécs-area coal/uranium mining legacy was decommissioned.",
+        "rationales": {
+          "water": "Lake Balaton itself and the Dráva/Danube tributaries give strong freshwater abundance.",
+          "food": "Diversified wine and agricultural base (Balaton-felvidék, Villány) supports an above-average food score.",
+          "energy": "No major domestic generation asset since the Pécs-Komló coal/uranium legacy industry was decommissioned; grid/import-dependent."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "KSH (Hungarian Central Statistical Office) 2023",
+        "University of Pécs regional development reports"
+      ]
+    },
+    {
+      "id": "hu-east-debrecen",
+      "name": "East Hungary (Debrecen)",
+      "name_local": "Alföld és Észak-Magyarország",
+      "countries": [
+        "HU"
+      ],
+      "urban_core": "Debrecen",
+      "secondary_centers": [
+        "Szeged",
+        "Miskolc",
+        "Nyíregyháza",
+        "Kecskemét",
+        "Békéscsaba"
+      ],
+      "identity_basis": "Now purely the former Alföld és Észak NUTS-1 macroregion (HU3: Észak-Magyarország + Észak-Alföld + Dél-Alföld) with no Dunántúl territory mixed in, since hu-balaton absorbs the Transdanubian remainder. Retains this file's honest v1 finding: no single dominant hub (Debrecen, Szeged, Miskolc, Nyíregyháza are comparably sized); the historic Alföld (Protestant, agrarian, Ottoman-legacy) identity is genuine but exists mainly in contradistinction to Budapest rather than as a positive regional identity of its own.",
+      "key_industries": [
+        "agriculture and food processing",
+        "automotive manufacturing (BMW Debrecen, Mercedes-Benz Kecskemét)",
+        "pharmaceuticals",
+        "battery/EV supply chain (growing, Debrecen/Miskolc)"
+      ],
+      "population": 3760000,
+      "population_note": "Sum of Borsod-Abaúj-Zemplén, Heves, Nógrád, Hajdú-Bihar, Jász-Nagykun-Szolnok, Szabolcs-Szatmár-Bereg, Bács-Kiskun, Békés and Csongrád-Csanád counties (all of HU3), KSH 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "HU311",
+        "HU312",
+        "HU313",
+        "HU321",
+        "HU322",
+        "HU323",
+        "HU331",
+        "HU332",
+        "HU333"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Debrecen",
+        "note": "No dominant single hub — Debrecen (Hungary's 2nd city, ~200k) is only modestly ahead of Szeged, Miskolc and Nyíregyháza; this is the same honest weak point flagged in v1, now cleaner since it no longer mixes in Transdanubian territory.",
+        "centers": [
+          "Debrecen",
+          "Szeged",
+          "Miskolc",
+          "Nyíregyháza"
+        ],
+        "central_coord": [
+          21.63,
+          47.53
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Hungarian county assemblies have no meaningful legislative function post-2010."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "no dominant single hub — Debrecen (~200k, Hungary's 2nd city) is only modestly ahead of Szeged, Nyíregyháza and Miskolc; this criterion is the acknowledged weak point of this region",
+        "diversified_industry": "a real and growing automotive/EV-battery manufacturing base (BMW Debrecen, Mercedes-Benz Kecskemét, CATL/Samsung SDI battery plants), agriculture (the Alföld/Great Plain breadbasket), pharmaceuticals",
+        "dependent_identity": "the 'vidék' (countryside) identity exists mainly in contradistinction to Budapest rather than as a positive regional identity of its own; the historic Alföld (Protestant, agrarian, Ottoman-legacy) identity is genuine but does not sustain organized political regionalism"
+      },
+      "nuts1_disagreement": "Matches Hungary's actual current NUTS-1 unit HU3 (Alföld és Észak) exactly, now that Transdanubian territory (formerly merged in as hu-videk) is split out to hu-budapest/hu-west/hu-balaton per the mandated 4-unit carve-up.",
+      "lang_family": "Uralic (Hungarian)",
+      "autarky": {
+        "water": 3,
+        "food": 5,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 2,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 2.7,
+        "rationale": "The Alföld/Great Plain breadbasket gives this region Hungary's strongest food score; energy self-sufficiency is dragged down by Hungary's near-total reliance on the single centralized Paks nuclear station plus Russian gas imports — a national, not regional, asset; transportation and healthcare infrastructure outside the handful of secondary cities are visibly thinner than in the capital.",
+        "rationales": {
+          "water": "The Danube-Tisza interfluve and Alföld water-management systems give a solid, if flood-management-dependent, water score.",
+          "food": "The Alföld/Great Plain breadbasket gives this region Hungary's strongest food score.",
+          "energy": "Dragged down by Hungary's near-total reliance on the single centralized Paks nuclear station plus Russian gas imports — a national, not regional, asset that does not raise any one region's autarky."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "KSH (Hungarian Central Statistical Office) 2023",
+        "regscience.hu, 'The rise and fall of regionalism in Hungary'",
+        "Assembly of European Regions (2021), 'Regionalisation in Hungary: once again a centralised country'"
+      ]
+    },
+    {
+      "id": "si-slovenia",
+      "name": "Slovenia",
+      "name_local": "Slovenija",
+      "countries": [
+        "SI"
+      ],
+      "urban_core": "Ljubljana",
+      "secondary_centers": [
+        "Maribor",
+        "Koper",
+        "Celje"
+      ],
+      "identity_basis": "Single-unit exception per global constraints; Slovenia is treated as one region despite a genuine internal Eastern/Western statistical-region distinction (Vzhodna/Zahodna Slovenija) because it is a small, already-independent nation-state, not a sub-national identity seeking recognition within a larger state. A1.5 SUPERSEDES A1.5's own earlier amendment and the original Task-C4 dispatch: an East/West Maribor-Ljubljana variant set was drafted and explicitly REJECTED by the user twice ('small enough as it is') — DROPPED entirely, not authored even as a hidden fragment.",
+      "key_industries": [
+        "automotive supply (Revoz/Renault)",
+        "pharmaceuticals (Krka, Lek)",
+        "logistics (Port of Koper)",
+        "tourism",
+        "electronics"
+      ],
+      "population": 2120000,
+      "population_note": "Eurostat/SURS (Statistical Office of the Republic of Slovenia) 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "SI0"
+      ],
+      "single_unit_exception": true,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Ljubljana",
+        "note": "Overwhelmingly dominant national capital, roughly a quarter of the national population.",
+        "centers": [
+          "Ljubljana"
+        ],
+        "central_coord": [
+          14.51,
+          46.06
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Državni zbor (National Assembly of Slovenia)",
+        "note": "Single-unit exception country: 'own parliament' here is trivially Slovenia's own national parliament, since the whole country is modeled as one cultural unit."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Ljubljana — metro ~500k (roughly a quarter of the national population), overwhelmingly dominant national capital",
+        "diversified_industry": "automotive supply, pharmaceuticals, Adriatic port logistics (Koper, Slovenia's only sea port), tourism, electronics/appliances (Gorenje)",
+        "dependent_identity": "not applicable — single-unit exception; Slovenia's own sub-national identity is expressed at the level of the nation-state itself, not a region within it"
+      },
+      "nuts1_disagreement": "None — SI0 is simultaneously the NUTS-1 unit and (via SI03/SI04) the only country in this zone with an internal NUTS-2 East/West statistical split, which we deliberately do not use, consistent with the global single-unit exception AND the user's explicit A1.5 rejection of a Maribor/Ljubljana variant set.",
+      "lang_family": "South Slavic (Slovene)",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "Alpine water resources and the Port of Koper give reasonable water/transport scores; food self-sufficiency is moderate given Slovenia's mountainous terrain; energy draws on a mix of the shared Krško nuclear plant (co-owned with Croatia), hydro and coal, kept at a middling score to reflect this shared-asset complexity.",
+        "rationales": {
+          "water": "Alpine water resources give a solid, above-average score.",
+          "food": "Food self-sufficiency is moderate given Slovenia's mountainous terrain.",
+          "energy": "Energy draws on a mix of the shared Krško nuclear plant (co-owned with Croatia), hydro and coal, kept at a middling score to reflect this shared-asset complexity."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistical Office of the Republic of Slovenia (SURS) 2023",
+        "Luka Koper port authority annual report"
+      ]
+    },
+    {
+      "id": "hr-zagreb-continental",
+      "name": "Zagreb & Continental Croatia",
+      "name_local": "Zagreb i kontinentalna Hrvatska",
+      "countries": [
+        "HR"
+      ],
+      "urban_core": "Zagreb",
+      "secondary_centers": [
+        "Osijek",
+        "Varaždin",
+        "Karlovac"
+      ],
+      "identity_basis": "Zagreb overwhelmingly dominates continental (inland, Pannonian) Croatia economically, politically and culturally; Slavonia (Osijek, within Panonska Hrvatska) carries a distinct war-affected regional identity (1991-95 Homeland War frontline, including Vukovar) which we note but do not split out.",
+      "key_industries": [
+        "finance/business services and ICT (Zagreb)",
+        "pharmaceuticals (Zagreb)",
+        "agriculture and food processing (Slavonia)",
+        "automotive supply"
+      ],
+      "population": 2500000,
+      "population_note": "Sum of Grad Zagreb, Sjeverna Hrvatska and Panonska Hrvatska NUTS-2 regions, DZS (Croatian Bureau of Statistics) 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "HR05",
+        "HR06",
+        "HR02"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Zagreb",
+        "note": "Overwhelmingly dominant inland economic/political/cultural center.",
+        "centers": [
+          "Zagreb"
+        ],
+        "central_coord": [
+          15.98,
+          45.81
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Croatian županije (counties) are deconcentrated administrative units with weak elected assemblies, not legislative parliaments — per the explicit HR/RO/BG audit rule."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Zagreb — metro ~1.1M, national capital and overwhelmingly dominant inland economic center",
+        "diversified_industry": "finance/ICT/pharma (Zagreb), agriculture/food processing (Slavonia's Pannonian plain), automotive supply, logistics on the Budapest-Zagreb-Adriatic corridor",
+        "dependent_identity": "Croatian national identity centered on the capital; Slavonia's distinct post-war reconstruction identity (Vukovar as a national symbol of the Homeland War) is a genuine sub-layer we note rather than split out"
+      },
+      "nuts1_disagreement": "Croatia's NUTS-1 (HR0) is the whole country as a single unit; we split it four ways (this region, Istria, Rijeka, Dalmatia) per A1.9. Slavonia/Panonska Hrvatska's own distinct war-era identity remains a candidate for a future fifth split, flagged rather than implemented here.",
+      "lang_family": "South Slavic (Croatian)",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "Slavonia's Pannonian plain agriculture gives this region Croatia's best food self-sufficiency outside Dalmatia's coastal fisheries; Zagreb's hospital/university complex supports healthcare; energy is a mixed grid/hydro/gas position, unremarkable.",
+        "rationales": {
+          "water": "Average, adequate Sava/Drava river-basin access.",
+          "food": "Slavonia's Pannonian plain agriculture gives this region Croatia's best food self-sufficiency outside Dalmatia's coastal fisheries.",
+          "energy": "Mixed grid/hydro/gas position, unremarkable.",
+          "hygiene_healthcare": "Zagreb's hospital/university complex supports healthcare."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Croatian Bureau of Statistics (DZS) 2023 population estimates",
+        "Croatian Chamber of Economy Slavonia agriculture reports"
+      ]
+    },
+    {
+      "id": "hr-rijeka",
+      "name": "Rijeka & Kvarner",
+      "name_local": "Rijeka i Kvarner",
+      "countries": [
+        "HR"
+      ],
+      "urban_core": "Rijeka",
+      "secondary_centers": [
+        "Opatija",
+        "Krk",
+        "Senj"
+      ],
+      "identity_basis": "A1.9 SUPERSEDES the prior Istria-Rijeka merger: Rijeka/Kvarner is now its OWN unit. Rijeka is Croatia's principal cargo port with a distinct Fiuman/multicultural Habsburg-Italian-Croatian-Hungarian heritage (the city was a Hungarian corpus separatum 1868-1918, then contested Italian/Yugoslav territory 1918-1947) — a civic identity genuinely separate from both Istria's bilingual regionalism and Dalmatia's coastal-Venetian identity.",
+      "key_industries": [
+        "maritime port and shipping (Rijeka, Croatia's principal cargo port)",
+        "shipbuilding",
+        "tourism (Kvarner coast, Opatija)",
+        "logistics"
+      ],
+      "population": 268000,
+      "population_note": "Primorsko-goranska županija, DZS 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "HR031"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Rijeka",
+        "note": "Rijeka dominates the Kvarner Gulf; no comparable secondary city.",
+        "centers": [
+          "Rijeka"
+        ],
+        "central_coord": [
+          14.44,
+          45.33
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Croatian županije are deconcentrated administrative units, not legislative parliaments."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Rijeka — metro ~245k, Croatia's principal cargo port and third-largest city",
+        "diversified_industry": "port/maritime logistics, shipbuilding (Rijeka's historic 3. Maj shipyard), Kvarner-coast tourism (Opatija)",
+        "dependent_identity": "a distinct Fiuman/multicultural Habsburg-Italian-Croatian-Hungarian civic heritage (corpus separatum under Hungary 1868-1918, contested Italian/Yugoslav city 1918-1947); no separatism today"
+      },
+      "nuts1_disagreement": "Croatia's NUTS-2 (HR03 'Jadranska Hrvatska') merges Rijeka with Istria and Dalmatia; we split at the county (NUTS-3) level three ways per A1.9, isolating Rijeka's distinct Fiuman/port-city profile from both Istria's bilingual regionalism and Dalmatia's coastal identity.",
+      "lang_family": "South Slavic (Croatian; historic Fiuman/Italian-influenced urban dialect)",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Rijeka's cargo port and cross-border road/rail links to Slovenia/Italy support transportation; Kvarner-coast tourism and fisheries are real but modest; energy is import-dependent with no major domestic generation asset in the region itself.",
+        "rationales": {
+          "water": "Adequate coastal/karst water access, comparable to the rest of Adriatic Croatia.",
+          "food": "Small-scale Kvarner agriculture and fisheries; modest, not a major producer.",
+          "energy": "Import-dependent with no major domestic generation asset in the region itself.",
+          "transportation": "Rijeka's cargo port and cross-border road/rail links to Slovenia/Italy support transportation."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Croatian Bureau of Statistics (DZS) 2023",
+        "Port of Rijeka Authority annual report"
+      ]
+    },
+    {
+      "id": "hr-istria",
+      "name": "Istria",
+      "name_local": "Istra",
+      "countries": [
+        "HR"
+      ],
+      "urban_core": "Pula",
+      "secondary_centers": [
+        "Poreč",
+        "Rovinj",
+        "Umag"
+      ],
+      "identity_basis": "A1.9 SUPERSEDES the prior Istria-Rijeka merger: Istria is now its OWN unit, isolating its genuine bilingual Croatian-Italian regional identity (a recognized Italian national minority, with officially bilingual signage/institutions in coastal Istrian towns) and its own strong regionalist political tradition (Istrian Democratic Assembly, IDS/DDI, historically the region's dominant party, advocating regional autonomy within Croatia) from Rijeka's separately-identified Fiuman port-city heritage.",
+      "key_industries": [
+        "tourism (Istrian coast)",
+        "agriculture (olive oil, wine, truffles)",
+        "fishing",
+        "light manufacturing"
+      ],
+      "population": 208000,
+      "population_note": "Istarska županija, DZS 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "HR036"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "central": "Pula",
+        "note": "Pula is the largest city, but Istria's tourism/civic geography is genuinely spread across several comparably-important coastal towns (Poreč, Rovinj, Umag) rather than radiating from one center.",
+        "centers": [
+          "Pula",
+          "Poreč",
+          "Rovinj"
+        ],
+        "central_coord": [
+          13.85,
+          44.87
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Croatian županije are deconcentrated administrative units, not legislative parliaments — though Istria's IDS/DDI-led county government exercises unusually assertive regional-autonomy advocacy relative to other Croatian counties, worth flagging for the CA audit as a borderline case."
+      },
+      "conflict_flags": [
+        {
+          "id": "hr-istria-italian-minority",
+          "description": "Recognized Italian national minority in Istria with official bilingual status (Croatian-Italian) in coastal towns, and a distinct regionalist political tradition (IDS/DDI) advocating autonomy within Croatia.",
+          "zone_nuts_codes": [
+            "HR036"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Pula — metro ~90k, Istria's largest city and historic Roman/Venetian/Austro-Hungarian naval-port center",
+        "diversified_industry": "tourism (dominant), agriculture (olive oil, wine, truffles), fishing, light manufacturing",
+        "dependent_identity": "Istria's regionalist political tradition (IDS/DDI) and recognized Italian minority give this the strongest organized sub-national political identity in Croatia, seeking greater autonomy within Croatia, not independence"
+      },
+      "nuts1_disagreement": "Croatia's NUTS-2 (HR03 'Jadranska Hrvatska') merges Istria with Rijeka and Dalmatia; we split at the county (NUTS-3) level three ways per A1.9, isolating Istria's distinct bilingual/regionalist profile from both Rijeka and Dalmatia.",
+      "lang_family": "South Slavic (Croatian); recognized Italian national minority (bilingual coastal towns)",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.7,
+        "rationale": "Istrian olive/wine agriculture is diversified but small-scale; tourism dominates the economy; energy is import-dependent with no major domestic generation asset in the region itself; transportation is more modest without Rijeka's cargo-port role now split out separately.",
+        "rationales": {
+          "water": "Adequate karst/coastal water access, tourism-season-strained like the rest of Adriatic Croatia.",
+          "food": "Istrian olive/wine/truffle agriculture is diversified but small-scale.",
+          "energy": "Import-dependent with no major domestic generation asset."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Croatian Bureau of Statistics (DZS) 2023",
+        "Council of Europe Framework Convention reporting on the Italian minority in Istria",
+        "IDS/DDI party programme documents"
+      ]
+    },
+    {
+      "id": "hr-dalmatia",
+      "name": "Dalmatia (Split)",
+      "name_local": "Dalmacija",
+      "countries": [
+        "HR"
+      ],
+      "urban_core": "Split",
+      "secondary_centers": [
+        "Zadar",
+        "Dubrovnik",
+        "Šibenik"
+      ],
+      "identity_basis": "Historic Dalmatia, a distinct Adriatic-coast cultural region with its own dialect (Chakavian/Dalmatian coastal speech with Venetian-Italian influence), Venetian-era architectural heritage, and a strong regional identity ('Dalmatinac' as a self-description distinct from 'kontinentalac'/inlander) within Croatia. Unchanged in composition by A1.9 (which added hr-rijeka as a new unit split off the old hr-istria-rijeka, not from this record); Lika (Ličko-senjska županija, HR032) stays here as before, though it is geographically closer to Rijeka's hinterland than to coastal Dalmatia — flagged as a candidate for a future reassignment to hr-rijeka rather than silently perfected.",
+      "key_industries": [
+        "tourism (Croatia's largest tourism-revenue base)",
+        "fisheries and maritime shipping",
+        "wine and olive agriculture",
+        "construction"
+      ],
+      "population": 890000,
+      "population_note": "Sum of Zadarska, Šibensko-kninska, Splitsko-dalmatinska, Dubrovačko-neretvanska and Ličko-senjska counties (županije), DZS 2023 estimate.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "HR033",
+        "HR034",
+        "HR035",
+        "HR037",
+        "HR032"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "central": "Split",
+        "note": "Split dominates as Croatia's second city and the Adriatic coast's largest urban/cultural center.",
+        "centers": [
+          "Split"
+        ],
+        "central_coord": [
+          16.44,
+          43.51
+        ]
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": null,
+        "note": "Croatian županije are deconcentrated administrative units, not legislative parliaments."
+      },
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Split — metro ~450k (Splitsko-dalmatinska county), Croatia's second city and the Adriatic coast's largest urban/cultural center",
+        "diversified_industry": "tourism (dominant), maritime shipping and fisheries, wine/olive agriculture, construction — genuine seasonality risk noted in the autarky rationale below",
+        "dependent_identity": "distinct Dalmatian regional identity and dialect within Croatia, expressed through strong local self-identification and folk-cultural institutions (e.g. klapa singing); no separatism"
+      },
+      "nuts1_disagreement": "Croatia's NUTS-1 (HR0) is a single unit; even NUTS-2 (HR03 'Jadranska Hrvatska'/Adriatic Croatia) merges Dalmatia with Istria and Rijeka — we split at the NUTS-3 (county) level specifically to separate Dalmatia from Istria and (per A1.9) Rijeka. Ličko-senjska (Lika) stays attached here per v1 rather than moving to hr-rijeka, unreviewed for A1.9 — see identity_basis caveat.",
+      "lang_family": "South Slavic (Croatian; Chakavian/Dalmatian coastal dialect with Venetian-Italian influence)",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.7,
+        "rationale": "Summer tourism triples the resident population and puts acute seasonal stress on water supply and healthcare capacity, the two lowest-scoring dimensions alongside energy (near-total import dependence, no major domestic generation); Adriatic fisheries and Dalmatian hinterland viticulture support a moderate food score.",
+        "rationales": {
+          "water": "Summer tourism triples the resident population and puts acute seasonal stress on water supply, the lowest-scoring dimension alongside energy.",
+          "food": "Adriatic fisheries and Dalmatian hinterland viticulture support a moderate food score.",
+          "energy": "Near-total import dependence, no major domestic generation asset."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Croatian Bureau of Statistics (DZS) 2023",
+        "Croatian National Tourist Board seasonal-visitor statistics"
+      ]
+    }
+  ]
+}

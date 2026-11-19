@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>meta-democracy.org</title>
+<meta name="description" content="Europe of the Regions — an interactive map of ~190 practical regions between the nation-state and the EU.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="meta-democracy.org">
+<meta property="og:title" content="meta-democracy.org — Europe of the Regions">
+<meta property="og:description" content="Europe of the Regions — an interactive map of ~190 practical regions between the nation-state and the EU.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="meta-democracy.org — Europe of the Regions">
+<meta name="twitter:description" content="Europe of the Regions — an interactive map of ~190 practical regions between the nation-state and the EU.">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: #0b0b0f;
+    color: #eee;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.55;
+  }
+  a { color: #8ab4ff; }
+  a:hover { color: #b7cdff; }
+
+  header.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid #232330;
+  }
+  header.site-header .brand { font-weight: 600; color: #eee; text-decoration: none; }
+  header.site-header nav { display: flex; gap: 1.25rem; font-size: 0.92rem; }
+  header.site-header nav a { color: #b9b9c6; text-decoration: none; }
+  header.site-header nav a:hover, header.site-header nav a[aria-current="page"] { color: #eee; }
+  header.site-header nav a[aria-current="page"] { border-bottom: 1px solid #8ab4ff; }
+
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 2rem;
+    text-align: center;
+  }
+  h1 { font-weight: 650; font-size: 2rem; margin: 0 0 0.4rem; }
+  p.tagline { opacity: 0.75; margin: 0 0 2.5rem; font-size: 1.1rem; }
+
+  .framing {
+    text-align: left;
+    background: #131318;
+    border: 1px solid #232330;
+    border-radius: 10px;
+    padding: 1.5rem 1.75rem;
+    margin: 0 0 2.75rem;
+    font-size: 1rem;
+    color: #d3d3dc;
+  }
+  .framing strong { color: #f2f2f7; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+    text-align: left;
+  }
+  .card {
+    display: block;
+    background: #131318;
+    border: 1px solid #232330;
+    border-radius: 10px;
+    padding: 1.25rem 1.4rem;
+    text-decoration: none;
+    color: #eee;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .card:hover { border-color: #4a4a7a; transform: translateY(-2px); }
+  .card h2 { font-size: 1.05rem; margin: 0 0 0.4rem; color: #f2f2f7; }
+  .card p { margin: 0; font-size: 0.9rem; color: #9a9aa8; }
+
+  footer.site-footer {
+    text-align: center;
+    color: #6f6f7d;
+    font-size: 0.82rem;
+    padding: 2rem 1.5rem 3rem;
+    border-top: 1px solid #1c1c24;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="./">meta-democracy.org</a>
+  <nav>
+    <a href="regions/">Map</a>
+    <a href="regions/table">Table</a>
+    <a href="regions/methodology">Methodology</a>
+    <a href="./" aria-current="page">Home</a>
+  </nav>
+</header>
+
+<main>
+  <h1>meta-democracy.org</h1>
+  <p class="tagline">Rethinking how Europe represents itself.</p>
+
+  <div class="framing">
+    <p><strong>Europe of the Regions</strong> — an interactive map of ~190
+    practical regions: cultural-economic units between the nation-state and
+    the EU. It shows one way to resolve tensions — for example between
+    Catalonia and Madrid — and to equalize the prominence of Europe's
+    different members. This could unfold as an organic evolution: if
+    nation-states gradually weaken relative to Europe as a whole and to
+    their regions and municipalities, the regional layer is ready to carry
+    more democratic weight. The point isn't the nation-state redrawn at a
+    smaller scale: each region should combine cultural unity with real
+    functional self-governance — the way Germany already works as several
+    centers of gravity (Berlin, Munich, Cologne/the Ruhr) rather than one —
+    instead of a tiny state like Slovenia sitting, formally equal but
+    practically outweighed, next to a state many times its size. That only
+    works alongside a strong European identity of its own, so nothing simply
+    gets renegotiated through national leaders again.</p>
+  </div>
+
+  <div class="cards">
+    <a class="card" href="regions/">
+      <h2>Interactive Map</h2>
+      <p>Explore the region boundaries, toggle congruent/unified variants,
+      and inspect each region's autarky profile.</p>
+    </a>
+    <a class="card" href="regions/table">
+      <h2>Region Data &amp; Representation Model</h2>
+      <p>The full sortable dataset, extremes, and a flat two-representatives
+      model compared against Bundesrat-style weighting.</p>
+    </a>
+    <a class="card" href="regions/methodology">
+      <h2>Methodology &amp; Sources</h2>
+      <p>Assumptions, the six push-back challenges, explicit disagreements,
+      and the full tiered source list.</p>
+    </a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  A meta-democracy.org project · data: Eurostat NUTS/GISCO · Ukraine boundaries © OpenStreetMap contributors via geoBoundaries (ODbL)
+<br>Formerly at <a href="https://meta-democracy.org">meta-democracy.org</a> (now Meta Party) · Made with love in Europe
+</footer>
+
+</body>
+</html>
