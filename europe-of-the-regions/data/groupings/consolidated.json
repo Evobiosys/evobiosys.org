@@ -1,0 +1,687 @@
+[
+  {
+    "id": "grp-at-vienna-east",
+    "name": "Vienna–Eastern Austria",
+    "member_ids": [
+      "at-vienna-east"
+    ],
+    "rationale": "Capital-region singleton; Vienna's national weight and distinct metropolitan/Pannonian character justify standalone representation, kept separate as with other large-country capitals."
+  },
+  {
+    "id": "grp-at-rest",
+    "name": "Austria outside Vienna (Styria–Carinthia–Tyrol–Salzburg–Upper Austria–Vorarlberg)",
+    "member_ids": [
+      "at-styria",
+      "at-carinthia",
+      "at-tyrol",
+      "at-salzburg",
+      "at-upper-austria",
+      "at-vorarlberg"
+    ],
+    "rationale": "Non-capital Austria combined into one representation grouping; each Land keeps its own distinct cultural-unit identity (Vorarlberg's special_status dual Swiss/Tyrolean orientation among them)."
+  },
+  {
+    "id": "grp-ch-german-speaking",
+    "name": "German-speaking Switzerland (Zürich–Basel–Bern–Ostschweiz)",
+    "member_ids": [
+      "ch-zurich",
+      "ch-basel",
+      "ch-bern-mittelland",
+      "ch-central-eastern",
+      "ch-schaffhausen"
+    ],
+    "rationale": "All German-speaking Swiss cantons combined into one representation-weight bloc (Bern's federal-capital role stays a cultural-unit-level distinction, not erased here); distinct from the French- and Italian-speaking language regions."
+  },
+  {
+    "id": "grp-ch-romandie",
+    "name": "Romandie (French-speaking Switzerland)",
+    "member_ids": [
+      "ch-romandie"
+    ],
+    "rationale": "Distinct national language community (French); not merged across the Röstigraben into German-speaking groupings."
+  },
+  {
+    "id": "grp-ch-ticino",
+    "name": "Ticino (Italian-speaking Switzerland)",
+    "member_ids": [
+      "ch-ticino"
+    ],
+    "rationale": "Distinct national language community (Italian); geographically separated by the Alps from the rest of Switzerland."
+  },
+  {
+    "id": "grp-alpine-microstates",
+    "name": "Alpine & Western European Microstates",
+    "member_ids": [
+      "li-liechtenstein",
+      "ad-andorra",
+      "mc-monaco",
+      "sm-san-marino",
+      "va-vatican-city"
+    ],
+    "rationale": "SOVEREIGNTY-BASED CLUSTER: five fully sovereign European microstates (populations ~800-90,000), each far too small individually for 40-70 representation weight. Clustered across borders per the explicit microstate convention; each remains its own cultural unit and sovereign state."
+  },
+  {
+    "id": "grp-de-alemannic-southwest",
+    "name": "Alemannic Southwest (Baden-Württemberg)",
+    "member_ids": [
+      "de-baden",
+      "de-wuerttemberg"
+    ],
+    "rationale": "Mirrors the real Land Baden-Württemberg (one Landtag, Stuttgart, since 1952). Baden/Württemberg split at the cultural-unit layer per Alemannic/Swabian dialect and pre-1952 statehood, reunited here for representation."
+  },
+  {
+    "id": "grp-de-bavaria",
+    "name": "Bavaria (Franconia–Swabia–Altbayern)",
+    "member_ids": [
+      "de-franconia",
+      "de-bavarian-swabia",
+      "de-munich-altbayern"
+    ],
+    "rationale": "Mirrors the real Land Bayern (one Bayerischer Landtag, Munich). Franconia/Bavarian Swabia/Munich-Altbayern split at the cultural-unit layer per distinct dialect/historic identity, reunited here for representation."
+  },
+  {
+    "id": "grp-de-western",
+    "name": "Western Germany (Hesse–Rhineland-Palatinate–Saarland–NRW)",
+    "member_ids": [
+      "de-hesse",
+      "de-rhineland-palatinate",
+      "de-saarland",
+      "de-rhineland",
+      "de-westphalia"
+    ],
+    "rationale": "Western German Länder along the Rhine-Main/Rhine-Ruhr-Saar corridor, geographically contiguous; each Land/historic region (Hesse, Rhineland, Westphalia, Rhineland-Palatinate, Saarland) keeps its own cultural-unit identity, combined here for representation weight since five separate western blocs would push the count past the 40-70 target."
+  },
+  {
+    "id": "grp-de-hanseatic-north",
+    "name": "Hanseatic North Germany (Hamburg–Bremen–Schleswig-Holstein–Lower Saxony)",
+    "member_ids": [
+      "de-hamburg",
+      "de-bremen",
+      "de-schleswig-holstein",
+      "de-lower-saxony"
+    ],
+    "rationale": "Contiguous North Sea/Low-German (Plattdüütsch) coastal Länder sharing Hanseatic trading heritage; grouped for representation weight while each city-state/Land keeps its own cultural-unit identity."
+  },
+  {
+    "id": "grp-de-neue-laender",
+    "name": "Neue Bundesländer / Eastern Germany (Saxony–Thuringia–Saxony-Anhalt–Berlin–Brandenburg–Mecklenburg-Vorpommern)",
+    "member_ids": [
+      "de-saxony",
+      "de-thuringia",
+      "de-saxony-anhalt",
+      "de-berlin",
+      "de-brandenburg",
+      "de-mecklenburg-vorpommern"
+    ],
+    "rationale": "The standard German term 'Neue Bundesländer' for the former-East-Germany Länder plus Berlin, sharing post-1990 reunification/GDR administrative history; Berlin's capital-city weight stays a cultural-unit-level distinction, not erased by the grouping."
+  },
+  {
+    "id": "grp-be-flanders",
+    "name": "Flanders",
+    "member_ids": [
+      "be-flanders"
+    ],
+    "rationale": "Distinct Dutch-speaking community/Region with its own Parliament; large enough to stand alone."
+  },
+  {
+    "id": "grp-benelux-francophone",
+    "name": "Francophone Benelux (Wallonia–Brussels–Luxembourg)",
+    "member_ids": [
+      "be-wallonia",
+      "be-brussels",
+      "lu-luxembourg"
+    ],
+    "rationale": "Wallonia and Brussels share French-language civic space with neighbouring Luxembourg; Luxembourg is a small sovereign state clustering cross-border per convention, while each unit keeps its own identity/parliament."
+  },
+  {
+    "id": "grp-nl-randstad",
+    "name": "Randstad (Amsterdam–Rotterdam)",
+    "member_ids": [
+      "nl-amsterdam-noord-holland-utrecht",
+      "nl-rotterdam-zuid-holland-zeeland"
+    ],
+    "rationale": "The two Randstad conurbation units, contiguous and functionally integrated, kept distinct as cultural units (Amsterdam/Utrecht vs Rotterdam/Zeeland) but combined here for representation weight."
+  },
+  {
+    "id": "grp-nl-buiten-randstad",
+    "name": "Nederland buiten de Randstad (Noord–Oost–Zuid)",
+    "member_ids": [
+      "nl-groningen-north",
+      "nl-deventer-overijssel-achterhoek",
+      "nl-south-brabant-limburg"
+    ],
+    "rationale": "Contiguous Dutch provinces outside the Randstad conurbation; Zuid-Nederland's distinct Catholic-south Brabantian/Limburgish identity preserved as its own cultural unit, combined here for representation weight."
+  },
+  {
+    "id": "grp-fr-ile-de-france",
+    "name": "Île-de-France (Paris)",
+    "member_ids": [
+      "fr-paris-ile-de-france"
+    ],
+    "rationale": "Capital-region singleton; population and national weight justify standalone representation."
+  },
+  {
+    "id": "grp-fr-nord-ouest",
+    "name": "Nord-Ouest (Hauts-de-France–Normandy–Brittany–Pays de la Loire)",
+    "member_ids": [
+      "fr-hauts-de-france",
+      "fr-normandy",
+      "fr-brittany",
+      "fr-pays-de-la-loire"
+    ],
+    "rationale": "Contiguous northern/western France sharing a Channel-and-Atlantic-coast orientation; Brittany's distinct Breton/Celtic identity preserved as its own cultural unit within the bloc."
+  },
+  {
+    "id": "grp-fr-sud-ouest",
+    "name": "Sud-Ouest (Aquitaine–Midi-Pyrénées)",
+    "member_ids": [
+      "fr-aquitaine",
+      "fr-midi-pyrenees"
+    ],
+    "rationale": "Contiguous southwestern France, Gascon/Occitan cultural sphere."
+  },
+  {
+    "id": "grp-fr-sud-est",
+    "name": "Sud-Est (Languedoc-Roussillon–PACA–Corsica–Rhône-Alpes–Auvergne–Burgundy-Franche-Comté)",
+    "member_ids": [
+      "fr-languedoc-roussillon",
+      "fr-provence-alpes-cote-dazur",
+      "fr-corsica",
+      "fr-rhone-alpes",
+      "fr-auvergne",
+      "fr-burgundy-franche-comte"
+    ],
+    "rationale": "Contiguous southeastern quadrant of France; Corsica's distinct identity and Auvergne/Burgundy-Franche-Comté's split from Rhône-Alpes at the cultural-unit layer (Clermont-Ferrand vs Lyon vs Dijon/Besançon) preserved as separate cultural units, reunited here for representation weight since a six-bloc French layer would overshoot the 40-70 target."
+  },
+  {
+    "id": "grp-fr-est",
+    "name": "Grand Est (Alsace–Lorraine–Champagne)",
+    "member_ids": [
+      "fr-alsace",
+      "fr-lorraine",
+      "fr-champagne"
+    ],
+    "rationale": "Contiguous northeastern France; Alsace's distinct Alemannic-German-influenced identity preserved as its own cultural unit."
+  },
+  {
+    "id": "grp-es-noroeste",
+    "name": "Noroeste (Galicia–Asturias–Cantabria)",
+    "member_ids": [
+      "es-galicia",
+      "es-asturias",
+      "es-cantabria"
+    ],
+    "rationale": "Contiguous Atlantic Celtic-tinged northern Spain, each region too small alone for the target; Galicia's own language preserved as its own cultural unit."
+  },
+  {
+    "id": "grp-es-noreste",
+    "name": "Noreste (Basque Country–La Rioja–Aragon)",
+    "member_ids": [
+      "es-basque",
+      "es-la-rioja",
+      "es-aragon"
+    ],
+    "rationale": "Ebro-valley/Pyrenean neighbours of the Basque Country; Basque Country's distinct language/identity and own parliament preserved as its own cultural unit, grouped only for representation weight."
+  },
+  {
+    "id": "grp-es-madrid",
+    "name": "Madrid",
+    "member_ids": [
+      "es-madrid"
+    ],
+    "rationale": "Capital-region singleton."
+  },
+  {
+    "id": "grp-es-centro-sur",
+    "name": "Centro y Sur (Castile-León–Castile-La Mancha–Extremadura–Andalusia–Murcia–Ceuta y Melilla)",
+    "member_ids": [
+      "es-castile-leon",
+      "es-castile-la-mancha",
+      "es-extremadura",
+      "es-andalusia",
+      "es-murcia",
+      "es-ceuta-melilla"
+    ],
+    "rationale": "Contiguous inland-Meseta and southern Spain (Castile-La Mancha borders Andalusia/Murcia directly); each region and the special_status North-African exclaves keep their own distinct cultural-unit identity, combined here for representation weight."
+  },
+  {
+    "id": "grp-es-catalan-mediterranean-arc",
+    "name": "Catalan-Speaking Mediterranean Arc (Catalonia–Valencia–Balearics)",
+    "member_ids": [
+      "es-catalonia",
+      "es-valencia",
+      "es-balearic-islands"
+    ],
+    "rationale": "Catalan/Valencian linguistic continuum along the Mediterranean coast (former Crown of Aragon); Catalonia and Valencia each keep distinct cultural-unit identity and own institutions."
+  },
+  {
+    "id": "grp-es-canarias",
+    "name": "Canary Islands",
+    "member_ids": [
+      "es-canary-islands"
+    ],
+    "rationale": "Atlantic archipelago, geographically and culturally distinct from mainland Spain; large enough to stand alone."
+  },
+  {
+    "id": "grp-gibraltar",
+    "name": "Gibraltar",
+    "member_ids": [
+      "gibraltar"
+    ],
+    "rationale": "British Overseas Territory, special_status; sovereignty distinct from Spain, kept a standalone singleton rather than merged into Spanish groupings."
+  },
+  {
+    "id": "grp-pt-mainland",
+    "name": "Mainland Portugal (Lisboa–Alentejo–Algarve–Porto–Centro)",
+    "member_ids": [
+      "pt-lisbon",
+      "pt-alentejo",
+      "pt-algarve",
+      "pt-porto-norte",
+      "pt-centro"
+    ],
+    "rationale": "All mainland-Portugal cultural units combined into one representation grouping; each region (including Algarve's distinct tourism-region identity) keeps its own cultural-unit identity."
+  },
+  {
+    "id": "grp-pt-atlantic-autonomous",
+    "name": "Atlantic Autonomous Regions (Azores–Madeira)",
+    "member_ids": [
+      "pt-azores",
+      "pt-madeira"
+    ],
+    "rationale": "Portugal's two Atlantic autonomous-region archipelagos, each with own regional parliament, clustered here as remote island territories for representation weight."
+  },
+  {
+    "id": "grp-it-nordovest",
+    "name": "Nord-Ovest (Piedmont–Liguria–Lombardy)",
+    "member_ids": [
+      "it-piedmont",
+      "it-liguria",
+      "it-lombardy"
+    ],
+    "rationale": "Official ISTAT/Eurostat NUTS-1 macro-region 'Nord-Ovest'."
+  },
+  {
+    "id": "grp-it-nordest",
+    "name": "Nord-Est (Veneto–Friuli–Trentino–South Tyrol–Emilia-Romagna)",
+    "member_ids": [
+      "it-veneto",
+      "it-friuli",
+      "it-trentino",
+      "it-south-tyrol",
+      "it-emilia",
+      "it-romagna"
+    ],
+    "rationale": "Official ISTAT/Eurostat NUTS-1 macro-region 'Nord-Est', which spans Triveneto plus Emilia-Romagna; South Tyrol's special linguistic-autonomy status preserved as its own cultural unit within the bloc."
+  },
+  {
+    "id": "grp-it-centro",
+    "name": "Centro (Tuscany–Umbria–Marche–Lazio)",
+    "member_ids": [
+      "it-tuscany",
+      "it-umbria",
+      "it-marche",
+      "it-lazio"
+    ],
+    "rationale": "Official ISTAT/Eurostat NUTS-1 macro-region 'Centro', which includes Lazio/Rome alongside Tuscany, Umbria and Marche; Rome's national capital weight is a cultural-unit-level distinction, not erased by the grouping."
+  },
+  {
+    "id": "grp-it-mezzogiorno-continentale",
+    "name": "Mezzogiorno Continentale (Campania–Puglia–Abruzzo–Basilicata–Calabria)",
+    "member_ids": [
+      "it-campania",
+      "it-puglia",
+      "it-abruzzo",
+      "it-basilicata",
+      "it-calabria"
+    ],
+    "rationale": "Mainland-southern Italy, corresponding to the pre-unification mainland provinces of the Kingdom of the Two Sicilies (roughly ISTAT 'Sud'); each region keeps its own distinct cultural-unit identity (Neapolitan, Apulian, Calabrian etc.)."
+  },
+  {
+    "id": "grp-it-isole",
+    "name": "Isole (Sicily–Sardinia)",
+    "member_ids": [
+      "it-sicily",
+      "it-sardinia"
+    ],
+    "rationale": "Official ISTAT/Eurostat NUTS-1 macro-region 'Isole'; Sicily and Sardinia each keep their own distinct island cultural-unit identity (Sicilian vs Sardinian, the latter its own Romance language) and special-statute autonomy, combined here only for representation weight."
+  },
+  {
+    "id": "grp-poland",
+    "name": "Poland (Mazovia–Łódź–Małopolska–Eastern Poland–Silesia–Lower Silesia–Wielkopolska–Pomerania)",
+    "member_ids": [
+      "pl-mazovia",
+      "pl-lodz",
+      "pl-malopolska",
+      "pl-eastern-poland",
+      "pl-silesia",
+      "pl-lower-silesia",
+      "pl-wielkopolska",
+      "pl-pomerania"
+    ],
+    "rationale": "All eight Polish cultural units combined into one representation grouping; central/southeastern Poland (around Warsaw/Kraków) and western/northern Poland (former Prussian-partition sphere plus Baltic coast) each keep their own distinct regional cultural-unit identity (Silesian, Kashubian-Pomeranian etc.)."
+  },
+  {
+    "id": "grp-czechia",
+    "name": "Czechia (Bohemia–Moravia–Czech Silesia)",
+    "member_ids": [
+      "cz-bohemia",
+      "cz-moravia",
+      "cz-czech-silesia"
+    ],
+    "rationale": "All three Czech cultural units combined into one representation grouping, satisfying the 'Czech units -> 1-2 groupings' mandate at the low end; Bohemia and Moravia-Silesia each keep their own historic identity as cultural units."
+  },
+  {
+    "id": "grp-slovakia",
+    "name": "Slovakia (Bratislava–East)",
+    "member_ids": [
+      "sk-bratislava-west",
+      "sk-east"
+    ],
+    "rationale": "Both Slovak cultural units combined into a single representation grouping; each keeps its own identity (western Bratislava core vs eastern Košice/Prešov, with its Rusyn/Hungarian minority character)."
+  },
+  {
+    "id": "grp-hungary",
+    "name": "Hungary (Budapest–West–Balaton–East/Debrecen)",
+    "member_ids": [
+      "hu-budapest",
+      "hu-west",
+      "hu-balaton",
+      "hu-east-debrecen"
+    ],
+    "rationale": "All four Hungarian cultural units combined into one representation grouping, satisfying the mandated 'four Hungarian units -> 1-2 groupings' at the low end; Budapest's capital-city weight stays a cultural-unit-level distinction, not erased by the grouping."
+  },
+  {
+    "id": "grp-slovenia-croatia",
+    "name": "Slovenia–Croatia",
+    "member_ids": [
+      "si-slovenia",
+      "hr-zagreb-continental",
+      "hr-istria",
+      "hr-rijeka",
+      "hr-dalmatia"
+    ],
+    "rationale": "SOVEREIGNTY-BASED CLUSTER: two small contiguous, EU-member, formerly-Yugoslav Adriatic states, clustered for representation weight (analogous to the Baltic States/South Caucasus clusters); each remains fully sovereign, Slovenia as its own cultural unit and Croatia's continental/Adriatic-coast regions each keeping their own distinct cultural-unit identity."
+  },
+  {
+    "id": "grp-western-balkans",
+    "name": "Western Balkans (Bosnia–Serbia–Montenegro–North Macedonia–Albania–Kosovo)",
+    "member_ids": [
+      "ba-federation-bih",
+      "ba-republika-srpska",
+      "ba-brcko-district",
+      "rs-belgrade-central-serbia",
+      "rs-vojvodina",
+      "me-montenegro",
+      "mk-north-macedonia",
+      "al-albania",
+      "xk-kosovo"
+    ],
+    "rationale": "SOVEREIGNTY/POLICY-BASED CLUSTER matching the EU's own 'Western Balkans' policy grouping (the six EU-enlargement candidates/entities of the region). Every member (Bosnia's three parliament-mandated entities, Serbia's Belgrade-core and autonomous Vojvodina, and the four small sovereign/de-facto states) keeps full cultural-unit identity and, where mandated, its own parliament; this grouping is purely a representation-weight bloc for otherwise very small/fragmented states, not a claim of shared identity."
+  },
+  {
+    "id": "grp-romania",
+    "name": "Romania (Transylvania–Banat–Székely Land–Wallachia–Moldavia)",
+    "member_ids": [
+      "ro-transylvania",
+      "ro-banat-timisoara",
+      "ro-szekely-land",
+      "ro-wallachia-bucharest",
+      "ro-moldavia-dobrogea"
+    ],
+    "rationale": "All five Romanian cultural units combined into one representation grouping; the historic Transylvanian bloc (including the Hungarian-Székely autonomous cultural unit) and the Old-Kingdom Wallachia-Moldavia core each keep their own distinct cultural-unit identity."
+  },
+  {
+    "id": "grp-bulgaria",
+    "name": "Bulgaria (Sofia–Plovdiv–North Danube–Varna)",
+    "member_ids": [
+      "bg-sofia-west",
+      "bg-plovdiv-thrace",
+      "bg-north-danube",
+      "bg-varna-black-sea"
+    ],
+    "rationale": "All four Bulgarian cultural units combined into one representation grouping; western/southern Bulgaria and the northern Danubian/Black-Sea regions each keep their own distinct cultural-unit identity."
+  },
+  {
+    "id": "grp-gr-athens-attica",
+    "name": "Athens–Attica",
+    "member_ids": [
+      "gr-athens-attica"
+    ],
+    "rationale": "Capital-region singleton; roughly a third of national population, kept separate as with other large-country capitals (Paris, Madrid, Vienna)."
+  },
+  {
+    "id": "grp-gr-rest",
+    "name": "Greece outside Attica (Macedonia–Thrace–Peloponnese–Crete–Aegean)",
+    "member_ids": [
+      "gr-macedonia",
+      "gr-thrace",
+      "gr-peloponnese-central-greece",
+      "gr-crete",
+      "gr-aegean-islands"
+    ],
+    "rationale": "Non-capital Greece combined into one representation grouping; Macedonia (Thessaloniki) and Thrace (Komotini/Alexandroupoli) each keep their own distinct cultural-unit identity per the mandated split."
+  },
+  {
+    "id": "grp-mediterranean-microstates",
+    "name": "Mediterranean Microstates (Cyprus–Malta)",
+    "member_ids": [
+      "cy-cyprus",
+      "mt-malta"
+    ],
+    "rationale": "SOVEREIGNTY-BASED CLUSTER: two small sovereign Mediterranean island EU member states, clustered across (non-contiguous) borders for representation weight per the microstate convention; each remains its own sovereign cultural unit (Cyprus's de-facto Greek/Turkish-Cypriot split stays flagged separately at the unit layer)."
+  },
+  {
+    "id": "grp-fi-mainland",
+    "name": "Manner-Suomi (Helsinki–Turku–Tampere–Oulu–Lapland–Lakeland)",
+    "member_ids": [
+      "fi-helsinki-uusimaa",
+      "fi-turku-southwest-finland",
+      "fi-tampere-western-finland",
+      "fi-oulu-north-ostrobothnia",
+      "fi-lapland-sapmi",
+      "fi-lakeland"
+    ],
+    "rationale": "Mainland Finland combined into one representation grouping (southern coastal belt plus interior/northern Finland including Sámi Lapland); each region keeps its own distinct cultural-unit identity."
+  },
+  {
+    "id": "grp-fi-aland",
+    "name": "Åland",
+    "member_ids": [
+      "fi-aland"
+    ],
+    "rationale": "Swedish-speaking autonomous archipelago with its own parliament; kept a standalone singleton given its distinct autonomy status."
+  },
+  {
+    "id": "grp-se-stockholm",
+    "name": "Stockholm (Östra Sverige)",
+    "member_ids": [
+      "se-stockholm-malardalen"
+    ],
+    "rationale": "Capital-region singleton, kept separate as with other large-country capitals."
+  },
+  {
+    "id": "grp-se-rest",
+    "name": "Sweden outside Stockholm (Gothenburg–Malmö–Gotland–Norrland)",
+    "member_ids": [
+      "se-gothenburg-west-sweden",
+      "se-malmo-skane",
+      "se-gotland",
+      "se-norrland-upper",
+      "se-norrland-lower"
+    ],
+    "rationale": "Non-capital Sweden combined into one representation grouping; southern Sweden (including formerly-Danish Scania) and Norrland each keep their own distinct cultural-unit identity."
+  },
+  {
+    "id": "grp-dk-denmark",
+    "name": "Denmark (Copenhagen-Zealand–Jutland-Funen)",
+    "member_ids": [
+      "dk-copenhagen-zealand",
+      "dk-jutland-funen"
+    ],
+    "rationale": "Mainland Denmark's two cultural units combined into one representation grouping."
+  },
+  {
+    "id": "grp-no-oslo-region",
+    "name": "Oslo Region (Eastern-Southern Norway)",
+    "member_ids": [
+      "no-oslo-eastern-southern-norway"
+    ],
+    "rationale": "Capital-region singleton, kept separate as with other large-country capitals."
+  },
+  {
+    "id": "grp-no-rest",
+    "name": "Norway outside Oslo (Vestlandet–Trøndelag–Nord-Norge)",
+    "member_ids": [
+      "no-stavanger-bergen",
+      "no-alesund-northwest",
+      "no-trondheim-trondelag",
+      "no-tromso-north-norway"
+    ],
+    "rationale": "Non-capital Norway combined into one representation grouping; the western fjord coast, Trøndelag and the Sámi north each keep their own distinct cultural-unit identity."
+  },
+  {
+    "id": "grp-north-atlantic",
+    "name": "North Atlantic (Iceland–Faroe Islands–Greenland)",
+    "member_ids": [
+      "is-iceland",
+      "gl-greenland",
+      "fo-faroe-islands"
+    ],
+    "rationale": "SOVEREIGNTY-BASED CLUSTER: Iceland (sovereign) plus the Faroe Islands and Greenland (self-governing Danish Realm territories), clustered as small/remote North Atlantic territories for representation weight; each keeps its own sovereignty/autonomy status flagged at the unit layer."
+  },
+  {
+    "id": "grp-baltic-states",
+    "name": "Baltic States (Estonia–Latvia–Lithuania)",
+    "member_ids": [
+      "ee-estonia",
+      "lv-latvia",
+      "lt-lithuania"
+    ],
+    "rationale": "SOVEREIGNTY-BASED CLUSTER: three small sovereign Baltic states, each too small individually for 40-70 representation weight, clustered per the explicit Baltic convention; each remains its own sovereign cultural unit."
+  },
+  {
+    "id": "grp-uk-london",
+    "name": "London",
+    "member_ids": [
+      "uk-london-commuter"
+    ],
+    "rationale": "Capital-region singleton."
+  },
+  {
+    "id": "grp-uk-south-midlands-england",
+    "name": "Southern & Midlands England (Sussex–Wessex–Solent–Exeter/Plymouth–Cornwall–Birmingham–East Midlands–Cambridge)",
+    "member_ids": [
+      "uk-sussex",
+      "uk-southampton-solent",
+      "uk-wessex",
+      "uk-exeter-plymouth",
+      "uk-cornwall",
+      "uk-birmingham",
+      "uk-east-midlands",
+      "uk-east-of-england-cambridge"
+    ],
+    "rationale": "England outside London and the North, combined into one representation grouping since England alone would otherwise take an outsized share of the 40-70 budget; Cornwall's distinct Cornish identity preserved as its own cultural unit within the bloc."
+  },
+  {
+    "id": "grp-uk-northern-england",
+    "name": "Northern England (Manchester–Liverpool–Lancashire–Yorkshire–Newcastle)",
+    "member_ids": [
+      "uk-manchester",
+      "uk-liverpool",
+      "uk-lancashire",
+      "uk-yorkshire-leeds",
+      "uk-newcastle-ne"
+    ],
+    "rationale": "Consolidated 'Northern Powerhouse' belt (Lancashire/Yorkshire/North East), each metro area keeping its own cultural-unit identity; combined for representation weight since England alone would otherwise take an outsized share of the 40-70 budget."
+  },
+  {
+    "id": "grp-uk-wales-scotland",
+    "name": "Wales–Scotland",
+    "member_ids": [
+      "uk-wales-cardiff",
+      "uk-scotland-central-belt",
+      "uk-scotland-highlands"
+    ],
+    "rationale": "The two devolved Great Britain nations outside England (own Senedd/Holyrood), combined into one representation grouping; Wales and Scotland (Central Belt and Highlands) each keep their own distinct national/cultural-unit identity, not merged with any England grouping."
+  },
+  {
+    "id": "grp-uk-northern-ireland",
+    "name": "Northern Ireland",
+    "member_ids": [
+      "uk-northern-ireland"
+    ],
+    "rationale": "Kept a standalone singleton per the mandated distinct-unit-in-every-view treatment; not merged with Great Britain groupings or with the Republic of Ireland grouping given its distinct UK sovereignty status."
+  },
+  {
+    "id": "grp-ireland-republic",
+    "name": "Ireland (Dublin–Cork–Galway)",
+    "member_ids": [
+      "ie-dublin",
+      "ie-cork",
+      "ie-galway"
+    ],
+    "rationale": "Republic of Ireland's three cultural units combined into one representation grouping."
+  },
+  {
+    "id": "grp-crown-dependencies",
+    "name": "Crown Dependencies (Guernsey–Jersey–Isle of Man)",
+    "member_ids": [
+      "gg-guernsey",
+      "je-jersey",
+      "im-isle-of-man"
+    ],
+    "rationale": "SOVEREIGNTY-BASED CLUSTER: three British Crown Dependencies (not part of the UK proper), each far too small individually, clustered per the explicit convention; each remains its own cultural unit."
+  },
+  {
+    "id": "grp-ua-west-center",
+    "name": "Western & Central Ukraine (Lviv-Galicia–Volhynia–Zakarpattia–Kyiv–Hetmanate–Podillia)",
+    "member_ids": [
+      "ua-lviv-galicia",
+      "ua-volhynia",
+      "ua-zakarpattia",
+      "ua-kyiv",
+      "ua-hetmanate",
+      "ua-podillia"
+    ],
+    "rationale": "Contiguous western and central Ukraine (historically Austro-Hungarian/Polish-influenced west, capital-region center); each region keeps its own cultural-unit identity."
+  },
+  {
+    "id": "grp-ua-south-east",
+    "name": "Southern & Eastern Ukraine (Odesa–Crimea–Kharkiv–Dnipro-Zaporizhzhia–Donetsk–Luhansk)",
+    "member_ids": [
+      "ua-odesa-south",
+      "ua-crimea",
+      "ua-kharkiv-sloboda",
+      "ua-dnipro-zaporizhzhia",
+      "ua-donetsk",
+      "ua-luhansk"
+    ],
+    "rationale": "Black Sea coast, Crimea and the eastern/Donbas oblasts (conflict_flags apply at the unit layer, unaffected by this representation-weight grouping); each region keeps its own cultural-unit identity."
+  },
+  {
+    "id": "grp-moldova",
+    "name": "Moldova",
+    "member_ids": [
+      "md-moldova"
+    ],
+    "rationale": "Sovereign state, single cultural unit; no adjacent small-state cluster fits without stretching geographic/cultural logic, kept standalone."
+  },
+  {
+    "id": "grp-south-caucasus",
+    "name": "South Caucasus (Georgia–Armenia)",
+    "member_ids": [
+      "ge-georgia",
+      "am-armenia"
+    ],
+    "rationale": "SOVEREIGNTY-BASED CLUSTER: two small contiguous sovereign South Caucasus states, clustered for representation weight; each remains its own sovereign cultural unit."
+  },
+  {
+    "id": "grp-east-thrace",
+    "name": "East Thrace",
+    "member_ids": [
+      "tr-east-thrace"
+    ],
+    "rationale": "Isolated European sliver of Turkey (Turkey otherwise out of scope); kept a standalone, flagged singleton."
+  }
+]

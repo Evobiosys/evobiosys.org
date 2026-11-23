@@ -1,0 +1,2086 @@
+{
+  "zone": "zone4",
+  "notes": [
+    "Iceland (IS) is not on the Global Constraints single-unit-exception list, yet is modeled here as one region. Reasoning: ~64% of the population lives in the Reykjavík capital area, and no second city (Akureyri, ~19,000) approaches a comparable diversified industrial base or cultural-hub status; Iceland is also linguistically and culturally homogeneous with no internal regionalist movement. It is therefore treated as a de-facto single unit while explicitly NOT added to the formal exception list, per the zone brief's instruction to state the reasoning rather than silently reclassify it.",
+    "Norrland (northern Sweden) was assessed against the three-part inclusion test and included as its own region despite lacking one dominant metropolis (Umeå, Sundsvall and Luleå are comparably sized secondary poles). It passes on the strength of a genuine regionalist identity ('Norrlandsfrågan'), a highly diversified industrial base (hydropower, forestry, mining), and its sheer land area (~half of Sweden). This is flagged as a softer pass than the zone's other, single-metro-anchored regions.",
+    "Mainland Småland (Jönköping, Kronoberg, Kalmar counties) has no dedicated mandate in the zone brief and was folded into the Gothenburg/West Sweden region rather than left as a coverage gap, since NUTS2024 groups it at NUTS-2 (SE21) with Gotland — which must be split out per the Gotland-as-separate-island mandate — leaving mainland Småland without a natural standalone NUTS grouping distinct from West Sweden's economic orbit.",
+    "Two areas were deliberately left OUT of the zone-4 region set as coverage gaps rather than force-fitted into a neighboring identity: (1) Finland's eastern lakeland provinces (Etelä-Savo/Pohjois-Savo/Pohjois-Karjala, i.e. the Kuopio/Joensuu/Mikkeli 'Savo-Karelia' area) — genuinely distinct in dialect and identity from both the Oulu and Helsinki nodes, but not separately mandated, so excluded pending a dedicated inclusion-test pass in a future revision; (2) Svalbard and Jan Mayen (NO0B) — near-uninhabited Norwegian Arctic territories that fail the inclusion test outright (no functioning urban cultural hub, no diversified industrial base beyond research/tourism outposts).",
+    "The Sápmi Indigenous homeland spans northern Finland, Sweden and Norway and is not congruent with any national or NUTS boundary. Rather than redraw national region boundaries, it is represented as a conflict_flag overlay on the Finnish Lapland/Sápmi region (fi-lapland-sapmi), with zone_nuts_codes spanning FI1D7 (Lappi), SE331/SE332 (Västerbotten/Norrbotten) and NO071/NO072/NO073 (Nordland/Troms/Finnmark) — deliberately overlapping the base nuts_codes of the Norrland and Tromsø/North regions, since conflict flags are overlays, not exclusive territorial claims.",
+    "Count tension: applying every fixed zone-4 mandate at face value (5 distinct Finnish nodes + Åland; 3 distinct Swedish nodes + Gotland + assessed Norrland; 2 Danish nodes; 5 distinct Norwegian fjord-culture nodes; Iceland; 3 Baltic single units; Greenland + Faroe Islands) yields 24 regions, above the zone brief's 'roughly 18-22' estimate. Per the Global Constraints instruction to flag rather than silently truncate such tension, this is noted explicitly here instead of merging any of the individually mandated, identity-distinct nodes to hit the lower estimate.",
+    "Norway's SR2024 county geometry reflects the 2024 restructuring following the 2020-2024 Viken/Troms-og-Finnmark mergers being reversed back into Østfold, Akershus, Buskerud, Troms and Finnmark as separate counties; the no-oslo-eastern-southern-norway region's population figure sums these post-2024 county boundaries rather than the short-lived 2020-2023 merged-county structure.",
+    "Svalbard and Jan Mayen (Norwegian Arctic territories, NUTS code NO0B) are deliberately excluded from this zone's region set: near-uninhabited, no functioning urban cultural hub, no diversified industrial base beyond research/tourism outposts, and outside this dataset's practical-regions scope (methodology note, not a silent coverage gap).",
+    "NUTS-vintage policy: authored nuts_codes in this file follow the GISCO 2024 geometry vintage (NUTS_RG_20M_2024_4326.geojson) wherever the NUTS 2027 recoding (reflected in the xlsx used for data/nuts_index.json) has since renumbered a country's units -- e.g. Norway's 2024 county-geometry codes (NO02/06/07/08/09/0A1/0A2/0A3) rather than the 2027-sheet's NO0C/D/E; the same policy applies to Belgium's 2024-vintage BE21/23 (vs. the 2027 recoding's BE26/27) and Bulgaria's BG3/BG4-vs-BG5x recoding elsewhere in this dataset. This keeps every authored code resolvable against the committed geometry file rather than a future labeling vintage the pipeline cannot yet render.",
+    "draft_v0.1.2 schema v2 migration: variant_group/variant_role removed; default_visible added (all zone4 units remain default_visible true -- no variant sets are mandated for the Nordics/Baltics in this content wave, so data/variant_sets/zone4.json is an empty array). pole (with mandated central_coord/secondary_coord per Amendment A1.4), parliament, and lang_family added to every unit. autarky.rationales added for water/food/energy on every unit per Amendment A1.6 (other four dimensions left for a future beta pass).",
+    "A1.10 Norrland split (draft_v0.1.2, new): se-norrland is split at the Sami-homeland (Sapmi) line, mirroring the Finnish/Norwegian pattern of giving the Sapmi-zone north its own unit. se-norrland-upper (SE33: Vaesterbotten+Norrbotten, Umeaa/Lulea) sits within the same Sapmi conflict_flag overlay already shared with fi-lapland-sapmi and no-tromso-north-norway. se-norrland-lower (SE31+SE32: Vaernland/Dalarna/Gaevleborg + Vaesternorrland/Jaemtland, Sundsvall/Oestersund) absorbs SE31 ('Norra Mellansverige') for coverage continuity, since the plan's own wording named only SE32 explicitly ('Sundsvall/Oestersund') -- SE31 is not separately mandated a home and would otherwise become a silent coverage gap; flagged here as an editorial inclusion rather than a literal mandate.",
+    "Innlandet / no-alesund-northwest reallocation -- UNSATISFIABLE AT LITERAL GRANULARITY (draft_v0.1.2 content-wave finding, flagged not silently resolved): the plan asks for a 'reasoned reallocation' giving Aalesund/Northwest Norway 'more of Innlandet' via 'adjust NUTS-3 code assignment'. Verified against the committed 2024 GISCO geometry (pipeline/raw/NUTS_RG_20M_2024_4326.geojson): Innlandet ships as a single undivided NUTS-3-equivalent feature (NO020) under NO02, with no finer sub-code available to split between the historically west-facing Gudbrandsdalen/Rauma-corridor communities (Dombaas-Aandalsnes, genuinely oriented toward Aalesund via the Rauma railway/E136) and the east-facing Hedmark/central-Gudbrandsdalen communities (oriented toward Oslo via the Mjosa/E6 corridor). Moving the entire NO02 code to no-alesund-northwest would misassign Hedmark, which is clearly Oslo-facing; moving nothing would ignore the mandate outright. Resolution taken: the NUTS code stays with no-oslo-eastern-southern-norway (unchanged), and no-alesund-northwest instead carries a documented `reach` entry into the Gudbrandsdalen/Rauma corridor (functional/cultural reach, not a territorial code reassignment). This item could not be honored literally without either a finer geometry source or an honest all-or-nothing code move that would misrepresent Hedmark; flagged for the controller/audit per the project's standing convention of stating such tensions rather than silently truncating or forcing an incorrect reallocation."
+  ],
+  "regions": [
+    {
+      "id": "fi-helsinki-uusimaa",
+      "name": "Helsinki-Uusimaa",
+      "name_local": "Helsinki-Uusimaa / Helsingfors-Nyland",
+      "countries": [
+        "FI"
+      ],
+      "urban_core": "Helsinki",
+      "secondary_centers": [
+        "Espoo",
+        "Vantaa",
+        "Lahti",
+        "Kotka",
+        "Lappeenranta"
+      ],
+      "identity_basis": "Finland's capital region and its southeastern hinterland (Kanta-Häme, Päijät-Häme, Kymenlaakso, Etelä-Karjala); bilingual Finnish/Swedish administrative and cultural core distinct from the western and eastern-Finnish dialect areas.",
+      "key_industries": [
+        "ICT/software",
+        "finance",
+        "logistics/port (Kotka-Hamina)",
+        "higher education",
+        "public administration"
+      ],
+      "population": 2350000,
+      "population_note": "Statistics Finland 2023 estimate, sum of Helsinki-Uusimaa (FI1B1) plus Kanta-Häme, Etelä-Karjala, Päijät-Häme and Kymenlaakso (FI1C2/5/6/7)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "FI1B1",
+        "FI1C2",
+        "FI1C5",
+        "FI1C6",
+        "FI1C7"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Helsinki metro >1.5M; national government, Nokia/ICT cluster, University of Helsinki",
+        "diversified_industry": "software and telecoms, finance/insurance, container/energy port at Kotka-Hamina, cross-border trade with Russia (historically) via Lappeenranta/Imatra",
+        "dependent_identity": "strong capital-region identity and southeastern border-province identity within Finland; no separatism"
+      },
+      "nuts1_disagreement": "NUTS-1 FI1 (Manner-Suomi) treats all mainland Finland as one unit; split here into five Finnish nodes (Helsinki, Turku, Tampere/Western Finland, Oulu, Lapland/Sápmi) per the zone mandate, with Kanta-Häme/Päijät-Häme/Kymenlaakso/Etelä-Karjala (NUTS-2 FI1C minus Varsinais-Suomi) grouped into the Helsinki commuter/functional region rather than left as an unassigned residual.",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 4,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.7,
+        "rationale": "Dense transport/health infrastructure and strong service economy; food and energy depend heavily on the rest of Finland and imports, offset partly by Kymenlaakso's agriculture and Kotka-Hamina's energy-import terminal.",
+        "rationales": {
+          "water": "Lake- and groundwater-fed supply from the southern Finnish moraine belt is ample.",
+          "food": "Kymenlaakso agriculture is real but the capital-region population outstrips it; net food-import-dependent overall.",
+          "energy": "Grid- and gas-import-dependent as a dense capital region; Kotka-Hamina's energy-import terminal underlines this rather than offsetting it."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Finland (Tilastokeskus) regional population 2023",
+        "Helsinki-Uusimaa Regional Council (Uudenmaan liitto) statistical yearbook"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Helsinki"
+        ],
+        "central": "Helsinki",
+        "central_coord": [
+          24.94,
+          60.17
+        ],
+        "note": "Helsinki overwhelmingly dominates its southeastern hinterland."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Finland is a unitary state; no regional parliament below the national Eduskunta. This region has an elected regional council (maakuntavaltuusto) with limited planning/healthcare powers, not a legislative parliament."
+      },
+      "lang_family": "finno-ugric/finnish"
+    },
+    {
+      "id": "fi-turku-southwest-finland",
+      "name": "Turku / Southwest Finland",
+      "name_local": "Varsinais-Suomi",
+      "countries": [
+        "FI"
+      ],
+      "urban_core": "Turku",
+      "secondary_centers": [
+        "Salo",
+        "Naantali"
+      ],
+      "identity_basis": "Finland's oldest urban settlement area and former capital; distinct Southwest-Finnish coastal identity with historic Swedish-speaking minority presence in the archipelago.",
+      "key_industries": [
+        "shipbuilding (Meyer Turku)",
+        "biotechnology",
+        "agriculture",
+        "logistics/ferry port to Sweden"
+      ],
+      "population": 485000,
+      "population_note": "Statistics Finland 2023 estimate, Varsinais-Suomi (FI1C1)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "FI1C1"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Turku metro ~330,000; former national capital, Turku Castle/Cathedral, university city",
+        "diversified_industry": "cruise-ship building at Meyer Turku, biotech/pharma cluster, some of Finland's best arable farmland, Baltic ferry logistics",
+        "dependent_identity": "distinct Southwest-Finnish/archipelago identity and bilingual heritage within Finland; no separatism"
+      },
+      "nuts1_disagreement": "NUTS-2 FI1C (Etelä-Suomi) groups Varsinais-Suomi with Kanta-Häme/Päijät-Häme/Kymenlaakso/Etelä-Karjala; split here so Turku stands as its own mandated node, with the remaining FI1C provinces folded into the Helsinki functional region.",
+      "autarky": {
+        "water": 4,
+        "food": 5,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "Best agricultural land in Finland gives strong food self-sufficiency; shipbuilding and ferry logistics support transport, but energy is grid-imported and clothing manufacture is negligible.",
+        "rationales": {
+          "water": "Aura river and southwestern-archipelago groundwater are ample.",
+          "food": "Some of Finland's best arable farmland; a genuine regional surplus.",
+          "energy": "Grid-imported; no major domestic generation asset within the region."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Finland (Tilastokeskus) regional population 2023",
+        "Regional Council of Southwest Finland (Varsinais-Suomen liitto)"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Turku"
+        ],
+        "central": "Turku",
+        "central_coord": [
+          22.27,
+          60.45
+        ],
+        "note": "Turku is the clear urban hub of Varsinais-Suomi."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Finland is a unitary state; regional council (maakuntavaltuusto) only, not a parliament."
+      },
+      "lang_family": "finno-ugric/finnish"
+    },
+    {
+      "id": "fi-tampere-western-finland",
+      "name": "Tampere & Western Finland",
+      "name_local": "Pirkanmaa ja Länsi-Suomi",
+      "countries": [
+        "FI"
+      ],
+      "urban_core": "Tampere",
+      "secondary_centers": [
+        "Vaasa",
+        "Seinäjoki",
+        "Jyväskylä",
+        "Pori"
+      ],
+      "identity_basis": "Finland's second-largest urban region and its western-coast hinterland, including Swedish-speaking Ostrobothnia; historic industrial ('Manchester of the North') identity distinct from Helsinki and Turku.",
+      "key_industries": [
+        "manufacturing/engineering",
+        "energy (Olkiluoto nuclear, Satakunta)",
+        "ICT",
+        "agriculture (Ostrobothnia)",
+        "forestry"
+      ],
+      "population": 1400000,
+      "population_note": "Statistics Finland 2023 estimate, sum of NUTS-2 FI19 (Länsi-Suomi: Pirkanmaa, Satakunta, Keski-Suomi, Etelä-Pohjanmaa, Pohjanmaa)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "FI19"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Tampere metro ~400,000; historic industrial city, now ICT/games and university hub",
+        "diversified_industry": "engineering/machinery, energy (Olkiluoto NPP in Satakunta), agriculture and food processing in Ostrobothnia, forestry",
+        "dependent_identity": "strong regional pride ('Tampere spirit') and distinct Swedish-speaking Ostrobothnian coastal identity within Finland; no separatism"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.7,
+        "rationale": "Olkiluoto nuclear plant (Satakunta) and Ostrobothnian farmland give this region unusually strong energy and food self-sufficiency for Finland; clothing manufacture remains negligible.",
+        "rationales": {
+          "water": "Kokemaenjoki/Tammerkoski river network is ample.",
+          "food": "Ostrobothnian farmland gives above-average food production for Finland.",
+          "energy": "Olkiluoto nuclear plant (Satakunta) gives this region an unusually strong domestic generation asset for Finland."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Finland (Tilastokeskus) regional population 2023",
+        "Council of Tampere Region (Pirkanmaan liitto)"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Tampere",
+          "Vaasa",
+          "Seinaejoki"
+        ],
+        "central": "Tampere",
+        "central_coord": [
+          23.76,
+          61.5
+        ],
+        "note": "Tampere is the largest city, but Vaasa/Seinaejoki (Ostrobothnia) remain genuine secondary poles."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Finland is a unitary state; regional council only, not a parliament."
+      },
+      "lang_family": "finno-ugric/finnish"
+    },
+    {
+      "id": "fi-oulu-north-ostrobothnia",
+      "name": "Oulu & North Ostrobothnia",
+      "name_local": "Pohjois-Pohjanmaa",
+      "countries": [
+        "FI"
+      ],
+      "urban_core": "Oulu",
+      "secondary_centers": [
+        "Kajaani",
+        "Kokkola"
+      ],
+      "identity_basis": "Northern Finland's largest city and its immediate hinterland (Kainuu, Central Ostrobothnia); tech-industry identity distinct from both southern Finland and Sámi Lapland to its north.",
+      "key_industries": [
+        "ICT/telecoms (Nokia legacy, health tech)",
+        "forestry/bioeconomy",
+        "mining (Kainuu)",
+        "agriculture"
+      ],
+      "population": 560000,
+      "population_note": "Statistics Finland 2023 estimate, sum of Pohjois-Pohjanmaa (FI1D9), Kainuu (FI1D8) and Keski-Pohjanmaa (FI1D5)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "FI1D9",
+        "FI1D8",
+        "FI1D5"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Oulu metro ~250,000; Finland's fastest-growing city, University of Oulu, major tech hub",
+        "diversified_industry": "health/mobile tech spun out of the Nokia era, mining and bioeconomy in Kainuu, agriculture in Central Ostrobothnia",
+        "dependent_identity": "distinct northern Finnish identity, proud of tech-hub status, within Finland; no separatism"
+      },
+      "nuts1_disagreement": "NUTS-2 FI1D (Pohjois- ja Itä-Suomi) also includes Lappi (split here as its own mandated Lapland/Sápmi node) and the eastern lakeland provinces (Etelä-Savo, Pohjois-Savo, Pohjois-Karjala), which are left as an unassigned coverage gap pending their own inclusion-test pass (see zone notes).",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Solid hydro/grid access and forestry-based energy; food and transport are moderate given the region's size and dispersed population relative to southern Finland.",
+        "rationales": {
+          "water": "Oulujoki river/hydropower network and boreal groundwater are ample.",
+          "food": "Central Ostrobothnian agriculture is modest relative to the region's size.",
+          "energy": "Solid hydro/grid access and forestry-based biomass keep this mid-tier."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Finland (Tilastokeskus) regional population 2023",
+        "Council of Oulu Region (Pohjois-Pohjanmaan liitto)"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Oulu"
+        ],
+        "central": "Oulu",
+        "central_coord": [
+          25.47,
+          65.01
+        ],
+        "note": "Oulu is Northern Finland's dominant city and tech hub."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Finland is a unitary state; regional council only, not a parliament."
+      },
+      "lang_family": "finno-ugric/finnish"
+    },
+    {
+      "id": "fi-lapland-sapmi",
+      "name": "Lapland / Sápmi",
+      "name_local": "Lappi / Sápmi",
+      "countries": [
+        "FI"
+      ],
+      "urban_core": "Rovaniemi",
+      "secondary_centers": [
+        "Kemi",
+        "Sodankylä",
+        "Inari"
+      ],
+      "identity_basis": "Finland's Arctic north; home to the Finnish Sámi homeland (Sápmi), an Indigenous cross-border cultural area also spanning northern Sweden and Norway, distinct from both mainstream Finnish identity and southern administration.",
+      "key_industries": [
+        "tourism (Arctic/Santa Claus, Levi/Ylläs)",
+        "reindeer husbandry",
+        "mining",
+        "hydropower (Kemijoki)",
+        "forestry"
+      ],
+      "population": 176000,
+      "population_note": "Statistics Finland 2023 estimate, Lappi (FI1D7)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "FI1D7"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "sapmi-cross-border",
+          "description": "Sápmi, the Indigenous Sámi homeland, spans northern Finland, Sweden and Norway and is not congruent with any national or NUTS boundary. This overlay flags the cross-border cultural area without redrawing national region boundaries; it may overlap the nuts_codes of the Norrland, Tromsø/North and other neighboring regions.",
+          "zone_nuts_codes": [
+            "FI1D7",
+            "SE331",
+            "SE332",
+            "NO071",
+            "NO072",
+            "NO073"
+          ]
+        }
+      ],
+      "inclusion_test": {
+        "urban_hub": "Rovaniemi ~65,000; administrative capital of Finnish Lapland and seat of the Sámi Parliament of Finland",
+        "diversified_industry": "Arctic tourism, reindeer husbandry, Kemijoki hydropower, mining, forestry",
+        "dependent_identity": "distinct Sámi Indigenous identity plus a broader Lappish regional identity, both dependent on rather than seeking independence from Finland"
+      },
+      "nuts1_disagreement": "NUTS-2 FI1D groups Lappi with Kainuu/Pohjois-Pohjanmaa (folded into the Oulu node here) and the eastern lakeland provinces; split out as its own mandated node reflecting the distinct Sámi/Arctic identity.",
+      "autarky": {
+        "water": 5,
+        "food": 2,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Abundant glacial/snowmelt water and strong Kemijoki hydropower; harsh climate and vast distances limit food production and transportation, while healthcare access is thinner than in southern Finland.",
+        "rationales": {
+          "water": "Abundant glacial/snowmelt water and strong Kemijoki hydropower.",
+          "food": "Harsh Arctic climate limits food production to reindeer husbandry and small-scale farming; structurally low.",
+          "energy": "Kemijoki hydropower cascade gives strong energy self-sufficiency for a sparsely populated region."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Finland (Tilastokeskus) regional population 2023",
+        "Sámediggi (Sámi Parliament of Finland) — Sápmi boundary description",
+        "Regional Council of Lapland (Lapin liitto)"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Rovaniemi"
+        ],
+        "central": "Rovaniemi",
+        "central_coord": [
+          25.73,
+          66.5
+        ],
+        "note": "Rovaniemi is the administrative capital of Finnish Lapland and seat of the Sami Parliament of Finland."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Saamelaiskaerajaet (Sami Parliament of Finland)",
+        "note": "Finland is a unitary state with no regional parliament, but the Sami Parliament of Finland (seated in Inari/Rovaniemi) has real cultural-autonomy competence over Sami affairs within this region -- a genuine partial exception worth the audit's attention."
+      },
+      "lang_family": "finno-ugric/sami"
+    },
+    {
+      "id": "fi-aland",
+      "name": "Åland Islands",
+      "name_local": "Åland",
+      "countries": [
+        "FI"
+      ],
+      "urban_core": "Mariehamn",
+      "secondary_centers": [],
+      "identity_basis": "Autonomous, monolingually Swedish-speaking archipelago province with its own parliament, flag and demilitarized status; explicitly mandated as a separate island unit distinct from Gotland.",
+      "key_industries": [
+        "maritime shipping",
+        "tourism",
+        "fishing/aquaculture",
+        "agriculture"
+      ],
+      "population": 30500,
+      "population_note": "Statistics Finland / Government of Åland (ÅSUB) 2023 estimate",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "FI2"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Mariehamn ~11,700; seat of the autonomous Åland Parliament (Lagting) and shipping-registry hub",
+        "diversified_industry": "maritime shipping/ferry operations, tourism, fishing and small-scale agriculture",
+        "dependent_identity": "autonomous, Swedish-speaking, demilitarized province with a strong distinct identity, constitutionally dependent on Finland (not seeking independence)"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Ferry-based transport and a small grid make Åland import-dependent for energy (submarine cable from Sweden/Finland); fishing and small farms support modest food self-sufficiency.",
+        "rationales": {
+          "water": "Small archipelago catchments are adequate for the small population.",
+          "food": "Fishing and small-scale farming support modest food self-sufficiency.",
+          "energy": "A small island grid is import-dependent via submarine cable from Sweden/Finland."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics and Research Åland (ÅSUB) population 2023",
+        "Government of Åland — Self-Government Act summary"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Mariehamn"
+        ],
+        "central": "Mariehamn",
+        "central_coord": [
+          19.94,
+          60.1
+        ],
+        "note": "Mariehamn is the sole town and seat of the autonomous Aland Parliament."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Alands lagting",
+        "note": "Autonomous province with its own legislative parliament (Lagting) under the Self-Government Act."
+      },
+      "lang_family": "germanic/swedish"
+    },
+    {
+      "id": "fi-lakeland",
+      "name": "Finnish Lakeland (Savo-Karelia)",
+      "name_local": "Järvi-Suomi (Savo-Karjala)",
+      "countries": [
+        "FI"
+      ],
+      "urban_core": "Kuopio",
+      "secondary_centers": [
+        "Jyväskylä",
+        "Joensuu",
+        "Lappeenranta"
+      ],
+      "identity_basis": "Eastern Finnish lakeland provinces (Etelä-Savo, Pohjois-Savo, Pohjois-Karjala) sharing a Savo/Karelian dialect continuum and lake-district identity distinct from both southern (Helsinki-Uusimaa) and northern (Oulu) Finland; previously an unassigned coverage gap in this zone (see zone notes), now given its own inclusion-test pass.",
+      "key_industries": [
+        "forestry/bioeconomy",
+        "sawmilling and wood products",
+        "agriculture",
+        "tourism (lake district)",
+        "higher education (University of Eastern Finland)"
+      ],
+      "population": 541000,
+      "population_note": "Statistics Finland 2023 estimate, sum of Etelä-Savo (FI1DA), Pohjois-Savo (FI1DB) and Pohjois-Karjala (FI1DC)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "FI1DA",
+        "FI1DB",
+        "FI1DC"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Kuopio (~123,000) is the largest single city and regional cultural anchor, but the lakeland is genuinely polycentric: Jyväskylä (just outside this region, in neighbouring Länsi-Suomi) and Joensuu/Lappeenranta are comparably-sized secondary poles rather than clear satellites of Kuopio -- flagged as a weak single-hub fit, mirroring the Calabria precedent in zone 3 (retained standalone rather than silently merged, since no adjacent region is a culturally honest merge target for the Savo/Karelian dialect area).",
+        "diversified_industry": "forestry and bioeconomy (pulp/paper, wood products), agriculture, lake-district tourism, and a significant higher-education/research base (University of Eastern Finland, split across Kuopio and Joensuu campuses)",
+        "dependent_identity": "distinct Savo and Karelian dialect/identity area within Finland; no separatism, but a genuine cultural self-conception distinct from both Helsinki and Oulu"
+      },
+      "nuts1_disagreement": "NUTS-2 FI1D (Pohjois- ja Itä-Suomi) groups this lakeland area with Lappland/Sápmi (FI1D7) and Oulu/Kainuu/Central Ostrobothnia (FI1D9/FI1D8/FI1D5); split here into its own region on dialect and lake-district identity grounds, consistent with the zone's finer-than-NUTS-1 approach elsewhere.",
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Extensive hydropower access and forestry-derived biomass give strong energy self-sufficiency; the lake district's abundant fresh water is a genuine surplus resource. Food is moderate (agriculture present but not surplus-scale). Transportation lags due to a lake-fragmented geography and dispersed population outside Kuopio.",
+        "rationales": {
+          "water": "The lake district's abundant fresh water is a genuine surplus resource.",
+          "food": "Agriculture present but not surplus-scale; moderate.",
+          "energy": "Extensive hydropower access and forestry-derived biomass give strong energy self-sufficiency."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Finland (Tilastokeskus) regional population 2023",
+        "University of Eastern Finland regional profile"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Kuopio",
+          "Joensuu",
+          "Mikkeli"
+        ],
+        "central": "Kuopio",
+        "central_coord": [
+          27.68,
+          62.89
+        ],
+        "note": "Genuinely polycentric per the region's own inclusion-test note; Kuopio is the largest single anchor."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Finland is a unitary state; regional council only, not a parliament."
+      },
+      "lang_family": "finno-ugric/finnish"
+    },
+    {
+      "id": "se-stockholm-malardalen",
+      "name": "Stockholm-Mälardalen",
+      "name_local": "Stockholm-Mälardalen",
+      "countries": [
+        "SE"
+      ],
+      "urban_core": "Stockholm",
+      "secondary_centers": [
+        "Uppsala",
+        "Västerås",
+        "Örebro",
+        "Linköping",
+        "Norrköping"
+      ],
+      "identity_basis": "Sweden's capital region and its Lake Mälaren functional hinterland; the country's dominant political, financial and university-and-manufacturing-belt core.",
+      "key_industries": [
+        "finance/fintech",
+        "ICT (Kista)",
+        "higher education/research (Uppsala)",
+        "manufacturing (Västerås/Örebro/Linköping)",
+        "life sciences"
+      ],
+      "population": 4140000,
+      "population_note": "Statistics Sweden (SCB) 2023 estimate, NUTS-1 SE1 (Östra Sverige: Stockholm, Uppsala, Södermanland, Östergötland, Örebro, Västmanland counties)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "SE1"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Stockholm metro >2.4M; national capital, Nasdaq Nordic, Kista Science City, largest Nordic ICT cluster",
+        "diversified_industry": "finance and fintech (Klarna, Spotify origin), ICT, university research (Uppsala), heavy manufacturing (ABB Västerås, Saab Linköping)",
+        "dependent_identity": "clear Stockholm-region identity within Sweden; strong commuter integration with Mälardalen towns, no separatism"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.7,
+        "rationale": "Excellent transport (rail, Arlanda) and healthcare infrastructure; grid access to national hydro/nuclear supports energy, while food security depends on the wider Mälardalen agricultural plain rather than the capital itself.",
+        "rationales": {
+          "water": "Lake Malaren and its river network give abundant supply.",
+          "food": "Food security depends on the wider Malardalen agricultural plain rather than the capital itself; moderate.",
+          "energy": "Grid access to national hydro/nuclear supports energy, though the capital's demand keeps this mid-tier."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Sweden (SCB) regional population 2023",
+        "Stockholm Region (Region Stockholm) statistical overview"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Stockholm"
+        ],
+        "central": "Stockholm",
+        "central_coord": [
+          18.07,
+          59.33
+        ],
+        "note": "Stockholm overwhelmingly dominates its Malardalen hinterland."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Sweden is a unitary state; the region has an elected regional council (regionfullmaktige, mainly healthcare/transit competence), not a legislative parliament."
+      },
+      "lang_family": "germanic/swedish"
+    },
+    {
+      "id": "se-gothenburg-west-sweden",
+      "name": "Gothenburg & West Sweden",
+      "name_local": "Västsverige",
+      "countries": [
+        "SE"
+      ],
+      "urban_core": "Gothenburg",
+      "secondary_centers": [
+        "Borås",
+        "Halmstad",
+        "Jönköping",
+        "Växjö",
+        "Kalmar"
+      ],
+      "identity_basis": "Sweden's second city and west-coast maritime/industrial region, extended here to include the inland Småland provinces (Jönköping, Kronoberg, Kalmar) that share West Sweden's functional-economic orbit and lack a separately mandated node.",
+      "key_industries": [
+        "automotive (Volvo)",
+        "port/maritime logistics",
+        "textiles/design (Borås)",
+        "furniture/forestry (Småland)",
+        "glassworks"
+      ],
+      "population": 2880000,
+      "population_note": "Statistics Sweden (SCB) 2023 estimate, sum of Västsverige (NUTS-2 SE23: Västra Götaland, Halland) plus Jönköping, Kronoberg and Kalmar counties (SE211/212/213)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "SE211",
+        "SE212",
+        "SE213",
+        "SE23"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Gothenburg metro >1M; Scandinavia's largest port, Volvo headquarters",
+        "diversified_industry": "automotive manufacturing, maritime logistics, textile/design cluster (Borås), Småland furniture and glassworks industry",
+        "dependent_identity": "distinct West-Swedish maritime identity and separate Småland provincial identity ('Smålandsanda'), both dependent on Sweden; no separatism"
+      },
+      "nuts1_disagreement": "NUTS-1 SE2 (Södra Sverige) groups Västsverige with Sydsverige (Skåne/Blekinge) and Småland-med-öarna (which includes Gotland); split here into Gothenburg/West Sweden (incl. mainland Småland), Malmö/Skåne and Gotland per the mandated distinct nodes, since NUTS2024 SE21 bundles mainland Småland with Gotland (SE214), which must stand alone.",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "Strong port/road logistics and a diversified industrial base (auto, textile, forestry) support most dimensions evenly; food security benefits from Småland's farmland and forestry economy.",
+        "rationales": {
+          "water": "Gota Alv and West Swedish lake network are ample.",
+          "food": "Smaland's farmland and forestry economy give a solid regional food score.",
+          "energy": "Grid- and hydro-supplied; diversified but not a major domestic generation surplus."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Sweden (SCB) regional population 2023",
+        "Region Västra Götaland statistical yearbook"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Gothenburg"
+        ],
+        "central": "Gothenburg",
+        "central_coord": [
+          11.97,
+          57.71
+        ],
+        "note": "Gothenburg dominates West Sweden; Smaland towns (Jonkoping, Vaxjo, Kalmar) are real but secondary."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Sweden is a unitary state; regional council only, not a parliament."
+      },
+      "lang_family": "germanic/swedish"
+    },
+    {
+      "id": "se-malmo-skane",
+      "name": "Malmö / Skåne",
+      "name_local": "Skåne",
+      "countries": [
+        "SE"
+      ],
+      "urban_core": "Malmö",
+      "secondary_centers": [
+        "Lund",
+        "Helsingborg",
+        "Karlskrona"
+      ],
+      "identity_basis": "Sweden's southernmost province, formerly Danish, with a distinct Scanian (skånsk) dialect and cross-Sound identity oriented toward Copenhagen via the Øresund Bridge.",
+      "key_industries": [
+        "agriculture (Sweden's breadbasket)",
+        "life sciences (Lund/Medicon Valley)",
+        "logistics (Øresund crossing)",
+        "naval/defense (Karlskrona)"
+      ],
+      "population": 1560000,
+      "population_note": "Statistics Sweden (SCB) 2023 estimate, NUTS-2 SE22 (Sydsverige: Skåne and Blekinge counties)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "SE22"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Malmö metro ~740,000; Öresund-region hub tightly linked to Copenhagen",
+        "diversified_industry": "Medicon Valley life-sciences cluster (with Lund University), Sweden's most productive farmland, Karlskrona naval shipyards",
+        "dependent_identity": "distinct Scanian dialect and historical (formerly Danish) identity within Sweden; no separatism despite cross-border Øresund orientation"
+      },
+      "nuts1_disagreement": "NUTS-1 SE2 groups Skåne/Blekinge with Västsverige and Småland-med-öarna; split out as its own mandated Malmö/Skåne node.",
+      "autarky": {
+        "water": 4,
+        "food": 5,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.7,
+        "rationale": "Skåne is Sweden's most productive agricultural region, giving strong food self-sufficiency; the Øresund Bridge and rail links give excellent transportation, though clothing manufacture is negligible.",
+        "rationales": {
+          "water": "Skane's plains and groundwater are ample.",
+          "food": "Sweden's most productive agricultural region ('breadbasket'); a genuine surplus.",
+          "energy": "Grid-dependent; no major domestic generation asset, mid-tier."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Sweden (SCB) regional population 2023",
+        "Region Skåne statistical overview"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Malmoe"
+        ],
+        "central": "Malmoe",
+        "central_coord": [
+          13.0,
+          55.6
+        ],
+        "note": "Malmoe/Lund dominate Skane, tightly linked across the Oeresund to Copenhagen."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Sweden is a unitary state; regional council only, not a parliament."
+      },
+      "lang_family": "germanic/swedish"
+    },
+    {
+      "id": "se-gotland",
+      "name": "Gotland",
+      "name_local": "Gotland",
+      "countries": [
+        "SE"
+      ],
+      "urban_core": "Visby",
+      "secondary_centers": [],
+      "identity_basis": "Sweden's largest Baltic island, with a Gutnish dialect and Hanseatic-era heritage distinct from both mainland Småland and Åland; mandated as its own separate island unit.",
+      "key_industries": [
+        "tourism (Visby UNESCO old town)",
+        "agriculture/livestock",
+        "limestone/cement (Cementa)",
+        "fishing"
+      ],
+      "population": 61000,
+      "population_note": "Statistics Sweden (SCB) 2023 estimate, Gotlands län (SE214)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "SE214"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Visby ~24,000; UNESCO World Heritage Hanseatic old town, seat of Region Gotland",
+        "diversified_industry": "tourism, agriculture and livestock, limestone quarrying/cement production, fishing",
+        "dependent_identity": "distinct Gutnish (gutamål) dialect and island identity, administratively part of Sweden with no separatism; explicitly distinguished from Åland per mandate"
+      },
+      "nuts1_disagreement": "NUTS-2 SE21 (Småland med öarna) bundles Gotland with mainland Jönköping/Kronoberg/Kalmar counties; separated here per the mandated Gotland≠Åland, Gotland-as-its-own-island-unit rule (mainland Småland is folded into the Gothenburg/West Sweden node instead).",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.7,
+        "rationale": "An isolated Baltic island with decent farmland and limestone resources but limited energy and transport self-sufficiency, dependent on ferry links and mainland grid connections.",
+        "rationales": {
+          "water": "A small Baltic island with modest freshwater reserves relative to its limestone geology.",
+          "food": "Decent farmland/livestock for the island's size, though not surplus-scale.",
+          "energy": "Limited energy self-sufficiency, dependent on mainland grid connections."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Sweden (SCB) regional population 2023",
+        "Region Gotland statistical overview"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Visby"
+        ],
+        "central": "Visby",
+        "central_coord": [
+          18.29,
+          57.64
+        ],
+        "note": "Visby is the sole town and seat of Region Gotland."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Sweden is a unitary state; regional council only, not a parliament."
+      },
+      "lang_family": "germanic/swedish"
+    },
+    {
+      "id": "se-norrland-upper",
+      "name": "Upper Norrland",
+      "name_local": "Oevre Norrland",
+      "countries": [
+        "SE"
+      ],
+      "urban_core": "Umeaa",
+      "secondary_centers": [
+        "Lulea",
+        "Skelleftea"
+      ],
+      "identity_basis": "Sweden's Arctic/sub-Arctic north (Vaesterbotten + Norrbotten, NUTS-2 SE33), split out from the former se-norrland record per the draft_v0.1.2 Sapmi-line mandate: this half sits within the Sami homeland (Sapmi) overlay zone shared with Finnish Lapland and North Norway, distinct from Lower Norrland's more temperate, Svealand-adjacent identity.",
+      "key_industries": [
+        "mining (Kiruna iron ore, Boliden)",
+        "green-steel/battery investment (Skelleftea/Boden)",
+        "hydropower",
+        "reindeer husbandry (Sami)"
+      ],
+      "population": 525000,
+      "population_note": "Statistics Sweden (SCB) 2023 estimate, Oevre Norrland (NUTS-2 SE33: Vaesterbotten + Norrbotten counties); split from the former se-norrland total (1,757,000) using the two counties' own populations.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "SE33"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "conflict_flags": [
+        {
+          "id": "sapmi-cross-border-norrland",
+          "description": "Sapmi, the Indigenous Sami homeland, spans northern Finland, Sweden and Norway and is not congruent with any national or NUTS boundary. This is the Swedish-side reference to the same cross-border cultural area already flagged canonically as 'sapmi-cross-border' on fi-lapland-sapmi (given a distinct id here per the project's global conflict_flag-id-uniqueness rule); it flags the overlay without redrawing national region boundaries.",
+          "zone_nuts_codes": [
+            "FI1D7",
+            "SE331",
+            "SE332",
+            "NO071",
+            "NO072",
+            "NO073"
+          ]
+        }
+      ],
+      "nuts1_disagreement": "NUTS-1 SE3 (Norra Sverige) previously grouped this territory with SE31/SE32 as one se-norrland record; split in draft_v0.1.2 at the Sapmi line, mirroring the FI/NO pattern of giving the Sami-homeland north its own cultural unit distinct from the more temperate south.",
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Umeaa",
+          "Lulea"
+        ],
+        "central": "Umeaa",
+        "central_coord": [
+          20.26,
+          63.83
+        ],
+        "secondary": "Lulea",
+        "secondary_coord": [
+          22.16,
+          65.58
+        ],
+        "note": "Umeaa (university/cultural hub) and Lulea (steel/tech, Norrbotten's largest city) form a genuine two-pole structure."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Sametinget (Sami Parliament of Sweden)",
+        "note": "Sweden is a unitary state with regional councils only, but the Sami Parliament of Sweden has real cultural-autonomy competence over Sami affairs within this Sapmi-zone region -- a genuine partial exception worth the audit's attention."
+      },
+      "lang_family": "germanic/swedish",
+      "reach": [],
+      "inclusion_test": {
+        "urban_hub": "Umeaa (~130,000) is the largest city and university/cultural hub; Lulea is Norrbotten's largest city and a steel/tech center",
+        "diversified_industry": "iron-ore mining (Kiruna), green-steel and battery investment (Skelleftea/Boden), hydropower, reindeer husbandry",
+        "dependent_identity": "distinct Sami/Arctic-Swedish identity within Sweden's Sapmi zone; dependent on, not seeking independence from, Sweden"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 2,
+        "shelter": 4,
+        "energy": 5,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Majority of Sweden's hydropower and abundant fresh water; vast distances and low density limit transportation and healthcare access; food production is modest given the short growing season.",
+        "rationales": {
+          "water": "Hosts the majority of Sweden's hydropower reservoirs and abundant fresh water.",
+          "food": "Short growing season and sparse arable land keep food production modest.",
+          "energy": "Majority of Sweden's hydropower capacity makes this region strongly energy-positive."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Sweden (SCB) regional population 2023",
+        "Svenska kraftnaet hydropower generation statistics",
+        "Sametinget (Sami Parliament of Sweden)"
+      ]
+    },
+    {
+      "id": "se-norrland-lower",
+      "name": "Lower Norrland",
+      "name_local": "Nedre Norrland / Norra Mellansverige",
+      "countries": [
+        "SE"
+      ],
+      "urban_core": "Sundsvall",
+      "secondary_centers": [
+        "Oestersund",
+        "Karlstad",
+        "Falun",
+        "Gaevle"
+      ],
+      "identity_basis": "Sweden's more temperate northern-to-central belt (Vaernland, Dalarna, Gaevleborg NUTS-2 SE31 + Vaesternorrland/Jaemtland NUTS-2 SE32), split out from the former se-norrland record per the draft_v0.1.2 Sapmi-line mandate: this half sits south of the Sami-homeland overlay zone and is culturally closer to Svealand, though it retains genuine Norrland regionalist sentiment ('Norrlandsfraagan').",
+      "key_industries": [
+        "forestry/pulp",
+        "hydropower",
+        "steel (Sandviken/Borlaenge)",
+        "tourism (Aare skiing, Siljan lake district)"
+      ],
+      "population": 1232000,
+      "population_note": "Statistics Sweden (SCB) 2023 estimate, sum of Norra Mellansverige (NUTS-2 SE31: Vaernland, Dalarna, Gaevleborg) and Mellersta Norrland (NUTS-2 SE32: Vaesternorrland, Jaemtland); the other half of the former se-norrland total (1,757,000).",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "SE31",
+        "SE32"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-1 SE3 previously grouped this territory with SE33 as one se-norrland record; split in draft_v0.1.2 at the Sapmi line. SE31 (Vaernland/Dalarna/Gaevleborg, 'Norra Mellansverige') is included here rather than left as a coverage gap, since it borders SE32 directly and no other zone-4 record claims it; this keeps the two split halves summing exactly to the former se-norrland total.",
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Sundsvall",
+          "Oestersund",
+          "Karlstad",
+          "Falun"
+        ],
+        "central": "Sundsvall",
+        "central_coord": [
+          17.31,
+          62.39
+        ],
+        "note": "No single dominant metropolis; Sundsvall (coastal industrial hub) is the largest, with Oestersund/Karlstad/Falun as comparable secondary poles, mirroring the former se-norrland record's own polycentric-north honesty note."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Sweden is a unitary state; regional councils only, not a parliament."
+      },
+      "lang_family": "germanic/swedish",
+      "reach": [],
+      "inclusion_test": {
+        "urban_hub": "Sundsvall (~100,000) is the largest single city; Oestersund, Karlstad and Falun are comparably sized secondary poles rather than clear satellites",
+        "diversified_industry": "forestry and pulp, hydropower, steel (Sandviken/Borlaenge), Aare/Siljan tourism",
+        "dependent_identity": "genuine Norrland regionalist sentiment ('Norrlandsfraagan') within Sweden, distinct from but adjoining the Sami-homeland Upper Norrland to its north; no separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "Extensive hydropower and forestry-linked biomass keep energy strong; food production is moderate given the short growing season further north but Vaernland/Gaevleborg farmland helps; a dispersed polycentric settlement pattern limits transportation and specialist healthcare access.",
+        "rationales": {
+          "water": "Extensive lake district (Siljan, Storsjoen) and river network give strong per-capita supply.",
+          "food": "Vaernland/Gaevleborg farmland is more productive than the Arctic north, giving a moderate food score.",
+          "energy": "Hydropower (Indalsaelven) and forestry biomass keep this region energy-strong."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Sweden (SCB) regional population 2023",
+        "Svenska kraftnaet hydropower generation statistics"
+      ]
+    },
+    {
+      "id": "dk-copenhagen-zealand",
+      "name": "Copenhagen & Zealand",
+      "name_local": "Hovedstaden og Sjælland",
+      "countries": [
+        "DK"
+      ],
+      "urban_core": "Copenhagen",
+      "secondary_centers": [
+        "Roskilde",
+        "Helsingør",
+        "Rønne (Bornholm)"
+      ],
+      "identity_basis": "Denmark's capital region and the island of Zealand, including Bornholm; the country's political, financial and Øresund-oriented core, mandated as distinct from Jutland/Aarhus.",
+      "key_industries": [
+        "finance/pharma (Novo Nordisk cluster)",
+        "government/EU-facing services",
+        "shipping (Maersk HQ)",
+        "life sciences",
+        "agriculture (rural Zealand)"
+      ],
+      "population": 2710000,
+      "population_note": "Statistics Denmark (Danmarks Statistik) 2023 estimate, sum of Hovedstaden (DK01) and Sjælland (DK02)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DK01",
+        "DK02"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Copenhagen metro ~1.4M; national capital, Maersk and Novo Nordisk headquarters, Øresund science/pharma cluster",
+        "diversified_industry": "pharmaceuticals/life sciences, global shipping, finance, EU/government administration, agriculture on rural Zealand",
+        "dependent_identity": "clear Copenhagen-metropolitan identity within Denmark, including Bornholm's distinct Baltic-island character; no separatism"
+      },
+      "nuts1_disagreement": "NUTS-1 DK0 treats all of Denmark as one unit; split here into Copenhagen/Zealand vs Jutland/Funen per the mandated Copenhagen≠Jutland/Aarhus distinction.",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 4,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.9,
+        "rationale": "Excellent rail/metro/Øresund-bridge transport and top-tier healthcare; energy draws on Denmark's wind fleet but capital demand keeps it below the Jutland wind heartland, while Zealand's farmland supports solid food security.",
+        "rationales": {
+          "water": "Zealand groundwater is ample for the population.",
+          "food": "Rural Zealand farmland supports solid food security despite the dense capital population.",
+          "energy": "Draws on Denmark's wind fleet, but capital demand keeps this below the Jutland wind heartland."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Denmark (Danmarks Statistik) regional population 2023",
+        "Capital Region of Denmark (Region Hovedstaden) statistical overview"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Copenhagen"
+        ],
+        "central": "Copenhagen",
+        "central_coord": [
+          12.57,
+          55.68
+        ],
+        "note": "Copenhagen overwhelmingly dominates its Zealand/Bornholm hinterland."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Denmark is a unitary state; the region has an elected regional council (regionsraad, mainly healthcare competence), not a legislative parliament."
+      },
+      "lang_family": "germanic/danish"
+    },
+    {
+      "id": "dk-jutland-funen",
+      "name": "Jutland & Funen",
+      "name_local": "Jylland og Fyn",
+      "countries": [
+        "DK"
+      ],
+      "urban_core": "Aarhus",
+      "secondary_centers": [
+        "Odense",
+        "Aalborg",
+        "Esbjerg"
+      ],
+      "identity_basis": "The Jutland peninsula and the island of Funen, Denmark's manufacturing, agricultural and wind-energy heartland, with a distinct Jutlandic (jysk) dialect and self-image contrasted with the capital; mandated as its own node with Aarhus as urban core.",
+      "key_industries": [
+        "wind energy (onshore/offshore turbine manufacturing)",
+        "agriculture/food processing",
+        "maritime (Esbjerg oil/gas and offshore-wind port)",
+        "shipping container terminal (Aarhus)",
+        "robotics (Odense)"
+      ],
+      "population": 3170000,
+      "population_note": "Statistics Denmark (Danmarks Statistik) 2023 estimate, sum of Syddanmark (DK03), Midtjylland (DK04) and Nordjylland (DK05)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DK03",
+        "DK04",
+        "DK05"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Aarhus metro ~370,000; Denmark's second city, major container port and university",
+        "diversified_industry": "world-leading wind-turbine manufacturing (Vestas), agriculture/food processing, Esbjerg's offshore-wind and oil/gas port, Odense's robotics cluster",
+        "dependent_identity": "strong Jutlandic dialect/cultural identity ('jysk') and a degree of populist contrast with Copenhagen, but fully dependent on and integrated with the Danish state; no separatism"
+      },
+      "nuts1_disagreement": "NUTS-1 DK0 treats all of Denmark as one unit; split here into Copenhagen/Zealand vs Jutland/Funen per mandate. Funen (part of DK03/Syddanmark) is grouped with mainland Jutland rather than given its own node, since the mandate specifies only a Copenhagen/Jutland-Aarhus split.",
+      "autarky": {
+        "water": 4,
+        "food": 5,
+        "shelter": 4,
+        "energy": 5,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 4.0,
+        "rationale": "Denmark's wind-energy heartland (onshore and Esbjerg-serviced offshore) gives outstanding energy self-sufficiency, paired with strong agricultural food production; clothing manufacture remains negligible.",
+        "rationales": {
+          "water": "Jutland's aquifers and rainfall are ample.",
+          "food": "Denmark's agricultural heartland; a strong net exporter.",
+          "energy": "Denmark's wind-energy heartland (onshore and Esbjerg-serviced offshore) gives outstanding self-sufficiency."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Denmark (Danmarks Statistik) regional population 2023",
+        "Danish Energy Agency wind-capacity statistics",
+        "Central Denmark Region (Region Midtjylland) statistical overview"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Aarhus",
+          "Odense",
+          "Aalborg",
+          "Esbjerg"
+        ],
+        "central": "Aarhus",
+        "central_coord": [
+          10.21,
+          56.16
+        ],
+        "note": "Aarhus is Denmark's second city, but Odense/Aalborg/Esbjerg remain genuine secondary poles across Jutland and Funen."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Denmark is a unitary state; regional council only, not a parliament."
+      },
+      "lang_family": "germanic/danish"
+    },
+    {
+      "id": "no-oslo-eastern-southern-norway",
+      "name": "Oslo & Eastern/Southern Norway",
+      "name_local": "Oslo og Østlandet/Sørlandet",
+      "countries": [
+        "NO"
+      ],
+      "urban_core": "Oslo",
+      "secondary_centers": [
+        "Fredrikstad",
+        "Lillestrøm",
+        "Drammen",
+        "Skien/Porsgrunn",
+        "Kristiansand"
+      ],
+      "identity_basis": "Norway's capital and its densely populated eastern/southern commuter and agricultural hinterland (Østfold, Akershus, Innlandet, Buskerud, Vestfold, Telemark, Agder); the country's political and financial core, mandated as distinct from the western/northern fjord-culture nodes.",
+      "key_industries": [
+        "finance/government",
+        "ICT",
+        "shipping/offshore services",
+        "agriculture (Østfold/Akershus grain belt)",
+        "process industry (Telemark/Agder)"
+      ],
+      "population": 3150000,
+      "population_note": "Statistics Norway (SSB) 2024 estimate, sum of NUTS-2 NO08 (Oslo og Viken: Oslo, Østfold, Akershus, Buskerud), NO09 (Agder og Sør-Østlandet: Agder, Vestfold, Telemark) and NO02 (Innlandet)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "NO08",
+        "NO09",
+        "NO02"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Oslo metro ~1.1M; national capital, Oslo Stock Exchange, government seat",
+        "diversified_industry": "finance and shipping services, ICT, Østfold/Akershus grain agriculture, Telemark/Agder process industry (aluminium, petrochemicals)",
+        "dependent_identity": "clear Oslo-metropolitan and broader Østlandet/Sørlandet regional identity within Norway; no separatism"
+      },
+      "nuts1_disagreement": "NUTS-1-equivalent NO0 treats all of Norway as one unit; split here into five nodes (Oslo & East/South, Stavanger-Bergen, Trondheim, Ålesund/Northwest, Tromsø/North) per the mandated fjord-culture distinctions. Eastern/southern Norway (NO08 Oslo og Viken, NO09 Agder og Sør-Østlandet, NO02 Innlandet) is grouped under Oslo as its dominant, commuter-linked metropolitan hinterland rather than given a separate un-mandated node. Note: the raw GISCO NUTS_RG_20M_2024 geometry file still ships pre-2024-restructuring NUTS2 groupings (NO02/NO06/NO07/NO08/NO09) rather than the newer SR2024 NO0C/NO0D/NO0E scheme listed in data/nuts_index.json; codes here were adjusted to match the actual geometry, per the build pipeline's resolution requirement.",
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 4,
+        "energy": 5,
+        "transportation": 4,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 4.0,
+        "rationale": "Extensive hydropower and glacial/mountain water give near-total energy and water self-sufficiency; food security is moderate given limited arable land relative to population, offset by Østfold/Akershus grain farming.",
+        "rationales": {
+          "water": "Extensive hydropower and glacial/mountain water give near-total self-sufficiency.",
+          "food": "Moderate given limited arable land relative to population, offset by Ostfold/Akershus grain farming.",
+          "energy": "Extensive hydropower gives near-total energy self-sufficiency."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 / SR2024",
+        "Statistics Norway (SSB) county population 2024",
+        "Norwegian Water Resources and Energy Directorate (NVE) hydropower statistics"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Oslo"
+        ],
+        "central": "Oslo",
+        "central_coord": [
+          10.75,
+          59.91
+        ],
+        "note": "Oslo dominates its eastern/southern Norwegian commuter hinterland."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Norway is a unitary state; the region spans several elected county councils (fylkesting), not a legislative parliament."
+      },
+      "lang_family": "germanic/norwegian",
+      "reach": [
+        {
+          "target": "Innlandet's Gudbrandsdalen/Mjosa corridor",
+          "note": "Oslo's commuter and administrative reach extends up the Mjosa/E6 corridor into Innlandet, which remains part of this region's own nuts_codes (see the no-alesund-northwest record's reach note on the Rauma-corridor exception)."
+        }
+      ]
+    },
+    {
+      "id": "no-stavanger-bergen",
+      "name": "Stavanger-Bergen",
+      "name_local": "Stavanger-Bergen (Vestlandet)",
+      "countries": [
+        "NO"
+      ],
+      "urban_core": "Stavanger",
+      "secondary_centers": [
+        "Bergen",
+        "Haugesund"
+      ],
+      "identity_basis": "Norway's oil-and-fjord western seaboard, combining the offshore-energy capital Stavanger with the historic Hanseatic port city Bergen; a distinct Vestlandet fjord-culture identity with strong nynorsk-language presence, mandated as its own node.",
+      "key_industries": [
+        "offshore oil and gas",
+        "maritime/subsea engineering",
+        "aquaculture/salmon farming",
+        "tourism (fjords)",
+        "shipping"
+      ],
+      "population": 1145000,
+      "population_note": "Statistics Norway (SSB) 2024 estimate, sum of Rogaland (NO0A1) and Vestland (NO0A2)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "NO0A1",
+        "NO0A2"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Stavanger metro ~230,000 (Norway's oil capital) and Bergen metro ~285,000 (Norway's second city)",
+        "diversified_industry": "North Sea oil/gas headquarters (Equinor), subsea engineering, salmon aquaculture, fjord tourism",
+        "dependent_identity": "distinct Vestlandet fjord-culture and nynorsk-language identity within Norway; no separatism"
+      },
+      "nuts1_disagreement": "NUTS-2 NO0A (Vestlandet) also includes Møre og Romsdal, split out here as the separately mandated Ålesund/Northwest node.",
+      "autarky": {
+        "water": 5,
+        "food": 4,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.7,
+        "rationale": "Hydropower and abundant fjord/glacial water underpin near-total energy and water self-sufficiency; strong fisheries/aquaculture support food security, though mountainous terrain constrains land transport between fjord settlements.",
+        "rationales": {
+          "water": "Hydropower and abundant fjord/glacial water underpin near-total self-sufficiency.",
+          "food": "Strong fisheries/aquaculture support food security despite limited arable land.",
+          "energy": "Hydropower plus North Sea oil/gas infrastructure give near-total energy self-sufficiency."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 / SR2024",
+        "Statistics Norway (SSB) county population 2024",
+        "Norwegian Petroleum Directorate offshore statistics"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Stavanger",
+          "Bergen"
+        ],
+        "central": "Stavanger",
+        "central_coord": [
+          5.73,
+          58.97
+        ],
+        "secondary": "Bergen",
+        "secondary_coord": [
+          5.32,
+          60.39
+        ],
+        "note": "Stavanger (oil capital) and Bergen (Norway's second city) form a genuine two-pole structure along the western fjord coast."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Norway is a unitary state; county councils only, not a parliament."
+      },
+      "lang_family": "germanic/norwegian"
+    },
+    {
+      "id": "no-trondheim-trondelag",
+      "name": "Trondheim / Trøndelag",
+      "name_local": "Trøndelag/Trööndelage",
+      "countries": [
+        "NO"
+      ],
+      "urban_core": "Trondheim",
+      "secondary_centers": [
+        "Steinkjer",
+        "Levanger"
+      ],
+      "identity_basis": "Central Norway's historic royal-coronation region, with its own Trøndersk dialect and a South-Sámi presence (Trööndelage in South Sámi); Norway's technology and research hub, mandated as its own node distinct from Oslo and the western fjord region.",
+      "key_industries": [
+        "higher education/research (NTNU/SINTEF)",
+        "aquaculture",
+        "agriculture",
+        "energy technology"
+      ],
+      "population": 480000,
+      "population_note": "Statistics Norway (SSB) 2024 estimate, Trøndelag (NO06)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "NO06"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Trondheim metro ~215,000; NTNU (Norway's largest technical university) and SINTEF research cluster, historic Nidaros Cathedral coronation city",
+        "diversified_industry": "technology R&D, aquaculture/salmon farming, agriculture, energy-technology spinoffs",
+        "dependent_identity": "distinct Trøndersk cultural/dialect identity plus a South Sámi (Åarjelsaemien) presence, dependent on rather than seeking independence from Norway"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "Strong hydropower and abundant fresh water; aquaculture and agriculture provide moderate food self-sufficiency, though the region's size and dispersed coastal settlements limit transportation relative to the Oslo core.",
+        "rationales": {
+          "water": "Strong hydropower and abundant fresh water.",
+          "food": "Aquaculture and agriculture provide moderate food self-sufficiency.",
+          "energy": "Strong hydropower keeps this region energy-strong."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 / SR2024",
+        "Statistics Norway (SSB) county population 2024",
+        "NTNU/SINTEF regional economic profile"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Trondheim"
+        ],
+        "central": "Trondheim",
+        "central_coord": [
+          10.4,
+          63.43
+        ],
+        "note": "Trondheim dominates Troendelag as its historic coronation city and technology/research hub."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Norway is a unitary state; county council only, not a parliament."
+      },
+      "lang_family": "germanic/norwegian"
+    },
+    {
+      "id": "no-alesund-northwest",
+      "name": "Ålesund / Northwest Norway",
+      "name_local": "Møre og Romsdal",
+      "countries": [
+        "NO"
+      ],
+      "urban_core": "Ålesund",
+      "secondary_centers": [
+        "Molde",
+        "Kristiansund"
+      ],
+      "identity_basis": "Norway's northwestern fjord and fishing coast, with a distinctive Art Nouveau port city (Ålesund) and a strong maritime-fishing culture distinct from both Bergen/Stavanger to the south and Trøndelag to the north; mandated as its own node.",
+      "key_industries": [
+        "fishing/seafood export",
+        "maritime equipment manufacturing",
+        "furniture (Sykkylven)",
+        "tourism (fjords/Art Nouveau architecture)"
+      ],
+      "population": 266000,
+      "population_note": "Statistics Norway (SSB) 2024 estimate, Møre og Romsdal (NO0A3)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "NO0A3"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Ålesund ~55,000; Norway's leading fishing-export port with distinctive Art Nouveau architecture",
+        "diversified_industry": "seafood export/processing, maritime equipment and shipbuilding supply, furniture manufacturing",
+        "dependent_identity": "distinct northwestern fjord/fishing-culture identity within Norway, dependent on the Norwegian state; no separatism"
+      },
+      "nuts1_disagreement": "NUTS-2 NO0A (Vestlandet) also includes Rogaland and Vestland (grouped as the Stavanger-Bergen node); split out here as its own mandated node.",
+      "autarky": {
+        "water": 5,
+        "food": 4,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 2,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "Hydropower and abundant fjord water; one of Norway's strongest fishing/seafood economies gives good food security, but the fragmented fjord/island geography constrains road transportation.",
+        "rationales": {
+          "water": "Hydropower and abundant fjord water.",
+          "food": "One of Norway's strongest fishing/seafood economies gives good food security.",
+          "energy": "Hydropower keeps this region energy-strong despite fragmented fjord/island geography limiting transport."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 / SR2024",
+        "Statistics Norway (SSB) county population 2024",
+        "Norwegian Seafood Council export statistics"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Aalesund"
+        ],
+        "central": "Aalesund",
+        "central_coord": [
+          6.15,
+          62.47
+        ],
+        "note": "Aalesund is Norway's leading fishing-export port for this northwestern fjord coast."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "n/a",
+        "note": "Norway is a unitary state; county council only, not a parliament."
+      },
+      "lang_family": "germanic/norwegian",
+      "reach": [
+        {
+          "target": "Gudbrandsdalen/Rauma corridor (northwestern Innlandet, around Dombaas-Aandalsnes)",
+          "note": "The Rauma railway line and E136 road connect Aalesund/Moere og Romsdal westward into northwestern Innlandet (the historic Romsdal-facing Gudbrandsdalen communities). This is documented here as a functional/cultural reach ONLY, not a territorial reassignment: per the draft_v0.1.2 plan's request to give this region 'more of Innlandet', the bulk of Innlandet (Hedmark and central Gudbrandsdalen, oriented toward Oslo via the Mjosa/E6 corridor) remains genuinely Oslo-facing, and the committed 2024 GISCO geometry ships all of Innlandet as a single undivided NUTS-3-equivalent code (NO020) with no finer sub-split available -- so a literal partial NUTS-3 code move is not possible without a different geometry source. Flagged as an unsatisfiable-at-current-granularity item rather than forcing an all-or-nothing code move that would misassign Hedmark."
+        }
+      ]
+    },
+    {
+      "id": "no-tromso-north-norway",
+      "name": "Tromsø / North Norway",
+      "name_local": "Nord-Norge (Nordland, Troms, Finnmark)",
+      "countries": [
+        "NO"
+      ],
+      "urban_core": "Tromsø",
+      "secondary_centers": [
+        "Bodø",
+        "Narvik",
+        "Alta",
+        "Hammerfest",
+        "Kirkenes"
+      ],
+      "identity_basis": "Norway's Arctic north, encompassing Nordland, Troms and Finnmark; home to the largest share of Norway's Sámi population (Sápmi) and a distinct Arctic/Barents-region identity distinct from all southern Norwegian nodes; mandated as its own node.",
+      "key_industries": [
+        "fishing/fisheries",
+        "Arctic/Northern Lights tourism",
+        "Barents-region trade and Arctic LNG (Hammerfest)",
+        "reindeer husbandry (Sámi)",
+        "defense (Bodø/NATO)"
+      ],
+      "population": 482000,
+      "population_note": "Statistics Norway (SSB) 2024 estimate, Nord-Norge (NO07: Nordland, Troms, Finnmark)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "NO07"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Tromsø metro ~78,000, the 'Capital of the Arctic'; Arctic University of Norway, Sámi Parliament of Norway (Karasjok/Kárášjohka)",
+        "diversified_industry": "fisheries, Arctic tourism, LNG export at Hammerfest, Barents-region cross-border trade, NATO/defense presence at Bodø",
+        "dependent_identity": "distinct Sámi Indigenous identity and a broader North-Norwegian Arctic identity, both dependent on rather than seeking independence from Norway"
+      },
+      "nuts1_disagreement": "The SR2024 scheme in data/nuts_index.json groups Trøndelag with Nord-Norge as NO0C; the actual GISCO geometry instead ships NO06 (Trøndelag) and NO07 (Nord-Norge) as separate NUTS-2 groupings, which is used here and conveniently already matches the mandated Trondheim vs Tromsø/North split.",
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "Abundant Arctic freshwater and hydropower; fisheries support moderate food security, but vast distances, harsh climate and dispersed coastal/island settlements keep transportation and specialist healthcare access constrained relative to southern Norway.",
+        "rationales": {
+          "water": "Abundant Arctic freshwater and hydropower.",
+          "food": "Fisheries support moderate food security despite the harsh climate.",
+          "energy": "Hydropower plus Hammerfest LNG export give solid energy self-sufficiency."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024 / SR2024",
+        "Statistics Norway (SSB) county population 2024",
+        "Sametinget (Sámi Parliament of Norway) — Sápmi population estimate"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Tromsoe"
+        ],
+        "central": "Tromsoe",
+        "central_coord": [
+          18.96,
+          69.65
+        ],
+        "note": "Tromsoe, the 'Capital of the Arctic', dominates North Norway."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Sametinget (Sami Parliament of Norway)",
+        "note": "Norway is a unitary state with county councils only, but the Sami Parliament of Norway (seated in Karasjok/Karasjohka, within this region) has real cultural-autonomy competence over Sami affairs -- a genuine partial exception worth the audit's attention."
+      },
+      "lang_family": "germanic/norwegian"
+    },
+    {
+      "id": "is-iceland",
+      "name": "Iceland",
+      "name_local": "Ísland",
+      "countries": [
+        "IS"
+      ],
+      "urban_core": "Reykjavík",
+      "secondary_centers": [
+        "Akureyri",
+        "Reykjanesbær"
+      ],
+      "identity_basis": "A sovereign island nation overwhelmingly concentrated in the Reykjavík capital area (~64% of the population), linguistically and culturally homogeneous with no internal regionalist movements; modeled as a single unit despite not appearing on the formal single-unit-exception list.",
+      "key_industries": [
+        "geothermal/hydro energy",
+        "fisheries",
+        "aluminium smelting",
+        "tourism",
+        "financial services"
+      ],
+      "population": 390000,
+      "population_note": "Statistics Iceland (Hagstofa Íslands) 2023 estimate, national population (IS0)",
+      "area_km2": null,
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "IS0"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Reykjavík capital area ~250,000 (~64% of national population); Alþingi (parliament), University of Iceland, main port and airport",
+        "diversified_industry": "geothermal/hydro energy export via aluminium smelting, fisheries, tourism, fintech/financial services",
+        "dependent_identity": "n/a — Iceland is itself a sovereign state; treated as a single Zone-4 unit because no second Icelandic urban center approaches Reykjavík's scale or diversified industrial base, and no internal sub-national identity movement exists"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.7,
+        "rationale": "Iceland's geothermal and hydro resources give near-total energy self-sufficiency; fisheries and geothermal-heated greenhouse agriculture support moderate food security despite the harsh climate, and a wool/knitwear tradition (lopapeysa) supports slightly above-average clothing self-sufficiency for the zone.",
+        "rationales": {
+          "water": "Abundant glacial/geothermal-fed freshwater.",
+          "food": "Fisheries and geothermal-heated greenhouse agriculture support moderate food security despite the harsh climate.",
+          "energy": "Geothermal and hydro resources give near-total energy self-sufficiency."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO SR2024",
+        "Statistics Iceland (Hagstofa Íslands) population 2023",
+        "National Energy Authority of Iceland (Orkustofnun) — geothermal/hydro generation share"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Reykjavik"
+        ],
+        "central": "Reykjavik",
+        "central_coord": [
+          -21.9,
+          64.15
+        ],
+        "note": "Reykjavik holds ~64% of the national population; no rival pole exists."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Althingi",
+        "note": "Iceland's national parliament; this unit is the whole sovereign state."
+      },
+      "lang_family": "germanic/icelandic"
+    },
+    {
+      "id": "ee-estonia",
+      "name": "Estonia",
+      "name_local": "Eesti",
+      "countries": [
+        "EE"
+      ],
+      "urban_core": "Tallinn",
+      "secondary_centers": [
+        "Tartu"
+      ],
+      "identity_basis": "Single-unit exception (Estonia); sovereign Baltic state with a distinct Estonian (Finnic) language and post-Soviet e-governance identity, with Tartu retained as a secondary cultural/university center per mandate.",
+      "key_industries": [
+        "ICT/e-government (Skype/Bolt origin)",
+        "wood processing",
+        "shale-oil energy",
+        "logistics (Tallinn port)"
+      ],
+      "population": 1366000,
+      "population_note": "Statistics Estonia (Statistikaamet) 2023 estimate, national population (EE0)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "EE0"
+      ],
+      "single_unit_exception": true,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Tallinn metro ~450,000; national capital and Baltic Sea logistics/tech hub, with Tartu (~93,000) as the historic university city",
+        "diversified_industry": "ICT and e-governance services, wood processing, oil-shale energy, port logistics",
+        "dependent_identity": "n/a — Estonia is a sovereign single-unit-exception country per the zone-shared constraints"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Good freshwater supply and solid agricultural base; oil-shale gives moderate domestic energy production though the sector is in structural decline, and healthcare/hygiene infrastructure is strong by regional standards.",
+        "rationales": {
+          "water": "Good freshwater supply from the country's many lakes and rivers.",
+          "food": "Solid agricultural base supports moderate-to-good food security.",
+          "energy": "Oil-shale gives moderate domestic energy production, though the sector is in structural decline."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Estonia (Statistikaamet) population 2023",
+        "Estonian Ministry of Economic Affairs — oil-shale energy share"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Tallinn"
+        ],
+        "central": "Tallinn",
+        "central_coord": [
+          24.75,
+          59.44
+        ],
+        "note": "Tallinn dominates; Tartu is a real secondary university/cultural center per mandate."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Riigikogu",
+        "note": "Estonia's national parliament; this unit is the whole sovereign single-unit-exception state."
+      },
+      "lang_family": "finno-ugric/estonian"
+    },
+    {
+      "id": "lv-latvia",
+      "name": "Latvia",
+      "name_local": "Latvija",
+      "countries": [
+        "LV"
+      ],
+      "urban_core": "Riga",
+      "secondary_centers": [
+        "Daugavpils"
+      ],
+      "identity_basis": "Single-unit exception (Latvia); sovereign Baltic state centered on the historic Hanseatic port of Riga, with a distinct Latvian language and Latgalian regional dialect in the east.",
+      "key_industries": [
+        "transit/logistics (Riga port and rail)",
+        "hydropower (Daugava)",
+        "wood processing",
+        "food processing"
+      ],
+      "population": 1883000,
+      "population_note": "Central Statistical Bureau of Latvia 2023 estimate, national population (LV0)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "LV0"
+      ],
+      "single_unit_exception": true,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Riga metro ~860,000 (roughly 45% of national population); largest city in the Baltic states, historic Hanseatic port and UNESCO old town",
+        "diversified_industry": "transit/logistics, Daugava hydropower cascade, wood and food processing",
+        "dependent_identity": "n/a — Latvia is a sovereign single-unit-exception country per the zone-shared constraints"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "The Daugava hydropower cascade gives Latvia above-average regional energy self-sufficiency; solid agricultural land and freshwater supply support food and water security.",
+        "rationales": {
+          "water": "Solid freshwater supply from the Daugava river system.",
+          "food": "Solid agricultural land supports good food security.",
+          "energy": "The Daugava hydropower cascade gives above-average regional energy self-sufficiency."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Central Statistical Bureau of Latvia population 2023",
+        "Latvenergo — Daugava hydropower generation share"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Riga"
+        ],
+        "central": "Riga",
+        "central_coord": [
+          24.11,
+          56.95
+        ],
+        "note": "Riga holds roughly 45% of the national population; no rival pole exists."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Saeima",
+        "note": "Latvia's national parliament; this unit is the whole sovereign single-unit-exception state."
+      },
+      "lang_family": "baltic/latvian"
+    },
+    {
+      "id": "lt-lithuania",
+      "name": "Lithuania",
+      "name_local": "Lietuva",
+      "countries": [
+        "LT"
+      ],
+      "urban_core": "Vilnius",
+      "secondary_centers": [
+        "Kaunas"
+      ],
+      "identity_basis": "Single-unit exception (Lithuania); sovereign Baltic state with a distinct Lithuanian language and the largest population of the three Baltic states, with Kaunas retained as a secondary industrial/cultural center per mandate.",
+      "key_industries": [
+        "manufacturing/textiles",
+        "biotechnology (Vilnius)",
+        "logistics (Klaipėda port)",
+        "agriculture",
+        "fintech"
+      ],
+      "population": 2860000,
+      "population_note": "Statistics Lithuania (Valstybės duomenų agentūra) 2023 estimate, national population (LT0)",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "LT0"
+      ],
+      "single_unit_exception": true,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Vilnius metro ~600,000; national capital and fintech/biotech hub, with Kaunas (~350,000) as the historic interwar capital and manufacturing center",
+        "diversified_industry": "manufacturing and textiles, biotechnology, Klaipėda's Baltic Sea logistics, agriculture, fintech services",
+        "dependent_identity": "n/a — Lithuania is a sovereign single-unit-exception country per the zone-shared constraints"
+      },
+      "nuts1_disagreement": "NUTS-2 level (LT01 Vilnius region / LT02 rest of Lithuania) would split the country; kept as one unit per the single-unit-exception mandate, using the coarser NUTS-1 code LT0.",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.3,
+        "rationale": "Solid agricultural base and freshwater supply; the 2009 closure of the Ignalina nuclear plant left Lithuania comparatively import-dependent for energy relative to Latvia/Estonia, while a residual textile-manufacturing base supports slightly above-average clothing self-sufficiency.",
+        "rationales": {
+          "water": "Solid freshwater supply and agricultural base.",
+          "food": "Solid agricultural base supports good food security.",
+          "energy": "The 2009 Ignalina nuclear-plant closure left Lithuania comparatively import-dependent relative to Latvia/Estonia."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistics Lithuania (Valstybės duomenų agentūra) population 2023",
+        "Lithuanian Ministry of Energy — post-Ignalina energy-mix overview"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Vilnius",
+          "Kaunas"
+        ],
+        "central": "Vilnius",
+        "central_coord": [
+          25.28,
+          54.69
+        ],
+        "secondary": "Kaunas",
+        "secondary_coord": [
+          23.9,
+          54.9
+        ],
+        "note": "Vilnius is the capital; Kaunas retains real secondary weight as the historic interwar capital and manufacturing center, per the mandate."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Seimas",
+        "note": "Lithuania's national parliament; this unit is the whole sovereign single-unit-exception state."
+      },
+      "lang_family": "baltic/lithuanian"
+    },
+    {
+      "id": "gl-greenland",
+      "name": "Greenland",
+      "name_local": "Kalaallit Nunaat",
+      "countries": [
+        "GL"
+      ],
+      "urban_core": "Nuuk",
+      "secondary_centers": [
+        "Sisimiut",
+        "Ilulissat"
+      ],
+      "identity_basis": "Autonomous Danish territory with Inuit (Kalaallit) majority population, home rule government and its own Greenlandic (Kalaallisut) language; mandated as a fully separate autonomous unit from Denmark proper.",
+      "key_industries": [
+        "fisheries (shrimp/halibut export)",
+        "hydropower",
+        "mining exploration (rare earths)",
+        "tourism",
+        "block-grant-supported public sector"
+      ],
+      "population": 56000,
+      "population_note": "Statistics Greenland (Grønlands Statistik) 2023 estimate; per zone brief, ~56k",
+      "area_km2": null,
+      "nuts_source": "CNTR",
+      "nuts_codes": [
+        "GL"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Nuuk ~19,000 (roughly a third of the territory's population); seat of the Greenlandic home-rule government (Naalakkersuisut)",
+        "diversified_industry": "fisheries exports (the dominant sector), growing hydropower and mineral exploration, tourism",
+        "dependent_identity": "distinct Inuit/Kalaallit identity with home-rule autonomy, constitutionally dependent on Denmark though pursuing greater self-determination; not seeking full independence within the scope of this dataset"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 4,
+        "food": 1,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 1,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.4,
+        "rationale": "Glacial meltwater is abundant and hydropower is growing, but the near-total absence of arable land makes food (beyond fish) almost entirely import-dependent, and the lack of any inter-town road network confined to boat/air access gives transportation the lowest score in the zone.",
+        "rationales": {
+          "water": "Glacial meltwater is abundant.",
+          "food": "Near-total absence of arable land makes food (beyond fish) almost entirely import-dependent.",
+          "energy": "Hydropower is growing but still supplements, rather than replaces, imported fuel for most settlements."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO CNTR2024",
+        "Statistics Greenland (Grønlands Statistik) population 2023",
+        "Government of Greenland (Naalakkersuisut) — economic overview"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Nuuk"
+        ],
+        "central": "Nuuk",
+        "central_coord": [
+          -51.72,
+          64.18
+        ],
+        "note": "Nuuk is the seat of the home-rule government, though it holds only about a third of the territory's dispersed population."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Inatsisartut",
+        "note": "Greenland's home-rule parliament, seated in Nuuk."
+      },
+      "lang_family": "eskimo-aleut/kalaallisut"
+    },
+    {
+      "id": "fo-faroe-islands",
+      "name": "Faroe Islands",
+      "name_local": "Føroyar",
+      "countries": [
+        "FO"
+      ],
+      "urban_core": "Tórshavn",
+      "secondary_centers": [
+        "Klaksvík"
+      ],
+      "identity_basis": "Autonomous Danish territory with its own Faroese language, flag and self-government, connected by an extensive subsea-tunnel network; mandated as a fully separate autonomous unit from Denmark proper.",
+      "key_industries": [
+        "fisheries/aquaculture (salmon)",
+        "shipping",
+        "wool/textile handicraft",
+        "tourism"
+      ],
+      "population": 54000,
+      "population_note": "Statistics Faroe Islands (Hagstova Føroya) 2023 estimate; per zone brief, ~54k",
+      "area_km2": null,
+      "nuts_source": "CNTR",
+      "nuts_codes": [
+        "FO"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Tórshavn ~14,000 (with greater Tórshavn area ~22,000); seat of the Faroese Løgting (parliament), one of the world's oldest parliaments",
+        "diversified_industry": "salmon aquaculture/fisheries (the dominant export sector), shipping, growing tourism, traditional wool/textile handicraft",
+        "dependent_identity": "distinct Faroese language and self-governing identity, constitutionally dependent on Denmark; not seeking full independence within the scope of this dataset"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 5,
+        "food": 2,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.0,
+        "rationale": "Abundant rainfall gives strong water self-sufficiency and fisheries/aquaculture are a major export strength, but produce and most manufactured goods are imported; an inter-island tunnel network gives moderate transportation despite the archipelago's isolation, and a traditional wool/textile handicraft (Faroese jumpers) supports above-average clothing self-sufficiency.",
+        "rationales": {
+          "water": "Abundant rainfall gives strong water self-sufficiency.",
+          "food": "Fisheries/aquaculture are a major export strength, but produce and manufactured goods are imported.",
+          "energy": "Growing hydro/wind mix supplements imported fuel; still import-dependent overall."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO CNTR2024",
+        "Statistics Faroe Islands (Hagstova Føroya) population 2023",
+        "Faroese Government (Landsstýrið) — economic overview"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Torshavn"
+        ],
+        "central": "Torshavn",
+        "central_coord": [
+          -6.79,
+          62.01
+        ],
+        "note": "Torshavn is the seat of one of the world's oldest parliaments (Logting)."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Logting",
+        "note": "The Faroe Islands' home-rule parliament, one of the world's oldest continuously operating parliaments."
+      },
+      "lang_family": "germanic/faroese"
+    }
+  ]
+}

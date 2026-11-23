@@ -1,0 +1,3860 @@
+{
+  "zone": "zone3",
+  "notes": [
+    "AMENDMENTS A1 (round 2) applied to this zone: A1.4 every unit's pole now carries central_coord [lng,lat] (dipoles also secondary + secondary_coord); A1.6 every unit's autarky now carries a rationales object with REQUIRED water/food/energy per-dimension sentences (shelter/transportation/hygiene_healthcare/clothing left as beta/optional, not added here); A1.11 it-piedmont given special_status (dashed) per user instruction, basis: Occitan/Franco-Provençal Alpine valleys + historic Savoy core; A1.1 basque-unified's identity_basis and conflict_flags rewritten to state PLAINLY (not softened) that the FRI15 geometry over-covers by including the whole of Béarn, with geoBoundaries France ADM3 (arrondissement de Bayonne) named as the concrete finer-geometry fix for a future pipeline pass — not integrated here per the coordinator's instruction that new geometry integration stays with the pipeline agent, not content agents.",
+    "SCHEMA V2 MIGRATION (draft_v0.1.2): variant_group/variant_role removed from every record in this file; replaced with default_visible, pole, parliament, and lang_family (added to all 36 pre-existing records plus all new records below). reach added to the 5 records the content brief specifically named (es-madrid, es-catalonia, it-lombardy, it-lazio, pt-lisbon). Region count is now 46 (36 pre-existing + 10 new coverage/content units), plus 2 non-default composite records (es-greater-castile, es-madrid-extended) used only by variant sets, for 48 records total in this file.",
+    "ES COVERAGE HOLES CLOSED (blocking coverage-test requirement, schema v2): added es-la-rioja (ES23), es-cantabria (ES13), es-asturias (ES12), es-extremadura (ES43), es-murcia (ES62), and a combined special_status unit es-ceuta-melilla (ES63+ES64, 'Spanish North-African territories'). All five Autonomous Communities have their own parliament (parliament.has_own: true) per the parliament rule. This SUPERSEDES the v1 notes below (now stale) that explained why these areas were originally left out — they were defensible historic-cultural regions then and remain so now; schema v2's blocking per-country coverage test (>=0.97 area) makes their inclusion mandatory rather than optional. es-basque's and es-aragon's nuts1_disagreement fields have been rewritten to remove the now-false claim that La Rioja was 'dropped'.",
+    "GIBRALTAR: added as a special_status unit. Geometry resolved cleanly from the CNTR file (CNTR_RG_20M_2024_4326.geojson, CNTR_ID 'GI') — the UK NUTS2021 fallback path mentioned in the pipeline brief was not needed since Gibraltar is not a UK NUTS unit at all (it has no NUTS code; CNTR is the only correct source). countries: ['GI'] follows this dataset's existing convention of using the CNTR code itself as the country tag for CNTR-only micro-territories (cf. gl-greenland/fo-faroe-islands in zone4, which use ['GL']/['FO'] rather than ['DK']).",
+    "ES CASTILE RENAMES (user differentiation demand, schema v2): es-castile-leon renamed 'León (Castile)' (name_local 'León (Castilla)'); es-castile-la-mancha renamed 'La Mancha (Castile)' (name_local 'La Mancha (Castilla)'). IDs, NUTS codes, and territory are unchanged — only the display name shifts emphasis toward the historically distinct León/La Mancha sub-identities per the explicit user request. See each record's identity_basis for the full rationale.",
+    "PT COVERAGE — SCOPE EXPANDED BEYOND THE NAMED 'ALENTEJO' ITEM: the content brief named only Alentejo as a PT coverage task, but the v1 zone notes (superseded below) already documented THREE uncovered mainland Portuguese NUTS-2 units — Alentejo (PT1C), Oeste e Vale do Tejo (PT1D), and Centro (PT19) — and the blocking >=0.97 coverage test cannot pass while Centro (a large, populous unit including Coimbra/Aveiro/Viseu/Leiria) remains empty basemap. Resolution: (1) pt-alentejo authored as its OWN unit rather than an extension of Lisbon southward — identity-true reasoning: Alentejo's rural-agrarian/cork-wine/cante-alentejano identity is genuinely distinct from capital-region Lisbon, so 'Lisbon covers the entire south' would misrepresent rather than honestly reflect a weak-but-real identity (same standard as Calabria/Algarve in v1); the 'Lisbon absorbs the south' idea is instead honored at the REPRESENTATION (groupings) layer, where pt-alentejo is grouped with pt-lisbon. (2) pt-centro authored as its own unit (Coimbra hub) purely to close the coverage gap, with its comparatively diffuse identity stated honestly rather than invented. (3) PT1D (Oeste e Vale do Tejo) — the smallest and weakest-identity of the three gaps, already characterized in the v1 notes as 'a modern administrative buffer zone... with no strong independent identity' — is folded directly into pt-lisbon's nuts_codes rather than authored as a fourth new unit. Population figures for the two new PT units and the pt-lisbon extension are flagged as approximate given the 2024 NUTS-2 boundary revision affecting Portugal's Centro-region composition; not independently reconciled against a post-revision Eurostat table in this pass.",
+    "PT PARLIAMENT NOTE: mainland Portugal is a unitary state — none of pt-lisbon/pt-porto-norte/pt-algarve/pt-alentejo/pt-centro have their own parliament (parliament.has_own: false, each with an explanatory note); only pt-azores and pt-madeira are full autonomous regions with their own Assembleia Legislativa. This is stated explicitly to avoid the blanket 'parliament: true' error the schema v2 mandate could otherwise invite.",
+    "IT: added it-basilicata (Potenza/Matera, NUTS-2 ITF5) to close a coverage hole. v1 explicitly flagged this region as omitted-but-defensible ('a strong candidate for inclusion in a higher-resolution version') — that higher resolution has now arrived via the schema v2 blocking coverage test.",
+    "VARIANT SETS authored in data/variant_sets/zone3.json: basque (current/connected/overlap — pre-existing es-basque + basque-unified records, migrated to v2 default_visible semantics), leon-castile (current/connected/overlap — new es-greater-castile composite unions León(Castile)+La Mancha(Castile), explicitly excluding Madrid), madrid (city-region/with-surroundings/overlap — new es-madrid-extended composite reaches into the four bordering NUTS-3 commuter provinces of both neighboring Castiles).",
+    "GROUPINGS authored in data/groupings/zone3.json: 23 representation-layer groupings partition all 45 default_visible zone3 cultural units (the two flagship capital-regions Madrid and Lazio/Rome plus Catalonia are each kept as their own singleton grouping to preserve the site's flagship framing and Rome/Madrid capital-region parallel; the composites es-greater-castile, es-madrid-extended, and basque-unified are default_visible:false and correctly excluded from the grouping partition). Where a real Eurostat NUTS-1 partition exists (Spain's Noroeste/Noreste/Centro/Este/Sur classification; Italy's Nord-Est/Centro/Sud/Isole classification), it is used as the grouping's sourced basis rather than an ad hoc judgment call, with explicit deviations flagged (Catalonia pulled out of NUTS-1 Este; Lazio out of NUTS-1 Centro; Lombardy kept within Nord-Ovest rather than pulled out; Sicily/Sardinia/Campania/Puglia kept standalone rather than merged into NUTS-1 Isole/Sud, given each region's own mandated-distinct special-statute or population-scale standing). TENSION FLAG: this yields 23 groupings for zone3 alone, above the brief's '~aim 10-14' guidance. Zone3 is the dataset's largest single zone (45 of the broader dataset's default-visible units); forcing further consolidation into fewer, larger groupings was avoided where it would have produced geographically/culturally incoherent blobs (e.g. merging Basque Country into a generic 'Atlantic Spain' bucket, or Sicily into an undifferentiated 'Isole' seat alongside Sardinia). Consistent with this project's established precedent of letting the total region count emerge from criteria rather than truncating to hit a target (see the original 36-vs-24-30 flag above), the groupings count is left to emerge here too, with the deviation stated explicitly for the methodology page and for reconciliation against the dataset-wide 40-70 representation-layer target once all zones' groupings fragments are combined.",
+    "--- v1 notes retained below for provenance; several are now superseded by the schema v2 additions above and should be read as historical record of the reasoning that led to this wave's additions, not as current state ---",
+    "Zone 3 covers Iberia + Italy (ES, PT, IT). Region count came to 36 records (34 distinct territorial regions plus the congruent/noncongruent Basque pair) in v1, above the ~24-30 rough estimate given for this zone but consistent with the global constraint's instruction to let the count emerge from the inclusion test rather than truncate: Italy alone has 19 records because its 20 traditional administrative regions (here 19 after the Abruzzo-Molise merge) are each genuinely distinct cultural-administrative units with recognized identities, and Spain contributes 12 because its autonomous-community structure is similarly fine-grained. This zone's contribution to the dataset's overall 40-70 (up to 90-110) tension is flagged here for the methodology page.",
+    "Basque Country is authored as both a congruent record (es-basque: Euskadi ES21 + Navarre ES22, urban core Bilbao as mandated) and a noncongruent unified record (basque-unified: ES21+ES22+FRI15, spanning ES+FR). The unified record's only available French-side NUTS unit, FRI15 (Pyrénées-Atlantiques), also covers Béarn — a distinct, non-Basque (Occitan/Gascon) territory east of Iparralde proper — so the unified boundary overstates the true Basque-cultural extent on the French side. This is recorded as a conflict_flag on basque-unified rather than silently corrected, since no finer (arrondissement-level) NUTS geometry is available in the index.",
+    "South Tyrol is authored ONLY as the congruent record (it-south-tyrol, NUTS-2 ITH1/Provincia Autonoma di Bolzano). The noncongruent unified 'tyrol-unified' record (joining Austrian Tirol) is authored in zone1.json per the cross-zone coordination plan.",
+    "Catalonia (es-catalonia) and Madrid (es-madrid) are both authored as mandatory flagship regions: the site's own framing text names the Catalonia-Madrid tension as its lead example of what the toggleable-region model is meant to resolve or at least make visible, per the global constraint's site-framing requirement.",
+    "Madeira (pt-madeira) is added as an autonomous outlying unit by direct analogy to the Azores.",
+    "Emilia≠Romagna is honored as a mandated split; see it-emilia/it-romagna records for the Ferrara dialect-classification-vs-Papal-Legations tension.",
+    "Marche, Umbria, Abruzzo, and Calabria were individually assessed against the three-part inclusion test in v1 and retained/merged as documented on each record.",
+    "Valle d'Aosta/Vallée d'Aoste is folded into it-piedmont; see that record's conflict_flags.",
+    "SUPERSEDED: v1 stated 'Basilicata... was omitted here to keep this zone's region count closer to the ~24-30 estimate' — schema v2's blocking coverage test now mandates its inclusion; see it-basilicata above.",
+    "SUPERSEDED: v1 stated the five small Spanish ACs (Asturias, Cantabria, La Rioja, Murcia, Extremadura) were 'left out of this authored file because the zone specification's explicit Spain region list did not include them' — schema v2's blocking coverage test now mandates their inclusion; see the five new es- records above.",
+    "SUPERSEDED: v1 stated Ceuta and Melilla were 'excluded as standalone regions... a Kaliningrad-style text-note treatment... may be the more honest categorization for a future revision' — schema v2 introduces exactly the special_status mechanism v1 was reaching for; see es-ceuta-melilla above.",
+    "SUPERSEDED: v1 stated Alentejo, Oeste e Vale do Tejo, and Centro were 'assessed and left uncovered by any region record in this file' — see the PT coverage note above for the schema v2 resolution."
+  ],
+  "regions": [
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "es-catalonia",
+      "name": "Catalonia",
+      "name_local": "Catalunya",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Barcelona",
+      "secondary_centers": [
+        "Girona",
+        "Tarragona",
+        "Lleida"
+      ],
+      "identity_basis": "Catalan language and literary tradition; historic Principality of Catalonia within the Crown of Aragon; strong civic-nationalist movement including the 2017 independence referendum crisis, but retained here as an autonomous community within Spain per the inclusion test's dependent-identity criterion.",
+      "key_industries": [
+        "automotive",
+        "chemicals",
+        "biotech/pharma",
+        "tourism",
+        "textiles",
+        "ports/logistics"
+      ],
+      "population": 7763000,
+      "population_note": "Eurostat 2023 estimate (Idescat), Cataluña NUTS-2 ES51",
+      "nuts_codes": [
+        "ES51"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Barcelona — metro ~5.6M, Mediterranean cultural and design capital",
+        "diversified_industry": "automotive (SEAT), chemicals, biotech, tourism, ports (largest container port on the Mediterranean)",
+        "dependent_identity": "strong distinct Catalan identity and language; site's flagship Catalonia-Madrid tension example per project framing"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.0,
+        "rationale": "Dense industrial base and port access support energy/goods flow but water stress is recurrent (drought restrictions 2023-24); food self-sufficiency moderate given import-heavy urban consumption.",
+        "rationales": {
+          "water": "Recurrent Ter-Llobregat basin drought and 2023-24 restrictions cap the score despite desalination capacity.",
+          "food": "Dense urban consumption outstrips the Ebro-delta/Empordà agricultural belt's output.",
+          "energy": "Vandellòs nuclear plant plus wind/solar give moderate self-generation but heavy industry still nets an importer."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Idescat (Institut d'Estadística de Catalunya)",
+        "Generalitat de Catalunya statute of autonomy documentation"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Barcelona"
+        ],
+        "central": "Barcelona",
+        "central_coord": [
+          2.17,
+          41.39
+        ]
+      },
+      "reach": [
+        {
+          "target": "French Catalonia / Roussillon (Perpignan area, FR)",
+          "note": "Cross-border Catalan-language cultural and economic ties extend north of the Pyrenees into French Catalonia, not captured as its own unit in this dataset's France zone."
+        }
+      ],
+      "parliament": {
+        "has_own": true,
+        "name": "Parlament de Catalunya",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/catalan"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "es-madrid",
+      "name": "Madrid",
+      "name_local": "Comunidad de Madrid",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Madrid",
+      "secondary_centers": [
+        "Alcalá de Henares",
+        "Móstoles"
+      ],
+      "identity_basis": "Capital-region identity built around the national seat of government and finance; comparatively 'thin' regional-cultural identity relative to historic nationalities, but functions as a distinct, densely urbanized economic unit within Spain.",
+      "key_industries": [
+        "finance",
+        "public administration/EU-national institutions",
+        "logistics",
+        "ICT",
+        "tourism"
+      ],
+      "population": 6751000,
+      "population_note": "Eurostat 2023 estimate (INE), Comunidad de Madrid NUTS-2 ES30",
+      "nuts_codes": [
+        "ES30"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Madrid — metro ~6.8M, national capital, Iberia's largest financial center",
+        "diversified_industry": "finance/banking, ICT, logistics (Barajas hub), public administration, tourism",
+        "dependent_identity": "identity is civic/administrative rather than ethnolinguistic; explicitly retained as the site's counterweight example to Catalonia"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 2,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 3,
+        "composite": 3.3,
+        "rationale": "Best-in-Iberia transport and healthcare infrastructure as capital region; food and energy self-sufficiency low given near-total dependence on imported/inbound supply for a inland megacity with minimal agricultural or extractive base.",
+        "rationales": {
+          "water": "Inland reservoir system (Lozoya basin) meets normal demand but has no margin in drought years for a megacity population.",
+          "food": "Almost entirely import-dependent; inland capital with negligible agricultural hinterland of its own.",
+          "energy": "No significant domestic generation; grid-imported power for a service-economy metropolis."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "INE (Instituto Nacional de Estadística)",
+        "Comunidad de Madrid regional statistics office"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Madrid"
+        ],
+        "central": "Madrid",
+        "central_coord": [
+          -3.7,
+          40.42
+        ],
+        "note": "Mandated monopole; national capital, single overwhelming urban center."
+      },
+      "reach": [
+        {
+          "target": "Castile-León & Castile-La Mancha commuter/administrative belt",
+          "note": "National capital-region gravity draws commuters, public administration, and logistics beyond Comunidad de Madrid into neighboring Segovia, Ávila, Guadalajara, and Toledo provinces — formalized here as the es-madrid-extended variant record."
+        }
+      ],
+      "parliament": {
+        "has_own": true,
+        "name": "Asamblea de Madrid",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/castilian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-1 ES2 (Noreste) groups País Vasco with Navarre, La Rioja, and Aragón; this dataset separates Basque+Navarre as a distinct identity unit. La Rioja and Aragón are now both authored as their own cultural units (schema v2 coverage expansion) and are jointly grouped with Basque Country at the representation (groupings) layer, mirroring the real NUTS-1 Noreste partition.",
+      "id": "es-basque",
+      "name": "Basque Country",
+      "name_local": "Euskadi",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Bilbao",
+      "secondary_centers": [
+        "San Sebastián",
+        "Vitoria-Gasteiz",
+        "Pamplona"
+      ],
+      "identity_basis": "Basque language (Euskara), pre-Indo-European in origin, and distinct ethnic identity spanning Euskadi and Navarre; historic fueros (charter rights) and industrial tradition. Congruent (Spain-only) variant of the Basque toggle group; Navarre included as a Basque-identity-adjacent but administratively separate community.",
+      "key_industries": [
+        "steel/metallurgy",
+        "machine tools",
+        "automotive supply",
+        "renewable energy equipment",
+        "finance"
+      ],
+      "population": 2890000,
+      "population_note": "Eurostat 2023 estimate (Eustat + Instituto de Estadística de Navarra), sum ES21+ES22",
+      "nuts_codes": [
+        "ES21",
+        "ES22"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Bilbao — metro ~1M, Guggenheim-anchored post-industrial cultural hub; mandated anchor per project brief",
+        "diversified_industry": "steel/metallurgy (legacy), machine tools, automotive supply, wind-turbine manufacturing, banking (BBVA origin)",
+        "dependent_identity": "strong Basque identity, historically including an armed separatist movement (ETA, disbanded 2018); persists within Spain's autonomous-community framework and the fueros system rather than seeking secession today"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.4,
+        "rationale": "Diversified industrial base (steel, machine tools, automotive, renewables) gives resilient production capacity; Cantabrian coast provides ample water and fishing, though food self-sufficiency for a dense urbanized coast remains moderate.",
+        "rationales": {
+          "water": "High Atlantic rainfall on the Cantabrian coast gives ample raw water despite dense industrial demand.",
+          "food": "Moderate: coastal fishing fleet is strong but arable land is scarce in the mountainous terrain.",
+          "energy": "Steel/machine-tool industrial base is energy-intensive; wind and legacy hydro offset only part of demand."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Eustat (Basque statistics office)",
+        "Instituto de Estadística de Navarra",
+        "Basque Country/Navarre historical fueros literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Bilbao",
+          "San Sebastián",
+          "Vitoria-Gasteiz",
+          "Pamplona"
+        ],
+        "central": "Bilbao",
+        "central_coord": [
+          -2.94,
+          43.26
+        ],
+        "note": "No single dominant city across Euskadi+Navarre; Bilbao kept as central per mandated map anchor."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Eusko Legebiltzarra / Parlamento Vasco (+ Parlamento de Navarra for Navarre)",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "basque/euskara"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "basque-unified-fri15-overreach",
+          "description": "The only available NUTS-3 unit covering Iparralde (French Basque Country) is FRI15 (Pyrénées-Atlantiques), which covers the ENTIRE department including Béarn — a substantial, distinct, non-Basque (Occitan/Gascon-speaking) territory to the east, not a minor edge effect. Using FRI15 therefore materially over-states the unified Basque region's French-side extent. geoBoundaries France ADM3 (arrondissement de Bayonne) is a concrete, checkable finer-resolution alternative that would map much more closely to true Iparralde — noted as the recommended next geometry source for the pipeline, not integrated in this content-only pass.",
+          "zone_nuts_codes": [
+            "FRI15"
+          ]
+        }
+      ],
+      "nuts1_disagreement": "No NUTS-1 unit corresponds to this territory; it crosses the ES/FR international boundary entirely, hence 'noncongruent' variant status.",
+      "id": "basque-unified",
+      "name": "Basque Country (unified, ES+FR)",
+      "name_local": "Euskal Herria",
+      "countries": [
+        "ES",
+        "FR"
+      ],
+      "urban_core": "Bilbao",
+      "secondary_centers": [
+        "San Sebastián",
+        "Pamplona",
+        "Bayonne"
+      ],
+      "identity_basis": "Cross-border Basque cultural/linguistic nation (Euskal Herria) spanning the seven historic Basque provinces in Spain and France; noncongruent variant of the Basque toggle group joining Euskadi+Navarre to the French Basque territory (Iparralde). HONESTY NOTE (A1.1): the French-side geometry (NUTS-3 FRI15, Pyrénées-Atlantiques) covers the ENTIRE department, including Béarn — a substantial, distinct, non-Basque (Occitan/Gascon-speaking) territory east of Iparralde proper. This record therefore visibly over-covers the true Basque-cultural extent on the French side; it is not a close approximation, it is a materially too-large boundary, stated plainly rather than downplayed. A finer fix is available in principle: geoBoundaries' France ADM3 (arrondissement) layer includes 'Bayonne' as its own arrondissement, which maps closely to Iparralde/Northern Basque Country and would exclude Béarn — this was NOT integrated by this content pass per the coordinator's instruction that geometry integration stays with the pipeline agent; flagged here as the concrete next-step source (see report).",
+      "key_industries": [
+        "steel/metallurgy",
+        "machine tools",
+        "automotive supply",
+        "fishing",
+        "tourism"
+      ],
+      "population": 3570000,
+      "population_note": "Eurostat 2023 estimate, sum ES21+ES22+FRI15",
+      "nuts_codes": [
+        "ES21",
+        "ES22",
+        "FRI15"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Bilbao — metro ~1M; cross-border cultural network also includes Bayonne/Baiona",
+        "diversified_industry": "steel/metallurgy, machine tools, automotive supply, fishing fleet, cross-border tourism",
+        "dependent_identity": "Basque cultural nation dependent on/spanning two sovereign states, not seeking a unified independent state in current mainstream politics"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.3,
+        "rationale": "Adds Iparralde's Atlantic fishing and pastoral economy to the Spanish Basque industrial base, at the cost of cross-border transport friction (differing rail gauges/administrative systems) versus the congruent Spain-only variant.",
+        "rationales": {
+          "water": "Shares the Spanish-side Atlantic rainfall abundance; Iparralde adds Pyrenean headwaters.",
+          "food": "Iparralde's pastoral/fishing economy (Bayonne) adds modestly to the Spanish-side base.",
+          "energy": "Cross-border grids differ in generation mix; net position similar to the congruent record."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Eustat",
+        "INSEE (Pyrénées-Atlantiques)",
+        "Euskal Herria cultural-geography literature (e.g. Collins, 'The Basques')"
+      ],
+      "default_visible": false,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Bilbao",
+          "San Sebastián",
+          "Pamplona",
+          "Bayonne"
+        ],
+        "central": "Bilbao",
+        "central_coord": [
+          -2.94,
+          43.26
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Eusko Legebiltzarra + Parlamento de Navarra + no equivalent French Basque body",
+        "note": "Non-congruent composite spans two sovereign states; Iparralde (France) has no legislative parliament of its own (unitary French departmental structure), an asymmetry inherent to this variant."
+      },
+      "lang_family": "basque/euskara"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "es-galicia",
+      "name": "Galicia",
+      "name_local": "Galicia",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Vigo",
+      "secondary_centers": [
+        "A Coruña",
+        "Santiago de Compostela",
+        "Ourense"
+      ],
+      "identity_basis": "Galician language (closely related to Portuguese) and distinct Atlantic-Celtic-inflected regional identity; historic Kingdom of Galicia; Camino de Santiago as globally recognized cultural anchor.",
+      "key_industries": [
+        "automotive (PSA/Stellantis Vigo)",
+        "fishing/seafood processing",
+        "textiles (Inditex/Zara origin)",
+        "shipbuilding",
+        "tourism"
+      ],
+      "population": 2695000,
+      "population_note": "Eurostat 2023 estimate (IGE), Galicia NUTS-2 ES11",
+      "nuts_codes": [
+        "ES11"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Vigo — largest fishing port in Europe, Stellantis assembly plant; Santiago de Compostela as UNESCO cultural-religious hub",
+        "diversified_industry": "automotive, fishing/seafood processing, global textile retail (Inditex headquartered in Arteixo), shipbuilding",
+        "dependent_identity": "distinct Galician language and identity, no significant separatist movement, integrated within Spain"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.3,
+        "rationale": "Atlantic coastline and rainfall give strong water and food (fishing/agriculture) self-sufficiency; healthcare/hygiene infrastructure lags wealthier Spanish regions due to rural dispersion and demographic decline.",
+        "rationales": {
+          "water": "Atlantic rainfall is abundant and reliable across the Rías.",
+          "food": "Europe's largest fishing port (Vigo) plus dairy/produce agriculture give strong self-sufficiency.",
+          "energy": "Wind (A Coruña ridge lines) and hydro are meaningful but industrial demand (Stellantis, shipbuilding) still draws on the grid."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "IGE (Instituto Galego de Estatística)",
+        "Galician dialectology and Camino de Santiago cultural-heritage literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Vigo",
+          "A Coruña",
+          "Santiago de Compostela"
+        ],
+        "central": "Vigo",
+        "central_coord": [
+          -8.72,
+          42.23
+        ],
+        "note": "Classic Galician A Coruña-Vigo economic rivalry plus Santiago as political/cultural capital."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Parlamento de Galicia",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/galician"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "es-andalusia",
+      "name": "Andalusia",
+      "name_local": "Andalucía",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Seville",
+      "secondary_centers": [
+        "Málaga",
+        "Granada",
+        "Córdoba",
+        "Cádiz"
+      ],
+      "identity_basis": "Andalusian identity rooted in the Al-Andalus Moorish legacy, flamenco/cante jondo, and a distinct Andalusian Spanish dialect (andaluz); Spain's most populous autonomous community with its own historic autonomy statute (1981).",
+      "key_industries": [
+        "agriculture/agri-food (olive oil)",
+        "tourism",
+        "aerospace (Airbus Seville)",
+        "renewable energy",
+        "logistics"
+      ],
+      "population": 8584000,
+      "population_note": "Eurostat 2023 estimate (IECA), Andalucía NUTS-2 ES61",
+      "nuts_codes": [
+        "ES61"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Seville — metro ~1.5M, historic and administrative capital; Málaga as secondary tech/tourism hub",
+        "diversified_industry": "aerospace (Airbus wing component plant), olive-oil agribusiness (world's largest producer region), tourism, solar energy",
+        "dependent_identity": "strong distinct Andalusian cultural identity, no separatist movement, integrated as Spain's most populous autonomous community"
+      },
+      "autarky": {
+        "water": 2,
+        "food": 4,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.3,
+        "rationale": "World-leading olive-oil and produce agriculture gives high food self-sufficiency and strong solar-energy potential, but chronic water stress (Guadalquivir basin drought, Almería greenhouse over-extraction) is the binding constraint.",
+        "rationales": {
+          "water": "Guadalquivir basin over-extraction and recurring drought are the binding constraint despite the region's size.",
+          "food": "World-leading olive-oil and produce agriculture gives very high self-sufficiency.",
+          "energy": "Extensive solar (Almería/Andévalo) gives above-average generation capacity."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "IECA (Instituto de Estadística y Cartografía de Andalucía)",
+        "Junta de Andalucía agricultural statistics"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Seville",
+          "Málaga",
+          "Granada",
+          "Córdoba",
+          "Cádiz"
+        ],
+        "central": "Seville",
+        "central_coord": [
+          -5.99,
+          37.39
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Parlamento de Andalucía",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/castilian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "es-valencia",
+      "name": "Valencian Community",
+      "name_local": "Comunitat Valenciana",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Valencia",
+      "secondary_centers": [
+        "Alicante",
+        "Castellón de la Plana"
+      ],
+      "identity_basis": "Valencian (a Catalan-family variety with its own standardization debate) language and identity; historic Kingdom of Valencia within the Crown of Aragon, administratively and politically distinct from Catalonia today.",
+      "key_industries": [
+        "ceramics (Castellón tile cluster)",
+        "citrus/agri-food export",
+        "automotive (Ford Almussafes)",
+        "logistics/port",
+        "tourism"
+      ],
+      "population": 5216000,
+      "population_note": "Eurostat 2023 estimate (IVE), Comunitat Valenciana NUTS-2 ES52",
+      "nuts_codes": [
+        "ES52"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Valencia — metro ~1.6M, Mediterranean port and cultural hub (City of Arts and Sciences)",
+        "diversified_industry": "ceramics/tile manufacturing cluster (Castellón), citrus export agriculture, automotive assembly, container port",
+        "dependent_identity": "distinct Valencian identity and language variety, politically separate from Catalonia, no separatist movement"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.3,
+        "rationale": "Strong citrus/horticultural export agriculture and a major container port support food and goods flow; recurring drought and flash-flood extremes (2024 DANA) stress both water supply and infrastructure resilience.",
+        "rationales": {
+          "water": "Mediterranean climate and DANA flash-flood/drought whiplash strain supply despite irrigation infrastructure.",
+          "food": "Citrus/horticultural export belt (Ribera) gives strong food self-sufficiency.",
+          "energy": "Cofrentes nuclear plant plus growing solar offset the automotive/ceramics industrial load."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "IVE (Institut Valencià d'Estadística)",
+        "Valencian dialectology literature (Acadèmia Valenciana de la Llengua)"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Valencia"
+        ],
+        "central": "Valencia",
+        "central_coord": [
+          -0.38,
+          39.47
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Corts Valencianes",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/catalan"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-1 ES2 (Noreste) groups Aragón with Basque Country, Navarre, and La Rioja; here Aragón stands alone as a cultural unit once Basque+Navarre are pulled into the Basque unit. La Rioja (now its own unit, schema v2) and Aragón are reunited with Basque Country at the representation (groupings) layer only, mirroring the real NUTS-1 Noreste partition.",
+      "id": "es-aragon",
+      "name": "Aragón",
+      "name_local": "Aragón",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Zaragoza",
+      "secondary_centers": [
+        "Huesca",
+        "Teruel"
+      ],
+      "identity_basis": "Historic Kingdom of Aragón, core of the medieval Crown of Aragón alongside Catalonia and Valencia; distinct Aragonese identity and (in the Pyrenean north) residual Aragonese-language communities.",
+      "key_industries": [
+        "automotive (Opel/Stellantis Figueruelas)",
+        "logistics (PLAZA hub)",
+        "renewable energy (wind)",
+        "agri-food"
+      ],
+      "population": 1344000,
+      "population_note": "Eurostat 2023 estimate (IAEST), Aragón NUTS-2 ES24",
+      "nuts_codes": [
+        "ES24"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Zaragoza — metro ~800k, historic capital of the Crown of Aragón and Spain's logistics crossroads",
+        "diversified_industry": "automotive assembly, one of Europe's largest logistics platforms (PLAZA), wind-energy generation, agri-food",
+        "dependent_identity": "distinct Aragonese historical identity, integrated within Spain, no separatist movement"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Large land area relative to population supports strong food and wind-energy self-sufficiency; clothing/textile production capacity is limited and largely import-dependent.",
+        "rationales": {
+          "water": "Pyrenean/Ebro headwaters and extensive irrigation canals give solid supply for a low-density region.",
+          "food": "Cereal plains and irrigated horticulture give strong self-sufficiency relative to population.",
+          "energy": "One of Spain's leading wind-power regions; net energy-positive in most years."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "IAEST (Instituto Aragonés de Estadística)",
+        "Crown of Aragón historical-regionalism literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Zaragoza"
+        ],
+        "central": "Zaragoza",
+        "central_coord": [
+          -0.88,
+          41.65
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Cortes de Aragón",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/castilian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "es-castile-leon",
+      "name": "León (Castile)",
+      "name_local": "León (Castilla)",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Valladolid",
+      "secondary_centers": [
+        "León",
+        "Salamanca",
+        "Burgos"
+      ],
+      "identity_basis": "Historic 'Old Castile' plus the medieval Kingdom of León, unified into Spain's largest autonomous community by area; distinct Castilian-plateau identity, with a minor but active Leonese regionalist current (León as historically separate kingdom) noted rather than acted upon. Renamed 'León (Castile)' in schema v2 per explicit user differentiation demand: leading with the León identity foregrounds the historically separate medieval Kingdom of León (united with Castile in 1230) and gives the small but active Leonese regionalist current more visible framing than the prior 'Castile and León' label, without altering the record's territory or NUTS codes.",
+      "key_industries": [
+        "automotive (Renault Valladolid, Iveco/Renault)",
+        "agri-food/cereals",
+        "wine (Ribera del Duero)",
+        "renewable energy"
+      ],
+      "population": 2383000,
+      "population_note": "Eurostat 2023 estimate (JCyL statistics), Castilla y León NUTS-2 ES41",
+      "nuts_codes": [
+        "ES41"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Valladolid — regional capital and industrial/automotive hub; Salamanca as university/cultural anchor",
+        "diversified_industry": "automotive manufacturing, cereal agriculture, internationally recognized wine regions, wind energy",
+        "dependent_identity": "clear Castilian plateau identity within Spain; a small Leonese regionalist movement exists but does not seek separation from Spain"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 5,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Spain's cereal breadbasket, giving very high food self-sufficiency; dispersed rural population and demographic decline moderate healthcare-access scores despite adequate provincial hospital networks.",
+        "rationales": {
+          "water": "Duero basin reservoirs are adequate for a low-density plateau population.",
+          "food": "Spain's cereal breadbasket; among the highest food scores in the dataset.",
+          "energy": "Wind power plus legacy thermal give moderate generation; not a standout either way."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Junta de Castilla y León statistical office",
+        "Leonese regionalism / dialectology literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Valladolid",
+          "León",
+          "Salamanca",
+          "Burgos"
+        ],
+        "central": "Valladolid",
+        "central_coord": [
+          -4.72,
+          41.65
+        ],
+        "note": "Valladolid is seat of regional government; León retains independent historic-capital pull (see naming note)."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Cortes de Castilla y León",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/castilian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "es-castile-la-mancha",
+      "name": "La Mancha (Castile)",
+      "name_local": "La Mancha (Castilla)",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Toledo",
+      "secondary_centers": [
+        "Ciudad Real",
+        "Albacete",
+        "Guadalajara"
+      ],
+      "identity_basis": "Historic 'New Castile' (Castilla la Nueva) plus La Mancha proper, the plateau immortalized by Don Quixote; a modern (1982) autonomous community with weaker independent urban gravity than Castile-León but a genuine La Mancha literary-cultural identity distinct from it. Renamed 'La Mancha (Castile)' in schema v2 per the same user differentiation demand applied to Castile-León: foregrounding the La Mancha literary-cultural identity (Don Quixote) that is genuinely distinct from the León framing, while keeping both units legible as members of the historic Castile family.",
+      "key_industries": [
+        "wine (La Mancha, world's largest single wine region by area)",
+        "agri-food/cereals",
+        "logistics (Madrid-adjacent freight)",
+        "solar energy"
+      ],
+      "population": 2050000,
+      "population_note": "Eurostat 2023 estimate (IES Castilla-La Mancha), NUTS-2 ES42",
+      "nuts_codes": [
+        "ES42"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Toledo — historic capital and UNESCO World Heritage city, though a modest metro (~85k); functions as political rather than economic hub",
+        "diversified_industry": "world's largest contiguous wine-growing area, cereal/agri-food, Madrid-commuter logistics and solar-energy generation in Guadalajara province",
+        "dependent_identity": "genuine La Mancha literary-cultural identity, but the modern administrative region is more a 1982 statute construct than an ancient polity; kept as a standalone unit given its distinct La Mancha character from Castile-León, flagged here as the weaker-fitting half of the Castile split"
+      },
+      "autarky": {
+        "water": 2,
+        "food": 5,
+        "shelter": 2,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Extremely high food/wine self-sufficiency on the vast La Mancha plain; water is the binding constraint (over-exploited Mancha aquifer, structural drought), and healthcare/hygiene infrastructure is thinner than in more urbanized Spanish regions.",
+        "rationales": {
+          "water": "The over-exploited Mancha aquifer and structural drought are the clear binding constraint.",
+          "food": "World's largest contiguous wine region plus cereal agriculture give very high food self-sufficiency.",
+          "energy": "Extensive solar (Guadalajara/Ciudad Real) gives strong generation capacity."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Instituto de Estadística de Castilla-La Mancha",
+        "Don Quixote/La Mancha regional-identity literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Toledo",
+          "Albacete",
+          "Ciudad Real",
+          "Guadalajara"
+        ],
+        "central": "Toledo",
+        "central_coord": [
+          -4.02,
+          39.86
+        ],
+        "note": "Toledo is historic/political capital though Albacete is the largest city by population."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Cortes de Castilla-La Mancha",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/castilian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "es-canary-islands",
+      "name": "Canary Islands",
+      "name_local": "Canarias",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Las Palmas de Gran Canaria",
+      "secondary_centers": [
+        "Santa Cruz de Tenerife"
+      ],
+      "identity_basis": "Atlantic archipelago off Northwest Africa with a distinct Canarian Spanish dialect, Guanche pre-colonial substrate, and special fiscal/economic autonomy regime (REF); included as an outlying autonomous unit alongside Portugal's Azores and Madeira per project framing.",
+      "key_industries": [
+        "tourism",
+        "port/logistics (transshipment hub)",
+        "agriculture (banana export)",
+        "renewable energy",
+        "shipping"
+      ],
+      "population": 2236000,
+      "population_note": "Eurostat 2023 estimate (ISTAC), Canarias NUTS-2 ES70",
+      "nuts_codes": [
+        "ES70"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Las Palmas de Gran Canaria — metro ~700k, major Atlantic port and cultural capital, twin-capital arrangement with Santa Cruz de Tenerife",
+        "diversified_industry": "tourism (dominant), port/container transshipment, banana export agriculture, growing renewable-energy and tech sector",
+        "dependent_identity": "distinct Canarian identity and special fiscal autonomy status, integrated within Spain as an outermost EU region"
+      },
+      "autarky": {
+        "water": 2,
+        "food": 2,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.6,
+        "rationale": "Volcanic-island geography and near-total tourism/import dependence give structurally low water and food self-sufficiency; desalination and import logistics are well developed but represent dependency rather than autarky.",
+        "rationales": {
+          "water": "Volcanic-island geography forces near-total reliance on desalination — a dependency, not autarky.",
+          "food": "Banana-export monoculture and import-heavy tourism supply chains give low self-sufficiency.",
+          "energy": "Isolated island grids rely on imported fuel oil despite growing wind/solar investment."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAC (Instituto Canario de Estadística)",
+        "EU outermost regions (RUP) policy documentation"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Las Palmas de Gran Canaria",
+          "Santa Cruz de Tenerife"
+        ],
+        "central": "Las Palmas de Gran Canaria",
+        "central_coord": [
+          -15.43,
+          28.1
+        ],
+        "note": "De facto co-capital arrangement (seat of government alternates/splits institutions between the two).",
+        "secondary": "Santa Cruz de Tenerife",
+        "secondary_coord": [
+          -16.25,
+          28.47
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Parlamento de Canarias",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/castilian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "es-balearic-islands",
+      "name": "Balearic Islands",
+      "name_local": "Illes Balears",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Palma de Mallorca",
+      "secondary_centers": [
+        "Ibiza",
+        "Maó (Menorca)"
+      ],
+      "identity_basis": "Mediterranean archipelago with Catalan-family Balearic dialect (mallorquí, menorquí, eivissenc) and a distinct island identity shaped by mass tourism; included as an outlying unit alongside the Canary Islands.",
+      "key_industries": [
+        "tourism (dominant)",
+        "hospitality/real estate",
+        "agriculture (Mallorca)",
+        "nautical/yachting services"
+      ],
+      "population": 1205000,
+      "population_note": "Eurostat 2023 estimate (IBESTAT), Illes Balears NUTS-2 ES53",
+      "nuts_codes": [
+        "ES53"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Palma de Mallorca — metro ~470k, dominant island capital and Mediterranean tourism/yachting hub",
+        "diversified_industry": "tourism and hospitality overwhelmingly dominant, supplemented by nautical services and Mallorcan agriculture",
+        "dependent_identity": "distinct Balearic-Catalan linguistic identity, integrated within Spain, tourism-driven economy occasionally in tension with residents (housing-cost protests)"
+      },
+      "autarky": {
+        "water": 2,
+        "food": 2,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.4,
+        "rationale": "Small, water-stressed islands almost entirely dependent on imported food, fuel, and (in peak season) desalinated water to serve tourist populations many multiples of resident population.",
+        "rationales": {
+          "water": "Small, water-stressed islands depend heavily on desalination for peak tourist-season demand.",
+          "food": "Near-total food import dependence to serve a resident-plus-tourist population many multiples of residents.",
+          "energy": "Fuel imports dominate; limited domestic renewable buildout relative to demand."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "IBESTAT (Institut d'Estadística de les Illes Balears)",
+        "Balearic dialectology literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Palma de Mallorca"
+        ],
+        "central": "Palma de Mallorca",
+        "central_coord": [
+          2.65,
+          39.57
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Parlament de les Illes Balears",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/catalan"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "pt-lisbon",
+      "name": "Lisbon",
+      "name_local": "Grande Lisboa / Área Metropolitana de Lisboa",
+      "countries": [
+        "PT"
+      ],
+      "urban_core": "Lisbon",
+      "secondary_centers": [
+        "Sintra",
+        "Setúbal",
+        "Cascais",
+        "Santarém"
+      ],
+      "identity_basis": "Capital-region identity centered on the Tagus estuary; national political, financial, and cultural seat, distinct from the Porto-centered north per the mandated Porto/Lisbon split.",
+      "key_industries": [
+        "finance",
+        "tourism",
+        "ICT/startups",
+        "port/logistics",
+        "public administration"
+      ],
+      "population": 3271000,
+      "population_note": "Eurostat 2023 estimate (INE Portugal), sum of Grande Lisboa (PT1A) + Península de Setúbal (PT1B) + Oeste e Vale do Tejo (PT1D, ~400,000, approximate — absorbed in schema v2 to close a mainland-Portugal coverage gap; PT1D has no independent identity or urban center per the original zone assessment and functions as a Lisbon commuter/agricultural buffer, not a distinct cultural unit).",
+      "nuts_codes": [
+        "PT1A",
+        "PT1B",
+        "PT1D"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Lisbon — metro ~2.9M, national capital and largest urban agglomeration",
+        "diversified_industry": "finance, tourism, growing tech/startup sector, Atlantic port and logistics, public administration",
+        "dependent_identity": "capital identity distinct from Porto/Norte per mandated split; no separatism, standard capital-region dynamics"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 2,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.3,
+        "rationale": "Best national transport and healthcare infrastructure as capital region; food and energy self-sufficiency low given import dependence typical of a dense coastal megacity.",
+        "rationales": {
+          "water": "Tagus-basin reservoirs meet normal demand but leave little drought margin for a dense capital region.",
+          "food": "Import-dependent coastal megacity with minimal agricultural hinterland of its own.",
+          "energy": "No significant domestic generation; grid-imported power typical of a capital-region economy."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "INE (Instituto Nacional de Estatística, Portugal)",
+        "AML (Área Metropolitana de Lisboa) planning documents"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Lisbon"
+        ],
+        "central": "Lisbon",
+        "central_coord": [
+          -9.14,
+          38.72
+        ]
+      },
+      "reach": [
+        {
+          "target": "National administrative reach",
+          "note": "As national capital, Lisbon's institutional and service reach extends nominally across mainland Portugal, beyond the metropolitan-area boundary used for this cultural unit."
+        }
+      ],
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "Mainland Portugal is a unitary state with no regional parliaments (unlike the Azores/Madeira autonomous regions); unit justified on capital-region/coverage grounds, not the parliament rule."
+      },
+      "lang_family": "romance/portuguese"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-1 PT1 (Continente) merges Norte with Lisbon and the rest of mainland Portugal; split here per the mandated Porto/Norte ≠ Lisbon decision.",
+      "id": "pt-porto-norte",
+      "name": "Porto / Norte",
+      "name_local": "Norte",
+      "countries": [
+        "PT"
+      ],
+      "urban_core": "Porto",
+      "secondary_centers": [
+        "Braga",
+        "Guimarães",
+        "Vila Real"
+      ],
+      "identity_basis": "Historic core of the Portuguese nation (the country's name derives from Portus Cale/Porto); distinct northern industrial and Douro-wine identity, mandated as separate from Lisbon per project brief.",
+      "key_industries": [
+        "textiles/footwear export",
+        "port wine and viticulture (Douro)",
+        "automotive supply",
+        "tourism"
+      ],
+      "population": 3590000,
+      "population_note": "Eurostat 2023 estimate (INE Portugal), Norte NUTS-2 PT11",
+      "nuts_codes": [
+        "PT11"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Porto — metro ~1.7M, UNESCO historic center, Portugal's second city and industrial/commercial capital of the north",
+        "diversified_industry": "textiles and footwear export clusters, Douro Valley port-wine viticulture (UNESCO landscape), automotive supply, tourism",
+        "dependent_identity": "strong northern Portuguese identity distinct from Lisbon-centric national narrative, no separatism"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.4,
+        "rationale": "Douro Valley agriculture and viticulture plus Atlantic rainfall support strong food and water self-sufficiency; long-standing textile/footwear manufacturing gives above-average clothing self-sufficiency for the dataset.",
+        "rationales": {
+          "water": "Atlantic rainfall and the Douro watershed give reliable, ample supply.",
+          "food": "Douro Valley agriculture and viticulture give strong self-sufficiency.",
+          "energy": "Douro hydro cascade gives above-average domestic generation for the Portuguese set."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "INE (Instituto Nacional de Estatística, Portugal)",
+        "CCDR-Norte regional development documentation"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Porto"
+        ],
+        "central": "Porto",
+        "central_coord": [
+          -8.61,
+          41.15
+        ]
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "Mainland Portugal unitary structure — no regional parliament; unit justified on cultural/historic-identity and coverage grounds."
+      },
+      "lang_family": "romance/portuguese"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "pt-algarve",
+      "name": "Algarve",
+      "name_local": "Algarve",
+      "countries": [
+        "PT"
+      ],
+      "urban_core": "Faro",
+      "secondary_centers": [
+        "Portimão",
+        "Lagos"
+      ],
+      "identity_basis": "Formerly a separate title within the Portuguese crown ('Kingdom of the Algarve', held distinct from the Kingdom of Portugal until 1910 in royal styling); Moorish-influenced history and a distinct southern coastal culture and (residual) Algarvian dialect.",
+      "key_industries": [
+        "tourism (dominant)",
+        "fishing",
+        "citrus/agriculture",
+        "real estate"
+      ],
+      "population": 467000,
+      "population_note": "Eurostat 2023 estimate (INE Portugal), Algarve NUTS-2 PT15",
+      "inclusion_test": {
+        "urban_hub": "Faro — regional capital and airport gateway for the Algarve tourism economy",
+        "diversified_industry": "tourism overwhelmingly dominant, supplemented by fishing and citrus agriculture; weakest industrial diversification in the Portuguese set, flagged honestly",
+        "dependent_identity": "historic separate 'Kingdom of the Algarve' royal title gives an unusually strong formal-historical basis for distinctness despite the small population"
+      },
+      "nuts_codes": [
+        "PT15"
+      ],
+      "autarky": {
+        "water": 2,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.6,
+        "rationale": "Tourism monoculture and seasonal population multiples of residents strain water supply; fishing and citrus give moderate food self-sufficiency but energy and clothing are import-dependent.",
+        "rationales": {
+          "water": "Seasonal tourist-population multiples of residents strain a naturally dry Mediterranean-climate coast.",
+          "food": "Fishing and citrus give moderate self-sufficiency but tourism-driven imports dominate.",
+          "energy": "High solar potential exists but is under-exploited; net importer via mainland grid."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "INE (Instituto Nacional de Estatística, Portugal)",
+        "Historical Kingdom of the Algarve constitutional literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Faro"
+        ],
+        "central": "Faro",
+        "central_coord": [
+          -7.93,
+          37.02
+        ],
+        "note": "Administrative/airport-gateway center; tourism development itself is diffuse along the coast."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "Mainland Portugal unitary structure — no regional parliament; unit justified on the historic 'Kingdom of the Algarve' identity basis, not the parliament rule."
+      },
+      "lang_family": "romance/portuguese"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "pt-azores",
+      "name": "Azores",
+      "name_local": "Região Autónoma dos Açores",
+      "countries": [
+        "PT"
+      ],
+      "urban_core": "Ponta Delgada",
+      "secondary_centers": [
+        "Angra do Heroísmo",
+        "Horta"
+      ],
+      "identity_basis": "Volcanic Atlantic archipelago with full political-administrative autonomy (own regional government and assembly) within Portugal; mandated autonomous outlying unit per global constraints.",
+      "key_industries": [
+        "dairy/cattle farming",
+        "fishing",
+        "tourism",
+        "geothermal energy"
+      ],
+      "population": 236000,
+      "population_note": "Eurostat 2023 estimate (INE Portugal / SREA), Região Autónoma dos Açores NUTS-2 PT20",
+      "nuts_codes": [
+        "PT20"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Ponta Delgada — archipelago's largest city and seat of regional government",
+        "diversified_industry": "dairy and cattle farming (major Portuguese milk exporter), fishing, whale-watching tourism, geothermal power",
+        "dependent_identity": "full autonomous-region status within Portugal, distinct Azorean identity, no independence movement of consequence"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 2,
+        "energy": 4,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Volcanic geothermal resources and pasture-based dairy give above-average energy and food self-sufficiency for an island economy; inter-island transportation is the binding constraint across a dispersed nine-island archipelago.",
+        "rationales": {
+          "water": "High Atlantic-volcanic rainfall gives ample fresh water across the nine islands.",
+          "food": "Pasture-based dairy/cattle farming makes the Azores a major Portuguese milk exporter.",
+          "energy": "Geothermal power (São Miguel) gives above-average self-generation for an island economy."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "SREA (Serviço Regional de Estatística dos Açores)",
+        "Azores Statute of Autonomy"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Ponta Delgada",
+          "Angra do Heroísmo",
+          "Horta"
+        ],
+        "central": "Ponta Delgada",
+        "central_coord": [
+          -25.67,
+          37.74
+        ],
+        "note": "Nine-island archipelago; Angra do Heroísmo is historic co-capital (UNESCO), Horta a secondary Atlantic-crossing hub."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Assembleia Legislativa da Região Autónoma dos Açores",
+        "note": "Full political-administrative autonomy within Portugal, unlike mainland regions."
+      },
+      "lang_family": "romance/portuguese"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "pt-madeira",
+      "name": "Madeira",
+      "name_local": "Região Autónoma da Madeira",
+      "countries": [
+        "PT"
+      ],
+      "urban_core": "Funchal",
+      "secondary_centers": [
+        "Câmara de Lobos"
+      ],
+      "identity_basis": "Volcanic Atlantic archipelago off Northwest Africa with full political-administrative autonomy within Portugal, added here alongside the Azores by direct analogy — the underlying zone specification named only the Azores as a mandated autonomous outlying unit, but Madeira shares the identical constitutional status (own regional government, own statute of autonomy) and was added on that basis; flagged for the methodology page.",
+      "key_industries": [
+        "tourism",
+        "banana/subtropical agriculture",
+        "Madeira wine",
+        "embroidery/handicrafts"
+      ],
+      "population": 254000,
+      "population_note": "Eurostat 2023 estimate (INE Portugal / DREM), Região Autónoma da Madeira NUTS-2 PT30",
+      "nuts_codes": [
+        "PT30"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Funchal — archipelago capital, major Atlantic cruise-tourism port",
+        "diversified_industry": "tourism (dominant), Madeira wine export, banana and subtropical agriculture, embroidery handicraft export",
+        "dependent_identity": "full autonomous-region status identical to the Azores, distinct Madeiran identity, no independence movement"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.4,
+        "rationale": "Steep volcanic terrain limits arable land despite fertile soils, capping food self-sufficiency; tourism dependence and island isolation constrain energy and transportation scores similarly to the Azores.",
+        "rationales": {
+          "water": "Steep volcanic terrain limits catchment/storage despite fertile soils.",
+          "food": "Limited arable land caps output; banana/wine agriculture is real but small-scale.",
+          "energy": "Isolated island grid with limited hydro; largely fuel-import dependent."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "DREM (Direção Regional de Estatística da Madeira)",
+        "Madeira Statute of Autonomy"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Funchal"
+        ],
+        "central": "Funchal",
+        "central_coord": [
+          -16.91,
+          32.65
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Assembleia Legislativa da Região Autónoma da Madeira",
+        "note": "Full political-administrative autonomy within Portugal, unlike mainland regions."
+      },
+      "lang_family": "romance/portuguese"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "valle-daosta-francoprovencal-autonomy",
+          "description": "Valle d'Aosta/Vallée d'Aoste (ITC2) is a bilingual French-Italian special-autonomy region with its own statute, distinct from Piedmontese identity, folded into this record for population/urban-hub scale (~123,000 residents, no independent metro of dataset-relevant size). Toggleable as a separate micro-region if finer granularity is adopted.",
+          "zone_nuts_codes": [
+            "ITC2"
+          ]
+        }
+      ],
+      "nuts1_disagreement": null,
+      "id": "it-piedmont",
+      "name": "Piedmont",
+      "name_local": "Piemonte",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Turin",
+      "secondary_centers": [
+        "Novara",
+        "Alessandria",
+        "Aosta"
+      ],
+      "identity_basis": "Historic core of the Kingdom of Sardinia/House of Savoy that unified Italy; Piedmontese dialect and cuisine (Slow Food origin, Barolo/Barbaresco wine country) distinct from the rest of the Nord-Ovest.",
+      "key_industries": [
+        "automotive (Fiat/Stellantis origin, Turin)",
+        "aerospace",
+        "wine (Langhe)",
+        "precision manufacturing",
+        "ICT"
+      ],
+      "population": 4379000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), sum of Piemonte (ITC1) + Valle d'Aosta (ITC2)",
+      "nuts_codes": [
+        "ITC1",
+        "ITC2"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Turin — metro ~1.7M, cradle of Italian automotive industry and post-Olympic (2006) design/aerospace hub",
+        "diversified_industry": "automotive (Stellantis/Fiat), aerospace (Thales Alenia, Leonardo), premium wine, precision manufacturing, ICT",
+        "dependent_identity": "distinct Piedmontese regional identity and cuisine culture, historically the unifying royal house of Italy, no separatism"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "Alpine water resources and premium wine/agriculture support strong food and water scores; historic automotive/aerospace manufacturing base gives resilient, diversified production capacity.",
+        "rationales": {
+          "water": "Alpine glacier-fed rivers (Po headwaters) give abundant, reliable supply.",
+          "food": "Premium Langhe/Barolo viticulture and Po-plain agriculture give strong self-sufficiency.",
+          "energy": "Alpine hydropower is significant but Turin's automotive/aerospace industrial base still nets an importer."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT (Istituto Nazionale di Statistica)",
+        "Regione Piemonte and Valle d'Aosta statutory autonomy documentation"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Turin"
+        ],
+        "central": "Turin",
+        "central_coord": [
+          7.68,
+          45.07
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale del Piemonte",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/italian-gallo",
+      "special_status": "Alpine Occitan and Franco-Provençal (Arpitan) minority-language valleys (upper Susa, Chisone, Po, Pellice, Varaita, Maira, Grana, Stura valleys) plus the region's historic core-of-Savoy identity, per explicit user instruction ('special zone like Monaco'); rendered with a dashed stroke like the other special_status units even though Piedmont as a whole is an ordinary (non-special-statute) Italian region."
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-liguria",
+      "name": "Liguria",
+      "name_local": "Liguria",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Genoa",
+      "secondary_centers": [
+        "La Spezia",
+        "Savona"
+      ],
+      "identity_basis": "Historic maritime Republic of Genoa; distinct Ligurian dialect and coastal identity along the narrow Riviera; mandated as a separate region per global constraints.",
+      "key_industries": [
+        "port/maritime logistics (largest Italian port)",
+        "shipbuilding",
+        "tourism (Cinque Terre/Riviera)",
+        "precision engineering"
+      ],
+      "population": 1506000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Liguria NUTS-2 ITC3",
+      "nuts_codes": [
+        "ITC3"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Genoa — metro ~800k, Italy's largest port and historic maritime-republic capital",
+        "diversified_industry": "port/maritime logistics, shipbuilding (Fincantieri), precision engineering, coastal tourism",
+        "dependent_identity": "distinct Ligurian maritime-republic identity, no separatism, mandated standalone status per project brief"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.7,
+        "rationale": "Narrow coastal geography with limited arable land caps food self-sufficiency; the Port of Genoa gives strong logistics/transportation self-sufficiency for goods flow rather than autarky per se.",
+        "rationales": {
+          "water": "Narrow coastal catchments limit storage relative to dense port-city demand.",
+          "food": "Minimal arable land on the steep Riviera caps food self-sufficiency.",
+          "energy": "Genoa port/refining activity is energy-intensive with little domestic generation to offset it."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Genoa maritime-republic historical-identity literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Genoa"
+        ],
+        "central": "Genoa",
+        "central_coord": [
+          8.93,
+          44.41
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale della Liguria",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/italian-gallo"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-lombardy",
+      "name": "Lombardy",
+      "name_local": "Lombardia",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Milan",
+      "secondary_centers": [
+        "Bergamo",
+        "Brescia",
+        "Como",
+        "Monza"
+      ],
+      "identity_basis": "Historic Duchy of Milan/Lombard identity; Italy's economic powerhouse and financial capital, with a distinct Lombard dialect substrate and a regionalist (Lega Nord-origin) political current focused on fiscal autonomy rather than secession.",
+      "key_industries": [
+        "finance (Milan stock exchange)",
+        "fashion/design",
+        "manufacturing (machinery, textiles)",
+        "pharma/biotech",
+        "publishing"
+      ],
+      "population": 10027000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Lombardia NUTS-2 ITC4",
+      "nuts_codes": [
+        "ITC4"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Milan — metro ~3.2M, Italy's financial and fashion capital",
+        "diversified_industry": "finance, fashion/design, advanced manufacturing, pharma/biotech, publishing/media",
+        "dependent_identity": "distinct Lombard identity and fiscal-autonomy politics, integrated within Italy, no serious separatism"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.7,
+        "rationale": "Po Valley irrigation and Alpine watershed give strong water and food scores; Italy's densest transport/logistics network and diversified high-value manufacturing base support resilient shelter/transportation/hygiene-healthcare scores.",
+        "rationales": {
+          "water": "Po Valley irrigation and Alpine watershed give strong, reliable supply for Italy's most populous region.",
+          "food": "Intensive Po-plain agriculture (rice, dairy) gives solid self-sufficiency despite Milan's dense urban core.",
+          "energy": "Alpine hydro plus industrial cogeneration offset part of Italy's densest manufacturing energy load."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Lombardy regional statistics office (PoliS-Lombardia)"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Milan"
+        ],
+        "central": "Milan",
+        "central_coord": [
+          9.19,
+          45.46
+        ]
+      },
+      "reach": [
+        {
+          "target": "Ticino, Switzerland",
+          "note": "Milan's metropolitan labor market draws heavily on cross-border commuters (frontalieri) from Swiss Ticino; reach runs opposite the usual capital-hinterland direction (a wealthier neighbor supplying labor to the pole)."
+        }
+      ],
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale della Lombardia",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/italian-gallo"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-veneto",
+      "name": "Veneto",
+      "name_local": "Veneto",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Venice",
+      "secondary_centers": [
+        "Padua",
+        "Verona",
+        "Vicenza",
+        "Treviso"
+      ],
+      "identity_basis": "Historic Republic of Venice (La Serenissima); distinct Venetian language/dialect and a modern regionalist current (2017 non-binding autonomy referendum) seeking greater fiscal autonomy within Italy.",
+      "key_industries": [
+        "tourism (Venice)",
+        "manufacturing (Vicenza gold/jewelry, Treviso furniture)",
+        "wine (Prosecco)",
+        "footwear/leather"
+      ],
+      "population": 4858000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Veneto NUTS-2 ITH3",
+      "nuts_codes": [
+        "ITH3"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Venice — globally iconic historic-maritime capital; Verona/Padua as secondary economic hubs",
+        "diversified_industry": "tourism, gold/jewelry manufacturing (Vicenza), furniture (Treviso), Prosecco viticulture, leather/footwear",
+        "dependent_identity": "strong Venetian regional identity with an active but non-secessionist autonomy movement"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.3,
+        "rationale": "Po Valley plain and Prosecco hills give solid food self-sufficiency; Venice's lagoon geography creates unique but manageable water/shelter vulnerabilities (acqua alta flooding, MOSE barrier).",
+        "rationales": {
+          "water": "Po Valley plain and Dolomite headwaters give solid supply, moderated by Venice's lagoon-specific vulnerabilities.",
+          "food": "Po Valley agriculture and Prosecco-hill viticulture give strong self-sufficiency.",
+          "energy": "Limited domestic generation; industrial SME base (Vicenza, Treviso) is a net energy importer."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Veneto 2017 autonomy-referendum documentation"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Venice",
+          "Verona",
+          "Padua",
+          "Vicenza"
+        ],
+        "central": "Venice",
+        "central_coord": [
+          12.33,
+          45.44
+        ],
+        "note": "Veneto's 'città diffusa' settlement pattern: Verona/Padua/Vicenza are economically comparable to Venice, which retains symbolic/political centrality."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale del Veneto",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/venetian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-friuli",
+      "name": "Friuli-Venezia Giulia",
+      "name_local": "Friûl-Vignesie Julie",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Trieste",
+      "secondary_centers": [
+        "Udine",
+        "Pordenone",
+        "Gorizia"
+      ],
+      "identity_basis": "Special-statute autonomous region with a trilingual heritage (Friulian, Italian, Slovene) and Trieste's distinct Habsburg-port history at the head of the Adriatic; mandated standalone per global constraints.",
+      "key_industries": [
+        "port/logistics (Trieste)",
+        "furniture (Udine cluster)",
+        "insurance (Generali headquartered in Trieste)",
+        "shipbuilding"
+      ],
+      "population": 1197000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Friuli-Venezia Giulia NUTS-2 ITH4",
+      "nuts_codes": [
+        "ITH4"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Trieste — former Habsburg imperial port, insurance/finance hub with a distinctive Central European character",
+        "diversified_industry": "port logistics, insurance (Generali), furniture manufacturing (Udine), shipbuilding/marine tech",
+        "dependent_identity": "special-statute autonomy reflecting Friulian and Slovene minority presence, no separatism"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "Trieste's port and Central European trade links give strong transportation self-sufficiency; Friulian plain agriculture supports moderate food self-sufficiency for a small special-statute region.",
+        "rationales": {
+          "water": "Friulian plain rivers and Alpine headwaters give ample supply for a small population.",
+          "food": "Friulian-plain agriculture supports moderate self-sufficiency for a small special-statute region.",
+          "energy": "Trieste's port/trade role is not matched by domestic generation; net importer."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Friuli-Venezia Giulia special-statute autonomy documentation"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Trieste",
+          "Udine"
+        ],
+        "central": "Trieste",
+        "central_coord": [
+          13.78,
+          45.65
+        ],
+        "note": "Trieste: port/political capital; Udine: inland historic Friulian cultural capital.",
+        "secondary": "Udine",
+        "secondary_coord": [
+          13.24,
+          46.06
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale del Friuli Venezia Giulia",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament). Special-statute region (regione a statuto speciale) with enhanced legislative competencies."
+      },
+      "lang_family": "romance/friulian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-1 ITH (Nord-Est) groups South Tyrol with Trentino, Veneto, and Friuli; separated here as its own congruent-variant unit given its distinct German-speaking special-autonomy status.",
+      "id": "it-south-tyrol",
+      "name": "South Tyrol",
+      "name_local": "Südtirol / Alto Adige",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Bolzano",
+      "secondary_centers": [
+        "Merano",
+        "Bressanone"
+      ],
+      "identity_basis": "German-speaking majority special-autonomy province (Austrian until 1918); congruent (Italy-only) variant of the Tyrol toggle group. The unified Tyrol record (joining Austrian Tirol) lives in zone1.json.",
+      "key_industries": [
+        "apple/wine agriculture",
+        "tourism (Dolomites)",
+        "precision manufacturing",
+        "renewable hydropower"
+      ],
+      "population": 534000,
+      "population_note": "Eurostat 2023 estimate (ASTAT), Provincia Autonoma di Bolzano/Bozen NUTS-2 ITH1",
+      "nuts_codes": [
+        "ITH1"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Bolzano/Bozen — provincial capital, German-Italian bilingual administrative and cultural hub",
+        "diversified_industry": "Alpine tourism (Dolomites UNESCO site), apple and wine agriculture, precision manufacturing, hydropower",
+        "dependent_identity": "German-speaking majority with full linguistic-cultural autonomy within Italy, an option for Austrian dual citizenship since 2023, historically contested but not currently secessionist"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 4,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.7,
+        "rationale": "Abundant Alpine water and extensive hydropower generation give the highest water and energy scores in the Italian set; mountainous terrain constrains transportation connectivity relative to lowland regions.",
+        "rationales": {
+          "water": "Abundant Alpine snowmelt gives the highest water score in the Italian set.",
+          "food": "Apple/wine agriculture is strong per capita despite mountainous terrain limiting total arable area.",
+          "energy": "Extensive hydropower gives South Tyrol a rare energy-positive position in this dataset."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ASTAT (Landesinstitut für Statistik)",
+        "South Tyrol special-autonomy statute and Austria dual-citizenship provisions (2023)"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Bolzano/Bozen"
+        ],
+        "central": "Bolzano/Bozen",
+        "central_coord": [
+          11.35,
+          46.5
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Landtag Südtirol / Consiglio della Provincia autonoma di Bolzano",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament). Special-statute region (regione a statuto speciale) with enhanced legislative competencies."
+      },
+      "lang_family": "germanic/german"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-trentino",
+      "name": "Trentino",
+      "name_local": "Trentino",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Trento",
+      "secondary_centers": [
+        "Rovereto"
+      ],
+      "identity_basis": "Italian-speaking special-autonomy province, historically and linguistically distinct from German-speaking South Tyrol despite sharing the joint Trentino-Alto Adige/Südtirol regional structure; mandated standalone per zone brief.",
+      "key_industries": [
+        "apple/wine agriculture",
+        "tourism (Dolomites, Lake Garda north shore)",
+        "hydropower",
+        "ICT (Trento research cluster)"
+      ],
+      "population": 541000,
+      "population_note": "Eurostat 2023 estimate (ISPAT), Provincia Autonoma di Trento NUTS-2 ITH2",
+      "nuts_codes": [
+        "ITH2"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Trento — provincial capital and university/research hub (University of Trento)",
+        "diversified_industry": "Alpine tourism, apple/wine agriculture, hydropower, ICT/research (FBK research foundation)",
+        "dependent_identity": "distinct Italian-speaking Trentino identity, special autonomy status, no separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 4,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.7,
+        "rationale": "Shares South Tyrol's Alpine water and hydropower abundance; slightly stronger ICT/research diversification via the Trento university-research cluster offsets otherwise similar mountain-region constraints.",
+        "rationales": {
+          "water": "Shares South Tyrol's Alpine snowmelt abundance.",
+          "food": "Apple/wine agriculture on Alpine valley floors gives solid self-sufficiency.",
+          "energy": "Hydropower generation is comparably strong to South Tyrol's."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISPAT (Istituto di Statistica della Provincia di Trento)",
+        "Trentino-Alto Adige/Südtirol special-statute documentation"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Trento"
+        ],
+        "central": "Trento",
+        "central_coord": [
+          11.12,
+          46.07
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio della Provincia autonoma di Trento",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament). Special-statute region (regione a statuto speciale) with enhanced legislative competencies."
+      },
+      "lang_family": "romance/italian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-2 ITH5 (Emilia-Romagna) treats Emilia and Romagna as one administrative region; split here per the mandated Emilia≠Romagna decision. Ferrara (ITH56) is assigned to Emilia rather than Romagna based on Pellegrini's dialect classification placing Ferrarese within the Emiliano group, though Ferrara's historical inclusion in the Papal Legations alongside Ravenna and Forlì is a genuine competing frame — flagged in zone notes for the methodology page.",
+      "id": "it-emilia",
+      "name": "Emilia",
+      "name_local": "Emilia",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Bologna",
+      "secondary_centers": [
+        "Modena",
+        "Parma",
+        "Reggio Emilia",
+        "Ferrara"
+      ],
+      "identity_basis": "Western half of Emilia-Romagna, distinguished from Romagna by the Emiliano dialect group (Pellegrini's Carta dei dialetti d'Italia classifies Ferrara's dialect as Emiliano, not Romagnolo, despite Ferrara's historical Papal-Legation administrative pairing with Ravenna); food-industry and automotive 'Motor Valley' heartland.",
+      "key_industries": [
+        "food processing (Parmigiano-Reggiano, Prosciutto di Parma, balsamic vinegar)",
+        "automotive/motorsport (Ferrari, Lamborghini, Maserati 'Motor Valley')",
+        "packaging machinery",
+        "biomedical"
+      ],
+      "population": 3325000,
+      "population_note": "Eurostat/ISTAT 2023 estimate, sum of NUTS-3 provinces Piacenza+Parma+Reggio Emilia+Modena+Bologna+Ferrara (ITH51-ITH56)",
+      "nuts_codes": [
+        "ITH51",
+        "ITH52",
+        "ITH53",
+        "ITH54",
+        "ITH55",
+        "ITH56"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Bologna — metro ~1M, historic university city (oldest in the Western world) and Emilian cultural-culinary capital",
+        "diversified_industry": "world-renowned food-processing PDO/PGI clusters, 'Motor Valley' luxury automotive and motorsport, packaging machinery, biomedical devices",
+        "dependent_identity": "distinct Emilian dialect and food-culture identity, no separatism, mandated split from Romagna per project brief"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 5,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "Extraordinarily high food self-sufficiency and export strength (Po Valley agriculture plus globally famous PDO food clusters); diversified high-value manufacturing (automotive, packaging machinery, biomedical) gives strong industrial resilience across most dimensions.",
+        "rationales": {
+          "water": "Po Valley aquifers and Apennine headwaters give reliable supply for intensive agri-food processing.",
+          "food": "World-renowned PDO food clusters (Parmigiano-Reggiano, Prosciutto di Parma) give the dataset's highest food scores.",
+          "energy": "Diversified manufacturing (automotive, packaging) is energy-intensive; moderate domestic generation only partly offsets it."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Pellegrini, G.B. (1977) Carta dei dialetti d'Italia — Emiliano/Romagnolo dialect boundary"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Bologna",
+          "Modena",
+          "Parma",
+          "Reggio Emilia",
+          "Ferrara"
+        ],
+        "central": "Bologna",
+        "central_coord": [
+          11.34,
+          44.49
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Assemblea legislativa dell'Emilia-Romagna (shared with Romagna)",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/italian-gallo"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "See Emilia record for the shared NUTS-2 ITH5 disagreement and the Ferrara assignment reasoning.",
+      "id": "it-romagna",
+      "name": "Romagna",
+      "name_local": "Rumagna",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Ravenna",
+      "secondary_centers": [
+        "Rimini",
+        "Forlì",
+        "Cesena"
+      ],
+      "identity_basis": "Eastern half of Emilia-Romagna, distinguished by the Romagnolo dialect group and a historically separate identity from Emilia (Byzantine Exarchate of Ravenna origin of the name 'Romagna' = 'land of the Romans/Byzantines', vs. Lombard-ruled Emilia); mandated split per project brief.",
+      "key_industries": [
+        "tourism (Rimini Adriatic Riviera)",
+        "food processing (fruit/vegetable canning)",
+        "ceramics (Faenza)",
+        "port/petrochemicals (Ravenna)"
+      ],
+      "population": 1133000,
+      "population_note": "Eurostat/ISTAT 2023 estimate, sum of NUTS-3 provinces Ravenna+Forlì-Cesena+Rimini (ITH57-ITH59)",
+      "nuts_codes": [
+        "ITH57",
+        "ITH58",
+        "ITH59"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Ravenna — former Western Roman and Byzantine imperial capital (UNESCO mosaics), Adriatic port; Rimini as mass-tourism hub",
+        "diversified_industry": "Adriatic beach tourism (Rimini/Riccione), fruit-and-vegetable food processing, Faenza ceramics (origin of the word 'faience'), Ravenna port and petrochemical complex",
+        "dependent_identity": "distinct Romagnolo dialect and post-Byzantine historical identity, culturally proud regionalism ('Romagna, terra di...') but no separatism"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "Adriatic coast tourism and food-processing agriculture give solid but slightly lower composite than Emilia, reflecting smaller scale and heavier tourism-seasonality dependence relative to Emilia's diversified manufacturing base.",
+        "rationales": {
+          "water": "Adriatic coastal aquifers are adequate but seasonal tourism spikes demand sharply.",
+          "food": "Fruit/vegetable canning and Adriatic fishing give solid, if smaller-scale than Emilia's, self-sufficiency.",
+          "energy": "Ravenna's petrochemical/port complex is a significant local energy user with only partial domestic offset."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Pellegrini, G.B. (1977) Carta dei dialetti d'Italia; Romagna historical-identity literature (Exarchate of Ravenna)"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Ravenna",
+          "Rimini",
+          "Forlì",
+          "Cesena"
+        ],
+        "central": "Ravenna",
+        "central_coord": [
+          12.2,
+          44.42
+        ],
+        "note": "Ravenna is historic capital (Byzantine Exarchate); Rimini is the larger economic/tourism center — genuinely polycentric."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Assemblea legislativa dell'Emilia-Romagna (shared with Emilia)",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/italian-gallo"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-tuscany",
+      "name": "Tuscany",
+      "name_local": "Toscana",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Florence",
+      "secondary_centers": [
+        "Pisa",
+        "Siena",
+        "Livorno",
+        "Prato"
+      ],
+      "identity_basis": "Cradle of the Italian Renaissance and of standard Italian itself (Tuscan dialect basis of modern Italian); historic Grand Duchy of Tuscany; globally recognized cultural-agricultural identity (Chianti, Renaissance art cities).",
+      "key_industries": [
+        "tourism/cultural heritage",
+        "textiles (Prato)",
+        "wine (Chianti/Brunello)",
+        "leather goods/fashion",
+        "pharma (Siena)"
+      ],
+      "population": 3672000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Toscana NUTS-2 ITI1",
+      "nuts_codes": [
+        "ITI1"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Florence — metro ~1M, Renaissance capital and UNESCO World Heritage city",
+        "diversified_industry": "textiles (Prato's large manufacturing district, including a major Chinese-Italian textile cluster), wine, leather/fashion, pharma/vaccine research (Siena)",
+        "dependent_identity": "distinct Tuscan identity and the historical origin of standard Italian, no separatism"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.4,
+        "rationale": "Chianti/Maremma agriculture and viticulture support strong food self-sufficiency; Prato's textile district gives above-average clothing self-sufficiency relative to most other Italian regions in this dataset.",
+        "rationales": {
+          "water": "Arno-basin and Apennine supply is generally reliable outside drought years.",
+          "food": "Chianti/Maremma viticulture and agriculture give strong self-sufficiency.",
+          "energy": "Larderello geothermal field gives Tuscany a genuine (if regionally concentrated) domestic generation source."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Tuscan Renaissance and dialect-standardization literature (Bembo's codification of Tuscan)"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Florence"
+        ],
+        "central": "Florence",
+        "central_coord": [
+          11.26,
+          43.77
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale della Toscana",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/italian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-umbria",
+      "name": "Umbria",
+      "name_local": "Umbria",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Perugia",
+      "secondary_centers": [
+        "Terni",
+        "Assisi"
+      ],
+      "identity_basis": "Italy's only landlocked peninsular region south of the Alps, self-styled 'the green heart of Italy'; distinct Umbrian identity predating Roman conquest (ancient Umbri people); assessed and retained per inclusion test.",
+      "key_industries": [
+        "steel (Terni, historic 'steel city')",
+        "chocolate/confectionery (Perugina)",
+        "agri-food (olive oil, Sagrantino wine)",
+        "tourism (Assisi pilgrimage)"
+      ],
+      "population": 854000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Umbria NUTS-2 ITI2",
+      "nuts_codes": [
+        "ITI2"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Perugia — regional capital, university city (Università per Stranieri), chocolate-industry headquarters",
+        "diversified_industry": "steel manufacturing (Terni), confectionery (Perugina/Nestlé), olive oil and Sagrantino wine, pilgrimage/cultural tourism (Assisi)",
+        "dependent_identity": "distinct pre-Roman Umbrian identity and 'green heart of Italy' self-image, no separatism; assessed against the inclusion test and retained as a clear pass"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "Landlocked but water-rich (Alpine-fed rivers, Trasimeno basin) with strong olive-oil/wine agriculture; smaller scale and hillier terrain than Tuscany moderate transportation and industrial-diversification scores slightly.",
+        "rationales": {
+          "water": "Landlocked but water-rich via Alpine-fed rivers and the Trasimeno basin.",
+          "food": "Olive oil and Sagrantino-wine agriculture support strong self-sufficiency for a small region.",
+          "energy": "No major domestic generation source; net importer via the national grid."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Umbrian pre-Roman and regional-identity literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Perugia"
+        ],
+        "central": "Perugia",
+        "central_coord": [
+          12.39,
+          43.11
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale dell'Umbria",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/italian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-marche",
+      "name": "Marche",
+      "name_local": "Marche",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Ancona",
+      "secondary_centers": [
+        "Pesaro",
+        "Fermo",
+        "Ascoli Piceno"
+      ],
+      "identity_basis": "Adriatic-facing region named for the medieval marches (border marks) of the Holy Roman Empire; distinctive dense small-and-medium-enterprise manufacturing model ('Marche model') and its own dialect continuum; assessed and retained per inclusion test.",
+      "key_industries": [
+        "footwear/leather (Fermo district)",
+        "furniture",
+        "musical instruments (Ancona/Castelfidardo accordion district)",
+        "agri-food"
+      ],
+      "population": 1483000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Marche NUTS-2 ITI3",
+      "nuts_codes": [
+        "ITI3"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Ancona — regional capital and Adriatic port; polycentric SME network across Pesaro/Fermo/Ascoli distinctive of the region",
+        "diversified_industry": "footwear/leather manufacturing district (among Italy's largest), furniture, musical instruments, agri-food",
+        "dependent_identity": "distinct Marche regional identity and dense SME industrial model, no separatism; assessed against the inclusion test and retained given its genuinely diversified manufacturing base"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.1,
+        "rationale": "Dense small-manufacturing base (footwear, furniture) gives above-average clothing/shelter-input self-sufficiency for the dataset; moderate agriculture supports food self-sufficiency without regional standout strength.",
+        "rationales": {
+          "water": "Adriatic-slope rivers give adequate, unremarkable supply.",
+          "food": "Moderate agri-food output; not a regional standout either way.",
+          "energy": "Dense SME manufacturing (footwear, furniture) draws on grid power with little domestic generation."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "'Marche model' industrial-district economic-geography literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Ancona",
+          "Pesaro",
+          "Macerata",
+          "Ascoli Piceno"
+        ],
+        "central": "Ancona",
+        "central_coord": [
+          13.52,
+          43.62
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale delle Marche",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/italian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-lazio",
+      "name": "Lazio (Rome)",
+      "name_local": "Lazio",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Rome",
+      "secondary_centers": [
+        "Latina",
+        "Viterbo",
+        "Frosinone"
+      ],
+      "identity_basis": "Region of the Italian and Vatican capital; Roman identity as ancient imperial and modern national capital, distinct from surrounding regions per its unique administrative-political centrality (analogous to the Madrid-region logic).",
+      "key_industries": [
+        "public administration/EU-national institutions",
+        "film/media (Cinecittà)",
+        "tourism",
+        "pharma",
+        "ICT/aerospace"
+      ],
+      "population": 5714000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Lazio NUTS-2 ITI4",
+      "nuts_codes": [
+        "ITI4"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Rome — metro ~4.3M, national capital, seat of the Vatican (independent enclave, not included in this record's geometry)",
+        "diversified_industry": "public administration, film/media (Cinecittà studios), pharma, aerospace/ICT, tourism",
+        "dependent_identity": "capital-region identity analogous to Madrid; no separatism"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.4,
+        "rationale": "Best transport connectivity in central Italy as capital region; food and energy self-sufficiency are moderate, constrained by the demands of a large, mostly service-economy metropolis.",
+        "rationales": {
+          "water": "Tiber-basin reservoirs meet normal demand but leave little margin for a large capital-region population.",
+          "food": "Moderate, constrained by the demands of a large, mostly service-economy metropolis.",
+          "energy": "No significant domestic generation for the capital region; grid-imported power dominates."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Roma Capitale municipal statistics"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Rome"
+        ],
+        "central": "Rome",
+        "central_coord": [
+          12.5,
+          41.9
+        ]
+      },
+      "reach": [
+        {
+          "target": "Southern Tuscany, Umbria, northern Campania",
+          "note": "Rome's metropolitan labor market and service catchment extends into neighboring regions' bordering provinces."
+        }
+      ],
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale del Lazio",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/italian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-abruzzo",
+      "name": "Abruzzo",
+      "name_local": "Abruzzo",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Pescara",
+      "secondary_centers": [
+        "L'Aquila",
+        "Teramo",
+        "Campobasso"
+      ],
+      "identity_basis": "Mountainous Apennine region (Gran Sasso, Majella national parks) historically administered jointly with Molise as 'Abruzzi e Molise' until their formal separation in 1963; Molise (ITF2) folded back into this record given Molise's very small population (~290,000) and its own weak independent urban hub, per the assess-and-merge instruction rather than treating it as a standalone region.",
+      "key_industries": [
+        "automotive supply (Honda/Fiat components, Val di Sangro)",
+        "pharma (L'Aquila biomedical cluster)",
+        "agri-food (saffron, wine)",
+        "tourism (Apennine national parks, Adriatic coast)"
+      ],
+      "population": 1565000,
+      "population_note": "Eurostat/ISTAT 2023 estimate, sum of Abruzzo (ITF1, ~1,275,000) and Molise (ITF2, ~290,000)",
+      "nuts_codes": [
+        "ITF1",
+        "ITF2"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Pescara — largest Abruzzese urban center on the Adriatic coast; L'Aquila as historic regional capital (post-2009 earthquake reconstruction hub)",
+        "diversified_industry": "automotive-parts manufacturing (Val di Sangro cluster), biomedical research, saffron/wine agriculture, national-park tourism",
+        "dependent_identity": "distinct Abruzzese mountain identity; Molise assessed independently and found too small/weak-hubbed to pass the inclusion test alone, merged here reflecting its pre-1963 administrative union with Abruzzo"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Apennine watershed gives strong water self-sufficiency; automotive-parts and biomedical manufacturing provide moderate industrial diversification, though the region (especially Molise) remains one of Italy's less economically dense.",
+        "rationales": {
+          "water": "Apennine watershed (Gran Sasso, Majella) gives strong water self-sufficiency.",
+          "food": "Saffron/wine agriculture on Apennine slopes gives moderate self-sufficiency.",
+          "energy": "Limited domestic generation; automotive-parts manufacturing (Val di Sangro) draws on the grid."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Abruzzo e Molise 1963 administrative-separation history"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "L'Aquila",
+          "Pescara"
+        ],
+        "central": "L'Aquila",
+        "central_coord": [
+          13.4,
+          42.35
+        ],
+        "note": "L'Aquila is the regional capital; Pescara is the larger, economically dominant coastal city.",
+        "secondary": "Pescara",
+        "secondary_coord": [
+          14.21,
+          42.46
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale dell'Abruzzo",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/italian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-campania",
+      "name": "Campania (Naples)",
+      "name_local": "Campania",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Naples",
+      "secondary_centers": [
+        "Salerno",
+        "Caserta"
+      ],
+      "identity_basis": "Historic Kingdom of Naples/Two Sicilies capital region; distinctive Neapolitan language, cuisine (pizza's origin), and dense urban-agricultural identity; Italy's third most populous region.",
+      "key_industries": [
+        "aerospace (Leonardo, GE Avio)",
+        "agri-food (San Marzano tomatoes, mozzarella di bufala)",
+        "tourism (Amalfi Coast, Pompeii)",
+        "port/logistics"
+      ],
+      "population": 5586000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Campania NUTS-2 ITF3",
+      "nuts_codes": [
+        "ITF3"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Naples — metro ~3M, historic Kingdom of Naples capital and one of Italy's largest ports",
+        "diversified_industry": "aerospace manufacturing, PDO agri-food (San Marzano tomato, buffalo mozzarella), globally iconic tourism (Amalfi Coast, Pompeii), port logistics",
+        "dependent_identity": "strong distinct Neapolitan linguistic-cultural identity, no separatism"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Volcanic-soil (Vesuvian) agriculture gives strong food self-sufficiency; dense urban informality and infrastructure strain (waste management, southern-Italy healthcare gaps) weigh down shelter and hygiene-healthcare scores.",
+        "rationales": {
+          "water": "Volcanic (Vesuvian) aquifers are fertile but dense urban Naples strains supply infrastructure.",
+          "food": "Volcanic-soil agriculture (San Marzano tomato, buffalo mozzarella) gives strong food self-sufficiency.",
+          "energy": "No major domestic generation; dense urban demand nets an importer."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Kingdom of Naples/Two Sicilies historical-identity literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Naples"
+        ],
+        "central": "Naples",
+        "central_coord": [
+          14.27,
+          40.85
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale della Campania",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/neapolitan"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-puglia",
+      "name": "Puglia (Bari)",
+      "name_local": "Puglia",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Bari",
+      "secondary_centers": [
+        "Lecce",
+        "Taranto",
+        "Foggia"
+      ],
+      "identity_basis": "Distinct heel-of-Italy identity (Salento sub-identity in the deep south, Griko Greek-speaking minority villages); mandated standalone per global constraints (Puglia≠Campania).",
+      "key_industries": [
+        "agri-food (olive oil, wine)",
+        "steel (Taranto, Europe's largest integrated steelworks)",
+        "aerospace (Leonardo Grottaglie)",
+        "tourism (Salento coast)"
+      ],
+      "population": 3890000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Puglia NUTS-2 ITF4",
+      "nuts_codes": [
+        "ITF4"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Bari — metro ~1M, Adriatic port and university city",
+        "diversified_industry": "olive-oil/wine agriculture (one of Italy's top producers), Taranto steelworks, aerospace composites manufacturing, Salento tourism",
+        "dependent_identity": "distinct Apulian and, in the Salento, Griko-Greek minority identity, mandated separation from Campania per project brief"
+      },
+      "autarky": {
+        "water": 2,
+        "food": 5,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "Among Italy's leading olive-oil and wine producers, giving very high food self-sufficiency; water stress (limited natural aquifers, agricultural over-extraction) is the clear binding constraint.",
+        "rationales": {
+          "water": "Limited natural aquifers and agricultural over-extraction make water the clear binding constraint.",
+          "food": "Among Italy's leading olive-oil and wine producers, giving very high food self-sufficiency.",
+          "energy": "Taranto steelworks and Gioia Tauro-adjacent industry are energy-intensive; solar buildout only partly offsets this."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Griko/Salento minority-language and regional-identity literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Bari",
+          "Taranto",
+          "Lecce",
+          "Foggia"
+        ],
+        "central": "Bari",
+        "central_coord": [
+          16.87,
+          41.12
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale della Puglia",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/italian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-calabria",
+      "name": "Calabria",
+      "name_local": "Calabria",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Reggio Calabria",
+      "secondary_centers": [
+        "Catanzaro",
+        "Cosenza"
+      ],
+      "identity_basis": "Southernmost mainland Italian region (the 'toe'); distinct Calabrese identity with Griko/Arbëreshë (Albanian) minority pockets; retained standalone despite a genuinely weak, polycentric urban-hub profile, per the 'challenge rather than silently drop' instruction.",
+      "key_industries": [
+        "agri-food (bergamot — near-global monopoly, olive oil, citrus)",
+        "fishing",
+        "tourism (Ionian/Tyrrhenian coasts)",
+        "port/logistics (Gioia Tauro transshipment hub)"
+      ],
+      "population": 1830000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Calabria NUTS-2 ITF6",
+      "nuts_codes": [
+        "ITF6"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Reggio Calabria — largest city (~180k) and regional cultural anchor, though Calabria is unusually polycentric (Catanzaro is the administrative capital, Cosenza the university city) with no single dominant metro; flagged as the weakest urban-hub fit in this zone rather than silently merged elsewhere, since no adjacent region is a culturally honest merge target",
+        "diversified_industry": "near-global monopoly on bergamot essential oil, Gioia Tauro (one of the Mediterranean's largest transshipment ports), citrus/olive agriculture, fishing; legitimate industrial diversification is constrained by organized-crime ('Ndrangheta) economic distortion, noted honestly",
+        "dependent_identity": "strong distinct Calabrese identity with Griko and Arbëreshë linguistic minority enclaves, no separatism"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 2.7,
+        "rationale": "Bergamot, citrus, and olive agriculture give solid food self-sufficiency; the region has Italy's lowest healthcare/hygiene infrastructure indicators and weakest formal industrial base, reflecting persistent southern-Italy development gaps compounded by organized-crime economic distortion.",
+        "rationales": {
+          "water": "Apennine/coastal rivers give adequate raw supply though distribution infrastructure lags.",
+          "food": "Bergamot, citrus, and olive agriculture give solid self-sufficiency.",
+          "energy": "No significant domestic generation; Italy's weakest formal industrial base limits energy self-sufficiency generally."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "SVIMEZ southern-Italy socioeconomic reports",
+        "Griko/Arbëreshë minority-language literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Catanzaro",
+          "Reggio Calabria",
+          "Cosenza"
+        ],
+        "central": "Catanzaro",
+        "central_coord": [
+          16.59,
+          38.91
+        ],
+        "note": "Catanzaro is the official regional capital; Reggio Calabria the largest city, Cosenza the university city — a documented three-way polycentric triad (see zone notes)."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale della Calabria",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/italian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-sicily",
+      "name": "Sicily",
+      "name_local": "Sicilia",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Palermo",
+      "secondary_centers": [
+        "Catania",
+        "Messina"
+      ],
+      "identity_basis": "Mediterranean's largest island, special-statute autonomous region with a distinct Sicilian language, layered Greek-Arab-Norman cultural history, and a historic (though not currently active) independentist movement (MIS, 1943-46).",
+      "key_industries": [
+        "agri-food (citrus, wine, Nero d'Avola)",
+        "petrochemicals (Syracuse/Augusta)",
+        "tourism (Valley of the Temples, Taormina)",
+        "renewable energy"
+      ],
+      "population": 4798000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Sicilia NUTS-2 ITG1",
+      "nuts_codes": [
+        "ITG1"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Palermo — metro ~1.2M, historic Greek-Arab-Norman capital and special-statute regional seat; Catania as secondary tech/logistics hub (Etna Valley)",
+        "diversified_industry": "citrus/wine agriculture, one of Europe's largest petrochemical complexes (Syracuse-Augusta-Priolo), globally iconic archaeological tourism, growing solar-energy sector",
+        "dependent_identity": "special-statute autonomy, distinct Sicilian language and layered Mediterranean identity, historic but dormant independentism"
+      },
+      "autarky": {
+        "water": 2,
+        "food": 4,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Chronic water stress and periodic drought/reservoir shortfalls (worsened 2023-24) are the clear binding constraint despite strong citrus and viticulture output and good solar-energy potential.",
+        "rationales": {
+          "water": "Chronic drought and reservoir shortfalls (worsened 2023-24) are the clear binding constraint.",
+          "food": "Citrus and viticulture output is strong despite the water stress.",
+          "energy": "Growing solar sector plus Syracuse-Augusta refining capacity give above-average generation for the Italian south."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Sicilian special-statute autonomy documentation",
+        "Movimento Indipendentista Siciliano historical literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Palermo",
+          "Catania"
+        ],
+        "central": "Palermo",
+        "central_coord": [
+          13.36,
+          38.12
+        ],
+        "note": "Palermo: special-statute regional capital; Catania: comparable economic/tech weight (Etna Valley) — well-documented rivalry.",
+        "secondary": "Catania",
+        "secondary_coord": [
+          15.09,
+          37.51
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Assemblea Regionale Siciliana",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament). Special-statute region (regione a statuto speciale) with enhanced legislative competencies."
+      },
+      "lang_family": "romance/sicilian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "it-sardinia",
+      "name": "Sardinia",
+      "name_local": "Sardegna",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Cagliari",
+      "secondary_centers": [
+        "Sassari",
+        "Olbia"
+      ],
+      "identity_basis": "Special-statute autonomous island region with the Sardinian language (linguistically the most distinct Romance language from standard Italian) and a small but persistent independentist current; culturally and geographically distinct from Sicily and the mainland.",
+      "key_industries": [
+        "petrochemicals/refining (Sarroch)",
+        "tourism (Costa Smeralda)",
+        "mining (historic)",
+        "sheep dairy (pecorino)",
+        "renewable energy"
+      ],
+      "population": 1591000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Sardegna NUTS-2 ITG2",
+      "nuts_codes": [
+        "ITG2"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Cagliari — metro ~430k, regional capital and special-statute seat",
+        "diversified_industry": "petrochemical refining, luxury tourism (Costa Smeralda), historic mining legacy, sheep-dairy (Pecorino Sardo/Romano) agri-food, wind/solar energy",
+        "dependent_identity": "distinct Sardinian language and identity, special-statute autonomy, small persistent independentist movement (Sardigna Natzione) but not currently a governing force"
+      },
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 2,
+        "energy": 4,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Pastoral sheep-dairy economy gives strong food self-sufficiency and good wind/solar energy potential; island transportation dependence on ferry/air links to the mainland is the clear structural constraint.",
+        "rationales": {
+          "water": "Adequate but seasonally stressed by tourism demand on the Costa Smeralda coast.",
+          "food": "Pastoral sheep-dairy economy (Pecorino) gives strong food self-sufficiency.",
+          "energy": "Wind/solar potential is good and Sarroch refining adds capacity, but island transport dependence remains the bigger constraint."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Sardinian special-statute autonomy documentation",
+        "Sardinian language (limba sarda) linguistic-distinctiveness literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Cagliari"
+        ],
+        "central": "Cagliari",
+        "central_coord": [
+          9.11,
+          39.22
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale della Sardegna",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament). Special-statute region (regione a statuto speciale) with enhanced legislative competencies."
+      },
+      "lang_family": "romance/sardinian"
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "reach": [],
+      "id": "es-la-rioja",
+      "name": "La Rioja",
+      "name_local": "La Rioja",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Logroño",
+      "secondary_centers": [
+        "Calahorra",
+        "Haro"
+      ],
+      "identity_basis": "Small Ebro-valley Autonomous Community with a distinct Riojan wine-region identity and its own (contested) claim to early Castilian-language origins (Glosas Emilianenses, San Millán de la Cogolla monastery); split from the old NUTS-1 Noreste bloc as its own unit in schema v2 to close a coverage hole flagged in v1.",
+      "key_industries": [
+        "viticulture (Rioja DOCa wine)",
+        "agri-food/canning",
+        "footwear (Arnedo cluster)",
+        "logistics"
+      ],
+      "population": 319000,
+      "population_note": "Eurostat 2023 estimate (INE), La Rioja NUTS-2 ES23",
+      "nuts_codes": [
+        "ES23"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Logroño — regional capital and center of the DOCa Rioja wine trade",
+        "diversified_industry": "world-renowned Rioja wine appellation, footwear manufacturing (Arnedo), agri-food canning",
+        "dependent_identity": "distinct Riojan wine-culture identity within Spain, historic claim as cradle of written Castilian; too small alone for a full-weight representation seat (population ~319,000), grouped with Basque Country + Aragón at the representation layer"
+      },
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Logroño"
+        ],
+        "central": "Logroño",
+        "central_coord": [
+          -2.45,
+          42.47
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Parlamento de La Rioja",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/castilian",
+      "autarky": {
+        "water": 3,
+        "food": 5,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.3,
+        "rationale": "Dense, high-value viticulture gives strong food/wine self-sufficiency for a very small territory; footwear manufacturing lifts clothing above the Spanish-region average.",
+        "rationales": {
+          "water": "Ebro-valley irrigation is reliable for a small, densely cultivated territory.",
+          "food": "Dense, high-value Rioja viticulture gives very high food/wine self-sufficiency relative to population.",
+          "energy": "No significant domestic generation; small territory relies on the wider Spanish grid."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "IER (Instituto de Estadística de La Rioja)",
+        "Consejo Regulador DOCa Rioja"
+      ]
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "reach": [],
+      "id": "es-cantabria",
+      "name": "Cantabria",
+      "name_local": "Cantabria",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Santander",
+      "secondary_centers": [
+        "Torrelavega"
+      ],
+      "identity_basis": "Small Atlantic-coast Autonomous Community with a distinct Cantabrian (Montañés) identity and dialect substrate, historically part of 'Old Castile' before its 1981 statute of autonomy; closes a coverage hole flagged in v1.",
+      "key_industries": [
+        "steel/metallurgy legacy",
+        "port/logistics (Santander)",
+        "dairy farming",
+        "tourism"
+      ],
+      "population": 584000,
+      "population_note": "Eurostat 2023 estimate (ICANE), Cantabria NUTS-2 ES13",
+      "nuts_codes": [
+        "ES13"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Santander — regional capital and Atlantic port, Menéndez Pelayo/UIMP cultural anchor",
+        "diversified_industry": "port logistics, legacy steel/metallurgy, dairy-pasture agriculture, coastal tourism",
+        "dependent_identity": "distinct Cantabrian coastal identity, no separatism; small population makes it too weak for a full-weight standalone representation seat, grouped with Asturias+Galicia at the representation layer"
+      },
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Santander"
+        ],
+        "central": "Santander",
+        "central_coord": [
+          -3.8,
+          43.46
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Parlamento de Cantabria",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/castilian",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Atlantic rainfall and dairy pasture give solid water/food scores; legacy heavy industry has declined without full replacement, capping energy and clothing self-sufficiency.",
+        "rationales": {
+          "water": "Atlantic rainfall gives ample, reliable supply.",
+          "food": "Dairy-pasture agriculture supports moderate self-sufficiency.",
+          "energy": "Declining legacy heavy industry (steel) leaves limited domestic generation to offset demand."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ICANE (Instituto Cántabro de Estadística)",
+        "Cantabrian dialectology literature"
+      ]
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "reach": [],
+      "id": "es-asturias",
+      "name": "Asturias",
+      "name_local": "Principáu d'Asturies",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Oviedo",
+      "secondary_centers": [
+        "Gijón",
+        "Avilés"
+      ],
+      "identity_basis": "Distinct Astur-Leonese linguistic identity (Asturian/Bable, with regional co-official protection) and a historic Principality title; Spain's post-industrial heavy-industry heartland (Gijón/Avilés steel and coal); closes a coverage hole flagged in v1.",
+      "key_industries": [
+        "steel (ArcelorMittal Avilés/Gijón)",
+        "port/logistics",
+        "dairy/cider agriculture",
+        "tourism (Picos de Europa)"
+      ],
+      "population": 1006000,
+      "population_note": "Eurostat 2023 estimate (SADEI), Principado de Asturias NUTS-2 ES12",
+      "nuts_codes": [
+        "ES12"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Oviedo (political capital) / Gijón (largest city, port and industrial hub) — polycentric 'Asturias central' conurbation",
+        "diversified_industry": "steel and heavy industry (ArcelorMittal), port logistics, dairy/cider agri-food, mountain and coastal tourism",
+        "dependent_identity": "distinct Asturian (Bable) language with regional protection, historic Principality of Asturias title, no separatism"
+      },
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Oviedo",
+          "Gijón",
+          "Avilés"
+        ],
+        "central": "Oviedo",
+        "central_coord": [
+          -5.85,
+          43.36
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Junta General del Principado de Asturias",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/asturian",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Atlantic rainfall and pasture-based dairy/cider agriculture give strong water/food scores; post-industrial decline in steel/coal has not been fully replaced, moderating energy and clothing self-sufficiency.",
+        "rationales": {
+          "water": "Atlantic rainfall and mountain catchments give strong, reliable supply.",
+          "food": "Dairy/cider agriculture on Atlantic pasture gives solid self-sufficiency.",
+          "energy": "Post-industrial decline of coal/steel has not been fully replaced by renewables; moderate score."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "SADEI (Sociedad Asturiana de Estudios Económicos e Industriales)",
+        "Asturian (Bable) language-status literature"
+      ]
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "reach": [],
+      "id": "es-extremadura",
+      "name": "Extremadura",
+      "name_local": "Estremaúra",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Mérida",
+      "secondary_centers": [
+        "Badajoz",
+        "Cáceres",
+        "Plasencia"
+      ],
+      "identity_basis": "Historic western-border Autonomous Community with a distinct Extremaduran identity and residual Estremeñu (Astur-Leonese-family) dialect; one of Spain's poorest regions by GDP per capita, with a genuine rural-agrarian identity; closes a coverage hole flagged in v1.",
+      "key_industries": [
+        "agri-food (Iberian ham/dehesa pastoralism, tobacco, cherries)",
+        "solar/renewable energy",
+        "tourism (Mérida Roman heritage)",
+        "textiles (residual)"
+      ],
+      "population": 1057000,
+      "population_note": "Eurostat 2023 estimate (IEEX), Extremadura NUTS-2 ES43",
+      "nuts_codes": [
+        "ES43"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Mérida (regional capital, UNESCO Roman-heritage city) / Badajoz (largest city, cross-border hub with Portugal)",
+        "diversified_industry": "dehesa Iberian-ham pastoralism, tobacco and cherry agriculture, leading solar-power generation capacity, Roman-heritage tourism",
+        "dependent_identity": "distinct Extremaduran regional identity and residual Estremeñu dialect, no separatism"
+      },
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Mérida",
+          "Badajoz"
+        ],
+        "central": "Mérida",
+        "note": "Mérida is the seat of regional government; Badajoz is the larger city and cross-border hub with Portugal (Elvas).",
+        "central_coord": [
+          -6.34,
+          38.92
+        ],
+        "secondary": "Badajoz",
+        "secondary_coord": [
+          -6.97,
+          38.88
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Asamblea de Extremadura",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/castilian",
+      "autarky": {
+        "water": 3,
+        "food": 5,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 2,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "Dehesa pastoralism and leading Spanish solar-power capacity give very high food/energy scores; sparse population and peripheral position give the weakest transport/healthcare infrastructure scores of the new Spanish units.",
+        "rationales": {
+          "water": "Guadiana-basin reservoirs are adequate for a sparsely populated region despite periodic drought.",
+          "food": "Dehesa Iberian-ham pastoralism and cherry/tobacco agriculture give very high food self-sufficiency.",
+          "energy": "Leading Spanish solar-power generation capacity gives an energy-positive position."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "IEEX (Instituto de Estadística de Extremadura)",
+        "Estremeñu/Astur-Leonese dialectology literature"
+      ]
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "reach": [],
+      "id": "es-murcia",
+      "name": "Murcia",
+      "name_local": "Región de Murcia",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Murcia",
+      "secondary_centers": [
+        "Cartagena",
+        "Lorca"
+      ],
+      "identity_basis": "Distinct Murcian identity and Panocho/Murciano dialect on the southeastern Mediterranean coast; a major intensive-agriculture export economy ('Europe's orchard'); closes a coverage hole flagged in v1.",
+      "key_industries": [
+        "intensive horticulture/agri-export",
+        "port/logistics (Cartagena)",
+        "renewable energy",
+        "tourism (Mar Menor coast)"
+      ],
+      "population": 1551000,
+      "population_note": "Eurostat 2023 estimate (CREM), Región de Murcia NUTS-2 ES62",
+      "nuts_codes": [
+        "ES62"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Murcia — metro ~700k, regional capital and university city; Cartagena as historic naval/port hub",
+        "diversified_industry": "intensive horticultural export agriculture, Cartagena naval/commercial port and petrochemicals, growing solar/wind energy",
+        "dependent_identity": "distinct Murcian (Panocho) identity, no separatism"
+      },
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Murcia"
+        ],
+        "central": "Murcia",
+        "central_coord": [
+          -1.13,
+          37.98
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Asamblea Regional de Murcia",
+        "note": "Spanish Autonomous Community with its own Statute of Autonomy and unicameral parliament."
+      },
+      "lang_family": "romance/castilian",
+      "autarky": {
+        "water": 1,
+        "food": 4,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Structural water scarcity (Tagus-Segura transfer dependence, Mar Menor eutrophication crisis) is the region's binding constraint despite very high horticultural export output and strong solar potential.",
+        "rationales": {
+          "water": "Structural scarcity (Tagus-Segura transfer dependence, Mar Menor crisis) is the region's clear binding constraint.",
+          "food": "Intensive horticultural export agriculture ('Europe's orchard') gives very high output despite the water stress.",
+          "energy": "Strong solar/wind buildout gives above-average generation capacity."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "CREM (Centro Regional de Estadística de Murcia)",
+        "Panocho/Murciano dialectology literature"
+      ]
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": "Spanish exclaves on the North African coast; discontiguous with mainland Spain; sovereignty disputed by Morocco.",
+      "conflict_flags": [
+        {
+          "id": "ceuta-melilla-morocco-sovereignty",
+          "description": "Morocco claims sovereignty over both Ceuta and Melilla as territories to be decolonized/reintegrated; Spain administers them as autonomous cities. Flagged, not adjudicated.",
+          "zone_nuts_codes": [
+            "ES63",
+            "ES64"
+          ]
+        }
+      ],
+      "nuts1_disagreement": null,
+      "reach": [],
+      "id": "es-ceuta-melilla",
+      "name": "Spanish North-African territories",
+      "name_local": "Ceuta y Melilla",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Ceuta",
+      "secondary_centers": [
+        "Melilla"
+      ],
+      "identity_basis": "Two Spanish autonomous cities on the North African coast (Ceuta ES63, Melilla ES64), combined into one special-status unit per project mandate; each fails the independent-scale urban-hub and diversified-industry criteria comparable to the microstate exceptions, and both are geographically discontiguous exclaves rather than part of contiguous Iberia — the v1 reasoning for exclusion is preserved here, but schema v2 mandates a special_status unit rather than an outright drop, matching the dashed-border treatment given to Gibraltar, Vorarlberg, etc.",
+      "key_industries": [
+        "port/customs trade (land border with Morocco)",
+        "fishing",
+        "public administration/military garrison",
+        "tourism"
+      ],
+      "population": 169000,
+      "population_note": "Eurostat 2023 estimate (INE), sum of Ciudad de Ceuta (ES63, ~83,000) + Ciudad de Melilla (ES64, ~86,000)",
+      "nuts_codes": [
+        "ES63",
+        "ES64"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Ceuta and Melilla are each single-city exclaves with no independent metro area beyond their municipal footprint",
+        "diversified_industry": "cross-border land-customs trade with Morocco, fishing, public-administration/garrison employment; weak formal industrial diversification, comparable to the microstate exceptions",
+        "dependent_identity": "Spanish autonomous-city status, discontiguous exclave geography, live sovereignty dispute with Morocco"
+      },
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Ceuta",
+          "Melilla"
+        ],
+        "central": "Ceuta",
+        "note": "Non-contiguous twin exclaves ~350km apart along the Moroccan coast; administratively equal, Ceuta listed first by convention (larger of the two land borders).",
+        "central_coord": [
+          -5.31,
+          35.89
+        ],
+        "secondary": "Melilla",
+        "secondary_coord": [
+          -2.94,
+          35.29
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Asamblea de Ceuta + Asamblea de Melilla",
+        "note": "Autonomous cities (not full Autonomous Communities); each has an Asamblea with more limited competencies than a Comunidad Autónoma parliament — borderline case, included per the parliament rule but flagged as a lesser degree of self-government."
+      },
+      "lang_family": "romance/castilian",
+      "autarky": {
+        "water": 2,
+        "food": 1,
+        "shelter": 2,
+        "energy": 1,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 1,
+        "composite": 1.7,
+        "rationale": "Small, discontiguous exclaves with essentially no domestic agriculture, energy generation, or manufacturing base; near-total dependence on mainland Spain/Morocco supply lines gives the lowest composite score in this dataset.",
+        "rationales": {
+          "water": "No independent catchment of consequence; both exclaves depend on desalination/mainland supply.",
+          "food": "Essentially no domestic agriculture; near-total import dependence across the land border with Morocco or by sea.",
+          "energy": "No domestic generation; entirely grid/fuel-import dependent for two small enclave cities."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "INE (Instituto Nacional de Estadística)",
+        "Ceuta/Melilla sovereignty-dispute literature"
+      ]
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "CNTR",
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": "British Overseas Territory on the southern tip of Iberia; sovereignty disputed by Spain; distinct micro-jurisdiction with own Parliament, legal system, and currency.",
+      "conflict_flags": [
+        {
+          "id": "gibraltar-spain-sovereignty",
+          "description": "Spain claims sovereignty over Gibraltar (ceded to Britain in perpetuity under the 1713 Treaty of Utrecht, but Spain disputes this); Gibraltarians have twice rejected shared/Spanish sovereignty by referendum (1967, 2002). Flagged, not adjudicated.",
+          "zone_nuts_codes": [
+            "GI"
+          ]
+        }
+      ],
+      "nuts1_disagreement": null,
+      "reach": [],
+      "id": "gibraltar",
+      "name": "Gibraltar",
+      "name_local": "Gibraltar",
+      "countries": [
+        "GI"
+      ],
+      "urban_core": "Gibraltar",
+      "secondary_centers": [],
+      "identity_basis": "British Overseas Territory (population ~32,700) at the southern tip of the Iberian Peninsula; distinct Llanito (English-Spanish code-switching) vernacular culture; self-governing with its own Parliament since 1969/2006 Constitution; a live sovereignty dispute with Spain (referenda 1967/2002 both rejected Spanish sovereignty or shared sovereignty). Geometry sourced from the CNTR file (CNTR_ID 'GI'); no NUTS code exists for Gibraltar since it is not a Spanish or EU-NUTS unit — resolved without needing the UK NUTS2021 fallback path.",
+      "key_industries": [
+        "financial services/online gaming",
+        "port/bunkering",
+        "tourism",
+        "shipping registry"
+      ],
+      "population": 32700,
+      "population_note": "2023 Gibraltar Government census estimate",
+      "nuts_codes": [
+        "GI"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Gibraltar (the entire territory is effectively a single dense urban settlement around the Rock)",
+        "diversified_industry": "financial services and online gaming (major revenue base), port bunkering/ship supply, tourism, shipping registry",
+        "dependent_identity": "self-governing British Overseas Territory, distinct Llanito culture, historically dependent on the UK rather than seeking independence; live sovereignty dispute with Spain kept as context, not adjudicated"
+      },
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Gibraltar"
+        ],
+        "central": "Gibraltar",
+        "central_coord": [
+          -5.35,
+          36.14
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Parliament of Gibraltar",
+        "note": "British Overseas Territory with its own directly-elected 17-member Parliament and Government under the 2006 Constitution."
+      },
+      "lang_family": "germanic/english",
+      "autarky": {
+        "water": 2,
+        "food": 1,
+        "shelter": 2,
+        "energy": 1,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 1,
+        "composite": 1.9,
+        "rationale": "A 6.7 km² territory with essentially no domestic agriculture, energy generation, or manufacturing; near-total dependence on imports across the land border with Spain and by sea gives the lowest food/energy/clothing scores in the dataset alongside Ceuta-Melilla.",
+        "rationales": {
+          "water": "No natural freshwater source of consequence; historically reliant on rock-catchment cisterns, now desalination.",
+          "food": "No domestic agriculture on a 6.7 km² territory; entirely import-dependent across the land border with Spain.",
+          "energy": "No domestic generation; imported fuel/grid power for the entire territory."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO CNTR_RG_20M_2024 (CNTR_ID: GI)",
+        "Gibraltar Government statistics office",
+        "Gibraltar Constitution Order 2006"
+      ]
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "reach": [],
+      "id": "it-basilicata",
+      "name": "Basilicata",
+      "name_local": "Basilicata / Lucania",
+      "countries": [
+        "IT"
+      ],
+      "urban_core": "Potenza",
+      "secondary_centers": [
+        "Matera"
+      ],
+      "identity_basis": "Southern Italian region (historically Lucania) between Campania, Puglia, and Calabria; Matera's Sassi UNESCO district and its 2019 European Capital of Culture status give it a genuine urban-cultural hub despite the region's small population; v1 explicitly flagged this region as 'a strong candidate for inclusion' and it is added here to close a coverage hole and satisfy the schema v2 blocking coverage test.",
+      "key_industries": [
+        "oil/gas extraction (Val d'Agri, Italy's largest onshore field)",
+        "automotive (Stellantis Melfi)",
+        "agri-food (wine, olive oil)",
+        "tourism (Matera Sassi)"
+      ],
+      "population": 536000,
+      "population_note": "Eurostat 2023 estimate (ISTAT), Basilicata NUTS-2 ITF5",
+      "nuts_codes": [
+        "ITF5"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Matera — UNESCO World Heritage Sassi district, 2019 European Capital of Culture; Potenza as regional political capital",
+        "diversified_industry": "Val d'Agri onshore oil/gas field (Italy's largest), Stellantis automotive assembly (Melfi), viticulture/olive-oil agri-food, cultural tourism",
+        "dependent_identity": "distinct Lucanian regional identity, own regional government, no separatism"
+      },
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Potenza",
+          "Matera"
+        ],
+        "central": "Potenza",
+        "note": "Potenza is the political capital; Matera is the internationally recognized cultural hub (2019 ECoC).",
+        "central_coord": [
+          15.81,
+          40.64
+        ],
+        "secondary": "Matera",
+        "secondary_coord": [
+          16.61,
+          40.67
+        ]
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Consiglio regionale della Basilicata",
+        "note": "Italian region with its own Consiglio regionale (regional council/parliament)."
+      },
+      "lang_family": "romance/italian",
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 2,
+        "energy": 4,
+        "transportation": 2,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 2.7,
+        "rationale": "Domestic oil/gas extraction gives an unusually high energy score for a small southern Italian region; mountainous, sparsely connected terrain and thin healthcare infrastructure are the binding constraints, similar to Calabria.",
+        "rationales": {
+          "water": "Apennine headwaters (including the Pertusillo reservoir) give adequate supply for a low-density region.",
+          "food": "Viticulture and olive-oil agriculture give solid self-sufficiency.",
+          "energy": "The Val d'Agri field (Italy's largest onshore oil/gas deposit) gives Basilicata an unusually energy-positive position for its size."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "ISTAT",
+        "Matera 2019 European Capital of Culture documentation"
+      ]
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "reach": [],
+      "id": "pt-alentejo",
+      "name": "Alentejo",
+      "name_local": "Alentejo",
+      "countries": [
+        "PT"
+      ],
+      "urban_core": "Évora",
+      "secondary_centers": [
+        "Beja",
+        "Portalegre"
+      ],
+      "identity_basis": "Vast, sparsely populated rural-agrarian region south and east of the Tagus; distinct Alentejano identity (cante alentejano UNESCO-listed polyphonic singing, cork/wine dehesa-style latifundio economy); v1 explicitly assessed and left this out for a weak urban hub (Évora under 55,000). Authored as its OWN unit here rather than extending Lisbon southward: identity-true reasoning holds that Alentejo's rural-agrarian, cork/wine cultural character is genuinely distinct from capital-region Lisbon, and stretching Lisbon's cultural unit over it would misrepresent the region rather than honestly reflect a weak-but-real identity (same standard as Calabria/Algarve treatment in v1). Alentejo IS folded into Lisbon at the representation (groupings) layer, which addresses the 'Lisbon cover the south' administrative-gravity argument without flattening the cultural map.",
+      "key_industries": [
+        "cork production (world's largest producer region)",
+        "wine (Alentejo DOC)",
+        "extensive agriculture/livestock",
+        "solar energy"
+      ],
+      "population": 700000,
+      "population_note": "Approximate 2023 estimate; Portugal's 2024 NUTS-2 boundary revision changed Alentejo's exact composition (Lezíria do Tejo moved to Oeste e Vale do Tejo) — figure not independently reconciled against a post-revision Eurostat table in this pass, flagged for verification.",
+      "nuts_codes": [
+        "PT1C"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Évora — UNESCO World Heritage city and regional cultural capital, though under 55,000 population — the weakest urban-hub fit added in this wave, flagged honestly rather than silently merged",
+        "diversified_industry": "world's largest cork-producing region, Alentejo DOC wine, extensive livestock/cereal agriculture, leading solar-power generation capacity",
+        "dependent_identity": "distinct Alentejano rural identity (UNESCO-listed cante alentejano singing tradition), no separatism; added for coverage and identity reasons, folded into Lisbon at the representation layer only"
+      },
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Évora"
+        ],
+        "central": "Évora",
+        "central_coord": [
+          -7.91,
+          38.57
+        ]
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "Mainland Portugal unitary structure — no regional parliament; unit added purely for coverage (blocking coverage-test gap) and Alentejo's distinct rural-agrarian identity."
+      },
+      "lang_family": "romance/portuguese",
+      "autarky": {
+        "water": 3,
+        "food": 5,
+        "shelter": 2,
+        "energy": 5,
+        "transportation": 2,
+        "hygiene_healthcare": 2,
+        "clothing": 1,
+        "composite": 2.9,
+        "rationale": "Extensive dehesa-style agriculture (cork, wine, livestock) and leading solar-power capacity give very high food/energy scores; Portugal's most sparsely populated mainland region has the thinnest healthcare/transport infrastructure and virtually no clothing/textile manufacturing base.",
+        "rationales": {
+          "water": "Alqueva reservoir (Europe's largest artificial lake) gives strong irrigation and drinking-water capacity.",
+          "food": "Extensive dehesa-style cork/wine/livestock agriculture gives very high food self-sufficiency.",
+          "energy": "Leading Portuguese solar-power generation capacity gives an energy-positive position."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "INE (Instituto Nacional de Estatística, Portugal)",
+        "UNESCO cante alentejano inscription documentation"
+      ]
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": null,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "reach": [],
+      "id": "pt-centro",
+      "name": "Centro",
+      "name_local": "Centro (Portugal)",
+      "countries": [
+        "PT"
+      ],
+      "urban_core": "Coimbra",
+      "secondary_centers": [
+        "Aveiro",
+        "Viseu",
+        "Leiria"
+      ],
+      "identity_basis": "Central mainland Portuguese NUTS-2 unit between Porto/Norte and Lisbon; Coimbra's university (Portugal's oldest, founded 1290, UNESCO World Heritage) is a real cultural hub, though v1 assessed the surrounding NUTS-2 aggregation as lacking Porto/Norte's unified regional identity. Authored here as its own unit purely to close a blocking coverage-test gap (Centro is the largest of the three previously-uncovered mainland Portuguese NUTS-2 areas); its comparatively diffuse, polycentric character (Coimbra/Aveiro/Viseu/Leiria, no single dominant city) is stated honestly rather than invented.",
+      "key_industries": [
+        "university/research (Coimbra)",
+        "ceramics/glass (Marinha Grande, Aveiro)",
+        "agri-food (Bairrada wine, forestry/paper pulp)",
+        "tourism"
+      ],
+      "population": 2200000,
+      "population_note": "Approximate 2023-era estimate under pre-2024 Centro boundaries; the 2024 NUTS-2 revision changed composition (absorbing/losing units versus the prior Região Centro) — figure not independently reconciled against a post-revision Eurostat table in this pass, flagged for verification.",
+      "nuts_codes": [
+        "PT19"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Coimbra — Portugal's oldest university (1290), UNESCO World Heritage city; genuinely polycentric alongside Aveiro/Viseu/Leiria with no single dominant metro",
+        "diversified_industry": "university/research economy, ceramics and glass manufacturing (Marinha Grande crystal, Aveiro), forestry/paper-pulp, Bairrada wine agriculture",
+        "dependent_identity": "real but diffuse regional identity compared to Porto/Norte's; added primarily to close the mainland-Portugal coverage gap rather than on a strong independent-identity claim, stated honestly"
+      },
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Coimbra",
+          "Aveiro",
+          "Viseu",
+          "Leiria"
+        ],
+        "central": "Coimbra",
+        "central_coord": [
+          -8.42,
+          40.21
+        ]
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "Mainland Portugal unitary structure — no regional parliament; unit added purely for coverage (blocking coverage-test gap); Coimbra university-city identity is real but comparatively diffuse across the NUTS-2 unit."
+      },
+      "lang_family": "romance/portuguese",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.3,
+        "rationale": "Atlantic-facing agriculture/forestry and a diversified manufacturing base (ceramics, glass, paper) give solid, unremarkable-but-adequate scores across most dimensions, consistent with the region's real character as a productive but less internationally distinctive part of mainland Portugal.",
+        "rationales": {
+          "water": "Atlantic-facing river basins (Mondego, Vouga) give reliable, unremarkable supply.",
+          "food": "Forestry, Bairrada viticulture, and mixed agriculture give solid self-sufficiency.",
+          "energy": "No major domestic generation; ceramics/glass/paper manufacturing draws on the national grid."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "INE (Instituto Nacional de Estatística, Portugal)",
+        "University of Coimbra UNESCO inscription documentation"
+      ]
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "default_visible": false,
+      "special_status": null,
+      "conflict_flags": [
+        {
+          "id": "greater-castile-madrid-exclusion",
+          "description": "Historically, Comunidad de Madrid was carved out of 'New Castile'/La Mancha territory (formalized 1833, autonomous community 1983). This composite deliberately excludes Madrid to preserve the site's Catalonia-Madrid flagship framing; a historically 'fuller' Castile would include it. Flagged rather than silently resolved.",
+          "zone_nuts_codes": [
+            "ES30"
+          ]
+        }
+      ],
+      "nuts1_disagreement": null,
+      "reach": [],
+      "id": "es-greater-castile",
+      "name": "Greater Castile (unified)",
+      "name_local": "Castilla unida",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Valladolid",
+      "secondary_centers": [
+        "Toledo",
+        "León",
+        "Salamanca",
+        "Albacete"
+      ],
+      "identity_basis": "Non-congruent composite union of León(Castile) + La Mancha(Castile) — i.e. the historic 'Old Castile' (Castilla la Vieja, NUTS-2 ES41) plus 'New Castile' (Castilla la Nueva, NUTS-2 ES42) — representing the pre-1833-provincial-reform, pre-Madrid-secession idea of a single Castilian cultural bloc. Comunidad de Madrid (ES30) is DELIBERATELY EXCLUDED even though it was historically carved out of New Castile/La Mancha in 1833: Madrid is authored as its own flagship capital-region unit (monopole, site-framing counterweight to Catalonia) and reuniting it here would contradict that mandate and the map's Catalonia-Madrid tension example. This is the 'connected' view of the leon-castile variant set.",
+      "key_industries": [
+        "automotive (Renault Valladolid, Stellantis Figueruelas)",
+        "agri-food/cereals",
+        "wine (Ribera del Duero, La Mancha)",
+        "solar/wind energy"
+      ],
+      "population": 4433000,
+      "population_note": "Sum of es-castile-leon (ES41, ~2,383,000) + es-castile-la-mancha (ES42, ~2,050,000); non-default composite, Madrid (ES30) deliberately excluded.",
+      "nuts_codes": [
+        "ES41",
+        "ES42"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Valladolid (largest city of the union) — no single unified capital exists for this composite",
+        "diversified_industry": "combined cereal/wine agriculture, automotive manufacturing across both member territories",
+        "dependent_identity": "represents a historical pan-Castilian identity frame rather than a governing reality; both member Autonomous Communities retain their own separate statutes and parliaments"
+      },
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Valladolid",
+          "Toledo",
+          "León",
+          "Salamanca",
+          "Albacete"
+        ],
+        "central": "Valladolid",
+        "central_coord": [
+          -4.72,
+          41.65
+        ]
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "Non-governing composite; the two member Autonomous Communities each retain their own real parliament (Cortes de Castilla y León, Cortes de Castilla-La Mancha)."
+      },
+      "lang_family": "romance/castilian",
+      "autarky": {
+        "water": 3,
+        "food": 5,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Combines two high-food-autarky cereal/wine plateaus; scores approximate the population-weighted average of the two member records.",
+        "rationales": {
+          "water": "Combines two plateau basins (Duero + Mancha aquifer); adequate on average though the Mancha side is structurally over-exploited.",
+          "food": "Combines two of the dataset's highest-food-scoring records (cereal breadbasket + wine plain).",
+          "energy": "Combines Castile-León's wind buildout with Castile-La Mancha's solar buildout for a solidly positive composite."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Junta de Castilla y León statistical office",
+        "Instituto de Estadística de Castilla-La Mancha",
+        "1833 Javier de Burgos provincial-division historical literature"
+      ]
+    },
+    {
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "single_unit_exception": false,
+      "default_visible": false,
+      "special_status": null,
+      "conflict_flags": [
+        {
+          "id": "madrid-extended-commuter-belt-overreach",
+          "description": "Using full NUTS-3 provinces (Segovia, Ávila, Guadalajara, Toledo) rather than finer municipal/comarca geometry means this record includes large rural areas of each province far outside any realistic daily-commute shed of Madrid. No finer NUTS geometry is available in the index; flagged rather than silently corrected, matching the existing basque-unified/FRI15 precedent.",
+          "zone_nuts_codes": [
+            "ES416",
+            "ES411",
+            "ES424",
+            "ES425"
+          ]
+        }
+      ],
+      "nuts1_disagreement": null,
+      "reach": [],
+      "id": "es-madrid-extended",
+      "name": "Madrid & Surroundings",
+      "name_local": "Madrid y su entorno",
+      "countries": [
+        "ES"
+      ],
+      "urban_core": "Madrid",
+      "secondary_centers": [
+        "Segovia",
+        "Ávila",
+        "Guadalajara",
+        "Toledo"
+      ],
+      "identity_basis": "Extended commuter-belt variant of Madrid, reaching into the nearest NUTS-3 provinces of both neighboring Castiles that function as Madrid's daily-commuter/exurban catchment: Segovia (ES416) and Ávila (ES411) from Castile-León to the northwest, Guadalajara (ES424) and Toledo (ES425) from Castile-La Mancha to the east/south. Codes are deliberately at NUTS-3 (province) granularity, not the coarser NUTS-2 Autonomous Community level, to avoid grossly overstating the commuter belt by annexing entire neighboring regions. This is the 'with-surroundings' view of the madrid variant set.",
+      "key_industries": [
+        "finance/ICT (Madrid core)",
+        "logistics/warehousing (exurban belt)",
+        "commuter-residential development",
+        "agri-food (surrounding provinces)"
+      ],
+      "population": 6901000,
+      "population_note": "Comunidad de Madrid (ES300, ~6,751,000) + approximate combined population of the four bordering commuter-belt NUTS-3 provinces (Segovia+Ávila+Guadalajara+Toledo, order-of-magnitude ~150,000-800,000 depending on how much of each large, mostly-rural province is actually within Madrid's functional commute-shed; not independently reconciled against province-level Eurostat tables in this pass, flagged for verification).",
+      "nuts_codes": [
+        "ES300",
+        "ES416",
+        "ES411",
+        "ES424",
+        "ES425"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Madrid — same national-capital hub as the congruent es-madrid record",
+        "diversified_industry": "same as es-madrid, plus the surrounding provinces' logistics/warehousing and agri-food capacity",
+        "dependent_identity": "functional commuter-belt extension, not a distinct identity claim; represents Madrid's real metropolitan-region gravity beyond the Comunidad de Madrid's own administrative boundary"
+      },
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Madrid"
+        ],
+        "central": "Madrid",
+        "central_coord": [
+          -3.7,
+          40.42
+        ]
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "Non-governing composite; Madrid retains its own Asamblea, the bordering provinces belong to Castile-León/Castile-La Mancha's respective parliaments."
+      },
+      "lang_family": "romance/castilian",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 5,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.3,
+        "rationale": "Adding four largely rural/agricultural provinces to Madrid's core slightly raises food self-sufficiency relative to the congruent record; transport/healthcare remain capital-region-dominated scores.",
+        "rationales": {
+          "water": "Adds four largely rural provinces' catchments to Madrid's reservoir system; modest net improvement.",
+          "food": "Adding rural/agricultural provinces slightly raises food self-sufficiency relative to the congruent Madrid record.",
+          "energy": "Still dominated by Madrid's own import-dependent profile; the added provinces contribute little generation capacity."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "INE (Instituto Nacional de Estadística)",
+        "Comunidad de Madrid regional statistics office"
+      ]
+    }
+  ]
+}

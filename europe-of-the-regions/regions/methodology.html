@@ -1,0 +1,1124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Methodology — meta-democracy.org</title>
+<meta name="description" content="How the practical regions of Europe of the Regions — fine-grained cultural units plus 40–70 representation groupings — were defined, re-drawn for v0.1.2, challenged, and sourced.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="meta-democracy.org">
+<meta property="og:title" content="Methodology — meta-democracy.org">
+<meta property="og:description" content="How the practical regions of Europe of the Regions — fine-grained cultural units plus 40–70 representation groupings — were defined, re-drawn for v0.1.2, challenged, and sourced.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Methodology — meta-democracy.org">
+<meta name="twitter:description" content="How the practical regions of Europe of the Regions — fine-grained cultural units plus 40–70 representation groupings — were defined, re-drawn for v0.1.2, challenged, and sourced.">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/methodology.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="../">meta-democracy.org</a>
+  <nav>
+    <a href="./">Map</a>
+    <a href="table">Table</a>
+    <a href="methodology" aria-current="page">Methodology</a>
+    <a href="../">Home</a>
+  </nav>
+</header>
+
+<main>
+  <div class="page-intro">
+    <h1>Methodology</h1>
+    <p class="tagline">How the practical regions of Europe of the Regions were drawn, where the layers disagreed, and where we disagree with ourselves — updated for <strong>draft_v0.2.2</strong>'s two-level model (<span id="stat-cultural-units">…</span> fine-grained cultural units grouped into <span id="stat-groupings">…</span> representation groupings, target 40–70).</p>
+  </div>
+
+  <nav class="toc" aria-label="Table of contents">
+    <h2>On this page</h2>
+    <ol>
+      <li><a href="#approach">1. Approach &amp; assumptions</a></li>
+      <li><a href="#priority-axes">2. Priority axes &amp; re-drawn boundaries (v0.1.2)</a></li>
+      <li><a href="#two-level-model">3. Two-level model: cultural units &amp; representation groupings</a></li>
+      <li><a href="#autarky-beta">4. Autarky index: per-dimension rationale &amp; beta dimensions</a></li>
+      <li><a href="#parliament-rule">5. Parliament rule &amp; exceptions</a></li>
+      <li><a href="#variant-sets">6. Variant sets: alternative views</a></li>
+      <li><a href="#pushback">7. The six push-back challenges</a></li>
+      <li><a href="#disagreements">8. Explicit disagreements with the spec</a></li>
+      <li><a href="#nuts1-comparison">9. NUTS-1 comparison</a></li>
+      <li><a href="#limitations">10. Data limitations</a></li>
+      <li><a href="#sources">11. Sources</a></li>
+      <li><a href="#kaliningrad">12. Kaliningrad note</a></li>
+      <li><a href="#changelog-v012">13. Changelog — v0.2.2 draft</a></li>
+    </ol>
+  </nav>
+
+  <section id="approach" class="methodology-section">
+    <h2>1. Approach &amp; assumptions</h2>
+
+    <p>Every unit in this dataset sits deliberately between two administrative
+    scales that already exist: NUTS&nbsp;0 (the nation-state) and the official
+    NUTS&nbsp;1 macro-region. We call the units in between <strong>practical
+    regions</strong> — not a new layer of government, but a candidate map of
+    where cultural-economic coherence already exists, whether or not any
+    current boundary draws it that way.</p>
+
+    <h3>Why non-national units</h3>
+    <p>This dataset is not a re-slicing of the nation-state at a smaller
+    grain. It pursues two aims together: <strong>cultural unity</strong> —
+    the cultural-units layer described below, identity-true at whatever
+    grain that requires — and <strong>functional self-governance</strong>, the
+    devolution and economic-self-sufficiency case the autarky index (further
+    down this section) exists to measure. Germany is the model worth naming
+    directly: it already operates as at least three centers of gravity with
+    their own economic potential — Berlin, Munich, and Cologne/the
+    Ruhrgebiet — rather than one dominant capital radiating outward. The
+    asymmetry this dataset argues against is the current one, where a small
+    state like Slovenia sits formally equal but practically outweighed next
+    to a state many times its population and voice; the fix is not to make
+    Slovenia bigger, but to work at the scale of far smaller regions
+    everywhere. That rescaling only makes sense together with a strong
+    European identity in its own right — without one, nothing actually
+    changes: national leaders simply become the layer everything gets
+    renegotiated through again, bypassing whatever the regional map says.</p>
+
+    <h3>Input layers</h3>
+    <p>Each region was assembled by triangulating several independent, often
+    disagreeing layers of evidence, rather than any single official source:</p>
+    <ul>
+      <li><strong>Language and dialect</strong> — recognized regional
+      languages and dialect-atlas classifications (e.g. Pellegrini's
+      <em>Carta dei dialetti d'Italia</em>, Wiesinger's East Franconian
+      classification, Kashubian/Silesian/Moravian census self-declarations).</li>
+      <li><strong>Administrative reference</strong> — current NUTS-1/2/3
+      geometry and historic administrative units (duchies, Kingdoms,
+      pre-1990s planning regions) where they carry living identity.</li>
+      <li><strong>Watersheds and valleys</strong> — river-basin and Alpine/fjord
+      topography that structures settlement (e.g. the Rhône-Alpes corridor,
+      Norway's five fjord-culture nodes).</li>
+      <li><strong>Aquatic bioregions (planned layer)</strong> — a finer,
+      hydrology-first classification than the topographic watershed/valley
+      signal above: HydroSHEDS-based drainage-basin bioregions, cross-referenced
+      from Jakob's Unlocking Housing project
+      (<a href="https://idea2.site/unlocking-housing" target="_blank" rel="noopener">idea2.site/unlocking-housing</a>).
+      Not yet integrated into any region-boundary decision in this dataset;
+      planned as a dedicated lens in the map's perspectives panel (alongside
+      the political, linguistic, and self-sufficiency perspectives) once
+      that geometry is exported for this dataset's scope.</li>
+      <li><strong>Commuting basins</strong> — functional urban areas, used to
+      decide how far a metropolitan region's gravity extends (e.g. which Home
+      Counties belong to London's commuter belt versus East Anglia).</li>
+      <li><strong>Urban cultural centers</strong> — the presence of an
+      institution-bearing city (media, universities, regional government)
+      that a region can plausibly organize around.</li>
+    </ul>
+
+    <h3>Inclusion test</h3>
+    <p>A candidate region had to clear a three-part test:</p>
+    <ol>
+      <li>one urban center already functioning as a cultural hub;</li>
+      <li>its own diversified industrial base (not a monoculture);</li>
+      <li>a distinct sub-national identity that is <em>dependent on</em>,
+      not seeking independence from, its national state.</li>
+    </ol>
+    <p>Where the input layers genuinely conflicted — a dialect continuum
+    crossing a national border, a minority-language pocket inside a larger
+    region, a contested internal boundary — the conflict was recorded as a
+    toggleable <strong>conflict zone</strong> (<code>conflict_flags</code> in
+    the data) rather than force-resolved into one boundary. 25 such flags
+    exist across the dataset, from Eupen-Malmedy to Sápmi to Kosovo's internal
+    north.</p>
+
+    <h3>NUTS-vintage policy</h3>
+    <p>Region <code>nuts_codes</code> follow the <strong>GISCO 2024 geometry
+    vintage</strong> (<code>NUTS_RG_20M_2024_4326.geojson</code>), not the 2027
+    xlsx recoding that <code>data/nuts_index.json</code> is drawn from, wherever
+    the two disagree. Three countries' codes were affected: Norway's
+    2024 county geometry (<code>NO02/06/07/08/09/0A1/0A2/0A3</code>) rather
+    than the 2027 sheet's <code>NO0C/0D/0E</code>; Belgium's 2024-vintage
+    <code>BE21/23</code> rather than the 2027 recoding's <code>BE26/27</code>;
+    and Bulgaria's pre-reform <code>BG3/BG4</code> rather than the 2027
+    sheet's <code>BG5/BG51-54</code>. The rule throughout: author against
+    whichever file the pipeline can actually render, and flag the mismatch
+    rather than silently reconcile it.</p>
+
+    <h3>Geometry sources</h3>
+    <ul>
+      <li>GISCO <code>NUTS_RG_20M_2024_4326.geojson</code> — EU27, EFTA,
+      and enlargement/candidate countries (default source).</li>
+      <li>GISCO <code>NUTS_RG_20M_2021_4326.geojson</code> — United Kingdom
+      (post-Brexit UK boundaries no longer ship in the 2024 release) and,
+      for the single mixed-source <code>ireland-unified</code> record, Ireland
+      too, since the 2021 file happens to carry both countries' geometry
+      under one vintage.</li>
+      <li>GISCO <code>CNTR_RG_20M_2024_4326.geojson</code> — country-level
+      polygons for microstates (Andorra, Monaco, San Marino, Vatican City)
+      and for Moldova and Georgia, which have no sub-national NUTS geometry
+      available in this pipeline.</li>
+      <li><code>geoBoundaries-UKR-ADM1</code> (© OpenStreetMap contributors
+      via geoBoundaries, ODbL) — Ukraine's 27 oblast-level units, fetched
+      because GISCO's own NUTS file ships Ukraine as a single undivided
+      country polygon with no SR2024 sub-national breakdown.</li>
+    </ul>
+
+    <h3>Autarky index</h3>
+    <p>Each region carries a 7-dimension self-sufficiency estimate — Water,
+    Food, Shelter, Energy, Transportation, Hygiene &amp; Healthcare, and
+    Clothing — scored 1–5 with a composite equal to the arithmetic mean.
+    <strong>Security and Digital/Connectivity are explicitly out of scope</strong>:
+    the index measures material provisioning capacity, not defensibility or
+    network resilience, and folding either in would have required a
+    different (and much more contested) evidentiary basis.</p>
+    <ul class="autarky-dims">
+      <li>Water</li><li>Food</li><li>Shelter</li><li>Energy</li>
+      <li>Transportation</li><li>Hygiene &amp; Healthcare</li><li>Clothing</li>
+      <li class="out-of-scope">Security (out of scope)</li>
+      <li class="out-of-scope">Digital/Connectivity (out of scope)</li>
+    </ul>
+    <p>Scores are <strong>expert-style estimates, not measurements</strong>.
+    We are explicit about that subjectivity rather than dressing the numbers
+    up as harder than they are: each score carries a one-to-three sentence
+    rationale citing the decisive factor (e.g. a region's water score reflects
+    watershed/reservoir capacity relative to population; energy reflects
+    generation mix and grid dependency), authored per-region rather than
+    derived from a single external statistical series. Composite scores should
+    be read as relative-ranking signals across the dataset, not as validated
+    indices.</p>
+  </section>
+
+  <section id="priority-axes" class="methodology-section">
+    <h2>2. Priority axes &amp; re-drawn boundaries (v0.1.2)</h2>
+    <p>The input-layer list in section 1 is not a flat checklist — the user
+    set an explicit priority ordering for this draft, and v0.1.2's boundary
+    changes (splits, merges, re-homings) were made by re-weighing every
+    contested unit against these axes <strong>in this order</strong>:</p>
+    <ol class="priority-axes-list">
+      <li><strong>Culture &amp; <span lang="ar" dir="rtl">عصبية</span>
+      (<em>ʿaṣabiyya</em>) — Gemeinschaftsgefühl / group identity.</strong> Ibn
+      Khaldūn's term for the social solidarity that binds a group together
+      comes first: does a population actually feel itself to be one thing,
+      independent of where a modern administrative line happens to run?
+      This is the axis that drove the Styria≠Carinthia, Basel/Bern-Mittelland/
+      Romandie Grossregion groupings, Upper Silesia's Ślązacy self-declaration,
+      and the Kashubia/Kuyavia/Warmia-Masuria "fit" gradient (section 6).</li>
+      <li><strong>Einzugsgebiete</strong> (catchment areas) — the functional
+      area a city or region genuinely draws people, commuters, and services
+      from, independent of identity. Used to decide edge cases once identity
+      alone under-determines a boundary (e.g. Deventer's Overijssel/Achterhoek
+      catchment, Preston-Lancaster's dipole).</li>
+      <li><strong>Train lines</strong> — rail corridors as a proxy for lived,
+      everyday connectedness (commuter and intercity), read where identity and
+      catchment both leave a boundary open.</li>
+      <li><strong>Waterways</strong> — rivers and canals as historic trade and
+      settlement corridors (the same logic already underlying the Rhône-Alpes
+      and Mur/Enns-valley cases from v0.1.0).</li>
+      <li><strong>Watersheds</strong> — drainage-basin topography, the
+      lowest-priority tiebreaker, used mainly for Alpine and fjord-culture
+      cases where no stronger signal resolves the line.</li>
+    </ol>
+    <p>Every v0.1.2 boundary change was re-drawn through this lens stack,
+    highest-priority axis first: <em>ʿaṣabiyya</em>/identity as the primary
+    test, catchment areas and transit/water corridors as tiebreakers where
+    identity alone is ambiguous or contested. Where a v0.1.0 boundary already
+    matched this ordering, it was left untouched — the axes are a
+    re-verification method, not a mandate to re-draw everything from scratch.</p>
+  </section>
+
+  <section id="two-level-model" class="methodology-section">
+    <h2>3. Two-level model: cultural units &amp; representation groupings</h2>
+    <p><strong>Philosophy:</strong> define the cultural atoms first, at the
+    finest grain that still passes the inclusion test (section 1) and the
+    priority-axes re-check (section 2) — then, and only then, group those
+    atoms into a separate representation layer sized for practical
+    governance. The two questions — "where does identity actually run?" and
+    "how many seats can a chamber usefully have?" — are answered
+    independently, in that order, so that a representation constraint never
+    quietly overrides an identity finding.</p>
+    <div class="stat-strip" aria-label="Live dataset counts">
+      <div class="stat-box">
+        <span class="stat-value" id="stat-cultural-units-2">…</span>
+        <span class="stat-label">cultural units (default-visible)</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-value" id="stat-composite-units">…</span>
+        <span class="stat-label">alternate-view composites</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-value" id="stat-groupings-2">…</span>
+        <span class="stat-label">representation groupings <span class="target-note">(target 40–70)</span></span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-value" id="stat-variant-sets">…</span>
+        <span class="stat-label">variant sets</span>
+      </div>
+    </div>
+    <p class="live-stat-caveat" id="groupings-live-note">Loading live counts from the current data build…</p>
+    <h3>Cultural units (fine-grained, identity-true)</h3>
+    <p>The <code>data/regions/*.json</code> zone files are the atomic layer:
+    every record that clears the inclusion test on its own <em>ʿaṣabiyya</em>
+    grounds gets its own unit, regardless of how small that makes it relative
+    to a governance-sized region. This is why the dataset now runs to roughly
+    two hundred units rather than converging early on something closer to the
+    40–70 target — that convergence happens one layer up, not here.</p>
+    <h3>Representation groupings (40–70 target)</h3>
+    <p><code>data/groupings.json</code> partitions every default-visible
+    cultural unit into exactly one grouping — singletons are allowed where a
+    unit is already large enough (or too distinct, e.g. a sovereign
+    microstate) to stand alone. This layer, not the cultural-unit layer, is
+    what the original 40–70 target was always meant to size. Content agents
+    working zone-by-zone initially overshot this target substantially (a
+    zone-by-zone artifact, documented candidly in <a href="#changelog-v012">
+    the v0.1.2 changelog</a>); a dedicated cross-zone consolidation pass
+    brings the dataset-wide total toward the target range. Read the number in
+    the stat strip above as authoritative for whichever build served this
+    page, not the prose here.</p>
+    <h3>The map switch</h3>
+    <p>The map exposes a <strong>Cultural units ⇄ Representation groups</strong>
+    master switch. In cultural-unit mode every atom renders with its own
+    boundary and label. In representation mode, grouping members visually
+    dissolve into their parent grouping — a thick shared outer border replaces
+    the internal seams, and a single label covers the whole grouping — without
+    deleting or renaming the underlying cultural units, which remain the
+    dataset's source of truth.</p>
+
+    <h3>EP delegation model: population balance across representation groupings</h3>
+    <p>v0.1.2 keeps the European Parliament chamber as-is rather than
+    proposing a new institution — the change is in how seats would be
+    allocated: each representation grouping sends a roughly equal
+    delegation, instead of national delegations sized by degressive
+    proportionality. The design target for the resulting population spread
+    is a <strong>max factor of 3–7 between the largest and smallest
+    grouping, 10 at the absolute outside</strong> — tighter than today's EP,
+    where Germany's ~96 seats against Malta's 6 already implies a 16×
+    spread by seat count, and the per-seat population gap runs to roughly
+    10× (Malta ≈86,000 people per seat vs. Germany ≈860,000).</p>
+    <p>Amendment A3 (round-4 feedback) adds a second grouping layer
+    purpose-built to hit that target, alongside the original affinity-based
+    layer, and Amendment A4.1 (round-5 feedback) adds a third, state-boundary
+    variant: <code>data/grouping_schemes.json</code> carries the original
+    <strong>Affinity (66)</strong> scheme (culturally-driven, unchanged from
+    the count-target discussion above) plus however many further schemes —
+    such as <strong>Balanced</strong>, engineered so its non-exempt max
+    factor lands at or below 7×, and A4.1's balanced-national variant, which
+    additionally forbids any grouping from crossing a state border — the
+    current data build defines. Groupings a scheme marks
+    <code>factor_exempt</code> (sovereign microstates, exclaves, and similar
+    singletons) sit outside that scheme's factor calculation and are listed
+    separately as special status, rather than dominating the spread the way
+    they did under the single-scheme analysis. A scheme may additionally mark
+    a <code>sovereign_floor</code> list (A4.1 — small sovereign states that
+    cannot merge upward without crossing a state border): those groupings
+    are excluded from the factor too, but labeled distinctly as "sovereign
+    minimum — cannot merge without crossing a border" rather than "special
+    status", since they represent a structural floor rather than an
+    exemption. Every scheme's live stats are shown side by side below,
+    generated from the data file rather than a fixed pair; the full
+    data-driven breakdown lives on <a href="table">the data table
+    page</a>.</p>
+    <div id="scheme-factor-comparison" class="scheme-factor-columns">
+      <p class="live-stat-caveat">Loading live population-balance analysis…</p>
+    </div>
+  </section>
+
+  <section id="autarky-beta" class="methodology-section">
+    <h2>4. Autarky index: per-dimension rationale &amp; beta dimensions</h2>
+    <p>Section 1 already describes the 7-dimension autarky index and its
+    composite score. v0.1.2 makes two additions on top of that unchanged
+    foundation.</p>
+    <h3>Required per-dimension rationale</h3>
+    <p>Every region's <code>autarky.rationales</code> object now carries a
+    <strong>required</strong>, non-empty, one-sentence score basis for the
+    three dimensions the user singled out as most load-bearing —
+    <strong>water</strong>, <strong>food</strong>, and <strong>energy</strong>
+    — citing the concrete factor behind the number (a watershed, a specialty
+    export, a hydropower/grid-dependency fact). Rationales for the remaining
+    four dimensions are optional and present wherever a region's authoring
+    agent had a decisive factor worth recording. This is additive to, not a
+    replacement for, the single-sentence <code>autarky.rationale</code> field
+    already described in section 1.</p>
+    <h3>Beta dimensions</h3>
+    <p>Four of the seven dimensions are marked <strong>beta</strong> in this
+    build: <strong>shelter</strong>, <strong>transportation</strong>,
+    <strong>hygiene &amp; healthcare</strong>, and <strong>clothing</strong>.
+    "Beta" here means the dimension is judged <em>easily importable within
+    the continent</em> — a shortfall is a logistics/trade problem, not a
+    structural one, unlike water or food where geography sets a hard local
+    ceiling. Selecting a non-composite beta dimension in the detail panel
+    shows a small box under the region name with that dimension's score basis
+    and a "beta" badge, so the distinction is visible at the point of use, not
+    only in this document.</p>
+    <h3>Hygiene &amp; Healthcare, redefined</h3>
+    <p>This dimension is redefined for v0.1.2 as <strong>the region's
+    industrial capacity to produce the medical and sanitation wares it needs</strong>
+    (masks, basic pharmaceuticals, dressings, water-treatment chemicals,
+    hospital consumables) — not bed counts, staffing ratios, or clinical
+    outcomes, which belong to a health-<em>system</em>-quality question this
+    index does not attempt to answer. A region can score low here while
+    having excellent hospitals, if it manufactures none of what those
+    hospitals consume.</p>
+    <h3>Honest subjectivity, unchanged</h3>
+    <p>The section-1 caveat still applies without softening: these remain
+    <strong>expert-style estimates, not measurements</strong>, read as
+    relative-ranking signals rather than validated indices. Adding required
+    rationales makes the basis for each score legible and checkable — it does
+    not make the scores themselves more objective.</p>
+  </section>
+
+  <section id="parliament-rule" class="methodology-section">
+    <h2>5. Parliament rule &amp; exceptions</h2>
+    <p><strong>Rule:</strong> any region with its own parliament gets its own
+    cultural unit. A parliament — a directly elected legislative body with
+    genuine law-making competence — is treated as the single strongest
+    available proof that a population already governs itself as one thing,
+    stronger than dialect maps or catchment analysis alone. Applying this
+    rule swept every in-scope state: it resolved several v0.1.0 parsimony
+    merges that had been flagged as open tensions (Rhineland-Palatinate≠
+    Saarland, Berlin≠Brandenburg, Styria≠Carinthia, Salzburg≠Upper Austria),
+    and it is why Bosnia and Herzegovina's three entity parliaments
+    (Republika Srpska, the Federation, Brčko) each now get their own unit.</p>
+    <p>The rule is not applied blindly, though: most of Europe's unitary
+    states (France, Netherlands, Nordics, Ireland, Poland's, Czechia's and
+    Slovakia's sub-national tiers, most of Southeastern Europe) have
+    <strong>no</strong> regional parliament at all below the national
+    legislature — county/kraj/voivodeship/oblast councils are deconcentrated
+    administration, not legislatures, and the rule simply does not fire there.
+    The exceptions below are the opposite case: units where a real,
+    legislative sub-national parliament <em>does</em> exist, but the cultural
+    unit was deliberately kept spanning more than one of them anyway — the
+    user asked explicitly to see these, rather than have them absorbed
+    silently into the "it's fine, don't worry about it" pile.</p>
+    <div class="table-controls">
+      <label for="parliament-exceptions-search" class="sr-only">Filter exceptions</label>
+      <input type="search" id="parliament-exceptions-search" placeholder="Filter by region, country, or parliament…">
+      <span class="row-count" id="parliament-exceptions-row-count" aria-live="polite">Loading…</span>
+    </div>
+    <div class="table-scroll">
+      <table class="parliament-exceptions-table" id="parliament-exceptions-table">
+        <caption>Cultural units that deliberately span more than one real sub-national parliament</caption>
+        <thead>
+          <tr>
+            <th scope="col">Unit</th>
+            <th scope="col">Parliaments inside</th>
+            <th scope="col">Why kept merged</th>
+          </tr>
+        </thead>
+        <tbody id="parliament-exceptions-body">
+          <tr><td colspan="3">Loading exceptions…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source-note">Rendered client-side from
+    <code>data/parliament_exceptions.json</code> — the same file the pipeline
+    and app both read, so this table cannot drift from the dataset it
+    describes.</p>
+
+    <h3>The inverse case: one parliament, several cultural units</h3>
+    <p>The exceptions table above covers units that <em>merge</em> several
+    real parliaments. The opposite pattern also exists in the dataset, and is
+    just as real an exception to a naive "one parliament, one unit" reading,
+    even though it doesn't fit the merge-table's columns: a single real
+    parliament whose jurisdiction is <em>split</em> across several cultural
+    units, because the identity case for splitting outweighed the
+    administrative case for one parliament, one region. This affects
+    Baden-Württemberg (one Stuttgart Landtag, split into
+    <code>de-baden</code> and <code>de-wuerttemberg</code> on their distinct
+    pre-1952 histories), Bavaria (one Bayerischer Landtag in Munich, split
+    into <code>de-franconia</code>, <code>de-bavarian-swabia</code> and
+    <code>de-munich-altbayern</code>), North Rhine-Westphalia (one Düsseldorf
+    Landtag, split into <code>de-rhineland</code> and
+    <code>de-westphalia</code>), and Scotland (one Holyrood, split into
+    <code>uk-scotland-central-belt</code> and
+    <code>uk-scotland-highlands</code>). A related but distinct partial case:
+    the Sámi Parliaments of Finland, Sweden and Norway are real elected
+    bodies with genuine cultural-autonomy competence, but not territorial
+    legislatures over their whole host region (<code>fi-lapland-sapmi</code>,
+    <code>se-norrland-upper</code>, <code>no-tromso-north-norway</code>) — a
+    partial exception worth naming even though it fits neither table
+    direction cleanly.</p>
+  </section>
+
+  <section id="variant-sets" class="methodology-section">
+    <h2>6. Variant sets: alternative views</h2>
+    <p>Some regions are genuinely contested between two or more defensible
+    boundary readings — not a case where one answer is right and the rest
+    are mistakes, but one where the honest move is to let the user see and
+    switch between the readings directly. v0.1.2 introduces
+    <strong><span id="stat-variant-sets-2">…</span> variant sets</strong>
+    (<code>data/variant_sets.json</code>) for exactly this.</p>
+    <h3>The three-view pattern</h3>
+    <p>Most sets follow the same three-view shape, though the exact labels
+    are set-specific:</p>
+    <ul>
+      <li><strong>Current</strong> — the region(s) as they sit within
+      today's state boundaries (the dataset's default rendering).</li>
+      <li><strong>Connected</strong> (sometimes "unified") — a hypothetical
+      cross-border or cross-unit merge that follows the cultural/historical
+      case to its conclusion, ignoring the state line.</li>
+      <li><strong>Overlap</strong> — both readings shown at once,
+      translucent, with a hatch pattern where they physically overlap, so the
+      disagreement itself becomes visible rather than adjudicated away.</li>
+    </ul>
+    <p>On the map, each set renders a small clickable chip at its authored
+    <code>anchor</code> coordinate (zoom-aware); clicking cycles or opens the
+    view options directly at the point on the map the set concerns, rather
+    than burying the choice in a sidebar list (the sidebar keeps a compact
+    mirror for accessibility/search, but the map chip is the primary
+    interaction — this was explicit user demand).</p>
+    <h3>Notable calls</h3>
+    <ul class="variant-notes-list">
+      <li><strong>Basque over-coverage.</strong> The <code>connected</code>
+      view's French-side geometry (FRI15, Pyrénées-Atlantiques) covers all of
+      Béarn, a distinct non-Basque territory, not just Iparralde — an honest
+      over-coverage, stated directly in the view's own note rather than
+      smoothed over. The fix (geoBoundaries FRA ADM3, Bayonne-arrondissement
+      geometry) is identified but not yet integrated; planned for a future
+      pipeline pass.</li>
+      <li><strong>Northern Ireland stays distinct in every view</strong> of
+      the <code>ireland</code> set, including the all-island
+      <code>unified</code> view — it renders as a distinct outlined unit on
+      top of the united-Ireland shape rather than disappearing into it,
+      per explicit user instruction that a unification frame must not erase
+      the live internal fault line it would actually have to resolve.</li>
+      <li><strong>Dutch lowlands, explicitly hypothetical.</strong> The
+      <code>flanders</code> set's <code>connected</code> view
+      (<code>dutch-lowlands-unified</code>) merges Flanders with the Dutch
+      language area across the Belgian-Dutch border; it is labelled as a
+      cultural/linguistic hypothetical throughout, not a governance proposal
+      — component units keep their real parliaments (Vlaams Parlement,
+      Staten-Generaal) in every other view.</li>
+      <li><strong>Silesia, Poland+Czechia.</strong> The <code>silesia</code>
+      set's <code>current</code> view keeps Poland's Upper Silesia
+      (Katowice) and Czech Silesia separate by state; its
+      <code>connected</code> view reunites the historic Duchy of Silesia
+      across the modern border as <code>silesia-unified</code> — a cultural
+      mapping exercise, explicitly not a territorial claim.</li>
+      <li><strong>Liverpool/Manchester overlap.</strong> Per direct user
+      request ("suggest a variant with overlaps especially for Liverpool and
+      Manchester"), the two city-regions get a dedicated overlap view showing
+      both catchments translucent, without inventing an artificial third
+      "shared belt" region.</li>
+      <li><strong>Pomerania, two versions.</strong> The default
+      <code>broad</code> view matches Statistics Poland's own PL6
+      macroregion; the <code>split</code> view exposes the honest fit
+      gradient behind that convenience, per the user-supplied table:</li>
+    </ul>
+    <div class="table-scroll">
+      <table class="pomerania-fit-table">
+        <caption>Pomerania sub-region fit, as supplied by the user</caption>
+        <thead>
+          <tr><th scope="col">Sub-region</th><th scope="col">Core identity marker</th><th scope="col">Fits "Pomerania"?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Kashubia (Tricity hinterland)</td><td>Distinct Slavic language, seaside continuity</td><td class="fit-strong">Strong</td></tr>
+          <tr><td>Kuyavia (Bydgoszcz–Toruń)</td><td>Hanseatic/Royal-Prussia river-trade towns</td><td class="fit-weak">Weak</td></tr>
+          <tr><td>Warmia</td><td>Catholic, German-Polish contact zone</td><td class="fit-weak">Weak</td></tr>
+          <tr><td>Masuria</td><td>Protestant, post-war resettled</td><td class="fit-weakest">Weakest</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="pushback" class="methodology-section">
+    <h2>7. The six push-back challenges</h2>
+    <p>The project brief itself mandated that six specific claims be
+    challenged rather than assumed. Each is addressed here with the verdict
+    reached and the evidence behind it.</p>
+
+    <div class="challenge-item">
+      <h3>a. Lower Saxony vs. Saxony</h3>
+      <div class="verdict-block">
+        <span class="verdict-label">Verdict</span>
+        <p>Kept as two separate, unrelated regions — the naming
+        resemblance is a historical accident, not a genealogical link.</p>
+      </div>
+      <p>Despite the near-homophone English names, <em>Niedersachsen</em>
+      (Lower Saxony) and <em>Sachsen</em> (Saxony) are historically and
+      dialectally unrelated. Lower Saxony descends from the medieval Duchy
+      of Saxony's north-western, Low-German-speaking remnant. Modern Sachsen
+      descends from the Wettin Margraviate of Meissen / Kingdom of Saxony,
+      an East Central German-speaking territory that inherited the "Saxon"
+      title through a 12th-century dynastic transfer, not linguistic-territorial
+      continuity. Both are authored as separate regions
+      (<code>de-lower-saxony</code>, <code>de-saxony</code>); each record's
+      <code>nuts1_disagreement</code> flags the naming confusion directly.</p>
+    </div>
+
+    <div class="challenge-item">
+      <h3>b. Hungary subdivision</h3>
+      <div class="verdict-block">
+        <span class="verdict-label">Verdict</span>
+        <p>The brief's proposed four-way split (Budapest / Győr-Western
+        Transdanubia / Pécs-Southern Transdanubia / Szombathely-Balaton) is
+        rejected. Two regions are authored: <code>hu-budapest</code> and
+        <code>hu-videk</code> ("the countryside").</p>
+      </div>
+      <p>Three findings drove the rejection. <strong>First</strong>, Hungary's
+      NUTS-2 regions were a top-down, EU-driven 1999 statistical construct
+      that "failed to create a regional identity" (Assembly of European
+      Regions, 2021) — the meso-tier lost any policy function after 2010, and
+      Budapest itself was only carved out of Közép-Magyarország as its own
+      unit in 2018, meaning the administrative geography the four-way proposal
+      rests on had already been partially reversed. <strong>Second</strong>,
+      "Szombathely-Balaton" is not an official or academically recognized
+      unit at all: Szombathely and Győr sit inside the same official NUTS-2
+      region (Nyugat-Dunántúl/HU22), so the four-way proposal actually splits
+      one real region into two competing, unofficial carve-ups — where a real
+      rivalry does surface (Győr–Sopron), it operates at the county level,
+      beneath any of the four proposed units. <strong>Third</strong>,
+      Transdanubian-vs-Alföld dialectology is real linguistically but rides on
+      no organized regionalist or autonomy movement anywhere in a country that
+      "has been centralized throughout 1000 years of its history"
+      (regscience.hu).</p>
+      <p>Two is defended over four because no organic basis exists for four
+      units; two is defended over one (treating Hungary like Slovenia) because
+      the Budapest/vidék cleavage is a live, currently salient political and
+      demographic divide (~30% of the national population and a
+      disproportionate GDP share concentrated in the capital), unlike the
+      abolished statistical regions. We are transparent that
+      <code>hu-videk</code> only weakly clears the single-urban-hub criterion
+      — Debrecen, Szeged, Miskolc, Pécs and Győr are comparably sized — an
+      honest limitation, not a manufactured pass. The rejected four-way
+      proposal also omitted the Great Plain and Northern Hungary entirely
+      (Debrecen/Szeged/Miskolc, roughly 40% of the population), a coverage
+      gap independent of the identity critique.</p>
+    </div>
+
+    <div class="challenge-item">
+      <h3>c. Kosovo, Bosnia &amp; Herzegovina, and Vojvodina — organic
+      regionalism vs. post-conflict partition</h3>
+      <div class="verdict-block">
+        <span class="verdict-label">Verdict</span>
+        <p>These three sit at genuinely different points on the
+        organic-vs-imposed spectrum and are treated differently, not as one
+        category.</p>
+      </div>
+      <p><strong>Vojvodina</strong> is the clearest case of organic
+      regionalism: multiethnic (Serb/Hungarian/Slovak/Romanian/Croat/Rusyn),
+      several co-official languages, a Habsburg military-frontier and
+      Kingdom-of-Hungary history predating 1918 — its distinctiveness predates
+      any 20th-century conflict by centuries and its autonomy evolved
+      gradually (1945, 1974, reduced 1990, partially restored post-2000). It
+      is modeled as its own region (<code>rs-vojvodina</code>).</p>
+      <p><strong>Bosnia and Herzegovina's</strong> internal entity structure
+      (Federation / Republika Srpska / Brčko) is the opposite case: the 1995
+      Dayton Agreement drew these lines specifically to freeze 1992–95 war
+      front lines and ethnic-cleansing outcomes, not to recognize a
+      pre-existing cultural boundary. BiH is therefore kept as <strong>one
+      region</strong> (<code>ba-bosnia-herzegovina</code>) — against the
+      formal single-unit-exception list, which BiH is not on, but by the same
+      underlying logic — with the entity lines rendered only as a toggleable
+      <code>conflict_flag</code>, refusing to treat a war-partition as
+      equivalent to organic subdivision.</p>
+      <p><strong>Kosovo</strong> sits in between: its Albanian-majority
+      regional distinctness from Serbia is itself centuries-old (Ottoman-era
+      demographic shift, 1912 annexation against local wishes, 1974–89
+      autonomy, 1989 revocation) — organic in origin — but its current
+      <em>statehood</em>, as opposed to mere regional distinctness, was
+      produced by the 1998–99 war and NATO intervention, and the
+      Serb-majority north remains a live, contested fault line. Kosovo is
+      modeled as a single exception-list unit without an internal north/south
+      split, treating its external-boundary dispute with Serbia as the real
+      point of contestation rather than manufacturing a second internal
+      partition on top of an already-contested one.</p>
+    </div>
+
+    <div class="challenge-item">
+      <h3>d. Timișoara / Banat</h3>
+      <div class="verdict-block">
+        <span class="verdict-label">Verdict</span>
+        <p>Kept as mandated, distinct from Transylvania and Wallachia — but
+        honestly weaker at its administrative edges than at its core.</p>
+      </div>
+      <p>Banat is real and strong at its Timișoara–Timiș–Caraș-Severin core.
+      It is weaker at the edges the NUTS-2 boundary (RO42) forces in: Arad
+      county is transitional Banat/Crișana, and Hunedoara county — the
+      iron-and-coal Hunedoara/Hațeg belt — arguably reads as more
+      Transylvanian than Banatian. The mandated split and the RO42 boundary
+      (the only cleanly resolvable option) were kept rather than inventing an
+      unresolvable sub-county carve-out, but <code>ro-banat-timisoara</code>'s
+      own <code>nuts1_disagreement</code> states plainly that the case is
+      stronger in its core than at its edges — this is not smoothed over.</p>
+    </div>
+
+    <div class="challenge-item">
+      <h3>e. Regions failing the three-part test</h3>
+      <div class="verdict-block">
+        <span class="verdict-label">Verdict</span>
+        <p>Several weak-fit regions were kept anyway, for stated reasons;
+        others were merged or excluded, also for stated reasons. None were
+        silently dropped.</p>
+      </div>
+      <p><strong>Kept despite a weak fit:</strong> Calabria
+      (<code>it-calabria</code>) — Reggio Calabria, Catanzaro and Cosenza
+      form a genuinely polycentric triad with no dominant city, and the
+      formal industrial base is thin and distorted by organized-crime
+      economic activity, but no adjacent region is a culturally honest merge
+      target, so it stays standalone with the weakness stated openly.
+      Finnish Lakeland (<code>fi-lakeland</code>, Savo-Karelia) — added later
+      as a coverage fix (see below) with its polycentric Kuopio/Joensuu/
+      Lappeenranta fit noted honestly rather than assigning it a false single
+      hub. East Midlands (<code>uk-east-midlands</code>) — Nottingham,
+      Leicester and Derby form a polycentric conurbation with no single
+      dominant city, unlike Birmingham, Manchester, Leeds or Newcastle.
+      Hungary's <code>hu-videk</code> — see challenge (b) above.</p>
+      <p><strong>Merged into a neighbor, reasoning stated in that region's
+      <code>nuts1_disagreement</code>:</strong> Molise into Abruzzo
+      (pre-1963 "Abruzzi e Molise" union); Valle d'Aosta into Piedmont
+      (population/scale, no mandated toggle); Centre-Val de Loire into Pays
+      de la Loire, Bourgogne-Franche-Comté into Rhône-Alpes, Auvergne into
+      Aquitaine, and Champagne-Ardenne into Lorraine (each a stated
+      corridor/contiguity rationale); Opole into Silesia rather than Lower
+      Silesia (shared Upper-Silesian dialect); four eastern Polish
+      voivodeships into one Eastern Poland bloc (EU's own "Polska Wschodnia"
+      precedent); Podillia/Poltava-area Ukrainian oblasts into one Central
+      Ukraine catch-all (no orphaned oblasts).</p>
+      <div class="verdict-block v012-update">
+        <span class="verdict-label">v0.1.2 update</span>
+        <p>Several of the regions the next paragraph lists as "assessed and
+        excluded" are <strong>now included</strong>: Spain's La Rioja,
+        Cantabria, Asturias, Extremadura, Murcia and Ceuta+Melilla; Portugal's
+        Alentejo and Centro; Italy's Basilicata. See
+        <a href="#changelog-v012">the v0.1.2 changelog</a> (section 13) for
+        the full list. The v0.1.0 paragraph below is kept verbatim as the
+        historical record of the original count-discipline reasoning, not as
+        a current statement of what's excluded.</p>
+      </div>
+      <p><strong>Assessed and excluded as standalone regions (v0.1.0,
+      historical)</strong>
+      (defensible, but left out on count discipline, and flagged as
+      candidates for a higher-resolution future pass): Spain's Asturias,
+      Cantabria, La Rioja, Murcia and Extremadura; Portugal's Alentejo,
+      Oeste e Vale do Tejo and Centro; Italy's Basilicata; Spain's Ceuta and
+      Melilla. Aegean Islands (<code>gr-aegean-islands</code>) is the zone's
+      clean example of a region that fails the test outright — no dominant
+      hub, tourism monoculture — and is kept only because national-coverage
+      completeness leaves no other honest home for its ~510,000 residents.
+      Svalbard and Jan Mayen were excluded outright: near-uninhabited, no
+      functioning urban hub, no diversified base beyond research/tourism
+      outposts.</p>
+      <p><strong>Added back after later review:</strong> East Midlands
+      (UKF) was originally excluded as a ~4.9M-person coverage gap on the
+      grounds that its three cities are polycentric with no dominant hub. A
+      subsequent dataset-QA pass (Task 4) revisited that call and added
+      <code>uk-east-midlands</code> back in, with the polycentric weakness
+      recorded honestly in its <code>inclusion_test</code> rather than
+      smoothed over — a coverage fix, not a reversal of the underlying
+      evidence.</p>
+    </div>
+
+    <div class="challenge-item">
+      <h3>f. Count tension: 40–70 target vs. 191 actual</h3>
+      <div class="verdict-block v012-update">
+        <span class="verdict-label">v0.1.2 update</span>
+        <p>This tension is now structurally resolved rather than merely
+        argued through, by <a href="#two-level-model">the two-level model</a>
+        (section 3): the 40–70 target was always a representation-layer
+        target, not a cultural-unit-count target, and v0.1.2 makes that
+        split explicit with its own <code>data/groupings.json</code> layer.
+        The v0.1.0 verdict below is kept verbatim as the historical record of
+        how that tension was first reasoned about, before the two-level
+        model existed to resolve it structurally.</p>
+      </div>
+      <div class="verdict-block">
+        <span class="verdict-label">Verdict (v0.1.0, historical)</span>
+        <p>The dataset landed at 191 records — 188 base/congruent regions
+        plus 3 noncongruent unified variants (Tyrol, Basque, Ireland) — well
+        above the brief's 40–70 target and above even its own flagged
+        90–110 alternative. This was <strong>not</strong> a truncation
+        failure: the brief itself instructed "let the count emerge from
+        criteria... do NOT silently truncate," and every zone's overshoot is
+        individually traceable and stated below rather than absorbed
+        silently.</p>
+      </div>
+      <p>Three structural drivers account for nearly all of the overshoot:</p>
+      <ul>
+        <li><strong>Mandated splits, honored rather than dropped.</strong>
+        Germany alone carries 18 explicitly mandated splits (Baden;
+        Württemberg; Franconia; Bavarian Swabia; Munich/Altbayern; Hamburg;
+        Bremen; Schleswig-Holstein; Lower Saxony; Saxony; Rhineland;
+        Westphalia; Hesse; Rhineland-Palatinate+Saarland; Thuringia;
+        Saxony-Anhalt; Berlin-Brandenburg; Mecklenburg-Vorpommern), which with
+        five mandated Austrian regions, six Swiss macro-regions,
+        Liechtenstein and the Tyrol toggle pair alone total 31 Germanic-core
+        records against a zone guidance of "roughly 20–26." Norway's five
+        mandated fjord-culture nodes, Finland's five mandated nodes plus
+        Åland, and Romania's four historically distinct macro-regions behave
+        the same way: every one of these was named explicitly in the brief,
+        with the instruction to honor it "rather than silently dropping" it.</li>
+        <li><strong>Full-coverage assignment.</strong> Once a country's
+        territory had to be assigned without orphaning any part of it (all 16
+        Polish voivodeships, all of Ukraine's 27 SR2024 units, all of Italy's
+        20 traditional regions), thinly-populated or weak-identity remainders
+        still needed a home — a Central Ukraine catch-all, an Eastern Poland
+        bloc, a Peloponnese-Central-Greece catch-all — each one real
+        territory that had to go somewhere.</li>
+        <li><strong>Nordic and Ukrainian mandates specifically.</strong> The
+        brief named five separate Norwegian nodes, six separate Finnish
+        nodes (including Åland), three separate Swedish nodes plus Gotland,
+        and six separately mandated Ukrainian conflict zones (Kyiv, Lviv,
+        Odesa, Kharkiv, Donetsk, Luhansk) — each individually small in
+        European terms but collectively adding roughly 30 records that a
+        lower-resolution version of this dataset would have collapsed into
+        perhaps eight to ten larger regions.</li>
+      </ul>
+      <p>Zone-by-zone, the overshoot recurs everywhere: zone 1 (Germanic
+      core) landed at 31 vs. "20–26"; zone 2 (France+Benelux) at 21 vs.
+      "16–20"; zone 3 (Iberia+Italy) at 36 vs. "24–30"; zone 4
+      (Nordics+Baltics) at 24 vs. "18–22"; zone 6 (Central Europe) at 19,
+      near the top of "15–19"; zone 7 (Southeast) at 22 vs. "15–19"; zone 8
+      (East+microstates) at 16 vs. "12–15." Hungary is the one
+      counter-example, moving from a proposed four down to a defended two
+      (see challenge b) — the net dataset count is therefore lower than a
+      naive sum of every locally-defensible split would have produced, not
+      higher.</p>
+    </div>
+  </section>
+
+  <section id="disagreements" class="methodology-section">
+    <h2>8. Explicit disagreements with the spec's fixed decisions</h2>
+    <p>The brief instructed that fixed decisions be applied and verified, but
+    challenged rather than silently overridden where the evidence pointed
+    elsewhere. These are the live disagreements on record:</p>
+    <div class="note-block">
+      <p><strong>Madeira added by analogy, not by mandate.</strong> The
+      brief's scope list named only the Azores as a mandated Portuguese
+      autonomous outlying unit. Madeira was added anyway
+      (<code>pt-madeira</code>) because it holds an identical constitutional
+      status — its own regional government, its own 1976/1991 Statute of
+      Autonomy — and omitting it while including the Azores would have been
+      an arbitrary asymmetry.</p>
+    </div>
+    <div class="note-block">
+      <p><strong>Ferrara → Emilia is contested, not settled.</strong> The
+      mandated Emilia≠Romagna split assigns Ferrara to Emilia on the basis of
+      Pellegrini's 1977 <em>Carta dei dialetti d'Italia</em>, which classifies
+      Ferrarese within the Emiliano dialect group. The competing frame —
+      Ferrara's historical administrative pairing with Ravenna and
+      Forlì under the Papal Legations (Legazioni pontificie) — points the
+      other way, toward Romagna, and is recorded in
+      <code>it-emilia</code>'s <code>nuts1_disagreement</code> as a live
+      tension rather than adjudicated away.</p>
+    </div>
+    <div class="note-block">
+      <p><strong>Rhineland-Palatinate + Saarland merge, flagged as an open
+      challenge.</strong> The brief names this as one combined region and it
+      is authored that way, but Saarland has a materially distinct
+      20th-century history (League-of-Nations mandate 1920–35, a 1935
+      plebiscite, French administration again 1945–56, a 1955 reunification
+      referendum) plus its own Saarländisch dialect — arguably a stronger
+      claim to separate identity than several other combined-per-mandate
+      regions in this dataset. The merge is followed as instructed, but
+      flagged as an open question for review rather than a settled call.</p>
+    </div>
+    <div class="note-block">
+      <p><strong>Carinthia folded into Styria, not named in the zone
+      spec.</strong> The zone-1 spec's Austrian region list omits Carinthia.
+      Rather than leave its NUTS-2 code unclaimed or silently invent a sixth
+      Austrian region, Carinthia was folded into Styria, producing
+      <code>at-styria-carinthia</code> — matching NUTS-1 AT2 exactly.
+      Carinthia's own identity (Kärntnerisch dialect, Slovene-speaking
+      minority, Alpine-lake economy) is real and documented in that record,
+      not erased.</p>
+    </div>
+    <div class="note-block">
+      <p><strong>Bulgaria: index and geometry disagree with each other.</strong>
+      <code>data/nuts_index.json</code> lists Bulgaria under a newer scheme
+      (NUTS-1 <code>BG5</code>, NUTS-2 <code>BG51–BG54</code>) that does not
+      resolve against the committed GISCO geometry file, which still carries
+      the pre-reform codes (<code>BG3/BG4</code>, <code>BG31–34/BG41–42</code>).
+      The pre-reform codes — the ones that actually render — were used, and
+      the discrepancy is flagged here as a primary-source inconsistency
+      rather than silently reconciled. Incidentally, the older six-region
+      scheme these codes imply matches Bulgaria's culturally legible planning
+      regions better than the newer four-way split would have.</p>
+    </div>
+    <div class="note-block">
+      <p><strong>Five Ukrainian conflict-flag zones are rendered as text-only
+      flags, without their own geometry — a settled dataset convention.</strong>
+      <code>zakarpattia-minority-identity</code>,
+      <code>kherson-frontline-occupation</code>,
+      <code>donetsk-occupation-frontline</code>,
+      <code>luhansk-occupation-status</code>, and
+      <code>zaporizhzhia-npp-and-frontline</code> were originally authored
+      with sub-oblast (raion-level) codes for precision, but this pipeline
+      only resolves Ukraine at the oblast level via geoBoundaries, and no
+      sub-oblast boundary source is integrated. Their <code>zone_nuts_codes</code>
+      were cleared to an empty list — full description retained, geometry
+      omitted rather than overstating the affected area to an entire oblast.
+      The description carries the substance in each case. This follows the
+      identical precedent already used for Moldova's Transnistria and
+      Georgia's Abkhazia/South Ossetia flags, and was adopted as the dataset
+      convention on that basis rather than as a one-off exception. See the
+      data-limitation note on Ukraine's oblast-level resolution below for the
+      underlying constraint.</p>
+    </div>
+  </section>
+
+  <section id="nuts1-comparison" class="methodology-section">
+    <h2>9. NUTS-1 comparison</h2>
+    <p><span id="stat-nuts1-disagree-count">Loading…</span> of the dataset's
+    default-visible cultural units explicitly diverge from the official
+    NUTS-1 (or, for non-EU/non-Eurostat countries, the corresponding SR-1)
+    boundary they overlap — figures reflect whichever build served this page,
+    not a number frozen at v0.1.0's 109-of-191. The table below is rendered
+    client-side from
+    <code>data/regions.json</code> and <code>data/nuts1_reference.json</code>:
+    for every region with a non-empty <code>nuts1_disagreement</code>, we
+    derive its overlapping official NUTS-1 unit(s) by taking the first three
+    characters of each of its <code>nuts_codes</code> (the NUTS-1 code is
+    always the country-plus-one-character prefix of any finer NUTS code by
+    construction) and looking each one up against the reference list, mapping
+    Greece's regional code (<code>GR</code> in this dataset) to its official
+    Eurostat code (<code>EL</code>). Where no reference entry exists — the
+    United Kingdom (excluded from Eurostat's NUTS classification entirely
+    since Brexit) and the CNTR-sourced microstates/Moldova/Georgia (which have
+    no NUTS-1 subdivision to compare against) — the cell says so rather than
+    guessing.</p>
+
+    <div class="table-controls">
+      <label for="nuts1-search" class="sr-only">Filter by region or country</label>
+      <input type="search" id="nuts1-search" placeholder="Filter by region, country, or NUTS-1 code…">
+      <span class="row-count" id="nuts1-row-count" aria-live="polite">Loading…</span>
+    </div>
+    <div class="table-scroll">
+      <table class="nuts1-table" id="nuts1-table">
+        <caption>Practical region vs. overlapping official NUTS-1/SR-1 unit(s), with the recorded disagreement</caption>
+        <thead>
+          <tr>
+            <th scope="col">Practical region</th>
+            <th scope="col">Country</th>
+            <th scope="col">Official NUTS-1 unit(s)</th>
+            <th scope="col">Disagreement</th>
+          </tr>
+        </thead>
+        <tbody id="nuts1-table-body">
+          <tr><td colspan="4">Loading region data…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Reverse summary: how official NUTS-1 units fare</h3>
+    <p id="nuts1-summary-method" class="summary-paragraph">Computing…</p>
+  </section>
+
+  <section id="limitations" class="methodology-section">
+    <h2>10. Data limitations</h2>
+    <div class="limitation-block">
+      <p><strong>Moldova and Georgia are single-polygon, country-level
+      geometry.</strong> Both are modeled with CNTR country geometry because
+      no sub-national NUTS geometry exists for either in this pipeline. Their
+      Transnistria and Abkhazia/South Ossetia conflict flags carry a full
+      description but an empty <code>zone_nuts_codes</code> list — the
+      breakaway territories cannot be rendered as separate shapes, only
+      described in text.</p>
+    </div>
+    <div class="limitation-block">
+      <p><strong>Ukraine's war-time population figures are ceilings, not
+      current counts.</strong> Donetsk, Luhansk and Crimea's populations are
+      pre-war/pre-occupation figures (2021 and 2014 Ukrainian state statistics
+      respectively); active occupation, war damage and mass displacement since
+      2014/2022 make verifiable current counts unavailable from Ukrainian
+      government sources, and occupying/de-facto authorities' figures are not
+      treated as reliable census data. Autarky scores for occupied and
+      front-line regions (Donetsk, Luhansk, Crimea, and the occupied portions
+      of Kherson/Zaporizhzhia folded into the Odesa-South and
+      Dnipro-Zaporizhzhia regions) reflect substantial war-driven degradation
+      relative to pre-war baselines and carry higher uncertainty than the
+      rest of the dataset.</p>
+    </div>
+    <div class="limitation-block">
+      <p><strong>Some conflict flags are text-only, without geometry.</strong>
+      Five Ukrainian conflict flags (Zakarpattia minority identity, the
+      Kherson and Zaporizhzhia frontlines, the Donetsk and Luhansk occupation
+      statuses) and the Moldova/Georgia breakaway-territory flags carry no
+      renderable boundary — see section 3 above for why — and appear in the
+      map's legend and detail panels as description text only, not as a
+      hatched overlay.</p>
+    </div>
+    <div class="limitation-block">
+      <p><strong>Population vintages are mixed, roughly 2021–2024.</strong>
+      Figures are drawn from Eurostat regional statistics and national
+      statistical offices where a single release matches this dataset's
+      custom boundaries, and are otherwise computed as sums of constituent
+      NUTS-2/3 populations from the closest available 2021–2023 releases.
+      Where an exact current-year figure could not be directly verified, a
+      well-established recent estimate is used and flagged via each region's
+      <code>population_note</code> rather than invented. UK, Ireland, and
+      several Southeastern European regions' figures in particular should be
+      read as directionally reliable estimates, not official statistics —
+      no single published release matches this dataset's custom region
+      boundaries.</p>
+    </div>
+    <div class="limitation-block">
+      <p><strong>The UK has no entry in the NUTS-1 reference table used for
+      section 4.</strong> The UK's NUTS-1 codes (<code>UKC</code>–<code>UKN</code>)
+      still resolve against the 2021 GISCO geometry file used for this
+      dataset's UK regions, but the UK was dropped from Eurostat's own
+      current NUTS classification after Brexit, so <code>data/nuts1_reference.json</code>
+      (sourced from the live Eurostat/GISCO NUTS-1 list) carries no UK rows
+      at all. Rather than inventing UK reference entries to fill the gap, the
+      comparison table states this limitation directly against every
+      UK region row.</p>
+    </div>
+  </section>
+
+  <section id="sources" class="methodology-section">
+    <h2>11. Sources</h2>
+    <p>Sources are tiered: <span class="tag tag-a">A</span> legal/government/
+    statistical-office primary sources, <span class="tag tag-b">B</span>
+    journalism and analysis, <span class="tag tag-c">C</span> community and
+    dialectology-adjacent sources. Sources older than ten years carry a
+    <span class="tag tag-warn">⚠️</span> flag.</p>
+    <ul class="sources-list">
+      <li><span class="tag tag-a">A</span> Eurostat NUTS / GISCO reference geometry and classification (<code>NUTS_RG_20M_2024</code>, <code>NUTS_RG_20M_2021</code>, <code>CNTR_RG_20M_2024</code>)</li>
+      <li><span class="tag tag-a">A</span> EU Functional Areas toolkit (commuting-basin definitions)</li>
+      <li><span class="tag tag-a">A</span> Destatis (Federal Statistical Office of Germany)</li>
+      <li><span class="tag tag-a">A</span> INSEE (France), Statbel (Belgium), CBS (Netherlands)</li>
+      <li><span class="tag tag-a">A</span> ISTAT (Italy), INE (Spain), Statistics Portugal / INE Portugal</li>
+      <li><span class="tag tag-a">A</span> ONS, NISRA, CSO Ireland (UK/Ireland regional statistics)</li>
+      <li><span class="tag tag-a">A</span> GUS (Poland), Czech Statistical Office, ŠÚ SR (Slovakia)</li>
+      <li><span class="tag tag-a">A</span> KSH (Hungary), including regscience.hu regional-policy analysis</li>
+      <li><span class="tag tag-a">A</span> State Statistics Service of Ukraine (UkrStat), pre-war/pre-occupation baselines</li>
+      <li><span class="tag tag-a">A</span> 2021/2011 national censuses (Poland — Silesian nationality; Czechia — Moravian nationality) <span class="tag tag-warn">⚠️ 2011 entry &gt;10 years</span></li>
+      <li><span class="tag tag-a">A</span> geoBoundaries (Ukraine oblast ADM1 geometry) — © OpenStreetMap contributors, ODbL</li>
+      <li><span class="tag tag-b">B</span> Assembly of European Regions (2021) — Hungarian regionalisation policy analysis</li>
+      <li><span class="tag tag-b">B</span> Regional press and regionalism analyses (Scouse/Merseyside devolution, Cornish national-minority recognition, Norrlandsfrågan, Szlonzoki self-declaration reporting)</li>
+      <li><span class="tag tag-c">C</span> Pellegrini, G.B. (1977) — <em>Carta dei dialetti d'Italia</em> (Emilia/Romagna dialect classification) <span class="tag tag-warn">⚠️ &gt;10 years</span></li>
+      <li><span class="tag tag-c">C</span> Wiesinger, P. (1983) — East Franconian dialect classification <span class="tag tag-warn">⚠️ &gt;10 years</span></li>
+      <li><span class="tag tag-c">C</span> Council of Europe Framework Convention for the Protection of National Minorities (2014 Cornish recognition) <span class="tag tag-warn">⚠️ &gt;10 years</span></li>
+      <li><span class="tag tag-c">C</span> Community/dialectology sources for regional-language status (Kashubian, Rusyn, Occitan-Catalan Roussillon)</li>
+      <li><span class="tag tag-b">B</span> Ibn Khaldūn, <em>Muqaddimah</em> (14th c.) — origin of <em>ʿaṣabiyya</em> as a social-solidarity concept, used here as a priority-axis label rather than a historical citation <span class="tag tag-warn">⚠️ &gt;10 years</span></li>
+      <li><span class="tag tag-a">A</span> Sametinget (Sweden), Sámediggi (Norway), Saamelaiskäräjät (Finland) — Sámi Parliament competence and jurisdiction, for the parliament-rule partial-exception cases</li>
+      <li><span class="tag tag-a">A</span> Statistics Poland (GUS) "Polska Wschodnia" macroregion definition; Swiss Federal Statistical Office (BFS) Grossregionen definitions — official-macroregion precedents cited in the parliament-exceptions table</li>
+      <li><span class="tag tag-a">A</span> GISCO <code>CNTR_RG_20M_2024</code> — Armenia (AM), Guernsey (GG), Jersey (JE), Isle of Man (IM), Gibraltar (GI) country-level geometry, all already present in the committed file (no new fetch required)</li>
+    </ul>
+    <p style="margin-top:0.9rem; color:#8a8a99; font-size:0.85rem;">
+      Pellegrini (1977) and Wiesinger (1983) are both older than ten years
+      <span class="tag tag-warn">⚠️</span> and are used here for historical
+      dialect classification, where the underlying linguistic boundaries
+      change on a much longer timescale than the sourcing recency convention
+      assumes — flagged rather than silently exempted.</p>
+  </section>
+
+  <section id="kaliningrad" class="methodology-section">
+    <h2>12. Kaliningrad note</h2>
+    <div class="note-block">
+      <p>Kaliningrad Oblast — a Russian exclave of roughly 15,000 km² and
+      approximately 1.0 million residents, wedged between Poland and
+      Lithuania on the Baltic coast — sits geographically inside the mapped
+      space of this dataset but is <strong>not included as a region record or
+      geometry</strong>. It is non-EU Russian sovereign territory, cut off
+      from mainland Russia since the 1945 territorial reorganization that
+      renamed the formerly German/Prussian city of Königsberg — annexed from
+      Germany, its ethnic-German population expelled — as Kaliningrad. It
+      appears in the map's legend and here purely as a text note,
+      acknowledging its exclave status without drawing it into the region
+      framework this dataset otherwise applies to the EU, EFTA, and
+      neighboring/candidate countries.</p>
+    </div>
+  </section>
+
+  <section id="changelog-v012" class="methodology-section">
+    <h2>13. Changelog — v0.2.2 draft</h2>
+    <p><strong>v0.1.3</strong> (this build, Amendment A4): contested/cultural
+    overlays (Sápmi, Székely Land, Kashubia, and similar) are now off by
+    default behind a "Contested &amp; cultural overlays" master toggle in the
+    map sidebar (A4.2), and <code>data/grouping_schemes.json</code> gains a
+    state-boundary-respecting <strong>balanced-national</strong> scheme with
+    a <code>sovereign_floor</code> list for states that cannot merge upward
+    without crossing a border (A4.1). The itemized list below documents the
+    earlier v0.1.0 → v0.1.2 diff.</p>
+    <p>A concise list of what changed. Where a figure is cheap to compute from
+    the live data build, it is pulled client-side and marked <em>(live)</em>;
+    everything else is a fixed count <strong>as of the v0.1.3 draft
+    build</strong>, not re-verified on every page load.</p>
+    <div class="stat-strip" aria-label="Live changelog counts">
+      <div class="stat-box">
+        <span class="stat-value" id="stat-changelog-units">…</span>
+        <span class="stat-label">cultural units <em>(live)</em></span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-value" id="stat-changelog-coverage">…</span>
+        <span class="stat-label">in-scope countries at ≥97% coverage <em>(live)</em></span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-value" id="stat-changelog-special">…</span>
+        <span class="stat-label">special_status (dashed) units <em>(live)</em></span>
+      </div>
+    </div>
+    <ul class="changelog-list">
+      <li><strong>Two-level model.</strong> Cultural units (identity-fine)
+      and representation groupings (40–70 target) are now separate layers —
+      see section 3 — resolving the count tension section 7(f) originally
+      documented as unresolved.</li>
+      <li><strong>Coverage holes closed.</strong> Spain (La Rioja, Cantabria,
+      Asturias, Extremadura, Murcia, Ceuta+Melilla), Portugal (Alentejo,
+      Centro), Italy (Basilicata/Potenza), and Greece's Ionian islands are all
+      now covered — every one of these was explicitly listed as a v0.1.0
+      coverage gap (<a href="#pushback">section 7's push-back challenge
+      (e)</a>, "assessed and excluded" paragraph, kept above for the
+      historical record — now superseded, see that section's own v0.1.2
+      note) and is closed as of this build.</li>
+      <li><strong>New landmass/territory additions.</strong> Armenia
+      (<code>am-armenia</code>), the Channel Islands (Guernsey and Jersey, as
+      two separate units — each Bailiwick has its own legislature), the Isle
+      of Man, Gibraltar, and East Thrace (<code>tr-east-thrace</code>, the
+      mandated-covered landmass west of Istanbul, with the rest of Turkey
+      explicitly out of scope).</li>
+      <li><strong>Ukraine historic splits.</strong> The v0.1.0 central-Ukraine
+      catch-all is dissolved into three historically-grounded units: the
+      Cossack Hetmanate core (Poltava+Cherkasy+Chernihiv), Podillia
+      (Vinnytsia+Khmelnytskyi), and Volhynia (Volyn+Rivne+Zhytomyr); Kirovohrad
+      is re-homed to the Dnipro-Zaporizhzhia unit on Zaporozhian
+      settlement-history grounds, reasoned in that region's record.</li>
+      <li><strong>Slovakia dipole.</strong> Superseding an earlier finer
+      split, Slovakia is now exactly two units: a Bratislava-and-western-
+      Slovakia capital region, and a Košice-Prešov eastern dipole on a
+      Rusyn/Ukrainian-minority basis.</li>
+      <li><strong>Rijeka/Kvarner</strong> becomes its own Croatian unit
+      (Zagreb/Continental, Istria, Rijeka, Dalmatia — four units where v0.1.0
+      had fewer).</li>
+      <li><strong>Székely Land</strong> carved out of Transylvania as its own
+      visible cultural unit (Covasna+Harghita+Mureș), while remaining outside
+      the parliament rule's exception table since no legally-recognized
+      Székely assembly currently exists (section 5 explains the distinction).</li>
+      <li><strong>Silesia and Pomerania variant sets</strong> — see section 6
+      — expose the Poland+Czechia cross-border Silesia reading and the
+      Kashubia/Kuyavia/Warmia-Masuria fit gradient behind the default
+      "broad Pomerania" convenience.</li>
+      <li><strong>Poles and reach.</strong> Every unit now carries a
+      <code>pole</code> classification (monopole/dipole/polycentric) with a
+      <code>central_coord</code> map marker, and dipoles carry a
+      <code>secondary</code>/<code>secondary_coord</code> pair too (rendered
+      as filled/hollow dots respectively); some units additionally carry a
+      <code>reach</code> array documenting cross-border or cross-region
+      functional influence (Munich, Graz into Slovenian/Carinthian areas,
+      capitals generally).</li>
+      <li><strong>Beta autarky dimensions</strong> — shelter, transportation,
+      hygiene &amp; healthcare, and clothing — are now explicitly labelled as
+      easily importable within the continent, with hygiene &amp; healthcare
+      redefined as production capacity for medical/sanitation wares rather
+      than clinical-quality proxy (section 4).</li>
+      <li><strong>Sweden's Norrland</strong> split at the Sápmi line: Upper
+      Norrland (Umeå/Luleå) is distinguished from Lower Norrland
+      (Sundsvall/Östersund), mirroring the same-line splits already modeled
+      for Finland and Norway.</li>
+      <li><strong>Special-status (dashed) styling</strong> is now a first-class
+      schema field, applied to enclaves, microstates, capital city-states,
+      and de-facto-divided or historically-anomalous units (Brussels, Vatican
+      City, Liechtenstein, Vorarlberg's dual orientation, Andorra, Gibraltar,
+      San Marino, Hamburg, Monaco, Ceuta+Melilla, Piedmont's Occitan/
+      Franco-Provençal valleys, the Crown Dependencies, Cyprus's de-facto
+      division, and East Thrace) — see the live count above.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  A meta-democracy.org project · data: Eurostat NUTS/GISCO · Ukraine boundaries © OpenStreetMap contributors via geoBoundaries (ODbL)
+<br>Formerly at <a href="https://meta-democracy.org">meta-democracy.org</a> (now Meta Party) · Made with love in Europe
+</footer>
+
+<script src="../assets/js/methodology.js"></script>
+</body>
+</html>

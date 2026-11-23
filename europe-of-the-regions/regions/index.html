@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Europe of the Regions — meta-democracy.org</title>
+<meta name="description" content="Interactive map of Europe's regions: autarky choropleth, cultural/representation views, variant-set toggles, and contested overlays.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="meta-democracy.org">
+<meta property="og:title" content="Europe of the Regions — meta-democracy.org">
+<meta property="og:description" content="Interactive map of Europe's regions: autarky choropleth, cultural/representation views, variant-set toggles, and contested overlays.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Europe of the Regions — meta-democracy.org">
+<meta name="twitter:description" content="Interactive map of Europe's regions: autarky choropleth, cultural/representation views, variant-set toggles, and contested overlays.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../lib/maplibre-gl/maplibre-gl.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body class="map-page">
+
+<!--
+  All hrefs/asset links below are relative (draft_v0.1.2 req 12) so the
+  identical build works served at "/regions/" and at "/draft/regions/".
+  Nav hrefs are cleanUrls-style (vercel.json sets "cleanUrls": true, so
+  "./table" / "./methodology" resolve to table.html / methodology.html in
+  production without the extension). Plain `python3 -m http.server` does NOT
+  rewrite clean URLs, so when testing locally either (a) append .html
+  manually in the address bar, or (b) accept the manual .html suffix for
+  local smoke testing — this only affects clicked nav links, not the data
+  fetches, which resolve the same way at any depth.
+-->
+<header class="site-header">
+  <span class="brand">meta-democracy.org — Europe of the Regions</span>
+  <button type="button" id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle layer sidebar">☰</button>
+  <nav>
+    <a href="./" aria-current="page">Map</a>
+    <a href="./table">Table</a>
+    <a href="./methodology">Methodology</a>
+    <a href="../">meta-democracy.org home</a>
+  </nav>
+</header>
+
+<div class="app-layout">
+  <aside id="sidebar">
+    <p id="region-count-line" class="region-count-line" role="status"></p>
+
+    <section id="about-panel">
+      <div class="about-header">
+        <h1>Europe of the Regions</h1>
+        <button type="button" id="about-toggle" aria-label="Toggle about panel">–</button>
+      </div>
+      <div class="about-body">
+        <p>Europe of the Regions is one way to resolve tensions — for example between Catalonia and Madrid — and to equalize the prominence of Europe's different members. It could emerge as an organic evolution if nation-states gradually weaken relative to Europe as a whole and to its regions and municipalities. Political boundaries are treated as malleable; practical, cultural and industrial geography comes first.</p>
+        <p class="muted" style="font-size:0.72rem;">Two layers: fine-grained <strong>cultural units</strong> (identity-true, this map's atoms) grouped into coarser <strong>representation groups</strong> (40–70, sized for practical governance). Switch between them below.</p>
+      </div>
+    </section>
+
+    <section class="sidebar-section" data-section="choropleth">
+      <div class="section-header">
+        <h2>Choropleth</h2>
+        <button type="button" class="chevron-toggle" aria-label="Toggle section">⌄</button>
+      </div>
+      <div class="section-body">
+        <div class="field-row">
+          <label for="mode-select">Color regions by</label>
+          <select id="mode-select"></select>
+        </div>
+        <div id="legend-scale"></div>
+      </div>
+    </section>
+
+    <section class="sidebar-section" data-section="representation">
+      <div class="section-header">
+        <h2>Cultural ⇄ Representation</h2>
+        <button type="button" class="chevron-toggle" aria-label="Toggle section">⌄</button>
+      </div>
+      <div class="section-body">
+        <div class="toggle-row">
+          <label for="representation-master">Cultural units ⇄ Representation groups</label>
+          <input type="checkbox" id="representation-master">
+        </div>
+        <p class="muted" style="font-size:0.72rem;margin:0;">Unchecked = curated cultural units (this map's atoms). Checked = ~40–70 representation groups: same fill color per grouping, unit borders faded to 20%, group name labelled at its centroid — an approximation of true border-dissolution (v0.2.2; see methodology).</p>
+        <div class="field-row" id="scheme-selector-row" hidden>
+          <span class="scheme-selector-label">Representation scheme</span>
+          <div id="scheme-selector-list" class="override-list"></div>
+          <p class="muted" id="scheme-description" style="font-size:0.7rem;margin:0.3rem 0 0;"></p>
+          <button type="button" id="reset-alignments-link" class="link-button">Reset my alignment choices</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="sidebar-section" data-section="perspectives">
+      <div class="section-header">
+        <h2>Perspectives</h2>
+        <button type="button" class="chevron-toggle" aria-label="Toggle section">⌄</button>
+      </div>
+      <div class="section-body">
+        <div class="perspective-list" id="perspective-list">
+          <label><input type="radio" name="perspective" value="curated" checked> Curated cultural map</label>
+          <label><input type="radio" name="perspective" value="political"> Political / NUTS-1 (overlay)</label>
+          <label><input type="radio" name="perspective" value="linguistic"> Linguistic (approximate)</label>
+          <label><input type="radio" name="perspective" value="selfsufficiency"> Self-sufficiency (autarky modes)</label>
+          <label class="perspective-planned" title="planned — needs source"><input type="radio" name="perspective" value="dioceses" disabled> Catholic dioceses <span class="badge badge-small">planned</span></label>
+          <label class="perspective-planned" title="planned — needs source"><input type="radio" name="perspective" value="tourism" disabled> Tourism regions <span class="badge badge-small">planned</span></label>
+          <label class="perspective-planned" title="planned — needs source"><input type="radio" name="perspective" value="phoneprefix" disabled> Phone prefixes <span class="badge badge-small">planned</span></label>
+          <label class="perspective-planned" title="planned — needs source"><input type="radio" name="perspective" value="postal" disabled> Postal zones <span class="badge badge-small">planned</span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="sidebar-section" data-section="variant-sets">
+      <div class="section-header">
+        <h2>Variant sets</h2>
+        <button type="button" class="chevron-toggle" aria-label="Toggle section">⌄</button>
+      </div>
+      <div class="section-body">
+        <div class="toggle-row">
+          <label for="variant-chips-master">Show variant switchers on map</label>
+          <input type="checkbox" id="variant-chips-master" checked>
+        </div>
+        <p class="muted" style="font-size:0.72rem;margin:0 0 0.4rem;">Chips on the map at each set's anchor do the same thing — this is a compact mirror.</p>
+        <div id="variant-sets-list"></div>
+
+        <section class="sidebar-section sidebar-subsection" data-section="conflicts">
+          <div class="section-header">
+            <h2>Contested</h2>
+            <button type="button" class="chevron-toggle" aria-label="Toggle section">⌄</button>
+          </div>
+          <div class="section-body">
+            <div class="toggle-row">
+              <label for="conflicts-master">Contested</label>
+              <input type="checkbox" id="conflicts-master">
+            </div>
+            <p class="muted" style="font-size:0.72rem;margin:0 0 0.4rem;">Off by default (A4.2). Sápmi, Székely Land, Kashubia and similar contested/cultural boundary overlays stay hidden until you opt in here; your choice is remembered, but only while this master switch is on.</p>
+            <div id="conflicts-overlay-body" hidden>
+              <ul id="conflict-list"></ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="sidebar-section" data-section="search">
+      <div class="section-header">
+        <h2>Search</h2>
+        <button type="button" class="chevron-toggle" aria-label="Toggle section">⌄</button>
+      </div>
+      <div class="section-body">
+        <div class="field-row">
+          <div class="search-row">
+            <input type="text" id="search-input" placeholder="Region name…" autocomplete="off">
+            <select id="region-jump-select" aria-label="Jump to region (alphabetical)"></select>
+          </div>
+          <p id="search-notice" role="status"></p>
+          <ul id="search-results"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Legend &amp; attribution</h2>
+      <div id="legend-symbols"></div>
+      <div id="legend-footer"></div>
+    </section>
+  </aside>
+
+  <div id="map"></div>
+  <aside id="detail-panel" aria-hidden="true"></aside>
+</div>
+
+<script src="../lib/maplibre-gl/maplibre-gl.js"></script>
+<script type="module" src="../assets/js/map.js"></script>
+</body>
+</html>

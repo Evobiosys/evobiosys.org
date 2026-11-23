@@ -1,0 +1,71 @@
+[
+  {
+    "id": "ireland",
+    "label": "Ireland",
+    "anchor": [
+      -7.7,
+      53.4
+    ],
+    "default_view": "current",
+    "views": [
+      {
+        "id": "current",
+        "label": "Within current states",
+        "show": [
+          "uk-northern-ireland",
+          "ie-dublin",
+          "ie-cork",
+          "ie-galway"
+        ]
+      },
+      {
+        "id": "unified",
+        "label": "Cross-border merged (all-island)",
+        "show": [
+          "ireland-unified",
+          "uk-northern-ireland"
+        ]
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": [
+          "uk-northern-ireland",
+          "ie-dublin",
+          "ie-cork",
+          "ie-galway",
+          "ireland-unified"
+        ],
+        "overlap": true
+      }
+    ]
+  },
+  {
+    "id": "liverpool-manchester",
+    "label": "Liverpool / Manchester",
+    "anchor": [
+      -2.73,
+      53.42
+    ],
+    "default_view": "separate",
+    "views": [
+      {
+        "id": "separate",
+        "label": "Separate city-regions",
+        "show": [
+          "uk-liverpool",
+          "uk-manchester"
+        ]
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping catchments",
+        "show": [
+          "uk-liverpool",
+          "uk-manchester"
+        ],
+        "overlap": true
+      }
+    ]
+  }
+]

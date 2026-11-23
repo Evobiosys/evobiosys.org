@@ -1,0 +1,3321 @@
+{
+  "zone": "zone1",
+  "notes": [
+    "Region-count tension (updated for draft_v0.1.2): v0.1.0 authored 31 zone-1 records by honoring 18 mandated German splits, 5 mandated Austrian regions (with Carinthia folded into Styria and Salzburg folded into Upper Austria for parsimony), 6 Swiss macro-regions (with Schaffhausen folded into Central & Eastern CH), Liechtenstein, and the tyrol-unified variant. draft_v0.1.2's content wave undoes four of those parsimony merges under the explicit parliament rule and historical-founding mandates: Styria != Carinthia, Salzburg != Upper Austria, Rhineland-Palatinate != Saarland, Berlin != Brandenburg, and Schaffhausen != Central & Eastern Switzerland. Combined with three new hidden (default_visible false) variant-view records (at-vienna-danube-extended, ch-central-eastern-combined, plus three Lower-Saxony/Bremen variant records) needed to power the new variant sets, zone1 now totals 41 records: 35 default_visible=true cultural units plus 6 default_visible=false alternate-view records. This again mirrors the project's own 40-70-vs-90-110 tension: honoring every explicitly named v0.1.2 split pushes the visible count from 31 to 35 before any variant-set scaffolding is added. Flagged rather than silently smoothed over, per the project's standing convention.",
+    "Lower Saxony vs Saxony nuance (still valid, unchanged by v0.1.2): despite the near-homophone English names, Niedersachsen (Lower Saxony) and Sachsen (Saxony) are historically and dialectally unrelated -- Lower Saxony descends from the medieval Duchy of Saxony's north-western Low German-speaking remnant, while modern Sachsen descends from the Wettin Margraviate of Meissen/Kingdom of Saxony, an East Central German-speaking territory that inherited the 'Saxon' name through a 12th-century dynastic transfer of title, not linguistic-territorial continuity. Both remain separate regions here; each region's nuts1_disagreement field flags the naming confusion explicitly.",
+    "Saxony-Anhalt and Mecklenburg-Vorpommern inclusion-test honesty check (still valid, unchanged by v0.1.2): Saxony-Anhalt is the weaker case -- a 1947 administrative creation (Prussian Saxony province + Anhalt duchy) with no deep pre-existing regional unity, dissolved entirely under the GDR's Bezirke system 1952-90, and only reconstituted in 1990. It is nonetheless kept as its own region on the strength of its genuine post-1990 civic identity, urban hub (Halle/Magdeburg) and diversified industrial base. Mecklenburg-Vorpommern passes more comfortably (Rostock hub, 1945 merger of historically related Low-German duchies, genuinely diversified tourism/shipbuilding/offshore-wind base).",
+    "Parliament rule applied (draft_v0.1.2, new): the plan mandates that any region with its own parliament gets its own cultural unit. This directly resolved three v0.1.0 parsimony merges that the original file had explicitly flagged as open tensions: Rhineland-Palatinate (own Landtag, Mainz) is now split from Saarland (own Landtag, Saarbruecken); Berlin (own Abgeordnetenhaus) is now split from Brandenburg (own Landtag, Potsdam) -- honoring the 1996 merger referendum's failure. Where a Land-level parliament still does NOT map 1:1 onto a cultural unit -- Bavaria's Landtag governing Franconia/Bavarian-Swabia/Altbayern as three separate cultural units; NRW's Landtag governing Rhineland/Westphalia as two; Baden-Wuerttemberg's Landtag governing Baden/Wuerttemberg as two; the Vienna-East record combining three distinct Austrian Landtage (Vienna, Lower Austria, Burgenland); and all multi-canton Swiss groupings (Basel, Bern-Mittelland, Romandie, Central & Eastern CH) each combining several cantonal parliaments -- each such record's `parliament` field carries `has_own: false` plus a note naming the actual body/bodies, so the parliament_exceptions audit can enumerate them explicitly rather than the data silently implying a false 1:1 mapping. Single-canton Swiss units (Zuerich, Ticino, and the newly split Schaffhausen) correctly carry `has_own: true`, since for those the cultural unit and the parliament's jurisdiction already coincide.",
+    "Schaffhausen split (draft_v0.1.2, new): Schaffhausen (SR2024 CH052) is split out of the former ch-central-eastern combination per its distinct 1501 Confederacy-accession history and its near-exclave geography (surrounded by Germany on three sides), rather than remaining an undifferentiated part of the broad Zentral-/Ostschweiz statistical grouping. The v0.1.0 combined framing is preserved as a default_visible-false alternate view (ch-central-eastern-combined) for the new schaffhausen variant set, alongside a 'separate' default view and an 'overlap' view.",
+    "Upper Austria / Vienna variant set (draft_v0.1.2, new): now that Salzburg and Upper Austria are split into separate cultural units, a new upper-austria variant set offers an alternative 'vienna-join' view in which Upper Austria's Danube-valley economy is shown merged with Vienna & Eastern Austria (at-vienna-danube-extended, default_visible false) rather than standing alone, reflecting the real Vienna-Linz Danube-corridor economic axis without claiming shared cultural identity.",
+    "Lower Saxony + Bremen variant set merged into one (draft_v0.1.2, new): the plan named these as two separate mandated variant sets (lower-saxony: together/west-east-split; bremen: Lower-Saxony-united/west-east-split/overlap), but both sets would toggle visibility on the same underlying de-lower-saxony/de-bremen records, which would produce conflicting view states if kept as two independent sets. They are merged here into one bremen-lower-saxony variant set with four views (together / split / united / overlap), documented in data/variant_sets/zone1.json. The 'split' view divides Lower Saxony into de-lower-saxony-west (Weser-Ems, DE94, urban core Oldenburg) and de-lower-saxony-east (Braunschweig+Hannover+Lueneburg, DE91-93, urban core Hannover); Lueneburg (DE93) is assigned to the eastern half (it lies geographically east of the Bremen enclave, between Hamburg and Hannover) so the two halves sum exactly to Lower Saxony's full NUTS-2 coverage rather than leaving a coverage gap.",
+    "Carinthia (draft_v0.1.2 UPDATE -- supersedes the v0.1.0 merge note): Carinthia (AT21) is now split out of the former at-styria-carinthia combination as its own cultural unit (at-carinthia), honoring its distinct Kaerntnerisch dialect, Alpine-lake tourism economy and constitutionally recognized Slovene-speaking minority, per the draft_v0.1.2 content-wave mandate. The v0.1.0 merge-for-parsimony is no longer in effect.",
+    "Salzburg (draft_v0.1.2 UPDATE -- supersedes the v0.1.0 merge note): Salzburg (AT32) is now split out of the former at-salzburg-upper-austria combination as its own cultural unit (at-salzburg), honoring its distinct history as an independent Prince-Archbishopric until 1803/1816, per the draft_v0.1.2 content-wave mandate.",
+    "Switzerland's Central & Eastern region (ch-central-eastern) remains a deliberately broad combination of the historic Zentralschweiz founding cantons with the remaining Ostschweiz cantons (Schaffhausen now split out separately, see above); the internal heterogeneity (Zug's finance-haven status, Graubuenden's trilingual Romansh-speaking Alpine identity) is genuine and is not resolved here, flagged as a candidate for future subdivision.",
+    "Bern-Mittelland linguistic frontier (still valid, unchanged by v0.1.2): the Swiss statistical macro-region 'Espace Mittelland' (Bern, Fribourg, Solothurn, Neuchatel, Jura) is German-plurality but includes two fully francophone cantons (Neuchatel, Jura) and one bilingual canton (Fribourg/Freiburg); the Roestigraben (German/French linguistic boundary) runs through this region. Modeled as an independently toggleable conflict_flag (bern-mittelland-linguistic-frontier) on the ch-bern-mittelland record.",
+    "Vorarlberg's Alemannic dialect continuum and dual Swiss-Tyrolean orientation (draft_v0.1.2 UPDATE): Vorarlberg's Alemannic dialect continuum (conflict_flag vorarlberg-alemannic-continuum) links it culturally to eastern Switzerland, southern Baden and Alsace. draft_v0.1.2 additionally adds a mandated `special_status: \"dual Swiss+Tyrolean orientation\"` field: the linguistic/cultural pull is Swiss-Alemannic (not Austro-Bavarian like the rest of Austria), while administratively and historically Vorarlberg was long paired with Tyrol (shared judiciary and Statthalterei arrangements before 1918, both grouped under NUTS-1 AT3 Westoesterreich today) -- a genuine dual orientation, not a single clean affiliation.",
+    "Tyrol congruence toggle (still valid, unchanged by v0.1.2): at-tyrol (AT33, default_visible true) is authored here; the corresponding South Tyrol congruent record (ITH1, Provincia Autonoma di Bolzano/Bozen) is authored in zone3. The tyrol-unified record (AT33 + ITH1, default_visible false) is authored here and legitimately reuses AT33 already claimed by at-tyrol, since default_visible-false alternate-view records are exempted from the code-overlap check (which is scoped to default_visible-true records only).",
+    "Liechtenstein special_status (draft_v0.1.2, new): added to the schema-v2 mandated dashed-stroke list as 'sovereign microstate', for visual parity with Vatican/Monaco/Andorra/San Marino elsewhere in the dataset. Berlin and Bremen additionally carry `special_status: \"city-state\"` (alongside the mandated Hamburg) for parallelism among Germany's three Stadtstaaten -- an editorial extension beyond the literal Hamburg-only mandate, noted here rather than silently added.",
+    "Groupings tension (draft_v0.1.2, new; see data/groupings/zone1.json + zone4.json): the plan's guidance suggests ~12-16 representation groupings across zone1+zone4 combined, out of a project-wide 40-70 target. Zone1+zone4 together hold roughly 60 of the project's ~191 default-visible cultural units (~31%), which proportionally implies something closer to 12-22 groupings at the 40-70 project range -- but honoring distinct linguistic/cantonal/national identities (e.g. not merging Ticino with Romandie, not merging the Baltic states with Nordic islands purely to hit a number) produced 14 zone1 groupings + 16 zone4 groupings = 30 total. This is flagged explicitly for the controller/audit rather than forced down via incoherent cross-identity merges, consistent with the project's standing convention of stating such tensions rather than silently truncating."
+  ],
+  "regions": [
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-1 DE1 (Baden-Wuerttemberg) merges historic Baden with Wuerttemberg; split here on 1806-1952 statehood history and the Alemannic vs Swabian dialect boundary.",
+      "id": "de-baden",
+      "name": "Baden",
+      "name_local": "Baden",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Karlsruhe",
+      "secondary_centers": [
+        "Freiburg im Breisgau",
+        "Baden-Baden",
+        "Heidelberg",
+        "Mannheim"
+      ],
+      "identity_basis": "Historic Grand Duchy of Baden (1806-1918); Alemannic-Baden dialect continuum along the Upper Rhine; distinct from Swabian Wuerttemberg despite shared federal state since 1952.",
+      "key_industries": [
+        "automotive (Mercedes-Benz Mannheim/Rastatt)",
+        "software (SAP Walldorf)",
+        "specialty chemicals (Rhine border cluster)",
+        "wine and Black Forest tourism"
+      ],
+      "population": 5110000,
+      "population_note": "Eurostat 2023 regional estimate, sum of NUTS-2 DE12 (Karlsruhe) + DE13 (Freiburg)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE12",
+        "DE13"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Karlsruhe (KIT research) and Freiburg (university, environmental-tech hub) both function as established regional cultural centers",
+        "diversified_industry": "automotive supply, software (SAP), specialty chemicals, viticulture/tourism",
+        "dependent_identity": "strong Badener regional identity (Alemannic-Baden dialect, 1806-1952 statehood) fully integrated within Baden-Wuerttemberg/Germany, no separatism"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Rhine-valley agriculture (wine, market gardening) and KIT/university-linked health infrastructure support mid-range scores; energy remains import-dependent post-nuclear-phaseout despite Rhine hydro; clothing production is fully offshored.",
+        "rationales": {
+          "water": "Upper Rhine groundwater and Black Forest headwaters give ample supply.",
+          "food": "Rhine-valley market gardening and Kaiserstuhl/Ortenau viticulture support mid-range self-sufficiency, though the region is a net food importer overall.",
+          "energy": "Post-nuclear-phaseout (Fessenheim/Philippsburg closures) leaves the grid import-dependent despite Rhine hydro and growing solar."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistisches Landesamt Baden-Wuerttemberg",
+        "Historisches Lexikon Baden-Wuerttemberg"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Karlsruhe",
+          "Freiburg im Breisgau"
+        ],
+        "central": "Karlsruhe",
+        "central_coord": [
+          8.4,
+          49.0
+        ],
+        "note": "No single dominant city; Karlsruhe (administrative/research) and Freiburg (university/eco-tech) share regional weight."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Landtag von Baden-Wuerttemberg",
+        "note": "Baden has had no separate parliament since the 1952 merger into Baden-Wuerttemberg; represented via the joint Stuttgart Landtag. Parliament-rule exception."
+      },
+      "lang_family": "germanic/alemannic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-1 DE1 merges Wuerttemberg with Baden; split on Swabian vs Alemannic dialect and separate pre-1952 statehood.",
+      "id": "de-wuerttemberg",
+      "name": "Wuerttemberg",
+      "name_local": "Wuerttemberg",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Stuttgart",
+      "secondary_centers": [
+        "Tuebingen",
+        "Reutlingen",
+        "Ulm",
+        "Heilbronn"
+      ],
+      "identity_basis": "Historic Kingdom of Wuerttemberg (1806-1918); Swabian dialect and cultural identity distinct from Alemannic Baden; strong regional pride (Schwabenland).",
+      "key_industries": [
+        "automotive (Mercedes-Benz, Porsche, Bosch HQ Stuttgart)",
+        "mechanical engineering",
+        "precision optics (Zeiss Oberkochen)",
+        "university/research (Tuebingen)"
+      ],
+      "population": 5960000,
+      "population_note": "Eurostat 2023 regional estimate, sum of NUTS-2 DE11 (Stuttgart) + DE14 (Tuebingen)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE11",
+        "DE14"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Stuttgart metro >2.8M, automotive/engineering capital",
+        "diversified_industry": "automotive OEM and supply, precision engineering, optics, university research",
+        "dependent_identity": "distinct Swabian identity within Baden-Wuerttemberg/Germany; no separatism"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Stuttgart's tight, expensive housing market pulls shelter down; a dense autobahn/rail network and Stuttgart Airport give strong transportation self-sufficiency; energy stayed import-heavy after the Neckarwestheim nuclear closure.",
+        "rationales": {
+          "water": "Neckar and Danube headwaters plus Swabian Jura karst aquifers provide solid supply for the population density.",
+          "food": "Intensive orchard/viticulture belts (Remstal) and market gardening are real but insufficient for a dense industrial population.",
+          "energy": "Neckarwestheim's 2023 nuclear closure removed the region's main baseload source; wind/solar buildout has not fully offset it."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistisches Landesamt Baden-Wuerttemberg",
+        "Wiesinger dialectology (Swabian/Alemannic boundary)"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Stuttgart"
+        ],
+        "central": "Stuttgart",
+        "central_coord": [
+          9.18,
+          48.78
+        ],
+        "note": "Stuttgart dominates as automotive/engineering capital."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Landtag von Baden-Wuerttemberg",
+        "note": "Same shared Stuttgart Landtag as Baden since 1952. Parliament-rule exception."
+      },
+      "lang_family": "germanic/swabian"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-1 DE2 (Bayern) merges Franconia into Bavaria; split here on East Franconian dialect and historic non-Bavarian identity (per Wiesinger).",
+      "id": "de-franconia",
+      "name": "Franconia",
+      "name_local": "Franken",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Nuremberg",
+      "secondary_centers": [
+        "Wuerzburg",
+        "Bamberg",
+        "Bayreuth",
+        "Erlangen"
+      ],
+      "identity_basis": "East Franconian dialect area; historic Franconian Circle/Duchy annexed to Bavaria 1803-06; retains a distinct Franconian identity, cuisine and Protestant-Catholic mix separate from Altbayern.",
+      "key_industries": [
+        "automotive supply (Schaeffler, Bosch, Brose)",
+        "electronics (Siemens Erlangen, adidas/PUMA Herzogenaurach)",
+        "insurance (Nuernberger)",
+        "brewing/food"
+      ],
+      "population": 4100000,
+      "population_note": "Eurostat 2023 regional estimate, sum of NUTS-2 DE24 (Oberfranken) + DE25 (Mittelfranken) + DE26 (Unterfranken)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE24",
+        "DE25",
+        "DE26"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Nuremberg -- metro >1.3M, media/cultural institutions",
+        "diversified_industry": "automotive supply, electronics (Siemens), insurance (Nuernberger), sports goods (adidas/PUMA)",
+        "dependent_identity": "strong Franconian identity within Bavaria/Germany; no separatist movement"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Diversified Mittelfranken/Unterfranken industry and Erlangen's medical cluster support mid-to-strong scores; wine-growing Main valley aids food; clothing is offshored like everywhere else.",
+        "rationales": {
+          "water": "Main-Franconian river network and Fichtelgebirge headwaters are ample.",
+          "food": "Main-valley wine, Knoblauchsland market gardening (Nuremberg) and Steigerwald grain give above-average regional food production.",
+          "energy": "Grid-dependent with modest wind/solar; no major domestic generation asset gives it more than a mid-tier score."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Bavarian State Office of Statistics",
+        "Wiesinger (1983) East Franconian dialect classification"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Nuremberg",
+          "Wuerzburg",
+          "Bamberg"
+        ],
+        "central": "Nuremberg",
+        "central_coord": [
+          11.08,
+          49.45
+        ],
+        "note": "Nuremberg is the largest hub but Wuerzburg/Bamberg retain real cultural-administrative weight."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Bayerischer Landtag",
+        "note": "The Bavarian Landtag (Munich) has jurisdiction over all of Bavaria, not just this cultural sub-unit. Parliament-rule exception."
+      },
+      "lang_family": "germanic/east-franconian",
+      "reach": [
+        {
+          "target": "wider Bavarian and southern-Thuringian dialect-contact borderlands",
+          "note": "Nuremberg's media/legal institutions draw secondary cultural weight from adjacent southern Thuringia."
+        }
+      ]
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-1 DE2 merges Bavarian Swabia into Bavaria alongside Altbayern/Franconia; split out on the separate historic Swabian Circle identity.",
+      "id": "de-bavarian-swabia",
+      "name": "Bavarian Swabia",
+      "name_local": "Bayerisch-Schwaben",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Augsburg",
+      "secondary_centers": [
+        "Kempten",
+        "Memmingen",
+        "Neu-Ulm"
+      ],
+      "identity_basis": "Swabian-Bavarian dialect transition zone; historically part of the Swabian Circle and Free Imperial Cities (Augsburg), annexed to Bavaria in 1806; distinct from both Altbayern and Baden-Wuerttemberg's Swabia.",
+      "key_industries": [
+        "aerospace supply (Premium Aerotec Augsburg)",
+        "mechanical engineering",
+        "technical textiles (historic Augsburg cluster)",
+        "alpine tourism/dairy (Allgaeu)"
+      ],
+      "population": 1890000,
+      "population_note": "Eurostat 2023 regional estimate, NUTS-2 DE27 (Schwaben)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE27"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Augsburg -- third-largest Bavarian city, former Free Imperial City, Fraunhofer research presence",
+        "diversified_industry": "aerospace supply, mechanical engineering, Allgaeu tourism/dairy",
+        "dependent_identity": "Bavarian-Swabian identity distinct from Altbayern within Bavaria/Germany"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "Allgaeu dairy farming supports food; Augsburg's aerospace-supply base is diversified but mid-tier; peripheral position versus Munich limits healthcare/transportation scores slightly.",
+        "rationales": {
+          "water": "Lech and Danube tributaries plus Allgaeu Alpine catchments give strong supply.",
+          "food": "Allgaeu dairy farming is a genuine surplus sector (cheese exports beyond the region).",
+          "energy": "Lech hydropower stations contribute, but the aerospace/engineering economy is otherwise grid-import-dependent."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Bavarian State Office of Statistics",
+        "regional dialectology of the Bavarian-Swabian transition zone"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Augsburg"
+        ],
+        "central": "Augsburg",
+        "central_coord": [
+          10.9,
+          48.37
+        ],
+        "note": "Augsburg is the clear regional hub; Allgaeu towns are secondary."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Bayerischer Landtag",
+        "note": "Bavarian Landtag jurisdiction, not separate. Parliament-rule exception."
+      },
+      "lang_family": "germanic/swabian"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-1 DE2 groups Altbayern/Munich with Franconia and Swabia under one Land; split here preserves Bairisch-dialect Altbayern as historically and dialectally distinct core.",
+      "id": "de-munich-altbayern",
+      "name": "Munich / Altbayern",
+      "name_local": "Muenchen / Altbayern",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Munich",
+      "secondary_centers": [
+        "Ingolstadt",
+        "Rosenheim",
+        "Landshut",
+        "Passau",
+        "Regensburg"
+      ],
+      "identity_basis": "Altbayern (Old Bavaria) -- historic core of the Wittelsbach Duchy/Kingdom of Bavaria; Bavarian (Bairisch) dialect and Catholic-Bavarian cultural identity, encompassing metropolitan Munich and its rural hinterland.",
+      "key_industries": [
+        "automotive (BMW, Audi Ingolstadt)",
+        "aerospace/defense",
+        "finance and insurance (Munich Re, Allianz)",
+        "biotech"
+      ],
+      "population": 6990000,
+      "population_note": "Eurostat 2023 regional estimate, sum of NUTS-2 DE21 (Oberbayern) + DE22 (Niederbayern) + DE23 (Oberpfalz)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE21",
+        "DE22",
+        "DE23"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Munich metro >6M, financial/cultural capital of Bavaria",
+        "diversified_industry": "automotive OEM, aerospace/defense, finance, biotech",
+        "dependent_identity": "strong Bavarian (Altbayern) identity within Germany; occasional autonomy rhetoric (Bayernpartei) but no active separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "Alpine-fed Isar/Inn rivers give strong water security; Munich's extremely tight housing market drags shelter down; the Munich airport/autobahn hub and major hospital/biotech cluster push transportation and healthcare to the top of the scale.",
+        "rationales": {
+          "water": "Alpine-fed Isar/Inn rivers give near-maximal supply security.",
+          "food": "Munich's Gaeuboden/Hallertau hinterland (Europe's largest hop-growing region) is a real agricultural surplus, though the metro population outstrips it.",
+          "energy": "Isar hydropower plus grid imports; no single dominant domestic source keeps this mid-tier despite the wealth of the region."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Bavarian State Office of Statistics",
+        "Wiesinger Bairisch dialect studies"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Munich"
+        ],
+        "central": "Munich",
+        "central_coord": [
+          11.58,
+          48.14
+        ],
+        "note": "Munich dominates Altbayern as financial, cultural and political capital of Bavaria."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Bayerischer Landtag",
+        "note": "The Bayerischer Landtag sits in Munich and governs the whole of Bavaria (incl. Franconia and Bavarian Swabia), not only Altbayern; the Land-level parliament does not map 1:1 onto this cultural unit. Parliament-rule exception, listed for the audit."
+      },
+      "lang_family": "germanic/bavarian",
+      "reach": [
+        {
+          "target": "Bavarian Swabia, western Austria (Tyrol/Salzburg), South Tyrol",
+          "note": "Munich functions as the primary metropolitan, financial and cultural draw well beyond its own administrative region, reaching into adjacent Alpine Austria and South Tyrol via Euregio-linked commuting, media market and hospital referrals."
+        }
+      ]
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "de-hamburg",
+      "name": "Hamburg",
+      "name_local": "Hamburg",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Hamburg",
+      "secondary_centers": [],
+      "identity_basis": "Free and Hanseatic City of Hamburg; sovereign city-state since the medieval Hanseatic League; distinct maritime/mercantile identity and Low German (Hamburgisch) heritage.",
+      "key_industries": [
+        "port/maritime logistics",
+        "aerospace (Airbus Finkenwerder)",
+        "media/publishing",
+        "trade and finance"
+      ],
+      "population": 1920000,
+      "population_note": "Eurostat 2023 estimate, Land of Hamburg (NUTS-2 DE60)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE60"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Hamburg -- Germany's largest port, major media/publishing hub",
+        "diversified_industry": "maritime logistics, aerospace, media, trade finance",
+        "dependent_identity": "distinct Hanseatic city-state identity, fully integrated as a Land of Germany"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 2,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "A port city with strong logistics self-sufficiency but structurally food-import-dependent (no agricultural hinterland) and housing-constrained; the energy grid is supplemented by imports despite offshore-wind feed-in.",
+        "rationales": {
+          "water": "Elbe-fed groundwater is abundant for the city-state's footprint.",
+          "food": "No agricultural hinterland within city-state borders; structurally import-dependent via the port.",
+          "energy": "Offshore-wind feed-in helps, but port/industrial demand keeps the city a net importer."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistikamt Nord"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Hamburg"
+        ],
+        "central": "Hamburg",
+        "central_coord": [
+          10.0,
+          53.55
+        ],
+        "note": "Single dominant city-state."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Hamburgische Buergerschaft",
+        "note": "Hamburg is a sovereign city-state Land with its own parliament."
+      },
+      "lang_family": "germanic/low-german",
+      "special_status": "city-state"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "de-bremen",
+      "name": "Bremen",
+      "name_local": "Bremen",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Bremen",
+      "secondary_centers": [
+        "Bremerhaven"
+      ],
+      "identity_basis": "Free Hanseatic City of Bremen, Germany's smallest Land; independent Hanseatic maritime identity distinct from surrounding Lower Saxony.",
+      "key_industries": [
+        "port/maritime logistics (Bremerhaven container port)",
+        "aerospace (Airbus, OHB)",
+        "automotive (Mercedes-Benz Bremen)",
+        "fisheries/food processing"
+      ],
+      "population": 684000,
+      "population_note": "Eurostat 2023 estimate, Land of Bremen (NUTS-2 DE50)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE50"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Bremen/Bremerhaven -- historic Hanseatic port city-state",
+        "diversified_industry": "aerospace, automotive, container shipping, fisheries",
+        "dependent_identity": "sovereign Hanseatic city-state identity as a Land of Germany"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 2,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Bremerhaven's container port and fishing fleet give strong transportation self-sufficiency; the tiny territory has no agricultural base, keeping food low; aerospace and automotive give a diversified but import-linked energy/materials picture.",
+        "rationales": {
+          "water": "Weser-fed groundwater is sufficient for the small city-state territory.",
+          "food": "No meaningful agricultural hinterland within the city-state; entirely import-dependent.",
+          "energy": "Bremerhaven's offshore-wind service industry does not translate into local generation share; grid-import dependent."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistisches Landesamt Bremen"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Bremen"
+        ],
+        "central": "Bremen",
+        "central_coord": [
+          8.8,
+          53.08
+        ],
+        "note": "Single dominant city-state (Bremerhaven is a satellite port, not a rival pole)."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Bremische Buergerschaft",
+        "note": "Bremen is a sovereign city-state Land with its own parliament."
+      },
+      "lang_family": "germanic/low-german",
+      "special_status": "city-state"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "de-schleswig-holstein",
+      "name": "Schleswig-Holstein",
+      "name_local": "Schleswig-Holstein",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Kiel",
+      "secondary_centers": [
+        "Luebeck",
+        "Flensburg",
+        "Neumuenster"
+      ],
+      "identity_basis": "Historic Duchies of Schleswig and Holstein; distinct Low German/North Frisian and Danish-minority (South Schleswig) cultural layer; maritime Baltic-North Sea identity separate from Hamburg/Lower Saxony.",
+      "key_industries": [
+        "wind energy (onshore/offshore)",
+        "maritime/shipbuilding (Kiel)",
+        "agriculture",
+        "tourism (Baltic and North Sea coasts)"
+      ],
+      "population": 2930000,
+      "population_note": "Eurostat 2023 estimate, Land of Schleswig-Holstein (NUTS-2 DEF0)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DEF0"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Kiel -- state capital, naval/maritime hub, university",
+        "diversified_industry": "wind energy, shipbuilding, agriculture, coastal tourism",
+        "dependent_identity": "distinct Schleswig-Holstein identity (including the Danish minority in Schleswig) within Germany"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "A leading German wind-energy exporter drives a high energy score; a strong agricultural base supports food; a peripheral position outside the major rail/air corridors limits transportation.",
+        "rationales": {
+          "water": "Ample rainfall and North/Baltic Sea coastal aquifers.",
+          "food": "Strong North German Plain agriculture makes the Land a net food exporter.",
+          "energy": "Germany's leading per-capita wind-energy exporter (on- and offshore); regularly generates far more electricity than it consumes."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistikamt Nord",
+        "Danish-minority and North Frisian cultural literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Kiel"
+        ],
+        "central": "Kiel",
+        "central_coord": [
+          10.14,
+          54.32
+        ],
+        "note": "Kiel is the state capital and largest city; Luebeck/Flensburg are secondary."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Landtag von Schleswig-Holstein",
+        "note": "Own Land parliament."
+      },
+      "lang_family": "germanic/low-german"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Matches NUTS-1 DE9 exactly; noted here only to disambiguate from Sachsen (Saxony, DED) despite the near-homophone English names -- see the Lower-Saxony/Saxony nuance addressed in this file's methodology notes.",
+      "id": "de-lower-saxony",
+      "name": "Lower Saxony",
+      "name_local": "Niedersachsen",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Hannover",
+      "secondary_centers": [
+        "Braunschweig",
+        "Osnabrueck",
+        "Oldenburg",
+        "Wolfsburg",
+        "Lueneburg"
+      ],
+      "identity_basis": "Historic Land of Lower Saxony (post-1946); Low German (Niedersaechsisch) dialect zone distinct from Saxony proper (Upper Saxon/East Central German); North Sea coast, Lueneburg Heath and Volkswagen-industrial identity.",
+      "key_industries": [
+        "automotive (Volkswagen Wolfsburg)",
+        "agriculture (major German food producer)",
+        "offshore wind/energy",
+        "logistics (Bremen/Hamburg hinterland ports)"
+      ],
+      "population": 8010000,
+      "population_note": "Eurostat 2023 regional estimate, sum of NUTS-2 DE91-DE94 (Braunschweig, Hannover, Lueneburg, Weser-Ems)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE91",
+        "DE92",
+        "DE93",
+        "DE94"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Hannover -- state capital, trade-fair capital (Hannover Messe)",
+        "diversified_industry": "automotive (VW), agriculture, offshore wind, logistics",
+        "dependent_identity": "Low-German Niedersachsen identity within Germany; no separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 5,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.7,
+        "rationale": "One of Germany's largest agricultural producers, giving high food and water scores; North Sea gas fields and offshore wind support energy; the VW-centered industrial base is diversified but Wolfsburg's company-town character caps healthcare/shelter slightly.",
+        "rationales": {
+          "water": "North Sea coastal aquifers and the Weser/Aller/Leine river network are abundant.",
+          "food": "One of Germany's largest agricultural producers (grain, potatoes, livestock); a genuine net exporter.",
+          "energy": "North Sea gas fields (declining but active) plus a large offshore/onshore wind fleet keep the Land energy-strong."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Landesamt fuer Statistik Niedersachsen"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Hannover",
+          "Braunschweig",
+          "Oldenburg",
+          "Osnabrueck"
+        ],
+        "central": "Hannover",
+        "central_coord": [
+          9.73,
+          52.37
+        ],
+        "note": "Hannover is the state capital and trade-fair hub, but Lower Saxony is genuinely multi-polar across four NUTS-2 sub-regions."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Landtag von Niedersachsen",
+        "note": "Own Land parliament, seated in Hannover."
+      },
+      "lang_family": "germanic/low-german"
+    },
+    {
+      "id": "de-lower-saxony-west",
+      "name": "Lower Saxony (West / Weser-Ems)",
+      "name_local": "Niedersachsen-West / Weser-Ems",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Oldenburg",
+      "secondary_centers": [
+        "Emden",
+        "Wilhelmshaven",
+        "Osnabrueck"
+      ],
+      "identity_basis": "Hypothetical split-view record for the bremen-lower-saxony variant set: the western/Frisian half of Lower Saxony (Weser-Ems NUTS-2 DE94: Oldenburg, Cloppenburg, East Frisia, Emsland, Osnabrueck, Ammerland, Grafschaft Bentheim), organized around Oldenburg as its historic ducal-capital urban core, oriented toward Bremen's economic orbit.",
+      "key_industries": [
+        "agriculture/livestock (East Frisia, Oldenburger Muensterland)",
+        "shipbuilding/maritime (Emden, Wilhelmshaven)",
+        "automotive supply (Osnabrueck)",
+        "offshore-wind service ports"
+      ],
+      "population": 2510000,
+      "population_note": "Landesamt fuer Statistik Niedersachsen 2023 estimate, Weser-Ems (NUTS-2 DE94); one of two split-view halves of de-lower-saxony's total (8,010,000).",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE94"
+      ],
+      "single_unit_exception": false,
+      "default_visible": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Weser-Ems (DE94) also includes Osnabrueck and Grafschaft Bentheim beyond the three districts (Oldenburg, Cloppenburg, East Frisia) explicitly named in the split-view mandate; the committed geometry has no finer NUTS-3 breakdown of DE94 available at the same NUTS-2 level as the 'together' baseline, so the full Weser-Ems NUTS-2 code is used, urban core kept at Oldenburg per the mandate.",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Oldenburg"
+        ],
+        "central": "Oldenburg",
+        "central_coord": [
+          8.21,
+          53.14
+        ],
+        "note": "Oldenburg is the historic ducal capital and largest city of this split view, though Osnabrueck is comparably sized within the wider Weser-Ems NUTS-2 code."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Landtag von Niedersachsen",
+        "note": "Hypothetical split-view territory, not an actual administrative unit; the real Landtag Niedersachsen governs the whole Land."
+      },
+      "lang_family": "germanic/low-german",
+      "inclusion_test": {
+        "urban_hub": "Oldenburg -- historic ducal capital, regional cultural/administrative hub",
+        "diversified_industry": "agriculture/livestock, shipbuilding/maritime, automotive supply, offshore-wind service ports",
+        "dependent_identity": "hypothetical variant-view framing for the bremen-lower-saxony toggle; the underlying population holds a genuine Frisian/Oldenburg-orbit identity distinct from Hannover"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 5,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "East Frisian/Oldenburg farmland and livestock give top-tier food production; North Sea coastal aquifers are abundant; offshore-wind service ports support energy despite the region's peripheral position for rail transportation.",
+        "rationales": {
+          "water": "North Sea coastal aquifers and the Ems/Weser network are abundant.",
+          "food": "East Frisian and Oldenburger Muensterland livestock/dairy farming is a genuine agricultural surplus.",
+          "energy": "Offshore-wind service ports (Emden, Wilhelmshaven) and onshore turbines keep the region energy-strong."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Landesamt fuer Statistik Niedersachsen",
+        "Oldenburg regional-history literature"
+      ]
+    },
+    {
+      "id": "de-lower-saxony-east",
+      "name": "Lower Saxony (East / Hannover)",
+      "name_local": "Niedersachsen-Ost / Hannover",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Hannover",
+      "secondary_centers": [
+        "Braunschweig",
+        "Wolfsburg",
+        "Lueneburg",
+        "Celle"
+      ],
+      "identity_basis": "Hypothetical split-view record for the bremen-lower-saxony variant set: the eastern half of Lower Saxony (Hannover NUTS-2 DE92, Braunschweig NUTS-2 DE91, and Lueneburg NUTS-2 DE93, all lying east of the Bremen enclave), organized around Hannover as the state capital and largest urban core.",
+      "key_industries": [
+        "automotive (Volkswagen Wolfsburg)",
+        "trade-fair economy (Hannover Messe)",
+        "tourism (Lueneburg Heath)",
+        "logistics"
+      ],
+      "population": 5500000,
+      "population_note": "Landesamt fuer Statistik Niedersachsen 2023 estimate, sum of Braunschweig (DE91) + Hannover (DE92) + Lueneburg (DE93); the other split-view half of de-lower-saxony's total (8,010,000), complementing de-lower-saxony-west's Weser-Ems total.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE91",
+        "DE92",
+        "DE93"
+      ],
+      "single_unit_exception": false,
+      "default_visible": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Groups all three NUTS-2 units lying geographically east of the Bremen enclave (Braunschweig, Hannover, Lueneburg) under the 'east/Hannover' split-view label; Lueneburg is included here rather than left as a coverage gap so the two split-view halves sum exactly to de-lower-saxony's total codes (DE91-94).",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Hannover"
+        ],
+        "central": "Hannover",
+        "central_coord": [
+          9.73,
+          52.37
+        ],
+        "note": "Hannover is the state capital and clearly dominant urban core of this split view."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Landtag von Niedersachsen",
+        "note": "Hypothetical split-view territory, not an actual administrative unit; the real Landtag Niedersachsen governs the whole Land."
+      },
+      "lang_family": "germanic/low-german",
+      "inclusion_test": {
+        "urban_hub": "Hannover -- state capital, trade-fair capital (Hannover Messe)",
+        "diversified_industry": "automotive (VW Wolfsburg), trade fairs, tourism, logistics",
+        "dependent_identity": "hypothetical variant-view framing for the bremen-lower-saxony toggle; the underlying population holds a genuine Hannover-orbit identity distinct from the Frisian west"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "Braunschweig/Hannover farmland gives good food security; the VW-centered industrial base and Hannover trade-fair infrastructure support transportation and diversified industry; energy remains mid-tier without a major domestic generation asset in this eastern half.",
+        "rationales": {
+          "water": "Aller/Leine river network and Lueneburg Heath aquifers are ample.",
+          "food": "Broad Boerde-adjacent farmland around Braunschweig/Hildesheim gives solid food production.",
+          "energy": "No major domestic generation asset in this eastern half; mid-tier, grid-dependent."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Landesamt fuer Statistik Niedersachsen"
+      ]
+    },
+    {
+      "id": "de-lower-saxony-bremen-united",
+      "name": "Lower Saxony united (incl. Bremen)",
+      "name_local": "Niedersachsen vereinigt (mit Bremen)",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Hannover",
+      "secondary_centers": [
+        "Bremen",
+        "Oldenburg",
+        "Braunschweig"
+      ],
+      "identity_basis": "Hypothetical 'united' view for the bremen-lower-saxony variant set: shows the Bremen city-state enclave absorbed into its surrounding Lower Saxony territory, reflecting Bremen's historical origin as a Lower-Saxon Hanseatic city and its complete geographic enclosure by Lower Saxony, while the default map keeps Bremen as its own sovereign Land.",
+      "key_industries": [
+        "port/maritime logistics (Bremerhaven)",
+        "automotive (Volkswagen Wolfsburg, Mercedes-Benz Bremen)",
+        "aerospace (Airbus/OHB Bremen)",
+        "agriculture"
+      ],
+      "population": 8694000,
+      "population_note": "Sum of de-bremen (684,000) and de-lower-saxony's total (8,010,000) 2023 estimates.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE50",
+        "DE91",
+        "DE92",
+        "DE93",
+        "DE94"
+      ],
+      "single_unit_exception": false,
+      "default_visible": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Overrides Bremen's sovereign city-state status (NUTS-1 DE5) to model a hypothetical territorial-geography view in which the enclave is shown merged with its surrounding Land; the default map keeps de-bremen and de-lower-saxony as two constitutionally separate Laender.",
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Hannover",
+          "Bremen"
+        ],
+        "central": "Hannover",
+        "central_coord": [
+          9.73,
+          52.37
+        ],
+        "secondary": "Bremen",
+        "secondary_coord": [
+          8.8,
+          53.08
+        ],
+        "note": "Hannover (state capital) and Bremen (historic Hanseatic port) form the two real poles of this hypothetical united territory."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Landtag von Niedersachsen + Bremische Buergerschaft",
+        "note": "Hypothetical unified variant view; Bremen (own Buergerschaft) and Niedersachsen (own Landtag) remain constitutionally separate Laender."
+      },
+      "lang_family": "germanic/low-german",
+      "inclusion_test": {
+        "urban_hub": "Hannover and Bremen both function as established urban hubs in this hypothetical merged territory",
+        "diversified_industry": "port/maritime logistics, automotive, aerospace, agriculture",
+        "dependent_identity": "hypothetical territorial-geography framing reflecting Bremen's historical Lower-Saxon origin and complete geographic enclosure; does not claim Bremen's sovereign city-state status is invalid"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 4,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 5,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.9,
+        "rationale": "Combines Bremen's port/aerospace logistics strength with Lower Saxony's agricultural and North Sea energy base; averaging the two underlying records with Bremen's small population having limited weight.",
+        "rationales": {
+          "water": "Combines Weser/Aller/Leine river network abundance from both underlying records.",
+          "food": "Lower Saxony's substantial agricultural surplus offsets Bremen's zero-agriculture city-state footprint.",
+          "energy": "Bremerhaven's offshore-wind service industry plus Lower Saxony's North Sea gas/wind base keep this combined view energy-strong."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Landesamt fuer Statistik Niedersachsen",
+        "Statistisches Landesamt Bremen"
+      ]
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Matches NUTS-1 DED exactly, but note: Leipzig is sometimes analyzed as culturally distinct from Dresden/Chemnitz (different historical allegiance, more Thuringian-adjacent) and an internal Dresden/Leipzig split was considered and not applied here to keep the zone's region count from growing further beyond the explicitly mandated splits.",
+      "id": "de-saxony",
+      "name": "Saxony",
+      "name_local": "Sachsen",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Dresden",
+      "secondary_centers": [
+        "Leipzig",
+        "Chemnitz",
+        "Zwickau"
+      ],
+      "identity_basis": "Historic Kingdom/Electorate of Saxony; East Central German (Upper Saxon) dialect; distinct baroque-Dresden and industrial-Leipzig/Chemnitz cultural identity, etymologically unrelated to Lower Saxony despite the shared English name.",
+      "key_industries": [
+        "semiconductors (Silicon Saxony, Dresden)",
+        "automotive (Porsche/VW Leipzig, Chemnitz supply cluster)",
+        "publishing/trade fairs (Leipzig)",
+        "textile heritage (Chemnitz/Vogtland)"
+      ],
+      "population": 4086000,
+      "population_note": "Statistisches Landesamt Sachsen 2023 estimate, Land of Sachsen (NUTS-2 DED2, DED4, DED5)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DED2",
+        "DED4",
+        "DED5"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Dresden -- state capital, baroque cultural capital, semiconductor R&D",
+        "diversified_industry": "semiconductors, automotive, trade fairs/publishing (Leipzig), textiles",
+        "dependent_identity": "strong Saxon (Saechsisch) identity within Germany; no separatism"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "Lignite legacy plus a growing renewables build-out keeps energy mid-high; the Silicon Saxony semiconductor cluster and strong rail links support transportation and industry diversification.",
+        "rationales": {
+          "water": "Elbe and Mulde river network plus Erzgebirge headwaters are adequate for the population.",
+          "food": "Fertile Leipzig lowland farmland is real but modest relative to the urban population.",
+          "energy": "Lusatian/Central German lignite legacy plus a fast-growing renewables build-out keep the Land above the German average."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistisches Landesamt Sachsen",
+        "Upper Saxon dialectology"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Dresden",
+          "Leipzig"
+        ],
+        "central": "Dresden",
+        "central_coord": [
+          13.74,
+          51.05
+        ],
+        "secondary": "Leipzig",
+        "secondary_coord": [
+          12.37,
+          51.34
+        ],
+        "note": "Dresden is the state capital and baroque cultural seat; Leipzig rivals it in population and economic/publishing weight -- a genuine two-pole structure, not a single dominant city."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Saechsischer Landtag",
+        "note": "Own Land parliament, seated in Dresden."
+      },
+      "lang_family": "germanic/upper-saxon"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-1 DEA (Nordrhein-Westfalen) merges Rhineland with Westphalia; split here on Rhenish (Ripuarian/Catholic-Carnival) vs Westphalian (Low German, mixed confession) cultural identity, per the historic Prussian Rhine Province vs Province of Westphalia.",
+      "id": "de-rhineland",
+      "name": "Rhineland",
+      "name_local": "Rheinland",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Cologne",
+      "secondary_centers": [
+        "Duesseldorf",
+        "Bonn",
+        "Aachen",
+        "Leverkusen"
+      ],
+      "identity_basis": "Rhenish (Rheinlaendisch) cultural identity -- Catholic, Ripuarian-Franconian dialect, Carnival tradition, historic Prussian Rhine Province distinct from Westphalia.",
+      "key_industries": [
+        "chemicals (Bayer Leverkusen)",
+        "media/broadcasting (Cologne)",
+        "finance (Duesseldorf)",
+        "lignite energy (Rhenish coalfield)"
+      ],
+      "population": 9560000,
+      "population_note": "Eurostat 2023 regional estimate, sum of NUTS-2 DEA1 (Duesseldorf) + DEA2 (Koeln)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DEA1",
+        "DEA2"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Cologne -- media/cultural capital, cathedral city; Duesseldorf -- state capital, fashion/finance",
+        "diversified_industry": "chemicals, media, finance, lignite energy",
+        "dependent_identity": "distinct Rhenish identity within North Rhine-Westphalia/Germany; no separatism"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 2,
+        "energy": 4,
+        "transportation": 5,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "The Rhenish lignite coalfield (declining but still active) keeps energy above the NRW average; the Rhine port, autobahn/rail density and Cologne-Bonn airport give near-maximal transportation self-sufficiency; dense metro housing pressure caps shelter.",
+        "rationales": {
+          "water": "Rhine river and groundwater are abundant, though industrial demand is high.",
+          "food": "Dense urban/industrial land use leaves little agricultural hinterland; structurally food-import-dependent.",
+          "energy": "The Rhenish lignite coalfield (declining, phase-out by 2030) still keeps energy above the national urban average."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Landesbetrieb IT.NRW",
+        "Rhenish regionalism literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Cologne",
+          "Duesseldorf"
+        ],
+        "central": "Cologne",
+        "central_coord": [
+          6.96,
+          50.94
+        ],
+        "secondary": "Duesseldorf",
+        "secondary_coord": [
+          6.77,
+          51.23
+        ],
+        "note": "Cologne is the larger cultural/media hub; Duesseldorf is the NRW state capital and finance/fashion center -- two genuinely competing poles."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Landtag Nordrhein-Westfalen",
+        "note": "The NRW Landtag (Duesseldorf) governs all of North Rhine-Westphalia, not just the Rhineland cultural unit. Parliament-rule exception."
+      },
+      "lang_family": "germanic/ripuarian-franconian"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-1 DEA merges Westphalia with Rhineland; split here on the Westphalian dialect and historic Prussian-province identity distinct from the Rhenish Rhineland.",
+      "id": "de-westphalia",
+      "name": "Westphalia",
+      "name_local": "Westfalen",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Dortmund",
+      "secondary_centers": [
+        "Muenster",
+        "Bielefeld",
+        "Bochum",
+        "Paderborn"
+      ],
+      "identity_basis": "Historic Province of Westphalia; Low German/Westphalian dialect zone; post-industrial Ruhr-East and agrarian Muensterland identity distinct from Rhenish Rhineland.",
+      "key_industries": [
+        "mechanical engineering",
+        "logistics (post-coal Ruhr East transition)",
+        "agriculture (Muensterland)",
+        "insurance/IT (Muenster, Bielefeld)"
+      ],
+      "population": 8280000,
+      "population_note": "Eurostat 2023 regional estimate, sum of NUTS-2 DEA3 (Muenster) + DEA4 (Detmold) + DEA5 (Arnsberg)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DEA3",
+        "DEA4",
+        "DEA5"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Dortmund -- largest Westphalian city, post-industrial services/logistics hub",
+        "diversified_industry": "mechanical engineering, logistics, agriculture, insurance/IT",
+        "dependent_identity": "distinct Westphalian identity within North Rhine-Westphalia/Germany"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "Muensterland's strong agricultural base lifts food; the post-coal Ruhr-East transition leaves energy mid-tier; dense rail/autobahn network from the old industrial core keeps transportation solid.",
+        "rationales": {
+          "water": "Ruhr/Lippe/Ems river network is adequate; former mining-subsidence water management remains an active engineering task.",
+          "food": "Muensterland's strong agricultural base (livestock, grain) makes the region a net food exporter overall.",
+          "energy": "Post-coal transition; wind and biomass are growing but do not yet replace the historic Ruhr coal baseload."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Landesbetrieb IT.NRW",
+        "Westphalian regionalism and dialect literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Dortmund",
+          "Muenster",
+          "Bielefeld"
+        ],
+        "central": "Dortmund",
+        "central_coord": [
+          7.47,
+          51.51
+        ],
+        "note": "Dortmund is the largest city but Muenster (administrative/university) and Bielefeld (Ostwestfalen) are comparable regional poles."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Landtag Nordrhein-Westfalen",
+        "note": "Shared NRW Landtag with the Rhineland unit. Parliament-rule exception."
+      },
+      "lang_family": "germanic/westphalian"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "de-hesse",
+      "name": "Hesse",
+      "name_local": "Hessen",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Frankfurt am Main",
+      "secondary_centers": [
+        "Wiesbaden",
+        "Kassel",
+        "Darmstadt",
+        "Giessen"
+      ],
+      "identity_basis": "Historic Grand Duchy/People's State of Hesse; Central Hessian dialect zone; Frankfurt's role as a historic Free Imperial City and modern financial capital anchors a state identity distinct from neighboring Rhineland/Westphalia.",
+      "key_industries": [
+        "finance (Frankfurt, ECB, Deutsche Bundesbank)",
+        "pharma/chemicals (Sanofi, Merck Darmstadt)",
+        "logistics (Frankfurt Airport)",
+        "automotive supply"
+      ],
+      "population": 6240000,
+      "population_note": "Eurostat 2023 regional estimate, sum of NUTS-2 DE71 (Darmstadt) + DE72 (Giessen) + DE73 (Kassel)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE71",
+        "DE72",
+        "DE73"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Frankfurt am Main -- Germany's financial capital, major international airport hub",
+        "diversified_industry": "finance, pharma/chemicals, logistics, automotive supply",
+        "dependent_identity": "Hessian identity within Germany; no separatism"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "Frankfurt/Rhein-Main housing pressure pulls shelter down; Frankfurt Airport and the autobahn/rail hub give near-maximal transportation; the pharma/chemicals cluster (Sanofi, Merck) drives a strong healthcare score.",
+        "rationales": {
+          "water": "Rhine-Main groundwater and Vogelsberg volcanic-highland springs are ample.",
+          "food": "Wetterau and Rheingau agriculture/viticulture are real but modest against the dense Rhein-Main population.",
+          "energy": "No major domestic generation asset; the financial-sector economy is grid-import-dependent."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Hessisches Statistisches Landesamt"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Frankfurt am Main"
+        ],
+        "central": "Frankfurt am Main",
+        "central_coord": [
+          8.68,
+          50.11
+        ],
+        "note": "Frankfurt dominates as financial capital, despite Wiesbaden being the formal state capital."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Hessischer Landtag",
+        "note": "Own Land parliament, seated in Wiesbaden."
+      },
+      "lang_family": "germanic/hessian"
+    },
+    {
+      "id": "de-rhineland-palatinate",
+      "name": "Rhineland-Palatinate",
+      "name_local": "Rheinland-Pfalz",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Mainz",
+      "secondary_centers": [
+        "Trier",
+        "Koblenz",
+        "Kaiserslautern"
+      ],
+      "identity_basis": "Post-1946 French-zone-administered Land; Palatine/Moselle-Franconian dialect continuum, wine culture (Palatinate, Moselle), and cross-border ties to French Lorraine and Luxembourg -- split from Saarland in v0.1.2 per the parliament rule, since both are already separate Laender with their own Landtage.",
+      "key_industries": [
+        "pharma/biotech (BioNTech Mainz)",
+        "wine (Palatinate/Moselle)",
+        "chemicals (Ludwigshafen/BASF)",
+        "automotive supply"
+      ],
+      "population": 4110000,
+      "population_note": "Statistisches Landesamt Rheinland-Pfalz 2023 estimate, Land Rheinland-Pfalz (NUTS-2 DEB1+DEB2+DEB3); split from the former combined de-rhineland-palatinate-saarland total (5,090,000).",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DEB1",
+        "DEB2",
+        "DEB3"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Matches NUTS-1 DEB exactly. Previously combined with Saarland in v0.1.0 for region-count parsimony despite both already being separate Laender with their own Landtage; split in draft_v0.1.2 to satisfy the parliament rule (own parliament -> own cultural unit).",
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Mainz",
+          "Trier",
+          "Koblenz",
+          "Kaiserslautern"
+        ],
+        "central": "Mainz",
+        "central_coord": [
+          8.27,
+          50.0
+        ],
+        "note": "Mainz is the Land capital and biotech hub; Trier/Koblenz/Kaiserslautern remain genuine secondary poles across the Land's elongated territory."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Landtag Rheinland-Pfalz",
+        "note": "Own Land parliament, seated in Mainz. Splitting this unit out of the former combined record resolves the v0.1.0 parliament-rule exception."
+      },
+      "lang_family": "germanic/rhine-franconian",
+      "inclusion_test": {
+        "urban_hub": "Mainz -- Land capital, biotech hub (BioNTech)",
+        "diversified_industry": "pharma/biotech, wine, chemicals, automotive supply",
+        "dependent_identity": "distinct Palatine/Moselle-Franconian regional identity within Germany, non-separatist"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "The BioNTech/pharma cluster around Mainz drives a strong healthcare score; Palatinate/Moselle viticulture supports food; energy remains grid-import-dependent.",
+        "rationales": {
+          "water": "Rhine and Moselle river network plus Hunsrueck/Pfaelzerwald headwaters are ample.",
+          "food": "Palatinate and Moselle viticulture is a genuine specialty-export surplus, though general food security is still import-linked.",
+          "energy": "No major domestic generation asset; grid- and gas-import-dependent."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistisches Landesamt Rheinland-Pfalz",
+        "Palatine/Moselle-Franconian dialectology"
+      ]
+    },
+    {
+      "id": "de-saarland",
+      "name": "Saarland",
+      "name_local": "Saarland",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Saarbruecken",
+      "secondary_centers": [
+        "Neunkirchen",
+        "Voelklingen"
+      ],
+      "identity_basis": "Distinct 20th-century history separate from Rhineland-Palatinate: League-of-Nations mandate (1920-35), a 1935 plebiscite returning it to Germany, French administration again (1945-56), and a 1955 reunification referendum; own Saarlaendisch (Moselle-Franconian/Rhine-Franconian transition) dialect -- split out in v0.1.2 to satisfy the parliament rule, resolving the tension the v0.1.0 record explicitly flagged.",
+      "key_industries": [
+        "automotive (Ford Saarlouis, ZF)",
+        "steel legacy (Voelklingen Ironworks, UNESCO site)",
+        "cross-border Grande Region commuting",
+        "IT/services"
+      ],
+      "population": 980000,
+      "population_note": "Statistisches Amt Saarland 2023 estimate, Land Saarland (NUTS-2 DEC0); split from the former combined de-rhineland-palatinate-saarland total.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DEC0"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Matches NUTS-1 DEC exactly. The v0.1.0 record explicitly flagged Saarland's distinct League-of-Nations-mandate/plebiscite/referendum history as an 'open challenge rather than resolved'; draft_v0.1.2 resolves it by splitting Saarland out as its own cultural unit per the parliament rule.",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Saarbruecken"
+        ],
+        "central": "Saarbruecken",
+        "central_coord": [
+          7.0,
+          49.23
+        ],
+        "note": "Saarbruecken is the clear Saarland hub and Grande Region cross-border node."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Landtag des Saarlandes",
+        "note": "Own Land parliament, seated in Saarbruecken. Splitting this unit out resolves the v0.1.0 parliament-rule exception."
+      },
+      "lang_family": "germanic/rhine-franconian",
+      "inclusion_test": {
+        "urban_hub": "Saarbruecken -- Land capital, cross-border Grande Region node",
+        "diversified_industry": "automotive, steel-legacy industrial base, cross-border commuting economy, IT services",
+        "dependent_identity": "distinct Saarlaendisch regional identity within Germany, shaped by a unique 20th-century plebiscite/referendum history; non-separatist"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 2,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "Saar-river water is adequate; the small, dense post-steel territory has limited farmland; the post-coal/post-steel energy transition keeps energy mid-tier.",
+        "rationales": {
+          "water": "Saar-river network is adequate for the small, dense territory.",
+          "food": "Very limited arable land in the small, historically industrial territory; structurally import-dependent.",
+          "energy": "Post-coal, post-steel transition; no major domestic generation asset keeps this mid-tier."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistisches Amt Saarland",
+        "Saarland historical/referendum literature (1920, 1935, 1955)"
+      ]
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "de-thuringia",
+      "name": "Thuringia",
+      "name_local": "Thueringen",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Erfurt",
+      "secondary_centers": [
+        "Jena",
+        "Weimar",
+        "Gera"
+      ],
+      "identity_basis": "Historic patchwork of Thuringian duchies (Ernestine Wettin lines); Thuringian (East Central German) dialect; strong post-1990 Land identity anchored in Weimar Classicism heritage and Jena's optics tradition.",
+      "key_industries": [
+        "optics/precision instruments (Carl Zeiss/Jenoptik, Jena)",
+        "automotive supply",
+        "biotech (Jena)",
+        "tourism (Weimar/Thuringian Forest)"
+      ],
+      "population": 2090000,
+      "population_note": "Eurostat 2023 estimate, Land of Thueringen (NUTS-2 DEG0)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DEG0"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Erfurt -- state capital; Jena -- optics/university hub",
+        "diversified_industry": "optics, automotive supply, biotech, tourism",
+        "dependent_identity": "distinct Thuringian identity within Germany"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "Jena's optics/biotech cluster and Erfurt's logistics-friendly central location give solid mid-range scores across the board; peripheral rural areas keep healthcare from scoring higher.",
+        "rationales": {
+          "water": "Thuringian Forest headwaters and the Saale/Unstrut network are ample for the population.",
+          "food": "Thuringian Basin loess soils support solid grain/vegetable production relative to the Land's small size.",
+          "energy": "Modest wind/solar; no major domestic fossil or hydro asset caps the score at mid-tier."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Thueringer Landesamt fuer Statistik"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Erfurt",
+          "Jena"
+        ],
+        "central": "Erfurt",
+        "central_coord": [
+          11.03,
+          50.98
+        ],
+        "secondary": "Jena",
+        "secondary_coord": [
+          11.59,
+          50.93
+        ],
+        "note": "Erfurt is the state capital; Jena rivals it as an optics/biotech/university hub -- a genuine two-pole structure."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Thueringer Landtag",
+        "note": "Own Land parliament, seated in Erfurt."
+      },
+      "lang_family": "germanic/thuringian"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Weakest inclusion-test case among the mandated German splits: Saxony-Anhalt is a 1947 administrative creation without deep pre-existing regional unity (Prussian Saxony province plus Anhalt duchy), dissolved under the GDR and only refounded in 1990. Kept as a distinct region -- matching the mandate and its now-genuine post-1990 civic identity, Bauhaus/Reformation heritage, and real urban/industrial base (Halle, Magdeburg, Leuna) -- rather than merged, but the fragility is stated honestly rather than asserted as historically deep.",
+      "id": "de-saxony-anhalt",
+      "name": "Saxony-Anhalt",
+      "name_local": "Sachsen-Anhalt",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Halle (Saale)",
+      "secondary_centers": [
+        "Magdeburg",
+        "Dessau-Rosslau"
+      ],
+      "identity_basis": "Post-1990 reconstituted Land combining the former Prussian Province of Saxony (Magdeburg, Halle) and the historic Duchy of Anhalt; administratively synthetic -- dissolved into GDR Bezirke 1952-90 -- but has developed a genuine post-reunification regional identity over three decades, expressed in shared Central German cultural and Bauhaus/Reformation heritage (Wittenberg, Dessau).",
+      "key_industries": [
+        "chemical industry (ChemiePark Leuna/Bitterfeld-Wolfen)",
+        "renewable energy (wind-turbine manufacturing)",
+        "logistics (central German location)",
+        "agriculture (Magdeburger Boerde)"
+      ],
+      "population": 2140000,
+      "population_note": "Eurostat 2023 estimate, Land of Sachsen-Anhalt (NUTS-2 DEE0)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DEE0"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Halle (Saale) -- university, MDR broadcasting, Haendel heritage; Magdeburg -- Land capital",
+        "diversified_industry": "chemical industry (Leuna/Bitterfeld), wind-turbine manufacturing, logistics, agriculture",
+        "dependent_identity": "developing post-1990 Land identity within Germany; administratively synthetic origin acknowledged; no separatism"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 4,
+        "energy": 4,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "The fertile Magdeburger Boerde plain and the Leuna/Bitterfeld chemical-and-wind cluster support solid food and energy scores; population decline has eased housing pressure (shelter); healthcare capacity outside Halle/Magdeburg is comparatively thin.",
+        "rationales": {
+          "water": "Elbe/Saale river network plus Harz headwaters are ample.",
+          "food": "The Magdeburger Boerde is among Germany's most fertile loess plains; a genuine agricultural surplus.",
+          "energy": "Leuna/Bitterfeld chemical-cluster cogeneration plus a large wind-turbine manufacturing and installed base keep the Land energy-strong."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistisches Landesamt Sachsen-Anhalt",
+        "regionalism literature on post-1990 Land identity formation"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Magdeburg",
+          "Halle (Saale)"
+        ],
+        "central": "Magdeburg",
+        "central_coord": [
+          11.63,
+          52.13
+        ],
+        "secondary": "Halle (Saale)",
+        "secondary_coord": [
+          11.97,
+          51.48
+        ],
+        "note": "Magdeburg is the state capital; Halle is the larger city and cultural/media hub -- a genuine two-pole structure, part of the region's synthetic-Land honesty note."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Landtag von Sachsen-Anhalt",
+        "note": "Own Land parliament, seated in Magdeburg."
+      },
+      "lang_family": "germanic/east-central-german"
+    },
+    {
+      "id": "de-berlin",
+      "name": "Berlin",
+      "name_local": "Berlin",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Berlin",
+      "secondary_centers": [],
+      "identity_basis": "Federal capital city-state; sovereign Land in its own right with its own Abgeordnetenhaus (parliament) -- split from Brandenburg in v0.1.2 per the parliament rule, honoring the 1996 referendum in which voters rejected a formal Berlin-Brandenburg merger.",
+      "key_industries": [
+        "government/federal administration",
+        "technology/startups",
+        "media/creative industries",
+        "tourism"
+      ],
+      "population": 3878000,
+      "population_note": "Amt fuer Statistik Berlin-Brandenburg 2023 estimate, Land Berlin (NUTS-2 DE30); split from the former combined de-berlin-brandenburg total (6,400,000).",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE30"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "special_status": "city-state",
+      "conflict_flags": [],
+      "nuts1_disagreement": "Matches NUTS-1 DE3 exactly. Previously combined with Brandenburg in v0.1.0 despite the 1996 formal-merger referendum having failed; split in draft_v0.1.2 to satisfy the parliament rule (Berlin has its own Abgeordnetenhaus, distinct from the Landtag Brandenburg).",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Berlin"
+        ],
+        "central": "Berlin",
+        "central_coord": [
+          13.4,
+          52.52
+        ],
+        "note": "Berlin is Germany's largest city and federal capital, an unambiguous single pole."
+      },
+      "reach": [
+        {
+          "target": "surrounding Brandenburg commuter belt; Szczecin/western Poland corridor",
+          "note": "Berlin's metropolitan pull extends well beyond its own city-state borders into surrounding Brandenburg and, to a lesser degree, cross-border into western Poland."
+        }
+      ],
+      "parliament": {
+        "has_own": true,
+        "name": "Abgeordnetenhaus von Berlin",
+        "note": "Own Land parliament. Splitting this unit out resolves the v0.1.0 parliament-rule exception (the 1996 merger referendum failed)."
+      },
+      "lang_family": "germanic/east-low-german",
+      "inclusion_test": {
+        "urban_hub": "Berlin -- federal capital, major cultural and technology hub",
+        "diversified_industry": "government, technology/startups, media, tourism",
+        "dependent_identity": "sovereign city-state Land identity within Germany; the 1996 formal-merger referendum with Brandenburg failed"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 2,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Havel/Spree groundwater is adequate; the dense city-state has no agricultural hinterland within its own borders; grid-import-dependent for energy.",
+        "rationales": {
+          "water": "Spree/Havel groundwater is adequate for the city-state's footprint.",
+          "food": "No agricultural hinterland within city-state borders; structurally import-dependent (relies on the surrounding Brandenburg reach).",
+          "energy": "No domestic generation asset within city-state borders; grid- and gas-import-dependent."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Amt fuer Statistik Berlin-Brandenburg",
+        "1996 Berlin-Brandenburg merger referendum record"
+      ]
+    },
+    {
+      "id": "de-brandenburg",
+      "name": "Brandenburg",
+      "name_local": "Brandenburg",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Potsdam",
+      "secondary_centers": [
+        "Cottbus"
+      ],
+      "identity_basis": "Historic March of Brandenburg, Prussian core; own Landtag distinct from Berlin's Abgeordnetenhaus, functionally integrated with Berlin as its commuter/settlement hinterland but constitutionally separate since the 1996 merger referendum failed -- split from Berlin in v0.1.2 per the parliament rule.",
+      "key_industries": [
+        "logistics (Berlin Brandenburg Airport)",
+        "renewable energy and lignite transition (Lusatia)",
+        "agriculture",
+        "film/media (Babelsberg)"
+      ],
+      "population": 2573000,
+      "population_note": "Amt fuer Statistik Berlin-Brandenburg 2023 estimate, Land Brandenburg (NUTS-2 DE40); split from the former combined de-berlin-brandenburg total.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE40"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Matches NUTS-1 DE4 exactly. Previously combined with Berlin in v0.1.0 despite the 1996 formal-merger referendum having failed; split in draft_v0.1.2 to satisfy the parliament rule.",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Potsdam"
+        ],
+        "central": "Potsdam",
+        "central_coord": [
+          13.06,
+          52.4
+        ],
+        "note": "Potsdam is the Land capital; functionally the whole Land orbits Berlin, but Potsdam is Brandenburg's own administrative/cultural center within its own territory."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Landtag Brandenburg",
+        "note": "Own Land parliament, seated in Potsdam. Splitting this unit out resolves the v0.1.0 parliament-rule exception."
+      },
+      "lang_family": "germanic/east-low-german",
+      "inclusion_test": {
+        "urban_hub": "Potsdam -- Land capital, Babelsberg film-studio heritage; Cottbus -- Lusatian regional center",
+        "diversified_industry": "logistics (BER airport), Lusatia lignite-to-renewables transition, agriculture, film/media",
+        "dependent_identity": "distinct Brandenburg Land identity, functionally commuter-integrated with Berlin but constitutionally separate since the 1996 merger referendum failed; no separatism"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 4,
+        "energy": 4,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "Broad agricultural land and low population density outside the Berlin commuter belt support food; the Lusatia lignite legacy and its renewable transition keep energy mid-tier; abundant land reserve lifts shelter.",
+        "rationales": {
+          "water": "The Havel/Spree/Oder river network and extensive lake district give ample supply.",
+          "food": "Low population density and real agricultural land outside the Berlin commuter belt give a solid food score.",
+          "energy": "The Lusatia lignite legacy plus a fast-growing solar/wind buildout keep the Land mid-to-strong on energy."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Amt fuer Statistik Berlin-Brandenburg",
+        "1996 Berlin-Brandenburg merger referendum record"
+      ]
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "de-mecklenburg-vorpommern",
+      "name": "Mecklenburg-Vorpommern",
+      "name_local": "Mecklenburg-Vorpommern",
+      "countries": [
+        "DE"
+      ],
+      "urban_core": "Rostock",
+      "secondary_centers": [
+        "Schwerin",
+        "Stralsund",
+        "Greifswald"
+      ],
+      "identity_basis": "1945 merger of the historic Duchy of Mecklenburg and Swedish/Prussian Pomerania (Vorpommern); shared Low German (Mecklenburgisch-Vorpommersch) dialect and Baltic-coast identity distinct from Brandenburg and Saxony.",
+      "key_industries": [
+        "tourism (Baltic coast, Ruegen, Usedom)",
+        "shipbuilding/maritime (Rostock, Wismar)",
+        "offshore wind",
+        "agriculture"
+      ],
+      "population": 1610000,
+      "population_note": "Eurostat 2023 estimate, Land of Mecklenburg-Vorpommern (NUTS-2 DE80)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "DE80"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Rostock -- largest city, Baltic port, university",
+        "diversified_industry": "tourism, shipbuilding/maritime, offshore wind, agriculture",
+        "dependent_identity": "genuine Mecklenburg-Vorpommern coastal identity (two historic duchies unified 1945, shared Low German dialect); a functioning urban hub in Rostock distinguishes it from the weaker Saxony-Anhalt case"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 4,
+        "shelter": 4,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "Extensive coastline and low population density give strong water and food self-sufficiency; offshore wind supports energy; low housing pressure lifts shelter; a peripheral location and tourist-season strain limit transportation.",
+        "rationales": {
+          "water": "Extensive lakes, low population density and Baltic-coast rainfall give strong per-capita supply.",
+          "food": "Low density plus productive coastal-plain agriculture make this one of Germany's strongest food self-sufficiency scores.",
+          "energy": "Offshore wind (Baltic Sea) plus a strong onshore fleet keep the Land solidly energy-net-positive."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistisches Amt Mecklenburg-Vorpommern",
+        "Low German dialectology"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Rostock",
+          "Schwerin"
+        ],
+        "central": "Rostock",
+        "central_coord": [
+          12.14,
+          54.09
+        ],
+        "secondary": "Schwerin",
+        "secondary_coord": [
+          11.42,
+          53.63
+        ],
+        "note": "Rostock is the largest city and functional maritime/university hub; Schwerin is the formal state capital -- a genuine dipole."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Landtag Mecklenburg-Vorpommern",
+        "note": "Own Land parliament, seated in Schwerin."
+      },
+      "lang_family": "germanic/low-german"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "at-vienna-east",
+      "name": "Vienna & Eastern Austria",
+      "name_local": "Wien und Ostoesterreich",
+      "countries": [
+        "AT"
+      ],
+      "urban_core": "Vienna",
+      "secondary_centers": [
+        "St. Poelten",
+        "Eisenstadt",
+        "Wiener Neustadt"
+      ],
+      "identity_basis": "Vienna as federal capital and primate city, with Lower Austria and Burgenland as its integrated commuter/agricultural hinterland; matches NUTS-1 Ostoesterreich.",
+      "key_industries": [
+        "finance/EU-CEE regional headquarters (Vienna)",
+        "pharma/biotech",
+        "viticulture (Burgenland/Wachau)",
+        "agriculture (Weinviertel/Marchfeld)"
+      ],
+      "population": 3990000,
+      "population_note": "Eurostat 2023 regional estimate, sum of NUTS-2 AT11 (Burgenland) + AT12 (Niederoesterreich) + AT13 (Wien)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "AT11",
+        "AT12",
+        "AT13"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Vienna -- federal capital, major EU/CEE financial and cultural hub",
+        "diversified_industry": "finance, pharma/biotech, viticulture, agriculture",
+        "dependent_identity": "Vienna-centered eastern Austrian identity; no separatism"
+      },
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "Vienna's extensive social housing (Gemeindebau) mitigates the scarcity typical of a capital city, keeping shelter mid-range; Vienna Airport and the rail hub give near-maximal transportation; the pharma/biotech and hospital cluster gives top-tier healthcare.",
+        "rationales": {
+          "water": "Alpine-fed Danube and Vienna Woods springs give a top-tier, historically famous supply (Vienna's 1st and 2nd Hochquellenwasserleitung).",
+          "food": "Marchfeld/Weinviertel grain and vegetable belts plus Wachau/Burgenland viticulture support solid mid-range food production.",
+          "energy": "Grid- and gas-import-dependent as a dense capital region; no major domestic generation asset."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO NUTS 2024",
+        "Statistik Austria"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Vienna"
+        ],
+        "central": "Vienna",
+        "central_coord": [
+          16.37,
+          48.21
+        ],
+        "note": "Mandated monopole: Vienna overwhelmingly dominates its eastern Austrian hinterland."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Wiener Landtag / Niederoesterreichischer Landtag / Burgenlaendischer Landtag",
+        "note": "Combines three Austrian Laender, each with its own Landtag (Vienna, Lower Austria, Burgenland). Parliament-rule exception, listed for the audit."
+      },
+      "lang_family": "germanic/austro-bavarian",
+      "reach": [
+        {
+          "target": "Bratislava/western Slovakia, Brno/southern Moravia, western Hungary (CENTROPE)",
+          "note": "Vienna functions as the hub of the cross-border CENTROPE metropolitan region, drawing commuting, retail and cultural reach across the Austrian border."
+        }
+      ]
+    },
+    {
+      "id": "at-styria",
+      "name": "Styria",
+      "name_local": "Steiermark",
+      "countries": [
+        "AT"
+      ],
+      "urban_core": "Graz",
+      "secondary_centers": [
+        "Leoben",
+        "Kapfenberg"
+      ],
+      "identity_basis": "Historic Duchy of Styria core (AT22); Graz as UNESCO design city and Austria's second city; distinct from Carinthia's Alpine-lake/Slovene-minority identity to its south, per the v0.1.2 parliament-rule split of the former combined at-styria-carinthia record.",
+      "key_industries": [
+        "automotive/steel (Magna Steyr Graz, voestalpine)",
+        "electronics/semiconductors (Graz)",
+        "forestry/wood",
+        "Styrian wine tourism"
+      ],
+      "population": 1250000,
+      "population_note": "Statistik Austria 2023 estimate, Land Steiermark (NUTS-2 AT22); split from the former combined at-styria-carinthia population (1,810,000) using the ~69/31 Styria/Carinthia population share.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "AT22"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Matches NUTS-2 AT22 exactly. Split out of the v0.1.0 at-styria-carinthia record per the draft_v0.1.2 mandate to honor Carinthia's own distinct identity rather than fold it in for region-count parsimony.",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Graz"
+        ],
+        "central": "Graz",
+        "central_coord": [
+          15.44,
+          47.07
+        ],
+        "note": "Graz overwhelmingly dominates Styria as its second-largest Austrian city and design/tech hub."
+      },
+      "reach": [
+        {
+          "target": "northeastern Slovenia (Maribor area) and Carinthia",
+          "note": "Graz functions as a secondary university, economic and cultural draw for Slovenian borderland communities and Carinthians beyond Klagenfurt, reflecting the historic Duchy of Styria's territory spanning the current AT/SI border before 1918/1919."
+        }
+      ],
+      "parliament": {
+        "has_own": true,
+        "name": "Steiermaerkischer Landtag",
+        "note": "Own Landtag, seated in Graz."
+      },
+      "lang_family": "germanic/austro-bavarian",
+      "inclusion_test": {
+        "urban_hub": "Graz -- Austria's second-largest city, UNESCO City of Design, major university/tech hub",
+        "diversified_industry": "automotive/steel, electronics/semiconductors, forestry, wine tourism",
+        "dependent_identity": "strong Styrian identity within Austria; no separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 4,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "Alpine headwaters give strong water security; hydropower and wood biomass support energy; a peripheral position outside the main east-west corridor limits transportation.",
+        "rationales": {
+          "water": "Alpine headwaters (Mur/Enns catchments) give strong water security.",
+          "food": "Styrian wine and pumpkin-seed-oil agriculture are real specialty exports but not surplus-scale against the population.",
+          "energy": "Mur-valley hydropower and wood biomass keep Styria above the Austrian urban average."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO NUTS 2024",
+        "Statistik Austria",
+        "literature on Styrian regional identity"
+      ]
+    },
+    {
+      "id": "at-carinthia",
+      "name": "Carinthia",
+      "name_local": "Kaernten",
+      "countries": [
+        "AT"
+      ],
+      "urban_core": "Klagenfurt",
+      "secondary_centers": [
+        "Villach"
+      ],
+      "identity_basis": "Historic Duchy of Carinthia (AT21); distinct Kaerntnerisch dialect, Alpine-lake tourism economy (Woerthersee), and Austria's constitutionally recognized Slovene-speaking minority (Carinthian Slovenes) -- given its own cultural unit in v0.1.2 rather than folded into Styria for region-count parsimony, honoring the plan's explicit split mandate.",
+      "key_industries": [
+        "electronics (Infineon Villach)",
+        "Alpine-lake tourism (Woerthersee)",
+        "wood/forestry",
+        "cross-border trade with Slovenia/Italy"
+      ],
+      "population": 561000,
+      "population_note": "Statistik Austria 2023 estimate, Land Kaernten (NUTS-2 AT21); split from the former combined at-styria-carinthia total.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "AT21"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "conflict_flags": [
+        {
+          "id": "carinthian-slovene-minority",
+          "description": "Carinthia has a constitutionally recognized Slovene-speaking minority (bilingual place-name signage, historically contested); shown as an identity-layer note on this record rather than a separate territorial claim.",
+          "zone_nuts_codes": [
+            "AT21"
+          ]
+        }
+      ],
+      "nuts1_disagreement": "Matches NUTS-2 AT21 exactly. Previously folded into at-styria-carinthia in v0.1.0 for region-count parsimony; split out in draft_v0.1.2 per the explicit content-wave mandate, restoring Carinthia's own Kaerntnerisch/Slovene-minority identity as a first-class cultural unit.",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Klagenfurt"
+        ],
+        "central": "Klagenfurt",
+        "central_coord": [
+          14.31,
+          46.62
+        ],
+        "note": "Klagenfurt is the clear Carinthian hub; Villach is a real secondary industrial/border-crossing pole but does not rival it."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Kaerntner Landtag",
+        "note": "Own Landtag, seated in Klagenfurt."
+      },
+      "lang_family": "germanic/austro-bavarian",
+      "inclusion_test": {
+        "urban_hub": "Klagenfurt -- Land capital, lake-district cultural hub; Villach -- major cross-border industrial/rail node",
+        "diversified_industry": "electronics (Infineon), Alpine-lake tourism, forestry, cross-border trade",
+        "dependent_identity": "distinct Carinthian identity (including the Slovene minority) within Austria; no separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 4,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "Alpine lakes and headwaters give strong water security; hydropower supports energy; a peripheral, mountainous position limits transportation and specialist healthcare access relative to Graz/Vienna.",
+        "rationales": {
+          "water": "Alpine lakes (Woerthersee, Millstaetter See) and headwaters give abundant per-capita supply.",
+          "food": "Small Alpine valley floors limit arable land; food self-sufficiency is structurally modest.",
+          "energy": "Drau-valley hydropower keeps Carinthia net electricity-positive despite its small size."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO NUTS 2024",
+        "Statistik Austria",
+        "literature on the Carinthian Slovene minority"
+      ]
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "NUTS-1 AT3 (Westoesterreich) groups Tyrol with Salzburg/Upper Austria/Vorarlberg; split out here as Tyrol's Habsburg-crownland identity and its shared cross-border South Tyrol kinship are distinct enough to warrant the mandated congruent/unified toggle.",
+      "id": "at-tyrol",
+      "name": "Tyrol",
+      "name_local": "Tirol",
+      "countries": [
+        "AT"
+      ],
+      "urban_core": "Innsbruck",
+      "secondary_centers": [
+        "Kufstein",
+        "Schwaz",
+        "Lienz"
+      ],
+      "identity_basis": "Historic County of Tyrol (Habsburg crownland since 1363); strong distinct Tyrolean identity (dialect, Alpine culture, memory of the 1809 Andreas Hofer rebellion) shared across the modern AT/IT border with South Tyrol.",
+      "key_industries": [
+        "Alpine tourism/skiing",
+        "hydropower",
+        "precision engineering (Swarovski Wattens)",
+        "agriculture/alpine dairy"
+      ],
+      "population": 764000,
+      "population_note": "Eurostat 2023 estimate, Land of Tirol (NUTS-2 AT33)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "AT33"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Innsbruck -- Olympic city, university, Alpine cultural capital",
+        "diversified_industry": "tourism, hydropower, precision engineering, alpine agriculture",
+        "dependent_identity": "strong Tyrolean identity within Austria; cross-border kinship with South Tyrol (Italy) toggled via variant_group, no Austrian separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.7,
+        "rationale": "Alpine hydropower makes Tyrol a net electricity exporter; the Brenner corridor gives real but seasonally/topographically constrained transportation; a historic loden-wool textile niche nudges clothing above the regional baseline.",
+        "rationales": {
+          "water": "Alpine glacial/snowmelt catchments are abundant.",
+          "food": "Steep Alpine terrain limits arable land; alpine dairy is real but not surplus-scale.",
+          "energy": "Extensive Alpine hydropower makes Tyrol a net electricity exporter."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO NUTS 2024",
+        "Statistik Austria",
+        "Tyrolean regional history"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Innsbruck"
+        ],
+        "central": "Innsbruck",
+        "central_coord": [
+          11.4,
+          47.27
+        ],
+        "note": "Innsbruck is the clear Tyrolean hub."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Tiroler Landtag",
+        "note": "Own Landtag, seated in Innsbruck."
+      },
+      "lang_family": "germanic/austro-bavarian"
+    },
+    {
+      "id": "at-salzburg",
+      "name": "Salzburg",
+      "name_local": "Salzburg",
+      "countries": [
+        "AT"
+      ],
+      "urban_core": "Salzburg",
+      "secondary_centers": [
+        "Hallein",
+        "Zell am See"
+      ],
+      "identity_basis": "Historic Prince-Archbishopric of Salzburg (independent ecclesiastical state until its 1803/1816 annexation to Austria); Salzburg Festival cultural capital, distinct from Upper Austria's Habsburg-crownland/industrial identity -- split out in v0.1.2 per the plan's explicit mandate.",
+      "key_industries": [
+        "festival/cultural tourism",
+        "Alpine tourism (Pinzgau/Pongau skiing)",
+        "hydropower (Salzach)",
+        "life sciences/technology"
+      ],
+      "population": 562000,
+      "population_note": "Statistik Austria 2023 estimate, Land Salzburg (NUTS-2 AT32); split from the former combined at-salzburg-upper-austria total (2,060,000).",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "AT32"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Matches NUTS-2 AT32 exactly. Previously combined with Upper Austria in v0.1.0; split in draft_v0.1.2 per the explicit content-wave mandate, honoring Salzburg's distinct ecclesiastical-state history (independent Prince-Archbishopric until 1803-1816) against Upper Austria's Habsburg-crownland/industrial identity.",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Salzburg"
+        ],
+        "central": "Salzburg",
+        "central_coord": [
+          13.04,
+          47.8
+        ],
+        "note": "Salzburg city dominates as festival capital and Land seat."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Salzburger Landtag",
+        "note": "Own Landtag, seated in Salzburg."
+      },
+      "lang_family": "germanic/austro-bavarian",
+      "inclusion_test": {
+        "urban_hub": "Salzburg -- UNESCO World Heritage old town, Salzburg Festival, Mozart heritage",
+        "diversified_industry": "festival/cultural tourism, Alpine skiing tourism, hydropower, life sciences",
+        "dependent_identity": "distinct Salzburg identity (Prince-Archbishopric heritage) within Austria; no separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.7,
+        "rationale": "Salzach hydropower gives near-maximal energy self-sufficiency; the Salzburg-Munich/Salzburg-Villach rail corridor supports transportation; the festival economy caps housing but supports healthcare investment.",
+        "rationales": {
+          "water": "Alpine glacial/snowmelt catchments (Salzach headwaters) are abundant.",
+          "food": "Steep Alpine terrain (Pinzgau/Pongau) limits arable land to alpine dairy; not surplus-scale.",
+          "energy": "Salzach-cascade hydropower gives Salzburg one of the highest energy scores in the zone."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO NUTS 2024",
+        "Statistik Austria",
+        "Salzburg ecclesiastical-state historiography"
+      ]
+    },
+    {
+      "id": "at-upper-austria",
+      "name": "Upper Austria",
+      "name_local": "Oberoesterreich",
+      "countries": [
+        "AT"
+      ],
+      "urban_core": "Linz",
+      "secondary_centers": [
+        "Wels",
+        "Steyr"
+      ],
+      "identity_basis": "Historic Habsburg crownland (Erzherzogtum Oesterreich ob der Enns); Linz as Austria's third-largest city and industrial/steel capital; Danube-valley identity distinct from Salzburg's ecclesiastical-state history -- split out in v0.1.2 per the plan's explicit mandate.",
+      "key_industries": [
+        "steel (voestalpine Linz)",
+        "chemicals",
+        "hydropower (Danube)",
+        "mechanical engineering"
+      ],
+      "population": 1500000,
+      "population_note": "Statistik Austria 2023 estimate, Land Oberoesterreich (NUTS-2 AT31); split from the former combined at-salzburg-upper-austria total.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "AT31"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Matches NUTS-2 AT31 exactly. Previously combined with Salzburg in v0.1.0; split in draft_v0.1.2 per the explicit content-wave mandate. Also feeds the upper-austria variant set's 'vienna-join' view, in which this territory is instead shown merged into at-vienna-danube-extended.",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Linz"
+        ],
+        "central": "Linz",
+        "central_coord": [
+          14.29,
+          48.31
+        ],
+        "note": "Linz is Austria's third-largest city and dominates Upper Austria's industrial economy."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Oberoesterreichischer Landtag",
+        "note": "Own Landtag, seated in Linz."
+      },
+      "lang_family": "germanic/austro-bavarian",
+      "inclusion_test": {
+        "urban_hub": "Linz -- Austria's third-largest city, steel/industrial capital, UNESCO City of Media Arts",
+        "diversified_industry": "steel, chemicals, hydropower, mechanical engineering",
+        "dependent_identity": "distinct Upper Austrian identity within Austria; no separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 4,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.9,
+        "rationale": "Danube hydropower gives a top-tier energy score; the Danube-valley rail/river corridor supports transportation; fertile Traun-Enns farmland gives above-average food production.",
+        "rationales": {
+          "water": "The Danube and its Alpine-fed tributaries (Traun, Enns) give near-maximal supply.",
+          "food": "Traun-Enns valley farmland is genuinely productive, giving one of the stronger AT food scores.",
+          "energy": "The Danube hydropower cascade (Abwinden-Asten, Wallsee-Mitterkirchen) makes Upper Austria a net electricity exporter."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO NUTS 2024",
+        "Statistik Austria",
+        "voestalpine/Linz industrial history"
+      ]
+    },
+    {
+      "id": "at-vienna-danube-extended",
+      "name": "Vienna-Danube Extended (Vienna + Upper Austria)",
+      "name_local": "Wien-Donauraum erweitert",
+      "countries": [
+        "AT"
+      ],
+      "urban_core": "Vienna",
+      "secondary_centers": [
+        "Linz",
+        "St. Poelten",
+        "Wels"
+      ],
+      "identity_basis": "Hypothetical variant view for the upper-austria variant set's 'vienna-join' option, in which Upper Austria's Danube-valley economy is shown merged with Vienna & Eastern Austria into one extended Danube-corridor region, reflecting the real Vienna-Linz rail/river economic axis rather than a claim that Upper Austrians identify primarily with Vienna.",
+      "key_industries": [
+        "finance/EU-CEE regional headquarters (Vienna)",
+        "steel (voestalpine Linz)",
+        "pharma/biotech",
+        "Danube hydropower and logistics"
+      ],
+      "population": 5490000,
+      "population_note": "Sum of at-vienna-east (3,990,000) and at-upper-austria (1,500,000) 2023 estimates.",
+      "area_km2": null,
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "AT11",
+        "AT12",
+        "AT13",
+        "AT31"
+      ],
+      "single_unit_exception": false,
+      "default_visible": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Crosses two NUTS-1 groupings (AT1 Ostoesterreich, AT3 Westoesterreich); this hypothetical view intentionally overrides the AT31 Salzburg/Upper-Austria split to model the real Danube-corridor economic axis (Vienna-Linz rail/river/logistics chain) as an alternative representation, not a claim of shared cultural identity between Vienna and Linz.",
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Vienna",
+          "Linz"
+        ],
+        "central": "Vienna",
+        "central_coord": [
+          16.37,
+          48.21
+        ],
+        "secondary": "Linz",
+        "secondary_coord": [
+          14.29,
+          48.31
+        ],
+        "note": "Vienna is the larger pole; Linz is a genuine secondary industrial pole along the shared Danube corridor."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Wiener Landtag / Niederoesterreichischer Landtag / Burgenlaendischer Landtag / Oberoesterreichischer Landtag",
+        "note": "Hypothetical merged variant view spanning four real Landtage; not an actual administrative unit."
+      },
+      "lang_family": "germanic/austro-bavarian",
+      "inclusion_test": {
+        "urban_hub": "Vienna (federal capital) and Linz (industrial capital) both function as established urban hubs along the shared Danube corridor",
+        "diversified_industry": "finance, steel, pharma/biotech, hydropower and river logistics",
+        "dependent_identity": "hypothetical Danube-corridor economic-region framing; does not claim shared regional identity, only shared economic-geographic logic"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.9,
+        "rationale": "Combines Vienna's Danube-sourced water and top-tier healthcare/transportation with Linz's hydropower-driven energy surplus and Traun-Enns food production; averaging the two underlying records.",
+        "rationales": {
+          "water": "Combines Vienna's historic Hochquellenwasserleitung supply with Upper Austria's Danube/Traun/Enns catchments.",
+          "food": "Blends Vienna's Marchfeld grain belt with Upper Austria's Traun-Enns farmland for a solid mid-range score.",
+          "energy": "Upper Austria's Danube hydropower surplus offsets Vienna's own import-dependence, lifting the combined score."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO NUTS 2024",
+        "Statistik Austria",
+        "Danube-corridor economic-geography literature"
+      ]
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "vorarlberg-alemannic-continuum",
+          "description": "Vorarlberg sits within the cross-border Alemannic dialect continuum linking it to eastern Switzerland, southern Baden and Alsace -- a genuine identity layer that cuts across the AT/CH/DE/FR state borders modeled elsewhere in this dataset as separate regions. Shown as an independently toggleable overlay rather than redrawn territory.",
+          "zone_nuts_codes": [
+            "AT34"
+          ]
+        }
+      ],
+      "nuts1_disagreement": "NUTS-1 AT3 groups Vorarlberg with Tyrol/Salzburg/Upper Austria; split out given its unique Alemannic (not Austro-Bavarian) dialect and its historic pro-Swiss-accession movement (1919 referendum, roughly 81% in favor, not enacted).",
+      "id": "at-vorarlberg",
+      "name": "Vorarlberg",
+      "name_local": "Vorarlberg",
+      "countries": [
+        "AT"
+      ],
+      "urban_core": "Bregenz",
+      "secondary_centers": [
+        "Dornbirn",
+        "Feldkirch"
+      ],
+      "identity_basis": "Austria's westernmost Land; an Alemannic dialect zone (unlike the rest of Austro-Bavarian Austria), historically oriented toward Switzerland/Lake Constance; a repeated 20th-century movement to join Switzerland (1919 referendum) underlines its distinct identity.",
+      "key_industries": [
+        "textile industry (historic Dornbirn cluster)",
+        "precision manufacturing",
+        "tourism (Lake Constance/Alps)",
+        "cross-border commuting economy (Switzerland)"
+      ],
+      "population": 405000,
+      "population_note": "Eurostat 2023 estimate, Land of Vorarlberg (NUTS-2 AT34)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "AT34"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Bregenz -- Land capital, Bregenz Festival cultural hub on Lake Constance",
+        "diversified_industry": "textiles, precision manufacturing, tourism, cross-border commuting economy",
+        "dependent_identity": "distinct Alemannic Vorarlberg identity within Austria; historic pro-Swiss sentiment but no active separatism today"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.6,
+        "rationale": "Alpine hydro supports energy; the historic Dornbirn textile cluster nudges clothing above the regional baseline; a small, mountainous territory with heavy cross-border commuting limits food self-sufficiency and transportation independence.",
+        "rationales": {
+          "water": "Lake Constance and Alpine headwaters are abundant relative to the small population.",
+          "food": "A small, mountainous territory with limited arable land; food self-sufficiency is structurally low.",
+          "energy": "Alpine hydropower makes Vorarlberg a net electricity exporter."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO NUTS 2024",
+        "Statistik Austria",
+        "Wiesinger Alemannic dialectology",
+        "1919 Vorarlberg referendum historiography"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Bregenz"
+        ],
+        "central": "Bregenz",
+        "central_coord": [
+          9.75,
+          47.5
+        ],
+        "note": "Bregenz is the Land capital and Bregenz Festival cultural hub on Lake Constance."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Vorarlberger Landtag",
+        "note": "Own Landtag, seated in Bregenz."
+      },
+      "lang_family": "germanic/alemannic",
+      "special_status": "dual Swiss+Tyrolean orientation"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Crosses two national NUTS-1 hierarchies (AT3 Westoesterreich, ITH Nord-Est incl. Trentino-Alto Adige); this unified toggle intentionally overrides current sovereignty to reflect the pre-1918 County of Tyrol and the Euregio cooperation framework -- shown as an alternative view, not a redrawing of actual borders.",
+      "id": "tyrol-unified",
+      "name": "Tyrol (unified)",
+      "name_local": "Tirol / Tirolo unito",
+      "countries": [
+        "AT",
+        "IT"
+      ],
+      "urban_core": "Innsbruck",
+      "secondary_centers": [
+        "Bolzano/Bozen",
+        "Lienz",
+        "Merano/Meran"
+      ],
+      "identity_basis": "Unified view of the historic County of Tyrol as it existed before the 1918/1919 partition between Austria and Italy; toggled as an alternative to the congruent AT-only and IT-only (South Tyrol) records, reflecting shared Tyrolean dialect and culture and the post-1946 Gruber-De Gasperi autonomy framework rather than current sovereignty.",
+      "key_industries": [
+        "Alpine tourism/skiing",
+        "hydropower",
+        "precision engineering",
+        "alpine dairy/agriculture"
+      ],
+      "population": 1309000,
+      "population_note": "Eurostat 2023 estimate, sum of AT33 (Tirol, Austria) and ITH1 (Provincia Autonoma di Bolzano/Bozen, Italy)",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "AT33",
+        "ITH1"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Innsbruck (North Tyrol) and Bolzano/Bozen (South Tyrol) both function as regional cultural hubs",
+        "diversified_industry": "Alpine tourism, hydropower, precision engineering, alpine agriculture across both sides of the border",
+        "dependent_identity": "shared pre-1918 Tyrolean identity and cross-border cooperation (Euregio Tirol-Suedtirol-Trentino); depends on, does not seek separation from, Austria or Italy"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.7,
+        "rationale": "Shared Alpine hydropower across both sides of the border keeps energy at the top of the scale; the Brenner corridor gives real but seasonally constrained transportation; alpine dairy/agriculture and the loden-wool tradition are shared on both sides of the toggle.",
+        "rationales": {
+          "water": "Alpine glacial/snowmelt catchments abundant on both sides of the border.",
+          "food": "Alpine dairy/viticulture (Bozen/Bolzano's Alto Adige wine) on the Italian side supplements Tyrol's own limited arable land.",
+          "energy": "Shared Alpine hydropower across both sides of the border keeps this among the highest energy scores in the zone."
+        }
+      },
+      "sources": [
+        "Eurostat NUTS 2024",
+        "Statistik Austria",
+        "ISTAT (Italian National Institute of Statistics)",
+        "Euregio Tirol-Suedtirol-Trentino documentation"
+      ],
+      "default_visible": false,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Innsbruck",
+          "Bolzano/Bozen"
+        ],
+        "central": "Innsbruck",
+        "central_coord": [
+          11.4,
+          47.27
+        ],
+        "secondary": "Bolzano/Bozen",
+        "secondary_coord": [
+          11.35,
+          46.5
+        ],
+        "note": "Mandated framing follows the historic County of Tyrol's two halves; Innsbruck as the larger/historic seat is taken as central."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Tiroler Landtag (AT) + Consiglio della Provincia autonoma di Bolzano (IT)",
+        "note": "Hypothetical cross-border view spanning two separate national parliaments; not an actual administrative unit."
+      },
+      "lang_family": "germanic/austro-bavarian"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "ch-zurich",
+      "name": "Zurich",
+      "name_local": "Zuerich",
+      "countries": [
+        "CH"
+      ],
+      "urban_core": "Zuerich",
+      "secondary_centers": [
+        "Winterthur"
+      ],
+      "identity_basis": "Switzerland's largest city-canton; German-speaking Reformed-Protestant economic and financial capital, historically the core of the medieval Zuerich city-state within the Confederacy.",
+      "key_industries": [
+        "finance/banking",
+        "insurance",
+        "technology/ETH research",
+        "life sciences"
+      ],
+      "population": 1580000,
+      "population_note": "Swiss Federal Statistical Office (BFS) 2023 estimate, Canton of Zuerich",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "CH040"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Zuerich -- Switzerland's largest city, a global financial center",
+        "diversified_industry": "banking/finance, insurance, technology (ETH Zuerich), life sciences",
+        "dependent_identity": "Zuerich cantonal identity within the Swiss Confederation; cantonal sovereignty is the constitutional norm, not separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 2,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 5,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "Alpine-fed lake and river water is abundant; the extremely tight, expensive housing market keeps shelter low; Zuerich Airport and the national rail hub give near-maximal transportation; the hospital/life-sciences cluster gives top-tier healthcare.",
+        "rationales": {
+          "water": "Alpine-fed lake and river water is abundant.",
+          "food": "Dense urban canton with limited farmland; structurally food-import-dependent.",
+          "energy": "Grid- and import-dependent; no major domestic generation asset within canton borders."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO SR2024",
+        "Bundesamt fuer Statistik (Swiss Federal Statistical Office)"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Zuerich"
+        ],
+        "central": "Zuerich",
+        "central_coord": [
+          8.54,
+          47.37
+        ],
+        "note": "Zuerich dominates its canton and the wider Swiss economy."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Kantonsrat des Kantons Zuerich",
+        "note": "Single-canton unit; own cantonal parliament."
+      },
+      "lang_family": "germanic/alemannic",
+      "reach": [
+        {
+          "target": "Suisse Romande labor-market edges (Vaud/Fribourg), southern Baden-Wuerttemberg",
+          "note": "Zuerich anchors Switzerland's largest metropolitan labor market with cross-cantonal and cross-border (DE) commuting reach."
+        }
+      ]
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "ch-basel",
+      "name": "Basel",
+      "name_local": "Basel",
+      "countries": [
+        "CH"
+      ],
+      "urban_core": "Basel",
+      "secondary_centers": [
+        "Aarau",
+        "Liestal"
+      ],
+      "identity_basis": "Historic Basel city-state plus Aargau; a tri-national Rhine-border identity (Basel borders both Germany and France) anchoring Europe's leading pharmaceutical cluster.",
+      "key_industries": [
+        "pharmaceuticals (Novartis, Roche)",
+        "chemicals",
+        "logistics (Rhine port)",
+        "precision manufacturing (Aargau)"
+      ],
+      "population": 1200000,
+      "population_note": "Swiss Federal Statistical Office (BFS) 2023 estimate, sum of Basel-Stadt + Basel-Landschaft + Aargau cantons",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "CH031",
+        "CH032",
+        "CH033"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Basel -- global pharmaceutical capital, tri-national Rhine hub",
+        "diversified_industry": "pharmaceuticals, chemicals, logistics, precision manufacturing",
+        "dependent_identity": "Basel/Aargau cantonal identities within the Confederation; strong cross-border (DE/FR) economic integration, no separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "The Rhine port and EuroAirport Basel-Mulhouse-Freiburg give strong transportation; the Novartis/Roche pharma cluster gives a top-tier healthcare score; energy remains grid- and import-dependent.",
+        "rationales": {
+          "water": "The Rhine and Jura foothill aquifers give abundant supply.",
+          "food": "Aargau farmland offsets Basel-Stadt's dense urban footprint, giving a mid-range regional score.",
+          "energy": "Grid-import-dependent; the pharma/chemicals cluster is a large consumer rather than producer."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO SR2024",
+        "Bundesamt fuer Statistik",
+        "Basel pharmaceutical-cluster industry reports"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Basel"
+        ],
+        "central": "Basel",
+        "central_coord": [
+          7.59,
+          47.56
+        ],
+        "note": "Basel dominates the tri-cantonal grouping."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Grosser Rat Basel-Stadt / Landrat Basel-Landschaft / Grosser Rat Aargau",
+        "note": "This unit groups three cantons; each has its own cantonal parliament. Parliament-rule exception, listed for the audit."
+      },
+      "lang_family": "germanic/alemannic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [
+        {
+          "id": "bern-mittelland-linguistic-frontier",
+          "description": "Neuchatel and Jura (and parts of Fribourg) are francophone cantons statistically grouped into the German-plurality 'Espace Mittelland' macro-region; the Romandie/German-Swiss linguistic boundary (the Roestigraben) runs through this region rather than around it. Shown as an independently toggleable overlay.",
+          "zone_nuts_codes": [
+            "CH024",
+            "CH025"
+          ]
+        }
+      ],
+      "nuts1_disagreement": null,
+      "id": "ch-bern-mittelland",
+      "name": "Bern-Mittelland",
+      "name_local": "Bern-Mittelland",
+      "countries": [
+        "CH"
+      ],
+      "urban_core": "Bern",
+      "secondary_centers": [
+        "Fribourg/Freiburg",
+        "Solothurn",
+        "Neuchatel",
+        "Biel/Bienne"
+      ],
+      "identity_basis": "Federal capital region (Bern) plus the German/French-mixed 'Espace Mittelland' -- includes bilingual Fribourg and francophone Neuchatel/Jura within a German-plurality macro-region; a genuine internal linguistic-frontier tension, flagged rather than resolved.",
+      "key_industries": [
+        "federal government/administration (Bern)",
+        "watchmaking (Jura, Neuchatel)",
+        "precision instruments",
+        "agriculture"
+      ],
+      "population": 1920000,
+      "population_note": "Swiss Federal Statistical Office (BFS) 2023 estimate, sum of Bern + Fribourg + Solothurn + Neuchatel + Jura cantons",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "CH021",
+        "CH022",
+        "CH023",
+        "CH024",
+        "CH025"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Bern -- Swiss federal capital",
+        "diversified_industry": "federal administration, watchmaking, precision instruments, agriculture",
+        "dependent_identity": "Bernese/Mittelland cantonal identities within the Confederation; internal French/German linguistic frontier flagged, no separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 4,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.9,
+        "rationale": "Broad agricultural land across the Mittelland plateau supports food; Jura/Neuchatel watchmaking gives clothing a small precision-craft nudge above the national baseline; hydropower keeps energy solid.",
+        "rationales": {
+          "water": "Aare river network and Bernese Oberland Alpine headwaters are abundant.",
+          "food": "Broad Mittelland-plateau agriculture gives one of the stronger food scores among Swiss macro-regions.",
+          "energy": "Aare hydropower plants keep the region solidly energy-positive."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO SR2024",
+        "Bundesamt fuer Statistik",
+        "Swiss linguistic-border literature (Roestigraben studies)"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Bern"
+        ],
+        "central": "Bern",
+        "central_coord": [
+          7.45,
+          46.95
+        ],
+        "note": "Bern is the federal capital and dominant hub of the Espace Mittelland grouping."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Grosser Rat des Kantons Bern / Grand Conseil de Fribourg / Kantonsrat Solothurn / Grand Conseil de Neuchatel / Parlement de la Republique et Canton du Jura",
+        "note": "This unit groups five cantons; each has its own cantonal parliament. Parliament-rule exception, listed for the audit."
+      },
+      "lang_family": "germanic/alemannic",
+      "reach": [
+        {
+          "target": "federal-administrative reach across Switzerland",
+          "note": "Bern's reach as federal capital is political/administrative rather than metropolitan-economic, distinct in kind from Zuerich's larger economic gravity."
+        }
+      ]
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "ch-romandie",
+      "name": "Romandie / Geneva-Lausanne",
+      "name_local": "Suisse romande",
+      "countries": [
+        "CH"
+      ],
+      "urban_core": "Geneva",
+      "secondary_centers": [
+        "Lausanne",
+        "Sion",
+        "Montreux"
+      ],
+      "identity_basis": "French-speaking Romandie core (Region lemanique); an international-organization hub (Geneva) and Alpine Valais; a distinct Francophone-Swiss cultural identity.",
+      "key_industries": [
+        "international organizations/diplomacy (Geneva)",
+        "finance/private banking",
+        "precision watchmaking (Vaud)",
+        "Alpine tourism (Valais)"
+      ],
+      "population": 1700000,
+      "population_note": "Swiss Federal Statistical Office (BFS) 2023 estimate, sum of Vaud + Valais + Geneve cantons",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "CH011",
+        "CH012",
+        "CH013"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Geneva -- global diplomatic and international-organization capital",
+        "diversified_industry": "diplomacy, private banking, watchmaking, Alpine tourism",
+        "dependent_identity": "Francophone Swiss (Romandie) identity within the Confederation; no separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 2,
+        "energy": 4,
+        "transportation": 4,
+        "hygiene_healthcare": 5,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "Alpine Valais hydropower supports energy; Geneva/Lausanne's tight housing market caps shelter; the international-organization and private-banking cluster supports transportation and healthcare capacity well above the national baseline.",
+        "rationales": {
+          "water": "Lake Geneva and Valais Alpine glacial catchments are abundant.",
+          "food": "Vaud vineyards and Valais orchard/vegetable farming give solid mid-range food production.",
+          "energy": "Valais Alpine hydropower makes the region a net electricity exporter despite dense Geneva/Lausanne urban demand."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO SR2024",
+        "Bundesamt fuer Statistik",
+        "Francophone-Swiss regional literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Geneva",
+          "Lausanne"
+        ],
+        "central": "Geneva",
+        "central_coord": [
+          6.14,
+          46.2
+        ],
+        "secondary": "Lausanne",
+        "secondary_coord": [
+          6.63,
+          46.52
+        ],
+        "note": "Geneva (international organizations) and Lausanne (Olympic/university seat) form a genuine two-pole structure along Lake Geneva."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Grand Conseil de Geneve / Grand Conseil de Vaud / Grand Conseil du Valais",
+        "note": "This unit groups three cantons; each has its own cantonal parliament. Parliament-rule exception, listed for the audit."
+      },
+      "lang_family": "romance/french"
+    },
+    {
+      "id": "ch-central-eastern",
+      "name": "Central & Eastern Switzerland",
+      "name_local": "Zentral- und Ostschweiz",
+      "countries": [
+        "CH"
+      ],
+      "urban_core": "Lucerne",
+      "secondary_centers": [
+        "St. Gallen",
+        "Chur",
+        "Zug"
+      ],
+      "identity_basis": "Combines the founding cantons of the old Swiss Confederacy (Zentralschweiz: Lucerne, Uri, Schwyz, Obwalden, Nidwalden, Zug) with the remaining Ostschweiz textile/Alpine cantons (St. Gallen, Thurgau, Appenzell Ausserrhoden/Innerrhoden, Glarus, Graubuenden) into one broad macro-region, now with Schaffhausen split out as its own unit per the v0.1.2 historical-founding mandate.",
+      "key_industries": [
+        "finance/low-tax holding companies (Zug)",
+        "textiles (historic St. Gallen embroidery)",
+        "tourism (Graubuenden Alps, Lake Lucerne)",
+        "precision manufacturing"
+      ],
+      "population": 1944000,
+      "population_note": "Swiss Federal Statistical Office (BFS) 2023 estimate, sum of the 12 remaining cantons of Zentralschweiz + Ostschweiz (former 2,028,000 total for 13 cantons, minus Schaffhausen's ~84,000).",
+      "area_km2": null,
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "CH051",
+        "CH053",
+        "CH054",
+        "CH055",
+        "CH056",
+        "CH057",
+        "CH061",
+        "CH062",
+        "CH063",
+        "CH064",
+        "CH065",
+        "CH066"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "conflict_flags": [],
+      "nuts1_disagreement": "A deliberately broad combination of two historically distinct macro-regions per the zone-1 spec; the internal heterogeneity (Zug's finance-haven status, Graubuenden's trilingual Romansh-speaking Alpine identity) remains real and could justify future subdivision. v0.1.2 removes Schaffhausen (CH052) into its own unit per the historical-founding mandate; see the schaffhausen variant set for the alternative combined-with-Schaffhausen framing (ch-central-eastern-combined, default_visible false).",
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Lucerne",
+          "St. Gallen",
+          "Chur",
+          "Zug"
+        ],
+        "central": "Lucerne",
+        "central_coord": [
+          8.31,
+          47.05
+        ],
+        "note": "Lucerne is the historic Confederacy founding-city anchor; St. Gallen, Chur and Zug are real secondary poles across this heterogeneous macro-region."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Kantonsraete of Luzern, Uri, Schwyz, Obwalden, Nidwalden, Zug, St. Gallen, Thurgau, Appenzell Ausserrhoden, Appenzell Innerrhoden, Glarus (Landsgemeinde), Graubuenden",
+        "note": "This unit groups twelve cantons; each has its own cantonal parliament (Glarus retains a Landsgemeinde open-air assembly). Parliament-rule exception, listed for the audit."
+      },
+      "lang_family": "germanic/alemannic",
+      "inclusion_test": {
+        "urban_hub": "Lucerne -- historic Confederacy founding city, tourism/culture hub; St. Gallen -- textile-heritage university city",
+        "diversified_industry": "finance (Zug), textiles (St. Gallen), Alpine tourism (Graubuenden/Lucerne), precision manufacturing",
+        "dependent_identity": "diverse cantonal identities (including Romansh-speaking Graubuenden) within the Confederation; a genuinely heterogeneous macro-region, no separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.7,
+        "rationale": "Alpine headwaters across Graubuenden/Uri give strong water security; Gotthard-region and Alpine hydropower push energy to the top of the scale; the St. Gallen textile-design heritage nudges clothing above baseline; peripheral Alpine valleys outside the Zug-Zuerich corridor limit transportation.",
+        "rationales": {
+          "water": "Alpine headwaters across Graubuenden/Uri/Glarus give strong per-capita water security.",
+          "food": "Alpine dairy and some Thurgau/St. Gallen lowland farming give a mid-range score, well short of self-sufficiency for the population.",
+          "energy": "Gotthard-region and central-Alpine hydropower push energy to the top of the Swiss scale."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO SR2024",
+        "Bundesamt fuer Statistik",
+        "St. Gallen textile-history literature",
+        "Graubuenden Romansh-culture sources"
+      ]
+    },
+    {
+      "id": "ch-central-eastern-combined",
+      "name": "Central & Eastern Switzerland (incl. Schaffhausen)",
+      "name_local": "Zentral- und Ostschweiz (mit Schaffhausen)",
+      "countries": [
+        "CH"
+      ],
+      "urban_core": "Lucerne",
+      "secondary_centers": [
+        "St. Gallen",
+        "Chur",
+        "Zug",
+        "Schaffhausen"
+      ],
+      "identity_basis": "Hypothetical variant view for the schaffhausen variant set's 'current' (within-Ostschweiz) option: the v0.1.0 framing that statistically bundled Schaffhausen into the broad Zentral-/Ostschweiz macro-region, kept available as a toggle rather than deleted outright.",
+      "key_industries": [
+        "finance/low-tax holding companies (Zug)",
+        "textiles (historic St. Gallen embroidery)",
+        "tourism (Graubuenden Alps, Lake Lucerne, Rhine Falls)",
+        "precision manufacturing"
+      ],
+      "population": 2028000,
+      "population_note": "Swiss Federal Statistical Office (BFS) 2023 estimate, sum of the 13 cantons of Zentralschweiz + Ostschweiz incl. Schaffhausen (the v0.1.0 ch-central-eastern total).",
+      "area_km2": null,
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "CH051",
+        "CH052",
+        "CH053",
+        "CH054",
+        "CH055",
+        "CH056",
+        "CH057",
+        "CH061",
+        "CH062",
+        "CH063",
+        "CH064",
+        "CH065",
+        "CH066"
+      ],
+      "single_unit_exception": false,
+      "default_visible": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Reproduces the v0.1.0 ch-central-eastern grouping (13 cantons incl. Schaffhausen) as a hypothetical variant-set view only; the default_visible-true baseline now splits Schaffhausen out per the historical-founding mandate.",
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Lucerne",
+          "St. Gallen",
+          "Chur",
+          "Zug",
+          "Schaffhausen"
+        ],
+        "central": "Lucerne",
+        "central_coord": [
+          8.31,
+          47.05
+        ],
+        "note": "Same polycentric structure as the reduced record, with Schaffhausen included as an additional secondary pole in this view."
+      },
+      "parliament": {
+        "has_own": false,
+        "name": "Kantonsraete of all 13 member cantons",
+        "note": "Hypothetical combined variant view; not an actual administrative unit."
+      },
+      "lang_family": "germanic/alemannic",
+      "inclusion_test": {
+        "urban_hub": "Lucerne, St. Gallen, plus Schaffhausen in this combined view",
+        "diversified_industry": "finance, textiles, Alpine tourism, precision manufacturing, Rhine Falls tourism",
+        "dependent_identity": "hypothetical combined framing for toggle purposes only"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 3.7,
+        "rationale": "Identical profile to the reduced ch-central-eastern record; Schaffhausen's small population does not materially shift the composite.",
+        "rationales": {
+          "water": "Same Alpine-headwater abundance as the reduced record, plus the Rhine at Schaffhausen.",
+          "food": "Same mid-range profile as the reduced record.",
+          "energy": "Same strong hydropower-driven score, plus the small Rhine Falls generation asset."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO SR2024",
+        "Bundesamt fuer Statistik",
+        "St. Gallen textile-history literature"
+      ]
+    },
+    {
+      "id": "ch-schaffhausen",
+      "name": "Schaffhausen",
+      "name_local": "Schaffhausen",
+      "countries": [
+        "CH"
+      ],
+      "urban_core": "Schaffhausen",
+      "secondary_centers": [],
+      "identity_basis": "Switzerland's northernmost canton, a Rhine-enclave founding-era canton (joined the Confederacy in 1501) with its own distinct civic history separate from the later Ostschweiz statistical grouping it is usually lumped into; split out as its own cultural unit in v0.1.2 per the plan's historical-founding rationale.",
+      "key_industries": [
+        "precision manufacturing (watch components)",
+        "Rhine Falls tourism",
+        "cross-border trade with Baden-Wuerttemberg (DE)",
+        "agriculture/viticulture"
+      ],
+      "population": 84000,
+      "population_note": "Swiss Federal Statistical Office (BFS) 2023 estimate, Canton of Schaffhausen; split from the former ch-central-eastern total (2,028,000 for 13 cantons) using the canton's own population.",
+      "area_km2": null,
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "CH052"
+      ],
+      "single_unit_exception": false,
+      "default_visible": true,
+      "conflict_flags": [],
+      "nuts1_disagreement": "Matches SR2024 CH052 exactly. Previously folded into ch-central-eastern's broad Zentral-/Ostschweiz combination in v0.1.0; split out in draft_v0.1.2 per the explicit mandate honoring Schaffhausen's distinct 1501 founding-era canton history (it is a Rhine-enclave, near-exclave canton, almost entirely surrounded by Germany on three sides) rather than treating it as an undifferentiated part of Ostschweiz. See the schaffhausen variant set for the alternative 'within Ostschweiz' framing.",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Schaffhausen"
+        ],
+        "central": "Schaffhausen",
+        "central_coord": [
+          8.63,
+          47.7
+        ],
+        "note": "Schaffhausen town is the sole urban center of this small canton."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Kantonsrat Schaffhausen",
+        "note": "Single-canton unit; own cantonal parliament."
+      },
+      "lang_family": "germanic/alemannic",
+      "inclusion_test": {
+        "urban_hub": "Schaffhausen town (~37,000) -- historic Rhine-crossing city, seat of the cantonal government",
+        "diversified_industry": "precision manufacturing, Rhine Falls tourism (Europe's largest plain waterfall), cross-border trade, viticulture",
+        "dependent_identity": "distinct Schaffhausen cantonal identity within the Confederation, historically separate from the Zentral-/Ostschweiz grouping it is statistically bundled with; no separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "The Rhine gives abundant water and a hydropower asset at the Rhine Falls; a small, near-exclave canton has limited farmland and a thin specialist-healthcare base relative to Zuerich/Basel.",
+        "rationales": {
+          "water": "The Rhine (and the Rhine Falls hydropower plant) gives abundant per-capita supply.",
+          "food": "Small canton with limited farmland beyond viticulture; not surplus-scale.",
+          "energy": "The Rhine Falls hydropower station gives a small but genuine domestic generation asset."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO SR2024",
+        "Bundesamt fuer Statistik",
+        "Schaffhausen cantonal history (1501 Confederacy accession)"
+      ]
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "ch-ticino",
+      "name": "Ticino",
+      "name_local": "Ticino",
+      "countries": [
+        "CH"
+      ],
+      "urban_core": "Lugano",
+      "secondary_centers": [
+        "Bellinzona",
+        "Locarno"
+      ],
+      "identity_basis": "Switzerland's sole Italian-speaking canton; a Lombard-Alpine cultural identity oriented toward Milan, distinct from both German- and French-speaking Switzerland.",
+      "key_industries": [
+        "finance/private banking (Lugano)",
+        "tourism (lakes, Alps)",
+        "logistics (Gotthard corridor, Gotthard Base Tunnel)",
+        "cross-border commuting to Italy"
+      ],
+      "population": 353000,
+      "population_note": "Swiss Federal Statistical Office (BFS) 2023 estimate, Canton of Ticino",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "CH070"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Lugano -- Switzerland's third-largest financial center",
+        "diversified_industry": "private banking, tourism, Gotthard-corridor logistics",
+        "dependent_identity": "distinct Italian-speaking Ticinese identity within the Confederation; no separatism"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.6,
+        "rationale": "Alpine water is abundant; the Gotthard Base Tunnel gives Ticino disproportionate transportation self-sufficiency for its size; private banking and tourism give a diversified but energy-import-dependent profile.",
+        "rationales": {
+          "water": "Alpine and lake (Lugano/Maggiore) water is abundant.",
+          "food": "Limited valley-floor arable land; wine and chestnut culture are real but not surplus-scale.",
+          "energy": "Alpine hydropower and the Gotthard-corridor grid infrastructure keep energy mid-to-strong."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO SR2024",
+        "Bundesamt fuer Statistik",
+        "Ticino cultural/linguistic literature"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Lugano"
+        ],
+        "central": "Lugano",
+        "central_coord": [
+          8.95,
+          46.0
+        ],
+        "note": "Lugano is Switzerland's third-largest financial center and dominant Ticinese hub."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Gran Consiglio della Repubblica e Cantone Ticino",
+        "note": "Single-canton unit; own cantonal parliament."
+      },
+      "lang_family": "romance/italian"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": true,
+      "conflict_flags": [],
+      "nuts1_disagreement": null,
+      "id": "li-liechtenstein",
+      "name": "Liechtenstein",
+      "name_local": "Liechtenstein",
+      "countries": [
+        "LI"
+      ],
+      "urban_core": "Vaduz",
+      "secondary_centers": [
+        "Schaan"
+      ],
+      "identity_basis": "Sovereign Principality; a German-speaking Alemannic micro-state closely tied economically to Switzerland (currency union, customs union) yet politically fully independent.",
+      "key_industries": [
+        "financial services/private banking",
+        "precision manufacturing (dental/medical devices, Ivoclar, Hilti)",
+        "specialty ceramics/dental products",
+        "light industry"
+      ],
+      "population": 40000,
+      "population_note": "Liechtenstein Office of Statistics (Amt fuer Statistik) 2023 estimate, national population",
+      "nuts_source": "SR2024",
+      "nuts_codes": [
+        "LI0"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Vaduz -- capital, seat of government and princely residence",
+        "diversified_industry": "financial services, precision manufacturing, dental/medical technology",
+        "dependent_identity": "sovereign Liechtenstein national identity; not seeking independence -- it already has it -- the single-unit exception here reflects micro-state scale, not a subordinate identity"
+      },
+      "autarky": {
+        "water": 5,
+        "food": 2,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "A small, wealthy, import-dependent micro-state for food and bulk goods; the Swiss currency/customs union and shared electricity grid support a comfortable but import-linked energy and transportation profile; precision manufacturing gives strong healthcare-adjacent (dental/medical device) capacity.",
+        "rationales": {
+          "water": "Rhine-valley and Alpine catchments are abundant relative to the tiny population.",
+          "food": "A small, wealthy micro-state with negligible domestic agriculture; structurally import-dependent.",
+          "energy": "Shares the Swiss grid/customs union; no significant domestic generation asset."
+        }
+      },
+      "sources": [
+        "Eurostat/GISCO SR2024",
+        "Liechtenstein Office of Statistics (Amt fuer Statistik)"
+      ],
+      "default_visible": true,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Vaduz"
+        ],
+        "central": "Vaduz",
+        "central_coord": [
+          9.52,
+          47.14
+        ],
+        "note": "Vaduz is the seat of government and princely residence."
+      },
+      "parliament": {
+        "has_own": true,
+        "name": "Landtag des Fuerstentums Liechtenstein",
+        "note": "Sovereign national parliament."
+      },
+      "lang_family": "germanic/alemannic",
+      "special_status": "sovereign microstate"
+    }
+  ]
+}

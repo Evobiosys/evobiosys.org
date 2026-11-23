@@ -1,0 +1,293 @@
+{
+  "threshold": 0.97,
+  "excluded_countries": {
+    "SJ": "Svalbard and Jan Mayen -- documented exclusion (draft-v0.1.2 plan)",
+    "TR": "Turkey excluded as a whole per the plan ('Turkey excluded as a whole' -- East Thrace/west-of-Istanbul is mandated covered via its own tr-east-thrace region/note, not held to the country-wide 97% threshold)"
+  },
+  "excluded_subareas": {
+    "FR": {
+      "codes": [
+        "FRY1",
+        "FRY2",
+        "FRY3",
+        "FRY4",
+        "FRY5"
+      ],
+      "reason": "French overseas departments -- outside the European map scope"
+    },
+    "NO": {
+      "codes": [
+        "NO0B1",
+        "NO0B2"
+      ],
+      "reason": "Jan Mayen and Svalbard -- documented exclusion (draft-v0.1.2 plan)"
+    }
+  },
+  "countries": {
+    "AD": {
+      "ratio": 1.0,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "AL": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "AM": {
+      "ratio": 1.0,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "AT": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "BA": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "BE": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "BG": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "CH": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "CY": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "CZ": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "DE": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "DK": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "EE": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "ES": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "FI": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "FO": {
+      "ratio": 1.0,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "FR": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "GE": {
+      "ratio": 1.0,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "GG": {
+      "ratio": 1.0,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "GI": {
+      "ratio": 1.0,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "GL": {
+      "ratio": 1.0,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "GR": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "HR": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "HU": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "IE": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "IM": {
+      "ratio": 1.0,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "IS": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "IT": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "JE": {
+      "ratio": 1.0,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "LI": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "LT": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "LU": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "LV": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "MC": {
+      "ratio": 1.0,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "MD": {
+      "ratio": 1.0,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "ME": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "MK": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "MT": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "NL": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "NO": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "PL": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "PT": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "RO": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "RS": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "SE": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "SI": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "SK": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "SM": {
+      "ratio": 1.0,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "TR": {
+      "status": "excluded",
+      "reason": "Turkey excluded as a whole per the plan ('Turkey excluded as a whole' -- East Thrace/west-of-Istanbul is mandated covered via its own tr-east-thrace region/note, not held to the country-wide 97% threshold)"
+    },
+    "UA": {
+      "ratio": 1.0683,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    },
+    "UK": {
+      "ratio": 0.9973,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "VA": {
+      "ratio": 1.0,
+      "denominator_source": "CNTR",
+      "status": "ok"
+    },
+    "XK": {
+      "ratio": 1.0,
+      "denominator_source": "NUTS2024",
+      "status": "ok"
+    }
+  },
+  "gaps": []
+}

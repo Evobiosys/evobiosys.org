@@ -1,0 +1,2075 @@
+{
+  "zone": "zone5",
+  "notes": [
+    "Zone 5 (UK + Ireland) uses nuts_source NUTS2021 for all UK-side codes, since the UK's post-Brexit exit from Eurostat's 2024 NUTS release means UK boundaries only resolve against the GISCO NUTS_RG_20M_2021_4326.geojson file; Ireland-side codes use NUTS2024 except where a single record (ireland-unified) must combine IE and UK codes under one nuts_source, in which case NUTS2021 is used because the 2021 GISCO file happens to still carry both countries' geometries.",
+    "The London commuter-belt region (~18.3M) is an order of magnitude larger by population than most other regions in this zone (570k-5.95M) and in the dataset generally. This mirrors real economic geography (London's functional region genuinely dominates UK demography) but creates a scale asymmetry flagged here for the methodology page's discussion of the 40-70 vs 90-110 region-count tension: a finer-grained alternative would split it further into a Thames Valley/Berks-Bucks-Oxon region, a Kent region, and a Bedfordshire-Hertfordshire-Essex region, at the cost of adding three more small, thin-identity regions to an already London-dominated zone.",
+    "Sussex and the London-commuter-belt region both draw on NUTS-2 code UKJ2 ('Surrey, East and West Sussex'), which bundles two functionally distinct areas (commuter-belt Surrey and coastal/identity-distinct Sussex) below the level the fixed decisions mandate splitting them at. This required descending to NUTS-3 for that single NUTS-2 unit (Surrey's UKJ25/UKJ26 to the commuter belt, Sussex's UKJ21/UKJ22/UKJ27/UKJ28 to Sussex) while every other UK region in this zone stays at NUTS-1 or NUTS-2 granularity -- an explicit exception to the 'coarsest exact-cover' preference, justified by the mandated Sussex/London-commuter split.",
+    "Cornwall is kept distinct from the Exeter-Plymouth/West Country region despite a small, weakly urbanised population and a comparatively weak single-city inclusion-test score, on the strength of the Cornish people's 2014 UK-government recognition as a national minority under the Council of Europe Framework Convention -- a stronger and more specific evidentiary basis than the generic historic-county identities used to justify Wessex or the West Country.",
+    "Liverpool/Merseyside is kept distinct from Manchester/North West despite immediate geographic adjacency and a shared NUTS-1 region (UKD), on the strength of a genuinely distinct Scouse dialect/identity, a separate 19th-century transatlantic-port and Irish-diaspora heritage, and a separate Liverpool City Region devolution settlement with its own directly elected mayor.",
+    "East Anglia/Cambridge is kept distinct from the London commuter belt: although East Anglia sits within the same NUTS-1 East of England region (UKH) as Bedfordshire/Hertfordshire/Essex, the latter three counties are reassigned to the London commuter-belt region as functionally London-oriented, while Cambridgeshire/Peterborough/Norfolk/Suffolk retain a coherent flatland-agricultural identity and a globally significant 'Silicon Fen' knowledge-economy cluster independent of London's gravity.",
+    "Scotland is split into a Central Belt region (Glasgow-Edinburgh-Southern Uplands, NUTS-2 UKM7/UKM8/UKM9) and a Highlands and Islands region (NUTS-2 UKM5/UKM6), assessed and adopted per the mandate. The Highlands region includes Aberdeen and Aberdeenshire (NUTS-2 UKM5, 'North Eastern Scotland') for population parsimony, even though Aberdeen's oil-and-gas urban economy is culturally North East Lowland rather than Gaelic Highland; a three-way Central Belt / North East (Aberdeen) / Highlands-Islands split would be more identity-accurate but was not adopted here to avoid a third, thinly populated Scottish region, and is flagged for methodology discussion alongside the analogous Hungary subdivision question in Zone 6.",
+    "East Midlands (NUTS-1 UKF: Derbyshire/Nottinghamshire, Leicestershire/Rutland/Northamptonshire, Lincolnshire) was originally assessed and excluded from this zone's region list as a coverage gap (~4.9M people, the arithmetic difference between the ONS UK total and the sum of this file's other UK regions), on the grounds that Nottingham, Leicester and Derby form a genuinely polycentric conurbation with no single dominant city, unlike Birmingham, Manchester, Leeds or Newcastle. Task 4 dataset QA revisited this decision and added uk-east-midlands (NUTS2021 UKF) to close the gap, with the polycentric fit noted honestly in its inclusion_test rather than silently smoothed over -- see that record for the full reasoning.",
+    "Ireland variant handling (schema v2): uk-northern-ireland, ie-dublin, ie-cork and ie-galway are the default_visible cultural units; ireland-unified (default_visible false) appears only via the 'ireland' variant set in data/variant_sets/zone58.json. Per controller amendment A1, Northern Ireland stays visible as a DISTINCT unit in every view of the set - including the unified view, where it renders on top of the all-island polygon so the contested border remains legible rather than being dissolved away.",
+    "All UK autarky and population figures in this file are approximate: ONS/NISRA/CSO publish detailed figures at local-authority and NUTS-3 level, but this file aggregates to the custom region boundaries defined above, which do not correspond 1:1 to any single published statistical release. Figures should be treated as directionally reliable estimates for methodology and comparative purposes, not as official regional statistics.",
+    "Schema v2 migration (draft-v0.1.2): variant_group/variant_role removed; default_visible, special_status, pole (with central_coord/secondary_coord per amendment A1), reach, parliament, lang_family and autarky.rationales (water/food/energy) added to every record. Pole assignments are best-effort characterisations: capital-dominated regions are monopoles; Southampton-Portsmouth, Exeter-Plymouth, Cambridge-Norwich, Edinburgh-Glasgow, Aberdeen-Inverness and Preston-Lancaster are dipoles; Yorkshire and the East Midlands are polycentric.",
+    "Lancashire split (draft-v0.1.2 mandate): the former 'Greater Manchester and the North West' region is divided into uk-manchester (Greater Manchester, UKD3) and uk-lancashire (Lancashire + Cumbria, UKD4 + UKD1) with the mandated Preston+Lancaster dual pole. Cumbria goes with Lancashire, not Manchester: once Lancashire is split out, UKD1 would be non-contiguous with UKD3, and south Cumbria's historic ('Lancashire over the Sands') and functional (Lancaster gateway) orientation is Lancastrian.",
+    "Dublin-Cavan reach (draft-v0.1.2 mandate): the user mandate places Cavan in Dublin's orbit. Cavan lies in NUTS-3 IE041 ('Border') together with Donegal, Sligo, Leitrim and Monaghan; no finer geometry exists in the pipeline, so moving IE041 wholesale to ie-dublin would absurdly attach Donegal to the capital region. The boundary therefore stays at the IE06/IE04 line and Dublin's pull on Cavan is recorded as a reach entry on ie-dublin - an honest data-granularity limitation, not a rejection of the mandate.",
+    "Crown Dependencies (coverage sweep): Guernsey (gg-guernsey), Jersey (je-jersey) and the Isle of Man (im-isle-of-man) are added as units with CNTR geometry (GISCO CNTR_RG_20M_2024 carries CNTR_ID GG/JE/IM - no geoBoundaries fallback needed, unlike Ukraine). Each keeps its own parliament (States of Guernsey, States Assembly of Jersey, Tynwald), satisfying the parliament rule, and carries special_status 'Crown Dependency' (dashed stroke): they are self-governing Crown possessions, not part of the UK. Guernsey and Jersey are modelled as separate units rather than one 'Channel Islands' unit precisely because each Bailiwick has its own legislature.",
+    "lang_family tags are approximate single-value identity tags for the linguistic perspective lens: 'celtic' for Wales, Cornwall, the Highlands, the Irish units and the Isle of Man (Manx) reflects identity-defining heritage languages rather than majority speech (English dominates everywhere); Guernsey and Jersey are tagged 'romance' for their Norman langue-d'oil heritage; Northern Ireland is tagged 'germanic' (English/Ulster-Scots majority speech) while its Irish-community identity is covered by the variant set rather than the language tag."
+  ],
+  "regions": [
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-london-commuter",
+      "name": "London and the Home Counties",
+      "name_local": "London and the Home Counties",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "London",
+      "secondary_centers": [
+        "Reading",
+        "Milton Keynes",
+        "Guildford",
+        "Chelmsford",
+        "Luton"
+      ],
+      "identity_basis": "Greater London plus the functionally integrated commuter-belt counties (Berkshire, Buckinghamshire, Oxfordshire, Surrey, Kent, Bedfordshire, Hertfordshire, Essex) bound together by rail commuting into the capital, the M25 orbital, and a shared housing/labour market; a single global-city region rather than a historic ethnic identity.",
+      "key_industries": [
+        "financial and professional services",
+        "media and creative industries",
+        "aerospace/defence (Thames Valley)",
+        "logistics and ports (Tilbury, Thamesport)",
+        "life sciences"
+      ],
+      "population": 18300000,
+      "population_note": "Approximate, derived from ONS mid-2021/2022 regional population estimates: Greater London (~8.8M) plus the London-oriented commuter portions of the South East and East of England NUTS-1 regions (Berks/Bucks/Oxon, Surrey, Kent, Beds/Herts, Essex; Sussex, Hampshire/IoW and East Anglia excluded to their own regions).",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKI",
+        "UKJ1",
+        "UKJ25",
+        "UKJ26",
+        "UKJ4",
+        "UKH2",
+        "UKH3"
+      ],
+      "inclusion_test": {
+        "urban_hub": "London — global financial/cultural capital, metro >9M, seat of national government",
+        "diversified_industry": "finance (City/Canary Wharf), media, Thames Valley tech/aerospace corridor, Heathrow/Gatwick/Stansted logistics, life sciences (Oxford-Cambridge arc fringe)",
+        "dependent_identity": "functions as one integrated labour/housing market with strong 'commuter belt' self-identification; no separatist sentiment, fully embedded in UK governance"
+      },
+      "nuts1_disagreement": "Merges all of NUTS-1 UKI (London) with the London-oriented portions of NUTS-1 UKJ (South East: Berks/Bucks/Oxon, Surrey minus Sussex, Kent) and NUTS-1 UKH (East of England: Bedfordshire/Hertfordshire, Essex, but not East Anglia). NUTS-2 UKJ2 (Surrey, East and West Sussex) is itself split at NUTS-3 level between this region (Surrey) and Sussex, since NUTS-2 bundles two functionally distinct areas.",
+      "autarky": {
+        "water": 2,
+        "food": 2,
+        "shelter": 1,
+        "energy": 2,
+        "transportation": 5,
+        "hygiene_healthcare": 4,
+        "clothing": 3,
+        "composite": 2.7,
+        "rationale": "Best transport connectivity in the dataset (TfL, National Rail radiating from the capital, Heathrow), but a chronic housing-supply crisis holds shelter to the floor of the scale, and dense population with limited hinterland farmland keeps water and food import-dependent.",
+        "rationales": {
+          "water": "Thames abstraction plus pumped reservoirs run near capacity against 18M-person demand.",
+          "food": "Dense urbanisation leaves a thin farmland hinterland; the belt imports most food.",
+          "energy": "Negligible generation inside the region; supply arrives over the national grid and gas network."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Greater London Authority, London Plan 2021 (housing/land-supply constraints)"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "London"
+        ],
+        "central": "London",
+        "central_coord": [
+          -0.1276,
+          51.5072
+        ],
+        "note": "Capital-dominated monopole: one global-city core organizes the entire commuter belt."
+      },
+      "reach": [
+        {
+          "target": "United Kingdom (national)",
+          "note": "London's economic, media and political gravity extends across the whole UK, well beyond the commuter-belt boundary drawn here."
+        },
+        {
+          "target": "South East England beyond the belt",
+          "note": "Long-distance commuting from Sussex, Solent and East Anglia keeps a secondary catchment outside the region's formal extent."
+        }
+      ],
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional parliament; the London Assembly scrutinises the Mayor of London but holds no primary legislative power."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-sussex",
+      "name": "Sussex",
+      "name_local": "Sussex",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Brighton",
+      "secondary_centers": [
+        "Hove",
+        "Eastbourne",
+        "Crawley"
+      ],
+      "identity_basis": "Former Anglo-Saxon kingdom and historic county identity (East/West Sussex) built on the South Downs and a distinct coastal-resort/creative-city culture centred on Brighton, functionally separate from the Surrey commuter belt and Hampshire/Solent to its west.",
+      "key_industries": [
+        "creative and digital industries (Brighton)",
+        "tourism and hospitality",
+        "agriculture (South Downs)",
+        "insurance and professional services (Crawley/Gatwick corridor)"
+      ],
+      "population": 1650000,
+      "population_note": "Approximate, ONS mid-2022 estimate summing East Sussex, West Sussex and Brighton and Hove local authorities.",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKJ21",
+        "UKJ22",
+        "UKJ27",
+        "UKJ28"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Brighton and Hove — metro ~475k, major creative/cultural and university city",
+        "diversified_industry": "digital/creative sector, tourism, Gatwick-linked aviation services, South Downs agriculture",
+        "dependent_identity": "strong county/coastal identity distinct from Surrey and London; fully integrated in UK governance, no separatism"
+      },
+      "nuts1_disagreement": "NUTS-2 UKJ2 ('Surrey, East and West Sussex') bundles Sussex with Surrey; split here at NUTS-3 level so Surrey (UKJ25/UKJ26) joins the London commuter-belt region while Sussex proper (UKJ21/UKJ22/UKJ27/UKJ28) stands alone, per the mandated Sussex/London distinction.",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.7,
+        "rationale": "South Downs farmland and chalk aquifers give moderate water and food security; shelter and transport are squeezed by London-adjacent housing demand and a single trunk rail line, while energy remains import-dependent aside from the Rampion offshore wind farm.",
+        "rationales": {
+          "water": "Chalk-aquifer (South Downs) groundwater covers most supply.",
+          "food": "Wealden and coastal-plain horticulture helps, but the county imports most staples.",
+          "energy": "Rampion offshore wind contributes, yet the county remains a net grid importer."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Deacon (2007), 'Sussex: A History', on county/coastal identity"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Brighton"
+        ],
+        "central": "Brighton",
+        "central_coord": [
+          -0.1372,
+          50.8225
+        ],
+        "note": "Brighton dominates the coastal strip; no rival center of comparable weight."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No devolved regional legislature; English regions are governed by Westminster (combined-authority mayors where present are executives, not parliaments)."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-wessex",
+      "name": "Wessex",
+      "name_local": "Wessex",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Bristol",
+      "secondary_centers": [
+        "Bath",
+        "Bournemouth",
+        "Salisbury",
+        "Taunton"
+      ],
+      "identity_basis": "Revived historic identity of the Anglo-Saxon Kingdom of Wessex, covering Gloucestershire/Bristol/Bath, Wiltshire, Dorset and Somerset; an active regionalist movement (Wessex Regionalists) and dialect continuum distinct from the Devon/Cornwall peninsula further west.",
+      "key_industries": [
+        "aerospace and advanced engineering (Bristol/Filton)",
+        "financial services (Bristol)",
+        "agriculture and dairy (Somerset Levels)",
+        "nuclear energy (Hinkley Point)",
+        "tourism (Bath, Jurassic Coast)"
+      ],
+      "population": 3920000,
+      "population_note": "Approximate, ONS mid-2022 estimate summing Gloucestershire, Bristol, Bath and North East Somerset/North Somerset/South Gloucestershire, Wiltshire, Swindon, Dorset and Somerset.",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKK1",
+        "UKK2"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Bristol — metro >1M, aerospace and financial-services hub, historic port city",
+        "diversified_industry": "aerospace (Airbus/Rolls-Royce supply chain), finance, dairy/agriculture, nuclear construction at Hinkley Point C",
+        "dependent_identity": "revived Wessex regional identity with an active (non-secessionist) regionalist movement; administratively fully within England"
+      },
+      "nuts1_disagreement": "NUTS-1 UKK (South West) also includes Devon and Cornwall, split here into the separate Exeter-Plymouth and Cornwall regions per the mandated West Country distinctions.",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "Strong Somerset Levels/Cotswold agriculture and Mendip/Cotswold aquifers underpin food and water security; Hinkley Point C nuclear construction raises the energy score, though the region still imports the bulk of its manufactured goods.",
+        "rationales": {
+          "water": "Mendip and Wessex chalk aquifers give reliable supply.",
+          "food": "Somerset dairy and Wiltshire arable make the region a strong producer.",
+          "energy": "Hinkley Point C (under construction) and Severn-estuary renewables offset only part of demand."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Wessex Regionalists party literature and Kingdom of Wessex historiography (Yorke, 1995)"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Bristol"
+        ],
+        "central": "Bristol",
+        "central_coord": [
+          -2.5879,
+          51.4545
+        ],
+        "note": "Bristol is the single dominant economic core of the historic Wessex area."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No devolved regional legislature; English regions are governed by Westminster (combined-authority mayors where present are executives, not parliaments)."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-southampton-solent",
+      "name": "Southampton and the Solent",
+      "name_local": "Southampton and the Solent",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Southampton",
+      "secondary_centers": [
+        "Portsmouth",
+        "Newport (Isle of Wight)",
+        "Basingstoke"
+      ],
+      "identity_basis": "Hampshire and the Isle of Wight united by the Solent strait and a shared maritime/naval economy (Southampton container port and cruise terminal, Portsmouth naval base), functionally distinct from both Wessex to the west and Sussex to the east.",
+      "key_industries": [
+        "container shipping and cruise (Southampton)",
+        "naval shipbuilding and defence (Portsmouth)",
+        "marine leisure and yacht-building",
+        "pharmaceuticals"
+      ],
+      "population": 2000000,
+      "population_note": "Approximate, ONS mid-2022 estimate summing Hampshire, Southampton, Portsmouth and the Isle of Wight unitary authorities.",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKJ3"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Southampton — metro ~900k with Portsmouth, UK's leading container/cruise port",
+        "diversified_industry": "container shipping, naval shipbuilding, marine engineering, pharmaceuticals, defence electronics",
+        "dependent_identity": "distinct maritime Hampshire/Solent identity; fully integrated administratively, no separatism"
+      },
+      "nuts1_disagreement": "NUTS-1 UKJ (South East) also includes Berkshire/Buckinghamshire/Oxfordshire, Surrey, Sussex and Kent, split here into the London commuter-belt and Sussex regions; Hampshire and the Isle of Wight (NUTS-2 UKJ3) are kept as their own mandated Southampton/Solent region.",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 2.7,
+        "rationale": "The Solent's ports give strong transport/logistics capacity, but dense coastal development and naval land-use keep shelter and energy constrained, and the region imports most staple food beyond South Downs-fringe farming.",
+        "rationales": {
+          "water": "Test and Itchen chalk streams provide high-quality but abstraction-capped supply.",
+          "food": "Urbanised coastal strip with limited agriculture; relies on imports through its own ports.",
+          "energy": "Fawley's refinery legacy aside, generation is minimal; grid-dependent."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Royal Navy/Portsmouth Historic Dockyard institutional histories on Solent maritime identity"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Southampton",
+          "Portsmouth"
+        ],
+        "central": "Southampton",
+        "central_coord": [
+          -1.4044,
+          50.9097
+        ],
+        "secondary": "Portsmouth",
+        "secondary_coord": [
+          -1.0873,
+          50.8198
+        ],
+        "note": "Twin Solent port cities of similar weight; Southampton (container/cruise port, university) edges Portsmouth (naval base) as the organizing center."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No devolved regional legislature; English regions are governed by Westminster (combined-authority mayors where present are executives, not parliaments)."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-exeter-plymouth",
+      "name": "Devon / West Country",
+      "name_local": "Devon",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Exeter",
+      "secondary_centers": [
+        "Plymouth",
+        "Torquay"
+      ],
+      "identity_basis": "Devon's twin urban anchors -- Exeter (cathedral/administrative/university city) and Plymouth (naval/maritime city) -- forming the mandated 'West Country' core distinct from Cornwall's separate ethnic-minority identity to the west and Wessex to the east.",
+      "key_industries": [
+        "naval shipbuilding and defence (Plymouth/Devonport)",
+        "tourism (Jurassic Coast, Dartmoor)",
+        "agriculture and dairy",
+        "marine science and research"
+      ],
+      "population": 1210000,
+      "population_note": "Approximate, ONS mid-2022 estimate summing Devon County Council, Plymouth and Torbay unitary authorities.",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKK4"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Exeter (cathedral city, university, regional administrative centre) with Plymouth (naval base, metro ~260k) as co-anchor",
+        "diversified_industry": "Devonport naval dockyard, tourism, dairy/livestock farming, marine science (Plymouth Marine Laboratory)",
+        "dependent_identity": "'West Country' identity distinct from Cornwall's Celtic/national-minority status; administratively unremarkable within England"
+      },
+      "nuts1_disagreement": "NUTS-1 UKK (South West) also includes Gloucestershire/Wiltshire/Bristol/Bath (Wessex) and Cornwall, split here per the mandated Exeter-Plymouth and Cornwall distinctions.",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Strong dairy and livestock farming and high rainfall support food and water scores, but the peninsula's transport is bottlenecked by a single vulnerable rail line (Dawlish sea wall) and limited motorway reach.",
+        "rationales": {
+          "water": "Dartmoor and Exmoor reservoirs give ample upland supply.",
+          "food": "Devon pasture dairy/livestock plus fishing fleets make food a relative strength.",
+          "energy": "No major generation; peninsula grid position makes imports costly."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Devon County Council/Historic England, Devonport naval heritage documentation"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Exeter",
+          "Plymouth"
+        ],
+        "central": "Exeter",
+        "central_coord": [
+          -3.5339,
+          50.7256
+        ],
+        "secondary": "Plymouth",
+        "secondary_coord": [
+          -4.1427,
+          50.3755
+        ],
+        "note": "Devon's historic dual poles: Exeter (administrative/cathedral capital) organizes the county while Plymouth (larger naval-industrial port) anchors the west."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No devolved regional legislature; English regions are governed by Westminster (combined-authority mayors where present are executives, not parliaments)."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-cornwall",
+      "name": "Cornwall",
+      "name_local": "Kernow",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Truro",
+      "secondary_centers": [
+        "Falmouth",
+        "Newquay",
+        "St Austell"
+      ],
+      "identity_basis": "The Cornish are formally recognised as a national minority under the Council of Europe Framework Convention (UK government designation, 2014); a distinct Brythonic-Celtic Cornish language revival, Duchy of Cornwall constitutional status, and active (non-secessionist) regionalist movement (Mebyon Kernow) mark it as clearly separate from the wider West Country.",
+      "key_industries": [
+        "tourism",
+        "fishing",
+        "renewable energy (wave/tidal research, solar)",
+        "mining heritage/lithium extraction revival",
+        "agriculture"
+      ],
+      "population": 570000,
+      "population_note": "Approximate, ONS mid-2022 estimate for Cornwall unitary authority plus Isles of Scilly.",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKK3"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Truro (cathedral city, administrative centre) -- a weak single hub by population, but the region's national-minority status and language/cultural infrastructure substitute for city scale",
+        "diversified_industry": "tourism, fishing, lithium/mining revival, marine renewables research (Wave Hub, Hayle), agriculture",
+        "dependent_identity": "recognised national minority (2014) with its own language and flag (St Piran's Cross); Mebyon Kernow seeks devolved assembly powers, not independence -- fits the 'dependent, not seeking independence' test precisely"
+      },
+      "nuts1_disagreement": "NUTS-1 UKK (South West) treats Cornwall as part of a single South West region alongside Devon, Somerset, Dorset, Wiltshire and Bristol; split out here given Cornwall's unique national-minority recognition, distinct from the merely historic county identities used for Wessex and the West Country.",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 2,
+        "energy": 3,
+        "transportation": 1,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 2.4,
+        "rationale": "Assessed and kept distinct from the West Country despite a small, weakly urbanised population, on the strength of its unique recognised-minority status; peripherality shows up as the lowest transportation score in the zone (a single rail spur, no motorway) and strained rural healthcare access, offset by strong renewable-energy potential and high rainfall.",
+        "rationales": {
+          "water": "High Atlantic rainfall and moorland reservoirs give a comfortable surplus.",
+          "food": "Livestock, horticulture and one of the UK's largest fishing fleets (Newlyn).",
+          "energy": "Leading UK solar/onshore-wind density plus geothermal pilots, but still a net importer."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Council of Europe, Framework Convention for the Protection of National Minorities -- UK declaration on the Cornish (2014)",
+        "Payton (2004), 'Cornwall: A History'"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Truro"
+        ],
+        "central": "Truro",
+        "central_coord": [
+          -5.051,
+          50.2632
+        ],
+        "note": "Truro is the administrative and cathedral center, though small; Cornwall's settlement pattern is dispersed."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No devolved legislature despite recognised national-minority status; Cornwall Council is a unitary local authority."
+      },
+      "lang_family": "celtic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-manchester",
+      "name": "Greater Manchester",
+      "name_local": "Greater Manchester",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Manchester",
+      "secondary_centers": [
+        "Bolton",
+        "Stockport",
+        "Salford",
+        "Rochdale"
+      ],
+      "identity_basis": "Manchester's post-industrial reinvention as the North's second financial/media/tech centre (MediaCityUK, devolved Greater Manchester Combined Authority with a directly elected mayor) makes the ten-borough conurbation a coherent single city-region; Lancashire and Cumbria, previously folded in, now form the separate Preston-Lancaster dual-pole region, and Merseyside remains the separate Liverpool region.",
+      "key_industries": [
+        "financial and professional services",
+        "media and digital (MediaCityUK)",
+        "advanced manufacturing and textiles legacy",
+        "higher education and biotech"
+      ],
+      "population": 2900000,
+      "population_note": "Approximate, ONS mid-2022 estimate for Greater Manchester (ten metropolitan boroughs).",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKD3"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Manchester -- metro >2.8M, England's largest devolved city-region (Greater Manchester Combined Authority)",
+        "diversified_industry": "finance, media/BBC-ITV MediaCityUK, biotech/Alderley Park, advanced manufacturing, Lake District tourism",
+        "dependent_identity": "strong Mancunian civic identity and the UK's most advanced English devolution settlement, but firmly within the UK constitutional framework"
+      },
+      "nuts1_disagreement": "NUTS-1 UKD (North West) also includes Cheshire, Merseyside, Lancashire and Cumbria; this unit is Greater Manchester (NUTS-2 UKD3) alone - Merseyside/Cheshire form the Liverpool region and Lancashire/Cumbria the Preston-Lancaster dual-pole region.",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Lake District aqueducts (built for this conurbation) give strong water security; Metrolink and Manchester Airport give the second-best transport score in the zone after London; as a dense conurbation without its former hinterland it depends on surrounding regions for food and energy.",
+        "rationales": {
+          "water": "Longdendale and Lake District aqueducts (Haweswater/Thirlmere) built for exactly this conurbation.",
+          "food": "Dense conurbation with minimal farmland; depends on the surrounding regions.",
+          "energy": "Little generation within the boroughs; grid and gas imports dominate."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Greater Manchester Combined Authority, devolution deal documentation"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Manchester"
+        ],
+        "central": "Manchester",
+        "central_coord": [
+          -2.2426,
+          53.4808
+        ],
+        "note": "Single dominant core: Greater Manchester's ten boroughs all orient on the Manchester center."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No devolved regional legislature; English regions are governed by Westminster (combined-authority mayors where present are executives, not parliaments)."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-liverpool",
+      "name": "Liverpool and Merseyside",
+      "name_local": "Liverpool and Merseyside",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Liverpool",
+      "secondary_centers": [
+        "Chester",
+        "Warrington",
+        "Birkenhead"
+      ],
+      "identity_basis": "Assessed and kept distinct from Manchester: Liverpool has its own strong Scouse dialect/identity, a distinct 19th-century transatlantic-port and Irish-diaspora heritage, European Capital of Culture status (2008), and a separate Liverpool City Region Combined Authority mayoralty -- passing the inclusion test on identity even though geographically close to Manchester.",
+      "key_industries": [
+        "port and maritime logistics (Port of Liverpool)",
+        "culture and tourism",
+        "financial services (Chester/Warrington)",
+        "advanced manufacturing",
+        "life sciences"
+      ],
+      "population": 2500000,
+      "population_note": "Approximate, ONS mid-2022 estimate summing Cheshire (East and West/Chester, Warrington) and Merseyside (Liverpool, Sefton, Knowsley, St Helens, Wirral).",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKD6",
+        "UKD7"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Liverpool -- metro ~2.2M, UNESCO-recognised maritime mercantile city, European Capital of Culture 2008",
+        "diversified_industry": "port/maritime logistics, culture/tourism economy, financial services in Chester/Warrington, life sciences",
+        "dependent_identity": "distinct Scouse identity and Liverpool City Region devolution settlement; administratively within England, no separatism"
+      },
+      "nuts1_disagreement": "NUTS-1 UKD (North West) also includes Cumbria, Greater Manchester and Lancashire, split here from the separate Manchester/North West region per the mandated Manchester/Liverpool distinction.",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "The Port of Liverpool gives strong transport/logistics capacity and Pennine-fed reservoirs support water security, but the conurbation is a net energy importer and its former textile/manufacturing clothing base has largely offshored.",
+        "rationales": {
+          "water": "Welsh (Vyrnwy) and Pennine aqueducts secure supply.",
+          "food": "Cheshire dairy plain contributes, but the conurbation is a net importer.",
+          "energy": "Net importer; Mersey estuary wind/tidal potential is largely unrealised."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Belchem (2006), 'Merseypride: Essays in Liverpool Exceptionalism'"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Liverpool"
+        ],
+        "central": "Liverpool",
+        "central_coord": [
+          -2.9916,
+          53.4084
+        ],
+        "note": "Merseyside's single dominant core; Birkenhead and Chester orbit it."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No devolved regional legislature; English regions are governed by Westminster (combined-authority mayors where present are executives, not parliaments)."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-birmingham",
+      "name": "Birmingham and the West Midlands",
+      "name_local": "Birmingham and the West Midlands",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Birmingham",
+      "secondary_centers": [
+        "Coventry",
+        "Wolverhampton",
+        "Stoke-on-Trent",
+        "Worcester"
+      ],
+      "identity_basis": "England's historic industrial heartland ('workshop of the world') centred on Birmingham's Black Country conurbation, with Coventry's automotive legacy and Stoke's Potteries as secondary industrial identities within one devolved West Midlands Combined Authority footprint.",
+      "key_industries": [
+        "automotive manufacturing (Jaguar Land Rover, Coventry)",
+        "advanced manufacturing and metalworking",
+        "ceramics (Stoke-on-Trent Potteries)",
+        "financial and professional services",
+        "logistics (HS2 hub)"
+      ],
+      "population": 5950000,
+      "population_note": "ONS mid-2022 population estimate for the West Midlands NUTS-1 region.",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKG"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Birmingham -- metro >2.9M, UK's second city, HS2 terminus",
+        "diversified_industry": "automotive (JLR, Coventry), advanced manufacturing/metalworking, ceramics (Stoke), financial/professional services",
+        "dependent_identity": "strong Brummie/Black Country/Potteries industrial identities within a single devolved combined authority; no separatism"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 3,
+        "composite": 3.0,
+        "rationale": "The historic jewellery quarter and textile/ceramics manufacturing base give the region a comparatively higher clothing/goods score than most English regions, while the HS2 terminus and motorway-box position give strong transport connectivity; energy remains import-dependent post-deindustrialisation.",
+        "rationales": {
+          "water": "Elan Valley aqueduct from mid-Wales is the historic backbone of supply.",
+          "food": "Landlocked, heavily urbanised; food comes from surrounding shires.",
+          "energy": "Minimal generation; the conurbation imports power and gas."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "West Midlands Combined Authority, Strategic Economic Plan"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Birmingham"
+        ],
+        "central": "Birmingham",
+        "central_coord": [
+          -1.8904,
+          52.4862
+        ],
+        "note": "Birmingham dominates the West Midlands conurbation; the Black Country towns function as its industrial belt."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No devolved regional legislature; English regions are governed by Westminster (combined-authority mayors where present are executives, not parliaments)."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-yorkshire-leeds",
+      "name": "Yorkshire and the Humber",
+      "name_local": "Yorkshire and the Humber",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Leeds",
+      "secondary_centers": [
+        "Sheffield",
+        "Bradford",
+        "Hull",
+        "York"
+      ],
+      "identity_basis": "Strong county-level Yorkshire identity (its own flag, Yorkshire Day, dialect) with Leeds as the financial/legal services hub, Sheffield's steel heritage, Hull's port economy and York's heritage/tourism role, unified by the Humber estuary and Pennine boundary with Lancashire.",
+      "key_industries": [
+        "financial and legal services (Leeds)",
+        "steel and advanced manufacturing (Sheffield)",
+        "port/offshore-wind logistics (Hull, Humber estuary)",
+        "agriculture (Vale of York)",
+        "tourism (York, Dales)"
+      ],
+      "population": 5500000,
+      "population_note": "ONS mid-2022 population estimate for the Yorkshire and the Humber NUTS-1 region.",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKE"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Leeds -- metro >1.9M, largest legal/financial-services centre outside London",
+        "diversified_industry": "financial/legal services, steel/advanced manufacturing (Sheffield), Humber ports and offshore-wind supply chain, agriculture",
+        "dependent_identity": "one of England's strongest county/regional identities (Yorkshire flag, Yorkshire Day, White Rose); no separatism, fully within UK governance"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "The Vale of York's productive arable farmland and Pennine reservoirs give strong food and water scores, and the Humber estuary's ports plus an emerging offshore-wind manufacturing base lift energy and transport above the English average.",
+        "rationales": {
+          "water": "Pennine reservoirs give the historic woollen district reliable soft water.",
+          "food": "East Riding and Vale of York arable are among England's most productive.",
+          "energy": "Drax and Humber-bank generation plus offshore-wind assembly (Hull) make this a relative strength."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Yorkshire Society/Yorkshire Ridings Society on county identity"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Leeds",
+          "Sheffield",
+          "Bradford",
+          "Hull"
+        ],
+        "central": "Leeds",
+        "central_coord": [
+          -1.5491,
+          53.8008
+        ],
+        "note": "Genuinely polycentric: Leeds (finance) is first among equals with Sheffield (steel/advanced manufacturing), Bradford and Hull each anchoring sub-areas."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No devolved regional legislature; English regions are governed by Westminster (combined-authority mayors where present are executives, not parliaments)."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-newcastle-ne",
+      "name": "Newcastle and the North East",
+      "name_local": "Newcastle and the North East",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Newcastle upon Tyne",
+      "secondary_centers": [
+        "Sunderland",
+        "Durham",
+        "Middlesbrough"
+      ],
+      "identity_basis": "Strong Geordie/Mackem dialect and civic identity centred on Tyneside, with a shared post-coalfield industrial heritage across Northumberland, Durham and Teesside, geographically and culturally the most distinct English region from London.",
+      "key_industries": [
+        "offshore wind and renewables (North Sea)",
+        "advanced manufacturing (automotive battery gigafactory, Nissan Sunderland)",
+        "life sciences",
+        "chemicals (Teesside)",
+        "higher education"
+      ],
+      "population": 2650000,
+      "population_note": "ONS mid-2022 population estimate for the North East (England) NUTS-1 region.",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKC"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Newcastle upon Tyne -- metro >850k, historic industrial/cultural capital of the North East",
+        "diversified_industry": "Nissan/battery gigafactory manufacturing, North Sea offshore wind, Teesside chemicals, life sciences",
+        "dependent_identity": "distinctive Geordie identity and strong regional civic pride; devolved North East mayoralty within UK governance, no separatism"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Pennine catchments give solid water security and the North Sea's offshore-wind buildout and legacy energy infrastructure lift the energy score above the English mean, while the region's transport network still bears the scars of post-industrial underinvestment relative to the North West.",
+        "rationales": {
+          "water": "Kielder Water, Europe's largest man-made reservoir, gives the North East surplus capacity.",
+          "food": "Upland livestock farming; arable is limited and the region imports staples.",
+          "energy": "Offshore wind (Dogger Bank staging) and legacy grid links; roughly balanced."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "North East Combined Authority, Strategic Economic Plan"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Newcastle"
+        ],
+        "central": "Newcastle",
+        "central_coord": [
+          -1.6178,
+          54.9783
+        ],
+        "note": "Tyneside's single dominant core; Sunderland and Middlesbrough are secondary."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No devolved regional legislature; English regions are governed by Westminster (combined-authority mayors where present are executives, not parliaments)."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-east-of-england-cambridge",
+      "name": "East Anglia and Cambridge",
+      "name_local": "East Anglia",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Cambridge",
+      "secondary_centers": [
+        "Norwich",
+        "Ipswich",
+        "Peterborough"
+      ],
+      "identity_basis": "Assessed and kept distinct: East Anglia (Cambridgeshire, Norfolk, Suffolk, Peterborough) has a coherent flatland-agricultural and dialect identity plus a globally significant knowledge-economy cluster around Cambridge, functionally separate from the London-oriented commuter counties of Bedfordshire/Hertfordshire/Essex that are folded into the London commuter-belt region instead.",
+      "key_industries": [
+        "biotech and life sciences ('Silicon Fen', Cambridge)",
+        "arable agriculture (East Anglian breadbasket)",
+        "logistics (Felixstowe container port, via Suffolk)",
+        "renewable energy and offshore wind (Norfolk coast)"
+      ],
+      "population": 2550000,
+      "population_note": "Approximate, ONS mid-2022 estimate summing Cambridgeshire, Peterborough, Norfolk and Suffolk.",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKH1"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Cambridge -- globally-ranked university city anchoring the 'Silicon Fen' biotech/tech cluster",
+        "diversified_industry": "biotech/life sciences, East Anglian arable agriculture, Felixstowe (UK's largest container port) logistics, offshore wind",
+        "dependent_identity": "coherent East Anglian flatland/dialect identity, administratively unremarkable within England"
+      },
+      "nuts1_disagreement": "NUTS-1 UKH (East of England) also includes Bedfordshire, Hertfordshire and Essex; those are reassigned to the London commuter-belt region here as functionally London-oriented rather than East Anglian, leaving this region matched to NUTS-2 UKH1 (East Anglia) alone.",
+      "autarky": {
+        "water": 3,
+        "food": 5,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "East Anglia is the UK's most productive arable farming region ('the breadbasket'), giving it the zone's top food score, but it is also England's driest region with genuine water-stress concerns feeding into national supply planning, and it remains a net energy importer despite growing North Sea/Norfolk offshore wind.",
+        "rationales": {
+          "water": "Driest region of the UK; Fenland abstraction is under chronic stress.",
+          "food": "Fen and breckland arable make this England's grain-and-vegetable heartland.",
+          "energy": "Sizewell nuclear and East Anglian offshore wind make the region a net exporter."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Environment Agency, East Anglia water-resources regional plan",
+        "University of Cambridge/Cambridge Ahead, Silicon Fen cluster reporting"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Cambridge",
+          "Norwich"
+        ],
+        "central": "Cambridge",
+        "central_coord": [
+          0.1218,
+          52.2053
+        ],
+        "secondary": "Norwich",
+        "secondary_coord": [
+          1.2974,
+          52.6309
+        ],
+        "note": "Dual anchors: Cambridge (knowledge economy) organizes the south-west of East Anglia, Norwich the agricultural north-east."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No devolved regional legislature; English regions are governed by Westminster (combined-authority mayors where present are executives, not parliaments)."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-wales-cardiff",
+      "name": "Wales",
+      "name_local": "Cymru",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Cardiff",
+      "secondary_centers": [
+        "Swansea",
+        "Newport",
+        "Wrexham",
+        "Bangor"
+      ],
+      "identity_basis": "Distinct nation within the UK with its own devolved Senedd (Welsh Parliament), the Welsh language (spoken natively by ~18% of the population, official co-status), and a national identity dependent on but not seeking independence from the UK.",
+      "key_industries": [
+        "renewable energy (hydro, wind)",
+        "agriculture and livestock",
+        "automotive/aerospace (Airbus wings, Broughton)",
+        "steel (Port Talbot)",
+        "creative industries and tourism"
+      ],
+      "population": 3130000,
+      "population_note": "ONS/Welsh Government mid-2022 population estimate for Wales.",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKL"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Cardiff -- capital city, metro >1.1M, devolved Senedd seat",
+        "diversified_industry": "steel (Tata Steel Port Talbot), aerospace (Airbus Broughton), agriculture, renewable energy, creative/media (BBC Wales)",
+        "dependent_identity": "constitutional nation with devolved government and Welsh-language co-official status; Plaid Cymru advocates greater autonomy but the dominant political settlement remains devolution within the UK, not independence"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 5,
+        "food": 4,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Wales's high rainfall and reservoir capacity (including supplying English cities such as Liverpool and Birmingham) give it the zone's top water score, and strong sheep/dairy farming plus hydro/wind generation keep food and energy above the English average; mountainous terrain fragments internal transport between the valleys and the north/south coasts.",
+        "rationales": {
+          "water": "Upland reservoirs export water to England; clear surplus.",
+          "food": "Sheep/dairy pasture farming; self-sufficient in meat, imports arable staples.",
+          "energy": "Wind, hydro and nuclear-legacy sites; net electricity exporter in most years."
+        }
+      },
+      "sources": [
+        "StatsWales/Welsh Government, mid-2022 population estimates",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Welsh Language Commissioner, Annual Report on Welsh-language use"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Cardiff"
+        ],
+        "central": "Cardiff",
+        "central_coord": [
+          -3.1791,
+          51.4816
+        ],
+        "note": "Cardiff dominates the urbanised south; Swansea and Wrexham are secondary poles of a mostly rural country."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Senedd Cymru / Welsh Parliament",
+        "note": "Devolved primary legislative powers since 2011 (reserved-powers model since 2017)."
+      },
+      "lang_family": "celtic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-scotland-central-belt",
+      "name": "Scotland: Central Belt",
+      "name_local": "Alba: A' Chrios Meadhanach",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Glasgow",
+      "secondary_centers": [
+        "Edinburgh",
+        "Stirling",
+        "Falkirk",
+        "Dumfries"
+      ],
+      "identity_basis": "Assessed split from the Highlands: the Glasgow-Edinburgh urbanised corridor (with the Southern Uplands/Borders) holds the great majority of Scotland's population, its financial (Edinburgh) and industrial/creative (Glasgow) capitals, and a lowland Scots-speaking cultural profile distinct from the Gaelic-speaking, sparsely populated Highlands and Islands.",
+      "key_industries": [
+        "financial services (Edinburgh)",
+        "life sciences and creative industries (Glasgow)",
+        "renewable energy and grid infrastructure",
+        "whisky (Lowland distilleries)",
+        "higher education"
+      ],
+      "population": 4600000,
+      "population_note": "Approximate, derived from National Records of Scotland 2022 census total (~5.44M) minus the Highlands/Islands and North East (Aberdeen) NUTS-2 populations.",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKM7",
+        "UKM8",
+        "UKM9"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Glasgow -- metro >1.8M, Scotland's largest city and industrial/creative capital, with Edinburgh (capital, financial-services hub) as co-anchor",
+        "diversified_industry": "financial services, life sciences, creative/games industry, renewable-energy engineering, whisky",
+        "dependent_identity": "devolved Scottish Parliament seat (Holyrood, Edinburgh); SNP-led independence debate is live but the constitutional status quo remains devolution within the UK -- passes the 'dependent, not seeking independence' test at the level of current settled status, flagged as the zone's sharpest identity tension"
+      },
+      "nuts1_disagreement": "NUTS-1 UKM (Scotland) is a single unit at that level; split here into Central Belt and Highlands per the mandated assessment, reflecting the real lowland/highland demographic and cultural divide that NUTS does not capture until NUTS-2.",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 3.4,
+        "rationale": "Scotland's renewables buildout (onshore wind, hydro, and grid connections to offshore arrays) is concentrated in and transmitted through the Central Belt, giving it a strong energy score, and Glasgow/Edinburgh's teaching hospitals and rail/motorway/airport density outperform most English regions on healthcare and transport.",
+        "rationales": {
+          "water": "Loch Katrine and southern-upland reservoirs give ample supply.",
+          "food": "Lothian and Ayrshire farmland strong, but the belt's population makes it a net importer.",
+          "energy": "Grid hub for Scottish wind/hydro exports; refinery at Grangemouth."
+        }
+      },
+      "sources": [
+        "National Records of Scotland, 2022 Census -- Scotland's Population",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Devine (1999), 'The Scottish Nation: 1700-2000'"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Edinburgh",
+          "Glasgow"
+        ],
+        "central": "Edinburgh",
+        "central_coord": [
+          -3.1883,
+          55.9533
+        ],
+        "secondary": "Glasgow",
+        "secondary_coord": [
+          -4.2518,
+          55.8642
+        ],
+        "note": "Scotland's historic dual poles: Edinburgh (capital, parliament, finance) and the larger Glasgow (industry, media); Edinburgh listed central as the seat of national institutions."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Scottish Parliament (Holyrood)",
+        "note": "The Parliament covers all of Scotland; it sits in this unit (Edinburgh) and is shared with the Highlands and Islands unit."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-scotland-highlands",
+      "name": "Scotland: Highlands and Islands",
+      "name_local": "A' Ghàidhealtachd",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Inverness",
+      "secondary_centers": [
+        "Aberdeen",
+        "Fort William",
+        "Kirkwall",
+        "Stornoway"
+      ],
+      "identity_basis": "Assessed split from the Central Belt: the Highlands and Islands retain a distinct Gaelic-language cultural region (crofting townships, clan heritage, post-Clearances settlement pattern) plus the North Sea oil/gas capital Aberdeen, set against the urbanised Lowland Scots-speaking south; grouping Aberdeen here trades off its own urban weight for parsimony, a tension flagged for methodology.",
+      "key_industries": [
+        "oil and gas (Aberdeen, North Sea)",
+        "renewable energy (onshore/offshore wind, hydro)",
+        "aquaculture and fishing (salmon farming)",
+        "whisky (Speyside/Highland distilleries)",
+        "tourism"
+      ],
+      "population": 840000,
+      "population_note": "Approximate, National Records of Scotland 2022 census: North Eastern Scotland (Aberdeen City and Aberdeenshire, ~470k) plus Highlands and Islands (~370k).",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKM5",
+        "UKM6"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Inverness (Highland capital) as the cultural/administrative hub for the Highlands and Islands proper, with Aberdeen (metro ~500k, global oil-and-gas centre) as the region's dominant urban economy",
+        "diversified_industry": "North Sea oil and gas (Aberdeen), aquaculture/salmon farming, whisky distilling, renewable energy, tourism",
+        "dependent_identity": "distinct Gaelic-speaking Highland identity and crofting land tenure; no separatism beyond the general Scottish devolution debate"
+      },
+      "nuts1_disagreement": "NUTS-1 UKM (Scotland) is a single unit; split here from the Central Belt per the mandated assessment. Note the internal tension that Aberdeen's oil-economy urban core is culturally North East Lowland rather than Highland/Gaelic, but is grouped here with the Highlands and Islands (NUTS-2 UKM5+UKM6) rather than split into a third Scottish region, for population parsimony -- flagged explicitly for methodology review.",
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 5,
+        "transportation": 1,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Abundant rainfall/hydro and the North Sea oil-and-gas and onshore/offshore wind base give this region the zone's top energy score, but the scattered island and glen settlement pattern produces the zone's worst transport score (ferry-dependent, single trunk roads) and constrained rural healthcare access.",
+        "rationales": {
+          "water": "Highland lochs and rainfall give the largest water surplus in the zone.",
+          "food": "Fishing (Peterhead, Europe's largest whitefish port), whisky and livestock; grain is imported.",
+          "energy": "North Sea oil/gas plus the densest hydro and onshore-wind estate in the UK; strong net exporter."
+        }
+      },
+      "sources": [
+        "National Records of Scotland, 2022 Census -- Scotland's Population",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Withers (1988), 'Gaelic Scotland: The Transformation of a Culture Region'"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Aberdeen",
+          "Inverness"
+        ],
+        "central": "Aberdeen",
+        "central_coord": [
+          -2.0943,
+          57.1497
+        ],
+        "secondary": "Inverness",
+        "secondary_coord": [
+          -4.2247,
+          57.4778
+        ],
+        "note": "Two organizing centers: Aberdeen (oil-and-gas metropolis of the north-east) and Inverness (capital of the Gaelic Highlands proper)."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Scottish Parliament (Holyrood)",
+        "note": "Covered by the same all-Scotland Parliament seated in Edinburgh (Central Belt unit); no separate Highlands legislature."
+      },
+      "lang_family": "celtic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-northern-ireland",
+      "name": "Northern Ireland",
+      "name_local": "Tuaisceart Éireann",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Belfast",
+      "secondary_centers": [
+        "Derry/Londonderry",
+        "Lisburn",
+        "Newry"
+      ],
+      "identity_basis": "Constituent part of the UK with its own devolved Assembly and power-sharing executive (Good Friday Agreement, 1998); shown here in its congruent (as-administered, part of the UK) form, toggleable against the noncongruent all-island 'Ireland unified' variant given Northern Ireland's contested constitutional position and the Irish Sea trade border created by the Windsor Framework.",
+      "key_industries": [
+        "agri-food and dairy processing",
+        "advanced manufacturing (aerospace, Bombardier/Spirit AeroSystems)",
+        "financial technology (fintech)",
+        "life sciences",
+        "film/creative industries"
+      ],
+      "population": 1910000,
+      "population_note": "NISRA 2021 Census / joint CSO-NISRA 2021-2022 publication population figure.",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKN"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Belfast -- metro >670k, seat of the devolved Assembly, historic shipbuilding/industrial capital",
+        "diversified_industry": "agri-food processing, aerospace manufacturing, fintech, film/creative industries (Game of Thrones-era studio growth)",
+        "dependent_identity": "devolved power-sharing government under the Good Friday Agreement; explicitly contested identity (unionist/nationalist) makes NI the paradigm case for the congruent/noncongruent toggle rather than a settled single identity"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Strong agri-food and dairy processing (Lakeland Dairies, Moy Park) give food security above the UK average, but the region imports the large majority of its gas and electricity via interconnectors, and the post-conflict settlement leaves cross-border transport infrastructure less developed than the island's east-coast corridor.",
+        "rationales": {
+          "water": "Lough Neagh, the British Isles' largest lake, anchors supply.",
+          "food": "Agri-food (dairy, poultry) well above UK-average self-sufficiency.",
+          "energy": "Majority of gas and much electricity imported via interconnectors."
+        }
+      },
+      "sources": [
+        "NISRA, Census 2021 Main Statistics",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Good Friday (Belfast) Agreement, 1998, constitutional status provisions"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Belfast"
+        ],
+        "central": "Belfast",
+        "central_coord": [
+          -5.9301,
+          54.5973
+        ],
+        "note": "Belfast dominates; Derry/Londonderry is a clear but much smaller second city."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Northern Ireland Assembly (Stormont)",
+        "note": "Devolved power-sharing legislature under the Good Friday Agreement; subject to periodic suspension."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "ie-dublin",
+      "name": "Dublin / Eastern and Midland",
+      "name_local": "Baile Átha Cliath",
+      "countries": [
+        "IE"
+      ],
+      "urban_core": "Dublin",
+      "secondary_centers": [
+        "Drogheda",
+        "Dundalk",
+        "Athlone",
+        "Mullingar"
+      ],
+      "identity_basis": "Ireland's capital region and by far its largest population/economic concentration, corresponding to the CSO's Eastern and Midland Regional Assembly area; mandated as a distinct region from Cork and Galway per the zone brief.",
+      "key_industries": [
+        "financial services and multinational tech/pharma HQs (Dublin)",
+        "ports and logistics (Dublin Port)",
+        "agriculture (Midlands)",
+        "higher education"
+      ],
+      "population": 2600000,
+      "population_note": "Approximate, CSO Census of Population 2022, Eastern and Midland Regional Assembly area.",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "IE06"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Dublin -- metro ~1.5M, national capital, EU tech/pharma multinational hub",
+        "diversified_industry": "financial services (IFSC), multinational tech and pharma headquarters, ports/logistics, Midlands agriculture",
+        "dependent_identity": "capital-region identity fully embedded in the Irish state; no separatism"
+      },
+      "nuts1_disagreement": "NUTS-1 IE0 covers the whole of Ireland as a single unit; split here (with ie-cork and ie-galway) into the three CSO Regional Assembly areas at NUTS-2, per the mandated Dublin/Cork/Galway distinction.",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 2,
+        "energy": 2,
+        "transportation": 4,
+        "hygiene_healthcare": 4,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "Dublin's rapid population growth has produced an acute housing-supply crisis (shelter score at the low end, mirroring London), and the state's gas-heavy electricity grid keeps energy import-dependent, but Dublin Port, the airport and the country's densest hospital/rail network keep transport and healthcare comparatively strong.",
+        "rationales": {
+          "water": "Liffey/Vartry schemes run close to capacity; a Shannon abstraction project is still unbuilt.",
+          "food": "Midland pasture within the region helps, but the metro is a net importer.",
+          "energy": "Gas-heavy national grid with limited regional generation; data-centre demand tightens the balance."
+        }
+      },
+      "sources": [
+        "CSO, Census of Population 2022 -- Summary Results",
+        "Eurostat, NUTS 2024 classification",
+        "National Economic and Social Council, Dublin regional planning reports"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Dublin"
+        ],
+        "central": "Dublin",
+        "central_coord": [
+          -6.2603,
+          53.3498
+        ],
+        "note": "Capital-dominated monopole: Dublin holds no Irish rival of comparable order."
+      },
+      "reach": [
+        {
+          "target": "Cavan and the southern Border area (within NUTS-3 IE041)",
+          "note": "Dublin's commuter and functional catchment now reaches into Cavan (user-mandated). Cavan sits inside NUTS-3 IE041 'Border' together with Donegal, Sligo, Leitrim and Monaghan, so reassigning the whole code to Dublin would drag the north-west coast along; the finest available geometry (NUTS-3) cannot split Cavan out, and the reach is therefore recorded here rather than as a boundary change."
+        },
+        {
+          "target": "Ireland (national)",
+          "note": "As capital and dominant economic pole, Dublin's labour-market reach spans the whole state."
+        }
+      ],
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional parliament; the Regional Assembly is a coordination body, not a legislature. National legislature: Oireachtas (Dublin)."
+      },
+      "lang_family": "celtic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "ie-cork",
+      "name": "Cork / Southern",
+      "name_local": "Corcaigh",
+      "countries": [
+        "IE"
+      ],
+      "urban_core": "Cork",
+      "secondary_centers": [
+        "Waterford",
+        "Limerick",
+        "Kilkenny"
+      ],
+      "identity_basis": "Ireland's 'second city' region and the CSO's Southern Regional Assembly area, covering Munster's south and south-east coast; mandated as distinct from Dublin and Galway per the zone brief.",
+      "key_industries": [
+        "pharmaceuticals and biotech (Cork Harbour cluster)",
+        "agriculture and dairy (Golden Vale)",
+        "ports (Port of Cork)",
+        "tourism"
+      ],
+      "population": 1650000,
+      "population_note": "Approximate, CSO Census of Population 2022, Southern Regional Assembly area.",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "IE05"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Cork -- metro ~360k, Ireland's second city and a major pharma/biotech manufacturing centre",
+        "diversified_industry": "pharmaceuticals/biotech (Pfizer, Eli Lilly plants), Golden Vale dairy farming, Port of Cork logistics, tourism",
+        "dependent_identity": "strong 'Rebel County' regional civic identity within the Irish state; no separatism"
+      },
+      "nuts1_disagreement": "NUTS-1 IE0 covers the whole of Ireland as a single unit; split here (with ie-dublin and ie-galway) into the three CSO Regional Assembly areas at NUTS-2, per the mandated Dublin/Cork/Galway distinction.",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.1,
+        "rationale": "The Golden Vale's dairy farming gives the region strong food self-sufficiency, and Cork Harbour's deep-water port and legacy Whitegate refinery infrastructure support moderate energy and transport scores relative to the rest of the island.",
+        "rationales": {
+          "water": "Lee and Blackwater catchments give reliable supply.",
+          "food": "Golden Vale dairy heartland; strong net food producer.",
+          "energy": "Whitegate refinery and Cork-harbour gas terminals; still import-dependent overall."
+        }
+      },
+      "sources": [
+        "CSO, Census of Population 2022 -- Summary Results",
+        "Eurostat, NUTS 2024 classification",
+        "IDA Ireland, Cork biopharma cluster reporting"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Cork"
+        ],
+        "central": "Cork",
+        "central_coord": [
+          -8.4756,
+          51.8985
+        ],
+        "note": "Cork city dominates the Southern region; Limerick and Waterford are secondary."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional parliament; the Regional Assembly is a coordination body, not a legislature. National legislature: Oireachtas (Dublin)."
+      },
+      "lang_family": "celtic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "ie-galway",
+      "name": "Galway / Northern and Western",
+      "name_local": "Gaillimh",
+      "countries": [
+        "IE"
+      ],
+      "urban_core": "Galway",
+      "secondary_centers": [
+        "Sligo",
+        "Letterkenny",
+        "Castlebar"
+      ],
+      "identity_basis": "The CSO's Northern and Western Regional Assembly area, covering Connacht and the Border counties; Ireland's most Gaeltacht-dense and rural region, mandated as distinct from Dublin and Cork per the zone brief.",
+      "key_industries": [
+        "medical devices manufacturing (Galway)",
+        "agriculture and fishing",
+        "tourism (Wild Atlantic Way)",
+        "renewable energy (Atlantic wind)"
+      ],
+      "population": 900000,
+      "population_note": "Approximate, CSO Census of Population 2022, Northern and Western Regional Assembly area.",
+      "nuts_source": "NUTS2024",
+      "nuts_codes": [
+        "IE04"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Galway -- metro ~85k city but the dominant cultural/economic anchor for Connacht, EU 'medtech capital' status",
+        "diversified_industry": "medical-device manufacturing (Medtronic, Boston Scientific), fishing and aquaculture, tourism, Atlantic wind-energy development",
+        "dependent_identity": "strongest Irish-language/Gaeltacht presence in the state alongside a distinct rural-western regionalist identity; no separatism"
+      },
+      "nuts1_disagreement": "NUTS-1 IE0 covers the whole of Ireland as a single unit; split here (with ie-dublin and ie-cork) into the three CSO Regional Assembly areas at NUTS-2, per the mandated Dublin/Cork/Galway distinction.",
+      "autarky": {
+        "water": 5,
+        "food": 3,
+        "shelter": 3,
+        "energy": 3,
+        "transportation": 2,
+        "hygiene_healthcare": 2,
+        "clothing": 2,
+        "composite": 2.9,
+        "rationale": "High Atlantic rainfall gives the region the zone's joint-top water score, and a strong wind-energy resource lifts its energy score, but the region's peripherality relative to Dublin's east-coast infrastructure shows up in weaker transport and rural-healthcare access, the lowest CSO regional population density in the state.",
+        "rationales": {
+          "water": "Highest rainfall in the state; Corrib catchment surplus.",
+          "food": "Pasture livestock and Atlantic fisheries; arable staples imported.",
+          "energy": "Strong and growing Atlantic wind resource; grid connection is the constraint."
+        }
+      },
+      "sources": [
+        "CSO, Census of Population 2022 -- Summary Results",
+        "Eurostat, NUTS 2024 classification",
+        "Údarás na Gaeltachta, Gaeltacht economic development reporting"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Galway"
+        ],
+        "central": "Galway",
+        "central_coord": [
+          -9.0568,
+          53.2707
+        ],
+        "note": "Galway is the sole urban anchor of the rural Northern and Western region."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No regional parliament; the Regional Assembly is a coordination body, not a legislature. National legislature: Oireachtas (Dublin)."
+      },
+      "lang_family": "celtic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "ireland-unified",
+      "name": "Ireland (unified, all-island)",
+      "name_local": "Éire agus Tuaisceart Éireann",
+      "countries": [
+        "IE",
+        "UK"
+      ],
+      "urban_core": "Dublin",
+      "secondary_centers": [
+        "Belfast",
+        "Cork",
+        "Galway"
+      ],
+      "identity_basis": "Noncongruent all-island variant uniting the Republic of Ireland and Northern Ireland into a single geographic/cultural unit, reflecting the island's shared history, all-island institutions (Single Electricity Market, all-island animal-health and tourism bodies) and the live political debate over Irish unification; toggles against the congruent Republic-plus-Northern-Ireland-as-part-of-the-UK display.",
+      "key_industries": [
+        "agri-food (all-island Single Electricity Market and food-safety cooperation)",
+        "pharmaceuticals and medtech",
+        "financial/tech services",
+        "tourism"
+      ],
+      "population": 7060000,
+      "population_note": "Approximate, sum of CSO Census 2022 Ireland (5,149,139) and NISRA 2021 Census Northern Ireland (~1,910,000) totals.",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "IE0",
+        "UKN"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Dublin as the island's dominant city, with Belfast, Cork and Galway as co-hubs",
+        "diversified_industry": "all-island Single Electricity Market and agri-food regulatory cooperation, pharma/medtech, financial/tech services, shared tourism branding (Wild Atlantic Way / Causeway Coast)",
+        "dependent_identity": "explicitly a toggle-able unification variant rather than the current constitutional status; NI's status as part of the UK is asserted in the congruent view and this noncongruent view models the alternative all-island frame, consistent with the site's Catalonia/Basque-style congruence toggle mandate"
+      },
+      "nuts1_disagreement": "Unifies NUTS-1 IE0 (Ireland) and NUTS-1 UKN (Northern Ireland, part of the UK) into a single cross-border noncongruent record, crossing the sovereign-state boundary that NUTS otherwise treats as absolute -- structurally identical to the Basque and Tyrol unified variants elsewhere in the dataset.",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Combining the two jurisdictions smooths some volatility (the all-island Single Electricity Market improves grid resilience relative to either jurisdiction alone) without changing the fundamentals: the island remains a net importer of fossil energy and manufactured goods despite strong agri-food self-sufficiency.",
+        "rationales": {
+          "water": "Island-wide rainfall surplus; Lough Neagh and Shannon basins.",
+          "food": "The island is a major net agri-food exporter (dairy, beef).",
+          "energy": "Single Electricity Market smooths supply, but the island imports most fossil fuel."
+        }
+      },
+      "sources": [
+        "CSO/NISRA, 'Ireland and Northern Ireland -- A Joint Census Publication 2021-2022'",
+        "Eurostat, NUTS 2021 classification (UK)",
+        "Eurostat, NUTS 2024 classification (Ireland)",
+        "SEAI/EirGrid, Single Electricity Market annual reports"
+      ],
+      "default_visible": false,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Dublin",
+          "Belfast"
+        ],
+        "central": "Dublin",
+        "central_coord": [
+          -6.2603,
+          53.3498
+        ],
+        "secondary": "Belfast",
+        "secondary_coord": [
+          -5.9301,
+          54.5973
+        ],
+        "note": "All-island dual poles: Dublin (capital-scale dominant) and Belfast; the island's Dublin-Belfast corridor is its economic spine."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "Hypothetical all-island frame: today two legislatures exist (Oireachtas, Dublin; NI Assembly, Belfast); a unified Ireland's institutional design is undetermined."
+      },
+      "lang_family": "celtic"
+    },
+    {
+      "id": "uk-east-midlands",
+      "name": "East Midlands",
+      "name_local": "East Midlands",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Nottingham",
+      "secondary_centers": [
+        "Leicester",
+        "Derby",
+        "Lincoln"
+      ],
+      "identity_basis": "England's East Midlands (Derbyshire/Nottinghamshire, Leicestershire/Rutland/Northamptonshire, Lincolnshire) -- previously assessed and excluded as a coverage gap (see zone notes); included here on a dedicated inclusion-test pass to close the ~4.9M population gap, with the polycentric Nottingham-Leicester-Derby conurbation noted honestly rather than smoothed over.",
+      "key_industries": [
+        "advanced manufacturing (Rolls-Royce aerospace, Derby)",
+        "pharmaceuticals (Boots, Nottingham)",
+        "agriculture and food processing (Lincolnshire)",
+        "logistics/distribution (East Midlands Airport freight hub)",
+        "textiles and knitwear (historic, Leicester)"
+      ],
+      "population": 4900000,
+      "population_note": "ONS mid-2022-era population estimate for the East Midlands NUTS-1 region (UKF); this is the same coverage gap the zone notes flagged as the arithmetic difference between the ONS UK total and the sum of this file's other UK regions.",
+      "area_km2": null,
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKF"
+      ],
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "inclusion_test": {
+        "urban_hub": "Nottingham (~330,000 metro) is the largest single city, but the region is genuinely polycentric: Nottingham, Leicester (~550,000 metro) and Derby (~300,000 metro) form a three-way conurbation with no single dominant city -- each in a comparable population/economic-weight range, unlike Birmingham, Manchester, Leeds or Newcastle elsewhere in this zone. Flagged honestly as the weakest single-hub fit among this zone's English regions, mirroring the Calabria (zone 3) and Finnish Lakeland (zone 4) precedents for retaining a region despite a soft urban-hub score, rather than leaving the population gap uncovered.",
+        "diversified_industry": "aerospace/advanced manufacturing (Rolls-Royce, Derby), pharmaceuticals (Boots, Nottingham), agriculture and food processing (Lincolnshire's arable farming), logistics (East Midlands Airport, UK's busiest pure-freight airport), historic textiles/knitwear (Leicester)",
+        "dependent_identity": "distinct East Midlands regional identity within England, defined more by shared economic geography than a single strong cultural marker; no separatism"
+      },
+      "nuts1_disagreement": null,
+      "autarky": {
+        "water": 3,
+        "food": 4,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 4,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.0,
+        "rationale": "Lincolnshire's arable agriculture gives above-average food self-sufficiency for an English region, and the East Midlands Airport freight hub plus central motorway/rail position give strong transport connectivity; energy remains import-dependent, consistent with other post-industrial English regions in this zone.",
+        "rationales": {
+          "water": "Derwent Valley reservoirs (built for the East Midlands cities) plus Trent abstraction.",
+          "food": "Lincolnshire, within the region's orbit, is England's vegetable garden; strong producer.",
+          "energy": "Trent-valley power-station corridor ('Megawatt Valley') retains major grid capacity."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "East Midlands Chamber regional economic profile"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "polycentric",
+        "centers": [
+          "Nottingham",
+          "Leicester",
+          "Derby"
+        ],
+        "central": "Nottingham",
+        "central_coord": [
+          -1.1581,
+          52.9548
+        ],
+        "note": "Textbook polycentric conurbation: three cities of the same order with no dominant hub; Nottingham listed central as the largest metro."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No devolved regional legislature; English regions are governed by Westminster (combined-authority mayors where present are executives, not parliaments)."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "uk-lancashire",
+      "name": "Lancashire and Cumbria",
+      "name_local": "Lancashire and Cumbria",
+      "countries": [
+        "UK"
+      ],
+      "urban_core": "Preston",
+      "secondary_centers": [
+        "Lancaster",
+        "Blackpool",
+        "Blackburn",
+        "Carlisle",
+        "Barrow-in-Furness"
+      ],
+      "identity_basis": "Historic Lancashire north of the Greater Manchester conurbation plus Cumbria, organized by a genuine dual pole: Preston (administrative capital of Lancashire, largest economy, motorway/rail crossroads of the north-west) and Lancaster (historic county town, castle and duchy seat, university city and gateway to Morecambe Bay and south Cumbria). The two cities pull the county in different directions - Preston southward into the commercial M6/M61 corridor, Lancaster northward toward the Lakes - producing a dipole rather than a single-hub region. Cumbria attaches through the Lancaster gateway: historic 'Lancashire over the Sands' (Furness/Barrow) belonged to Lancashire until 1974, and south Cumbria's labour market orients on Lancaster/Preston rather than on Manchester.",
+      "key_industries": [
+        "aerospace and defence (BAE Systems Warton/Samlesbury, Barrow submarines)",
+        "advanced manufacturing",
+        "nuclear (Heysham, Sellafield decommissioning)",
+        "tourism (Lake District, Blackpool)",
+        "dairy and upland farming"
+      ],
+      "population": 2050000,
+      "population_note": "Approximate, ONS mid-2022 estimates: Lancashire ceremonial county incl. Blackpool and Blackburn with Darwen (~1.55M) plus Cumbria (~0.50M).",
+      "nuts_source": "NUTS2021",
+      "nuts_codes": [
+        "UKD1",
+        "UKD4"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Dual hub, stated honestly: Preston (city region ~370k, Lancashire's administrative and commercial capital) and Lancaster (historic county town, ~150k district) jointly organize the region; neither alone dominates in the way Manchester or Liverpool dominate theirs",
+        "diversified_industry": "aerospace (BAE's largest UK sites), nuclear energy and submarines (Heysham, Barrow), tourism (Lake District World Heritage landscape, Blackpool), universities (Lancaster, UCLan), dairy farming",
+        "dependent_identity": "strong red-rose Lancashire county identity (distinct from Mancunian metropolitan identity) and Cumbrian/Lakeland identity; fully embedded in England, no separatism"
+      },
+      "nuts1_disagreement": "NUTS-1 UKD (North West England) bundles Lancashire and Cumbria with Greater Manchester, Merseyside and Cheshire; split out here per the mandated Preston+Lancaster dual-pole unit, separating non-metropolitan Lancashire/Cumbria from the two metropolitan city-regions.",
+      "autarky": {
+        "water": 4,
+        "food": 4,
+        "shelter": 3,
+        "energy": 4,
+        "transportation": 3,
+        "hygiene_healthcare": 3,
+        "clothing": 2,
+        "composite": 3.3,
+        "rationale": "Pennine/Lakeland water abundance, the Fylde and Lancashire-plain dairy belt, and Heysham's two nuclear stations give the region above-average self-sufficiency; clothing reflects the vanished cotton industry, and transport depends on the single West Coast Main Line/M6 spine.",
+        "rationales": {
+          "water": "Lake District and Pennine catchments make this one of England's most water-rich areas.",
+          "food": "Fylde horticulture and Lancashire/Cumbrian dairy-livestock farming supply a large share of regional demand.",
+          "energy": "Heysham 1 and 2 nuclear stations plus Morecambe Bay gas legacy make the region a net electricity exporter."
+        }
+      },
+      "sources": [
+        "ONS, Mid-2022 Population Estimates for England and Wales",
+        "GISCO NUTS 2021 boundaries (UK)",
+        "Lancashire County Council economic strategy documentation",
+        "Duchy of Lancaster historical records (Lancaster county-town status)"
+      ],
+      "default_visible": true,
+      "special_status": null,
+      "pole": {
+        "type": "dipole",
+        "centers": [
+          "Preston",
+          "Lancaster"
+        ],
+        "central": "Preston",
+        "central_coord": [
+          -2.7013,
+          53.7632
+        ],
+        "secondary": "Lancaster",
+        "secondary_coord": [
+          -2.8007,
+          54.0466
+        ],
+        "note": "User-mandated dual pole: Preston is the commercial-administrative organizing center, Lancaster the historic-cultural counterweight; the county's identity runs between them rather than radiating from either alone."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": false,
+        "name": "",
+        "note": "No devolved regional legislature; Lancashire's 2024 devolution deal creates a combined county authority (executive), not a parliament."
+      },
+      "lang_family": "germanic"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "gg-guernsey",
+      "name": "Guernsey",
+      "name_local": "Guernsey / Guernesey",
+      "countries": [
+        "GG"
+      ],
+      "urban_core": "St Peter Port",
+      "secondary_centers": [
+        "St Sampson"
+      ],
+      "identity_basis": "Bailiwick of Guernsey (including Alderney and Sark): a Crown Dependency - self-governing possession of the British Crown, never part of the UK - with a Norman-French heritage (Guernesiais langue d'oil, feudal-Norman law traditions) layered under an anglophone present; the last remnant, with Jersey, of the medieval Duchy of Normandy.",
+      "key_industries": [
+        "offshore finance and insurance",
+        "tourism",
+        "horticulture legacy (tomatoes/flowers)",
+        "dairy (Guernsey cattle)"
+      ],
+      "population": 64000,
+      "population_note": "States of Guernsey 2023 electronic census rolling estimate (~63,600, Bailiwick including Alderney and Sark).",
+      "nuts_source": "CNTR",
+      "nuts_codes": [
+        "GG"
+      ],
+      "inclusion_test": {
+        "urban_hub": "St Peter Port - harbour capital and finance center, the Bailiwick's single hub",
+        "diversified_industry": "offshore finance/insurance, tourism, dairy and residual horticulture - narrow but real for a 64k jurisdiction",
+        "dependent_identity": "Crown Dependency with full internal self-government and its own parliament, defence/foreign affairs via the UK; distinct Guernsey identity, no independence movement"
+      },
+      "nuts1_disagreement": "Outside the NUTS classification entirely (not part of the UK or EU); geometry via the GISCO CNTR countries file (CNTR_ID 'GG').",
+      "autarky": {
+        "water": 3,
+        "food": 2,
+        "shelter": 2,
+        "energy": 1,
+        "transportation": 2,
+        "hygiene_healthcare": 4,
+        "clothing": 1,
+        "composite": 2.1,
+        "rationale": "A small island dependent on sea links for nearly everything: reservoir/rain capture covers water in normal years and dairy/greenhouse output covers a food fraction, but energy arrives by subsea cable from France via Jersey and housing supply is acutely constrained.",
+        "rationales": {
+          "water": "Rain-fed reservoirs and boreholes suffice in normal years on a small island budget.",
+          "food": "Guernsey-cattle dairy and greenhouse legacy cover only a fraction; most food is imported by ferry.",
+          "energy": "No generation beyond backup diesel; electricity imported via the Channel Islands Electricity Grid subsea link."
+        }
+      },
+      "sources": [
+        "States of Guernsey, 2023 Electronic Census Report",
+        "GISCO CNTR_RG_20M_2024 countries file (GG)",
+        "Ministry of Justice (UK), Crown Dependencies fact sheet"
+      ],
+      "default_visible": true,
+      "special_status": "Crown Dependency (self-governing; not part of the UK)",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "St Peter Port"
+        ],
+        "central": "St Peter Port",
+        "central_coord": [
+          -2.5364,
+          49.4555
+        ],
+        "note": "Single harbour-capital hub of the Bailiwick."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "States of Guernsey (States of Deliberation)",
+        "note": "Full domestic legislative competence; Alderney and Sark keep their own subordinate assemblies within the Bailiwick."
+      },
+      "lang_family": "romance"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "je-jersey",
+      "name": "Jersey",
+      "name_local": "Jersey / Jerri",
+      "countries": [
+        "JE"
+      ],
+      "urban_core": "St Helier",
+      "secondary_centers": [],
+      "identity_basis": "Bailiwick of Jersey: the largest Channel Island, a Crown Dependency - self-governing possession of the British Crown, never part of the UK - with Norman-French heritage (Jerriais langue d'oil, Norman customary law) beneath an anglophone finance-center present; with Guernsey the last remnant of the medieval Duchy of Normandy.",
+      "key_industries": [
+        "offshore finance (banking, funds, trusts)",
+        "tourism",
+        "agriculture (Jersey Royal potatoes, Jersey cattle dairy)",
+        "digital services"
+      ],
+      "population": 103000,
+      "population_note": "Statistics Jersey, Census 2021 (103,267).",
+      "nuts_source": "CNTR",
+      "nuts_codes": [
+        "JE"
+      ],
+      "inclusion_test": {
+        "urban_hub": "St Helier - harbour capital, finance center, home to a third of the island's population",
+        "diversified_industry": "offshore finance dominant, plus tourism, premium agriculture exports (Jersey Royals, dairy genetics) and a growing digital sector",
+        "dependent_identity": "Crown Dependency with full internal self-government and its own parliament, defence/foreign affairs via the UK; distinct Jersey identity, no independence movement"
+      },
+      "nuts1_disagreement": "Outside the NUTS classification entirely (not part of the UK or EU); geometry via the GISCO CNTR countries file (CNTR_ID 'JE').",
+      "autarky": {
+        "water": 3,
+        "food": 3,
+        "shelter": 2,
+        "energy": 1,
+        "transportation": 2,
+        "hygiene_healthcare": 4,
+        "clothing": 1,
+        "composite": 2.3,
+        "rationale": "Premium agriculture (Jersey Royals, dairy) gives better food standing than Guernsey, but the island imports virtually all energy over French subsea cables, housing costs are among the highest in the British Isles, and everything else moves by sea.",
+        "rationales": {
+          "water": "Val de la Mare and Queen's Valley reservoirs plus desalination backstop; adequate in normal years.",
+          "food": "Jersey Royal potatoes and dairy are genuine export industries, though staples are imported.",
+          "energy": "No meaningful generation; ~95% of electricity imported from France via subsea interconnectors."
+        }
+      },
+      "sources": [
+        "Statistics Jersey, Census 2021 Bulletin",
+        "GISCO CNTR_RG_20M_2024 countries file (JE)",
+        "Ministry of Justice (UK), Crown Dependencies fact sheet"
+      ],
+      "default_visible": true,
+      "special_status": "Crown Dependency (self-governing; not part of the UK)",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "St Helier"
+        ],
+        "central": "St Helier",
+        "central_coord": [
+          -2.1032,
+          49.1866
+        ],
+        "note": "Single harbour-capital hub of the Bailiwick."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "States Assembly of Jersey",
+        "note": "Full domestic legislative competence."
+      },
+      "lang_family": "romance"
+    },
+    {
+      "area_km2": null,
+      "single_unit_exception": false,
+      "conflict_flags": [],
+      "id": "im-isle-of-man",
+      "name": "Isle of Man",
+      "name_local": "Ellan Vannin",
+      "countries": [
+        "IM"
+      ],
+      "urban_core": "Douglas",
+      "secondary_centers": [
+        "Ramsey",
+        "Peel"
+      ],
+      "identity_basis": "Crown Dependency in the Irish Sea - self-governing possession of the British Crown, never part of the UK - with a distinct Norse-Gaelic identity: Manx Gaelic (revived after the death of its last native speaker in 1974), the Norse-founded Tynwald claiming over 1,000 years of continuous parliamentary existence, and UNESCO Biosphere status for the whole island.",
+      "key_industries": [
+        "offshore finance and insurance",
+        "e-gaming and digital business",
+        "tourism (TT races)",
+        "agriculture and fishing (queenies)"
+      ],
+      "population": 84000,
+      "population_note": "Isle of Man Government, Census 2021 (84,069).",
+      "nuts_source": "CNTR",
+      "nuts_codes": [
+        "IM"
+      ],
+      "inclusion_test": {
+        "urban_hub": "Douglas - capital, finance center and ferry port, ~28k within an 84k island",
+        "diversified_industry": "offshore finance/insurance, e-gaming (a deliberate diversification success), TT-anchored tourism, farming and fishing",
+        "dependent_identity": "Crown Dependency with the world's claimed oldest continuous parliament; strong Manx identity and language revival, no independence movement (already fully self-governing internally)"
+      },
+      "nuts1_disagreement": "Outside the NUTS classification entirely (not part of the UK or EU); geometry via the GISCO CNTR countries file (CNTR_ID 'IM').",
+      "autarky": {
+        "water": 4,
+        "food": 3,
+        "shelter": 3,
+        "energy": 2,
+        "transportation": 2,
+        "hygiene_healthcare": 3,
+        "clothing": 1,
+        "composite": 2.6,
+        "rationale": "Upland reservoirs and a working agricultural base give the island more resilience than the Channel Islands, but energy relies on a gas-fired station plus a UK interconnector, and all heavy goods arrive by sea through Douglas.",
+        "rationales": {
+          "water": "Sulby and other upland reservoirs give the island a comfortable water balance.",
+          "food": "Livestock farming and the queen-scallop fishery cover a meaningful share; grain and processed food imported.",
+          "energy": "Pulrose gas-fired power station plus an AC interconnector to the UK; hydrocarbon-import dependent."
+        }
+      },
+      "sources": [
+        "Isle of Man Government, 2021 Census Report",
+        "GISCO CNTR_RG_20M_2024 countries file (IM)",
+        "Tynwald official history (tynwald.org.im)"
+      ],
+      "default_visible": true,
+      "special_status": "Crown Dependency (self-governing; not part of the UK)",
+      "pole": {
+        "type": "monopole",
+        "centers": [
+          "Douglas"
+        ],
+        "central": "Douglas",
+        "central_coord": [
+          -4.4787,
+          54.15
+        ],
+        "note": "Douglas is the island's single administrative and economic hub."
+      },
+      "reach": null,
+      "parliament": {
+        "has_own": true,
+        "name": "Tynwald (House of Keys + Legislative Council)",
+        "note": "Claims over 1,000 years of continuous existence - the oldest parliament in continuous session; full domestic legislative competence."
+      },
+      "lang_family": "celtic"
+    }
+  ]
+}

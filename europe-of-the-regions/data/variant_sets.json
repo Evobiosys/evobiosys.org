@@ -1,0 +1,480 @@
+[
+  {
+    "id": "tyrol",
+    "label": "Tyrol",
+    "anchor": [
+      11.4,
+      47.0
+    ],
+    "default_view": "current",
+    "views": [
+      {
+        "id": "current",
+        "label": "Within current states",
+        "show": [
+          "at-tyrol",
+          "it-south-tyrol"
+        ]
+      },
+      {
+        "id": "connected",
+        "label": "Unified Tyrol (AT+IT)",
+        "show": [
+          "tyrol-unified"
+        ]
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping readings",
+        "show": [
+          "at-tyrol",
+          "it-south-tyrol",
+          "tyrol-unified"
+        ],
+        "overlap": true
+      }
+    ]
+  },
+  {
+    "id": "flanders",
+    "label": "Flanders / Dutch language area",
+    "anchor": [
+      4.5,
+      51.4
+    ],
+    "default_view": "current",
+    "views": [
+      {
+        "id": "current",
+        "label": "Flanders and Netherlands separate",
+        "show": [
+          "be-flanders",
+          "nl-amsterdam-noord-holland-utrecht",
+          "nl-rotterdam-zuid-holland-zeeland",
+          "nl-groningen-north",
+          "nl-deventer-overijssel-achterhoek",
+          "nl-south-brabant-limburg"
+        ]
+      },
+      {
+        "id": "connected",
+        "label": "Dutch language area united",
+        "show": [
+          "dutch-lowlands-unified"
+        ]
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping readings",
+        "show": [
+          "be-flanders",
+          "nl-amsterdam-noord-holland-utrecht",
+          "nl-rotterdam-zuid-holland-zeeland",
+          "nl-groningen-north",
+          "nl-deventer-overijssel-achterhoek",
+          "nl-south-brabant-limburg",
+          "dutch-lowlands-unified"
+        ],
+        "overlap": true
+      }
+    ]
+  },
+  {
+    "id": "upper-austria",
+    "label": "Upper Austria: split ⇄ joins Vienna-Danube corridor",
+    "anchor": [
+      14.3,
+      48.3
+    ],
+    "default_view": "split",
+    "views": [
+      {
+        "id": "split",
+        "label": "Split (Salzburg ≠ Upper Austria)",
+        "show": [
+          "at-salzburg",
+          "at-upper-austria"
+        ]
+      },
+      {
+        "id": "vienna-join",
+        "label": "Upper Austria joins the Vienna-Danube corridor",
+        "show": [
+          "at-salzburg",
+          "at-vienna-danube-extended"
+        ],
+        "note": "Models the real Vienna-Linz Danube-valley rail/river economic axis by merging at-upper-austria into at-vienna-east's territory (at-vienna-danube-extended); this is an alternative economic-geography framing, not a claim that Upper Austrians identify primarily with Vienna."
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": [
+          "at-salzburg",
+          "at-upper-austria",
+          "at-vienna-danube-extended"
+        ],
+        "overlap": true
+      }
+    ]
+  },
+  {
+    "id": "schaffhausen",
+    "label": "Schaffhausen: within Ostschweiz ⇄ separate",
+    "anchor": [
+      8.63,
+      47.7
+    ],
+    "default_view": "separate",
+    "views": [
+      {
+        "id": "separate",
+        "label": "Separate (Schaffhausen ≠ Central & Eastern Switzerland)",
+        "show": [
+          "ch-schaffhausen",
+          "ch-central-eastern"
+        ]
+      },
+      {
+        "id": "current",
+        "label": "Within Ostschweiz (v0.1.0 framing)",
+        "show": [
+          "ch-central-eastern-combined"
+        ],
+        "note": "Reproduces the v0.1.0 combined framing that statistically bundled Schaffhausen into the broad Zentral-/Ostschweiz macro-region, kept available as a toggle rather than deleted outright."
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": [
+          "ch-schaffhausen",
+          "ch-central-eastern",
+          "ch-central-eastern-combined"
+        ],
+        "overlap": true
+      }
+    ]
+  },
+  {
+    "id": "bremen-lower-saxony",
+    "label": "Bremen ⇄ Lower Saxony: together / split / united",
+    "anchor": [
+      8.8,
+      53.08
+    ],
+    "default_view": "together",
+    "views": [
+      {
+        "id": "together",
+        "label": "Together (current default: Bremen and Lower Saxony as separate Länder)",
+        "show": [
+          "de-bremen",
+          "de-lower-saxony"
+        ]
+      },
+      {
+        "id": "split",
+        "label": "Lower Saxony split (west / east around Bremen)",
+        "show": [
+          "de-bremen",
+          "de-lower-saxony-west",
+          "de-lower-saxony-east"
+        ],
+        "note": "West = Weser-Ems (Oldenburg/Cloppenburg/East Frisia, urban core Oldenburg); East = Braunschweig+Hannover+Lüneburg, urban core Hannover."
+      },
+      {
+        "id": "united",
+        "label": "Lower Saxony united (Bremen enclave absorbed)",
+        "show": [
+          "de-lower-saxony-bremen-united"
+        ],
+        "note": "Reflects Bremen's historical origin as a Lower-Saxon Hanseatic city and its complete geographic enclosure by Lower Saxony; the default map keeps Bremen as its own sovereign city-state Land."
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": [
+          "de-bremen",
+          "de-lower-saxony-bremen-united"
+        ],
+        "overlap": true,
+        "note": "Demonstrates Bremen's enclave status within Lower Saxony's territory. This variant set merges the plan's separately named 'lower-saxony' and 'bremen' mandates into one set (4 views) because both would otherwise toggle visibility on the same underlying de-lower-saxony/de-bremen records, producing conflicting view states if kept as two independent sets -- documented in zone1.json's notes."
+      }
+    ]
+  },
+  {
+    "id": "auvergne",
+    "label": "Auvergne & Rhône-Alpes",
+    "anchor": [
+      3.95,
+      45.6
+    ],
+    "default_view": "separate",
+    "views": [
+      {
+        "id": "separate",
+        "label": "Auvergne separate (Clermont-Ferrand ≠ Lyon)",
+        "show": [
+          "fr-auvergne",
+          "fr-rhone-alpes"
+        ]
+      },
+      {
+        "id": "fused",
+        "label": "Fused ARA bloc under Lyon (Clermont secondary hub)",
+        "show": [
+          "fr-auvergne-rhone-alpes"
+        ]
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": [
+          "fr-auvergne",
+          "fr-rhone-alpes",
+          "fr-auvergne-rhone-alpes"
+        ],
+        "overlap": true
+      }
+    ]
+  },
+  {
+    "id": "basque",
+    "label": "Basque Country",
+    "anchor": [
+      -2.6,
+      42.9
+    ],
+    "default_view": "current",
+    "views": [
+      {
+        "id": "current",
+        "label": "Within current states",
+        "show": [
+          "es-basque"
+        ]
+      },
+      {
+        "id": "connected",
+        "label": "Unified cross-border",
+        "show": [
+          "basque-unified"
+        ],
+        "note": "French-side geometry (FRI15/Pyrénées-Atlantiques) over-covers: it includes all of Béarn, a distinct non-Basque territory, not just Iparralde. See basque-unified's conflict_flags for the honest over-coverage statement and the geoBoundaries FRA ADM3 (Bayonne arrondissement) finer-geometry recommendation for a future pipeline pass."
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": [
+          "es-basque",
+          "basque-unified"
+        ],
+        "overlap": true,
+        "note": "The 'unified' shape shown here over-covers the French side (see the connected view's note); the overlap is therefore larger than the true Basque-Béarn boundary would produce."
+      }
+    ]
+  },
+  {
+    "id": "leon-castile",
+    "label": "Castile: separate ⇄ unified",
+    "anchor": [
+      -4.5,
+      41.3
+    ],
+    "default_view": "current",
+    "views": [
+      {
+        "id": "current",
+        "label": "Current separate units (León / La Mancha)",
+        "show": [
+          "es-castile-leon",
+          "es-castile-la-mancha"
+        ]
+      },
+      {
+        "id": "connected",
+        "label": "Greater Castile (unified, Madrid excluded)",
+        "show": [
+          "es-greater-castile"
+        ]
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": [
+          "es-castile-leon",
+          "es-castile-la-mancha",
+          "es-greater-castile"
+        ],
+        "overlap": true
+      }
+    ]
+  },
+  {
+    "id": "madrid",
+    "label": "Madrid: city-region ⇄ with surroundings",
+    "anchor": [
+      -3.7,
+      40.35
+    ],
+    "default_view": "city-region",
+    "views": [
+      {
+        "id": "city-region",
+        "label": "Current city-region",
+        "show": [
+          "es-madrid"
+        ]
+      },
+      {
+        "id": "with-surroundings",
+        "label": "Madrid & surroundings (commuter belt)",
+        "show": [
+          "es-madrid-extended"
+        ]
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": [
+          "es-madrid",
+          "es-madrid-extended"
+        ],
+        "overlap": true
+      }
+    ]
+  },
+  {
+    "id": "ireland",
+    "label": "Ireland",
+    "anchor": [
+      -7.7,
+      53.4
+    ],
+    "default_view": "current",
+    "views": [
+      {
+        "id": "current",
+        "label": "Within current states",
+        "show": [
+          "uk-northern-ireland",
+          "ie-dublin",
+          "ie-cork",
+          "ie-galway"
+        ]
+      },
+      {
+        "id": "unified",
+        "label": "Cross-border merged (all-island)",
+        "show": [
+          "ireland-unified",
+          "uk-northern-ireland"
+        ]
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": [
+          "uk-northern-ireland",
+          "ie-dublin",
+          "ie-cork",
+          "ie-galway",
+          "ireland-unified"
+        ],
+        "overlap": true
+      }
+    ]
+  },
+  {
+    "id": "liverpool-manchester",
+    "label": "Liverpool / Manchester",
+    "anchor": [
+      -2.73,
+      53.42
+    ],
+    "default_view": "separate",
+    "views": [
+      {
+        "id": "separate",
+        "label": "Separate city-regions",
+        "show": [
+          "uk-liverpool",
+          "uk-manchester"
+        ]
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping catchments",
+        "show": [
+          "uk-liverpool",
+          "uk-manchester"
+        ],
+        "overlap": true
+      }
+    ]
+  },
+  {
+    "id": "pomerania",
+    "label": "Pomerania: broad ⇄ split (Kashubia / Kuyavia / Warmia-Masuria)",
+    "anchor": [
+      18.3,
+      53.9
+    ],
+    "default_view": "broad",
+    "views": [
+      {
+        "id": "broad",
+        "label": "Broad Pomerania (Statistics Poland PL6 macroregion)",
+        "show": [
+          "pl-pomerania"
+        ]
+      },
+      {
+        "id": "split",
+        "label": "Split: Kashubia / Kuyavia / Warmia-Masuria",
+        "show": [
+          "pl-kashubia-core",
+          "pl-kuyavia",
+          "pl-warmia-masuria"
+        ],
+        "note": "Demonstrates the strong (Kashubia) / weak (Kuyavia) / weakest (Warmia-Masuria) 'fit' gradient for the Pomerania label per the user-provided table; the broad default view is Statistics Poland's own PL6 macroregion, which papers over this gradient."
+      }
+    ]
+  },
+  {
+    "id": "silesia",
+    "label": "Silesia: within current states (PL≠CZ) ⇄ unified cross-border",
+    "anchor": [
+      18.6,
+      50.0
+    ],
+    "default_view": "current",
+    "views": [
+      {
+        "id": "current",
+        "label": "Within current states (Poland ≠ Czechia)",
+        "show": [
+          "pl-silesia",
+          "cz-czech-silesia"
+        ]
+      },
+      {
+        "id": "connected",
+        "label": "Unified cross-border Silesia",
+        "show": [
+          "silesia-unified"
+        ],
+        "note": "Historic Duchy of Silesia reunited across the modern Polish-Czech border; a cultural-mapping view, not a territorial claim (A1.13)."
+      },
+      {
+        "id": "overlap",
+        "label": "Overlapping claims",
+        "show": [
+          "pl-silesia",
+          "cz-czech-silesia",
+          "silesia-unified"
+        ],
+        "overlap": true
+      }
+    ]
+  }
+]

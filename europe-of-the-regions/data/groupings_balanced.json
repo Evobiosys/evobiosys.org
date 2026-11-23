@@ -1,0 +1,867 @@
+{
+  "id": "balanced",
+  "label": "Balanced (max-factor <=7)",
+  "description": "Representation-grouping scheme built to keep the population max/min factor across non-exempt groupings at or under 7 (European-Parliament-style degressive-proportionality target), per amendment A3.1. Special_status cultural units (microstates, city-states, disputed/exclave territories, Piedmont) sit outside the factor calculation as their own dashed singleton or micro-cluster groupings (see factor_exempt). Every other default-visible cultural unit belongs to exactly one of the remaining groupings, built by splitting the affinity-66 scheme's oversized lumps (Poland, Germany-West, France Sud-Est/Nord-Ouest, UK South-Midlands, Ukraine West-Center/South-East, Romania) along existing cultural-unit lines, and by merging undersized units upward by affinity (e.g. Aland into mainland Finland, Ticino into a Swiss bloc, Malta into Sicily-Sardinia, the Azores/Madeira into Porto-Norte).",
+  "groupings": [
+    {
+      "id": "grp-b-gibraltar",
+      "name": "Gibraltar",
+      "member_ids": [
+        "gibraltar"
+      ],
+      "rationale": "British Overseas Territory, disputed sovereignty with Spain; kept as its own dashed representation singleton rather than folded into a Spanish or UK grouping."
+    },
+    {
+      "id": "grp-b-alpine-microstates",
+      "name": "Alpine Microstates",
+      "member_ids": [
+        "li-liechtenstein",
+        "ad-andorra",
+        "mc-monaco",
+        "sm-san-marino",
+        "va-vatican-city"
+      ],
+      "rationale": "Sovereign European microstates (Liechtenstein, Andorra, Monaco, San Marino, Vatican City) clustered as one dashed representation grouping outside the population-factor calculation, matching their special_status."
+    },
+    {
+      "id": "grp-b-crown-dependencies",
+      "name": "Crown Dependencies",
+      "member_ids": [
+        "gg-guernsey",
+        "je-jersey",
+        "im-isle-of-man"
+      ],
+      "rationale": "Self-governing Crown Dependencies (Guernsey, Jersey, Isle of Man) grouped as one dashed special-status cluster, outside the UK cultural-unit groupings and outside the factor calculation."
+    },
+    {
+      "id": "grp-b-at-vorarlberg",
+      "name": "Vorarlberg",
+      "member_ids": [
+        "at-vorarlberg"
+      ],
+      "rationale": "Special_status dual Swiss/Tyrolean-oriented Land; kept as its own dashed singleton rather than merged into the Austria-outside-Vienna bloc, consistent with its special_status flag."
+    },
+    {
+      "id": "grp-b-be-brussels",
+      "name": "Brussels",
+      "member_ids": [
+        "be-brussels"
+      ],
+      "rationale": "Capital enclave / EU district with special_status; kept as its own dashed singleton distinct from Flanders and Wallonia."
+    },
+    {
+      "id": "grp-b-cy-cyprus",
+      "name": "Cyprus",
+      "member_ids": [
+        "cy-cyprus"
+      ],
+      "rationale": "De-facto divided island (Greek Cypriot south / Turkish Cypriot north administration); special_status singleton, outside the factor calculation regardless of its ~0.92M population."
+    },
+    {
+      "id": "grp-b-de-berlin",
+      "name": "Berlin",
+      "member_ids": [
+        "de-berlin"
+      ],
+      "rationale": "City-state special_status Land; kept as its own dashed singleton apart from Brandenburg/the eastern Länder bloc."
+    },
+    {
+      "id": "grp-b-de-bremen",
+      "name": "Bremen",
+      "member_ids": [
+        "de-bremen"
+      ],
+      "rationale": "City-state special_status Land; kept as its own dashed singleton apart from the Lower Saxony/Schleswig-Holstein bloc."
+    },
+    {
+      "id": "grp-b-de-hamburg",
+      "name": "Hamburg",
+      "member_ids": [
+        "de-hamburg"
+      ],
+      "rationale": "City-state special_status Land; kept as its own dashed singleton apart from the Lower Saxony/Schleswig-Holstein bloc."
+    },
+    {
+      "id": "grp-b-es-ceuta-melilla",
+      "name": "Ceuta & Melilla",
+      "member_ids": [
+        "es-ceuta-melilla"
+      ],
+      "rationale": "Discontiguous North African exclaves with disputed sovereignty; special_status singleton, kept out of the Andalusia-anchored grouping and out of the factor calculation."
+    },
+    {
+      "id": "grp-b-it-piedmont",
+      "name": "Piedmont",
+      "member_ids": [
+        "it-piedmont"
+      ],
+      "rationale": "Marked special_status per explicit instruction (Alpine Occitan/Franco-Provençal valleys plus Savoy-core history, 'special zone like Monaco'); kept as its own dashed singleton and excluded from the factor calculation even though its ~4.4M population would otherwise sit comfortably inside the band."
+    },
+    {
+      "id": "grp-b-tr-east-thrace",
+      "name": "East Thrace",
+      "member_ids": [
+        "tr-east-thrace"
+      ],
+      "rationale": "Out-of-scope-state landmass inclusion (Turkey excluded as a whole; shown only for European-landmass completeness); dashed special_status singleton, outside the factor calculation."
+    },
+    {
+      "id": "grp-b-at-vienna",
+      "name": "Vienna–Eastern Austria",
+      "member_ids": [
+        "at-vienna-east"
+      ],
+      "rationale": "Capital-region singleton; Vienna's metropolitan and Pannonian weight justifies standalone representation like other large-country capitals (Madrid, Budapest, Paris)."
+    },
+    {
+      "id": "grp-b-at-rest",
+      "name": "Austria outside Vienna (and Vorarlberg)",
+      "member_ids": [
+        "at-styria",
+        "at-carinthia",
+        "at-tyrol",
+        "at-salzburg",
+        "at-upper-austria"
+      ],
+      "rationale": "The non-capital, non-Vorarlberg Austrian Länder combined into one balanced-scheme grouping (4.64M); individually none of Styria, Carinthia, Tyrol, Salzburg or Upper Austria clears the ~2.6M representation floor set by the largest single-unit grouping (London), so they stay merged even though each keeps its own distinct cultural-unit identity. Styria and Carinthia sit together inside this grouping by explicit affinity (their pairing is separately endorsed); Carinthia's contested southward alignment is offered as an alternative to the Slovenia-Croatia grouping."
+    },
+    {
+      "id": "grp-b-ch-german-ticino",
+      "name": "German-speaking Switzerland & Ticino",
+      "member_ids": [
+        "ch-zurich",
+        "ch-basel",
+        "ch-bern-mittelland",
+        "ch-schaffhausen",
+        "ch-ticino"
+      ],
+      "rationale": "Zürich, Basel, Bern-Mittelland and Schaffhausen (German-speaking) plus Ticino (Italian-speaking) combined for population balance: Ticino alone (0.35M) falls far under the representation floor and has no land neighbor cluster of its own size, so it is paired here as one of Ticino's two plausible representation homes (see alternatives)."
+    },
+    {
+      "id": "grp-b-ch-romandie-alpine",
+      "name": "Romandie & Alpine Central-Eastern Switzerland",
+      "member_ids": [
+        "ch-romandie",
+        "ch-central-eastern"
+      ],
+      "rationale": "French-speaking Romandie (1.7M) also falls under the representation floor alone; paired with Central-Eastern Switzerland's Alpine cantons (Graubünden and neighbors, which border both Romandie and Ticino) as a population-balancing grouping and Ticino's alternative home."
+    },
+    {
+      "id": "grp-b-de-alemannic-southwest",
+      "name": "Baden-Württemberg",
+      "member_ids": [
+        "de-baden",
+        "de-wuerttemberg"
+      ],
+      "rationale": "Historic Baden and Württemberg, split as cultural units on the 1806-1952 statehood/dialect boundary, recombined here as one representation grouping (11.07M) matching today's federal state; comfortably inside the balanced-scheme band without further splitting."
+    },
+    {
+      "id": "grp-b-de-bavaria",
+      "name": "Bavaria (Franconia–Swabia–Altbayern)",
+      "member_ids": [
+        "de-franconia",
+        "de-bavarian-swabia",
+        "de-munich-altbayern"
+      ],
+      "rationale": "All of non-exempt Bavaria combined (12.98M); under the effective ceiling set by London's 18.3M single-unit grouping, so no further split is required to satisfy the ≤7 factor even though each sub-region keeps its own cultural-unit identity."
+    },
+    {
+      "id": "grp-b-de-hesse-rlp-saarland",
+      "name": "Hesse–Rhineland-Palatinate–Saarland",
+      "member_ids": [
+        "de-hesse",
+        "de-rhineland-palatinate",
+        "de-saarland"
+      ],
+      "rationale": "Split out of the old affinity-scheme's 29.17M 'Germany West' lump along cultural-unit lines. Saarland (0.98M) is far under the representation floor alone and is merged upward with its immediate neighbor Rhineland-Palatinate by affinity (shared Prussian Rhine Province/French-border history); Hesse joins to keep the piece comfortably inside the band (11.33M). Saarland's own 1947-1957 quasi-French Saar Protectorate history is offered as an alternative alignment with French-East (Alsace-Lorraine)."
+    },
+    {
+      "id": "grp-b-de-rhineland",
+      "name": "Rhineland",
+      "member_ids": [
+        "de-rhineland"
+      ],
+      "rationale": "Split out of the old 29.17M 'Germany West' lump; Rhineland alone (9.56M) clears the representation floor comfortably as its own grouping, keeping the populous Rhine-Ruhr corridor from being merged with unrelated territory."
+    },
+    {
+      "id": "grp-b-de-westphalia",
+      "name": "Westphalia",
+      "member_ids": [
+        "de-westphalia"
+      ],
+      "rationale": "Split out of the old 29.17M 'Germany West' lump; Westphalia alone (8.28M) clears the representation floor comfortably as its own grouping."
+    },
+    {
+      "id": "grp-b-de-hanseatic-north",
+      "name": "Lower Saxony–Schleswig-Holstein",
+      "member_ids": [
+        "de-schleswig-holstein",
+        "de-lower-saxony"
+      ],
+      "rationale": "Hamburg and Bremen (both special_status city-states) are pulled out to their own exempt singletons; the remaining Schleswig-Holstein and Lower Saxony stay merged as one grouping (10.94M), just inside the balanced-scheme band."
+    },
+    {
+      "id": "grp-b-de-neue-laender",
+      "name": "Saxony–Thuringia–Saxony-Anhalt–Brandenburg–Mecklenburg-Vorpommern",
+      "member_ids": [
+        "de-saxony",
+        "de-thuringia",
+        "de-saxony-anhalt",
+        "de-brandenburg",
+        "de-mecklenburg-vorpommern"
+      ],
+      "rationale": "Berlin (special_status city-state) pulled out to its own exempt singleton; the remaining five eastern Länder stay combined as one grouping (12.5M) since that is comfortably under the effective ceiling and none would individually clear the representation floor."
+    },
+    {
+      "id": "grp-b-be-flanders",
+      "name": "Flanders",
+      "member_ids": [
+        "be-flanders"
+      ],
+      "rationale": "Belgium's Dutch-speaking Community/Region stands alone as one grouping (6.89M), unchanged from the affinity scheme; Brussels (special_status) is exempted separately."
+    },
+    {
+      "id": "grp-b-benelux-francophone",
+      "name": "Wallonia–Luxembourg",
+      "member_ids": [
+        "be-wallonia",
+        "lu-luxembourg"
+      ],
+      "rationale": "French-speaking Wallonia combined with the Grand Duchy of Luxembourg; Luxembourg alone (0.66M) is far under the representation floor and has no other francophone neighbor to merge with, so this pairing (matching the existing affinity-scheme structure) is kept."
+    },
+    {
+      "id": "grp-b-nl-randstad",
+      "name": "Randstad (Amsterdam–Rotterdam)",
+      "member_ids": [
+        "nl-amsterdam-noord-holland-utrecht",
+        "nl-rotterdam-zuid-holland-zeeland"
+      ],
+      "rationale": "The Netherlands' core conurbation belt combined as one grouping (10.73M); comfortably under the effective ceiling, no split needed."
+    },
+    {
+      "id": "grp-b-nl-buiten-randstad",
+      "name": "Netherlands outside the Randstad",
+      "member_ids": [
+        "nl-groningen-north",
+        "nl-deventer-overijssel-achterhoek",
+        "nl-south-brabant-limburg"
+      ],
+      "rationale": "Groningen, the Deventer/Overijssel/Achterhoek hub and South Brabant-Limburg combined as one grouping (7.05M); comfortably under the effective ceiling, no split needed."
+    },
+    {
+      "id": "grp-b-fr-ile-de-france",
+      "name": "Île-de-France (Paris)",
+      "member_ids": [
+        "fr-paris-ile-de-france"
+      ],
+      "rationale": "Paris and its region form a single, unsplittable cultural unit at 12.3M; kept as its own mega-grouping like Vienna, Madrid and London — well inside the ≤7 factor set by London's 18.3M."
+    },
+    {
+      "id": "grp-b-fr-nord",
+      "name": "Hauts-de-France–Normandy",
+      "member_ids": [
+        "fr-hauts-de-france",
+        "fr-normandy"
+      ],
+      "rationale": "Split out of the old 19.1M 'France Nord-Ouest' lump along cultural-unit lines; the two northern coastal/Channel regions combined (9.29M) clear the representation floor comfortably."
+    },
+    {
+      "id": "grp-b-fr-ouest",
+      "name": "Brittany–Pays de la Loire",
+      "member_ids": [
+        "fr-brittany",
+        "fr-pays-de-la-loire"
+      ],
+      "rationale": "Split out of the old 19.1M 'France Nord-Ouest' lump; Brittany and Pays de la Loire combined (9.81M) clear the representation floor comfortably."
+    },
+    {
+      "id": "grp-b-fr-sud-ouest",
+      "name": "Aquitaine–Midi-Pyrénées",
+      "member_ids": [
+        "fr-aquitaine",
+        "fr-midi-pyrenees"
+      ],
+      "rationale": "Southwest France combined as one grouping (9.22M), unchanged from the affinity scheme; comfortably under the effective ceiling."
+    },
+    {
+      "id": "grp-b-fr-languedoc-provence-corsica",
+      "name": "Languedoc-Roussillon–Provence-Alpes-Côte d'Azur–Corsica",
+      "member_ids": [
+        "fr-languedoc-roussillon",
+        "fr-provence-alpes-cote-dazur",
+        "fr-corsica"
+      ],
+      "rationale": "Split out of the old 19.27M 'France Sud-Est' lump along cultural-unit lines; the Mediterranean-coast regions plus Corsica combined (8.34M) clear the representation floor comfortably."
+    },
+    {
+      "id": "grp-b-fr-rhone-alpes-auvergne-bourgogne",
+      "name": "Rhône-Alpes–Auvergne–Burgundy-Franche-Comté",
+      "member_ids": [
+        "fr-rhone-alpes",
+        "fr-auvergne",
+        "fr-burgundy-franche-comte"
+      ],
+      "rationale": "Split out of the old 19.27M 'France Sud-Est' lump; the Lyon-anchored bloc combined with Auvergne and Burgundy-Franche-Comté (10.93M) clears the representation floor comfortably (both were already split out as separate cultural units from Lyon/Aquitaine per the content-wave mandate)."
+    },
+    {
+      "id": "grp-b-fr-est",
+      "name": "Alsace–Lorraine–Champagne",
+      "member_ids": [
+        "fr-alsace",
+        "fr-lorraine",
+        "fr-champagne"
+      ],
+      "rationale": "France's eastern border regions combined as one grouping (5.54M); none of Alsace (1.9M), Lorraine (2.33M) or Champagne (1.31M) clears the representation floor alone. Alsace's contested German-Baden orientation and Lorraine's contested German-Rhineland/Saarland orientation are both offered as alternatives."
+    },
+    {
+      "id": "grp-b-es-noroeste",
+      "name": "Galicia–Asturias–Cantabria",
+      "member_ids": [
+        "es-galicia",
+        "es-asturias",
+        "es-cantabria"
+      ],
+      "rationale": "Spain's Atlantic-coast northwest combined as one grouping (4.29M), unchanged from the affinity scheme; Asturias (1.0M) and Cantabria (0.58M) do not clear the floor alone."
+    },
+    {
+      "id": "grp-b-es-noreste",
+      "name": "Basque Country–La Rioja–Aragon",
+      "member_ids": [
+        "es-basque",
+        "es-la-rioja",
+        "es-aragon"
+      ],
+      "rationale": "Spain's northeast interior combined as one grouping (4.55M), unchanged from the affinity scheme; La Rioja (0.32M) and Aragon (1.34M) do not clear the floor alone."
+    },
+    {
+      "id": "grp-b-es-madrid",
+      "name": "Madrid",
+      "member_ids": [
+        "es-madrid"
+      ],
+      "rationale": "Capital-region singleton (6.75M), unchanged from the affinity scheme."
+    },
+    {
+      "id": "grp-b-es-centro-sur-canarias",
+      "name": "Castile–Extremadura–Andalusia–Murcia–Canary Islands",
+      "member_ids": [
+        "es-castile-leon",
+        "es-castile-la-mancha",
+        "es-extremadura",
+        "es-andalusia",
+        "es-murcia",
+        "es-canary-islands"
+      ],
+      "rationale": "Split target from the old affinity scheme's centro-sur bloc kept merged rather than fragmented: at 17.86M it stays comfortably under the effective ceiling. The Canary Islands (2.24M) are added here because, standing alone, they fall under the representation floor and have no adjacent land neighbor; Andalusia's historic Atlantic trade link to the Canaries (colonization routed via Cádiz/Seville) gives the merge an affinity basis, offered against the alternative of grouping with Portugal's Atlantic islands instead."
+    },
+    {
+      "id": "grp-b-es-catalan-arc",
+      "name": "Catalonia–Valencia–Balearic Islands",
+      "member_ids": [
+        "es-catalonia",
+        "es-valencia",
+        "es-balearic-islands"
+      ],
+      "rationale": "Spain's Catalan-speaking Mediterranean arc combined as one grouping (14.18M), unchanged from the affinity scheme; comfortably under the effective ceiling."
+    },
+    {
+      "id": "grp-b-pt-mainland-south-center",
+      "name": "Lisbon–Alentejo–Algarve–Centro",
+      "member_ids": [
+        "pt-lisbon",
+        "pt-alentejo",
+        "pt-algarve",
+        "pt-centro"
+      ],
+      "rationale": "Southern and central mainland Portugal combined as one grouping (6.64M); Alentejo (0.7M), Algarve (0.47M) and Centro (2.2M) do not clear the representation floor alone."
+    },
+    {
+      "id": "grp-b-pt-porto-azores-madeira",
+      "name": "Porto-Norte–Azores–Madeira",
+      "member_ids": [
+        "pt-porto-norte",
+        "pt-azores",
+        "pt-madeira"
+      ],
+      "rationale": "Following the explicit merge-upward-by-affinity guidance: the Azores (0.24M) and Madeira (0.25M) are isolated Atlantic archipelagos far under the representation floor with no adjacent land neighbor, so they are attached to mainland Porto-Norte (Portugal's other major population center) for a combined 4.08M grouping. Alternative: pairing with the Canary Islands as a pan-Atlantic-Iberian-islands bloc instead."
+    },
+    {
+      "id": "grp-b-it-lombardy-liguria",
+      "name": "Lombardy–Liguria",
+      "member_ids": [
+        "it-lombardy",
+        "it-liguria"
+      ],
+      "rationale": "Piedmont (special_status) is pulled out to its own exempt singleton; Lombardy and Liguria stay merged (11.53M) since Liguria alone (1.51M) does not clear the representation floor."
+    },
+    {
+      "id": "grp-b-it-nordest",
+      "name": "Triveneto–Emilia-Romagna",
+      "member_ids": [
+        "it-veneto",
+        "it-friuli",
+        "it-trentino",
+        "it-south-tyrol",
+        "it-emilia",
+        "it-romagna"
+      ],
+      "rationale": "Italy's historic Triveneto (Veneto, Friuli, Trentino-Alto Adige/South Tyrol) plus Emilia-Romagna combined as one grouping (11.59M), unchanged from the affinity scheme; comfortably under the effective ceiling. South Tyrol's contested German-speaking Tyrolean orientation is offered as an alternative alignment with Austria-outside-Vienna (which contains Austrian Tyrol)."
+    },
+    {
+      "id": "grp-b-it-centro",
+      "name": "Tuscany–Umbria–Marche–Lazio",
+      "member_ids": [
+        "it-tuscany",
+        "it-umbria",
+        "it-marche",
+        "it-lazio"
+      ],
+      "rationale": "Central Italy combined as one grouping (11.72M), unchanged from the affinity scheme; comfortably under the effective ceiling."
+    },
+    {
+      "id": "grp-b-it-mezzogiorno",
+      "name": "Campania–Puglia–Abruzzo–Basilicata–Calabria",
+      "member_ids": [
+        "it-campania",
+        "it-puglia",
+        "it-abruzzo",
+        "it-basilicata",
+        "it-calabria"
+      ],
+      "rationale": "Continental Southern Italy combined as one grouping (13.41M), unchanged from the affinity scheme; comfortably under the effective ceiling."
+    },
+    {
+      "id": "grp-b-it-isole-malta",
+      "name": "Sicily–Sardinia–Malta",
+      "member_ids": [
+        "it-sicily",
+        "it-sardinia",
+        "mt-malta"
+      ],
+      "rationale": "Sicily and Sardinia are joined by Malta (0.52M), which has no land neighbor of its own and is far under the representation floor alone; Malta's historic administrative ties to Sicily (shared Kingdom of Sicily / Knights of Malta era) give the merge an affinity basis, for a combined 6.91M."
+    },
+    {
+      "id": "grp-b-pl-mazovia-lodz",
+      "name": "Mazovia–Łódź",
+      "member_ids": [
+        "pl-mazovia",
+        "pl-lodz"
+      ],
+      "rationale": "One of four cultural-line splits of the old 37.76M 'grp-poland' lump, per the explicit user-endorsed Mazovia+Łódź / Małopolska+Eastern / Silesia+Lower-Silesia / Wielkopolska+Pomerania split. Warsaw's Mazovia paired with its southwestern textile-belt neighbor Łódź (7.8M)."
+    },
+    {
+      "id": "grp-b-pl-malopolska-eastern",
+      "name": "Małopolska–Eastern Poland",
+      "member_ids": [
+        "pl-malopolska",
+        "pl-eastern-poland"
+      ],
+      "rationale": "Second of the four Poland splits: Kraków's Małopolska paired with Eastern Poland (9.86M)."
+    },
+    {
+      "id": "grp-b-pl-silesia-lower-silesia",
+      "name": "Silesia–Lower Silesia",
+      "member_ids": [
+        "pl-silesia",
+        "pl-lower-silesia"
+      ],
+      "rationale": "Third of the four Poland splits: Katowice's Silesia paired with Wrocław's Lower Silesia (8.14M)."
+    },
+    {
+      "id": "grp-b-pl-wielkopolska-pomerania",
+      "name": "Wielkopolska–Pomerania",
+      "member_ids": [
+        "pl-wielkopolska",
+        "pl-pomerania"
+      ],
+      "rationale": "Fourth of the four Poland splits: Poznań's Wielkopolska paired with the Tricity's Pomerania (11.96M)."
+    },
+    {
+      "id": "grp-b-czechia",
+      "name": "Bohemia–Moravia–Czech Silesia",
+      "member_ids": [
+        "cz-bohemia",
+        "cz-moravia",
+        "cz-czech-silesia"
+      ],
+      "rationale": "The Czech Republic combined as one grouping (10.87M), unchanged from the affinity scheme; comfortably under the effective ceiling."
+    },
+    {
+      "id": "grp-b-slovakia",
+      "name": "Slovakia (Bratislava-West–East)",
+      "member_ids": [
+        "sk-bratislava-west",
+        "sk-east"
+      ],
+      "rationale": "Slovakia's two units combined as one grouping (5.39M); the Košice-Prešov dipole (sk-east, 1.61M) does not clear the representation floor alone."
+    },
+    {
+      "id": "grp-b-hungary",
+      "name": "Hungary (Budapest–West–Balaton–East/Debrecen)",
+      "member_ids": [
+        "hu-budapest",
+        "hu-west",
+        "hu-balaton",
+        "hu-east-debrecen"
+      ],
+      "rationale": "Hungary combined as one grouping (9.66M), unchanged from the affinity scheme; comfortably under the effective ceiling."
+    },
+    {
+      "id": "grp-b-slovenia-croatia",
+      "name": "Slovenia–Croatia",
+      "member_ids": [
+        "si-slovenia",
+        "hr-zagreb-continental",
+        "hr-istria",
+        "hr-rijeka",
+        "hr-dalmatia"
+      ],
+      "rationale": "Slovenia and Croatia combined as one grouping (5.99M), unchanged from the affinity scheme; Slovenia alone (2.12M) does not clear the representation floor. Istria's contested Italian-Julian-March history is offered as an alternative alignment with Triveneto; Carinthia's Slovenia-adjacent alternative points here."
+    },
+    {
+      "id": "grp-b-western-balkans",
+      "name": "Western Balkans",
+      "member_ids": [
+        "ba-federation-bih",
+        "ba-republika-srpska",
+        "ba-brcko-district",
+        "rs-belgrade-central-serbia",
+        "rs-vojvodina",
+        "me-montenegro",
+        "mk-north-macedonia",
+        "al-albania",
+        "xk-kosovo"
+      ],
+      "rationale": "Bosnia and Herzegovina's three parliament-holding entities, Serbia, Montenegro, North Macedonia, Albania and Kosovo combined as one grouping (16.62M), unchanged from the affinity scheme; each entity/state keeps its own cultural-unit identity, comfortably under the effective ceiling."
+    },
+    {
+      "id": "grp-b-ro-transylvania-szekely-banat",
+      "name": "Transylvania–Székely Land–Banat",
+      "member_ids": [
+        "ro-transylvania",
+        "ro-szekely-land",
+        "ro-banat-timisoara"
+      ],
+      "rationale": "Split out of the old 19.27M 'Romania' lump: historic Transylvania proper (with Székely Land, carved out as its own cultural unit, kept alongside its historic Transylvanian context) plus Banat-Timișoara (6.55M). Székely Land's ethnic-Hungarian composition and autonomy movement are offered as an alternative alignment with Hungary."
+    },
+    {
+      "id": "grp-b-ro-wallachia-moldavia-md",
+      "name": "Wallachia-Bucharest–Moldavia-Dobrogea–Moldova",
+      "member_ids": [
+        "ro-wallachia-bucharest",
+        "ro-moldavia-dobrogea",
+        "md-moldova"
+      ],
+      "rationale": "Split out of the old 19.27M 'Romania' lump: Bucharest's Wallachia paired with Romanian Moldavia-Dobrogea (15.16M). The Republic of Moldova (2.44M) is added by affinity — shared Romanian language and Bessarabian history, and real-world unification sentiment — since Moldova alone falls under the representation floor; offered against the alternative of aligning with neighboring southern Ukraine instead."
+    },
+    {
+      "id": "grp-b-bulgaria",
+      "name": "Bulgaria",
+      "member_ids": [
+        "bg-sofia-west",
+        "bg-plovdiv-thrace",
+        "bg-north-danube",
+        "bg-varna-black-sea"
+      ],
+      "rationale": "Bulgaria combined as one grouping (6.63M), unchanged from the affinity scheme; comfortably under the effective ceiling."
+    },
+    {
+      "id": "grp-b-gr-athens",
+      "name": "Athens-Attica",
+      "member_ids": [
+        "gr-athens-attica"
+      ],
+      "rationale": "Capital-region singleton (3.75M), unchanged from the affinity scheme."
+    },
+    {
+      "id": "grp-b-gr-rest",
+      "name": "Greece outside Athens",
+      "member_ids": [
+        "gr-macedonia",
+        "gr-thrace",
+        "gr-peloponnese-central-greece",
+        "gr-crete",
+        "gr-aegean-islands"
+      ],
+      "rationale": "The rest of Greece combined as one grouping (6.81M), unchanged from the affinity scheme; comfortably under the effective ceiling."
+    },
+    {
+      "id": "grp-b-fi-mainland-aland",
+      "name": "Finland (mainland + Åland)",
+      "member_ids": [
+        "fi-helsinki-uusimaa",
+        "fi-turku-southwest-finland",
+        "fi-tampere-western-finland",
+        "fi-oulu-north-ostrobothnia",
+        "fi-lapland-sapmi",
+        "fi-lakeland",
+        "fi-aland"
+      ],
+      "rationale": "Mainland Finland combined as one grouping, with Åland (30.5k, far under the representation floor and with no land neighbor) merged upward per explicit guidance ('Åland→Finland-mainland'), for a combined 5.54M. Åland's Swedish-speaking population and geographic position give it an alternative alignment with Sweden-Stockholm instead."
+    },
+    {
+      "id": "grp-b-se-stockholm",
+      "name": "Stockholm-Mälardalen",
+      "member_ids": [
+        "se-stockholm-malardalen"
+      ],
+      "rationale": "Capital-region singleton (4.14M), unchanged from the affinity scheme; also serves as Åland's alternative representation home."
+    },
+    {
+      "id": "grp-b-se-rest",
+      "name": "Sweden outside Stockholm",
+      "member_ids": [
+        "se-gothenburg-west-sweden",
+        "se-malmo-skane",
+        "se-gotland",
+        "se-norrland-upper",
+        "se-norrland-lower"
+      ],
+      "rationale": "The rest of Sweden combined as one grouping (6.26M), unchanged from the affinity scheme; comfortably under the effective ceiling. Also serves as Copenhagen-Zealand's Öresund-region alternative (Malmö-Skåne)."
+    },
+    {
+      "id": "grp-b-dk-copenhagen-zealand",
+      "name": "Copenhagen-Zealand",
+      "member_ids": [
+        "dk-copenhagen-zealand"
+      ],
+      "rationale": "Split out of the old 5.88M 'Denmark' lump: Copenhagen and Zealand alone (2.71M) just clear the representation floor, enabling a genuine Öresund cross-border alternative alignment with Malmö-Skåne (Sweden)."
+    },
+    {
+      "id": "grp-b-dk-jutland-funen",
+      "name": "Jutland-Funen",
+      "member_ids": [
+        "dk-jutland-funen"
+      ],
+      "rationale": "Split out of the old 5.88M 'Denmark' lump: Jutland and Funen alone (3.17M) clear the representation floor as their own grouping."
+    },
+    {
+      "id": "grp-b-norway-north-atlantic",
+      "name": "Norway & North Atlantic",
+      "member_ids": [
+        "no-oslo-eastern-southern-norway",
+        "no-stavanger-bergen",
+        "no-alesund-northwest",
+        "no-trondheim-trondelag",
+        "no-tromso-north-norway",
+        "is-iceland",
+        "gl-greenland",
+        "fo-faroe-islands"
+      ],
+      "rationale": "Norway's five units combined with Iceland, Greenland and the Faroe Islands (6.02M) by historical Norse-realm affinity (Iceland was a Norwegian dependency 1262-1814; Greenland and the Faroes remained Danish after 1814 but share the same Old Norse heritage) — none of the small North Atlantic territories (Iceland 0.39M, Greenland 0.056M, Faroe Islands 0.054M) clears the representation floor alone, and Norway's own non-Oslo units (2.37M combined) do not either."
+    },
+    {
+      "id": "grp-b-baltic-states",
+      "name": "Baltic States",
+      "member_ids": [
+        "ee-estonia",
+        "lv-latvia",
+        "lt-lithuania"
+      ],
+      "rationale": "Estonia, Latvia and Lithuania kept merged as one grouping (6.11M) rather than split, per the explicit 'may stay merged or pair — your call' guidance: none of the three clears the representation floor alone (Estonia 1.37M, Latvia 1.88M), and Lithuania alone (2.86M) would leave Estonia+Latvia (3.25M) as an awkward Baltic-minus-Lithuania rump, so the historic Baltic Entente framing is kept whole."
+    },
+    {
+      "id": "grp-b-uk-london",
+      "name": "London Commuter Belt",
+      "member_ids": [
+        "uk-london-commuter"
+      ],
+      "rationale": "London and its wider commuter belt form a single, unsplittable cultural unit at 18.3M — the largest in the dataset, which is what sets the ~2.6M representation floor (18.3M / 7) for every other non-exempt grouping in the balanced scheme."
+    },
+    {
+      "id": "grp-b-uk-southwest",
+      "name": "Southwest England",
+      "member_ids": [
+        "uk-wessex",
+        "uk-exeter-plymouth",
+        "uk-cornwall"
+      ],
+      "rationale": "Split out of the old 22.75M 'England South Midlands' lump along cultural-unit lines: Wessex, Exeter-Plymouth and Cornwall combined (5.7M). Cornwall's Brythonic-Celtic (Cornish) heritage is offered as an alternative pan-Celtic alignment with Wales-Scotland-Northern Ireland."
+    },
+    {
+      "id": "grp-b-uk-south-central-east",
+      "name": "South & East England",
+      "member_ids": [
+        "uk-sussex",
+        "uk-southampton-solent",
+        "uk-east-of-england-cambridge"
+      ],
+      "rationale": "Split out of the old 22.75M 'England South Midlands' lump: Sussex, Southampton-Solent and East-of-England-Cambridge combined (6.2M)."
+    },
+    {
+      "id": "grp-b-uk-midlands",
+      "name": "English Midlands",
+      "member_ids": [
+        "uk-birmingham",
+        "uk-east-midlands"
+      ],
+      "rationale": "Split out of the old 22.75M 'England South Midlands' lump: Birmingham and the East Midlands combined (10.85M), matching the real West+East Midlands macroregion."
+    },
+    {
+      "id": "grp-b-uk-northern-england",
+      "name": "Northern England",
+      "member_ids": [
+        "uk-manchester",
+        "uk-liverpool",
+        "uk-lancashire",
+        "uk-yorkshire-leeds",
+        "uk-newcastle-ne"
+      ],
+      "rationale": "The old 15.6M 'England North' lump kept merged as one grouping, unchanged from the affinity scheme; comfortably under the effective ceiling. Manchester and Liverpool's liverpool-manchester overlap variant set is a separate, cultural-unit-level concern."
+    },
+    {
+      "id": "grp-b-uk-wales-scotland-ni",
+      "name": "Wales–Scotland–Northern Ireland",
+      "member_ids": [
+        "uk-wales-cardiff",
+        "uk-scotland-central-belt",
+        "uk-scotland-highlands",
+        "uk-northern-ireland"
+      ],
+      "rationale": "Wales and Scotland combined with Northern Ireland (10.48M): Northern Ireland alone (1.91M) is far under the representation floor and has no GB land connection, but the historic Ulster-Scots link (Ulster Plantation settlers from Scotland, present-day Scotland-NI ferry corridor) gives the merge an affinity basis as a 'Celtic/Northern Isles' devolved-nations bloc. Northern Ireland's alternative is an all-island grouping with the Republic of Ireland."
+    },
+    {
+      "id": "grp-b-ireland-republic",
+      "name": "Republic of Ireland",
+      "member_ids": [
+        "ie-dublin",
+        "ie-cork",
+        "ie-galway"
+      ],
+      "rationale": "Dublin, Cork and Galway combined as one grouping (5.15M), unchanged from the affinity scheme; Dublin alone (2.6M) sits just under the representation floor."
+    },
+    {
+      "id": "grp-b-ua-galicia-volhynia-zakarpattia",
+      "name": "Galicia–Volhynia–Zakarpattia",
+      "member_ids": [
+        "ua-lviv-galicia",
+        "ua-volhynia",
+        "ua-zakarpattia"
+      ],
+      "rationale": "First of two splits of the old 21.43M 'Ukraine West-Center' lump: western Ukraine combined (10.39M). Zakarpattia's historic pre-1920 Hungarian administration and present Hungarian minority are offered as an alternative alignment with Hungary."
+    },
+    {
+      "id": "grp-b-ua-kyiv-hetmanate-podillia",
+      "name": "Kyiv–Hetmanate–Podillia",
+      "member_ids": [
+        "ua-kyiv",
+        "ua-hetmanate",
+        "ua-podillia"
+      ],
+      "rationale": "Second of two splits of the old 21.43M 'Ukraine West-Center' lump: the capital region with the Hetmanate and Podillia combined (11.05M)."
+    },
+    {
+      "id": "grp-b-ua-odesa-crimea-kharkiv",
+      "name": "Odesa–Crimea–Kharkiv",
+      "member_ids": [
+        "ua-odesa-south",
+        "ua-crimea",
+        "ua-kharkiv-sloboda"
+      ],
+      "rationale": "First of two splits of the old 22.47M 'Ukraine South-East' lump: the Black Sea south combined with Kharkiv (10.59M). Also serves as Moldova's alternative representation home."
+    },
+    {
+      "id": "grp-b-ua-dnipro-donetsk-luhansk",
+      "name": "Dnipro-Zaporizhzhia–Donetsk–Luhansk",
+      "member_ids": [
+        "ua-dnipro-zaporizhzhia",
+        "ua-donetsk",
+        "ua-luhansk"
+      ],
+      "rationale": "Second of two splits of the old 22.47M 'Ukraine South-East' lump: the industrial east/Donbas combined (11.88M)."
+    },
+    {
+      "id": "grp-b-south-caucasus",
+      "name": "South Caucasus",
+      "member_ids": [
+        "ge-georgia",
+        "am-armenia"
+      ],
+      "rationale": "Georgia and Armenia combined as one grouping (6.69M), unchanged from the affinity scheme; both are single-unit-exception countries clearing the floor even standalone, kept together for continuity with the existing scheme."
+    }
+  ],
+  "alternatives": {
+    "fi-aland": [
+      "grp-b-fi-mainland-aland",
+      "grp-b-se-stockholm"
+    ],
+    "at-carinthia": [
+      "grp-b-at-rest",
+      "grp-b-slovenia-croatia"
+    ],
+    "fr-alsace": [
+      "grp-b-fr-est",
+      "grp-b-de-alemannic-southwest"
+    ],
+    "it-south-tyrol": [
+      "grp-b-it-nordest",
+      "grp-b-at-rest"
+    ],
+    "ch-ticino": [
+      "grp-b-ch-german-ticino",
+      "grp-b-ch-romandie-alpine"
+    ],
+    "uk-cornwall": [
+      "grp-b-uk-southwest",
+      "grp-b-uk-wales-scotland-ni"
+    ],
+    "dk-copenhagen-zealand": [
+      "grp-b-dk-copenhagen-zealand",
+      "grp-b-se-rest"
+    ],
+    "uk-northern-ireland": [
+      "grp-b-uk-wales-scotland-ni",
+      "grp-b-ireland-republic"
+    ],
+    "md-moldova": [
+      "grp-b-ro-wallachia-moldavia-md",
+      "grp-b-ua-odesa-crimea-kharkiv"
+    ],
+    "de-saarland": [
+      "grp-b-de-hesse-rlp-saarland",
+      "grp-b-fr-est"
+    ],
+    "fr-lorraine": [
+      "grp-b-fr-est",
+      "grp-b-de-hesse-rlp-saarland"
+    ],
+    "hr-istria": [
+      "grp-b-slovenia-croatia",
+      "grp-b-it-nordest"
+    ],
+    "ua-zakarpattia": [
+      "grp-b-ua-galicia-volhynia-zakarpattia",
+      "grp-b-hungary"
+    ],
+    "ro-szekely-land": [
+      "grp-b-ro-transylvania-szekely-banat",
+      "grp-b-hungary"
+    ],
+    "es-canary-islands": [
+      "grp-b-es-centro-sur-canarias",
+      "grp-b-pt-porto-azores-madeira"
+    ],
+    "pt-azores": [
+      "grp-b-pt-porto-azores-madeira",
+      "grp-b-es-centro-sur-canarias"
+    ],
+    "at-vorarlberg": [
+      "grp-b-at-vorarlberg",
+      "grp-b-ch-german-ticino"
+    ]
+  },
+  "factor_exempt": [
+    "grp-b-gibraltar",
+    "grp-b-alpine-microstates",
+    "grp-b-crown-dependencies",
+    "grp-b-at-vorarlberg",
+    "grp-b-be-brussels",
+    "grp-b-cy-cyprus",
+    "grp-b-de-berlin",
+    "grp-b-de-bremen",
+    "grp-b-de-hamburg",
+    "grp-b-es-ceuta-melilla",
+    "grp-b-it-piedmont",
+    "grp-b-tr-east-thrace"
+  ]
+}
